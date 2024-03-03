@@ -1,6 +1,6 @@
 # Welcome to My Development Journey! 🌱
 
-Hi there! I'm Tommy, an aspiring full-stack developer passionate about exploring the depths of technology. 
+Hi there! I'm Tom, an aspiring full-stack web developer passionate about exploring the depths of technology. 
 My journey spans from web development to exciting areas like networking, database analysis, indie game development, and creating engaging creations with AI. 
 I aim to blend insatiable curiosity with practical skills, delving into everything from creating engaging websites to understanding AI principles and game design. 
 Join me as I explore the nuts and bolts of technology, hoping to push the boundaries of whats possible in web development and beyond.
