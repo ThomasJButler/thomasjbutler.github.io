@@ -260,8 +260,8 @@ body.scrolled #matrix,
     }
 
     #matrix {
-        top: 200px; /* Adjust for smaller headers */
-        height: calc(100% - 200px);
+        top: 140px; /* Adjust for smaller headers */
+        height: calc(100% - 100px);
     }
 }
 
@@ -296,7 +296,13 @@ body.scrolled #matrix,
     }
 
     #matrix {
-        top: 150px; /* Adjust for even smaller headers */
-        height: calc(100% - 150px);
+        top: 135px; /* Adjust for even smaller headers */
+        height: calc(100% - 100px);
+    }
+
+    #matrixCanvas {
+        display: block;
+        width: 90%;
+        height: 90%;
     }
 }
