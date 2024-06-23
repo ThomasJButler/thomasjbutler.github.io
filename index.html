@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="src/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
 </head>
 <body>
 <header>
@@ -13,7 +16,6 @@
     <p>Scroll Down to Hack the Matrix</p>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
             <li><a href="skills.html">Skills</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="apps.html">Apps</a></li>
@@ -86,7 +88,7 @@
     </section>
     <section id="contact">
         <h2>Contact Me</h2>
-        <form>
+        <form action="YOUR_FORM_ACTION_URL" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>

@@ -68,11 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
     gridItems.forEach(item => {
         item.addEventListener('mouseover', () => {
             item.style.transform = 'scale(1.05)';
-            item.style.backgroundColor = '#222';
+            item.style.backgroundColor = '#00FF00';
+            item.style.color = '#1a1a1a';
         });
         item.addEventListener('mouseout', () => {
             item.style.transform = 'scale(1)';
             item.style.backgroundColor = '#111';
+            item.style.color = '#00FF00';
         });
     });
 
