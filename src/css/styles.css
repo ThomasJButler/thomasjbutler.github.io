@@ -79,11 +79,23 @@ section {
     }
 }
 
+section#introduction {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 50px;
+}
+
 .introduction-img {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 100px;
+    gap: 50px;
+    padding: 50px;
 }
 
 /* About Me Styling */
