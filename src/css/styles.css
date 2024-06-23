@@ -186,8 +186,10 @@ footer {
     background-color: #111;
     padding: 20px;
     border: 1px solid #00FF00;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     animation: zoomIn 1s ease-in-out;
+    border-radius: 5px;
+    text-align: center;
 }
 
 @keyframes zoomIn {
@@ -203,7 +205,84 @@ footer {
 
 .grid-item:hover {
     transform: scale(1.05);
-    background-color: #222;
+    background-color: #00FF00;
+    color: #1a1a1a;
+}
+
+.grid-item h3 {
+    color: #00FF00;
+    margin-bottom: 10px;
+}
+
+.grid-item p {
+    color: #f4f4f4;
+}
+
+.grid-item:hover h3, .grid-item:hover p {
+    color: #1a1a1a;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    background: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress {
+    background: #00FF00;
+    height: 100%;
+}
+
+/* Button Styling */
+button {
+    padding: 10px;
+    font-size: 1.2rem;
+    background: #00FF00;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00cc00;
+}
+
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+form input, form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #00FF00;
+    background: #1a1a1a;
+    color: #00FF00;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    font-size: 1.2rem;
+    background: #00FF00;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 /* Matrix Effect Container */
@@ -234,6 +313,8 @@ body.scrolled #matrix,
 #matrix:active {
     display: none;
 }
+
+
 
 /* Responsive Design for Mobile and Tablet */
 @media (max-width: 768px) {
