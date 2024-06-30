@@ -1,43 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Gallery</title>
+    <title>Thomas J Butler - Projects</title>
     <link rel="stylesheet" href="src/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
 </head>
+
 <body>
+    <div id="matrix">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
     <header>
-        <h1>Thomas J Butler</h1>
-        <p>Software Developer</p>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="games.html">Games</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="services.html">My Services</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Thomas J Butler</h1>
+            <h3>Digital Art Showcase</h3>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="games.html">Games</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="art.html">Art Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <section id="content">
-            <h2>Art Gallery</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <img src="https://picsum.photos/200/300" alt="Placeholder Image">
-            <img src="https://picsum.photos/200/300" alt="Placeholder Image">
-            <img src="https://picsum.photos/200/300" alt="Placeholder Image">
+        <section id="codepen-projects">
+            <div class="container">
+                <h2>CodePen Digital Art Projects</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <h3>Project 1</h3>
+                        <iframe height="300" style="width: 100%;" scrolling="no" title="&lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;" src="https://codepen.io/thomasbutler/embed/QWPjLRx?default-tab=&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                            See the Pen <a href="https://codepen.io/thomasbutler/pen/QWPjLRx">
+                            &lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
+                            on <a href="https://codepen.io">CodePen</a>.
+                          </iframe>
+                    </div>
+                    <!-- Add more CodePen project items as needed -->
+                </div>
+                <a href="codepen.html" class="cta-button">View All CodePen Projects</a>
+            </div>
         </section>
-    </main>
+
     <footer>
-        <ul>
-            <li><a href="https://linkedin.com">LinkedIn</a></li>
-            <li><a href="https://github.com">GitHub</a></li>
-            <li><a href="https://twitter.com">Twitter</a></li>
-        </ul>
+        <div class="container">
+            <ul>
+                <li><a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com/ThomasJButler" target="_blank">GitHub</a></li>
+                <li><a href="https://codepen.io/thomasbutler" target="_blank">CodePen</a></li>
+            </ul>
+            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+        </div>
     </footer>
+
     <script src="src/js/scripts.js"></script>
 </body>
+
 </html>
