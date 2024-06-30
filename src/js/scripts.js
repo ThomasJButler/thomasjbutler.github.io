@@ -112,20 +112,70 @@ canvas.addEventListener('click', () => {
     matrixEnabled = !matrixEnabled;
 });
 
-// Glitch effect for headings (unchanged)
 function glitchEffect(element) {
-    // ... (keep the existing glitch effect code)
+    if (element.dataset.glitching === 'true') return;
+    element.dataset.glitching = 'true';
+
+    const originalText = element.textContent;
+    const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
+    
+    let iterations = 0;
+    const maxIterations = originalText.length;
+    const glitchDuration = 1000 + Math.random() * 1000; // Random duration between 1-2 seconds
+    
+    const interval = setInterval(() => {
+        element.textContent = originalText
+            .split('')
+            .map((char, index) => {
+                if (index < iterations) {
+                    return originalText[index];
+                }
+                return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            })
+            .join('');
+        
+        if (iterations >= maxIterations) {
+            clearInterval(interval);
+            element.dataset.glitching = 'false';
+            setTimeout(() => {
+                element.dataset.cooldown = 'false';
+            }, 5000); // 5-second cooldown
+        }
+        
+        iterations += 1;
+    }, glitchDuration / maxIterations);
 }
 
-// Apply glitch effect and subtle animation to all headings (unchanged)
+// Apply glitch effect and subtle animation to all headings
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
-    // ... (keep the existing heading animation code)
+    heading.style.transition = 'transform 0.3s ease-in-out';
+    
+    heading.addEventListener('mouseover', () => {
+        if (heading.dataset.cooldown !== 'true') {
+            glitchEffect(heading);
+            heading.dataset.cooldown = 'true';
+        }
+    });
+
+    // Subtle hover animation
+    heading.addEventListener('mouseenter', () => {
+        heading.style.transform = 'scale(1.05)';
+    });
+
+    heading.addEventListener('mouseleave', () => {
+        heading.style.transform = 'scale(1)';
+    });
 });
 
-// Periodic random glitch (unchanged)
+// Periodic random glitch
 setInterval(() => {
-    // ... (keep the existing periodic glitch code)
-}, 10000);
+    const headings = document.querySelectorAll('h1, h2, h3');
+    const randomHeading = headings[Math.floor(Math.random() * headings.length)];
+    if (randomHeading.dataset.cooldown !== 'true') {
+        glitchEffect(randomHeading);
+        randomHeading.dataset.cooldown = 'true';
+    }
+}, 10000); // Trigger a random heading glitch every 10 seconds
 
 // Scroll reveal effect
 function reveal() {
