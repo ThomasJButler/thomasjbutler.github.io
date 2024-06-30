@@ -1,8 +1,9 @@
-// Matrix background effect
+// Matrix Rain Effect
 const canvas = document.getElementById('matrixCanvas');
 const ctx = canvas.getContext('2d');
 
 let matrixEnabled = true;
+let frameCount = 0;
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -12,40 +13,61 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const katakana = 'アカサタナハマヤラワガザダバパイキシチニヒミリギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレゲゼデベペオコソトノホモヨロヲゴゾドボポヴッ';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
-const alphabet = katakana + latin + nums;
+const katakana = '101010101アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン010010101';
+const characters = katakana.split('');
 
-const fontSize = 16;
+const fontSize = 14;
 const columns = canvas.width / fontSize;
-const rainDrops = [];
 
-for (let x = 0; x < columns; x++) {
-    rainDrops[x] = 1;
+const drops = [];
+const colors = [];
+for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -canvas.height;
+    colors[i] = Math.random() < 0.99? '#0F0' : (Math.random() < 0.1 ? '#00FFFF' : '#FF2800'); // Green, Neon Blue, Ferrari Red
 }
+
+let fadeInterval;
+let fadeAmount = 0;
+
+function setFadeInterval() {
+    clearInterval(fadeInterval);
+    fadeInterval = setInterval(() => {
+        if (fadeAmount < 0.05) fadeAmount += 0.001;
+    }, 100);
+}
+
+setFadeInterval();
 
 function drawMatrix() {
     if (!matrixEnabled) return;
 
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = `rgba(0, 0, 0, ${fadeAmount})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = 'rgba(0, 255, 0, 0.35)';
-    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        ctx.fillStyle = colors[i];
+        ctx.font = `${fontSize}px monospace`;
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-    for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            rainDrops[i] = 0;
+        // Update positions every third frame (33% slower)
+        if (frameCount % 3 === 0) {
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+                // Small chance to change color when resetting
+                if (Math.random() < 0.05) {
+                    colors[i] = Math.random() < 0.5 ? '#00FFFF' : '#FF2800';
+                } else {
+                    colors[i] = '#0F0';
+                }
+            }
+            drops[i]++;
         }
-        rainDrops[i]++;
     }
+
+    frameCount++;
 }
 
-// Matrix animation loop
 function animate() {
     drawMatrix();
     requestAnimationFrame(animate);
@@ -53,12 +75,53 @@ function animate() {
 
 animate();
 
-// Glitch effect for headings
+// Rest of the code remains the same...
+
+// Scroll event to control visibility
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+        fadeAmount = Math.min(fadeAmount + 0.01, 0.05);
+    } else {
+        fadeAmount = Math.max(fadeAmount - 0.01, 0);
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+    setFadeInterval();
+});
+
+// Mouse interaction
+canvas.addEventListener('mousemove', (e) => {
+    const x = Math.floor(e.clientX / fontSize);
+    const y = Math.floor(e.clientY / fontSize);
+    drops[x] = y;
+});
+
+// Touch interaction for mobile devices
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = Math.floor(touch.clientX / fontSize);
+    const y = Math.floor(touch.clientY / fontSize);
+    drops[x] = y;
+}, { passive: false });
+
+// Toggle matrix effect on click
+canvas.addEventListener('click', () => {
+    matrixEnabled = !matrixEnabled;
+});
+
 function glitchEffect(element) {
+    if (element.dataset.glitching === 'true') return;
+    element.dataset.glitching = 'true';
+
     const originalText = element.textContent;
     const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
     
     let iterations = 0;
+    const maxIterations = originalText.length;
+    const glitchDuration = 1000 + Math.random() * 1000; // Random duration between 1-2 seconds
     
     const interval = setInterval(() => {
         element.textContent = originalText
@@ -71,18 +134,48 @@ function glitchEffect(element) {
             })
             .join('');
         
-        if (iterations >= originalText.length) {
+        if (iterations >= maxIterations) {
             clearInterval(interval);
+            element.dataset.glitching = 'false';
+            setTimeout(() => {
+                element.dataset.cooldown = 'false';
+            }, 5000); // 5-second cooldown
         }
         
-        iterations += 1 / 3;
-    }, 30);
+        iterations += 1;
+    }, glitchDuration / maxIterations);
 }
 
-// Apply glitch effect to all headings
+// Apply glitch effect and subtle animation to all headings
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
-    heading.addEventListener('mouseover', () => glitchEffect(heading));
+    heading.style.transition = 'transform 0.3s ease-in-out';
+    
+    heading.addEventListener('mouseover', () => {
+        if (heading.dataset.cooldown !== 'true') {
+            glitchEffect(heading);
+            heading.dataset.cooldown = 'true';
+        }
+    });
+
+    // Subtle hover animation
+    heading.addEventListener('mouseenter', () => {
+        heading.style.transform = 'scale(1.05)';
+    });
+
+    heading.addEventListener('mouseleave', () => {
+        heading.style.transform = 'scale(1)';
+    });
 });
+
+// Periodic random glitch
+setInterval(() => {
+    const headings = document.querySelectorAll('h1, h2, h3');
+    const randomHeading = headings[Math.floor(Math.random() * headings.length)];
+    if (randomHeading.dataset.cooldown !== 'true') {
+        glitchEffect(randomHeading);
+        randomHeading.dataset.cooldown = 'true';
+    }
+}, 10000); // Trigger a random heading glitch every 10 seconds
 
 // Scroll reveal effect
 function reveal() {
@@ -175,6 +268,16 @@ document.querySelectorAll('section').forEach(section => {
 // Initialize reveal effect on load
 reveal();
 
+// Toggle navigation menu on mobile
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', function() {
+        navUl.classList.toggle('show');
+    });
+});
+
 // Lazy loading for images
 document.addEventListener("DOMContentLoaded", function() {
     const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
@@ -194,5 +297,6 @@ document.addEventListener("DOMContentLoaded", function() {
         lazyImages.forEach(function(lazyImage) {
             lazyImageObserver.observe(lazyImage);
         });
+
     }
 });
