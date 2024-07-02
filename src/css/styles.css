@@ -2,8 +2,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
+    box-sizing: border-box
+    
 }
 
 body {
@@ -265,15 +265,22 @@ section.active {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 50px;
+    padding: 50px;
 }
 
 .grid-item {
+    display: flex;
     background-color: rgba(17, 17, 17, 0.7);
     padding: 25px;
     border: 1px solid #00FF00;
     border-radius: 10px;
     transition: all 0.3s ease;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
 .grid-item:hover {
@@ -286,6 +293,41 @@ section.active {
     max-width: 80%;
     /* border-radius: 5px; */
     margin-bottom: 15px;
+}
+
+ li {
+    list-style-type: none;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 3px solid #00FF00;
+    color: #00FF00;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+li::before {
+    content: '>';
+    position: absolute;
+    left: -40px;
+    color: #00FF00;
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    transform: translateX(5px);
+}
+
+li:hover::before {
+    left: 5px;
+}
+
+li::after{
+    left: 5px;
 }
 
 /* Services Section */
@@ -342,6 +384,28 @@ form button {
 form button:hover {
     background-color: #FF00FF;
     box-shadow: 0 0 15px #FF00FF;
+}
+
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #F44336;
 }
 
 /* Footer Styling */

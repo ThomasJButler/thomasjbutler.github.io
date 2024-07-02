@@ -43,19 +43,27 @@
                 <h2>My Address</h2>
                 <p>Chester, Cheshire, UK</p>
                 <p>Phone: +44 7903352059</p>
-                <p>Email: thomasbutler25@gmail.com</p>
+                <p>Email: dev@thomasjbutler.me</p>
         </section>
         <section id="contact">
-            <h2>Contact Me</h2>
-            <form action="YOUR_FORM_ACTION_URL" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
+            <div class="container">
+                <h2>Contact Me</h2>
+                <form id="contact-form" action="https://formspree.io/f/xldrebvq" method="POST">
+
+                    <input type="hidden" name="_next" value="https://thomasjbutler.me/thank-you.html">
+                    
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
         </section>
     </main>
     <footer>
