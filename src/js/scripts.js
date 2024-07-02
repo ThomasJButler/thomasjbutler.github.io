@@ -206,8 +206,8 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form validation and submission
-const form = document.getElementById('contact-form');
+/* Form Validation and Submission */
+const form = document.querySelector('form');
 if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -216,13 +216,35 @@ if (form) {
         const message = document.getElementById('message').value;
         
         if (name && email && message) {
-            alert('Message sent successfully!');
-            form.reset();
+            // If all fields are filled, submit the form
+            form.submit();
         } else {
             alert('Please fill in all fields.');
         }
     });
 }
+
+// Function to show notifications
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Trigger reflow
+    notification.offsetHeight;
+    
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
 
 // Parallax effect for header
 window.addEventListener('scroll', function() {
