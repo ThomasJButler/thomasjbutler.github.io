@@ -679,3 +679,75 @@ footer ul li a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #FF00FF;
 }
+
+
+/*Image Gallery - Van Gogh*/
+
+.vincent-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.vincent-container {
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.tall {
+    grid-row: span 2;
+}
+
+.vincent-item {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.vincent-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vincent-container:hover {
+    z-index: 1;
+    transform: scale(1.05);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .vincent-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .vincent-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .vincent-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .wide, .tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}

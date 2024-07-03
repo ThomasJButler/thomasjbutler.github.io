@@ -1,13 +1,24 @@
+// Check if we're on the art page
+const isArtPage = window.location.pathname.includes('art.html');
+
 // Matrix Rain Effect
 const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
-
-let matrixEnabled = true;
+let ctx;
+let matrixEnabled = !isArtPage;
+let isVincentGalleryOpen = isArtPage;
 let frameCount = 0;
 
+if (canvas) {
+    ctx = canvas.getContext('2d');
+} else {
+    console.log('Matrix canvas not found. This might be the art page.');
+}
+
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 }
 
 resizeCanvas();
@@ -17,13 +28,13 @@ const katakana = '101010101アイウエオカキクケコサシスセソタチ�
 const characters = katakana.split('');
 
 const fontSize = 14;
-const columns = canvas.width / fontSize;
+const columns = canvas ? canvas.width / fontSize : 0;
 
 const drops = [];
 const colors = [];
 for (let i = 0; i < columns; i++) {
-    drops[i] = Math.random() * -canvas.height;
-    colors[i] = Math.random() < 0.99? '#0F0' : (Math.random() < 0.1 ? '#00FFFF' : '#FF2800'); // Green, Neon Blue, Ferrari Red
+    drops[i] = Math.random() * -(canvas ? canvas.height : 0);
+    colors[i] = Math.random() < 0.99 ? '#0F0' : (Math.random() < 0.1 ? '#00FFFF' : '#FF2800');
 }
 
 let fadeInterval;
@@ -39,7 +50,7 @@ function setFadeInterval() {
 setFadeInterval();
 
 function drawMatrix() {
-    if (!matrixEnabled) return;
+    if (!canvas || !matrixEnabled || isVincentGalleryOpen) return;
 
     ctx.fillStyle = `rgba(0, 0, 0, ${fadeAmount})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -50,11 +61,9 @@ function drawMatrix() {
         ctx.font = `${fontSize}px monospace`;
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        // Update positions every third frame (33% slower)
         if (frameCount % 3 === 0) {
             if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
-                // Small chance to change color when resetting
                 if (Math.random() < 0.05) {
                     colors[i] = Math.random() < 0.5 ? '#00FFFF' : '#FF2800';
                 } else {
@@ -69,13 +78,15 @@ function drawMatrix() {
 }
 
 function animate() {
-    drawMatrix();
-    requestAnimationFrame(animate);
+    if (canvas) {
+        drawMatrix();
+        requestAnimationFrame(animate);
+    }
 }
 
-animate();
-
-// Rest of the code remains the same...
+if (!isArtPage) {
+    animate();
+}
 
 // Scroll event to control visibility
 let lastScrollTop = 0;
@@ -92,25 +103,27 @@ window.addEventListener('scroll', () => {
 });
 
 // Mouse interaction
-canvas.addEventListener('mousemove', (e) => {
-    const x = Math.floor(e.clientX / fontSize);
-    const y = Math.floor(e.clientY / fontSize);
-    drops[x] = y;
-});
+if (canvas) {
+    canvas.addEventListener('mousemove', (e) => {
+        const x = Math.floor(e.clientX / fontSize);
+        const y = Math.floor(e.clientY / fontSize);
+        drops[x] = y;
+    });
 
-// Touch interaction for mobile devices
-canvas.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const x = Math.floor(touch.clientX / fontSize);
-    const y = Math.floor(touch.clientY / fontSize);
-    drops[x] = y;
-}, { passive: false });
+    // Touch interaction for mobile devices
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const x = Math.floor(touch.clientX / fontSize);
+        const y = Math.floor(touch.clientY / fontSize);
+        drops[x] = y;
+    }, { passive: false });
 
-// Toggle matrix effect on click
-canvas.addEventListener('click', () => {
-    matrixEnabled = !matrixEnabled;
-});
+    // Toggle matrix effect on click
+    canvas.addEventListener('click', () => {
+        matrixEnabled = !matrixEnabled;
+    });
+}
 
 function glitchEffect(element) {
     if (element.dataset.glitching === 'true') return;
@@ -121,7 +134,7 @@ function glitchEffect(element) {
     
     let iterations = 0;
     const maxIterations = originalText.length;
-    const glitchDuration = 1000 + Math.random() * 1000; // Random duration between 1-2 seconds
+    const glitchDuration = 1000 + Math.random() * 1000;
     
     const interval = setInterval(() => {
         element.textContent = originalText
@@ -139,169 +152,155 @@ function glitchEffect(element) {
             element.dataset.glitching = 'false';
             setTimeout(() => {
                 element.dataset.cooldown = 'false';
-            }, 5000); // 5-second cooldown
+            }, 5000);
         }
         
         iterations += 1;
     }, glitchDuration / maxIterations);
 }
 
-// Apply glitch effect and subtle animation to all headings
-document.querySelectorAll('h1, h2, h3').forEach(heading => {
-    heading.style.transition = 'transform 0.3s ease-in-out';
-    
-    heading.addEventListener('mouseover', () => {
-        if (heading.dataset.cooldown !== 'true') {
-            glitchEffect(heading);
-            heading.dataset.cooldown = 'true';
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle art page
+    if (isArtPage) {
+        const vincentGallery = document.querySelector('.vincent-gallery');
+        if (vincentGallery) {
+            vincentGallery.style.display = 'grid';
         }
-    });
-
-    // Subtle hover animation
-    heading.addEventListener('mouseenter', () => {
-        heading.style.transform = 'scale(1.05)';
-    });
-
-    heading.addEventListener('mouseleave', () => {
-        heading.style.transform = 'scale(1)';
-    });
-});
-
-// Periodic random glitch
-setInterval(() => {
-    const headings = document.querySelectorAll('h1, h2, h3');
-    const randomHeading = headings[Math.floor(Math.random() * headings.length)];
-    if (randomHeading.dataset.cooldown !== 'true') {
-        glitchEffect(randomHeading);
-        randomHeading.dataset.cooldown = 'true';
-    }
-}, 10000); // Trigger a random heading glitch every 10 seconds
-
-// Scroll reveal effect
-function reveal() {
-    const reveals = document.querySelectorAll(".reveal");
-
-    for (let i = 0; i < reveals.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveals[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-
-        if (elementTop < windowHeight - elementVisible) {
-            reveals[i].classList.add("active");
-        } else {
-            reveals[i].classList.remove("active");
+        if (canvas) {
+            canvas.style.display = 'none';
         }
     }
-}
 
-window.addEventListener("scroll", reveal);
+    // Apply glitch effect and subtle animation to all headings
+    document.querySelectorAll('h1, h2, h3').forEach(heading => {
+        heading.style.transition = 'transform 0.3s ease-in-out';
+        
+        heading.addEventListener('mouseover', () => {
+            if (heading.dataset.cooldown !== 'true') {
+                glitchEffect(heading);
+                heading.dataset.cooldown = 'true';
+            }
+        });
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+        heading.addEventListener('mouseenter', () => {
+            heading.style.transform = 'scale(1.05)';
+        });
+
+        heading.addEventListener('mouseleave', () => {
+            heading.style.transform = 'scale(1)';
         });
     });
-});
 
-/* Form Validation and Submission */
-const form = document.querySelector('form');
-if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        if (name && email && message) {
-            // If all fields are filled, submit the form
-            form.submit();
-        } else {
-            alert('Please fill in all fields.');
+    // Periodic random glitch
+    setInterval(() => {
+        const headings = document.querySelectorAll('h1, h2, h3');
+        const randomHeading = headings[Math.floor(Math.random() * headings.length)];
+        if (randomHeading.dataset.cooldown !== 'true') {
+            glitchEffect(randomHeading);
+            randomHeading.dataset.cooldown = 'true';
         }
-    });
-}
+    }, 10000);
 
-// Function to show notifications
-function showNotification(message, type) {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    // Trigger reflow
-    notification.offsetHeight;
-    
-    notification.classList.add('show');
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-
-// Parallax effect for header
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    const scrollPosition = window.scrollY;
-    
-    header.style.backgroundPositionY = -scrollPosition * 0.5 + 'px';
-});
-
-// Interactive project grid
-const projectItems = document.querySelectorAll('#projects .grid-item');
-projectItems.forEach(item => {
-    item.addEventListener('click', function() {
-        this.classList.toggle('expanded');
-    });
-});
-
-// Typing effect for introduction
-function typeWriter(element, text, speed) {
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
+    // Scroll reveal effect
+    function reveal() {
+        const reveals = document.querySelectorAll(".reveal");
+        for (let i = 0; i < reveals.length; i++) {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveals[i].getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            } else {
+                reveals[i].classList.remove("active");
+            }
         }
     }
-    type();
-}
 
-const introText = document.querySelector('#introduction p');
-if (introText) {
-    const text = introText.innerHTML;
-    introText.innerHTML = '';
-    typeWriter(introText, text, 50);
-}
+    window.addEventListener("scroll", reveal);
 
-// Add 'reveal' class to all sections
-document.querySelectorAll('section').forEach(section => {
-    section.classList.add('reveal');
-});
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 
-// Initialize reveal effect on load
-reveal();
+    // Form Validation and Submission
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                form.submit();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    }
 
-// Toggle navigation menu on mobile
-document.addEventListener('DOMContentLoaded', function() {
+    // Parallax effect for header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+            const scrollPosition = window.scrollY;
+            header.style.backgroundPositionY = -scrollPosition * 0.5 + 'px';
+        }
+    });
+
+    // Interactive project grid
+    const projectItems = document.querySelectorAll('#projects .grid-item');
+    projectItems.forEach(item => {
+        item.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+        });
+    });
+
+    // Typing effect for introduction
+    function typeWriter(element, text, speed) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    }
+
+    const introText = document.querySelector('#introduction p');
+    if (introText) {
+        const text = introText.innerHTML;
+        introText.innerHTML = '';
+        typeWriter(introText, text, 50);
+    }
+
+    // Add 'reveal' class to all sections
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('reveal');
+    });
+
+    // Initialize reveal effect on load
+    reveal();
+
+    // Toggle navigation menu on mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('nav ul');
 
-    menuToggle.addEventListener('click', function() {
-        navUl.classList.toggle('show');
-    });
-});
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', function() {
+            navUl.classList.toggle('show');
+        });
+    }
 
-// Lazy loading for images
-document.addEventListener("DOMContentLoaded", function() {
+    // Lazy loading for images
     const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 
     if ("IntersectionObserver" in window) {
@@ -319,6 +318,85 @@ document.addEventListener("DOMContentLoaded", function() {
         lazyImages.forEach(function(lazyImage) {
             lazyImageObserver.observe(lazyImage);
         });
+    }
 
+    // Van Gogh Infinity Gallery
+    const vincentItems = document.querySelectorAll('.vincent-item');
+    const vincentGallery = document.querySelector('.vincent-gallery');
+    const openGalleryButton = document.querySelector('#open-vincent-gallery');
+    const closeGalleryButton = document.querySelector('#close-vincent-gallery');
+
+    function openVincentGallery() {
+        isVincentGalleryOpen = true;
+        matrixEnabled = false;
+        if (canvas) canvas.style.display = 'none';
+        if (vincentGallery) vincentGallery.style.display = 'grid';
+    }
+
+    function closeVincentGallery() {
+        isVincentGalleryOpen = false;
+        matrixEnabled = true;
+        if (canvas) canvas.style.display = 'block';
+        if (vincentGallery) vincentGallery.style.display = 'none';
+    }
+
+    function applyHoverEffect(event) {
+        if (!vincentGallery) return;
+        const galleryRect = vincentGallery.getBoundingClientRect();
+        const mouseX = (event.clientX - galleryRect.left) / galleryRect.width;
+        const mouseY = (event.clientY - galleryRect.top) / galleryRect.height;
+
+        vincentItems.forEach(item => {
+            const itemRect = item.getBoundingClientRect();
+            const itemCenterX = (itemRect.left + itemRect.right) / 2 - galleryRect.left;
+            const itemCenterY = (itemRect.top + itemRect.bottom) / 2 - galleryRect.top;
+
+            const deltaX = mouseX * galleryRect.width - itemCenterX;
+            const deltaY = mouseY * galleryRect.height - itemCenterY;
+
+            const angleX = (deltaY / galleryRect.height) * 30;
+            const angleY = (deltaX / galleryRect.width) * -30;
+
+            item.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        });
+    }
+
+    function resetHoverEffect() {
+        vincentItems.forEach(item => {
+            item.style.transform = 'rotateX(0) rotateY(0)';
+        });
+    }
+
+    if (openGalleryButton) {
+        openGalleryButton.addEventListener('click', openVincentGallery);
+    }
+
+    if (closeGalleryButton) {
+        closeGalleryButton.addEventListener('click', closeVincentGallery);
+    }
+
+    if (vincentGallery) {
+        vincentGallery.addEventListener('mousemove', applyHoverEffect);
+        vincentGallery.addEventListener('mouseleave', resetHoverEffect);
     }
 });
+
+// Function to show notifications
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    notification.offsetHeight;
+    
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
