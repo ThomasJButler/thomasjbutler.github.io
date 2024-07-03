@@ -1,0 +1,96 @@
+v2.1
+
+finalise getting ctrl s onto the games page
+
+do this same setup for python projects page
+
+commit this and push, don't pull to master
+
+sort out styles.css into global styles, and then styles.css as well
+
+sort out media queries and make the CSS organised, with all media queries at the bottom, response, accessibile etc
+
+once this is done change all the html to have the global.css in there
+
+add social icons to footer 
+
+sort out mobile dropdown menu style, make it smaller and disappear on scroll down
+
+add profile image on contact page
+
+add dev daily card, github card if can 
+
+sort scrol right-left on mobile / tablet 
+
+
+
+that will do for now :) 
+
+ensure these are done too
+
+personal website improvements - btw.. it’s fucking amazing already !!! 🤩 well done!! this 
+1.go through codepen for codepej projects and also ones we can use for the below maybe (image gallery) 
+
+1 text wrap all sizes
+2. padding intro text mobile and desktop 
+3. reword all text currently on site to sound like you and uk english 
+4. double check all links etc and pathways so they all have correct path name and all included 
+
+2 improve headers styling with the drop down menu - change this menu icon too to something cool 
+
+3 add global footer icons 
+
+4. reduce padding on mobile / tablet / desktop between main content and nav 
+
+5. github links aren’t styled 
+
+6. list items aren’t styled ( services)
+
+7. sort about me text and style on mobile (too clunky) 
+8. add site map 
+
+8. on mobile, add a home button next to / underneath the menu dropdown
+9. improve dropdown style (pushes content down)
+10. add contact me in footer
+11. reduce sizes of latest projects 
+12. embed form to email (get custom thomasjbuer.me email) 
+13. add websites I have made with links 
+14. add blog
+15. add media area, for youtube, tiktok, instagram with latest feed
+
+10. image gallery (make it sick)
+11. add / embed gpts
+12. add image of me 😊 
+13. fix bugs 
+14. continue to add content
+images
+games
+better about me section 
+
+
+better services section 
+
+
+
+
+v2.2
+
+add apps
+add all python games
+add gpt links
+add web creations
+add more content 
+add styles to make page look fantastic all round, debug from last branch commit
+update skills with razor
+
+
+v2.3 
+
+add all midjourney images into the art gallery 
+make a mini art gallery with modal, zoomable (incredible zoom gallery codepen) and can do things in sections to dosplau images.
+
+v2.4 
+
+try to do a way where can have individual pages to go to, but the index.hthml is scrollable a bit like codepen mockup
+but can go to links for more detail :) also updates nav bar with when you are on a specific sections
+

@@ -4,11 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler - Projects</title>
+    <title>Thomas J Butler - Epic Game Showcase</title>
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <py-config>
+        [[fetch]]
+        files = ["src/python/CtrlS/src/chapters/ctrls.py"]
+        
+        [dependencies]
+        prologue = "==0.9.3"
+    </py-config>
 </head>
 
 <body>
@@ -18,7 +25,7 @@
     <header>
         <div class="container">
             <h1>Thomas J Butler</h1>
-            <h3>Indie Game Showcase</h3>
+            <h3>Epic Game Showcase</h3>
             <div class="logo-container">
                 <a href="#" class="home-button">Home</a>
             </div>
@@ -41,57 +48,61 @@
             </nav>
         </div>
     </header>
-
+    
     <main>
-        <section id="codepen-projects">
+        <section id="game-intro">
             <div class="container">
-                <h2>CodePen Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Project 1</h3>
-                        <iframe height="300" style="width: 100%;" scrolling="no" title="&lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;" src="https://codepen.io/thomasbutler/embed/QWPjLRx?default-tab=&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-                            See the Pen <a href="https://codepen.io/thomasbutler/pen/QWPjLRx">
-                            &lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
-                            on <a href="https://codepen.io">CodePen</a>.
-                          </iframe>
-                    </div>
-                    <!-- Add more CodePen project items as needed -->
-                </div>
-                <a href="codepen.html" class="cta-button">View All CodePen Projects</a>
+                <h2>Welcome to CTRL-S | Save The World</h2>
+                <p>Experience an out of this world text adventure with amazing ASCII art!</p>
             </div>
         </section>
 
-        <section id="python-games">
+        <section id="game-display">
             <div class="container">
-                <h2>Python Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Python Game 1</h3>
-                        <div class="game-placeholder">
-                            <!-- Placeholder for Python game embed -->
-                            <p>Python Game Placeholder</p>
-                        </div>
-                    </div>
-                    <!-- Add more Python game items as needed -->
+                <h2>Game Window</h2>
+                <div id="game-container">
+                    <py-script>
+                        from js import document
+                        from pyodide.ffi import create_proxy
+                        import sys
+                        sys.path.append("/src/python/CtrlS/src/chapters")
+                        from ctrls import run_game, handle_input
+
+                        def display(text):
+                            output = document.getElementById("game-output")
+                            output.innerHTML += text + "<br>"
+                            output.scrollTop = output.scrollHeight
+
+                        def on_key_press(event):
+                            if event.key == "Enter":
+                                input_element = document.getElementById("game-input")
+                                user_input = input_element.value
+                                input_element.value = ""
+                                handle_input(user_input)
+                                display(f"> {user_input}")
+
+                        def start_game():
+                            document.getElementById("game-output").innerHTML = ""
+                            run_game()
+
+                        document.getElementById("start-game").onclick = create_proxy(start_game)
+                        document.getElementById("game-input").onkeypress = create_proxy(on_key_press)
+                    </py-script>
+                    <button id="start-game">Start Game</button>
+                    <div id="game-output"></div>
+                    <input type="text" id="game-input" placeholder="Enter your command...">
                 </div>
-                <a href="games.html#python" class="cta-button">View All Python Games</a>
             </div>
         </section>
 
-        <section id="web-games">
+        <section id="game-instructions">
             <div class="container">
-                <h2>Web Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Web Game 1</h3>
-                        <iframe src="path-to-your-web-game" width="100%" height="400" frameborder="0"></iframe>
-                    </div>
-                    <!-- Add more Web game items as needed -->
-                </div>
-                <a href="games.html#web" class="cta-button">View All Web Games</a>
+                <h2>How to Play</h2>
+                <p>Click 'Start Game' to begin. Enjoy the ASCII art and storyline!</p>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="container">
             <ul>
