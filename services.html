@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler - AI and Web Development Expert</title>
+    <title>Thomas J Butler - Services</title>
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="matrix">
@@ -16,7 +17,7 @@
     <header>
         <div class="container">
             <h1>Thomas J Butler</h1>
-            <h3>My Services</h3>
+            <h3>Software Developer</h3>
             <div class="logo-container">
                 <a href="#" class="home-button">Home</a>
             </div>
@@ -27,36 +28,69 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="art.html">Art Gallery</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="skills.html">Skills</a></li>
+                    <li data-tooltip="Return to Home"><a href="index.html" data-text="Home">Home</a></li>
+                    <li data-tooltip="View My Projects"><a href="projects.html" data-text="Projects">Projects</a></li>
+                    <li data-tooltip="Explore My Services"><a href="services.html" data-text="Services">Services</a></li>
+                    <li data-tooltip="Learn About Me"><a href="about.html" data-text="About Me">About Me</a></li>
+                    <li data-tooltip="Browse My Art Gallery"><a href="art.html" data-text="Art Gallery">Art Gallery</a></li>
+                    <li data-tooltip="Get in Touch"><a href="contact.html" data-text="Contact">Contact</a></li>
+                    <li data-tooltip="Check My Skills"><a href="skills.html" data-text="Skills">Skills</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main>
         <section id="services">
-            <h2>My Digital Services</h2>
-            <p>A list of services that I offer remotely</p>
-            <ul>
-                <li>Web Development</li>
-                <li>AI and Machine Learning</li>
-                <li>Mobile App Development</li>
-                <li>Game Development</li>
-                <li>Graphic Design</li>
-                <li>SEO and Digital Marketing</li>
-                <li>Consulting and Training</li>
-            </ul>
+            <div class="container">
+                <h2>My Digital Services</h2>
+                <p>A list of services that I offer remotely. Prices are all quoted individually.</p>
+                <ul class="services-list">
+                    <li data-tooltip="Create stunning websites">
+                        <h3>Web Development</h3>
+                        <p>Custom-built, responsive websites tailored to your needs. From simple landing pages to complex web applications.</p>
+                    </li>
+                    <li data-tooltip="Harness the power of AI">
+                        <h3>AI and Machine Learning</h3>
+                        <p>Implement cutting-edge AI solutions to automate processes, analyze data, and create intelligent systems.</p>
+                    </li>
+                    <li data-tooltip="Reach users on any device">
+                        <h3>Mobile App Development</h3>
+                        <p>Native and cross-platform mobile applications for iOS and Android, designed for optimal user experience.</p>
+                    </li>
+                    <li data-tooltip="Bring your game ideas to life">
+                        <h3>Game Development</h3>
+                        <p>From concept to launch, create engaging games for various platforms using the latest game development technologies.</p>
+                    </li>
+                    <li data-tooltip="Make your brand stand out">
+                        <h3>Graphic Design</h3>
+                        <p>Eye-catching logos, branding materials, and digital graphics that capture the essence of your brand.</p>
+                    </li>
+                    <li data-tooltip="Boost your online presence">
+                        <h3>SEO and Digital Marketing</h3>
+                        <p>Improve your website's visibility and drive traffic through effective SEO strategies and digital marketing campaigns.</p>
+                    </li>
+                    <li data-tooltip="Learn from an expert">
+                        <h3>Consulting and Training</h3>
+                        <p>Expert advice on technology implementation and custom training programs to elevate your team's skills.</p>
+                    </li>
+                    <li data-tooltip="Website Hosting">
+                        <h3>Website Hosting</h3>
+                        <p>Expert advice on your website and long term management.</p>
+                    </li>
+                    <li data-tooltip="Custom Services">
+                        <h3>Custom Services</h3>
+                        <p>If what you require is not on this list, please feel free to send me a request as I may be able to accomodate your request.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="container">
             <ul>
-                <li><a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/ThomasJButler" target="_blank">GitHub</a></li>
-                <li><a href="https://codepen.io/thomasbutler" target="_blank">CodePen</a></li>
+                <li data-tooltip="Connect on LinkedIn"><a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" rel="noopener" data-text="LinkedIn">LinkedIn</a></li>
+                <li data-tooltip="Check out my GitHub"><a href="https://github.com/ThomasJButler" target="_blank" rel="noopener" data-text="GitHub">GitHub</a></li>
+                <li data-tooltip="View my CodePen"><a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" data-text="CodePen">CodePen</a></li>
             </ul>
             <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
@@ -64,7 +98,3 @@
     <script src="src/js/scripts.js"></script>
 </body>
 </html>
-
-
-
-
