@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler - Projects</title>
+    <title>Skills</title>
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
@@ -29,121 +29,128 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="apps.html">Apps</a></li>
-                    <li><a href="art.html">Art</a></li>
-                    <li><a href="games.html">Contact</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="art.html">Art Gallery</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="skills.html">Skills</a></li>
+                    <li data-tooltip="Return to Home"><a href="index.html" data-text="Home">Home</a></li>
+                    <li data-tooltip="View My Projects"><a href="projects.html" data-text="Projects">Projects</a></li>
+                    <li data-tooltip="Explore My Services"><a href="services.html" data-text="Services">Services</a></li>
+                    <li data-tooltip="Learn About Me"><a href="about.html" data-text="About Me">About Me</a></li>
+                    <li data-tooltip="Browse My Art Gallery"><a href="art.html" data-text="Art Gallery">Art Gallery</a></li>
+                    <li data-tooltip="Get in Touch"><a href="contact.html" data-text="Contact">Contact</a></li>
+                    <li data-tooltip="Check My Skills"><a href="skills.html" data-text="Skills">Skills</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <main>
-        <section id="content">
-            <h2>Skills</h2>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <h3>HTML</h3>
-                    <p>Proficient in HTML5, semantic markup, and accessibility.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>CSS</h3>
-                    <p>Experienced in CSS3, responsive design, and pre-processors like SASS.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>JavaScript</h3>
-                    <p>Skilled in vanilla JavaScript, ES6+, and popular frameworks like React.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>React</h3>
-                    <p>Experienced in building dynamic UIs with React and state management.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Python</h3>
-                    <p>Knowledgeable in Python, data analysis, and web frameworks like Django.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Git</h3>
-                    <p>Proficient in version control using Git and collaboration on platforms like GitHub.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Node.js</h3>
-                    <p>Experienced in server-side JavaScript with Node.js and Express.js.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>C#</h3>
-                    <p>Experienced in backend development using C# and .NET framework.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Networking</h3>
-                    <p>Skilled in networking concepts, including subnetting and configuration.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>AI and Machine Learning</h3>
-                    <p>Knowledgeable in AI/ML concepts, model training, and deployment.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Prompting ChatGPT/Claude</h3>
-                    <p>Skilled in creating effective prompts for AI models like ChatGPT and Claude.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>MidJourney</h3>
-                    <p>Experienced in utilising MidJourney for AI-generated art and assets.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Game Development</h3>
-                    <p>Skilled in game development using engines like Unity and Unreal Engine.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Database Management</h3>
-                    <p>Experienced in database design, management, and SQL.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>API Development</h3>
-                    <p>Proficient in developing RESTful APIs using various technologies.</p>
-                </div>
+        <section id="skills">
+            <div class="container">
+                <h2>Technical Proficiencies</h2>
+                <p>A comprehensive overview of my technical expertise and proficiencies</p>
+                <ul class="skills-list">
+                    <li data-tooltip="Crafting Semantic and Accessible Web Structures">
+                        <h3>HTML5</h3>
+                        <p>Adept at creating semantic, accessible, and SEO-friendly markup.</p>
+                    </li>
+                    <li data-tooltip="Styling with Precision and Responsiveness">
+                        <h3>CSS3</h3>
+                        <p>Skilled in responsive design, animations, and CSS preprocessors like SASS.</p>
+                    </li>
+                    <li data-tooltip="Bringing Interactivity and Dynamism to the Web">
+                        <h3>JavaScript</h3>
+                        <p>Proficient in ES6+, asynchronous programming, and popular frameworks like React.</p>
+                    </li>
+                    <li data-tooltip="Building Robust and Scalable Backend Systems">
+                        <h3>Python</h3>
+                        <p>Experienced in data analysis, web scraping, and frameworks like Django and Flask.</p>
+                    </li>
+                    <li data-tooltip="Versioning and Collaboration">
+                        <h3>Git</h3>
+                        <p>Adept at version control, branching strategies, and collaborative development workflows.</p>
+                    </li>
+                    <li data-tooltip="Server-Side JavaScript">
+                        <h3>Node.js</h3>
+                        <p>Capable of building scalable backend services and RESTful APIs with Express.js.</p>
+                    </li>
+                    <li data-tooltip="Microsoft's Powerful Development Framework">
+                        <h3>C# & .NET</h3>
+                        <p>Proficient in developing robust backend systems and desktop applications.</p>
+                    </li>
+                    <li data-tooltip="Connecting the Digital World">
+                        <h3>Networking</h3>
+                        <p>Well-versed in network protocols, subnetting, and system configuration.</p>
+                    </li>
+                    <li data-tooltip="Harnessing the Power of Artificial Intelligence">
+                        <h3>AI & ML</h3>
+                        <p>Knowledgeable in machine learning algorithms, neural networks, and AI model deployment.</p>
+                    </li>
+                    <li data-tooltip="Mastering AI Communication">
+                        <h3>AI Prompting</h3>
+                        <p>Skilled in crafting effective prompts for large language models like GPT and Claude.</p>
+                    </li>
+                    <li data-tooltip="AI-Powered Visual Creativity">
+                        <h3>MidJourney</h3>
+                        <p>Experienced in leveraging AI for generating unique and captivating visual assets.</p>
+                    </li>
+                    <li data-tooltip="Crafting Interactive Digital Experiences">
+                        <h3>Game Development</h3>
+                        <p>Proficient with Unity and Unreal Engine for creating immersive gaming experiences.</p>
+                    </li>
+                    <li data-tooltip="Managing and Optimising Data">
+                        <h3>Database Management</h3>
+                        <p>Skilled in SQL, database design, and optimisation techniques.</p>
+                    </li>
+                    <li data-tooltip="Connecting Systems Seamlessly">
+                        <h3>API Development</h3>
+                        <p>Experienced in designing and implementing RESTful and GraphQL APIs.</p>
+                    </li>
+                </ul>
             </div>
         </section>
         <section id="learning">
-            <h2>Currently Learning</h2>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <h3>Rust</h3>
-                    <p>Exploring systems programming with Rust.</p>
-                    <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
-                </div>
-                <div class="grid-item">
-                    <h3>CodeCademy Front End Engineer Pro Course</h3>
-                    <p>Learning to build flexible APIs with GraphQL.</p>
-                    <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-                </div>
-                <div class="grid-item">
-                    <h3>Docker</h3>
-                    <p>Understanding containerisation and Docker workflows.</p>
-                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
-                </div>
+            <div class="container">
+                <h2>Continuous Learning</h2>
+                <p>Always expanding my skill set to stay at the forefront of technology</p>
+                <ul class="skills-list learning-list">
+                    <li data-tooltip="Systems Programming for Performance">
+                        <h3>Rust</h3>
+                        <p>Delving into systems programming for high-performance applications.</p>
+                        <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+                    </li>
+                    <li data-tooltip="Mastering Modern Web Development">
+                        <h3>Advanced Front-End Engineering</h3>
+                        <p>Enhancing skills in state management, performance optimisation, and advanced CSS techniques.</p>
+                        <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+                    </li>
+                    <li data-tooltip="Containerisation and Orchestration">
+                        <h3>Docker & Kubernetes</h3>
+                        <p>Learning containerisation and orchestration for scalable application deployment.</p>
+                        <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
-
     <footer>
         <div class="container">
             <ul>
-                <li><a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/ThomasJButler" target="_blank">GitHub</a></li>
-                <li><a href="https://codepen.io/thomasbutler" target="_blank">CodePen</a></li>
+                <li data-tooltip="Connect on LinkedIn">
+                    <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" rel="noopener" data-text="LinkedIn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </li>
+                <li data-tooltip="Check out my GitHub">
+                    <a href="https://github.com/ThomasJButler" target="_blank" rel="noopener" data-text="GitHub">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+                <li data-tooltip="View my CodePen">
+                    <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" data-text="CodePen">
+                        <i class="fab fa-codepen"></i> CodePen
+                    </a>
+                </li>
             </ul>
             <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="src/js/scripts.js"></script>
 </body>
-
 </html>
-
