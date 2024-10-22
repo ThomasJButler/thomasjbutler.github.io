@@ -17,12 +17,27 @@ body {
     overflow-x: hidden;
 }
 
-/* Container Styles */
+/* Main Content */
+main {
+    padding-top: 150px;
+    position: relative;
+    z-index: 1;
+}
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+section {
+    margin-bottom: 20px;
+    background-color: rgba(13, 13, 13, 0.7);
+    padding: 50px 0px;
+    border-bottom: 1px solid #00FF00;
+    opacity: 0;
+    border-radius: 5px;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Typography */
@@ -92,6 +107,26 @@ a.cta-button:hover {
 
 a.cta-button:hover::before {
     margin-left: 20px;
+}
+
+/* Mobile / Tablet Navigation */
+
+.logo-container {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #00FF00;
+    margin: 3px 0;
+    transition: all 0.3s ease;
 }
 
 /*Header Styling and Navigation */
@@ -179,6 +214,123 @@ li a, nav ul li a {
     display: inline-block;
 }
 
+
+/* Footer Styling */
+footer {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+/* Container Styles */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 50px;
+}
+
+.grid-item {
+    display: flex;
+    background-color: rgba(17, 17, 17, 0.7);
+    padding: 25px;
+    border: 1px solid #00FF00;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00FF00;
+}
+
+.grid-item img {
+    display: inline-flex;
+    max-width: 80%;
+    /* border-radius: 5px; */
+    margin-bottom: 15px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form input, form textarea {
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 1rem;
+    background: rgba(26, 26, 26, 0.7);
+    border: 1px solid #00FF00;
+    color: #00FF00;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 15px;
+    font-size: 1.2rem;
+    background: #00FF00;
+    color: #0d0d0d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background-color: #FF00FF;
+    box-shadow: 0 0 15px #FF00FF;
+}
+
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #F44336;
+}
+
 /*
 ==============================================
 Matrix Theme Effects & Animations
@@ -198,6 +350,61 @@ Matrix Theme Effects & Animations
 - Section Animations: Fade-in and slide-up effects
 ==============================================
 */
+
+/* Matrix Effect */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Retro 'Matrix' Buttons */
+.matrix-btn {
+    background: transparent;
+    border: 1px solid #00FF00;
+    color: #00FF00;
+    padding: 10px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.matrix-btn:hover {
+    background: #00FF00;
+    color: #0d0d0d;
+    box-shadow: 0 0 15px #00FF00;
+}
+
+/* Retro 'Matrix' Icons */
+.matrix-icon {
+    font-size: 2rem;
+    color: #00FF00;
+    transition: all 0.3s ease;
+}
+
+.matrix-icon:hover {
+    color: #FF00FF;
+    text-shadow: 0 0 10px #FF00FF;
+}
+
+@keyframes matrixRain {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+.matrix-rain {
+    position: absolute;
+    color: #00FF00;
+    font-family: 'Matrix', monospace;
+    font-size: 20px;
+    animation: matrixRain 5s linear infinite;
+}
+
+
 
 /* Matrix rain effect */
 li::before, nav ul li::before {
@@ -257,6 +464,7 @@ li:hover::before, nav ul li:hover::before {
 li:hover::after, nav ul li:hover::after {
     opacity: 1;
     transform: scale(1);
+    
 }
 
 li:hover a, nav ul li:hover a {
@@ -417,45 +625,97 @@ li:active, nav ul li:active {
     animation: dialUp 0.5s;
 }
 
-/* Mobile / Tablet Navigation */
-
-.logo-container {
-    display: none;
+/* Additional Matrix-themed Styles */
+::selection {
+    background: #00FF00;
+    color: #0d0d0d;
 }
 
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background-color: #00FF00;
-    margin: 3px 0;
-    transition: all 0.3s ease;
+::-webkit-scrollbar-track {
+    background: #0d0d0d;
 }
 
-/* Main Content */
-main {
-    padding-top: 150px;
-    position: relative;
-    z-index: 1;
-}
-
-section {
-    margin-bottom: 20px;
-    background-color: rgba(13, 13, 13, 0.7);
-    padding: 50px 0px;
-    border-bottom: 1px solid #00FF00;
-    opacity: 0;
+::-webkit-scrollbar-thumb {
+    background: #00FF00;
     border-radius: 5px;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-section.active {
-    opacity: 1;
-    transform: translateY(0);
+::-webkit-scrollbar-thumb:hover {
+    background: #FF00FF;
+}
+
+
+/*Image Gallery - Van Gogh*/
+
+.vincent-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 20px;
+    padding: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.vincent-container {
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.tall {
+    grid-row: span 2;
+}
+
+.vincent-item {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.vincent-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vincent-container:hover {
+    z-index: 1;
+    transform: scale(1.05);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .vincent-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .vincent-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .vincent-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .wide, .tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
 }

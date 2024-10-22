@@ -224,41 +224,6 @@
     to { width: 100% }
 }
 
-/* Grid Container */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 50px;
-    padding: 50px;
-}
-
-.grid-item {
-    display: flex;
-    background-color: rgba(17, 17, 17, 0.7);
-    padding: 25px;
-    border: 1px solid #00FF00;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-}
-
-.grid-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px #00FF00;
-}
-
-.grid-item img {
-    display: inline-flex;
-    max-width: 80%;
-    /* border-radius: 5px; */
-    margin-bottom: 15px;
-}
-
-
 /* Services Section Masterpiece */
 #services {
     padding: 60px 0;
@@ -444,118 +409,107 @@
     }
 }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-form input, form textarea {
-    margin-bottom: 20px;
-    padding: 15px;
-    font-size: 1rem;
-    background: rgba(26, 26, 26, 0.7);
-    border: 1px solid #00FF00;
-    color: #00FF00;
-    border-radius: 5px;
-}
-
-form button {
-    padding: 15px;
-    font-size: 1.2rem;
-    background: #00FF00;
-    color: #0d0d0d;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-form button:hover {
-    background-color: #FF00FF;
-    box-shadow: 0 0 15px #FF00FF;
-}
-
-/* Notification Styling */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    z-index: 1000;
-}
-
-.notification.success {
-    background-color: #4CAF50;
-}
-
-.notification.error {
-    background-color: #F44336;
-}
-
-/* Footer Styling */
-footer {
-    background: rgba(26, 26, 26, 0.9);
-    padding: 30px 0;
-    text-align: center;
-}
-
-footer ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    margin-bottom: 20px;
-}
-
-footer ul li {
-    margin: 0 15px;
-}
-
-/* Matrix Effect */
-#matrix {
-    position: fixed;
-    top: 0;
-    left: 0;
+#game-input {
     width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-/* Retro 'Matrix' Buttons */
-.matrix-btn {
-    background: transparent;
+    padding: 10px;
+    background: rgba(0, 20, 0, 0.8);
     border: 1px solid #00FF00;
     color: #00FF00;
-    padding: 10px 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-family: 'VT323', monospace;
+    margin-top: 10px;
 }
 
-.matrix-btn:hover {
+#start-game {
     background: #00FF00;
-    color: #0d0d0d;
-    box-shadow: 0 0 15px #00FF00;
-}
-
-/* Retro 'Matrix' Icons */
-.matrix-icon {
-    font-size: 2rem;
-    color: #00FF00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
     transition: all 0.3s ease;
 }
 
-.matrix-icon:hover {
-    color: #FF00FF;
-    text-shadow: 0 0 10px #FF00FF;
+#start-game:hover {
+    background: #00CC00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.loading-status {
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#game-container {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid #00FF00;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+#game-output {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #00FF00;
+    min-height: 400px;
+    max-height: 600px;
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    background: rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.py-terminal-docked {
+    position: static !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+/* Hide any duplicate or overflow terminal elements */
+body > py-terminal.py-terminal-docked {
+    display: none !important;
+}
+
+py-terminal.py-terminal-docked {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Handle the pre element inside py-terminal */
+.py-terminal {
+    background: transparent !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'VT323', monospace !important;
+    color: #00FF00 !important;
+    white-space: pre-wrap !important;
+}
+
+/* Target the ASCII art specifically */
+.py-terminal pre {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    color: #00FF00 !important;
 }
 
 /* Responsive Design */
@@ -739,6 +693,7 @@ footer ul li {
     }
 }
 
+
 @media screen and (max-width: 480px) {
 
     nav ul.show {
@@ -832,116 +787,5 @@ footer ul li {
         list-style-type: none;
         margin-bottom: 20px;
         flex-direction: column;
-    }
-}
-
-
-
-/* Animations */
-@keyframes matrixRain {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-}
-
-.matrix-rain {
-    position: absolute;
-    color: #00FF00;
-    font-family: 'Matrix', monospace;
-    font-size: 20px;
-    animation: matrixRain 5s linear infinite;
-}
-
-/* Additional Matrix-themed Styles */
-::selection {
-    background: #00FF00;
-    color: #0d0d0d;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #0d0d0d;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #00FF00;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #FF00FF;
-}
-
-
-/*Image Gallery - Van Gogh*/
-
-.vincent-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
-    grid-auto-flow: dense;
-    gap: 20px;
-    padding: 50px;
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.vincent-container {
-    perspective: 1000px;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.wide {
-    grid-column: span 2;
-}
-
-.tall {
-    grid-row: span 2;
-}
-
-.vincent-item {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.vincent-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.vincent-container:hover {
-    z-index: 1;
-    transform: scale(1.05);
-}
-
-/* Media Queries */
-@media screen and (max-width: 1200px) {
-    .vincent-gallery {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .vincent-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .vincent-gallery {
-        grid-template-columns: 1fr;
-    }
-    
-    .wide, .tall {
-        grid-column: auto;
-        grid-row: auto;
     }
 }
