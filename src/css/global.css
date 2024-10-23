@@ -152,11 +152,9 @@ header .container {
     row-gap: 10px;
     column-gap: 50px;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     padding: 0 20px;
-    align-content: space-between;
-    flex-direction: row;
+    flex-direction: center;
 }
 
 .logo-container {
