@@ -683,73 +683,78 @@ body > py-terminal.py-terminal-docked {
     z-index: -1;
 }
 
-/* Version Timeline Button Styles
+/* Version TimeTravel Button Styles
    ========================================================================== */
-/* Desktop Version (Top Right) */
-@media (min-width: 768px) {
-    /* Container for desktop version */
-    .logo-container {
-        display: none; /* Hidden by default */
+/* Base styles for the button */
+nav ul li.version-timetravel {
+    background: rgba(0, 255, 0, 0.2);
+    border: 1px solid #00FF00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+nav ul li.version-timetravel a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'VT323', monospace;
+}
+
+nav ul li.version-timetravel:hover {
+    background: rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    nav ul li.version-timetravel {
+        display: none; /* Hide in nav on mobile */
     }
 
-    /* Only show on homepage for desktop */
-    body.index .logo-container {
-        align-items: center;
+    body.index .version-timetravel-mobile {
         display: flex;
-        margin-left: auto; /* Push to right */
-        position: absolute; /* Take out of flow */
-        right: 20px; /* Position from right */
-        top: 20px; /* Position from top */
+        justify-content: center;
+        margin-top: 2rem;
     }
 
-    .logo-container .version-link {
+    body.index .version-timetravel-mobile .version-link {
         background: rgba(0, 255, 0, 0.2);
         border: 1px solid #00FF00;
         border-radius: 5px;
         color: #00FF00;
         display: inline-flex;
+        align-items: center; /* Center icon vertically */
+        gap: 8px; /* Consistent spacing */
         font-family: 'VT323', monospace;
-        gap: 5px;
-        overflow: hidden;
         padding: 0.5rem 1rem;
         text-decoration: none;
         transition: all 0.3s ease;
     }
 
-    .logo-container .version-link:hover {
+    /* Style the icon specifically */
+    body.index .version-timetravel-mobile .version-link i {
+        font-size: 1em; /* Match text size */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body.index .version-timetravel-mobile .version-link:hover {
         background: rgba(0, 255, 0, 0.3);
         box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
         transform: translateY(-2px);
     }
 }
 
-/* Mobile Version (In Introduction Section) */
-@media (max-width: 767px) {
-    /* Only for homepage */
-    body.index #introduction .version-timetravel-mobile {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
+/* Desktop-specific styles */
+@media (min-width: 768px) {
+    nav ul li.version-timetravel {
+        display: flex; /* Show in nav on desktop */
     }
 
-    body.index #introduction .version-link {
-        background: rgba(0, 255, 0, 0.2);
-        border: 1px solid #00FF00;
-        border-radius: 5px;
-        color: #00FF00;
-        display: inline-flex;
-        font-family: 'VT323', monospace;
-        gap: 5px;
-        overflow: hidden;
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    body.index #introduction .version-link:hover {
-        background: rgba(0, 255, 0, 0.3);
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-        transform: translateY(-2px);
+    /* Hide mobile version */
+    .version-timetravel-mobile {
+        display: none;
     }
 }
 

@@ -297,6 +297,65 @@ li a {
     z-index: 2;
 }
 
+/* Navigation Styles with Version TimeTravel
+   ========================================================================== */
+   nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    margin: 8px;
+    overflow: hidden;
+    padding: 8px 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Special styling for Version TimeTravel */
+nav ul li.version-timetravel {
+    background: rgba(0, 40, 0, 0.8);
+    border-color: #00FF00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+nav ul li.version-timetravel:hover {
+    background: rgba(0, 60, 0, 0.9);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px) scale(1.02);
+}
+
+nav ul li.version-timetravel a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav ul li.version-timetravel i {
+    font-size: 0.9em;
+}
+
+/* Remove old logo-container styles */
+.logo-container {
+    display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    nav ul li.version-timetravel {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    nav ul li.version-timetravel a {
+        justify-content: center;
+    }
+}
+
 /* Matrix Effect Styles
    ========================================================================== */
 #matrix {
