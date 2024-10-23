@@ -711,6 +711,7 @@ nav ul li.version-timetravel:hover {
         display: none; /* Hide in nav on mobile */
     }
 
+    /* Show in introduction section on mobile */
     body.index .version-timetravel-mobile {
         display: flex;
         justify-content: center;
@@ -723,20 +724,11 @@ nav ul li.version-timetravel:hover {
         border-radius: 5px;
         color: #00FF00;
         display: inline-flex;
-        align-items: center; /* Center icon vertically */
-        gap: 8px; /* Consistent spacing */
         font-family: 'VT323', monospace;
+        gap: 5px;
         padding: 0.5rem 1rem;
         text-decoration: none;
         transition: all 0.3s ease;
-    }
-
-    /* Style the icon specifically */
-    body.index .version-timetravel-mobile .version-link i {
-        font-size: 1em; /* Match text size */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
     }
 
     body.index .version-timetravel-mobile .version-link:hover {

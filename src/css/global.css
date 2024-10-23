@@ -70,6 +70,103 @@
    a:hover {
        color: #FF00FF;
    }
+
+   /* Contact Section Styles
+   ========================================================================== */
+#contact {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+#contact h2 {
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+#contact p {
+    color: #FF00FF;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Epic Contact Button Styles */
+.contact-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.btn-contact-us {
+    background: rgba(0, 40, 0, 0.8);
+    border: 1px solid #00FF00;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    color: #00FF00;
+    display: inline-flex;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    gap: 8px;
+    align-items: center;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Matrix rain effect */
+.btn-contact-us::before {
+    animation: matrixRain 2s linear infinite;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(0, 255, 0, 0.1), 
+        transparent);
+    content: '';
+    height: 200%;
+    left: 0;
+    position: absolute;
+    top: -100%;
+    width: 100%;
+}
+
+/* Hover effects */
+.btn-contact-us:hover {
+    background: rgba(0, 60, 0, 0.9);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    color: #FFF;
+    text-shadow: 0 0 8px #00FF00;
+}
+
+/* Icon styling */
+.btn-contact-us i {
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.btn-contact-us:hover i {
+    transform: translateX(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #contact h2 {
+        font-size: 2rem;
+    }
+
+    #contact p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .btn-contact-us {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.6rem;
+    }
+}
    
    /* Call-to-Action Buttons
       ========================================================================== */
@@ -159,41 +256,122 @@
        max-width: 80%;
    }
    
-   /* Form Elements
-      ========================================================================== */
-   form {
-       display: flex;
-       flex-direction: column;
-       margin: 0 auto;
-       max-width: 600px;
-   }
-   
-   form input,
-   form textarea {
-       background: rgba(26, 26, 26, 0.7);
-       border: 1px solid #00FF00;
-       border-radius: 5px;
-       color: #00FF00;
-       font-size: 1rem;
-       margin-bottom: 20px;
-       padding: 15px;
-   }
-   
-   form button {
-       background: #00FF00;
-       border: none;
-       border-radius: 5px;
-       color: #0d0d0d;
-       cursor: pointer;
-       font-size: 1.2rem;
-       padding: 15px;
-       transition: all 0.3s ease;
-   }
-   
-   form button:hover {
-       background-color: #FF00FF;
-       box-shadow: 0 0 15px #FF00FF;
-   }
+/* Contact Form Styles
+   ========================================================================== */
+   #contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact form label {
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#contact form input,
+#contact form textarea {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid #00FF00;
+    border-radius: 8px;
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+#contact form input:focus,
+#contact form textarea:focus {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    outline: none;
+}
+
+#contact form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Send Message Button */
+#contact form button[type="btn-contact"] {
+    background: rgba(0, 40, 0, 0.8);
+    border: 1px solid #00FF00;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    color: #00FF00;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    margin: 1rem auto;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+/* Matrix rain effect */
+#contact form button[type="btn-contact"]::before {
+    animation: matrixRain 2s linear infinite;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(0, 255, 0, 0.1), 
+        transparent);
+    content: '';
+    height: 200%;
+    left: 0;
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+/* Hover effects */
+#contact form button[type="btn-contact"]:hover {
+    background: rgba(0, 60, 0, 0.9);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    color: #FFF;
+    text-shadow: 0 0 8px #00FF00;
+}
+
+/* Add icon to button */
+#contact form button[type="btn-contact"]::after {
+    content: '\f061'; /* Font Awesome arrow icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-left: 8px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+#contact form button[type="btn-contact"]:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Loading state */
+#contact form button[type="btn-contact"].loading {
+    cursor: wait;
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #contact form {
+        padding: 0 1rem;
+    }
+    
+    #contact form button[type="btn-contact"] {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.6rem;
+    }
+}
    
    /* Scrollbar Styling
       ========================================================================== */
