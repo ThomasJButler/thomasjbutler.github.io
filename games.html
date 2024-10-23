@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <title>CTRL-S - The World | A Python Text Adventure</title>
     <link rel="stylesheet" href="src/css/global.css">
     <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
     <py-config>
         [[fetch]]
-        files = ["src/python/CtrlS/src/chapters/ctrls.py"]
+        files = [
+            "src/python/CtrlS/src/chapters/ctrls.py",
+            "src/python/CtrlS/src/chapters/prologue.py"
+        ]
         
         [dependencies]
-        prologue = "==0.9.3"
+        prologue = "0.9.3"
     </py-config>
 </head>
 
@@ -24,12 +29,12 @@
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
+    
     <header>
         <div class="container">
             <h1>Thomas J Butler</h1>
-            <h3>Epic Game Showcase</h3>
+            <h3>Game Showcase</h3>
             <div class="logo-container">
-                <a href="#" class="home-button">Home</a>
             </div>
             <nav>
                 <div class="menu-toggle">
@@ -53,7 +58,7 @@
     <main>
         <section id="game-intro">
             <div class="container">
-                <h2>Welcome to CTRL-S | Save The World</h2>
+                <h2>CTRL-S - The World | A Python Text Adventure</h2>
                 <p>Experience an out of this world text adventure with amazing ASCII art!</p>
             </div>
         </section>
@@ -61,36 +66,53 @@
         <section id="game-display">
             <div class="container">
                 <h2>Game Window</h2>
-                <div id="game-container">
-                    <py-script>
+                <div id="game-container" class="game-container">
+                    <div id="loading-status" class="loading-status"></div>
+                    <py-script output="game-output">
                         from js import document
                         from pyodide.ffi import create_proxy
                         import sys
-                        sys.path.append("/src/python/CtrlS/src/chapters")
-                        from ctrls import run_game, handle_input
-
+                        
+                        sys.path.append("src/python/CtrlS/src/chapters")
+                        from ctrls import run_game, handle_input, welcome_message
+                        
                         def display(text):
                             output = document.getElementById("game-output")
-                            output.innerHTML += text + "<br>"
+                            output.innerHTML += f"{text}<br>"
                             output.scrollTop = output.scrollHeight
-
+                        
                         def on_key_press(event):
                             if event.key == "Enter":
                                 input_element = document.getElementById("game-input")
-                                user_input = input_element.value
+                                user_input = input_element.value.lower().strip()
                                 input_element.value = ""
-                                handle_input(user_input)
                                 display(f"> {user_input}")
-
-                        def start_game():
+                                
+                                if user_input == "start":
+                                    try:
+                                        welcome_message()  # Start the story
+                                        display("Type 'c' to proceed with the story...")
+                                    except Exception as e:
+                                        display(f"Error: {str(e)}")
+                                elif user_input == "help":
+                                    display("Available commands:\n- start: Begin the game\n- help: Show this help message\n- c: Proceed with the story")
+                                else:
+                                    result = handle_input(user_input)
+                                    if result:
+                                        display(result)
+                        
+                        def start_game_handler(event):
                             document.getElementById("game-output").innerHTML = ""
-                            run_game()
+                            initial_text = run_game()
+                            if initial_text:
+                                display(initial_text)
 
-                        document.getElementById("start-game").onclick = create_proxy(start_game)
+                        # Set up event handlers
+                        document.getElementById("start-game").onclick = create_proxy(start_game_handler)
                         document.getElementById("game-input").onkeypress = create_proxy(on_key_press)
                     </py-script>
                     <button id="start-game">Start Game</button>
-                    <div id="game-output"></div>
+                    <div id="game-output" class="game-output"></div>
                     <input type="text" id="game-input" placeholder="Enter your command...">
                 </div>
             </div>
@@ -99,10 +121,11 @@
         <section id="game-instructions">
             <div class="container">
                 <h2>How to Play</h2>
-                <p>Click 'Start Game' to begin. Enjoy the ASCII art and storyline!</p>
+                <p>Click 'Start Game' to begin. Type 'help' for available commands. Enjoy the ASCII art and storyline!</p>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="container">
             <ul>
@@ -128,5 +151,4 @@
 
     <script src="src/js/scripts.js"></script>
 </body>
-
 </html>
