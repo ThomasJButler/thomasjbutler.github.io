@@ -388,9 +388,9 @@
        border-radius: 5px;
    }
    
-   ::-webkit-scrollbar-thumb:hover {
+   /*::-webkit-scrollbar-thumb:hover {
        background: #FF00FF;
-   }
+   }*/
    
    /* Selection Styling
       ========================================================================== */
@@ -415,7 +415,7 @@ header {
 header .container {
     column-gap: 50px;
     display: flex;
-    flex-direction: center;
+    /*flex-direction: center;*/
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 20px;
