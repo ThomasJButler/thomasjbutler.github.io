@@ -497,7 +497,7 @@ body > py-terminal.py-terminal-docked {
         flex-direction: row;
         justify-content: space-between;
         text-align: left;
-    }
+    } 
 
     .version-title {
         flex-direction: row;
@@ -630,28 +630,53 @@ body > py-terminal.py-terminal-docked {
 
 /* Timeline and Changes
    ========================================================================== */
-.version-changes {
+   .version-changes {
     margin-top: 2rem;
     position: relative;
+    background: rgba(0, 20, 0, 0.3);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+}
+
+.version-changes h3 {
+    text-align: left;
+    margin-bottom: 2rem;
+    font-size: 1.8em;
+    justify-content: start;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    letter-spacing: 10px;
+    color: #00FF00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .changes-list {
     list-style-type: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
 .changes-list li {
-    background: rgba(0, 255, 0, 0.1);
-    border-radius: 5px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: 8px;
     cursor: default;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    transition: all 0.3s ease;
+    margin: 0;
+    padding: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .changes-list li:hover {
-    background: rgba(0, 255, 0, 0.2);
-    transform: translateX(10px);
+    background: rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.3);
 }
 
 .changes-list li::before {
@@ -659,11 +684,62 @@ body > py-terminal.py-terminal-docked {
     content: '→';
     display: inline-block;
     margin-right: 10px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
 }
 
 .changes-list li:hover::before {
     transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.changes-list li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.1) 49%, rgba(0, 255, 0, 0.1) 51%, transparent 52%);
+    background-size: 10px 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.changes-list li:hover::after {
+    opacity: 1;
+}
+
+/* Matrix rain effect on hover */
+@keyframes matrixRain {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+.changes-list li:hover::before {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .changes-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .version-changes {
+        padding: 1rem;
+    }
+    
+    .changes-list li {
+        font-size: 0.9em;
+    }
 }
 
 .timeline-connector {
