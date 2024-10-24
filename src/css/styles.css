@@ -602,7 +602,6 @@ body > py-terminal.py-terminal-docked {
    ========================================================================== */
 .desktop-view {
     width: 100%;
-    max-width: 400px;
 }
 
 .mobile-view {
