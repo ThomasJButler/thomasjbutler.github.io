@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas J Butler - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Core Body Styles */
+        body {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'VT323', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Matrix Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Layout Structure */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Version Button */
+        .version-button {
+            position: center;
+            top: 20%;
+            margin-bottom: 30px;
+            right: 2rem;
+            background: rgba(0, 40, 0, 0.8);
+            border: 2px solid #00FF00;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            color: #00FF00;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 10px #00FF00;
+            z-index: 1000;
+            transform: translateX(0);
+        }
+        
+        .version-button:hover {
+            background: rgba(0, 60, 0, 0.9);
+            box-shadow: 0 0 20px #00FF00;
+            transform: translateX(-10px);
+        }
+        
+        .version-button::after {
+            content: "🚀";
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .version-button:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* Title and Terminal Text */
+        .title {
+            font-size: 4rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .terminal-text {
+            font-size: 1.5rem;
+            text-align: center;
+            height: 2rem;
+            margin-bottom: 2rem;
+            color: #00FF00;
+            text-shadow: 0 0 5px #00FF00;
+        }
+        
+        .terminal-text::before {
+            content: ">";
+            margin-right: 0.5rem;
+            animation: blink 1s steps(1) infinite;
+        }
+        
+        /* 3D Showcase */
+        .showcase {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            perspective: 2000px;
+            margin: 4rem auto;
+            position: relative;
+        }
+        
+        .cube-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: rgba(0, 20, 0, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .cube-face iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Cube Face Positions */
+        .front { transform: translateZ(400px); }
+        .back { transform: translateZ(-400px) rotateY(180deg); }
+        .right { transform: translateX(400px) rotateY(90deg); }
+        .left { transform: translateX(-400px) rotateY(-90deg); }
+        
+        /* Cube Navigation */
+        .cube-nav {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 10;
+            padding: 1rem;
+            background: rgba(0, 20, 0, 0.4);
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .cube-nav button {
+            background: rgba(0, 40, 0, 0.8);
+            border: 1px solid #00FF00;
+            color: #00FF00;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cube-nav button:hover {
+            background: rgba(0, 60, 0, 0.9);
+            box-shadow: 0 0 15px #00FF00;
+            transform: translateY(-2px);
+        }
+        
+        .cube-nav button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(0, 255, 0, 0.2),
+                transparent
+            );
+            transition: transform 0.5s ease;
+        }
+        
+        .cube-nav button:hover::before {
+            transform: translateX(200%);
+        }
+        
+        /* Loading State */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00FF00;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #00FF00;
+        }
+        
+        /* Footer Elements */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 20, 0, 0.8);
+            border-top: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .social-link {
+            color: #00FF00;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            color: #FFFFFF;
+            text-shadow: 0 0 10px #00FF00;
+            transform: scale(1.1);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 1rem;
+            color: rgba(0, 255, 0, 0.7);
+            font-size: 0.9rem;
+            background: rgba(0, 20, 0, 0.8);
+        }
+        
+        /* Animations */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .showcase {
+                max-width: 600px;
+                height: 400px;
+            }
+            .front { transform: translateZ(300px); }
+            .back { transform: translateZ(-300px) rotateY(180deg); }
+            .right { transform: translateX(300px) rotateY(90deg); }
+            .left { transform: translateX(-300px) rotateY(-90deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .version-button {
+                top: 1rem;
+                right: 1rem;
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+        
+            .showcase {
+                max-width: 400px;
+                height: 300px;
+            }
+            .front { transform: translateZ(200px); }
+            .back { transform: translateZ(-200px) rotateY(180deg); }
+            .right { transform: translateX(200px) rotateY(90deg); }
+            .left { transform: translateX(-200px) rotateY(-90deg); }
+        
+            .cube-nav {
+                bottom: -100px;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 90%;
+                padding: 0.8rem;
+            }
+        
+            .cube-nav button {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .version-button {
+                top: 0.5rem;
+                right: 0.5rem;
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+        
+            .showcase {
+                max-width: 300px;
+                height: 250px;
+                margin: 3rem auto;
+            }
+            .front { transform: translateZ(150px); }
+            .back { transform: translateZ(-150px) rotateY(180deg); }
+            .right { transform: translateX(150px) rotateY(90deg); }
+            .left { transform: translateX(-150px) rotateY(-90deg); }
+            
+            .cube-nav {
+                bottom: -160px;
+                gap: 0.8rem;
+                background: rgba(0, 20, 0, 0.6);
+            }
+        
+            .cube-nav button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        
+            .social-links {
+                gap: 1rem;
+                padding: 1rem;
+            }
+        }
+        </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    
+    <div class="content-wrapper">
+        <main class="main-content">
+            
+            <h1 class="title">Thomas J Butler</h1>
+            <a href="versionhistory.html" class="version-button">
+                VERSION TIME TRAVEL
+            </a>
+            <div class="terminal-text">INITIALIZING SYSTEM...</div>
+            
+            <div class="showcase">
+                <div class="cube-container" id="cube">
+                    <div class="cube-face front">
+                        <div class="loading">Loading...</div>
+                        <iframe src="https://codepen.io/thomasbutler/embed/preview/QWPjLRx?default-tab=result" 
+                                title="CodePen 1" loading="lazy"></iframe>
+                    </div>
+                    <div class="cube-face back">
+                        <div class="loading">Loading...</div>
+                        <iframe src="https://codepen.io/thomasbutler/embed/preview/ANOTHER_PEN_ID?default-tab=result" 
+                                title="CodePen 2" loading="lazy"></iframe>
+                    </div>
+                    <div class="cube-face right">
+                        <div class="loading">Loading...</div>
+                        <iframe src="https://codepen.io/thomasbutler/embed/preview/THIRD_PEN_ID?default-tab=result" 
+                                title="CodePen 3" loading="lazy"></iframe>
+                    </div>
+                    <div class="cube-face left">
+                        <div class="loading">Loading...</div>
+                        <iframe src="https://codepen.io/thomasbutler/embed/preview/FOURTH_PEN_ID?default-tab=result" 
+                                title="CodePen 4" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="cube-nav">
+                    <button onclick="rotateCube('front')">Pen 1</button>
+                    <button onclick="rotateCube('back')">Pen 2</button>
+                    <button onclick="rotateCube('right')">Pen 3</button>
+                    <button onclick="rotateCube('left')">Pen 4</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #00FF00; font-size: 1.5rem; margin: 2rem 0; text-shadow: 0 0 5px #00FF00;">
+                Website Currently Under Development
+            </p>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/ThomasJButler" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/thomasbutleruk/" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://codepen.io/thomasbutler" class="social-link" target="_blank">
+                    <i class="fab fa-codepen"></i>
+                </a>
+                <a href="mailto:dev@thomasjbutler.me" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2024 Thomas J Butler - AI and Web Development Expert
+            </div>
+        </footer>
+    </div>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        // Cube 3D Effect //
+        const cube = document.getElementById('cube');
+let currentRotation = { x: 0, y: 0 };
+
+function rotateCube(face) {
+    switch(face) {
+        case 'front':
+            currentRotation = { x: 0, y: 0 };
+            break;
+        case 'back':
+            currentRotation = { x: 0, y: 180 };
+            break;
+        case 'right':
+            currentRotation = { x: 0, y: 90 };
+            break;
+        case 'left':
+            currentRotation = { x: 0, y: -90 };
+            break;
+    }
+    
+    cube.style.transform = `rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+}
+
+// Auto-rotation if desired
+let autoRotate = false;
+if (autoRotate) {
+    setInterval(() => {
+        currentRotation.y += 90;
+        cube.style.transform = `rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+    }, 3000);
+}
+
+// Remove loading indicator when iframe loads
+document.querySelectorAll('iframe').forEach(iframe => {
+    iframe.addEventListener('load', function() {
+        this.previousElementSibling.style.display = 'none';
+    });
+});
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const fontSize = 14;
+        const columns = canvas.width/fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+            }
+        }
+
+        // Terminal Text Effect
+        const messages = [
+            "INITIALIZING SYSTEM...",
+            "ACCESSING MAINFRAME...",
+            "LOADING PORTFOLIO...",
+            "STATUS: UNDER CONSTRUCTION"
+        ];
+
+        let currentMessage = 0;
+        const terminalText = document.querySelector('.terminal-text');
+
+        function updateTerminal() {
+            terminalText.textContent = messages[currentMessage];
+            currentMessage = (currentMessage + 1) % messages.length;
+        }
+
+        setInterval(draw, 33);
+        setInterval(updateTerminal, 2000);
+    </script>
+</body>
+</html>
