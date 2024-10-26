@@ -21,7 +21,7 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
+
         /* Matrix Canvas */
         #matrixCanvas {
             position: fixed;
@@ -118,8 +118,8 @@
         /* 3D Showcase */
         .showcase {
             width: 100%;
-            max-width: 800px;
-            height: 500px;
+            width: 800px;
+            height: 600px;
             perspective: 2000px;
             margin: 4rem auto;
             position: relative;
@@ -160,7 +160,7 @@
         /* Cube Navigation */
         .cube-nav {
             position: absolute;
-            bottom: -80px;
+            bottom: -160px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -210,6 +210,10 @@
         
         .cube-nav button:hover::before {
             transform: translateX(200%);
+        }
+
+        .landingpagetext {
+            margin-top: 6rem !important;
         }
         
         /* Loading State */
@@ -314,6 +318,9 @@
                 font-size: 0.9rem;
                 padding: 0.5rem 1rem;
             }
+            .landingpagetext {
+                margin-top: 3rem !important;
+            }
         
             .showcase {
                 max-width: 300px;
@@ -324,10 +331,16 @@
             .back { transform: translateZ(-150px) rotateY(180deg); }
             .right { transform: translateX(150px) rotateY(90deg); }
             .left { transform: translateX(-150px) rotateY(-90deg); }
+
+            .cube-face {
+                margin-block: -30px;
+            }
             
             .cube-nav {
-                bottom: -160px;
-                gap: 0.8rem;
+                gap: 5px;
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 25px;
                 background: rgba(0, 20, 0, 0.6);
             }
         
@@ -359,34 +372,46 @@
                 <div class="cube-container" id="cube">
                     <div class="cube-face front">
                         <div class="loading">Loading...</div>
-                        <iframe src="https://codepen.io/thomasbutler/embed/preview/QWPjLRx?default-tab=result" 
-                                title="CodePen 1" loading="lazy"></iframe>
+                        <iframe scrolling="no" title="&lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;" src="https://codepen.io/thomasbutler/embed/wvVpXbK?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                            See the Pen <a href="https://codepen.io/thomasbutler/pen/wvVpXbK">
+                            &lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
+                            on <a href="https://codepen.io">CodePen</a>.
+                          </iframe>
                     </div>
                     <div class="cube-face back">
                         <div class="loading">Loading...</div>
-                        <iframe src="https://codepen.io/thomasbutler/embed/preview/ANOTHER_PEN_ID?default-tab=result" 
-                                title="CodePen 2" loading="lazy"></iframe>
+                        <iframe scrolling="no" title="Quantum Fractal Kaleidoscope " src="https://codepen.io/thomasbutler/embed/preview/yLdERyV?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                            See the Pen <a href="https://codepen.io/thomasbutler/pen/yLdERyV">
+                            Quantum Fractal Kaleidoscope </a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
+                            on <a href="https://codepen.io">CodePen</a>.
+                          </iframe>
                     </div>
                     <div class="cube-face right">
                         <div class="loading">Loading...</div>
-                        <iframe src="https://codepen.io/thomasbutler/embed/preview/THIRD_PEN_ID?default-tab=result" 
-                                title="CodePen 3" loading="lazy"></iframe>
+                        <iframe scrolling="no" title="Solar System Simulator (SSS)" src="https://codepen.io/thomasbutler/embed/preview/wvLoZEW?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                            See the Pen <a href="https://codepen.io/thomasbutler/pen/wvLoZEW">
+                            Solar System Simulator (SSS)</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
+                            on <a href="https://codepen.io">CodePen</a>.
+                          </iframe>
                     </div>
                     <div class="cube-face left">
                         <div class="loading">Loading...</div>
-                        <iframe src="https://codepen.io/thomasbutler/embed/preview/FOURTH_PEN_ID?default-tab=result" 
-                                title="CodePen 4" loading="lazy"></iframe>
+                        <iframe scrolling="no" title="RandomPictureFilter" src="https://codepen.io/thomasbutler/embed/preview/mdYyOvg?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                            See the Pen <a href="https://codepen.io/thomasbutler/pen/mdYyOvg">
+                            RandomPictureFilter</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
+                            on <a href="https://codepen.io">CodePen</a>.
+                          </iframe>
                     </div>
                 </div>
                 <div class="cube-nav">
-                    <button onclick="rotateCube('front')">Pen 1</button>
-                    <button onclick="rotateCube('back')">Pen 2</button>
-                    <button onclick="rotateCube('right')">Pen 3</button>
-                    <button onclick="rotateCube('left')">Pen 4</button>
+                    <button onclick="rotateCube('front')">1</button>
+                    <button onclick="rotateCube('back')">2</button>
+                    <button onclick="rotateCube('right')">3</button>
+                    <button onclick="rotateCube('left')">4</button>
                 </div>
             </div>
 
-            <p style="text-align: center; color: #00FF00; font-size: 1.5rem; margin: 2rem 0; text-shadow: 0 0 5px #00FF00;">
+            <p class="landingpagetext" style="text-align: center; color: #00FF00; font-size: 1.5rem; margin: 2rem 0; text-shadow: 0 0 5px #00FF00;">
                 Website Currently Under Development
             </p>
         </main>
@@ -454,43 +479,229 @@ document.querySelectorAll('iframe').forEach(iframe => {
         this.previousElementSibling.style.display = 'none';
     });
 });
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+class MatrixRain {
+    constructor() {
+        this.canvas = document.getElementById('matrixCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        
+        // Enhanced configuration with ideal values
+        this.config = {
+            // Core settings
+            fontSize: 16,                    // Slightly larger for better visibility
+            baseSpeed: 0.5,                  // Slower base speed for more dramatic effect
+            speedVariation: 0.2,             // Subtle speed differences
+            density: 0.995,                  // High density for fuller effect
+            fadeSpeed: 0.025,                // Slower fade for longer trails
+
+            // Visual effects
+            glowStrength: 0.6,              // Strong glow effect
+            glowRadius: 8,                   // Glow spread radius
+            trailLength: 0.92,               // Length of character trails (0-1)
+            
+            // Colors
+            primaryColor: '#00FF00',         // Classic Matrix green
+            glowColor: 'rgba(0, 255, 0, 0.7)',
+            brightColor: '#FFFFFF',          // Leading character color
+            backgroundAlpha: 0.05,           // Background fade opacity
+            
+            // Special effects
+            highlightProbability: 0.01,      // Chance of bright characters
+            glitchProbability: 0.003,        // Chance of glitch effect
+            alternateColors: [
+                '#00FF00',                   // Matrix green
+                '#00FFAA',                   // Seafoam
+                '#00FFFF',                   // Cyan
+                '#50FF00'                    // Bright green
+            ],
+
+            // Symbols configuration
+            latinChars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?~',
+            kanjiChars: 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん',
+            symbolDensity: {
+                latin: 0.5,                  // Proportion of Latin characters
+                kanji: 0.3,                  // Proportion of Kanji characters
+                numbers: 0.2                 // Proportion of numbers and symbols
+            }
+        };
+
+        // Performance optimization
+        this.drops = [];
+        this.glowDrops = [];
+        this.speeds = [];
+        this.symbols = [];
+        this.colors = [];
+        this.brightSymbols = new Set();
+        this.lastFrame = 0;
+        this.frameRate = 1000 / 30;         // Limit to 30 FPS for performance
+
+        this.setupCanvas();
+        this.initialize();
+
+        // Throttled resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => this.setupCanvas(), 250);
+        });
+    }
+
+    setupCanvas() {
+        // Set up canvas with device pixel ratio for sharp rendering
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = window.innerWidth * dpr;
+        this.canvas.height = window.innerHeight * dpr;
+        
+        this.canvas.style.width = `${window.innerWidth}px`;
+        this.canvas.style.height = `${window.innerHeight}px`;
+        
+        this.ctx.scale(dpr, dpr);
+        this.columns = Math.floor(window.innerWidth / this.config.fontSize);
+        this.initialize();
+    }
+
+    initialize() {
+        this.drops = [];
+        this.glowDrops = [];
+        this.speeds = [];
+        this.symbols = [];
+        this.colors = [];
+
+        for(let i = 0; i < this.columns; i++) {
+            this.drops[i] = Math.random() * -100;
+            this.speeds[i] = this.config.baseSpeed + (Math.random() * this.config.speedVariation);
+            this.symbols[i] = [];
+            this.colors[i] = this.config.alternateColors[
+                Math.floor(Math.random() * this.config.alternateColors.length)
+            ];
+            this.glowDrops[i] = false;
         }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+    }
 
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
-        const fontSize = 14;
-        const columns = canvas.width/fontSize;
-        const drops = [];
-
-        for(let x = 0; x < columns; x++) {
-            drops[x] = 1;
+    getRandomSymbol() {
+        const rand = Math.random();
+        if (rand < this.config.symbolDensity.latin) {
+            return this.config.latinChars[Math.floor(Math.random() * this.config.latinChars.length)];
+        } else if (rand < this.config.symbolDensity.latin + this.config.symbolDensity.kanji) {
+            return this.config.kanjiChars[Math.floor(Math.random() * this.config.kanjiChars.length)];
+        } else {
+            return String.fromCharCode(0x30A0 + Math.random() * 96);
         }
+    }
 
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+    draw(timestamp) {
+        // Frame rate limiting
+        if (timestamp - this.lastFrame < this.frameRate) {
+            requestAnimationFrame((ts) => this.draw(ts));
+            return;
+        }
+        this.lastFrame = timestamp;
 
-            ctx.fillStyle = '#0F0';
-            ctx.font = fontSize + 'px monospace';
+        // Background fade
+        this.ctx.fillStyle = `rgba(0, 0, 0, ${this.config.backgroundAlpha})`;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-            for(let i = 0; i < drops.length; i++) {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        // Set base text properties
+        this.ctx.font = `${this.config.fontSize}px monospace`;
+        this.ctx.textAlign = 'center';
 
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-                    drops[i] = 0;
+        for(let i = 0; i < this.columns; i++) {
+            // Generate new symbols
+            if (this.drops[i] >= 0) {
+                this.symbols[i][Math.floor(this.drops[i])] = this.getRandomSymbol();
+            }
 
-                drops[i]++;
+            // Random glow effect
+            if (Math.random() < this.config.highlightProbability) {
+                this.glowDrops[i] = true;
+            }
+
+            // Draw symbols for this column
+            const columnLength = Math.ceil(this.drops[i]);
+            for(let j = 0; j < columnLength; j++) {
+                if (!this.symbols[i][j]) continue;
+
+                const y = j * this.config.fontSize;
+                const x = i * this.config.fontSize + this.config.fontSize / 2;
+                
+                // Calculate fade based on position
+                const alpha = Math.max(0, 1 - (columnLength - j) * (1 - this.config.trailLength));
+                
+                // Glow effect for leading character
+                if (this.glowDrops[i] && j === columnLength - 1) {
+                    this.ctx.shadowBlur = this.config.glowRadius;
+                    this.ctx.shadowColor = this.colors[i];
+                    this.ctx.fillStyle = this.config.brightColor;
+                    this.ctx.fillText(this.symbols[i][j], x, y);
+                    this.ctx.shadowBlur = 0;
+                } else {
+                    // Normal characters with trail effect
+                    this.ctx.fillStyle = `rgba(${this.hexToRgb(this.colors[i])}, ${alpha})`;
+                    this.ctx.fillText(this.symbols[i][j], x, y);
+                }
+            }
+
+            // Update positions
+            this.drops[i] += this.speeds[i];
+
+            // Reset column when it reaches bottom
+            if (this.drops[i] * this.config.fontSize > this.canvas.height && Math.random() > this.config.density) {
+                this.drops[i] = 0;
+                this.speeds[i] = this.config.baseSpeed + (Math.random() * this.config.speedVariation);
+                this.glowDrops[i] = false;
+                this.symbols[i] = [];
+                
+                // Randomly change color on reset
+                if (Math.random() < 0.1) {
+                    this.colors[i] = this.config.alternateColors[
+                        Math.floor(Math.random() * this.config.alternateColors.length)
+                    ];
+                }
+            }
+
+            // Glitch effect
+            if (Math.random() < this.config.glitchProbability) {
+                this.speeds[i] *= -0.5;
+                setTimeout(() => {
+                    this.speeds[i] = Math.abs(this.speeds[i]);
+                }, 100);
             }
         }
+
+        requestAnimationFrame((ts) => this.draw(ts));
+    }
+
+    // Utility function to convert hex to RGB
+    hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? 
+            `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
+            '0, 255, 0';
+    }
+
+    start() {
+        this.draw(0);
+    }
+}
+
+// Initialize and start
+const matrixRain = new MatrixRain();
+matrixRain.start();
+
+// Add interactive effects
+document.addEventListener('mousemove', (e) => {
+    const column = Math.floor(e.clientX / matrixRain.config.fontSize);
+    if (column >= 0 && column < matrixRain.columns) {
+        // Create ripple effect around mouse
+        for(let i = -2; i <= 2; i++) {
+            const targetColumn = column + i;
+            if (targetColumn >= 0 && targetColumn < matrixRain.columns) {
+                matrixRain.glowDrops[targetColumn] = true;
+                matrixRain.speeds[targetColumn] = matrixRain.config.baseSpeed * 2;
+            }
+        }
+    }
+});
 
         // Terminal Text Effect
         const messages = [
