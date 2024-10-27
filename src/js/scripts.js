@@ -1,7 +1,8 @@
 // Check if we're on the art page
 const isArtPage = window.location.pathname.includes('art.html');
 
-// Matrix Rain Effect
+// Matrix Rain Effect 
+// IMPLEMENT AND REMOVE - Change this to the landing page example in next iteration 
 const canvas = document.getElementById('matrixCanvas');
 let ctx;
 let matrixEnabled = !isArtPage;
