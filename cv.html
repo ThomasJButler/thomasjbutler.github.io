@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Butler - Full Stack Software Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="src/css/cv-styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Canvas Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <h1>Thomas Butler</h1>
+            <h2>Full Stack Software Developer</h2>
+            <div class="contact-info">
+                <a href="index.html" target="_blank">
+                    <i class="fa-solid fa-house"></i> Homepage
+                </a>
+                <a href="mailto:dev@thomasjbutler.me">
+                    <i class="fas fa-envelope"></i> dev@thomasjbutler.me
+                </a>
+                <a href="tel:+447903352059">
+                    <i class="fas fa-phone"></i> +44 7903 352059
+                </a>
+                <a href="https://thomasjbutler.me" target="_blank">
+                    <i class="fas fa-globe"></i> thomasjbutler.me
+                </a>
+                <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+            <a href="src\docs\ThomasButlerCV.pdf" class="download-cv-btn">
+                <i class="fas fa-download"></i> Download CV
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="matrix-nav">
+        <div class="nav-container">
+            <button class="nav-btn active" data-tab="about">
+                <i class="fas fa-user"></i> About
+            </button>
+            <button class="nav-btn" data-tab="skills">
+                <i class="fas fa-laptop-code"></i> Skills
+            </button>
+            <button class="nav-btn" data-tab="experience">
+                <i class="fas fa-briefcase"></i> Experience
+            </button>
+            <button class="nav-btn" data-tab="ai-expertise">
+                <i class="fas fa-robot"></i> AI Expertise
+            </button>
+            <button class="nav-btn" data-tab="education">
+                <i class="fas fa-graduation-cap"></i> Education
+            </button>
+            <button class="nav-btn" data-tab="projects">
+                <i class="fas fa-rocket"></i> Projects
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Section -->
+        <section id="about" class="content-section active">
+            <h2 class="section-title"><i class="fas fa-user"></i> About Me</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Personal Statement</div>
+                    <div class="accordion-content">
+                        <p>I am a passionate Full Stack Software Engineer with hands-on experience in .NET, React, JavaScript, Razor, CSS, and AI applications. Known for my adaptability and commitment to quality, I have created and maintained high-quality websites for large-scale clients.</p>
+                        <p>My recent role at Fuelius has allowed me to take on significant responsibilities within a small development team, tackling complex technical challenges in a fast-paced environment.</p>
+                        <p>Although my role at Fuelius was affected by redundancy, I am excited to continue my learning path and complete any further certifications to deepen my knowledge. I am immediately available and open to both commuting and remote opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Programming Languages</div>
+                    <div class="accordion-content">
+                        <ul class="skills-list">
+                            <li>C# / .NET</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>Java</li>
+                            <li>C++</li>
+                            <li>PHP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Web Development</div>
+                    <div class="accordion-content">
+                        <ul class="skills-list">
+                            <li>HTML5</li>
+                            <li>CSS3 / SCSS</li>
+                            <li>React</li>
+                            <li>Razor</li>
+                            <li>HUBL</li>
+                            <li>Next.js</li>
+                            <li>Node.js</li>
+                            <li>ASP.NET</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">AI Models & Tools</div>
+                    <div class="accordion-content">
+                        <ul class="skills-list">
+                            <li>OpenAI GPT Models (GPT-3.5, GPT-4)</li>
+                            <li>Claude (Anthropic)</li>
+                            <li>Stable Diffusion</li>
+                            <li>Midjourney</li>
+                            <li>DALL-E</li>
+                            <li>RunwayML</li>
+                            <li>Prompt Engineering</li>
+                            <li>RAG Implementation</li>
+                            <li>Custom AI Integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Cloud & DevOps</div>
+                    <div class="accordion-content">
+                        <ul class="skills-list">
+                            <li>Azure</li>
+                            <li>AWS</li>
+                            <li>Docker</li>
+                            <li>Kubernetes</li>
+                            <li>CI/CD Pipelines</li>
+                            <li>Git Version Control</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">CMS & Tools</div>
+                    <div class="accordion-content">
+                        <ul class="skills-list">
+                            <li>HubSpot CMS</li>
+                            <li>Umbraco</li>
+                            <li>JIRA</li>
+                            <li>Visual Studio</li>
+                            <li>VS Code</li>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="content-section">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Apprentice Full-Stack Software Developer - Fuelius</div>
+                    <div class="accordion-content">
+                        <p class="date">August 2023 - Present</p>
+                        <ul>
+                            <li>Developed full-stack solutions for prominent clients like Merseyrail and M&S Bank Arena using .NET, Razor, C#, React, JavaScript, and CSS/SCSS.</li>
+                            <li>Gained hands-on experience in everything from backend setups to frontend styling, enhancing versatility as a developer.</li>
+                            <li>Specialized in HubSpot and Umbraco CMS to create responsive, content-driven websites.</li>
+                            <li>Managed JIRA tickets and monitored customer success metrics.</li>
+                            <li>Enhanced website features with AI integrations, including chatbots and blog narration.</li>
+                            <li>Studied Level 4 Software Developer Apprenticeship with Estio Training.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Cloud Engineering and Data Science Bootcamp - The Growth Company</div>
+                    <div class="accordion-content">
+                        <p class="date">February 2023 - June 2023</p>
+                        <ul>
+                            <li>Completed intensive bootcamp focused on cloud platforms (AWS, Azure), Python programming, data analysis and foundational AI.</li>
+                            <li>Built practical skills in Python for data analysis and APIs.</li>
+                            <li>Strengthened knowledge in high-availability infrastructure and foundational networking.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Work Coach - Department For Work and Pensions</div>
+                    <div class="accordion-content">
+                        <p class="date">January 2021 - January 2023</p>
+                        <ul>
+                            <li>Supported young people on Universal Credit during COVID-19, managing a caseload of 150 clients.</li>
+                            <li>Delivered presentation on hidden disabilities, raising awareness within the team.</li>
+                            <li>Helped young clients explore tech roles, sparking own decision to pursue software development.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Previous Roles</div>
+                    <div class="accordion-content">
+                        <div class="role">
+                            <h4>Paraplanning Associate - Spinningfields Lifetime Partners</h4>
+                            <p class="date">October 2018 - April 2019</p>
+                            <ul>
+                                <li>Assisted in managing £100 million in assets</li>
+                                <li>Enhanced data handling and organizational skills</li>
+                            </ul>
+                        </div>
+                        <div class="role">
+                            <h4>Overseas Cricket Pro - Port Melbourne Cricket Club</h4>
+                            <p class="date">September 2016 - February 2018</p>
+                            <li>Mentored junior players and developed resilience skills</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Expertise Section -->
+        <section id="ai-expertise" class="content-section">
+            <h2 class="section-title"><i class="fas fa-robot"></i> AI Expertise</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">AI Development & Integration</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Implementation of AI chatbots and automated systems</li>
+                            <li>Custom AI model development and integration</li>
+                            <li>Natural Language Processing applications</li>
+                            <li>RAG (Retrieval Augmented Generation) implementation</li>
+                            <li>Advanced prompt engineering techniques</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <div class="accordion-item">
+                    <div class="accordion-header">AI Models & Tools</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>OpenAI GPT-3.5/4 Integration and Fine-tuning</li>
+                            <li>Claude (Anthropic) Implementation</li>
+                            <li>Custom GPT Development</li>
+                            <li>Stable Diffusion & Midjourney Integration</li>
+                            <li>Vector Database Implementation</li>
+                            <li>Knowledge Graph Development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">AI Applications</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Multi-modal AI Systems (Text, Image, Audio)</li>
+                            <li>AI-Powered Content Generation & Optimization</li>
+                            <li>Automated Testing & Code Review Systems</li>
+                            <li>Sentiment Analysis Tools</li>
+                            <li>AI-Driven Decision Support Systems</li>
+                            <li>Ethical AI Development & Implementation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Current Studies</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Machine Learning / AI Engineer - CodeCademy (Expected Jan 2025)</li>
+                            <li>Data and Programming Foundations for AI (Expected Jan 2025)</li>
+                            <li>Build a Machine Learning Model (Expected Jan 2025)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">Certifications</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Codecademy Certifications:</strong></li>
+                            <ul>
+                                <li>Prompt Engineering Practices</li>
+                                <li>Front End Engineer</li>
+                                <li>Full Stack Engineer</li>
+                                <li>Build Chatbots with Python<br><br>--------------------------</li>
+                            </ul>
+                            <li><strong>HubSpot</strong> CMS for Developers</li>
+                            <li><strong>Cisco</strong> Data Analytics Essentials</li>
+                            <li><strong>AWS</strong> Skill Builder</li>
+                            <li><strong>Free Code Camp</strong> Data Analysis with Python</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Completed Education</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>CodeCademy Full Stack Engineer Career Path</li>
+                            <li>Cloud Engineering and Data Science Bootcamp - The Growth Company (2023)</li>
+                            <li>GCSE - 10 A* - C - Merchant Taylors Boys School (2012)</li>
+                        </ul>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> Projects</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Professional Projects</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Merseyrail Website Development</li>
+                            <li>M&S Bank Arena Digital Solutions</li>
+                            <li>Various Client Websites with HubSpot Integration (MasterMover, Orega, UT3)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">AI Innovation Projects</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Custom RAG Implementation for Technical Documentation
+                                <span class="project-detail">Enhanced search and retrieval system using vector embeddings and semantic search</span>
+                            </li>
+                            <li>AI-Powered Content Management System
+                                <span class="project-detail">Automated content generation, optimization, and scheduling system</span>
+                            </li>
+                            <li>Intelligent Code Review Assistant
+                                <span class="project-detail">AI-based system for automated code review and optimization suggestions</span>
+                            </li>
+                            <li>Natural Language Processing Pipeline
+                                <span class="project-detail">Custom NLP solution for text analysis and content categorization</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Web Development Projects</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>E-commerce Platform with AI Integration
+                                <span class="project-detail">Custom-built platform with AI-powered product recommendations</span>
+                            </li>
+                            <li>Real-time Analytics Dashboard
+                                <span class="project-detail">Interactive dashboard with ML-powered predictive analytics</span>
+                            </li>
+                            <li>Automated Documentation Generator
+                                <span class="project-detail">AI-powered system for generating technical documentation from code</span>
+                            </li>
+                            <li>Custom CMS Development
+                                <span class="project-detail">Headless CMS with AI content optimization features</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Personal Projects</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Portfolio Website Development</li>
+                            <li>Indie Game Development Projects</li>
+                            <li>Custom AI Applications</li>
+                            <li>Python-based Data Analysis Tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- Custom loading overlay -->
+<div class="loading-overlay">
+    <div class="matrix-loading">
+        <div class="matrix-text">Loading...</div>
+    </div>
+</div>
+
+<!-- Additional Information Section (Hidden by default) -->
+<div class="modal" id="info-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+            <h3>Additional Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Languages</h4>
+                    <p>English (Native)</p>
+                </div>
+                <div class="info-item">
+                    <h4>Location</h4>
+                    <p>Chester, Cheshire, UK</p>
+                </div>
+                <div class="info-item">
+                    <h4>Availability</h4>
+                    <p>Immediate</p>
+                </div>
+                <div class="info-item">
+                    <h4>Work Status</h4>
+                    <p>Full-time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hobbies and Interests Section (Hidden by default) -->
+<div class="modal" id="hobbies-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+            <h3>Hobbies & Interests</h3>
+            <ul class="hobbies-list">
+                <li>
+                    <i class="fas fa-gamepad"></i>
+                    <span>Indie Game Development</span>
+                </li>
+                <li>
+                    <i class="fas fa-cricket"></i>
+                    <span>Cricket</span>
+                </li>
+                <li>
+                    <i class="fas fa-golf-ball"></i>
+                    <span>Golf</span>
+                </li>
+                <li>
+                    <i class="fas fa-skiing"></i>
+                    <span>Skiing</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Contact Form (Hidden by default) -->
+<div class="modal" id="contact-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+            <h3>Quick Contact</h3>
+            <form id="quick-contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/ThomasJButler" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://codepen.io/thomasbutler" target="_blank">
+                    <i class="fab fa-codepen"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2024 Thomas Butler - Full Stack Software Developer. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Notification System -->
+    <div id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="/src/js/cv-script.js"></script>
+</body>
+</html>
