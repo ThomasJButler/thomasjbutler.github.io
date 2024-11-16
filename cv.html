@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas J Butler | Full Stack Developer & AI Specialist</title>
+    <meta name="description" content="Interactive portfolio of Thomas J Butler - Full Stack Developer and AI Specialist, combining traditional development with cutting-edge AI technologies">
+    <link rel="stylesheet" href="src/css/cv-styles.css">
+</head>
+<body>
+    <div class="matrix-container">
+        <canvas id="matrix"></canvas>
+    </div>
+    <div class="cursor-glow"></div>
+
+    <div class="content-wrapper">
+    <main role="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <header class="hero-section">
+                <div class="hero-content">
+                    <h1 class="glitch-text">Thomas J Butler</h1>
+                    <h2 class="typewriter-text">Full Stack Developer & AI Specialist</h2>
+                    
+                    <div class="quick-info">
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="icon-location"></i>
+                                <span>Chester, Cheshire, UK</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="icon-email"></i>
+                                <span>dev@thomasjbutler.me</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="icon-phone"></i>
+                                <span>07903352059</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="icon-web"></i>
+                                <span>www.thomasjbutler.me</span>
+                            </div>
+                        </div>
+
+                        <div class="availability-status">
+                            <span class="status-indicator">Available for Opportunities</span>
+                            <span class="status-detail">Remote & Hybrid</span>
+                        </div>
+                    </div>
+
+                    <div class="cta-group">
+                        <a href="ThomasButlerCV.pdf" download class="download-button">
+                            <span class="button-text">Download CV</span>
+                            <span class="button-icon">⭳</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" class="social-link linkedin">
+                                <span class="icon">in</span>
+                                <span class="label">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/ThomasJButler" target="_blank" class="social-link github">
+                                <span class="icon">gh</span>
+                                <span class="label">GitHub</span>
+                            </a>
+                            <a href="https://codepen.io/thomasbutler" target="_blank" class="social-link codepen">
+                                <span class="icon">cp</span>
+                                <span class="label">CodePen</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Interactive Navigation -->
+            <nav class="section-nav">
+                <div class="nav-item active" data-section="about">
+                    <span class="icon">👤</span>
+                    <span class="label">About</span>
+                </div>
+                <div class="nav-item" data-section="skills">
+                    <span class="icon">💻</span>
+                    <span class="label">Skills</span>
+                </div>
+                <div class="nav-item" data-section="experience">
+                    <span class="icon">💼</span>
+                    <span class="label">Experience</span>
+                </div>
+                <div class="nav-item" data-section="ai">
+                    <span class="icon">🤖</span>
+                    <span class="label">AI Expertise</span>
+                </div>
+                <div class="nav-item" data-section="education">
+                    <span class="icon">🎓</span>
+                    <span class="label">Education</span>
+                </div>
+                <div class="nav-item" data-section="projects">
+                    <span class="icon">🚀</span>
+                    <span class="label">Projects</span>
+                </div>
+            </nav>
+
+            <section class="cv-content">
+                <!-- Professional Summary -->
+                <div class="content-section active" id="about">
+                    <div class="section-header">
+                        <h3>Professional Summary</h3>
+                        <div class="section-indicator"></div>
+                    </div>
+                    <div class="section-content">
+                        <div class="summary-card">
+                            <p class="highlight-text">I am a passionate Full Stack Developer and AI Specialist with extensive experience in modern web technologies, AI integration, and creative digital solutions. My expertise spans from traditional development to cutting-edge AI applications, allowing me to bridge the gap between conventional software engineering and emerging technologies.</p>
+                            
+                            <p>My recent role at Fuelius enabled me to tackle complex technical challenges in a fast-paced environment, working with enterprise-level clients and leading AI integration initiatives. Previously, as a Work Coach at DWP, I discovered my true calling in technology while helping others pursue their career dreams, combining my technical skills with a deep understanding of human potential.</p>
+
+                            <div class="key-points">
+                                <h4>Core Strengths:</h4>
+                                <ul class="strength-list">
+                                    <li>Full Stack Development with modern frameworks (.NET, React, Angular, Svelte)</li>
+                                    <li>AI Integration and Custom GPT Development</li>
+                                    <li>Advanced Cloud Architecture (AWS, Azure, GCP)</li>
+                                    <li>Creative Digital Asset Generation and Management</li>
+                                </ul>
+                            </div>
+
+                            <div class="career-objective">
+                                <h4>Current Focus:</h4>
+                                <p>Seeking opportunities to leverage my unique blend of traditional development skills and AI expertise in a role that champions innovation and technical excellence. I am particularly interested in positions that allow me to further explore the intersection of AI and software development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Technical Skills Matrix -->
+<div class="content-section" id="skills">
+    <div class="section-header">
+        <h3>Technical Expertise</h3>
+        <div class="section-indicator"></div>
+    </div>
+    <div class="section-content">
+        <div class="skills-grid">
+            <!-- Core Development -->
+            <div class="skill-category">
+                <h4>Core Development</h4>
+                <div class="skill-items">
+                    <div class="skill-item" data-proficiency="95">
+                        <span class="skill-name">C# / .NET Core</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">95%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>ASP.NET Core MVC/Web API</li>
+                                <li>Entity Framework Core</li>
+                                <li>Razor Pages</li>
+                                <li>LINQ</li>
+                                <li>Dependency Injection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="90">
+                        <span class="skill-name">JavaScript/TypeScript</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">90%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>ES6+/Modern JavaScript</li>
+                                <li>TypeScript</li>
+                                <li>Async Programming</li>
+                                <li>DOM Manipulation</li>
+                                <li>Web APIs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="85">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">85%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>Django/Flask/FastAPI</li>
+                                <li>Data Analysis (Pandas/NumPy)</li>
+                                <li>AI/ML Integration</li>
+                                <li>Script Automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend Frameworks -->
+            <div class="skill-category">
+                <h4>Frontend Technologies</h4>
+                <div class="skill-items">
+                    <div class="skill-item" data-proficiency="92">
+                        <span class="skill-name">React Ecosystem</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">92%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>React & React Native</li>
+                                <li>Next.js</li>
+                                <li>Redux/Context API</li>
+                                <li>React Query</li>
+                                <li>Custom Hooks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="85">
+                        <span class="skill-name">Modern Frontend Tools</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">85%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>Vite</li>
+                                <li>Svelte/SvelteKit</li>
+                                <li>Angular</li>
+                                <li>Vue.js</li>
+                                <li>Webpack/Rollup</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="90">
+                        <span class="skill-name">CSS & Styling</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">90%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>SASS/SCSS</li>
+                                <li>Tailwind CSS</li>
+                                <li>CSS-in-JS</li>
+                                <li>Responsive Design</li>
+                                <li>Animations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI & Machine Learning -->
+            <div class="skill-category highlight">
+                <h4>AI & Machine Learning</h4>
+                <div class="skill-items">
+                    <div class="skill-item" data-proficiency="95">
+                        <span class="skill-name">LLM Integration</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">95%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>GPT-4/3.5 API Integration</li>
+                                <li>Claude API Implementation</li>
+                                <li>Custom GPT Development</li>
+                                <li>Prompt Engineering</li>
+                                <li>RAG Systems</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="90">
+                        <span class="skill-name">AI Tools & Platforms</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">90%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>Midjourney (Advanced)</li>
+                                <li>DALL-E Integration</li>
+                                <li>Stable Diffusion</li>
+                                <li>Hugging Face</li>
+                                <li>TensorFlow/PyTorch</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="85">
+                        <span class="skill-name">AI Development</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">85%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>ML Model Development</li>
+                                <li>Neural Network Architecture</li>
+                                <li>NLP Applications</li>
+                                <li>Computer Vision</li>
+                                <li>AI Model Training</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud & DevOps -->
+            <div class="skill-category">
+                <h4>Cloud & DevOps</h4>
+                <div class="skill-items">
+                    <div class="skill-item" data-proficiency="88">
+                        <span class="skill-name">Cloud Platforms</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">88%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>AWS Services</li>
+                                <li>Azure Platform</li>
+                                <li>Google Cloud</li>
+                                <li>Cloud Architecture</li>
+                                <li>Serverless Computing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-item" data-proficiency="85">
+                        <span class="skill-name">DevOps Tools</span>
+                        <div class="skill-bar">
+                            <div class="progress"></div>
+                            <div class="percentage">85%</div>
+                        </div>
+                        <div class="skill-details">
+                            <ul>
+                                <li>Docker/Kubernetes</li>
+                                <li>CI/CD Pipelines</li>
+                                <li>Git/GitHub Actions</li>
+                                <li>Infrastructure as Code</li>
+                                <li>Monitoring & Logging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Professional Experience -->
+<div class="content-section" id="experience">
+    <div class="section-header">
+        <h3>Professional Experience</h3>
+        <div class="section-indicator"></div>
+    </div>
+    <div class="section-content">
+        <div class="experience-timeline">
+            <!-- Fuelius Role -->
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-marker">
+                    <div class="marker-content">
+                        <span class="year">2023</span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                
+                <div class="timeline-content">
+                    <div class="role-header">
+                        <h4>Full Stack Developer</h4>
+                        <div class="company-info">
+                            <span class="company-name">Fuelius</span>
+                            <span class="location">Chester</span>
+                            <span class="duration">August 2023 - Present</span>
+                        </div>
+                    </div>
+
+                    <div class="role-description">
+                        <div class="key-achievements">
+                            <h5>Key Achievements</h5>
+                            <ul class="achievement-list">
+                                <li>
+                                    <span class="achievement-title">Enterprise Solutions Development</span>
+                                    <p>Led development of full-stack solutions for Merseyrail and M&S Bank Arena using .NET Core, React, and modern web technologies</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">AI Integration</span>
+                                    <p>Implemented advanced AI features including custom chatbots and automated content generation systems</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">CMS Expertise</span>
+                                    <p>Specialized in HubSpot and Umbraco CMS, creating responsive, content-driven websites with optimized user experiences</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">Project Management</span>
+                                    <p>Managed JIRA tickets, monitored success metrics, and covered senior responsibilities in a small development team</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="technologies-used">
+                            <h5>Technologies & Tools</h5>
+                            <div class="tech-tags">
+                                <span class="tech-tag">.NET Core</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">HubSpot</span>
+                                <span class="tech-tag">Umbraco</span>
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">SQL Server</span>
+                                <span class="tech-tag">GPT Integration</span>
+                                <span class="tech-tag">REST APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth Company Role -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-marker">
+                    <div class="marker-content">
+                        <span class="year">2023</span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                
+                <div class="timeline-content">
+                    <div class="role-header">
+                        <h4>Cloud Engineering & Data Science Bootcamp Participant</h4>
+                        <div class="company-info">
+                            <span class="company-name">The Growth Company</span>
+                            <span class="location">Manchester</span>
+                            <span class="duration">February 2023 - June 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="role-description">
+                        <div class="key-achievements">
+                            <h5>Key Learning Outcomes</h5>
+                            <ul class="achievement-list">
+                                <li>
+                                    <span class="achievement-title">Cloud Platforms Mastery</span>
+                                    <p>Gained comprehensive understanding of AWS and Azure platforms, including deployment, scaling, and best practices</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">Data Science & Analytics</span>
+                                    <p>Developed strong foundation in data analysis, machine learning fundamentals, and AI applications</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">Project Implementation</span>
+                                    <p>Created practical solutions using Python, implementing various APIs and data models</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="technologies-used">
+                            <h5>Technologies & Tools</h5>
+                            <div class="tech-tags">
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Data Analysis</span>
+                                <span class="tech-tag">Machine Learning</span>
+                                <span class="tech-tag">APIs</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DWP Role -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-marker">
+                    <div class="marker-content">
+                        <span class="year">2021</span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                
+                <div class="timeline-content">
+                    <div class="role-header">
+                        <h4>Work Coach</h4>
+                        <div class="company-info">
+                            <span class="company-name">Department for Work and Pensions</span>
+                            <span class="location">Manchester</span>
+                            <span class="duration">January 2021 - January 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="role-description">
+                        <div class="key-achievements">
+                            <h5>Key Achievements</h5>
+                            <ul class="achievement-list">
+                                <li>
+                                    <span class="achievement-title">Career Guidance</span>
+                                    <p>Supported 150+ clients during COVID-19, providing career guidance and skill development support</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">Tech Career Focus</span>
+                                    <p>Specialized in guiding clients towards tech careers, developing comprehensive understanding of tech industry requirements</p>
+                                </li>
+                                <li>
+                                    <span class="achievement-title">Diversity & Inclusion</span>
+                                    <p>Led initiatives on hidden disabilities awareness, promoting inclusive workplace practices</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education & Certifications -->
+<div class="content-section" id="education">
+    <div class="section-header">
+        <h3>Education & Professional Development</h3>
+        <div class="section-indicator"></div>
+    </div>
+    <div class="section-content">
+        <!-- Current Learning -->
+        <div class="education-category current-learning">
+            <h4>Current Learning Path</h4>
+            <div class="education-grid">
+                <div class="education-item" data-progress="75">
+                    <div class="edu-header">
+                        <h5>Machine Learning / AI Engineering</h5>
+                        <span class="institution">CodeCademy</span>
+                        <span class="timeline">Expected Jan 2025</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                        <span class="progress-text">75% Complete</span>
+                    </div>
+                    <div class="course-details">
+                        <ul>
+                            <li>Advanced Machine Learning Algorithms</li>
+                            <li>Neural Network Architecture</li>
+                            <li>Deep Learning Applications</li>
+                            <li>AI Model Development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="education-item" data-progress="80">
+                    <div class="edu-header">
+                        <h5>Data and Programming Foundations for AI</h5>
+                        <span class="institution">CodeCademy</span>
+                        <span class="timeline">Expected Jan 2025</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                        <span class="progress-text">80% Complete</span>
+                    </div>
+                    <div class="course-details">
+                        <ul>
+                            <li>Data Structures & Algorithms</li>
+                            <li>Statistical Analysis</li>
+                            <li>Python for AI</li>
+                            <li>Data Processing Pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Certifications -->
+        <div class="education-category certifications">
+            <h4>Professional Certifications</h4>
+            <div class="certification-grid">
+                <div class="certification-item completed">
+                    <div class="cert-icon">
+                        <i class="icon-cert"></i>
+                    </div>
+                    <div class="cert-details">
+                        <h5>Full Stack Engineering</h5>
+                        <span class="issuer">CodeCademy</span>
+                        <span class="date">October 2024</span>
+                        <div class="cert-topics">
+                            <span class="topic">Web Development</span>
+                            <span class="topic">React</span>
+                            <span class="topic">Node.js</span>
+                            <span class="topic">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="cert-icon">
+                        <i class="icon-aws"></i>
+                    </div>
+                    <div class="cert-details">
+                        <h5>AWS Certified Solutions Architect</h5>
+                        <span class="issuer">Amazon Web Services</span>
+                        <span class="status">In Progress</span>
+                        <div class="cert-topics">
+                            <span class="topic">Cloud Architecture</span>
+                            <span class="topic">AWS Services</span>
+                            <span class="topic">Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more certifications -->
+            </div>
+        </div>
+
+        <!-- Notable Projects -->
+        <div class="projects-section">
+            <h4>Notable Projects</h4>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-header">
+                        <h5>AI-Powered Content Generator</h5>
+                        <div class="project-links">
+                            <a href="#" class="github-link">
+                                <i class="icon-github"></i>
+                            </a>
+                            <a href="#" class="live-demo">
+                                <i class="icon-external-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Custom GPT-4 implementation for automated content creation and optimization, featuring advanced prompt engineering and real-time updates.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech">Python</span>
+                            <span class="tech">FastAPI</span>
+                            <span class="tech">React</span>
+                            <span class="tech">GPT-4</span>
+                            <span class="tech">WebSocket</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-header">
+                        <h5>Digital Asset Creation Suite</h5>
+                        <div class="project-links">
+                            <a href="#" class="github-link">
+                                <i class="icon-github"></i>
+                            </a>
+                            <a href="#" class="live-demo">
+                                <i class="icon-external-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Comprehensive tool for generating and managing digital assets using AI, featuring Midjourney API integration and collaborative features.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech">Node.js</span>
+                            <span class="tech">Express</span>
+                            <span class="tech">MongoDB</span>
+                            <span class="tech">Midjourney API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional projects with similar structure -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Expertise Showcase -->
+<div class="content-section" id="ai">
+    <div class="section-header">
+        <h3>AI & Advanced Technology Expertise</h3>
+        <div class="section-indicator"></div>
+    </div>
+    <div class="section-content">
+        <div class="ai-expertise-grid">
+            <!-- LLM & GPT Development -->
+            <div class="expertise-card" data-aos="fade-up">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i class="icon-ai"></i>
+                    </div>
+                    <h4>LLM Integration & Custom GPT Development</h4>
+                </div>
+                <div class="card-content">
+                    <div class="expertise-details">
+                        <h5>Core Competencies</h5>
+                        <ul class="competency-list">
+                            <li>
+                                <span class="competency-name">GPT-4/3.5 Integration</span>
+                                <div class="competency-bar" data-level="95">
+                                    <div class="progress"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="competency-name">Custom GPT Creation</span>
+                                <div class="competency-bar" data-level="90">
+                                    <div class="progress"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="competency-name">Claude AI Integration</span>
+                                <div class="competency-bar" data-level="85">
+                                    <div class="progress"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="expertise-examples">
+                        <h5>Recent Implementations</h5>
+                        <ul>
+                            <li>Automated content generation systems</li>
+                            <li>Context-aware chatbot development</li>
+                            <li>Natural language processing pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative AI Tools -->
+            <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i class="icon-creative"></i>
+                    </div>
+                    <h4>Creative AI & Digital Asset Generation</h4>
+                </div>
+                <div class="card-content">
+                    <div class="expertise-details">
+                        <h5>Tools & Platforms</h5>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <span class="tool-name">Midjourney</span>
+                                <span class="proficiency advanced">Advanced</span>
+                            </li>
+                            <li class="tool-item">
+                                <span class="tool-name">DALL-E</span>
+                                <span class="proficiency advanced">Advanced</span>
+                            </li>
+                            <li class="tool-item">
+                                <span class="tool-name">Stable Diffusion</span>
+                                <span class="proficiency intermediate">Intermediate</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="project-showcase">
+                        <h5>Notable Projects</h5>
+                        <div class="project-gallery">
+                            <!-- Project thumbnails with hover effects -->
+                            <div class="gallery-item">
+                                <img src="path/to/project1.jpg" alt="AI Art Project">
+                                <div class="overlay">
+                                    <span>Digital Asset Suite</span>
+                                </div>
+                            </div>
+                            <!-- More gallery items -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Development & Integration -->
+            <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i class="icon-dev"></i>
+                    </div>
+                    <h4>AI Development & System Integration</h4>
+                </div>
+                <div class="card-content">
+                    <div class="expertise-details">
+                        <h5>Technical Expertise</h5>
+                        <ul class="expertise-list">
+                            <li>Machine Learning Model Development</li>
+                            <li>Neural Network Architecture Design</li>
+                            <li>AI System Integration</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="implementation-examples">
+                        <h5>Recent Implementations</h5>
+                        <ul>
+                            <li>Content recommendation engines</li>
+                            <li>Automated data analysis systems</li>
+                            <li>Predictive modeling applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive AI Demo Section -->
+        <div class="ai-demo-section">
+            <h4>Interactive Demonstrations</h4>
+            <div class="demo-container">
+                <!-- Live AI demos would be integrated here -->
+                <div class="demo-placeholder">
+                    <p>Interactive AI demonstrations coming soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Footer -->
+<footer class="enhanced-footer">
+    <div class="footer-content">
+        <div class="footer-section contact">
+            <h4>Contact Details</h4>
+            <ul class="contact-list">
+                <li>
+                    <i class="icon-location"></i>
+                    <span>Chester, Cheshire, UK</span>
+                </li>
+                <li>
+                    <i class="icon-email"></i>
+                    <span>dev@thomasjbutler.me</span>
+                </li>
+                <li>
+                    <i class="icon-phone"></i>
+                    <span>07903352059</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-section social">
+            <h4>Connect With Me</h4>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" class="social-link linkedin">
+                    <i class="icon-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/ThomasJButler" target="_blank" class="social-link github">
+                    <i class="icon-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://codepen.io/thomasbutler" target="_blank" class="social-link codepen">
+                    <i class="icon-codepen"></i>
+                    <span>CodePen</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-section availability">
+            <h4>Current Status</h4>
+            <div class="status-indicator available">
+                <span class="status-dot"></span>
+                <span class="status-text">Available for Opportunities</span>
+            </div>
+            <p class="availability-note">Open to both remote and hybrid roles</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="copyright">© <span class="year">2024</span> Thomas J Butler - Full Stack Developer & AI Specialist</p>
+        <p class="cv-version">CV Version 2.1</p>
+    </div>
+</footer>
+</section>
+</div>
+</main>
+    </div>
+
+<!-- Scripts -->
+<script src="src/js/cv-script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({
+duration: 800,
+offset: 100,
+once: true
+});
+</script>
+</body>
+</html>
