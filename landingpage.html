@@ -89,6 +89,74 @@
         .version-button:hover::after {
             transform: translateX(5px);
         }
+
+                /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Interactive CV Button - Matching Version Button Style */
+        .interactive-cv-button {
+            position: center;
+            top: 20%;
+            margin-bottom: 30px;
+            right: 2rem;
+            background: rgba(0, 40, 0, 0.8);
+            border: 2px solid #00FF00;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            color: #00FF00;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 10px #00FF00;
+            z-index: 1000;
+            transform: translateX(0);
+        }
+
+        .interactive-cv-button:hover {
+            background: rgba(0, 60, 0, 0.9);
+            box-shadow: 0 0 20px #00FF00;
+            transform: translateX(-10px);
+        }
+
+        .interactive-cv-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .interactive-cv-button:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .interactive-cv-button {
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .interactive-cv-button {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+        }
         
         /* Title and Terminal Text */
         .title {
@@ -365,9 +433,14 @@
         <main class="main-content">
             
             <h1 class="title">Thomas J Butler</h1>
-            <a href="versionhistory.html" class="version-button">
+            <div class="button-group">
+            <a href="versionhistory.html" target="_blank" class="version-button">
                 VERSION TIME TRAVEL
             </a>
+            <a href="cv.html" target="_blank" class="interactive-cv-button">
+                <i class="fa-regular fa-file"></i> INTERACTIVE CV
+            </a>
+        </div>
             <div class="terminal-text">INITIALIZING SYSTEM...</div>
             
             <div class="showcase">
