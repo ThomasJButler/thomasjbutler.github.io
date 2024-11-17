@@ -1238,6 +1238,10 @@ nav ul li.version-timetravel:hover {
         margin-bottom: 20px;
     }
 }
+/* Address Section */
+    #address {
+    display: flex;
+    }
 
 /* Tablet and Small Desktop (600px to 768px)
    ========================================================================== */
@@ -1287,6 +1291,8 @@ nav ul li.version-timetravel:hover {
         display: flex;
     }
 
+
+    
     /* Grid and Containers */
     .grid-container {
         display: flex;
