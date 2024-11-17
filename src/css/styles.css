@@ -49,19 +49,25 @@
 
 /* Introduction Skills Grid Section - Three Columns */
 
+/* Grid container */
+.introduction-expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns on desktop */
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
 .introduction-expertise-card {
     background: rgba(0, 20, 0, 0.7);
     border: 1px solid rgba(0, 255, 0, 0.2);
     border-radius: 15px;
     padding: 2rem;
     position: relative;
-    min-height: 400px; 
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-
-
 
 /* Title styling */
 .introduction-expertise-card h3 {
@@ -82,24 +88,25 @@
     text-align: center;
     line-height: 1.6;
     margin: 1rem 0;
-    flex-grow: 1; /* Takes up available space */
+    flex-grow: 1;
 }
 
 /* Tags container */
 .introduction-expertise-tags {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.8rem;
-    justify-content: center;
+    justify-content: start;
     padding: 1rem 0;
 }
 
 .introduction-expertise-tags span {
+    text-align: center;
     background: rgba(0, 20, 0, 0.8);
     border: 1px solid rgba(0, 255, 0, 0.3);
     border-radius: 20px;
-    padding: 0.5rem 1rem;
-    font-size: 0.9em;
+    padding: 0.5rem;
+    font-size: 0.85em;
     color: #00FF00;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -120,58 +127,249 @@
     background: rgba(0, 20, 0, 0.8);
 }
 
-/* Responsive design */
-@media (max-width: 1200px) {
-    .introduction-expertise-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Base card transitions */
+.introduction-expertise-card {
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-@media (max-width: 768px) {
-    .introduction-expertise-grid {
-        grid-template-columns: 2fr;
-    }
-    
-    .introduction-expertise-card {
-        min-height: unset;
-        padding: 1.5rem;
-    }
-    
-    .introduction-expertise-tags {
-        gap: 0.5rem;
-    }
-    
-    .introduction-expertise-tags span {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8em;
-    }
+/* Advanced hover effects for cards */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.15),
+        0 0 50px rgba(0, 255, 0, 0.1),
+        0 0 70px rgba(0, 255, 0, 0.05);
 }
 
+.introduction-expertise-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+/* Pulsing glow effect */
 .introduction-expertise-card:hover::before {
-    animation: border-rotate 10s linear infinite;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background: rgba(0, 255, 0, 0.1);
+    z-index: -2;
 }
 
-@keyframes border-rotate {
+/* Enhanced tag hover effects */
+.introduction-expertise-tags span {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.introduction-expertise-tags span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+}
+
+.introduction-expertise-tags span:hover {
+    background: rgba(0, 40, 0, 0.9);
+    border-color: rgba(0, 255, 0, 0.6);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.introduction-expertise-tags span:hover::before {
+    animation: shimmer 1.5s infinite;
+}
+
+/* Keyframe Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Matrix-style scan line effect */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.2),
+        transparent
+    );
+    animation: scanline 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+@keyframes scanline {
     0% {
-        transform: rotate(0deg);
+        top: -100%;
     }
     100% {
-        transform: rotate(360deg);
+        top: 300%;
     }
 }
 
- /* Add a subtle glow on hover */
-.introduction-expertise-card:hover {
-    box-shadow: 
-        0 0 20px rgba(0, 255, 0, 0.2),
-        0 0 30px rgba(0, 255, 0, 0.1),
-        0 0 40px rgba(0, 255, 0, 0.05);
-    transform: translateY(-5px);
-} 
+/* Smooth transitions for all properties */
+.introduction-expertise-card *,
+.introduction-expertise-tags span * {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* Additional spacing for tags when there are many */
 .introduction-expertise-tags:has(span:nth-child(n+5)) {
     padding-top: 1.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .introduction-expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Add overflow control to body/html if needed */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .introduction-heading {
+        padding: 20px;
+    }
+
+    /* Container styles */
+    .introduction-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    
+    .introduction-expertise-card {
+        min-height: unset;
+        padding: 1rem;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    
+    .introduction-expertise-tags {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Keep two columns */
+        gap: 0.5rem; /* Slightly larger gap */
+        padding: 0.5rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+    
+    .introduction-expertise-tags span {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.6em;
+        white-space: normal; /* Allow text to wrap */
+        min-height: 2.5em; /* Give enough height for two lines */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        line-height: 1.2;
+        height: auto; /* Allow height to adjust to content */
+    }
+    
+    .introduction-expertise-description {
+        font-size: 0.8em;
+        margin: 0.3rem auto;
+        line-height: 1.4;
+        text-align: center;
+        width: 95%;
+        padding: 0 0.5rem; 
+    }
+    
+    .introduction-expertise-card h3 {
+        font-size: 1.3em;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        width: 95%;
+    }
+    
+    .introduction-expertise-level {
+        font-size: 0.8em;
+        padding: 0.2rem 0.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+    
+    .introduction-expertise-icon {
+        transform: scale(0.8);
+        margin: 0 auto;
+    }
+
+    /* Main content wrapper if you have one */
+    .main-content, 
+    main, 
+    [role="main"] {
+        overflow-x: hidden;
+        width: 100%;
+    }
 }
 
 /* Skills Section
