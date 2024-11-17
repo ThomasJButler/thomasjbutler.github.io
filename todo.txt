@@ -1,4 +1,24 @@
-v2.1
+v2.8 - to-do
+
+- amend contact us styles (if needed) - make the form work
+
+- add content to all pages and style up all pages 
+
+- link in the games page :) work on this seperately
+
+- sort art gallery out, pull in the images from a CDN 
+
+- add in custom gpts created, and a link to them on chatgpt
+
+- add in all python projects (link to aitomatic website any way (we can update this in the background))
+
+- add in site map
+
+ONCE DONE - merge into development and test - then test on staging as got v2.7 in there as well
+
+check if need to do any of the below 
+
+--------------------------------------
 
 finalise getting ctrl s onto the games page
 
@@ -94,3 +114,25 @@ v2.4
 try to do a way where can have individual pages to go to, but the index.hthml is scrollable a bit like codepen mockup
 but can go to links for more detail :) also updates nav bar with when you are on a specific sections
 
+------------------------------------------
+
+v2.9 
+
+This will be tidying up stuff and ensuring everything is in there. 
+- Minifying all CSS global and styles) and all Javascript.
+= ensuring all images are pulling in from a CDN 
+- Ensure all content I have is in there and links all work
+- fix any silly bugs
+- quality control
+- general style updates
+= ensure its responsive and all pages are
+
+
+----
+V3.0!!!!! - YEAH BOYY (this will be 2.7, 2.8 and 2.9 merged in to a feature branch, which will be tested and merged into main)
+--------------------------
+
+
+
+
+v4.0 (SVELTE/REACT/VITE REBUILD !!!!!!!)
