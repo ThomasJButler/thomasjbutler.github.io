@@ -4,9 +4,6 @@
    Author: Thomas J Butler
    ========================================================================== */
 
-/* Import Fonts
-   ========================================================================== */
-   /*@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');*/
 
    /* @font-face {
   font-family: system-ui;
@@ -71,102 +68,6 @@
        color: #FF00FF;
    }
 
-   /* Contact Section Styles
-   ========================================================================== */
-#contact {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-#contact h2 {
-    color: #00FF00;
-    font-family: 'VT323', monospace;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-#contact p {
-    color: #FF00FF;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-/* Epic Contact Button Styles */
-.contact-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.btn-contact-us {
-    background: rgba(0, 40, 0, 0.8);
-    border: 1px solid #00FF00;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    color: #00FF00;
-    display: inline-flex;
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    gap: 8px;
-    align-items: center;
-    overflow: hidden;
-    padding: 1rem 2rem;
-    position: relative;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-/* Matrix rain effect */
-.btn-contact-us::before {
-    animation: matrixRain 2s linear infinite;
-    background: linear-gradient(to bottom, 
-        transparent, 
-        rgba(0, 255, 0, 0.1), 
-        transparent);
-    content: '';
-    height: 200%;
-    left: 0;
-    position: absolute;
-    top: -100%;
-    width: 100%;
-}
-
-/* Hover effects */
-.btn-contact-us:hover {
-    background: rgba(0, 60, 0, 0.9);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    transform: translateY(-2px) scale(1.05);
-    color: #FFF;
-    text-shadow: 0 0 8px #00FF00;
-}
-
-/* Icon styling */
-.btn-contact-us i {
-    font-size: 1.1em;
-    transition: transform 0.3s ease;
-}
-
-.btn-contact-us:hover i {
-    transform: translateX(-2px);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #contact h2 {
-        font-size: 2rem;
-    }
-
-    #contact p {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-
-    .btn-contact-us {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.6rem;
-    }
-}
    
    /* Call-to-Action Buttons
       ========================================================================== */
