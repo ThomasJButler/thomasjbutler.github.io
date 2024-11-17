@@ -47,14 +47,7 @@
     }
 }
 
-.introduction-expertise-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Fixed 3 columns */
-    gap: 2rem;
-    padding: 1rem;
-    max-width: 1600px;
-    margin: 0 auto;
-}
+/* Introduction Skills Grid Section - Three Columns */
 
 .introduction-expertise-card {
     background: rgba(0, 20, 0, 0.7);
@@ -62,11 +55,13 @@
     border-radius: 15px;
     padding: 2rem;
     position: relative;
-    min-height: 400px; /* Fixed minimum height */
+    min-height: 400px; 
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
+
 
 /* Title styling */
 .introduction-expertise-card h3 {
@@ -111,12 +106,6 @@
     letter-spacing: 1px;
 }
 
-.introduction-expertise-tags span:hover {
-    background: rgba(0, 255, 0, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-}
-
 /* Skill level indicator */
 .introduction-expertise-level {
     position: absolute;
@@ -140,7 +129,7 @@
 
 @media (max-width: 768px) {
     .introduction-expertise-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 2fr;
     }
     
     .introduction-expertise-card {
@@ -158,31 +147,8 @@
     }
 }
 
-/* Animation adjustments */
-.introduction-expertise-card::before,
-.introduction-expertise-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 15px;
-    padding: 1px;
-    background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(0, 255, 0, 0.3),
-        transparent 70%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
-                 linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-
 .introduction-expertise-card:hover::before {
-    animation: border-rotate 3s linear infinite;
+    animation: border-rotate 10s linear infinite;
 }
 
 @keyframes border-rotate {
@@ -194,14 +160,14 @@
     }
 }
 
-/* Add a subtle glow on hover */
+ /* Add a subtle glow on hover */
 .introduction-expertise-card:hover {
     box-shadow: 
         0 0 20px rgba(0, 255, 0, 0.2),
         0 0 30px rgba(0, 255, 0, 0.1),
         0 0 40px rgba(0, 255, 0, 0.05);
     transform: translateY(-5px);
-}
+} 
 
 /* Additional spacing for tags when there are many */
 .introduction-expertise-tags:has(span:nth-child(n+5)) {
