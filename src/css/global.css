@@ -261,8 +261,14 @@
    #contact form {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 25px;
+    padding: 20px;
 }
 
 #contact form label {
@@ -295,6 +301,7 @@
     min-height: 150px;
     resize: vertical;
 }
+
 
 /* Send Message Button */
 #contact form button[type="btn-contact"] {
@@ -364,7 +371,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #contact form {
-        padding: 0 1rem;
+        padding: -1px 3rem;
     }
     
     #contact form button[type="btn-contact"] {
