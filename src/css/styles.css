@@ -1509,20 +1509,6 @@ nav ul li.version-timetravel:hover {
         display: none;
     }
 
-    .menu-toggle {
-        display: flex;
-        cursor: pointer;
-        flex-direction: column;
-    }
-
-    .menu-toggle span {
-        background-color: #00FF00;
-        height: 3px;
-        margin: 3px 0;
-        transition: all 0.3s ease;
-        width: 25px;
-    }
-
     nav {
         display: inline-flex;
         flex-direction: column;
@@ -1768,10 +1754,6 @@ nav ul li.version-timetravel:hover {
     /* Navigation */
     nav ul {
         flex-direction: row;
-    }
-
-    .menu-toggle {
-        display: none;
     }
 }
 

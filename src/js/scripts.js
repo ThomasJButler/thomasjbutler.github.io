@@ -291,15 +291,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize reveal effect on load
     reveal();
 
-    // Toggle navigation menu on mobile
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navUl = document.querySelector('nav ul');
+// Toggle navigation menu on mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const navUl = document.querySelector('nav ul');
+const introduction = document.querySelector('#introduction');
 
-    if (menuToggle && navUl) {
-        menuToggle.addEventListener('click', function() {
-            navUl.classList.toggle('show');
-        });
-    }
+if (menuToggle && navUl) {
+    menuToggle.addEventListener('click', function() {
+        navUl.classList.toggle('show');
+        menuToggle.classList.toggle('active');
+        
+        // Toggle introduction padding based on menu visibility
+        if (navUl.classList.contains('show')) {
+            introduction.style.paddingTop = '333px';
+        } else {
+            introduction.style.paddingTop = '30px';
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navUl.contains(e.target) && !menuToggle.contains(e.target)) {
+            navUl.classList.remove('show');
+            menuToggle.classList.remove('active');
+            introduction.style.paddingTop = '30px';
+        }
+    });
+}
 
     // Lazy loading for images
     const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
@@ -401,3 +419,4 @@ function showNotification(message, type) {
         }, 300);
     }, 3000);
 }
+
