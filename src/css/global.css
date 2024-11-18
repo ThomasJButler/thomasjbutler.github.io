@@ -646,7 +646,7 @@ nav ul li:hover a {
         right: 0;
         background: rgba(0, 20, 0, 0.95);
         border: 1px solid rgba(0, 255, 0, 0.2);
-        border-radius: 5px;
+        border-radius: 50px;
         padding: 0.5rem;
         margin-top: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -663,7 +663,7 @@ nav ul li:hover a {
         padding: 5px;
         background: rgba(0, 20, 0, 0.7);
         border: 1px solid rgba(0, 255, 0, 0.2);
-        border-radius: 5px;
+        border-radius: 20px;
         transition: all 0.3s ease;
         cursor: pointer;
         flex-direction: column;

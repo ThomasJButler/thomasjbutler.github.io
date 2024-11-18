@@ -317,6 +317,15 @@ if (menuToggle && navUl) {
             introduction.style.paddingTop = '30px';
         }
     });
+
+        // Close menu on scroll
+        window.addEventListener('scroll', function() {
+            if (navUl.classList.contains('show')) {
+                navUl.classList.remove('show');
+                menuToggle.classList.remove('active');
+                introduction.style.paddingTop = '30px';
+            }
+        });
 }
 
     // Lazy loading for images
