@@ -406,6 +406,13 @@ nav ul li {
     transition: all 0.3s ease;
 }
 
+@media screen and (max-width: 480px) {
+    nav ul li {
+        padding: 10px;
+    }
+    
+}
+
 /* Special styling for Version TimeTravel */
 nav ul li.version-timetravel {
     background: rgba(0, 40, 0, 0.8);
