@@ -1547,18 +1547,69 @@ nav ul li.version-timetravel:hover {
         padding-top: 50px;
     }
 
+    .introduction-heading {
+        font-size: 1.5rem;
+    }
+
+    .introduction-h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Hide Scrolling Text and Disclaimer */
+    .scrolling-text {
+        display: none !important;
+    }
+
+    .disclaimer-text {;
+        display: none !important;
+    }
+
+    /* Add padding to button */
+    .version-timetravel-mobile {
+        padding-bottom: 20px;
+    }
+
     .introduction-img {
-        max-width: 150px;
-        padding: 130px;
+        padding: 1rem;
         display: flex;
         justify-content: center;
-        gap: 20px;
-        margin-top: 30px;
-        scale: 1.5;
+        margin: 1rem auto;
     }
 
     .introduction-img img {
-        max-width: 150px;
+        max-width: 200px; 
+        width: 90%; 
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .introduction-img img:not(:first-child) {
+        display: none; /* Hides all images except the first one */
+    }
+
+    .introduction-img img:first-child {
+        max-width: 200px;
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        .introduction-img {
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem auto;
+            width: 100%;
+        }
+    
+        .introduction-img img {
+            max-width: 150px;
+            width: 30%;
+            height: auto;
+        }
     }
 
     /* Grid Layouts */
@@ -1603,14 +1654,7 @@ nav ul li.version-timetravel:hover {
         text-decoration: none;
     }
 
-    footer ul {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-}
+
 /* Address Section */
     #address {
     display: flex;
@@ -1711,7 +1755,7 @@ nav ul li.version-timetravel:hover {
     }
 
     header .container,
-    footer .container {
+    footer.container {
         max-width: 768px;
         margin: 0 auto;
         padding: 0 20px;
@@ -1814,7 +1858,6 @@ nav ul li.version-timetravel:hover {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
  }
  
