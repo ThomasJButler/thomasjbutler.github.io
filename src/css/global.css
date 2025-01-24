@@ -886,3 +886,144 @@ nav ul li:active {
     display: none;
 }
 
+/* Introduction Expertise Card Styles */
+.introduction-expertise-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 20px;
+}
+
+.introduction-expertise-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    color: #00FF00;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.introduction-expertise-card:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.introduction-expertise-icon {
+    margin-bottom: 15px;
+}
+
+.introduction-expertise-icon img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.introduction-expertise-description {
+    margin: 10px 0;
+}
+
+.introduction-expertise-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;  
+} 
+
+.introduction-expertise-buttons a.neo-matrix-btn {
+    width: 100%;  /* Make button full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;    /* Remove margin to fit full width */
+    padding: 12px 20px;  /* Slightly larger padding */
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    color: #00FF00;
+    cursor: pointer;
+    font-family: system-ui;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 1px;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    align-self: center;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn i {
+    margin-left: auto;  /* Push icon to the right */
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn .btn-text {
+    flex: 1;  /* Allow text to take remaining space */
+    text-align: center;  /* Center the text */
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn::before {
+    animation: matrixRain 4s infinite linear;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.3) 45%, 
+        rgba(0, 255, 0, 0.3) 55%, 
+        transparent 100%);
+    content: '';
+    height: 200%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: -100%;
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn::after {
+    background-image: 
+        radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-position: 0 0, 0 0, -5px -5px, -5px -5px;
+    background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+    border-radius: 8px;
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover {
+    animation: flicker 0.5s infinite;
+    background: rgba(0, 30, 0, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover::before {
+    opacity: 1;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 8px #00FF00, 0 0 12px #00FF00;
+}
+

@@ -1561,7 +1561,7 @@ nav ul li.version-timetravel:hover {
         display: none !important;
     }
 
-    .disclaimer-text {;
+    .disclaimer-text {
         display: none !important;
     }
 
@@ -2025,3 +2025,4 @@ nav ul li.version-timetravel:hover {
         margin: 10px;
     }
 }
+
