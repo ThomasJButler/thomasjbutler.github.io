@@ -510,7 +510,6 @@
 
 #skills::before, 
 #learning::before {
-    animation: matrixBg 20s linear infinite;
     background: 
         linear-gradient(45deg, transparent 49%, rgba(0, 255, 0, 0.1) 50%, transparent 51%),
         radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 100%);
@@ -529,7 +528,6 @@
 
 #skills h2, 
 #learning h2 {
-    animation: glitch 5s infinite alternate;
     color: #00FF00;
     font-family: 'VT323', monospace;
     font-size: 2.5em;
@@ -595,8 +593,6 @@
     overflow: hidden;
     padding: 1.5rem;
     position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(5px);
 }
 
 /* Matrix Rain Effect */
