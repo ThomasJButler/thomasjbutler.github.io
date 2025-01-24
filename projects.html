@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Project Stack | Thomas J Butler</title>
     <link rel="stylesheet" href="src/css/global.css">
     <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="src/css/projects.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
@@ -21,7 +22,7 @@
     <header>
         <div class="container">
             <h1>Thomas J Butler</h1>
-            <h3>Projects Showcase</h3>
+            <h3>Project Stack</h3>
             <div class="logo-container">
             </div>
             <nav>
@@ -49,67 +50,241 @@
     </header>
 
     <main>
-        <section id="codepen-projects">
+        <section id="featured-projects" class="reveal">
             <div class="container">
-                <h2>CodePen Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Project 1</h3>
-                        <iframe height="600" style="width: 100%;" scrolling="no" title="&lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;" src="https://codepen.io/thomasbutler/embed/QWPjLRx?default-tab=&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-                            See the Pen <a href="https://codepen.io/thomasbutler/pen/QWPjLRx">
-                            &lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
-                            on <a href="https://codepen.io">CodePen</a>.
-                          </iframe>
-                    </div>
-                    <!-- Add more CodePen project items as needed -->
+                <h2 class="projects-heading">--| Project Stack |--</h2>
+                <div class="stack-tips">
+                    <p class="matrix-tip"><i class="fas fa-info-circle"></i> Click any project to expand full details</p>
+                    <p class="matrix-tip"><i class="fas fa-keyboard"></i> Use ESC key to close active project</p>
+                    <p class="matrix-tip"><i class="fas fa-arrows-alt-v"></i> Scroll to explore all projects</p>
                 </div>
-                <a href="codepen.html" class="cta-button">View All CodePen Projects</a>
-            </div>
-        </section>
-
-        <section id="python-games">
-            <div class="container">
-                <h2>Python Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Python Game 1</h3>
-                        <div class="game-placeholder">
-                            <!-- Placeholder for Python game embed -->
-                            <p>Python Game Placeholder</p>
+                <div class="projects-grid">
+                    <!-- AiTomatic Project -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview" class="project-image">
+                            <div class="project-type" data-index="01">AI Platform</div>
                         </div>
-                    </div>
-                    <!-- Add more Python game items as needed -->
-                </div>
-                <a href="https://the-matrix-arcade.vercel.app/" target="_blank">View All Python Games</a>
-            </div>
-        </section>
+                        <div class="project-content">
+                            <h3>AiTomatic</h3>
+                            <p class="project-description">An AI Model Creator platform with next-level features. Built with modern technologies to showcase AI model comparison and creation capabilities.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-pie-chart" data-tech="TypeScript:40,Python:30,React:30"></div>
+                                    <div class="tech-tags">
+                                        <span>TypeScript</span>
+                                        <span>Python</span>
+                                        <span>React</span>
+                                        <span>Next.js</span>
+                                        <span>OpenAI API</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Learnings</h4>
+                                    <ul>
+                                        <li>AI Model Integration</li>
+                                        <li>Large Scale Data Processing</li>
+                                        <li>Real-time Model Comparison</li>
+                                    </ul>
+                                </div>
+                            </div>
 
-        <section id="web-games">
-            <div class="container">
-                <h2>Web Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Web Game 1</h3>
-                        <iframe src="path-to-your-web-game" width="100%" height="400" frameborder="0"></iframe>
-                    </div>
-                    <!-- Add more Web game items as needed -->
-                </div>
-                <a href="https://the-matrix-arcade.vercel.app/" target="_blank" class="cta-button">View All Web Games</a>
-            </div>
-        </section>
+                            <div class="project-links">
+                                <a href="https://ai-tomatic.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">Live Demo</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/YourRepo/AiTomatic" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">Source Code</span>
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-        <section id="gpt-projects">
-            <div class="container">
-                <h2>GPT Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>GPT Project 1</h3>
-                        <p>Description of GPT Project 1</p>
-                        <a href="path-to-gpt-project" class="cta-button">Try GPT Project 1</a>
-                    </div>
-                    <!-- Add more GPT project items as needed -->
+                    <!-- Matrix Arcade Project -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Matrix Arcade Preview" class="project-image">
+                            <div class="project-type" data-index="02">Game Development</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>The Matrix Arcade</h3>
+                            <p class="project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-pie-chart" data-tech="React:35,Python:35,Vite:30"></div>
+                                    <div class="tech-tags">
+                                        <span>React</span>
+                                        <span>Python</span>
+                                        <span>Vite</span>
+                                        <span>Canvas API</span>
+                                        <span>WebGL</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Learnings</h4>
+                                    <ul>
+                                        <li>Game Physics Implementation</li>
+                                        <li>Performance Optimization</li>
+                                        <li>Canvas Animation</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">Play Games</span>
+                                    <i class="fas fa-gamepad"></i>
+                                </a>
+                                <a href="https://github.com/YourRepo/MatrixArcade" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">Source Code</span>
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CodePen Showcase Project -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="path/to/codepen-preview.png" alt="CodePen Collection Preview" class="project-image">
+                            <div class="project-type" data-index="03">Frontend Experiments</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Creative CodePen Collection</h3>
+                            <p class="project-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-pie-chart" data-tech="JavaScript:40,CSS:40,HTML:20"></div>
+                                    <div class="tech-tags">
+                                        <span>JavaScript</span>
+                                        <span>CSS3</span>
+                                        <span>HTML5</span>
+                                        <span>SVG</span>
+                                        <span>Canvas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>Advanced CSS Animations</li>
+                                        <li>Interactive Particles</li>
+                                        <li>Creative UI Components</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">View Collection</span>
+                                    <i class="fab fa-codepen"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Python Projects -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="path/to/python-projects.png" alt="Python Projects Preview" class="project-image">
+                            <div class="project-type" data-index="04">Backend Development</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Python Backend Collection</h3>
+                            <p class="project-description">A suite of Python applications demonstrating API development, data processing, and machine learning implementations.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-pie-chart" data-tech="Python:60,FastAPI:20,SQLAlchemy:20"></div>
+                                    <div class="tech-tags">
+                                        <span>Python</span>
+                                        <span>FastAPI</span>
+                                        <span>SQLAlchemy</span>
+                                        <span>PyTorch</span>
+                                        <span>Pandas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>REST API Development</li>
+                                        <li>Data Processing Pipelines</li>
+                                        <li>ML Model Integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://github.com/ThomasJButler/python-projects" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">View Repository</span>
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Version TimeTravel Website -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="path/to/version-timetravel.png" alt="Version TimeTravel Preview" class="project-image">
+                            <div class="project-type" data-index="05">Portfolio Evolution</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Version TimeTravel</h3>
+                            <p class="project-description">An interactive timeline showcasing the evolution of this portfolio website, featuring different versions and technological improvements.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-pie-chart" data-tech="JavaScript:40,HTML/CSS:40,GSAP:20"></div>
+                                    <div class="tech-tags">
+                                        <span>JavaScript</span>
+                                        <span>GSAP</span>
+                                        <span>HTML5</span>
+                                        <span>CSS3</span>
+                                        <span>ScrollMagic</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>Interactive Timeline</li>
+                                        <li>Version Comparison</li>
+                                        <li>Animation Effects</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="versionhistory.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                    <span class="btn-text">Time Travel</span>
+                                    <i class="fas fa-clock"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <a href="gpt.html" class="cta-button">View All GPT Projects</a>
+                <!-- Replace scroll indicator with progress dots -->
+                <div class="scroll-progress">
+                    <span class="scroll-dot active" data-index="1"></span>
+                    <span class="scroll-dot" data-index="2"></span>
+                    <span class="scroll-dot" data-index="3"></span>
+                    <span class="scroll-dot" data-index="4"></span>
+                    <span class="scroll-dot" data-index="5"></span>
+                </div>
             </div>
         </section>
     </main>

@@ -1,5 +1,3 @@
-
-
 /**
  * @fileoverview Main script file for portfolio website with Matrix rain effect and interactive elements
  * @requires DOM elements: matrixCanvas, vincent-gallery, form elements, navigation elements
@@ -445,6 +443,128 @@ document.addEventListener('DOMContentLoaded', function() {
         vincentGallery.addEventListener('mousemove', applyHoverEffect);
         vincentGallery.addEventListener('mouseleave', resetHoverEffect);
     }
+
+    // Project Stack Functionality
+    const projectCards = document.querySelectorAll('.project-card');
+    let lastClickedCard = null;
+
+    projectCards.forEach((card, index) => {
+        // Add stacking order
+        card.style.zIndex = 1000 - index;
+        
+        card.addEventListener('click', function(e) {
+            // Prevent clicking links from toggling card
+            if (e.target.closest('a')) return;
+            
+            // Close previously opened card
+            if (lastClickedCard && lastClickedCard !== this) {
+                lastClickedCard.classList.remove('active');
+            }
+            
+            this.classList.toggle('active');
+            lastClickedCard = this;
+
+            // Matrix effect on card activation
+            const chars = '101010101アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン010010101';
+            const matrixEffect = document.createElement('div');
+            matrixEffect.className = 'matrix-activation';
+            this.appendChild(matrixEffect);
+            
+            // Clean up effect
+            setTimeout(() => matrixEffect.remove(), 1000);
+
+            // Scroll into view if needed
+            if (this.classList.contains('active')) {
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+
+        // Add hover sound effect
+        card.addEventListener('mouseenter', () => {
+            playMatrixSound('hover');
+        });
+    });
+
+    // Matrix sound effects
+    function playMatrixSound(type) {
+        const audio = new Audio();
+        audio.volume = 0.1;
+        switch(type) {
+            case 'hover':
+                audio.src = 'path/to/hover.mp3'; // Add your sound file
+                break;
+            case 'activate':
+                audio.src = 'path/to/activate.mp3';
+                break;
+        }
+        audio.play().catch(() => {}); // Ignore autoplay restrictions
+    }
+
+    // Handle escape key to close cards
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lastClickedCard) {
+            lastClickedCard.classList.remove('active');
+            lastClickedCard = null;
+        }
+    });
+});
+
+// Project Stack Enhancements
+document.addEventListener('DOMContentLoaded', function() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach((card, index) => {
+        const header = card.querySelector('.project-header');
+        
+        // Only trigger on header click
+        header.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Close other cards
+            projectCards.forEach(otherCard => {
+                if (otherCard !== card && otherCard.classList.contains('active')) {
+                    otherCard.classList.remove('active');
+                }
+            });
+            
+            // Toggle current card
+            card.classList.toggle('active');
+            
+            // Scroll into view with offset
+            if (card.classList.contains('active')) {
+                const offset = 100;
+                const cardPosition = card.getBoundingClientRect().top;
+                const offsetPosition = cardPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        
+        // Add hover effect
+        header.addEventListener('mouseenter', () => {
+            if (!card.classList.contains('active')) {
+                card.style.transform = 'translateX(1rem)';
+            }
+        });
+        
+        header.addEventListener('mouseleave', () => {
+            if (!card.classList.contains('active')) {
+                card.style.transform = 'none';
+            }
+        });
+    });
+    
+    // Close active card on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            projectCards.forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+    });
 });
 
 // Notification system
