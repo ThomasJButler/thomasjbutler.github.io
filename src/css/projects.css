@@ -1,13 +1,132 @@
-/* Projects Grid Layout */
+/* Core Layout */
 .projects-grid {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    padding: 4rem 1rem;
-    position: relative;
-    max-width: 900px;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    max-width: 800px;  /* Reduced from 900px */
     margin: 0 auto;
 }
+
+/* Project Cards */
+.project-card {
+    background: rgba(0, 20, 0, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+    width: 100%;
+    max-width: 700px;  /* Reduced from 800px */
+    margin: 0 auto;
+}
+
+/* Header Section */
+.project-header {
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(0, 40, 0, 0.95);
+    min-height: 140px;  /* Reduced from 200px */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image {
+    width: 120px;     /* Reduced from 140px */
+    height: 120px;    /* Reduced from 140px */
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    object-fit: cover;
+}
+
+/* Active State Refinements */
+.project-card.active {
+    background: rgba(0, 40, 0, 0.98);
+    transform: translateX(1rem);  /* Reduced from 2rem */
+    box-shadow: 
+        0 10px 20px rgba(0, 255, 0, 0.15),
+        inset 0 0 15px rgba(0, 255, 0, 0.05);
+}
+
+/* Content Section */
+.project-content {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card.active .project-content {
+    max-height: 800px;  /* Reduced from 1000px */
+    padding: 1.2rem 1rem;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .project-card {
+        max-width: 100%;
+    }
+    
+    .project-header {
+        min-height: 100px;
+        padding: 1rem;
+    }
+    
+    .project-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .project-content {
+        padding: 0.8rem;
+    }
+    
+    .project-card.active .project-content {
+        padding: 1rem;
+    }
+
+    .tech-stack {
+        padding: 1rem;
+        margin: 1rem -0.5rem;
+    }
+}
+
+/* Desktop Enhancements */
+@media (min-width: 1200px) {
+    .project-image {
+        width: 160px;
+        height: 160px;
+    }
+
+    .project-header {
+        min-height: 180px;
+    }
+
+    .tech-stack {
+        margin: 1.2rem -1rem;
+        padding: 1.2rem;
+    }
+}
+
+/* Remove unnecessary animations and effects */
+.project-card::before,
+.project-card::after {
+    display: none;
+}
+
+/* Streamlined hover effects */
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 0, 0.3);
+}
+
+.project-image:hover {
+    transform: scale(1.05);
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+/* ...rest of existing styles (animations, etc)... */
 
 /* Project Card Styling */
 .project-card {
@@ -18,8 +137,8 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
-    min-width: 450px;
-    max-width: 600px;
+    min-width: 600px;
+    max-width: 800px;
     scroll-snap-align: center;
     scroll-snap-stop: always;
     transform-style: preserve-3d;
@@ -114,6 +233,10 @@
     padding: 2rem 1.5rem;
 }
 
+.project-card.active .project-content h3 {
+    display: none;
+}
+
 .project-card:not(.active) {
     transform: scale(0.95) translateX(5px);
     opacity: 0.7;
@@ -143,20 +266,23 @@
 .project-header {
     position: relative;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1.5rem;    /* Reduced from 2rem */
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;        /* Reduced from 2rem */
     cursor: pointer;
     position: relative;
     z-index: 2;
-    min-height: 120px;
+    min-height: 200px;  /* Increased from 160px */
     background: rgba(0, 40, 0, 0.95);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-image {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     transition: all 0.3s ease;
     border-radius: 12px;
@@ -182,11 +308,14 @@
     font-size: 1.2rem;
     padding: 0.8rem 1.5rem;
     margin-left: auto;
-    background: rgba(0, 40, 0, 0.98);
+    background: rgba(0, 30, 0, 0.95);
     color: #00ff00;
     border-radius: 20px;
-    border: 1px solid #00ff00;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-shadow: 0 0 5px #00ff00;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    margin-left: auto;
 }
 
 .project-type::after {
@@ -222,7 +351,7 @@
 
 /* Project Content */
 .project-content {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -233,6 +362,7 @@
 
 .project-card.active .project-content {
     max-height: 1000px;
+    padding: 1.5rem 1.2rem;
 }
 
 .project-content h3 {
@@ -254,12 +384,13 @@
 .tech-stack {
     margin: 2rem -1.5rem;
     padding: 2rem;
-    background: rgba(0, 40, 0, 0.98);
+    background: rgba(0, 20, 0, 0.95);
     border-radius: 8px;
     border-top: 1px solid rgba(0, 255, 0, 0.2);
     border-bottom: 1px solid rgba(0, 255, 0, 0.2);
     position: relative;
     padding-left: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tech-stack::before {
@@ -401,6 +532,7 @@
         #44ff44 60%
     );
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .tech-pie-chart::after {
@@ -425,8 +557,8 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .project-card {
-        min-width: 280px;
-        max-width: 400px;
+        min-width: 300px;
+        max-width: 100%;
         margin: 0 1rem;
         min-height: 70px;
     }
@@ -492,13 +624,13 @@
     }
     
     .project-header {
-        padding: 1.5rem;
         min-height: 100px;
+        padding: 1rem;
     }
     
     .project-image {
-        width: 80px;
-        height: 80px;
+        width: 90px;     /* Slightly reduced */
+        height: 90px;
     }
 
     .stack-tips {
@@ -510,6 +642,21 @@
     .matrix-tip {
         font-size: 0.9rem;
     }
+
+    .project-preview {
+        display: none;
+    }
+    
+    .project-card.active .project-content h3 {
+        display: block;
+        font-size: 1.8rem;
+        margin: 1rem 0;
+    }
+
+    .project-type {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+    }
 }
 
 /* Enhanced Desktop Layout */
@@ -519,11 +666,49 @@
     }
 
     .project-card {
+        min-width: 700px;
+        max-width: 900px;
         margin: 2rem;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 
+            0 0 30px rgba(0, 255, 0, 0.15),
+            inset 0 0 20px rgba(0, 255, 0, 0.05);
+    }
+
+    .project-card:hover {
+        border-color: rgba(0, 255, 0, 0.3);
+    }
+
+    .project-image {
+        width: 200px;      /* Increased from 160px */
+        height: 200px;     /* Increased from 160px */
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+            0 0 20px rgba(0, 255, 0, 0.2),
+            inset 0 0 20px rgba(0, 255, 0, 0.1);
+    }
+
+    .project-header {
+        min-height: 240px;
+    }
+
+    .project-preview {
+        font-size: 1.8rem;
+        margin: 0 1rem;
+    }
+
+    /* Compact Tech Stack */
+    .tech-stack {
+        margin: 1.5rem -1rem;
+        padding: 1.5rem;
     }
 
     .tech-tags {
-        gap: 1rem;
+        gap: 0.8rem;
+    }
+
+    .tech-tags span {
+        padding: 0.4rem 1rem;
     }
 }
 
@@ -828,4 +1013,21 @@
     content: '>';
     color: #00ff00;
     font-weight: bold;
+}
+
+.project-preview {
+    color: #00ff00;
+    font-size: 1.6rem;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    margin: 0 2rem 0 1rem;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.project-preview::before {
+    content: '>';
+    margin-right: 0.5rem;
+    font-weight: bold;
+    opacity: 0.7;
 }
