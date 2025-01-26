@@ -465,6 +465,7 @@
 
     #introduction p {
         font-size: 0.95rem;
+        font-family: 'VT323', monospace;
         line-height: 1.6;
         text-align: center;
         width: 85%;

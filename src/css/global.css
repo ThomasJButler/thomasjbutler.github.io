@@ -54,6 +54,7 @@
    
    p {
        color: #FF00FF;
+       font-family: 'VT23', monospace;
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
