@@ -2669,7 +2669,7 @@ html {
     transform: translateX(0);
 }
 
-/* Project Cards */
+/* About Me Project Cards */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
