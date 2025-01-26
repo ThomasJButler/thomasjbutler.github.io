@@ -1310,102 +1310,6 @@ body > py-terminal.py-terminal-docked {
     z-index: -1;
 }
 
-/* Contact Section Styles
-   ========================================================================== */
-   #contact {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-#contact h2 {
-    color: #00FF00;
-    font-family: 'VT323', monospace;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-#contact p {
-    color: #FF00FF;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-/* Epic Contact Button Styles */
-.contact-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.btn-contact-us {
-    background: rgba(0, 40, 0, 0.8);
-    border: 1px solid #00FF00;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    color: #00FF00;
-    display: inline-flex;
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    gap: 8px;
-    align-items: center;
-    overflow: hidden;
-    padding: 1rem 2rem;
-    position: relative;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-/* Matrix rain effect */
-.btn-contact-us::before {
-    animation: matrixRain 2s linear infinite;
-    background: linear-gradient(to bottom, 
-        transparent, 
-        rgba(0, 255, 0, 0.1), 
-        transparent);
-    content: '';
-    height: 200%;
-    left: 0;
-    position: absolute;
-    top: -100%;
-    width: 100%;
-}
-
-/* Hover effects */
-.btn-contact-us:hover {
-    background: rgba(0, 60, 0, 0.9);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    transform: translateY(-2px) scale(1.05);
-    color: #FFF;
-    text-shadow: 0 0 8px #00FF00;
-}
-
-/* Icon styling */
-.btn-contact-us i {
-    font-size: 1.1em;
-    transition: transform 0.3s ease;
-}
-
-.btn-contact-us:hover i {
-    transform: translateX(-2px);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #contact h2 {
-        font-size: 2rem;
-    }
-
-    #contact p {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-
-    .btn-contact-us {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.6rem;
-    }
-}
 
 /* Version TimeTravel Button Styles
    ========================================================================== */
@@ -2820,7 +2724,7 @@ html {
 }
 
 .certification-item {
-    background: var(--card-bg);
+    background: var (--card-bg);
     border: var(--border-glow);
     border-radius: 15px;
     padding: 2rem;
@@ -2895,4 +2799,209 @@ html {
     60% { transform: translate(2px, 2px); }
     80% { transform: translate(2px, -2px); }
     100% { transform: translate(0); }
+}
+
+/* Contact Section */
+#contact {
+    padding: 3rem 1rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#contact h2 {
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+#contact p {
+    color: #FF00FF;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form Styles */
+#contact form {
+    max-width: 450px;
+    margin: 2rem auto;
+    background: rgba(0, 20, 0, 0.8);
+    padding: 1.8rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.1);
+}
+
+#contact form label {
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+#contact form input,
+#contact form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    background: rgba(0, 15, 0, 0.9);
+}
+
+#contact form textarea {
+    min-height: 120px;
+}
+
+/* Button Styles */
+.btn-contact-us {
+    background: rgba(0, 20, 0, 0.9);
+    border: 1px solid #00FF00;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    color: #00FF00;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    max-width: 200px;
+    min-width: 160px;
+    overflow: hidden;
+    padding: 0.8rem 1.5rem;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-contact-us::before {
+    animation: matrixRain 2s linear infinite;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(0, 255, 0, 0.2), 
+        transparent);
+    content: '';
+    height: 200%;
+    left: 0;
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.btn-contact-us:hover {
+    background: rgba(0, 40, 0, 0.95);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px) scale(1.02);
+    color: #FFF;
+    text-shadow: 0 0 8px #00FF00;
+}
+
+.btn-contact-us i {
+    font-size: 1.1em;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.btn-contact-us:hover i {
+    transform: translateX(-3px);
+    color: #00FF00;
+}
+
+/* Success Message */
+#form-success {
+    max-width: 450px;
+    padding: 2rem;
+    background: rgba(0, 20, 0, 0.85);
+    border: 1px solid #00FF00;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+    margin: 2rem auto;
+    position: relative;
+    overflow: hidden;
+    animation: successPulse 2s infinite ease-in-out;
+}
+
+#form-success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    animation: successScan 3s infinite;
+}
+
+#form-success h3 {
+    color: #00FF00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    margin-bottom: 1rem;
+}
+
+#form-success p {
+    color: #88FF88;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+@keyframes successPulse {
+    0%, 100% { box-shadow: 0 0 25px rgba(0, 255, 0, 0.2); }
+    50% { box-shadow: 0 0 35px rgba(0, 255, 0, 0.4); }
+}
+
+@keyframes successScan {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+@media (max-width: 576px) {
+    #form-success {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes matrixRain {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+    #contact {
+        padding: 2rem 0.8rem;
+    }
+
+    #contact form {
+        padding: 1.2rem;
+        margin: 1rem;
+    }
+
+    #contact h2 {
+        font-size: 1.8rem;
+    }
+
+    .btn-contact-us {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        min-width: 140px;
+    }
+
+    #contact form input,
+    #contact form textarea {
+        padding: 0.6rem;
+    }
 }

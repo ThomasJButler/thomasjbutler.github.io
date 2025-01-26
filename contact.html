@@ -53,23 +53,30 @@
         <section id="contact">
             <div class="container">
                 <h2>Contact Me</h2>
-                <form id="contact-form" action="https://formspree.io/f/xldrebvq" method="POST">
-
-                    <input type="hidden" name="_next" value="https://thomasjbutler.me/thank-you.html">
+                <div id="form-success" style="display: none;">
+                    <h3>Thanks for your message!</h3>
+                    <p>I'll get back to you soon.</p>
+                </div>
+                <form id="contact-form" action="https://formspree.io/f/xeoeenqv" method="POST">
+                    <label>
+                        Name:
+                        <input type="text" name="name" required>
+                    </label>
                     
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <label>
+                        Email:
+                        <input type="email" name="email" required>
+                    </label>
                     
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label>
+                        Message:
+                        <textarea name="message" required></textarea>
+                    </label>
                     
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
-                    
-                    <a href="contact.html" class="btn-contact-us">
+                    <button type="submit" class="btn-contact-us">
                         <i class="fas fa-envelope"></i>
-                        Contact Me
-                    </a>
+                        Send Message
+                    </button>
                 </form>
             </div>
         </section>
@@ -99,5 +106,34 @@
         </div>
     </footer>
     <script src="src/js/scripts.js"></script>
+    <script>
+        window.addEventListener("load", function() {
+            const form = document.getElementById("contact-form");
+            const formSuccess = document.getElementById("form-success");
+            
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        form.style.display = "none";
+                        formSuccess.style.display = "block";
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    alert("Oops! There was a problem submitting your form. Please try again.");
+                });
+            });
+        });
+    </script>
 </body>
 </html>
