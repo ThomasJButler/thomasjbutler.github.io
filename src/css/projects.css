@@ -48,9 +48,9 @@
   
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Changed to always show 2 columns */
     gap: 3rem;
-    max-width: 1400px;
+    max-width: 1600px; /* Increased from 1400px for wider content */
     margin: 0 auto;
     padding: 2rem;
     perspective: 1000px;
@@ -457,8 +457,8 @@
   /* 9. RESPONSIVE & PRINT ------------------------------------------- */
   @media (max-width: 1200px) {
     .projects-grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      padding: 1.5rem;
     }
     
     .projects-heading {
@@ -467,6 +467,13 @@
   }
   
   @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr; /* Single column on mobile */
+      max-width: 100%; /* Changed from 600px to use full width */
+      padding: 1rem;
+      gap: 2rem;
+    }
+    
     .projects-heading {
       font-size: 2.5rem;
       letter-spacing: 0.3rem;
@@ -474,6 +481,8 @@
   
     .project-card {
       padding: 1.5rem;
+      width: 100%;
+      margin: 0; /* Remove any margin */
     }
   
     .tech-stack {
@@ -491,6 +500,41 @@
     .introduction-expertise-buttons .neo-matrix-btn {
         width: 100%;
     }
+
+    .projects-section {
+      padding: 2rem 1rem; /* Reduce padding */
+    }
+
+    .project-image {
+      height: 200px; /* Slightly shorter images on mobile */
+    }
+
+    /* Adjust container width */
+    .container {
+      width: 95%;
+      max-width: none;
+      padding: 0;
+    }
+
+    /* Make content more compact */
+    .project-details {
+      margin: 1rem 0;
+      padding: 1rem;
+    }
+
+    .tech-stack {
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tech-tags {
+      gap: 0.5rem;
+    }
+
+    .tech-tags span {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
   }
   
   @media (max-width: 480px) {
@@ -500,6 +544,14 @@
   
     .project-card {
       padding: 1rem;
+    }
+
+    .projects-grid {
+      padding: 0.5rem;
+    }
+
+    .projects-section {
+      padding: 1rem 0.5rem;
     }
   }
   
