@@ -52,13 +52,57 @@
     <main>
         <section id="featured-projects" class="reveal">
             <div class="container">
-                <h2 class="projects-heading">--| Project Stack |--</h2>
-                <div class="stack-tips">
-                    <p class="matrix-tip"><i class="fas fa-info-circle"></i> Click any project to expand full details</p>
-                    <p class="matrix-tip"><i class="fas fa-keyboard"></i> Use ESC key to close active project</p>
-                    <p class="matrix-tip"><i class="fas fa-arrows-alt-v"></i> Scroll to explore all projects</p>
-                </div>
+                <h2 class="section-title" data-text="Project Stack">--| Project Stack |--</h2>
                 <div class="projects-grid">
+                    <!-- Future Projects -->
+                    <article class="project-card future-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737071592/codebreaker_sda03k.png" alt="Future Projects Preview" class="project-image">
+                            <div class="project-type" data-index="00" data-project="Future">Innovation Lab</div>
+                            <div class="project-preview">Coming Soon</div>
+                            <div class="future-overlay">
+                                <div class="future-text">2024-2025</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Upcoming Projects</h3>
+                            <p class="project-description">Exciting new projects in development, focusing on AI integration, blockchain technology, and immersive web experiences.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Planned Technologies</h4>
+                                    <div class="tech-tags future-tech">
+                                        <span>React/Vite</span>
+                                        <span>AI/ML</span>
+                                        <span>Python</span>
+                                        <span>Blockchain</span>
+                                        <span>Next.js 14</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Focus Areas</h4>
+                                    <ul class="future-list">
+                                        <li>AI/Python Sports Predictor</li>
+                                        <li>Ethereum Layer 2 Blockchain</li>
+                                        <li>Immersive Web Experiences</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="introduction-expertise-buttons">
+                                <a href="#" class="neo-matrix-btn future-btn" onclick="event.preventDefault()">
+                                    <span class="btn-text">Coming Soon</span>
+                                    <i class="fas fa-clock"></i>
+                                </a>
+                                <div class="project-timeline">
+                                    <div class="timeline-marker"></div>
+                                    <span>Expected: Q2 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
                     <!-- AiTomatic Project -->
                     <article class="project-card" onclick="this.classList.toggle('active')">
                         <div class="project-header">
@@ -73,7 +117,6 @@
                             <div class="project-details">
                                 <div class="tech-stack">
                                     <h4>Tech Stack</h4>
-                                    <div class="tech-pie-chart" data-tech="TypeScript:40,Python:30,React:30"></div>
                                     <div class="tech-tags">
                                         <span>TypeScript</span>
                                         <span>Python</span>
@@ -94,13 +137,9 @@
                             </div>
 
                             <div class="project-links">
-                                <a href="https://ai-tomatic.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <a href="https://ai-tomatic.vercel.app/" target="_blank" rel="noopener" class="btn-contact-us">
                                     <span class="btn-text">Live Demo</span>
                                     <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="https://github.com/YourRepo/AiTomatic" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                    <span class="btn-text">Source Code</span>
-                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
@@ -120,7 +159,6 @@
                             <div class="project-details">
                                 <div class="tech-stack">
                                     <h4>Tech Stack</h4>
-                                    <div class="tech-pie-chart" data-tech="React:35,Python:35,Vite:30"></div>
                                     <div class="tech-tags">
                                         <span>React</span>
                                         <span>Python</span>
@@ -141,13 +179,9 @@
                             </div>
 
                             <div class="project-links">
-                                <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="btn-contact-us">
                                     <span class="btn-text">Play Games</span>
                                     <i class="fas fa-gamepad"></i>
-                                </a>
-                                <a href="https://github.com/YourRepo/MatrixArcade" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                    <span class="btn-text">Source Code</span>
-                                    <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
@@ -156,7 +190,7 @@
                     <!-- CodePen Showcase Project -->
                     <article class="project-card" onclick="this.classList.toggle('active')">
                         <div class="project-header">
-                            <img src="path/to/codepen-preview.png" alt="CodePen Collection Preview" class="project-image">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737940141/codepen_mtf6if.png" alt="CodePen Collection Preview" class="project-image">
                             <div class="project-type" data-index="03" data-project="CodePen Collection">Frontend Experiments</div>
                             <div class="project-preview">CodePen Collection</div>
                         </div>
@@ -167,7 +201,6 @@
                             <div class="project-details">
                                 <div class="tech-stack">
                                     <h4>Tech Stack</h4>
-                                    <div class="tech-pie-chart" data-tech="JavaScript:40,CSS:40,HTML:20"></div>
                                     <div class="tech-tags">
                                         <span>JavaScript</span>
                                         <span>CSS3</span>
@@ -188,7 +221,7 @@
                             </div>
 
                             <div class="project-links">
-                                <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="btn-contact-us">
                                     <span class="btn-text">View Collection</span>
                                     <i class="fab fa-codepen"></i>
                                 </a>
@@ -199,7 +232,7 @@
                     <!-- Python Projects -->
                     <article class="project-card" onclick="this.classList.toggle('active')">
                         <div class="project-header">
-                            <img src="path/to/python-projects.png" alt="Python Projects Preview" class="project-image">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview" class="project-image">
                             <div class="project-type" data-index="04" data-project="Python Backend">Backend Development</div>
                             <div class="project-preview">Python Backend</div>
                         </div>
@@ -210,7 +243,6 @@
                             <div class="project-details">
                                 <div class="tech-stack">
                                     <h4>Tech Stack</h4>
-                                    <div class="tech-pie-chart" data-tech="Python:60,FastAPI:20,SQLAlchemy:20"></div>
                                     <div class="tech-tags">
                                         <span>Python</span>
                                         <span>FastAPI</span>
@@ -231,7 +263,7 @@
                             </div>
 
                             <div class="project-links">
-                                <a href="https://github.com/ThomasJButler/python-projects" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <a href="https://github.com/ThomasJButler/python-projects" target="_blank" rel="noopener" class="btn-contact-us">
                                     <span class="btn-text">View Repository</span>
                                     <i class="fab fa-github"></i>
                                 </a>
@@ -242,7 +274,7 @@
                     <!-- Version TimeTravel Website -->
                     <article class="project-card" onclick="this.classList.toggle('active')">
                         <div class="project-header">
-                            <img src="path/to/version-timetravel.png" alt="Version TimeTravel Preview" class="project-image">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668237/VersionTimeTravelv1desktop_fcmf21.png" alt="Version TimeTravel Preview" class="project-image">
                             <div class="project-type" data-index="05" data-project="Version TimeTravel">Portfolio Evolution</div>
                             <div class="project-preview">Version TimeTravel</div>
                         </div>
@@ -253,7 +285,6 @@
                             <div class="project-details">
                                 <div class="tech-stack">
                                     <h4>Tech Stack</h4>
-                                    <div class="tech-pie-chart" data-tech="JavaScript:40,HTML/CSS:40,GSAP:20"></div>
                                     <div class="tech-tags">
                                         <span>JavaScript</span>
                                         <span>GSAP</span>
@@ -274,21 +305,13 @@
                             </div>
 
                             <div class="project-links">
-                                <a href="versionhistory.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <a href="versionhistory.html" target="_blank" rel="noopener" class="btn-contact-us">
                                     <span class="btn-text">Time Travel</span>
                                     <i class="fas fa-clock"></i>
                                 </a>
                             </div>
                         </div>
                     </article>
-                </div>
-                <!-- Replace scroll indicator with progress dots -->
-                <div class="scroll-progress">
-                    <span class="scroll-dot active" data-index="1"></span>
-                    <span class="scroll-dot" data-index="2"></span>
-                    <span class="scroll-dot" data-index="3"></span>
-                    <span class="scroll-dot" data-index="4"></span>
-                    <span class="scroll-dot" data-index="5"></span>
                 </div>
             </div>
         </section>
