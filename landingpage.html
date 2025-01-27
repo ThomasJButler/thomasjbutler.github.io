@@ -31,6 +31,16 @@
             height: 100%;
             z-index: 1;
         }
+
+        /* Landing Page Text */
+        .landingpagetext {
+        text-align: center; 
+        color: #00FF00; 
+        font-size: 1.5rem; 
+        margin: 2rem 0; 
+        text-shadow: 0 0 5px #00FF00;
+        margin-bottom: 0;
+        }
         
         /* Layout Structure */
         .content-wrapper {
@@ -79,7 +89,7 @@
             box-shadow: 0 0 20px #00FF00;
             transform: translateX(-10px);
         }
-        
+
         .version-button::after {
             content: "🚀";
             font-size: 1.2rem;
@@ -87,7 +97,7 @@
         }
         
         .version-button:hover::after {
-            transform: translateX(5px);
+            transform: rotate(-360deg);
         }
 
                 /* Button Group */
@@ -143,6 +153,7 @@
             .button-group {
                 flex-direction: column;
                 align-items: center;
+                gap: 0;
             }
             
             .interactive-cv-button {
@@ -155,6 +166,7 @@
             .interactive-cv-button {
                 font-size: 0.9rem;
                 padding: 0.5rem 1rem;
+                margin-bottom: 0
             }
         }
         
@@ -172,7 +184,7 @@
             font-size: 1.5rem;
             text-align: center;
             height: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: #00FF00;
             text-shadow: 0 0 5px #00FF00;
         }
@@ -363,7 +375,7 @@
             .left { transform: translateX(-200px) rotateY(-90deg); }
         
             .cube-nav {
-                bottom: -100px;
+                bottom: -80px;
                 flex-wrap: wrap;
                 justify-content: center;
                 width: 90%;
@@ -377,6 +389,7 @@
         
             .title {
                 font-size: 2.5rem;
+                margin-bottom: 0;
             }
         }
         
@@ -389,7 +402,7 @@
             }
 
             .landingpagetext {
-                margin-top: 3rem !important;
+                margin-top: 0rem !important;
             }
         
             .showcase {
@@ -438,7 +451,7 @@
                 VERSION TIME TRAVEL
             </a>
             <a href="cv.html" target="_blank" class="interactive-cv-button">
-                <i class="fa-regular fa-file"></i> INTERACTIVE CV
+                <i class="fa-solid fa-file"></i> INTERACTIVE CV
             </a>
         </div>
             <div class="terminal-text">INITIALIZING SYSTEM...</div>
@@ -486,23 +499,23 @@
                 </div>
             </div>
 
-            <p class="landingpagetext" style="text-align: center; color: #00FF00; font-size: 1.5rem; margin: 2rem 0; text-shadow: 0 0 5px #00FF00;">
+            <p class="landingpagetext">
                 Website Currently Under Development
             </p>
         </main>
 
         <footer>
             <div class="social-links">
-                <a href="https://github.com/ThomasJButler" class="social-link" target="_blank">
+                <a href="https://github.com/ThomasJButler" class="social-link" target="_blank" rel="noopener" title="GitHub Profile">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/thomasbutleruk/" class="social-link" target="_blank">
+                <a href="https://www.linkedin.com/in/thomasbutleruk/" class="social-link" target="_blank" rel="noopener" title="LinkedIn Profile">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://codepen.io/thomasbutler" class="social-link" target="_blank">
+                <a href="https://codepen.io/thomasbutler" class="social-link" target="_blank" rel="noopener" title="CodePen Profile">
                     <i class="fab fa-codepen"></i>
                 </a>
-                <a href="mailto:dev@thomasjbutler.me" class="social-link">
+                <a href="mailto:dev@thomasjbutler.me" class="social-link" title="Email Thomas Butler">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>

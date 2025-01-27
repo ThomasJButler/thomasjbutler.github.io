@@ -4,9 +4,6 @@
    Author: Thomas J Butler
    ========================================================================== */
 
-/* Import Fonts
-   ========================================================================== */
-   /*@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');*/
 
    /* @font-face {
   font-family: system-ui;
@@ -22,6 +19,11 @@
        padding: 0;
        box-sizing: border-box;
    }
+
+   /* Hide Menu Toggle Button by Default */
+   .menu-toggle {
+    display: none;
+    }
    
    /* Base Elements
       ========================================================================== */
@@ -52,6 +54,7 @@
    
    p {
        color: #FF00FF;
+       font-family: 'VT23', monospace;
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
@@ -71,102 +74,6 @@
        color: #FF00FF;
    }
 
-   /* Contact Section Styles
-   ========================================================================== */
-#contact {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-#contact h2 {
-    color: #00FF00;
-    font-family: 'VT323', monospace;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-#contact p {
-    color: #FF00FF;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-/* Epic Contact Button Styles */
-.contact-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.btn-contact-us {
-    background: rgba(0, 40, 0, 0.8);
-    border: 1px solid #00FF00;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    color: #00FF00;
-    display: inline-flex;
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    gap: 8px;
-    align-items: center;
-    overflow: hidden;
-    padding: 1rem 2rem;
-    position: relative;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-/* Matrix rain effect */
-.btn-contact-us::before {
-    animation: matrixRain 2s linear infinite;
-    background: linear-gradient(to bottom, 
-        transparent, 
-        rgba(0, 255, 0, 0.1), 
-        transparent);
-    content: '';
-    height: 200%;
-    left: 0;
-    position: absolute;
-    top: -100%;
-    width: 100%;
-}
-
-/* Hover effects */
-.btn-contact-us:hover {
-    background: rgba(0, 60, 0, 0.9);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    transform: translateY(-2px) scale(1.05);
-    color: #FFF;
-    text-shadow: 0 0 8px #00FF00;
-}
-
-/* Icon styling */
-.btn-contact-us i {
-    font-size: 1.1em;
-    transition: transform 0.3s ease;
-}
-
-.btn-contact-us:hover i {
-    transform: translateX(-2px);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #contact h2 {
-        font-size: 2rem;
-    }
-
-    #contact p {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-
-    .btn-contact-us {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.6rem;
-    }
-}
    
    /* Call-to-Action Buttons
       ========================================================================== */
@@ -261,8 +168,14 @@
    #contact form {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 25px;
+    padding: 20px;
 }
 
 #contact form label {
@@ -295,6 +208,7 @@
     min-height: 150px;
     resize: vertical;
 }
+
 
 /* Send Message Button */
 #contact form button[type="btn-contact"] {
@@ -364,7 +278,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #contact form {
-        padding: 0 1rem;
+        padding: -1px 3rem;
     }
     
     #contact form button[type="btn-contact"] {
@@ -491,6 +405,13 @@ nav ul li {
     padding: 8px 15px;
     position: relative;
     transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 480px) {
+    nav ul li {
+        padding: 10px;
+    }
+    
 }
 
 /* Special styling for Version TimeTravel */
@@ -695,38 +616,94 @@ nav ul li:hover a {
 
 @media screen and (max-width: 768px) {
     header .container {
-        column-gap: 25px;
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: 0px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        position: relative;
     }
 
+     /* Title styles */
+     header h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    header h3 {
+        display: none; /* Hide the subtitle on mobile */
+    }
+
+    /* Navigation menu */
+
     nav {
-        display: inline-flex;
+        display: block;
         flex-direction: column;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+    }
+
+    nav span {
+        display: block !important;
     }
 
     nav ul {
         display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0, 20, 0, 0.95);
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        border-radius: 50px;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 200px; /* Set specific width */
+    }
+
+ 
+    /* Menu toggle button */
+   nav .menu-toggle {
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        padding: 5px;
+        background: rgba(0, 20, 0, 0.7);
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
         flex-direction: column;
-        width: 100%;
+        margin-block: -5px;
     }
 
-    nav ul.show {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+    nav .menu-toggle:hover {
+        background: rgba(0, 30, 0, 0.8);
+        border-color: rgba(0, 255, 0, 0.4);
     }
 
-    nav ul li {
-        margin: 10px 0;
-        text-align: center;
-        width: 100%;
+    nav .menu-toggle span {
+        width: 20px;
+        height: 2px;
+        background-color: #00FF00;
+        margin: 2px 0;
+        transition: all 0.3s ease;
     }
 
-    .menu-toggle {
-        display: flex;
+    /* Active menu toggle state */
+    nav .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
     }
+
+    nav .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    nav .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
 
     main {
         padding-top: 100px;
@@ -780,6 +757,7 @@ footer ul {
     list-style-type: none;
     margin-bottom: 20px;
 }
+
 
 footer ul li {
     margin: 0 15px;
@@ -907,5 +885,146 @@ nav ul li:active {
    ========================================================================== */
 .l1 a {
     display: none;
+}
+
+/* Introduction Expertise Card Styles */
+.introduction-expertise-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 20px;
+}
+
+.introduction-expertise-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    color: #00FF00;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.introduction-expertise-card:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.introduction-expertise-icon {
+    margin-bottom: 15px;
+}
+
+.introduction-expertise-icon img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.introduction-expertise-description {
+    margin: 10px 0;
+}
+
+.introduction-expertise-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;  
+} 
+
+.introduction-expertise-buttons a.neo-matrix-btn {
+    width: 100%;  /* Make button full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;    /* Remove margin to fit full width */
+    padding: 12px 20px;  /* Slightly larger padding */
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    color: #00FF00;
+    cursor: pointer;
+    font-family: system-ui;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 1px;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    align-self: center;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn i {
+    margin-left: auto;  /* Push icon to the right */
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn .btn-text {
+    flex: 1;  /* Allow text to take remaining space */
+    text-align: center;  /* Center the text */
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn::before {
+    animation: matrixRain 4s infinite linear;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.3) 45%, 
+        rgba(0, 255, 0, 0.3) 55%, 
+        transparent 100%);
+    content: '';
+    height: 200%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: -100%;
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn::after {
+    background-image: 
+        radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-position: 0 0, 0 0, -5px -5px, -5px -5px;
+    background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+    border-radius: 8px;
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover {
+    animation: flicker 0.5s infinite;
+    background: rgba(0, 30, 0, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover::before {
+    opacity: 1;
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.introduction-expertise-buttons a.neo-matrix-btn:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 8px #00FF00, 0 0 12px #00FF00;
 }
 

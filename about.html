@@ -9,18 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <meta name="description" content="Thomas J Butler - AI and Web Development Expert with over 2 years of experience, 20 projects built, and 8 tech stack depth.">
+    <meta name="keywords" content="Full-Stack Developer, AI Integration, Software Engineering, Web Development, AI Enthusiast">
 </head>
 <body>
-    <div id="matrix">
-        <canvas id="matrixCanvas"></canvas>
-    </div>
     <header>
         <div class="container">
             <h1>Thomas J Butler</h1>
             <h3>About Me Page</h3>
-            <div class="logo-container">
-            </div>
             <nav>
                 <div class="menu-toggle">
                     <span></span>
@@ -29,8 +28,8 @@
                 </div>
                 <ul>
                     <li><a href="index.html">HOME |</a></li>
-                    <li><a href="skills.html">SKILLS |</a></li>
                     <li><a href="art.html">ART GALLERY |</a></li>
+                    <li><a href="skills.html">SKILLS |</a></li>
                     <li><a href="projects.html">PROJECTS |</a></li>
                     <li><a href="services.html">SERVICES |</a></li>
                     <li><a href="contact.html">CONTACT |</a></li>
@@ -39,82 +38,127 @@
         </div>
     </header>
     <main>
-        <section id="content">
-            <h2>Welcome to My Development Journey! 🌱</h2>
-            <p>
-                Hi there! I'm Tom, an aspiring full-stack web developer passionate about exploring the depths of technology. My journey spans from web development to exciting areas like networking, database analysis, indie game development, and creating engaging creations with AI. I aim to blend insatiable curiosity with practical skills, delving into everything from creating engaging websites to understanding AI principles and game design. Join me as I push the boundaries of what's possible in web development and beyond.
-            </p>
-            <section id="skills">
-                <div class="container">
-                    <h2>My Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <h3>Web Development</h3>
-                            <p>Mastery in HTML5, CSS3, JavaScript, and modern frameworks like React and Angular</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 95%;"></div>
-                            </div>
+        <section id="why-love-programming" class="about-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">Why I Love Programming</h2>
+                <div class="story-content">
+                    <p class="highlight-text">
+                        Programming is not just a profession for me; it's a passion. The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
+                    </p>
+                    <p>
+                        From a young age, I was fascinated by technology and how it can be used to create amazing things. This curiosity led me to explore various programming languages and frameworks, and I quickly realized that programming was the perfect outlet for my creativity and problem-solving skills.
+                    </p>
+                    <p>
+                        Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
+                    </p>
+                </div>
+                <div class="programming-journey">
+                    <h2 class="section-title">My Progamming Journey</h2>
+                    <div class="journey-grid">
+                        <div class="journey-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>The Beginning</h4>
+                            <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
                         </div>
-                        <div class="skill-item">
-                            <h3>AI and Machine Learning</h3>
-                            <p>Expertise in developing AI models, natural language processing, and machine learning algorithms.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 90%;"></div>
-                            </div>
+                        <div class="journey-item">
+                            <i class="fas fa-code"></i>
+                            <h4>Learning & Growth</h4>
+                            <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
                         </div>
-                        <div class="skill-item">
-                            <h3>UI/UX</h3>
-                            <p>Crafting user-centric designs that blend aesthetics with functionality for optimal user experience.</p>
-                        </p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Database Management</h3>
-                            <p>Proficient in SQL and NoSQL databases, ensuring efficient data storage and retrieval.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Mobile App Development</h3>
-                            <p>Creating responsive and intuitive mobile applications for iOS and Android platforms</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Full-Stack Development</h3>
-                            <p>Proficient in both frontend and backend technologies, creating seamless end-to-end solutions.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Custom GPT Creation</h3>
-                            <p>Developing custom Generative Pre-trained Transformers for unique AI applications.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Digital Asset Creation</h3>
-                            <p>Creating digital assets like digital art, game characters, and visual effects for immersive experiences.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <h3>Indie Game Creation</h3>
-                            <p>Developing indie games with unique gameplay mechanics and engaging storylines.</p>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 92%;"></div>
-                            </div>
+                        <div class="journey-item">
+                            <i class="fas fa-robot"></i>
+                            <h4>AI Exploration</h4>
+                            <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+
+        <section id="technical-expertise" class="about-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h3>Frontend Development</h3>
+                        <ul class="expertise-list">
+                            <li>React & Next.js</li>
+                            <li>TypeScript</li>
+                            <li>Modern CSS (Tailwind, SASS)</li>
+                            <li>Performance Optimization</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h3>Backend Development</h3>
+                        <ul class="expertise-list">
+                            <li>Node.js & Express</li>
+                            <li>Python & Django</li>
+                            <li>RESTful APIs</li>
+                            <li>Database Design</li>
+                            <li>Microservices</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h3>AI & Machine Learning</h3>
+                        <ul class="expertise-list">
+                            <li>Natural Language Processing</li>
+                            <li>TensorFlow & PyTorch</li>
+                            <li>Custom GPT Models</li>
+                            <li>Computer Vision</li>
+                            <li>Data Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="continuous-learning" class="about-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">Qualifications</h2>
+                <div class="learning-content">
+                    <p class="highlight-text">
+                        I believe in staying current with technology trends and continuously expanding my knowledge base.
+                    </p>
+                    <div class="certifications-grid">
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>AWS Skills Builder</h4>
+                            <p>Cloud architecture and serverless computing</p>
+                        </div>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>CodeCademy Machine Learning/AI Engineer</h4>
+                            <p>Machine learning and AI model development</p>
+                        </div>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Cisco</h4>
+                            <p>-Data Analytics Essentials</p>
+                            <p>-Intro to Cybersecurity</p>
+                        </div>
+                    </div>
+                    <div class="certifications-grid">
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>CodeCademy Full Stack Engineer</h4>
+                            <p>Full-stack web development</p>
+                        </div>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>HubSpot Certified Developer</h4>
+                            <p>-CMS Integration, HUBL code</p>
+                            <p>-Custom HubSpot Modules</p>
+                        </div>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Free Code Camp </h4>
+                            <p>Data Anaysis With Python</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="container">
@@ -135,10 +179,115 @@
                     </a>
                 </li>
             </ul>
-            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+            <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <button id="backToTop" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+        // Typing effect text options
+        const typingTexts = [
+            "Full-Stack Developer",
+            "AI Enthusiast",
+            "Problem Solver",
+            "Creative Coder"
+        ];
+
+        // Typing effect
+        function typeWriter(text, element, i = 0) {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                setTimeout(() => typeWriter(text, element, i + 1), 100);
+            }
+        }
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const count = +element.innerText;
+            const increment = target / 200; // Adjust speed
+
+            if (count < target) {
+                element.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(element), 1);
+            } else {
+                element.innerText = target;
+            }
+        }
+
+        // Scroll-based animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize typing effect
+            const typedElement = document.querySelector('.typed-text');
+            let textIndex = 0;
+            
+            function typeNextText() {
+                typedElement.textContent = '';
+                typeWriter(typingTexts[textIndex], typedElement);
+                textIndex = (textIndex + 1) % typingTexts.length;
+            }
+            
+            typeNextText();
+            setInterval(typeNextText, 4000);
+
+            // Initialize counters
+            const counters = document.querySelectorAll('.count');
+            counters.forEach(counter => {
+                counter.innerText = '0';
+                animateCounter(counter);
+            });
+
+            // Initialize ScrollMagic
+            const controller = new ScrollMagic.Controller();
+
+            // Parallax effect for skills section
+            new ScrollMagic.Scene({
+                triggerElement: "#skills",
+                triggerHook: 0.8,
+                duration: "100%"
+            })
+            .setClassToggle("#skills", "visible")
+            .addTo(controller);
+
+            // Tech stack hover effects
+            document.querySelectorAll('.tech-item').forEach(item => {
+                item.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.1) rotate(10deg)';
+                });
+                
+                item.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+            // Back to Top functionality
+            const backToTopButton = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) { // Show button after scrolling down 300px
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
 </body>
 </html>
 
