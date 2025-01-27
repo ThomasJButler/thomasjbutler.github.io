@@ -718,106 +718,136 @@
     }
 }
 
+
 /* Services Section
    ========================================================================== */
    #services {
-    background: rgba(0, 20, 0, 0.8);
-    overflow: hidden;
-    padding: 40px 0;
+    background: rgba(0, 10, 0, 0.95);
+    padding: 40px 20px;
     position: relative;
+    overflow: hidden;
 }
 
 #services::before {
-    animation: matrixBg 20s linear infinite;
-    background: linear-gradient(45deg, transparent 49%, rgba(0, 255, 0, 0.1) 50%, transparent 51%);
-    background-size: 10px 10px;
     content: '';
-    inset: 0;
     position: absolute;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00FF00, transparent);
+    animation: scanningTop 2s linear infinite;
 }
 
-#services .container {
-    position: relative;
-    z-index: 2;
-}
-
-#services h2 {
-    animation: glitch 5s infinite alternate;
-    color: #00FF00;
-    font-family: 'VT323', monospace;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-#services > p {
-    color: #CCFFCC;
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    #services {
-        padding: 60px 0;
-    }
-
-    #services h2 {
-        font-size: 3.5em;
-    }
-
-    #services > p {
-        font-size: 1.3em;
-        margin-bottom: 40px;
-    }
-}
-
-/* Services List
-   ========================================================================== */
 .services-list {
     display: grid;
-    gap: 20px;
+    gap: 30px;
     grid-template-columns: 1fr;
     list-style-type: none;
-    padding: 0;
-}
-
-@media (min-width: 768px) {
-    .services-list {
-        gap: 30px;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .services-list li {
-    background: rgba(0, 40, 0, 0.6);
+    background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
     border: 1px solid #00FF00;
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     justify-content: space-between;
     overflow: hidden;
-    padding: 25px;
+    padding: 2.5rem;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+    min-height: 280px;
+    backdrop-filter: blur(5px);
+}
+
+.services-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00FF00, transparent);
+    animation: scanning 2s linear infinite;
+}
+
+.services-list li:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    border-color: #00FF00;
+    background: linear-gradient(145deg, rgba(0, 30, 0, 0.95), rgba(0, 50, 0, 0.85));
 }
 
 .services-list h3 {
     color: #00FF00;
     font-family: 'VT323', monospace;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    font-size: 2.2em;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.services-list h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #00FF00;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.services-list li:hover h3::after {
+    width: 80%;
 }
 
 .services-list p {
     color: #CCFFCC;
-    font-size: 1em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.7;
     margin-bottom: 0;
+    opacity: 0.9;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+@keyframes scanning {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes scanningTop {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@media (min-width: 768px) {
+    .services-list {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-list li,
+    .services-list li::before,
+    #services::before {
+        animation: none;
+        transition: none;
+    }
 }
 
 /* Terminal Styles
