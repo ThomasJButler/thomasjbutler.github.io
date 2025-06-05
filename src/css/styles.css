@@ -2882,6 +2882,37 @@ html {
     background: rgba(0, 15, 0, 0.9);
 }
 
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#contact-form button,
+#contact-form .btn-contact-us {
+    background-color: #00ff00;
+    border: none;
+    color: #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact-form button:hover,
+#contact-form .btn-contact-us:hover {
+    background-color: #33ff33;
+}
+
+#contact-form .btn-contact-us i {
+    margin-right: 8px;
+}
+
 #contact form textarea {
     min-height: 120px;
 }
