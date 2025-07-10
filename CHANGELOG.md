@@ -5,6 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2025-01-10
+
+### Added
+- **Enhanced Typography System**
+  - Implemented responsive paragraph styles with clamp() sizing
+  - Added optimal reading width (65ch) for better readability
+  - Introduced special paragraph classes (.lead, .small)
+  - Improved text rendering with anti-aliasing
+
+- **Design System Documentation**
+  - Created comprehensive design_system.md
+  - Documented color palette with CSS custom properties
+  - Defined typography scale and spacing system
+  - Added component patterns and usage guidelines
+  - Included animation guidelines and responsive breakpoints
+
+- **Anime.js Integration**
+  - Added Anime.js v4 for future animation enhancements
+  - Prepared foundation for advanced UI animations
+  - Configured for optimal performance
+
+### Changed
+- **Contact Form Redesign**
+  - Modernized form layout with glassmorphism effects
+  - Enhanced mobile usability with better touch targets
+  - Improved focus states with smooth transitions
+  - Added gradient animations on hover
+  - Fixed button selectors and styling issues
+
+- **Address Section Enhancement**
+  - Redesigned with less blocky appearance
+  - Added Font Awesome icons for visual clarity
+  - Implemented hover effects and animations
+  - Created inline-flex layout for better alignment
+
+### Fixed
+- **UX Improvements**
+  - Improved color contrast for accessibility (WCAG AA compliance)
+  - Fixed mobile responsive padding issues
+  - Enhanced form input states for better user feedback
+  - Corrected CSS selector specificity issues
+
+### Removed
+- **Animation Cleanup**
+  - Removed glitch effects from specific text elements
+  - Cleaned up overwhelming visual animations
+  - Removed loader animation functionality (kept anime.js)
+  - Deleted duplicate CSS styles
+
 ## [3.0.0] - 2025-01-10
 
 ### Added
