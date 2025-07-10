@@ -197,23 +197,31 @@
    
    /* Call-to-Action Buttons
       ========================================================================== */
-   .cta-button {
+   /* Unified button styles for consistency */
+   .cta-button,
+   .btn-contact-us,
+   .neo-matrix-btn,
+   .matrix-btn {
        align-items: center;
-       background-color: var(--matrix-green);
-       border-radius: 5px;
-       color: #0d0d0d;
-       display: flex;
-       justify-content: center;
-       margin-top: var(--space-md);
-       padding: var(--space-sm) var(--space-md);
-       text-decoration: none;
-       transition: all 0.3s ease;
-       position: relative;
-       overflow: hidden;
-       border: 1px solid transparent;
+       background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
+       border: 1px solid var(--matrix-green);
+       border-radius: 8px;
+       color: var(--matrix-green);
+       cursor: pointer;
+       display: inline-flex;
        font-family: 'VT323', monospace;
-       font-size: 1.2rem;
+       font-size: 1.1rem;
+       font-weight: 400;
+       gap: 0.5rem;
+       justify-content: center;
+       letter-spacing: 0.1em;
+       margin-top: var(--space-md);
+       overflow: hidden;
+       padding: 0.75rem 1.5rem;
+       position: relative;
+       text-decoration: none;
        text-transform: uppercase;
+       transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
    }
    
    .cta-button::before {
@@ -244,14 +252,18 @@
        }
    }
    
-   .cta-button:hover {
-       background-color: rgba(0, 255, 0, 0.1);
-       color: var(--matrix-green);
+   .cta-button:hover,
+   .btn-contact-us:hover,
+   .neo-matrix-btn:hover,
+   .matrix-btn:hover {
+       background: rgba(0, 255, 0, 0.1);
+       color: #fff;
        border-color: var(--matrix-green);
        box-shadow: 
            0 0 20px rgba(0, 255, 0, 0.5),
            inset 0 0 20px rgba(0, 255, 0, 0.1);
        transform: translateY(-2px);
+       text-shadow: 0 0 8px var(--matrix-green);
    }
    
    .cta-button:hover::after {
@@ -282,7 +294,7 @@
        border-radius: 5px;
        margin-bottom: var(--space-md);
        opacity: 1; /* Changed from 0 to 1 for immediate visibility */
-       padding: var(--space-lg) 0;
+       padding: var(--space-xl) var(--space-md);
        transform: translateY(0); /* Start in final position */
        transition: opacity 0.5s ease, transform 0.5s ease;
        /* Glassmorphism effect */
@@ -290,6 +302,17 @@
        -webkit-backdrop-filter: blur(5px);
        position: relative;
        overflow: hidden;
+   }
+   
+   /* Special padding for introduction sections */
+   #introduction {
+       padding: var(--space-3xl) var(--space-lg);
+   }
+   
+   @media (max-width: 768px) {
+       #introduction {
+           padding: var(--space-2xl) var(--space-md);
+       }
    }
    
    /* Add subtle glow on hover */
@@ -1015,58 +1038,138 @@ nav ul li:hover a {
     nav ul {
         display: none;
         position: absolute;
-        top: 100%;
-        right: 0;
-        background: rgba(0, 20, 0, 0.95);
-        border: 1px solid rgba(0, 255, 0, 0.2);
-        border-radius: 50px;
-        padding: 0.5rem;
-        margin-top: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        top: calc(100% + 10px);
+        right: 10px;
+        background: rgba(0, 20, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 0, 0.3);
+        border-radius: 12px;
+        padding: 1rem 0.5rem;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(0, 255, 0, 0.1),
+            inset 0 0 20px rgba(0, 255, 0, 0.05);
         z-index: 1000;
-        width: 200px; /* Set specific width */
+        width: 250px;
+        transform-origin: top right;
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* Show menu with animation */
+    nav ul.show {
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Mobile menu items styling */
+    nav ul li {
+        width: 100%;
+        margin: 4px 0;
+        text-align: center;
+        animation: none;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 16px;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
     }
 
  
-    /* Menu toggle button */
+    /* Matrix-style menu toggle button */
    nav .menu-toggle {
         display: flex;
         justify-content: center;
-        height: 30px;
-        padding: 5px;
-        background: rgba(0, 20, 0, 0.7);
-        border: 1px solid rgba(0, 255, 0, 0.2);
-        border-radius: 20px;
-        transition: all 0.3s ease;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        background: rgba(0, 20, 0, 0.9);
+        border: 2px solid rgba(0, 255, 0, 0.3);
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         cursor: pointer;
-        flex-direction: column;
-        margin-block: -5px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Matrix glow effect on hover */
+    nav .menu-toggle::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: conic-gradient(from 0deg, transparent, var(--matrix-green), transparent 30%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        animation: rotate 3s linear infinite;
+        z-index: -1;
     }
 
     nav .menu-toggle:hover {
-        background: rgba(0, 30, 0, 0.8);
-        border-color: rgba(0, 255, 0, 0.4);
+        background: rgba(0, 30, 0, 0.95);
+        border-color: var(--matrix-green);
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
     }
 
+    nav .menu-toggle:hover::before {
+        opacity: 0.5;
+    }
+
+    /* Custom Matrix icon spans */
     nav .menu-toggle span {
-        width: 20px;
+        position: absolute;
+        width: 24px;
         height: 2px;
-        background-color: #00FF00;
-        margin: 2px 0;
-        transition: all 0.3s ease;
+        background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 0 4px rgba(0, 255, 0, 0.5);
     }
 
-    /* Active menu toggle state */
+    nav .menu-toggle span:nth-child(1) {
+        top: 12px;
+        width: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    nav .menu-toggle span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    nav .menu-toggle span:nth-child(3) {
+        bottom: 12px;
+        width: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Active menu toggle state - Matrix transformation */
     nav .menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        top: 50%;
+        width: 24px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background: var(--matrix-green);
     }
 
     nav .menu-toggle.active span:nth-child(2) {
         opacity: 0;
+        transform: translateY(-50%) scale(0);
     }
 
     nav .menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
+        bottom: 50%;
+        width: 24px;
+        transform: translate(-50%, 50%) rotate(-45deg);
+        background: var(--matrix-green);
     }
 
 
@@ -1508,6 +1611,46 @@ body.loaded {
 @media (min-width: 769px) {
     .desktop-hide { display: none; }
     .desktop-show { display: block; }
+}
+
+/* Video Banner Styles */
+.video-banner {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-max);
+    margin: var(--space-3xl) auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.banner-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 20, 0, 0.2) 50%,
+        rgba(0, 20, 0, 0.4) 100%
+    );
+}
+
+@media (max-width: 768px) {
+    .video-banner {
+        margin: var(--space-2xl) auto;
+        border-radius: 8px;
+    }
 }
 
 /* Introduction Expertise Card Styles */

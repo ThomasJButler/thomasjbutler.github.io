@@ -49,7 +49,7 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Changed to always show 2 columns */
-    gap: 3rem;
+    gap: 1.5rem;
     max-width: 1600px; /* Increased from 1400px for wider content */
     margin: 0 auto;
     padding: 2rem;
@@ -61,7 +61,7 @@
     background: var(--gradient-primary);
     border: 2px solid rgba(0, 255, 0, 0.2);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.25rem;
     position: relative;
     transition: 
       transform var(--animation-slow) ease-out,
@@ -118,10 +118,10 @@
   
   .project-image {
     width: 100%;
-    height: 220px;
+    height: 160px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border: 1px solid rgba(0, 255, 0, 0.3);
     transition: all var(--animation-slow) ease;
     filter: brightness(0.8) contrast(1.2);

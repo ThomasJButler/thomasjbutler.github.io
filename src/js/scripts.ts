@@ -4,6 +4,8 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
+import { animate, stagger, createTimeline } from 'animejs';
+
 // Type definitions
 interface MatrixDrop {
   position: number;
@@ -168,8 +170,25 @@ const nav = document.querySelector('nav ul') as HTMLElement | null;
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
+    nav.classList.toggle('show');
     menuToggle.classList.toggle('active');
+    
+    // Add Matrix-style animation effect
+    if (nav.classList.contains('show')) {
+      nav.style.display = 'flex';
+      setTimeout(() => {
+        nav.style.opacity = '1';
+        nav.style.transform = 'translateY(0) scale(1)';
+      }, 10);
+    } else {
+      nav.style.opacity = '0';
+      nav.style.transform = 'translateY(-10px) scale(0.95)';
+      setTimeout(() => {
+        if (!nav.classList.contains('show')) {
+          nav.style.display = 'none';
+        }
+      }, 300);
+    }
   });
 }
 
@@ -413,8 +432,15 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
     const nav = document.querySelector('nav ul') as HTMLElement | null;
     const menuToggle = document.querySelector('.menu-toggle') as HTMLElement | null;
     if (nav && menuToggle) {
-      nav.classList.remove('active');
+      nav.classList.remove('show');
       menuToggle.classList.remove('active');
+      nav.style.opacity = '0';
+      nav.style.transform = 'translateY(-10px) scale(0.95)';
+      setTimeout(() => {
+        if (!nav.classList.contains('show')) {
+          nav.style.display = 'none';
+        }
+      }, 300);
     }
   }
   
@@ -537,6 +563,177 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
       document.body.classList.add('loaded');
     }, 100);
   }
+}
+
+// ============================================
+// ANIME.JS INTERACTIVE FEATURES
+// ============================================
+
+// Initialize Anime.js animations when DOM is ready
+function initAnimeAnimations(): void {
+  // Staggered fade-in for project cards
+  const projectCards = document.querySelectorAll('.project-card');
+  if (projectCards.length > 0) {
+    animate(projectCards, {
+      opacity: [0, 1],
+      translateY: [30, 0],
+      scale: [0.95, 1],
+      delay: stagger(100, {start: 200}),
+      duration: 800,
+      easing: 'easeOutQuad'
+    });
+  }
+
+  // Smooth number counter animation for stats
+  const counters = document.querySelectorAll('.count');
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target') || counter.textContent || '0');
+    animate(counter, {
+      textContent: [0, target],
+      round: 1,
+      duration: 2000,
+      easing: 'easeInOutExpo'
+    });
+  });
+
+  // Button hover particle effect
+  document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
+    button.addEventListener('mouseenter', (e) => {
+      const rect = (e.target as HTMLElement).getBoundingClientRect();
+      createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
+  });
+
+  // Text reveal animation for headers
+  const headers = document.querySelectorAll('h1, h2:not(.introduction-h2)');
+  headers.forEach((header, index) => {
+    const text = header.textContent || '';
+    header.innerHTML = '';
+    
+    // Split text into spans
+    text.split('').forEach(char => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      span.style.display = 'inline-block';
+      span.style.opacity = '0';
+      header.appendChild(span);
+    });
+
+    // Animate the letters
+    animate(header.querySelectorAll('span'), {
+      opacity: [0, 1],
+      translateY: [20, 0],
+      rotateZ: [-10, 0],
+      delay: stagger(30, {start: index * 200}),
+      duration: 600,
+      easing: 'easeOutBack'
+    });
+  });
+
+  // Smooth scroll indicator animation
+  const scrollIndicators = document.querySelectorAll('.scroll-down');
+  if (scrollIndicators.length > 0) {
+    animate(scrollIndicators, {
+      translateY: [0, 10],
+      opacity: [1, 0.7],
+      direction: 'alternate',
+      loop: true,
+      duration: 1500,
+      easing: 'easeInOutSine'
+    });
+  }
+
+  // Gallery item hover effect
+  const galleryItems = document.querySelectorAll('.gallery-item, .introduction-img img');
+  galleryItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      animate(item, {
+        scale: 1.05,
+        rotateZ: 2,
+        duration: 300,
+        easing: 'easeOutBack'
+      });
+    });
+
+    item.addEventListener('mouseleave', () => {
+      animate(item, {
+        scale: 1,
+        rotateZ: 0,
+        duration: 300,
+        easing: 'easeOutBack'
+      });
+    });
+  });
+}
+
+// Create particle effect for buttons
+function createParticles(x: number, y: number): void {
+  const particleCount = 15;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'matrix-particle';
+    particle.style.cssText = `
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--matrix-green);
+      box-shadow: 0 0 6px var(--matrix-green);
+      pointer-events: none;
+      z-index: 9999;
+      left: ${x}px;
+      top: ${y}px;
+    `;
+    
+    document.body.appendChild(particle);
+    
+    // Animate particle
+    animate(particle, {
+      translateX: Math.random() * 100 - 50,
+      translateY: Math.random() * 100 - 50,
+      scale: [1, 0],
+      opacity: [1, 0],
+      duration: Math.random() * 400 + 600,
+      easing: 'easeOutExpo',
+      complete: () => particle.remove()
+    });
+  }
+}
+
+// Section reveal on scroll with anime
+function initScrollReveal(): void {
+  const sections = document.querySelectorAll('section:not(#introduction)');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('anime-revealed')) {
+        entry.target.classList.add('anime-revealed');
+        
+        // Animate section content
+        const content = entry.target.querySelectorAll('p, li, .card, .tech-item');
+        animate(content, {
+          opacity: [0, 1],
+          translateY: [20, 0],
+          delay: stagger(50),
+          duration: 600,
+          easing: 'easeOutQuad'
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+// Initialize all anime animations when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initAnimeAnimations();
+    initScrollReveal();
+  });
+} else {
+  initAnimeAnimations();
+  initScrollReveal();
 }
 
 // Export for use in other modules

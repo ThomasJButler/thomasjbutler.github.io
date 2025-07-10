@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Stack | Thomas J Butler</title>
+    <title>GitHub Repository Showcase | Thomas J Butler</title>
     <!-- Critical CSS to prevent FOUC -->
     <style>
         body:not(.loaded) {
@@ -68,54 +68,59 @@
     <main>
         <section id="featured-projects" class="reveal">
             <div class="container">
-                <h2 class="section-title" data-text="Project Stack">--| Project Stack |--</h2>
-                <div class="projects-grid">
-                    <!-- Future Projects -->
-                    <article class="project-card future-card" onclick="this.classList.toggle('active')">
-                        <div class="project-header">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737071592/codebreaker_sda03k.png" alt="Future Projects Preview" class="project-image">
-                            <div class="project-type" data-index="00" data-project="Future">Innovation Lab</div>
-                            <div class="project-preview">Coming Soon</div>
-                            <div class="future-overlay">
-                                <div class="future-text">2024-2025</div>
+                <h2 class="section-title">GitHub Repository Showcase</h2>
+                <p class="section-description">Explore my open source contributions and personal projects</p>
+                
+                <!-- Category Tabs -->
+                <div class="project-tabs">
+                    <button class="tab-button active" data-category="all">All Projects</button>
+                    <button class="tab-button" data-category="personal">Personal Projects</button>
+                    <button class="tab-button" data-category="client">Client Work</button>
+                    <button class="tab-button" data-category="opensource">Open Source</button>
+                </div>
+                <div class="github-projects-grid">
+                    <!-- AiTomatic Project -->
+                    <article class="github-card" data-category="personal">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    AiTomatic
+                                </h3>
+                                <span class="repo-visibility">Public</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-star"></i> 12</span>
+                                <span class="stat"><i class="fas fa-code-branch"></i> 3</span>
                             </div>
                         </div>
-                        <div class="project-content">
-                            <h3>Upcoming Projects</h3>
-                            <p class="project-description">Exciting new projects in development, focusing on AI integration, blockchain technology, and immersive web experiences.</p>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
                             
-                            <div class="project-details">
-                                <div class="tech-stack">
-                                    <h4>Planned Technologies</h4>
-                                    <div class="tech-tags future-tech">
-                                        <span>React/Vite</span>
-                                        <span>AI/ML</span>
-                                        <span>Python</span>
-                                        <span>Blockchain</span>
-                                        <span>Next.js 14</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="project-learnings">
-                                    <h4>Focus Areas</h4>
-                                    <ul class="future-list">
-                                        <li>AI/Python Sports Predictor</li>
-                                        <li>Ethereum Layer 2 Blockchain</li>
-                                        <li>Immersive Web Experiences</li>
-                                    </ul>
-                                </div>
+                            <div class="repo-topics">
+                                <span class="topic">React</span>
+                                <span class="topic">TypeScript</span>
+                                <span class="topic">AI/ML</span>
+                                <span class="topic">API Integration</span>
                             </div>
-
-                            <div class="introduction-expertise-buttons">
-                                <a href="#" class="neo-matrix-btn future-btn" onclick="event.preventDefault()">
-                                    <span class="btn-text">Coming Soon</span>
-                                    <i class="fas fa-clock"></i>
-                                </a>
-                                <div class="project-timeline">
-                                    <div class="timeline-marker"></div>
-                                    <span>Expected: Q2 2024</span>
-                                </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #3178c6;"></span>
+                                <span class="language-name">TypeScript</span>
+                                <span class="language-percent">68%</span>
                             </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://aitomatic.rocks" target="_blank" class="repo-link live">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/ThomasJButler/aitomatic" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
                         </div>
                     </article>
 
@@ -162,44 +167,87 @@
                     </article>
 
                     <!-- Matrix Arcade Project -->
-                    <article class="project-card" onclick="this.classList.toggle('active')">
-                        <div class="project-header">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Matrix Arcade Preview" class="project-image">
-                            <div class="project-type" data-index="02" data-project="Matrix Arcade">Game Development</div>
-                            <div class="project-preview">Matrix Arcade</div>
+                    <article class="github-card" data-category="personal">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    Matrix Arcade
+                                </h3>
+                                <span class="repo-visibility">Public</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-star"></i> 8</span>
+                                <span class="stat"><i class="fas fa-code-branch"></i> 2</span>
+                            </div>
                         </div>
-                        <div class="project-content">
-                            <h3>The Matrix Arcade</h3>
-                            <p class="project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
                             
-                            <div class="project-details">
-                                <div class="tech-stack">
-                                    <h4>Tech Stack</h4>
-                                    <div class="tech-tags">
-                                        <span>React</span>
-                                        <span>Python</span>
-                                        <span>Vite</span>
-                                        <span>Canvas API</span>
-                                        <span>WebGL</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="project-learnings">
-                                    <h4>Key Learnings</h4>
-                                    <ul>
-                                        <li>Game Physics Implementation</li>
-                                        <li>Performance Optimization</li>
-                                        <li>Canvas Animation</li>
-                                    </ul>
-                                </div>
+                            <div class="repo-topics">
+                                <span class="topic">React</span>
+                                <span class="topic">Python</span>
+                                <span class="topic">Vite</span>
+                                <span class="topic">Canvas API</span>
+                                <span class="topic">Game Dev</span>
                             </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #f1e05a;"></span>
+                                <span class="language-name">JavaScript</span>
+                                <span class="language-percent">72%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://matrixarcade.fun" target="_blank" class="repo-link live">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/ThomasJButler/matrix-arcade" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
 
-                            <div class="project-links">
-                                <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="btn-contact-us">
-                                    <span class="btn-text">Play Games</span>
-                                    <i class="fas fa-gamepad"></i>
-                                </a>
+                    <!-- Open Source Contribution Example -->
+                    <article class="github-card" data-category="opensource">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    React Documentation
+                                </h3>
+                                <span class="repo-visibility">Contribution</span>
                             </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-code-branch"></i> PR #245</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
+                            
+                            <div class="repo-topics">
+                                <span class="topic">Documentation</span>
+                                <span class="topic">React</span>
+                                <span class="topic">Open Source</span>
+                            </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #e34c26;"></span>
+                                <span class="language-name">MDX</span>
+                                <span class="language-percent">100%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://github.com/facebook/react/pull/245" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View Pull Request
+                            </a>
                         </div>
                     </article>
 
