@@ -999,7 +999,7 @@ body.loaded {
     height: 100%;
     background: #000;
     z-index: 9999;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -1011,6 +1011,7 @@ body.loaded {
 .page-loader.active {
     opacity: 1;
     visibility: visible;
+    display: flex !important;
 }
 
 /* Matrix-style loading dots */
@@ -1031,9 +1032,7 @@ body.loaded {
         inset 0 0 50px rgba(0, 255, 0, 0.1);
     position: relative;
     overflow: hidden;
-    transform: scale(0.8);
-    opacity: 0;
-    /* Initial state for Anime.js */
+    /* Initial state for Anime.js - removed transform and opacity */
 }
 
 /* Glitch scanlines effect */
@@ -1109,7 +1108,6 @@ body.loaded {
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--matrix-green);
     min-height: 1.5em; /* Reserve space for typewriter effect */
-    opacity: 0; /* Start invisible, Anime.js will fade in */
 }
 
 /* Matrix rain effect for loader background */

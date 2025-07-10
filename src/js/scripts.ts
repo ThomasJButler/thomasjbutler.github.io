@@ -453,11 +453,13 @@ function createPageLoader(): void {
 
 // Show page loader (using Anime.js)
 function showPageLoader(): void {
+  console.log('showPageLoader called');
   loaderAnimation.showAnimatedLoader();
 }
 
 // Hide page loader (using Anime.js)
 function hidePageLoader(): void {
+  console.log('hidePageLoader called');
   loaderAnimation.hideAnimatedLoader();
 }
 

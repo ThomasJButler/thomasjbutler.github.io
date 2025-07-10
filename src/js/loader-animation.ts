@@ -96,6 +96,9 @@ export function createLoaderTimeline(): AnimeTimeline {
     }
   });
 
+  // Reset initial states
+  resetLoader();
+  
   // 1. Terminal entrance
   timeline.add({
     targets: elements.terminal,
@@ -183,16 +186,27 @@ export function createLoaderTimeline(): AnimeTimeline {
  */
 export function showAnimatedLoader(): void {
   const loader = document.querySelector('.page-loader') as HTMLElement;
-  if (!loader) return;
+  if (!loader) {
+    console.error('Loader element not found');
+    return;
+  }
 
+  console.log('Showing animated loader');
+  
   // Show loader
-  loader.classList.add('active');
+  loader.style.display = 'flex';
+  // Force opacity to 1 to ensure visibility
+  setTimeout(() => {
+    loader.classList.add('active');
+    loader.style.opacity = '1';
+  }, 10);
   
   // Create Matrix rain
   createEnhancedMatrixRain(loader);
   
   // Start main timeline
-  createLoaderTimeline();
+  const tl = createLoaderTimeline();
+  tl.play();
 }
 
 /**
@@ -210,6 +224,7 @@ export function hideAnimatedLoader(): void {
     easing: 'easeOutQuad',
     onComplete: function() {
       elements!.loader.classList.remove('active');
+      elements!.loader.style.display = 'none';
       resetLoader();
     }
   });
