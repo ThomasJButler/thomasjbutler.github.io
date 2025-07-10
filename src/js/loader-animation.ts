@@ -22,13 +22,29 @@ let timeline: AnimeTimeline | null = null;
  */
 function initializeElements(): LoaderElements | null {
   const loader = document.querySelector('.page-loader') as HTMLElement;
-  if (!loader) return null;
+  if (!loader) {
+    console.error('No loader element found');
+    return null;
+  }
 
   const terminal = loader.querySelector('.loader-terminal') as HTMLElement;
   const dots = loader.querySelectorAll('.loader-dot') as NodeListOf<HTMLElement>;
   const text = loader.querySelector('.loader-text') as HTMLElement;
   const progressBar = loader.querySelector('.loader-progress-bar') as HTMLElement;
   const matrixCodes = Array.from(loader.querySelectorAll('.matrix-code')) as HTMLElement[];
+
+  console.log('Loader elements found:', {
+    loader: !!loader,
+    terminal: !!terminal,
+    dots: dots.length,
+    text: !!text,
+    progressBar: !!progressBar
+  });
+
+  if (!terminal || !dots.length || !text || !progressBar) {
+    console.error('Missing required loader elements');
+    return null;
+  }
 
   return { loader, terminal, dots, text, progressBar, matrixCodes };
 }
@@ -193,35 +209,63 @@ export function showAnimatedLoader(): void {
 
   console.log('Showing animated loader');
   
-  // Show loader
+  // First, ensure loader content exists
+  const terminal = loader.querySelector('.loader-terminal');
+  if (!terminal) {
+    console.error('Loader terminal not found - loader HTML may not be properly initialized');
+    return;
+  }
+  
+  // Show loader - make it visible first
+  loader.style.visibility = 'visible';
+  loader.style.opacity = '1';
   loader.classList.add('active');
   
-  // Create Matrix rain
-  createEnhancedMatrixRain(loader);
+  console.log('Loader should now be visible');
   
-  // Start main timeline
-  const tl = createLoaderTimeline();
-  tl.play();
+  // Simple test - just animate the terminal
+  const loaderTerminal = loader.querySelector('.loader-terminal') as HTMLElement;
+  if (loaderTerminal) {
+    // Direct style manipulation to test
+    loaderTerminal.style.opacity = '1';
+    loaderTerminal.style.transform = 'scale(1)';
+    
+    // Try a simple animation
+    animate(loaderTerminal, {
+      scale: [0.8, 1.1, 1],
+      duration: 1000,
+      easing: 'easeOutElastic'
+    });
+  }
+  
+  // Test with simple elements first
+  const dots = loader.querySelectorAll('.loader-dot');
+  console.log('Found dots:', dots.length);
+  
+  if (dots.length > 0) {
+    animate(Array.from(dots), {
+      scale: [0, 1],
+      opacity: [0, 1],
+      duration: 500,
+      delay: stagger(100),
+      easing: 'easeOutBack'
+    });
+  }
 }
 
 /**
  * Hide the loader with fade out
  */
 export function hideAnimatedLoader(): void {
-  if (!elements) return;
+  const loader = document.querySelector('.page-loader') as HTMLElement;
+  if (!loader) return;
 
-  // Pause ongoing animations
-  if (timeline) timeline.pause();
+  console.log('Hiding loader');
 
-  animate(elements.loader, {
-    opacity: 0,
-    duration: 300,
-    easing: 'easeOutQuad',
-    onComplete: function() {
-      elements!.loader.classList.remove('active');
-      resetLoader();
-    }
-  });
+  // Simple fade out
+  loader.style.opacity = '0';
+  loader.style.visibility = 'hidden';
+  loader.classList.remove('active');
 }
 
 /**
