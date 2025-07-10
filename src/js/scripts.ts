@@ -419,6 +419,9 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   }
 });
 
+// Import Anime.js loader animations
+import loaderAnimation from './loader-animation';
+
 // Page Loading Animation
 function createPageLoader(): void {
   // Check if loader already exists
@@ -433,7 +436,7 @@ function createPageLoader(): void {
             <div class="loader-dot"></div>
             <div class="loader-dot"></div>
           </div>
-          <div class="loader-text">ACCESSING SYSTEM</div>
+          <div class="loader-text"></div>
           <div class="loader-progress">
             <div class="loader-progress-bar"></div>
           </div>
@@ -444,45 +447,18 @@ function createPageLoader(): void {
   
   document.body.insertAdjacentHTML('afterbegin', loaderHTML);
   
-  // Create falling Matrix code characters
-  createMatrixCodeRain();
+  // Add interactivity
+  loaderAnimation.addLoaderInteractivity();
 }
 
-// Create Matrix code rain for loader
-function createMatrixCodeRain(): void {
-  const loader = document.querySelector('.page-loader');
-  if (!loader) return;
-  
-  const characters = '01アイウエオカキクケコサシスセソタチツテト';
-  const numberOfColumns = 15;
-  
-  for (let i = 0; i < numberOfColumns; i++) {
-    const span = document.createElement('span');
-    span.className = 'matrix-code';
-    span.style.left = `${Math.random() * 100}%`;
-    span.style.animationDuration = `${3 + Math.random() * 5}s`;
-    span.style.animationDelay = `${Math.random() * 2}s`;
-    span.textContent = characters[Math.floor(Math.random() * characters.length)];
-    loader.appendChild(span);
-  }
-}
-
-// Show page loader
+// Show page loader (using Anime.js)
 function showPageLoader(): void {
-  const loader = document.querySelector('.page-loader');
-  if (loader) {
-    loader.classList.add('active');
-  }
+  loaderAnimation.showAnimatedLoader();
 }
 
-// Hide page loader
+// Hide page loader (using Anime.js)
 function hidePageLoader(): void {
-  const loader = document.querySelector('.page-loader');
-  if (loader) {
-    setTimeout(() => {
-      loader.classList.remove('active');
-    }, 300); // Small delay for smooth transition
-  }
+  loaderAnimation.hideAnimatedLoader();
 }
 
 // Initialize page loader

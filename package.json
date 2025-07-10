@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "animejs": "^4.0.2",
     "aos": "^2.3.4",
     "gsap": "^3.12.5",
     "scrollmagic": "^2.0.8",
