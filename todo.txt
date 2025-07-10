@@ -1,0 +1,160 @@
+add profile image on contact page
+
+add dev daily card, github card if can 
+
+sort scrol right-left on mobile / tablet 
+
+add a github repo page with respective links - same format as the rest of the site 
+
+1 text wrap all sizes
+
+2. padding intro text mobile and desktop 
+
+3. reword all text currently on site to sound like you and uk english 
+
+4. double check all links etc and pathways so they all have correct path name and all included 
+
+2 improve headers styling with the drop down menu - change this menu icon too to something cool 
+
+5. github links aren’t styled 
+
+6. list items aren’t styled ( services)
+
+7. sort about me text and style on mobile (too clunky) 
+
+11. reduce sizes of latest projects 
+
+13. add websites I have made with links 
+
+15. add media area, for youtube, tiktok, instagram with latest feed
+
+10. image gallery (make it sick), even better, and much quicker. 
+
+11. add / embed custom gpts (similair to landing page)
+
+13. fix bugs 
+
+
+------------------------------------------
+
+v2.9 
+
+This will be tidying up stuff and ensuring everything is in there. 
+- Minifying all CSS global and styles) and all Javascript.
+= ensuring all images are pulling in from a CDN 
+- Ensure all content I have is in there and links all work
+- fix any silly bugs
+- quality control
+- general style updates
+= ensure its responsive and all pages are
+
+
+
+
+make sure it hits all criteria below - 
+
+General Design and Structure Enhancements
+Retro 'Matrix' Theme with Modern Touch:
+
+Maintain the retro 'Matrix' theme with green-on-black color schemes, digital rain effects, and 'Matrix' inspired fonts.
+Integrate subtle modern design elements to keep the site fresh and appealing.
+Responsive Design:
+
+Ensure the website is mobile and tablet-friendly with a responsive layout.
+Test across various devices to guarantee a seamless user experience.
+Intuitive Navigation:
+
+Enhance the navigation bar to be intuitive and easy to use, with clear links to Skills, Projects, Apps, Games, About Me, Art Gallery, and Services.
+Use hover effects and smooth transitions to enhance user interaction.
+Section Improvements
+1. Header and Navigation
+Enhanced Navigation:
+Ensure the navigation bar is intuitive, with clear links to Skills, Projects, Apps, Games, About Me, Art Gallery, and Services.
+Strong Value Proposition:
+Add a unique selling point in the header, such as "Creating Unique Digital Experiences with Cutting-Edge AI and Web Development".
+2. Welcome Section
+Engaging Introduction:
+Personalize the welcome message further with an engaging introduction that highlights your unique skills and what sets you apart.
+3. Projects Section
+Three-Column Grid System:
+Implement a three-column grid system for the "Projects" section, which expands upon clicking. This will allow visitors to explore websites, apps, games, GPTs, art, and custom LLMs in a structured manner.
+Detailed Subcategories:
+Create subcategories for Websites, Apps, Games, GPTs, Art, and Custom LLMs. Each should expand to show detailed information and visuals of the projects.
+Interactive Previews:
+Allow for interactive previews of your projects where visitors can see screenshots, descriptions, and the impact of each project.
+4. Services Section
+Comprehensive List of Services:
+List your services clearly, such as Website Creation/Design, HubSpot Website Creation/Design, Art Creation, Character Design, Unique Enterprise Creations, Chatbot Creation, Custom LLM Creation, Custom GPT Creation, Custom App Creation, Web Development Tutoring, and AI Mentoring.
+Detailed Descriptions:
+Provide detailed descriptions for each service, including the benefits and outcomes clients can expect.
+Content and Messaging Improvements
+Genuine Testimonials:
+
+If you lack client testimonials, use case studies or endorsements from colleagues and mentors.
+Showcase before-and-after scenarios to demonstrate your impact.
+Process Breakdown:
+
+Provide a step-by-step breakdown of your process for different services. This helps in setting expectations and builds trust.
+FAQ Section:
+
+Add an FAQ section to address common questions and concerns, reducing any potential objections.
+Contact Form:
+
+Highlight the contact form with a clear call-to-action button and ensure it stands out.
+Include post-CTA information about what happens after they submit the form.
+Ensure the contact form is functional and directs submissions to your email address.
+User Experience Enhancements
+Eliminate Friction & Anxiety:
+
+Simplify navigation and ensure all links are working properly.
+Ensure the website is mobile-friendly and responsive.
+Strengthen Motivations:
+
+Ensure consistency in messaging from any pre-click sources (e.g., social media profiles).
+Clearly describe how your services solve problems or meet needs.
+Emotional Engagement:
+
+Use emotionally engaging language to connect with visitors and highlight the benefits of working with you.
+Additional Features
+'Matrix' Sound Effects:
+
+Integrate 'Matrix' sound effects for button clicks and other interactive elements to enhance the immersive experience.
+Nice Buttons and Icons:
+
+Use sleek, modern buttons and icons that align with the 'Matrix' theme but add a modern touch.
+Ensure buttons have hover effects and transitions to enhance interactivity.
+High-Quality Visuals:
+
+Replace all placeholder images with relevant, high-quality visuals that showcase your projects, art, and digital assets.
+Implementation Plan
+Design Phase:
+
+Finalize the design layout for the three-column grid system and overall theme.
+Design high-quality visuals and replace placeholders.
+Content Development:
+
+Technical Implementation:
+
+Implement the three-column grid system.
+Add sound effects for interactive elements.
+Ensure responsive design for mobile and tablet devices.
+Testing and Optimization:
+
+Test the website on multiple devices and browsers to ensure responsiveness.
+Optimize loading times and overall performance.
+
+
+
+
+
+
+----
+V3.0!!!!! - YEAH BOYY (this will be 2.7, 2.8 and 2.9 merged in to a feature branch, which will be tested and merged into main)
+--------------------------
+
+
+
+Make the changes above and ensure that the website is as close to production ready as possible. It will be professional and ready, it will be tidied up and be a lot quicker than it is now.
+
+
+v4.0 (SVELTE/REACT/VITE REBUILD !!!!!!!)
