@@ -229,6 +229,49 @@
     animation: shimmer 1.5s infinite;
 }
 
+/* Matrix Rain Canvas Styles */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#matrixCanvas {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    opacity: 0.8;
+}
+
+/* Scrolling Text Styles - Desktop */
+.scrolling-text {
+    color: var(--matrix-green);
+    font-family: 'VT323', monospace;
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: var(--space-md) auto;
+    max-width: 800px;
+    line-height: 1.6;
+    /* Remove any animations */
+    animation: none !important;
+    /* Ensure text is always visible */
+    opacity: 1 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    /* Prevent transform issues */
+    transform: none !important;
+    position: relative !important;
+    /* Ensure smooth rendering */
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
 /* Keyframe Animations */
 @keyframes pulse {
     0%, 100% {

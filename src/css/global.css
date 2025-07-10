@@ -139,6 +139,12 @@
        padding: var(--space-sm) var(--space-md);
        text-decoration: none;
        transition: all 0.3s ease;
+       position: relative;
+       overflow: hidden;
+       border: 1px solid transparent;
+       font-family: 'VT323', monospace;
+       font-size: 1.2rem;
+       text-transform: uppercase;
    }
    
    .cta-button::before {
@@ -147,9 +153,44 @@
        transition: all 0.3s ease;
    }
    
+   /* Matrix-style button glow effect */
+   .cta-button::after {
+       content: '';
+       position: absolute;
+       inset: -50%;
+       background: conic-gradient(
+           from 0deg,
+           transparent,
+           var(--matrix-green),
+           transparent 30%
+       );
+       animation: rotate 3s linear infinite;
+       opacity: 0;
+       transition: opacity 0.3s ease;
+   }
+   
+   @keyframes rotate {
+       100% {
+           transform: rotate(360deg);
+       }
+   }
+   
    .cta-button:hover {
-       background-color: var(--matrix-magenta);
-       box-shadow: 0 0 15px var(--matrix-magenta);
+       background-color: rgba(0, 255, 0, 0.1);
+       color: var(--matrix-green);
+       border-color: var(--matrix-green);
+       box-shadow: 
+           0 0 20px rgba(0, 255, 0, 0.5),
+           inset 0 0 20px rgba(0, 255, 0, 0.1);
+       transform: translateY(-2px);
+   }
+   
+   .cta-button:hover::after {
+       opacity: 0.5;
+   }
+   
+   .cta-button:hover::before {
+       transform: translateX(5px);
    }
    
    /* Layout & Container Styles
@@ -175,6 +216,30 @@
        padding: var(--space-lg) 0;
        transform: translateY(0); /* Start in final position */
        transition: opacity 0.5s ease, transform 0.5s ease;
+       /* Glassmorphism effect */
+       backdrop-filter: blur(5px);
+       -webkit-backdrop-filter: blur(5px);
+       position: relative;
+       overflow: hidden;
+   }
+   
+   /* Add subtle glow on hover */
+   section::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+       background: radial-gradient(
+           circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+           rgba(0, 255, 0, 0.1),
+           transparent 50%
+       );
+       opacity: 0;
+       transition: opacity 0.3s ease;
+       pointer-events: none;
+   }
+   
+   section:hover::before {
+       opacity: 1;
    }
    
    /* Animation class for sections that need reveal effect */

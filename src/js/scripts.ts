@@ -110,18 +110,29 @@ function drawMatrix(): void {
   frameCount++;
 }
 
-// Animation loop function
-function animate(): void {
-  if (canvas) {
+// FPS limiter for better performance
+let lastFrameTime = 0;
+const targetFPS = 30; // Limit to 30 FPS for better performance
+const frameInterval = 1000 / targetFPS;
+
+// Animation loop function with FPS limiting
+function animate(currentTime: number = 0): void {
+  if (!canvas) return;
+  
+  const deltaTime = currentTime - lastFrameTime;
+  
+  if (deltaTime >= frameInterval) {
     drawMatrix();
-    requestAnimationFrame(animate);
+    lastFrameTime = currentTime - (deltaTime % frameInterval);
   }
+  
+  requestAnimationFrame(animate);
 }
 
 // Start animation
-animate();
+requestAnimationFrame(animate);
 
-// Scroll event handler
+// Scroll event handler with parallax
 let lastScrollTop = 0;
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -133,6 +144,12 @@ window.addEventListener('scroll', () => {
     } else {
       header.style.transform = 'translateY(0)';
     }
+  }
+  
+  // Parallax effect for Matrix canvas
+  if (canvas) {
+    const parallaxSpeed = 0.5;
+    canvas.style.transform = `translateY(${scrollTop * parallaxSpeed}px)`;
   }
   
   // Control matrix fade based on scroll
@@ -184,11 +201,33 @@ function glitchEffect(element: HTMLElement, options: GlitchOptions = {}): void {
   }, duration);
 }
 
-// Apply glitch effect to headings on hover
+// Apply glitch effect to headings on hover (with exclusions)
 document.querySelectorAll('h1, h2, h3').forEach((heading) => {
-  heading.addEventListener('mouseenter', function(this: HTMLElement) {
-    glitchEffect(this);
-  });
+  const headingText = heading.textContent?.toLowerCase() || '';
+  const excludedTexts = [
+    'a web developer and designer from liverpool',
+    'my expertise',
+    'get in touch',
+    'interactive galleries',
+    'technical expertise',
+    'technical proficiencies',
+    'my skills',
+    'project stack',
+    'professional services',
+    'contact'
+  ];
+  
+  // Check if heading contains excluded text or has --| prefix
+  const shouldExclude = excludedTexts.some(text => headingText.includes(text)) || 
+                       headingText.includes('--|') ||
+                       heading.closest('.contact') !== null ||
+                       heading.closest('#contact') !== null;
+  
+  if (!shouldExclude) {
+    heading.addEventListener('mouseenter', function(this: HTMLElement) {
+      glitchEffect(this);
+    });
+  }
 });
 
 // Smooth scrolling for anchor links
@@ -327,6 +366,58 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 revealElements.forEach((el) => revealObserver.observe(el));
+
+// Also handle sections that need to be revealed
+const sections = document.querySelectorAll('section') as NodeListOf<HTMLElement>;
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      // Don't unobserve so sections can animate when scrolling back
+    } else {
+      // Optional: remove active class when out of view
+      // entry.target.classList.remove('active');
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach((section) => {
+  // Add observer for all sections
+  sectionObserver.observe(section);
+  // Immediately activate sections that are already in view on load
+  const rect = section.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    section.classList.add('active');
+  }
+});
+
+// Mouse tracking for interactive effects
+document.addEventListener('mousemove', (e: MouseEvent) => {
+  const sections = document.querySelectorAll('section');
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    if (x >= 0 && x <= 100 && y >= 0 && y <= 100) {
+      section.style.setProperty('--mouse-x', `${x}%`);
+      section.style.setProperty('--mouse-y', `${y}%`);
+    }
+  });
+});
+
+// Add keyboard navigation
+document.addEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === 'Escape') {
+    // Close any open modals or reset states
+    const nav = document.querySelector('nav ul') as HTMLElement | null;
+    const menuToggle = document.querySelector('.menu-toggle') as HTMLElement | null;
+    if (nav && menuToggle) {
+      nav.classList.remove('active');
+      menuToggle.classList.remove('active');
+    }
+  }
+});
 
 // Export for use in other modules
 export {
