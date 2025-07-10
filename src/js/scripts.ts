@@ -135,18 +135,8 @@ function animateMatrix(currentTime: number = 0): void {
 requestAnimationFrame(animateMatrix);
 
 // Scroll event handler with parallax
-let lastScrollTop = 0;
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const header = document.querySelector('header') as HTMLElement | null;
-  
-  if (header) {
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-  }
   
   // Parallax effect for Matrix canvas
   if (canvas) {
@@ -160,37 +150,9 @@ window.addEventListener('scroll', () => {
   } else {
     setFadeInterval();
   }
-  
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// Mobile menu toggle
-const menuToggle = document.querySelector('.menu-toggle') as HTMLElement | null;
-const nav = document.querySelector('nav ul') as HTMLElement | null;
-
-if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('show');
-    menuToggle.classList.toggle('active');
-    
-    // Add Matrix-style animation effect
-    if (nav.classList.contains('show')) {
-      nav.style.display = 'flex';
-      setTimeout(() => {
-        nav.style.opacity = '1';
-        nav.style.transform = 'translateY(0) scale(1)';
-      }, 10);
-    } else {
-      nav.style.opacity = '0';
-      nav.style.transform = 'translateY(-10px) scale(0.95)';
-      setTimeout(() => {
-        if (!nav.classList.contains('show')) {
-          nav.style.display = 'none';
-        }
-      }, 300);
-    }
-  });
-}
+// Mobile menu toggle handled by header component
 
 // Glitch effect for headings
 function glitchEffect(element: HTMLElement, options: GlitchOptions = {}): void {

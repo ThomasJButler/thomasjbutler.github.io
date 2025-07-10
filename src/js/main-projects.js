@@ -1,9 +1,11 @@
 // Entry point for projects page
 import './scripts.ts';
+import { initializeHeader } from './header-init.ts';
 
 // Import CSS files
 import '../css/global.css';
 import '../css/styles.css';
+import '../css/header.css';
 import '../css/projects.css';
 import '../css/github-projects.css';
 
@@ -23,6 +25,9 @@ console.log('Projects page initialized with Vite');
 
 // GitHub Projects Tab Functionality
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize header
+    initializeHeader();
+    
     const tabs = document.querySelectorAll('.tab-button');
     const cards = document.querySelectorAll('.github-card');
     

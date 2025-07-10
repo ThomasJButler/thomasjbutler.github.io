@@ -1,9 +1,11 @@
 // Main entry point for Vite
 import './scripts.ts';
+import { initializeHeader } from './header-init.ts';
 
 // Import CSS files
 import '../css/global.css';
 import '../css/styles.css';
+import '../css/header.css';
 
 // Import GSAP and ScrollMagic as ES modules
 import gsap from 'gsap';
@@ -21,7 +23,9 @@ window.ScrollMagic = ScrollMagic;
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     console.log('Portfolio site initialized with Vite');
+    initializeHeader();
   });
 } else {
   console.log('Portfolio site initialized with Vite');
+  initializeHeader();
 }
