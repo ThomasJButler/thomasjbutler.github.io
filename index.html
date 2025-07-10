@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thomas J Butler - Portfolio</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <!-- CSS will be imported via JavaScript module -->
+    <script type="module" src="/src/js/main.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -32,10 +29,10 @@
                     <li data-tooltip="View My Projects"><a href="projects.html" data-text="Projects">Projects |</a></li>
                     <li data-tooltip="Explore My Services"><a href="services.html" data-text="Services">Services |</a></li>
                     <li data-tooltip="Get in Touch"><a href="contact.html" data-text="Contact">Contact |</a></li>
-                    <li class="version-timetravel" data-tooltip="View Version History">
-                        <a href="versionhistory.html" target="_blank" data-text="Version TimeTravel">
-                            Version Time Travel |
-                            <i class="fas fa-rocket"></i>
+                    <li class="galleries-link" data-tooltip="View Galleries">
+                        <a href="#galleries" data-text="Galleries">
+                            Galleries |
+                            <i class="fas fa-images"></i>
                         </a>
                     </li>
                 </ul>
@@ -55,10 +52,10 @@
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png" alt="The Matrix Arcade">
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern">
                 </div>
-                <div class="version-timetravel-mobile">
-                    <a href="versionhistory.html" class="version-link" target="_blank">
-                        Version Time Travel
-                        <i class="fas fa-rocket"></i>
+                <div class="galleries-mobile">
+                    <a href="#galleries" class="galleries-link-mobile">
+                        View Galleries
+                        <i class="fas fa-images"></i>
                     </a>
                 </div>
                 <p>Please explore my portfolio to see how I blend technical skill with artistic vision.</p>
@@ -316,6 +313,34 @@
             </div>
         </div>
     </section>
+    
+    <section id="galleries" class="reveal">
+        <div class="container">
+            <h2 class="section-heading">--| Interactive Galleries |--</h2>
+            <div class="galleries-grid">
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>The Big Bang Gallery</h3>
+                    <p>AI-generated cosmic artwork showcasing the birth of the universe through intricate designs.</p>
+                    <a href="https://bigbang-gallery.thomasjbutler.co.uk" target="_blank" class="gallery-link">
+                        Enter Gallery <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Version TimeTravel</h3>
+                    <p>Journey through the evolution of my portfolio website from version 1.0 to the present.</p>
+                    <a href="https://version-timetravel.thomasjbutler.co.uk" target="_blank" class="gallery-link">
+                        Time Travel <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
     <footer>
         <div class="container">
@@ -344,6 +369,6 @@
             <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main.js module -->
 </body>
 </html>
