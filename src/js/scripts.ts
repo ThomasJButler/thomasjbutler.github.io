@@ -417,10 +417,19 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
       menuToggle.classList.remove('active');
     }
   }
+  
+  // Test loader with 'L' key
+  if (e.key === 'l' || e.key === 'L') {
+    console.log('Manual loader test triggered');
+    showPageLoader();
+    setTimeout(() => {
+      hidePageLoader();
+    }, 3000);
+  }
 });
 
-// Import Anime.js loader animations
-import loaderAnimation from './loader-animation';
+// Loader animation will be imported dynamically when needed
+let loaderAnimation: any = null;
 
 // Page Loading Animation
 function createPageLoader(): void {
@@ -447,20 +456,32 @@ function createPageLoader(): void {
   
   document.body.insertAdjacentHTML('afterbegin', loaderHTML);
   
-  // Add interactivity
-  loaderAnimation.addLoaderInteractivity();
+  // Load animation module dynamically
+  import('./loader-animation').then(module => {
+    loaderAnimation = module.default;
+    loaderAnimation.addLoaderInteractivity();
+  });
 }
 
 // Show page loader (using Anime.js)
-function showPageLoader(): void {
+async function showPageLoader(): Promise<void> {
   console.log('showPageLoader called');
+  
+  // Ensure animation module is loaded
+  if (!loaderAnimation) {
+    const module = await import('./loader-animation');
+    loaderAnimation = module.default;
+  }
+  
   loaderAnimation.showAnimatedLoader();
 }
 
 // Hide page loader (using Anime.js)
 function hidePageLoader(): void {
   console.log('hidePageLoader called');
-  loaderAnimation.hideAnimatedLoader();
+  if (loaderAnimation) {
+    loaderAnimation.hideAnimatedLoader();
+  }
 }
 
 // Initialize page loader
@@ -494,21 +515,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (isNavigating) {
     showPageLoader();
     sessionStorage.removeItem('navigating');
+    
+    // Hide loader after full animation duration
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+      hidePageLoader();
+    }, 2500); // Allow time for animations
+  } else {
+    // Normal page load - just mark as loaded
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 100);
   }
-  
-  // Mark body as loaded after a short delay
-  setTimeout(() => {
-    document.body.classList.add('loaded');
-    hidePageLoader();
-  }, 300);
 });
 
 // Ensure body is marked as loaded even if DOMContentLoaded already fired
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  setTimeout(() => {
-    document.body.classList.add('loaded');
-    hidePageLoader();
-  }, 300);
+  const isNavigating = sessionStorage.getItem('navigating') === 'true';
+  if (!isNavigating) {
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 100);
+  }
 }
 
 // Export for use in other modules

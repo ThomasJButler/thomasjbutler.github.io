@@ -18,10 +18,15 @@
             height: 100%;
             background: #000;
             z-index: 9999;
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
         }
         .page-loader.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
     </style>
     <!-- CSS will be imported via JavaScript module -->

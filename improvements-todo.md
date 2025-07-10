@@ -1,4 +1,4 @@
-# Improvements TODO (Sections 3-7)
+# Improvements TODO (Sections 3-7) - Linked to improvements.md. 
 
 ## ✅ Section 1: Remove Glitch Animations (COMPLETED)
 - Removed glitch effects from specific text elements

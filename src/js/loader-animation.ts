@@ -194,12 +194,7 @@ export function showAnimatedLoader(): void {
   console.log('Showing animated loader');
   
   // Show loader
-  loader.style.display = 'flex';
-  // Force opacity to 1 to ensure visibility
-  setTimeout(() => {
-    loader.classList.add('active');
-    loader.style.opacity = '1';
-  }, 10);
+  loader.classList.add('active');
   
   // Create Matrix rain
   createEnhancedMatrixRain(loader);
@@ -224,7 +219,6 @@ export function hideAnimatedLoader(): void {
     easing: 'easeOutQuad',
     onComplete: function() {
       elements!.loader.classList.remove('active');
-      elements!.loader.style.display = 'none';
       resetLoader();
     }
   });
