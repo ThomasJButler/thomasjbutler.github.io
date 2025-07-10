@@ -1,0 +1,225 @@
+.siteFooter {
+  background: linear-gradient(
+    to bottom,
+    var(--matrix-dark) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  border-top: 2px solid var(--border-primary);
+  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+  margin-top: var(--space-3xl);
+  position: relative;
+  z-index: var(--z-base);
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Matrix scanline effect */
+.siteFooter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 0, 0.03) 2px,
+    rgba(0, 255, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.footerContent {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.footerSection h3 {
+  color: var(--matrix-green);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);
+  text-shadow: var(--matrix-glow);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+/* Underline effect for section headers */
+.footerSection h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--matrix-green) 0%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px var(--matrix-green);
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.socialLinks a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 0, 0.1) 0%,
+    rgba(0, 255, 0, 0.05) 100%
+  );
+  border: 1px solid var(--border-primary);
+  border-radius: 50%;
+  color: var(--matrix-green);
+  font-size: 1.3rem;
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pulse effect on hover */
+.socialLinks a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 0, 0.4) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: all var(--duration-slow) ease-out;
+}
+
+.socialLinks a:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 0, 0.2) 0%,
+    rgba(0, 255, 0, 0.1) 100%
+  );
+  box-shadow: 
+    0 0 30px var(--matrix-green),
+    inset 0 0 15px rgba(0, 255, 0, 0.2);
+  color: var(--color-text-bright);
+  transform: translateY(-2px);
+}
+
+.socialLinks a:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footerLinks a {
+  color: var(--color-text-dim);
+  text-decoration: none;
+  transition: all var(--duration-fast) ease;
+  position: relative;
+}
+
+.footerLinks a:hover {
+  color: var(--color-primary);
+  text-shadow: 0 0 10px var(--glow-primary);
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.techBadge {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 0, 0.15) 0%,
+    rgba(0, 255, 0, 0.08) 100%
+  );
+  border: 1px solid var(--border-primary);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  color: var(--matrix-green);
+  font-family: var(--font-primary);
+  letter-spacing: var(--letter-spacing-wide);
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.techBadge:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 0, 0.25) 0%,
+    rgba(0, 255, 0, 0.15) 100%
+  );
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.footerBottom {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(0, 255, 0, 0.2);
+  color: var(--color-text-dim);
+}
+
+.footerBottom p {
+  margin: var(--spacing-xs) 0;
+}
+
+.location {
+  font-size: 0.9rem;
+}
+
+.location i {
+  margin-right: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+  .siteFooter {
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+  }
+
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .techStack {
+    justify-content: center;
+  }
+}
