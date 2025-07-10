@@ -4,6 +4,44 @@
    Author: Thomas J Butler
    ========================================================================== */
 
+/* CSS Custom Properties - Design System
+   ========================================================================== */
+:root {
+    /* Fluid spacing system */
+    --space-unit: clamp(0.5rem, 1vw + 0.5rem, 1rem);
+    --space-xs: calc(var(--space-unit) * 0.5);
+    --space-sm: var(--space-unit);
+    --space-md: calc(var(--space-unit) * 2);
+    --space-lg: calc(var(--space-unit) * 4);
+    --space-xl: calc(var(--space-unit) * 8);
+    
+    /* Fluid typography scale */
+    --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --font-size-sm: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+    --font-size-h3: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --font-size-h2: clamp(1.75rem, 1.4rem + 1.8vw, 2.5rem);
+    --font-size-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+    
+    /* Container and grid sizing */
+    --container-max: min(90%, 1200px);
+    --grid-min: clamp(280px, 50vw, 350px);
+    
+    /* Matrix theme colors */
+    --matrix-green: #00FF00;
+    --matrix-magenta: #FF00FF;
+    --matrix-cyan: #00FFFF;
+    --matrix-red: #FF2800;
+    --matrix-dark: rgba(0, 20, 0, 0.8);
+    --matrix-darker: rgba(13, 13, 13, 0.7);
+    --matrix-glow: 0 0 10px var(--matrix-green);
+    --matrix-glow-intense: 0 0 20px var(--matrix-green);
+    
+    /* Responsive breakpoints as CSS variables */
+    --break-mobile: 480px;
+    --break-tablet: 768px;
+    --break-desktop: 1024px;
+    --break-wide: 1200px;
+}
 
    /* @font-face {
   font-family: system-ui;
@@ -40,7 +78,7 @@
    /* Typography
       ========================================================================== */
    h1, h2, h3 {
-       color: #00FF00;
+       color: var(--matrix-green);
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
@@ -49,17 +87,30 @@
        font-weight: 300;
        justify-content: center;
        align-items: center;
-       text-shadow: 0 0 10px #00FF00;
+       text-shadow: var(--matrix-glow);
+   }
+   
+   h1 {
+       font-size: var(--font-size-h1);
+   }
+   
+   h2 {
+       font-size: var(--font-size-h2);
+   }
+   
+   h3 {
+       font-size: var(--font-size-h3);
    }
    
    p {
-       color: #FF00FF;
-       font-family: 'VT23', monospace;
+       color: var(--matrix-magenta);
+       font-family: 'VT323', monospace;
+       font-size: var(--font-size-base);
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
        justify-content: center;
-       margin: 20px 0;
+       margin: var(--space-md) 0;
    }
    
    /* Links & Buttons
@@ -79,13 +130,13 @@
       ========================================================================== */
    .cta-button {
        align-items: center;
-       background-color: #00FF00;
+       background-color: var(--matrix-green);
        border-radius: 5px;
        color: #0d0d0d;
        display: flex;
        justify-content: center;
-       margin-top: 20px;
-       padding: 10px 20px;
+       margin-top: var(--space-md);
+       padding: var(--space-sm) var(--space-md);
        text-decoration: none;
        transition: all 0.3s ease;
    }
@@ -97,36 +148,55 @@
    }
    
    .cta-button:hover {
-       background-color: #FF00FF;
-       box-shadow: 0 0 15px #FF00FF;
+       background-color: var(--matrix-magenta);
+       box-shadow: 0 0 15px var(--matrix-magenta);
    }
    
    /* Layout & Container Styles
       ========================================================================== */
    .container {
        margin: 0 auto;
-       max-width: 1200px;
-       padding: 0 20px;
+       max-width: var(--container-max);
+       padding-inline: var(--space-md);
    }
    
    main {
-       padding-top: 150px;
+       padding-top: var(--space-xl);
        position: relative;
        z-index: 1;
    }
    
    section {
-       background-color: rgba(13, 13, 13, 0.7);
-       border-bottom: 1px solid #00FF00;
+       background-color: var(--matrix-darker);
+       border-bottom: 1px solid var(--matrix-green);
        border-radius: 5px;
-       margin-bottom: 20px;
-       opacity: 0;
-       padding: 50px 0;
-       transform: translateY(20px);
+       margin-bottom: var(--space-md);
+       opacity: 1; /* Changed from 0 to 1 for immediate visibility */
+       padding: var(--space-lg) 0;
+       transform: translateY(0); /* Start in final position */
        transition: opacity 0.5s ease, transform 0.5s ease;
    }
    
-   section.active {
+   /* Animation class for sections that need reveal effect */
+   section.reveal-section {
+       opacity: 0;
+       transform: translateY(20px);
+   }
+   
+   section.reveal-section.active {
+       opacity: 1;
+       transform: translateY(0);
+   }
+   
+   /* Reveal Animation
+      ========================================================================== */
+   .reveal {
+       opacity: 0;
+       transform: translateY(30px);
+       transition: all 0.6s ease;
+   }
+   
+   .reveal.active {
        opacity: 1;
        transform: translateY(0);
    }
@@ -135,9 +205,9 @@
       ========================================================================== */
    .grid-container {
        display: grid;
-       gap: 50px;
-       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-       padding: 50px;
+       gap: var(--space-lg);
+       grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+       padding: var(--space-lg);
    }
    
    .grid-item {
@@ -355,7 +425,11 @@ nav {
 
 nav ul {
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li,
@@ -393,7 +467,11 @@ li a {
    ========================================================================== */
    nav ul {
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li {
@@ -571,48 +649,9 @@ nav ul li:hover a {
     50% { opacity: 0.95; }
 }
 
-/* Vincent Gallery Styles
-   ========================================================================== */
-.vincent-gallery {
-    display: grid;
-    gap: 20px;
-    grid-auto-flow: dense;
-    grid-auto-rows: 200px;
-    grid-template-columns: repeat(4, 1fr);
-    margin: 0 auto;
-    max-width: 1600px;
-    padding: 50px;
-}
-
-.vincent-container {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    perspective: 1000px;
-    transition: transform 0.3s ease;
-}
-
-.vincent-container:hover {
-    transform: scale(1.05);
-    z-index: 1;
-}
-
-.wide { grid-column: span 2; }
-.tall { grid-row: span 2; }
 
 /* Responsive Design
    ========================================================================== */
-@media screen and (max-width: 1200px) {
-    .vincent-gallery {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .vincent-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
 @media screen and (max-width: 768px) {
     header .container {
@@ -711,14 +750,6 @@ nav ul li:hover a {
 }
 
 @media screen and (max-width: 600px) {
-    .vincent-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .wide, .tall {
-        grid-column: auto;
-        grid-row: auto;
-    }
 
     header h1 { font-size: 1.5rem; }
     header h3 { display: none; }
