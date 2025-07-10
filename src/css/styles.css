@@ -302,7 +302,7 @@
         rgba(0, 255, 0, 0.2),
         transparent
     );
-    animation: scanline 3s linear infinite;
+    /* animation: scanline 3s linear infinite; - Removed for professional look */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -311,14 +311,7 @@
     opacity: 1;
 }
 
-@keyframes scanline {
-    0% {
-        top: -100%;
-    }
-    100% {
-        top: 300%;
-    }
-}
+/* @keyframes scanline removed for professional look */
 
 /* Smooth transitions for all properties */
 .introduction-expertise-card *,
@@ -779,7 +772,7 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    animation: scanningTop 2s linear infinite;
+    /* animation: scanningTop 2s linear infinite; - Removed for professional look */
 }
 
 .services-list {
@@ -819,7 +812,7 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    animation: scanning 2s linear infinite;
+    /* animation: scanning 2s linear infinite; - Removed for professional look */
 }
 
 .services-list li:hover {
@@ -868,15 +861,7 @@
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
 }
 
-@keyframes scanning {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-@keyframes scanningTop {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
+/* @keyframes scanning and scanningTop removed for professional look */
 
 @media (min-width: 768px) {
     .services-list {
@@ -1195,12 +1180,7 @@ body > py-terminal.py-terminal-docked {
     100% { top: 200%; }
 }
 
-@keyframes glitch {
-    0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); }
-    25% { text-shadow: -2px 0 #00FFFF, 2px 2px #FF00FF; }
-    50% { text-shadow: 2px -2px #00FFFF, -2px 2px #FF00FF; }
-    75% { text-shadow: -2px 2px #00FFFF, 2px -2px #FF00FF; }
-}
+/* @keyframes glitch removed for professional look */
 
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
@@ -1219,10 +1199,7 @@ body > py-terminal.py-terminal-docked {
     }
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
+/* @keyframes typing removed for professional look */
 
 /* View-Specific Styles
    ========================================================================== */
@@ -2072,7 +2049,7 @@ nav ul li.version-timetravel:hover {
     width: 100%;
     height: 100%;
     clip: rect(0, 900px, 0, 0);
-    animation: glitch 2s infinite linear alternate-reverse;
+    /* animation: glitch 2s infinite linear alternate-reverse; - Removed for professional look */
 }
 
 .glitch-text::before {
@@ -2199,29 +2176,7 @@ nav ul li.version-timetravel:hover {
     100% { background-position: 100% 100%; }
 }
 
-@keyframes glitch {
-    0% { clip: rect(44px, 450px, 56px, 0); }
-    5% { clip: rect(9px, 450px, 89px, 0); }
-    10% { clip: rect(78px, 450px, 98px, 0); }
-    15% { clip: rect(23px, 450px, 45px, 0); }
-    20% { clip: rect(67px, 450px, 89px, 0); }
-    25% { clip: rect(12px, 450px, 34px, 0); }
-    30% { clip: rect(90px, 450px, 101px, 0); }
-    35% { clip: rect(45px, 450px, 67px, 0); }
-    40% { clip: rect(56px, 450px, 78px, 0); }
-    45% { clip: rect(23px, 450px, 45px, 0); }
-    50% { clip: rect(89px, 450px, 123px, 0); }
-    55% { clip: rect(12px, 450px, 34px, 0); }
-    60% { clip: rect(78px, 450px, 90px, 0); }
-    65% { clip: rect(34px, 450px, 56px, 0); }
-    70% { clip: rect(67px, 450px, 89px, 0); }
-    75% { clip: rect(12px, 450px, 34px, 0); }
-    80% { clip: rect(45px, 450px, 67px, 0); }
-    85% { clip: rect(23px, 450px, 45px, 0); }
-    90% { clip: rect(89px, 450px, 123px, 0); }
-    95% { clip: rect(12px, 450px, 34px, 0); }
-    100% { clip: rect(78px, 450px, 90px, 0); }
-}
+/* @keyframes glitch removed for professional look */
 
 @keyframes scroll {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -2866,14 +2821,7 @@ html {
 }
 
 /* Animation Keyframes */
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
+/* @keyframes glitch removed for professional look */
 
 /* Contact Section */
 #contact {

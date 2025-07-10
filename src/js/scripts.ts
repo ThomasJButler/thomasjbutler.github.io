@@ -118,7 +118,7 @@ const targetFPS = 30; // Limit to 30 FPS for better performance
 const frameInterval = 1000 / targetFPS;
 
 // Animation loop function with FPS limiting
-function animate(currentTime: number = 0): void {
+function animateMatrix(currentTime: number = 0): void {
   if (!canvas) return;
   
   const deltaTime = currentTime - lastFrameTime;
@@ -128,11 +128,11 @@ function animate(currentTime: number = 0): void {
     lastFrameTime = currentTime - (deltaTime % frameInterval);
   }
   
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateMatrix);
 }
 
 // Start animation
-requestAnimationFrame(animate);
+requestAnimationFrame(animateMatrix);
 
 // Scroll event handler with parallax
 let lastScrollTop = 0;
@@ -220,34 +220,8 @@ function glitchEffect(element: HTMLElement, options: GlitchOptions = {}): void {
   }, duration);
 }
 
-// Apply glitch effect to headings on hover (with exclusions)
-document.querySelectorAll('h1, h2, h3').forEach((heading) => {
-  const headingText = heading.textContent?.toLowerCase() || '';
-  const excludedTexts = [
-    'a web developer and designer from liverpool',
-    'my expertise',
-    'get in touch',
-    'interactive galleries',
-    'technical expertise',
-    'technical proficiencies',
-    'my skills',
-    'project stack',
-    'professional services',
-    'contact'
-  ];
-  
-  // Check if heading contains excluded text or has --| prefix
-  const shouldExclude = excludedTexts.some(text => headingText.includes(text)) || 
-                       headingText.includes('--|') ||
-                       heading.closest('.contact') !== null ||
-                       heading.closest('#contact') !== null;
-  
-  if (!shouldExclude) {
-    heading.addEventListener('mouseenter', function(this: HTMLElement) {
-      glitchEffect(this);
-    });
-  }
-});
+// Glitch effect removed for more professional appearance
+// Headings now have clean hover states defined in CSS
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -454,64 +428,20 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   }
 });
 
-// Loader animation will be imported dynamically when needed
-let loaderAnimation: any = null;
-
-// Page Loading Animation
-function createPageLoader(): void {
-  // Check if loader already exists
-  if (document.querySelector('.page-loader')) return;
-  
-  const loaderHTML = `
-    <div class="page-loader">
-      <div class="loader-content">
-        <div class="loader-terminal">
-          <div class="loader-dots">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-          </div>
-          <div class="loader-text"></div>
-          <div class="loader-progress">
-            <div class="loader-progress-bar"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.insertAdjacentHTML('afterbegin', loaderHTML);
-  
-  // Load animation module dynamically
-  import('./loader-animation').then(module => {
-    loaderAnimation = module.default;
-    loaderAnimation.addLoaderInteractivity();
-  });
-}
-
-// Show page loader (using Anime.js)
-async function showPageLoader(): Promise<void> {
-  console.log('showPageLoader called');
-  
-  // Ensure animation module is loaded
-  if (!loaderAnimation) {
-    const module = await import('./loader-animation');
-    loaderAnimation = module.default;
+// Page loader functionality simplified - removed complex animations
+function showPageLoader(): void {
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    loader.classList.add('active');
   }
-  
-  loaderAnimation.showAnimatedLoader();
 }
 
-// Hide page loader (using Anime.js)
 function hidePageLoader(): void {
-  console.log('hidePageLoader called');
-  if (loaderAnimation) {
-    loaderAnimation.hideAnimatedLoader();
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    loader.classList.remove('active');
   }
 }
-
-// Initialize page loader
-createPageLoader();
 
 // Intercept navigation links
 document.querySelectorAll('a[href$=".html"]').forEach(link => {
@@ -530,7 +460,7 @@ document.querySelectorAll('a[href$=".html"]').forEach(link => {
     // Navigate after showing loader
     setTimeout(() => {
       window.location.href = href;
-    }, 2000); // 2 second delay as requested
+    }, 300); // Reduced delay for better UX
   });
 });
 
@@ -546,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.body.classList.add('loaded');
       hidePageLoader();
-    }, 2500); // Allow time for animations
+    }, 500); // Reduced for faster page loads
   } else {
     // Normal page load - just mark as loaded
     setTimeout(() => {
@@ -596,37 +526,33 @@ function initAnimeAnimations(): void {
     });
   });
 
-  // Button hover particle effect
+  // Subtle button hover effect - removed particle animation
   document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
-    button.addEventListener('mouseenter', (e) => {
-      const rect = (e.target as HTMLElement).getBoundingClientRect();
-      createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    button.addEventListener('mouseenter', () => {
+      animate(button, {
+        scale: 1.05,
+        duration: 200,
+        easing: 'easeOutQuad'
+      });
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      animate(button, {
+        scale: 1,
+        duration: 200,
+        easing: 'easeOutQuad'
+      });
     });
   });
 
-  // Text reveal animation for headers
+  // Simple fade-in for headers - more professional
   const headers = document.querySelectorAll('h1, h2:not(.introduction-h2)');
-  headers.forEach((header, index) => {
-    const text = header.textContent || '';
-    header.innerHTML = '';
-    
-    // Split text into spans
-    text.split('').forEach(char => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      span.style.display = 'inline-block';
-      span.style.opacity = '0';
-      header.appendChild(span);
-    });
-
-    // Animate the letters
-    animate(header.querySelectorAll('span'), {
+  headers.forEach((header) => {
+    animate(header, {
       opacity: [0, 1],
-      translateY: [20, 0],
-      rotateZ: [-10, 0],
-      delay: stagger(30, {start: index * 200}),
+      translateY: [10, 0],
       duration: 600,
-      easing: 'easeOutBack'
+      easing: 'easeOutQuad'
     });
   });
 
@@ -643,62 +569,28 @@ function initAnimeAnimations(): void {
     });
   }
 
-  // Gallery item hover effect
+  // Gallery item hover effect - simplified
   const galleryItems = document.querySelectorAll('.gallery-item, .introduction-img img');
   galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
       animate(item, {
-        scale: 1.05,
-        rotateZ: 2,
+        scale: 1.02,
         duration: 300,
-        easing: 'easeOutBack'
+        easing: 'easeOutQuad'
       });
     });
 
     item.addEventListener('mouseleave', () => {
       animate(item, {
         scale: 1,
-        rotateZ: 0,
         duration: 300,
-        easing: 'easeOutBack'
+        easing: 'easeOutQuad'
       });
     });
   });
 }
 
-// Create particle effect for buttons
-function createParticles(x: number, y: number): void {
-  const particleCount = 15;
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'matrix-particle';
-    particle.style.cssText = `
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: var(--matrix-green);
-      box-shadow: 0 0 6px var(--matrix-green);
-      pointer-events: none;
-      z-index: 9999;
-      left: ${x}px;
-      top: ${y}px;
-    `;
-    
-    document.body.appendChild(particle);
-    
-    // Animate particle
-    animate(particle, {
-      translateX: Math.random() * 100 - 50,
-      translateY: Math.random() * 100 - 50,
-      scale: [1, 0],
-      opacity: [1, 0],
-      duration: Math.random() * 400 + 600,
-      easing: 'easeOutExpo',
-      complete: () => particle.remove()
-    });
-  }
-}
+// Particle effect function removed for cleaner, more professional look
 
 // Section reveal on scroll with anime
 function initScrollReveal(): void {
