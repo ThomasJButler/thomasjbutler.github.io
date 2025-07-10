@@ -58,21 +58,21 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Live & Continuously Updated
 - **Impact**: Showcasing creative game development skills
 
-### 🎨 [Big Bang Art Gallery](https://thomasjbutler.co.uk/art.html)
+### 🎨 [Big Bang Art Gallery](https://thomasjbutler.co.uk/art.html) - Website coming soon.
 **3D Interactive CSS Experience**
 - **Tech Stack**: Pure CSS3, JavaScript, GSAP Animations
 - **Features**: 3D hover effects, perspective tracking, immersive gallery
 - **Status**: Live Interactive Gallery
 - **Impact**: Award-worthy CSS animation showcase
 
-### ⏰ [Version TimeTravel](https://thomasjbutler.co.uk/versionhistory.html)
+### ⏰ [Version TimeTravel](https://thomasjbutler.co.uk/versionhistory.html) - Website coming soon.
 **Design Evolution Showcase**
 - **Tech Stack**: HTML5, CSS3, Interactive Timeline
 - **Features**: Website version history, before/after comparisons
 - **Status**: Live Documentation Platform
 - **Impact**: Transparent development journey showcase
 
-### 🧠 [Custom GPT Solutions](https://gpt.builders/ThomasJButler)
+### 🧠 [Custom GPT Solutions](https://gpt.builders/ThomasJButler) - Currently moving these into their own website. 
 **Bespoke AI Development**
 - **Tech Stack**: OpenAI API, Custom Training, Prompt Engineering
 - **Features**: Specialised AI assistants, custom functionality

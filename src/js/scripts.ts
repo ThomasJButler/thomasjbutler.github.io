@@ -419,11 +419,127 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   }
 });
 
+// Page Loading Animation
+function createPageLoader(): void {
+  // Check if loader already exists
+  if (document.querySelector('.page-loader')) return;
+  
+  const loaderHTML = `
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-terminal">
+          <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+          </div>
+          <div class="loader-text">ACCESSING SYSTEM</div>
+          <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('afterbegin', loaderHTML);
+  
+  // Create falling Matrix code characters
+  createMatrixCodeRain();
+}
+
+// Create Matrix code rain for loader
+function createMatrixCodeRain(): void {
+  const loader = document.querySelector('.page-loader');
+  if (!loader) return;
+  
+  const characters = '01アイウエオカキクケコサシスセソタチツテト';
+  const numberOfColumns = 15;
+  
+  for (let i = 0; i < numberOfColumns; i++) {
+    const span = document.createElement('span');
+    span.className = 'matrix-code';
+    span.style.left = `${Math.random() * 100}%`;
+    span.style.animationDuration = `${3 + Math.random() * 5}s`;
+    span.style.animationDelay = `${Math.random() * 2}s`;
+    span.textContent = characters[Math.floor(Math.random() * characters.length)];
+    loader.appendChild(span);
+  }
+}
+
+// Show page loader
+function showPageLoader(): void {
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    loader.classList.add('active');
+  }
+}
+
+// Hide page loader
+function hidePageLoader(): void {
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.remove('active');
+    }, 300); // Small delay for smooth transition
+  }
+}
+
+// Initialize page loader
+createPageLoader();
+
+// Intercept navigation links
+document.querySelectorAll('a[href$=".html"]').forEach(link => {
+  link.addEventListener('click', function(this: HTMLAnchorElement, e: Event) {
+    const href = this.getAttribute('href');
+    
+    // Skip external links and hash links
+    if (!href || href.startsWith('http') || href.startsWith('#')) return;
+    
+    e.preventDefault();
+    showPageLoader();
+    
+    // Set flag for next page
+    sessionStorage.setItem('navigating', 'true');
+    
+    // Navigate after showing loader
+    setTimeout(() => {
+      window.location.href = href;
+    }, 2000); // 2 second delay as requested
+  });
+});
+
+// Fix FOUC - show loader immediately on page load
+document.addEventListener('DOMContentLoaded', () => {
+  // Show loader immediately if coming from another page
+  const isNavigating = sessionStorage.getItem('navigating') === 'true';
+  if (isNavigating) {
+    showPageLoader();
+    sessionStorage.removeItem('navigating');
+  }
+  
+  // Mark body as loaded after a short delay
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    hidePageLoader();
+  }, 300);
+});
+
+// Ensure body is marked as loaded even if DOMContentLoaded already fired
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    hidePageLoader();
+  }, 300);
+}
+
 // Export for use in other modules
 export {
   drawMatrix,
   glitchEffect,
   showNotification,
   validateEmail,
-  matrixEnabled
+  matrixEnabled,
+  showPageLoader,
+  hidePageLoader
 };

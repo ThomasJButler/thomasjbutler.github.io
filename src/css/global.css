@@ -977,6 +977,227 @@ nav ul li:active {
     text-decoration: none;
 }
 
+/* Critical: Hide body until fully loaded to prevent FOUC */
+body:not(.loaded) {
+    visibility: hidden;
+    opacity: 0;
+}
+
+body.loaded {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Page Loading Animation
+   ========================================================================== */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+}
+
+.page-loader.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Matrix-style loading dots */
+.loader-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced Matrix terminal loader */
+.loader-terminal {
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid var(--matrix-green);
+    border-radius: 10px;
+    padding: 30px 50px;
+    box-shadow: 
+        0 0 50px rgba(0, 255, 0, 0.5),
+        inset 0 0 50px rgba(0, 255, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-terminal::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--matrix-green), transparent, var(--matrix-green));
+    animation: terminalBorder 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes terminalBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-dots {
+    display: inline-flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.loader-dot {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 2px solid var(--matrix-green);
+    position: relative;
+    animation: loaderPulse 1.4s ease-in-out infinite;
+}
+
+.loader-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--matrix-green);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--matrix-green);
+}
+
+.loader-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: 0;
+}
+
+@keyframes loaderPulse {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.loader-text {
+    color: var(--matrix-green);
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--matrix-green);
+    animation: loaderTextPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loaderTextPulse {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 20px var(--matrix-green), 0 0 40px var(--matrix-green);
+    }
+}
+
+/* Matrix rain effect for loader background */
+.page-loader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 0, 0.03) 2px,
+            rgba(0, 255, 0, 0.03) 4px
+        );
+    animation: matrixRain 20s linear infinite;
+    pointer-events: none;
+}
+
+/* Matrix code characters */
+.matrix-code {
+    position: absolute;
+    font-family: 'VT323', monospace;
+    color: var(--matrix-green);
+    font-size: 20px;
+    animation: matrixCodeFall linear infinite;
+    opacity: 0;
+}
+
+@keyframes matrixCodeFall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Loading progress bar */
+.loader-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 2px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+    width: 100%;
+    animation: loadingProgress 2s ease-out forwards;
+    transform-origin: left;
+    box-shadow: 0 0 20px var(--matrix-green);
+}
+
+@keyframes loadingProgress {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
 /* Utility Classes
    ========================================================================== */
 .l1 a {
