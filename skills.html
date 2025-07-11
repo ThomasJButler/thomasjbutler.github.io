@@ -4,46 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+        .page-loader.active {
+            display: flex;
+        }
+    </style>
+    <!-- CSS and libraries loaded via JavaScript module -->
+    <script type="module" src="/src/js/main-page.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="skills">
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
-    <header>
-        <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Skills Showcase</h3>
-            <div class="logo-container">
-            </div>
-            <nav>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul>
-                    <li><a href="index.html">HOME |</a></li>
-                    <li><a href="about.html">ABOUT ME |</a></li>
-                    <li><a href="skills.html">SKILLS |</a></li>
-                    <li><a href="projects.html">PROJECTS |</a></li>
-                    <li><a href="art.html">ART GALLERY |</a></li>
-                    <li><a href="services.html">SERVICES |</a></li>
-                    <li><a href="contact.html">CONTACT |</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-root"></div>
     <main>
         <section id="skills">
             <div class="container">
-                <h2>Technical Proficiencies</h2>
+                <h2>My Skills</h2>
                 <p>A comprehensive overview of my technical expertise and proficiencies</p>
                 <ul class="skills-list">
                     <li data-tooltip="Crafting Semantic and Accessible Web Structures">
@@ -109,29 +103,6 @@
                 </ul>
             </div>
         </section>
-        <section id="learning">
-            <div class="container">
-                <h2>Continuous Learning</h2>
-                <p>Always expanding my skill set to stay at the forefront of technology</p>
-                <ul class="skills-list learning-list">
-                    <li data-tooltip="Systems Programming for Performance">
-                        <h3>Rust</h3>
-                        <p>Delving into systems programming for high-performance applications.</p>
-                        <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
-                    </li>
-                    <li data-tooltip="Mastering Modern Web Development">
-                        <h3>Advanced Front-End Engineering</h3>
-                        <p>Enhancing skills in state management, performance optimisation, and advanced CSS techniques.</p>
-                        <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-                    </li>
-                    <li data-tooltip="Containerisation and Orchestration">
-                        <h3>Docker & Kubernetes</h3>
-                        <p>Learning containerisation and orchestration for scalable application deployment.</p>
-                        <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
-                    </li>
-                </ul>
-            </div>
-        </section>
     </main>
     <footer>
         <div class="container">
@@ -152,9 +123,9 @@
                     </a>
                 </li>
             </ul>
-            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+            <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main-page.js module -->
 </body>
 </html>

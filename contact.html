@@ -4,41 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+        .page-loader.active {
+            display: flex;
+        }
+    </style>
+    <!-- CSS and libraries loaded via JavaScript module -->
+    <script type="module" src="/src/js/main-page.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body>
+<body class="contact">
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
-    <header>
-        <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Contact Me</h3>
-            <div class="logo-container">
-            </div>
-            <nav>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul>
-                    <li><a href="index.html">HOME |</a></li>
-                    <li><a href="about.html">ABOUT ME |</a></li>
-                    <li><a href="art.html">ART GALLERY |</a></li>
-                    <li><a href="skills.html">SKILLS |</a></li>
-                    <li><a href="projects.html">PROJECTS |</a></li>
-                    <li><a href="services.html">SERVICES |</a></li>
-                    <li><a href="contact.html">CONTACT |</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-root"></div>
     <main>
         <section id="address">
             <div class="container">
@@ -46,32 +40,56 @@
                 <p>Chester, Cheshire, UK</p>
                 <p>Phone: +44 7903352059</p>
                 <p>Email: dev@thomasjbutler.me</p>
-                <a href="cv.html" target="_blank" class="btn-contact-us">
-                    <i class="fa-solid fa-file"></i> INTERACTIVE CV
-                </a>
         </section>
         <section id="contact">
             <div class="container">
                 <h2>Contact Me</h2>
-                <form id="contact-form" action="https://formspree.io/f/xldrebvq" method="POST">
-
-                    <input type="hidden" name="_next" value="https://thomasjbutler.me/thank-you.html">
+                <p>My resume is available upon request. Please mention in your message if you'd like to receive a copy.</p>
+                <div id="form-success" style="display: none;">
+                    <h3>Thanks for your message!</h3>
+                    <p>I'll get back to you soon.</p>
+                </div>
+                <form id="contact-form" action="https://formspree.io/f/xeoeenqv" method="POST">
+                    <label>
+                        Name:
+                        <input type="text" name="name" required>
+                    </label>
                     
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <label>
+                        Email:
+                        <input type="email" name="email" required>
+                    </label>
                     
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label>
+                        Message:
+                        <textarea name="message" required></textarea>
+                    </label>
                     
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
-                    
-                    <btn type="btn-contact">
-                        <span>Send Message</span>
-                    </btn>
+                    <button type="submit" class="btn-contact-us">
+                            <i class="fas fa-envelope"></i>
+                            Send Message
+                        </button>
                 </form>
             </div>
         </section>
+        
+        <!-- Video Banner Section -->
+        <div class="video-banner" style="margin-top: 3rem;">
+            <video 
+                class="banner-video" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                preload="metadata"
+                style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2);"
+            >
+                <source src="Website Video mp4 Banners /large green banner.mp4" type="video/mp4">
+                <!-- Future CDN version -->
+                <!-- <source src="https://cdn.thomasjbutler.co.uk/videos/large-green-banner.mp4" type="video/mp4"> -->
+            </video>
+            <div class="video-overlay" style="background: linear-gradient(to bottom, transparent, rgba(0, 20, 0, 0.3));"></div>
+        </div>
             <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </main>
@@ -94,9 +112,38 @@
                     </a>
                 </li>
             </ul>
-            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+            <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main-page.js module -->
+    <script>
+        window.addEventListener("load", function() {
+            const form = document.getElementById("contact-form");
+            const formSuccess = document.getElementById("form-success");
+            
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const data = new FormData(form);
+                fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        form.style.display = "none";
+                        formSuccess.style.display = "block";
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    alert("Oops! There was a problem submitting your form. Please try again.");
+                });
+            });
+        });
+    </script>
 </body>
 </html>

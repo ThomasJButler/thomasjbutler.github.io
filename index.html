@@ -3,12 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <title>Thomas J Butler - Portfolio</title>
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .page-loader.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <!-- CSS will be imported via JavaScript module -->
+    <script type="module" src="/src/js/main.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -16,56 +38,33 @@
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
-    <header>
-        <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Software Developer</h3>
-            <nav>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul>
-                    <li data-tooltip="Learn About Me"><a href="about.html" data-text="About Me">About Me |</a></li>
-                    <li data-tooltip="Check My Skills"><a href="skills.html" data-text="Skills">Skills |</a></li>
-                    <li data-tooltip="View My Projects"><a href="projects.html" data-text="Projects">Projects |</a></li>
-                    <li data-tooltip="Explore My Services"><a href="services.html" data-text="Services">Services |</a></li>
-                    <li data-tooltip="Get in Touch"><a href="contact.html" data-text="Contact">Contact |</a></li>
-                    <li class="version-timetravel" data-tooltip="View Version History">
-                        <a href="versionhistory.html" target="_blank" data-text="Version TimeTravel">
-                            Version Time Travel |
-                            <i class="fas fa-rocket"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-root"></div>
     <main>
         <section id="introduction">
             <div class="container">
-                <h1>Welcome to My Digital Playground</h1>
-                <h2>Hey, I'm Tom - A Web Developer and Designer from Liverpool, England</h2>
-                <p>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality. My expertise spans web development, AI integration, and innovative design solutions.</p>
+                <h2>Hey, I'm Tom.</h2>
+                <br>
+                <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
+                <p class="scrolling-text">With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</p>
+                    <h2 class="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
                 <div class="introduction-img">
-                    <img src="src/images/Vincent/Vincent27.png" alt="AI-generated art piece 1">
-                    <img src="src/images/Vincent/Vincent28.png" alt="AI-generated art piece 2">
-                    <img src="src/images/Vincent/Vincent4.png" alt="AI-generated art piece 3">
+                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Create a Model">
+                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png" alt="The Matrix Arcade">
+                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern">
                 </div>
-                <div class="version-timetravel-mobile">
-                    <a href="versionhistory.html" class="version-link" target="_blank">
-                        Version Time Travel
-                        <i class="fas fa-rocket"></i>
+                <div class="galleries-mobile">
+                    <a href="#galleries" class="galleries-link-mobile">
+                        View Galleries
+                        <i class="fas fa-images"></i>
                     </a>
                 </div>
-                <p>These images are AI-generated artworks, showcasing the intersection of technology and creativity that drives my work. Explore my portfolio to see how I blend technical skill with artistic vision.</p>
+                <p>Please explore my portfolio to see how I blend technical skill with artistic vision.</p>
             </div>
         </section>
         
         <section id="introduction-expertise">
             <div class="container">
-                <h2 class="introduction-heading">--| Core Technical Expertise |--</h2>
+                <h2 class="introduction-heading">--| Core Expertise |--</h2>
                 <ul class="introduction-expertise-grid">
                     <li class="introduction-expertise-card">
                         <div class="introduction-expertise-icon">
@@ -109,10 +108,11 @@
                             <span>Claude</span>
                             <span>Midjourney</span>
                             <span>GPT Creation</span>
-                            <span>Chatbot Creation</span>
-                            <span>Machine Learning</span>
-                            <span>Neural Networks</span>
-                            <span>Custom AI Solutions</span>
+                            <span>Chatbots</span>
+                            <span>ML</span>
+                            <span>AI LLM Models</span>
+                            <span>AI Solutions</span>
+                            <span>API</span>
                         </div>
                     </li>
         
@@ -131,10 +131,10 @@
                         <div class="introduction-expertise-tags">
                             <span>Figma</span>
                             <span>Adobe XD</span>
-                            <span>Responsive Design</span>
-                            <span>Wireframing</span>
+                            <span>Mobile First</span>
+                            <span>Wireframes</span>
                             <span>Galileo</span>
-                            <span>Old School Drawings</span>
+                            <span>Pen & Paper</span>
                         </div>
                     </li>
         
@@ -157,6 +157,9 @@
                             <span>PyGame</span>
                             <span>PyScript</span>
                             <span>Anaconda</span>
+                            <span>TensorFlow</span>
+                            <span>PyTorch</span>
+                            <span>MatPlotLib</span>
                         </div>
                     </li>
         
@@ -173,10 +176,12 @@
                             <span class="introduction-expertise-level">Proficient</span>
                         </div>
                         <div class="introduction-expertise-tags">
-                            <span>SQL</span>
                             <span>MongoDB</span>
                             <span>PostgreSQL</span>
-                            <span>Excel Mastery</span>
+                            <span>MySQL</span>
+                            <span>Oracle</span>
+                            <span>Supabase</span>
+                            <span>Excel</span>
                         </div>
                     </li>
         
@@ -196,7 +201,8 @@
                             <span>AWS</span>
                             <span>Azure</span>
                             <span>Docker</span>
-                            <span>Cisco Packet Tracer</span>
+                            <span>IIS</span>
+                            <span>Cisco</span>
                             <span>Bamboo</span>
                         </div>
                     </li>
@@ -204,39 +210,134 @@
             </div>
         </section>
     
-    <section id="widgets">
-        <h2>Latest Updates</h2>
-        <div class="grid-container">
-            <div class="grid-item">
-                <h3>Infinity Gallery</h3>
-                <p>Step into a world of endless imagination with my Midjourney creations in a custom infinity gallery.</p>
-                <img src="src/images/Vincent/Vincent7.png" alt="AI Art Gallery Preview">
-                <a href="art.html" class="btn" data-text="Enter the Matrix">Infinity Gallery</a>
+        <section id="latest-updates" class="reveal">
+            <div class="container">
+                <h2 class="section-title">Latest Updates</h2>
+                <ul class="introduction-expertise-grid">
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview">
+                        </div>
+                        <h3>AiTomatic (Prototype)</h3>
+                        <p class="introduction-expertise-description">This is an AI Model Creator platform with next level features. The prototype is built with Typescript, Python, React. It's showcasing the dashboard elements and model comparison / creation features. I am currently working on this.</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="https://aitomatic.co.uk/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">Enter AiTomatic</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+        
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Web Projects Preview">
+                        </div>
+                        <h3>The Matrix Arcade</h3>
+                        <p class="introduction-expertise-description">This is an arcade website I built using Vite, Python and React to showcase playable mini games created during my learning journey. I plan to continue to add to this over time and update the functionality.</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">Enter The Arcade</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+        
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668231/landingpagedesktop_ssozki.png" alt="Python Projects Preview">
+                        </div>
+                        <h3>Landing Page</h3>
+                        <p class="introduction-expertise-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="/landingpage.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">Enter Landing Page</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/Versiontimetravel_uai2rc.png" alt="Python Projects Preview">
+                        </div>
+                        <h3>Version TimeTravel</h3>
+                        <p class="introduction-expertise-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="/versionhistory.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">Enter Time Travel</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737689452/artgallery_kswku9.png" alt="Python Projects Preview">
+                        </div>
+                        <h3>The Big Bang Gallery</h3>
+                        <p class="introduction-expertise-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="/art.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">Enter Gallery</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="introduction-expertise-card">
+                        <div class="introduction-expertise-icon">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview">
+                        </div>
+                        <h3>Python Projects</h3>
+                        <p class="introduction-expertise-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
+                        <div class="introduction-expertise-buttons">
+                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                <span class="btn-text">View Repository</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="grid-item">
-                <h3>Web Creations</h3>
-                <p>Dive into a diverse collection of my personal website projects, showcasing various technologies and design philosophies.</p>
-                <img src="src/images/Vincent/Vincent1.png" alt="Web Projects Preview">
-                <a href="https://github.com/ThomasJButler/WebCreations" target="_blank" rel="noopener" class="btn" data-text="Web Creations">Explore Projects</a>
-            </div>
-            <div class="grid-item">
-                <h3>Python Projects</h3>
-                <p>Discover how I leverage Python and AI solutions to tackle unique challenges and create innovative applications.</p>
-                <img src="src/images/Vincent/Vincent4.png" alt="Python Projects Preview">
-                <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="btn" data-text="Python Projects">View Repository</a>
-            </div>
-        </div>
-    </section>
+        </section>
     
     <section id="contact">
         <div class="container">
             <h2>--| Get in Touch |--</h2>
-            <p>Interested in working together or have a question? Don't hesitate to reach out!</p>
+            <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
             <div class="contact-button-container">
                 <a href="contact.html" class="btn-contact-us">
                     <i class="fas fa-envelope"></i>
                     Contact Me
                 </a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="galleries" class="reveal">
+        <div class="container">
+            <h2 class="section-heading">--| Interactive Galleries |--</h2>
+            <div class="galleries-grid">
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>The Big Bang Gallery</h3>
+                    <p>AI-generated cosmic artwork showcasing the birth of the universe through intricate designs.</p>
+                    <a href="https://bigbang-gallery.thomasjbutler.co.uk" target="_blank" class="gallery-link">
+                        Enter Gallery <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Version TimeTravel</h3>
+                    <p>Journey through the evolution of my portfolio website from version 1.0 to the present.</p>
+                    <a href="https://version-timetravel.thomasjbutler.co.uk" target="_blank" class="gallery-link">
+                        Time Travel <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -259,10 +360,15 @@
                         <i class="fab fa-codepen"></i> CodePen
                     </a>
                 </li>
+                <li data-tooltip="Sitemap">
+                    <a href="sitemap.html" target="_blank" rel="noopener" data-text="Sitemap">
+                        <i class="fab fa-codepen"></i> Sitemap
+                    </a>
+                </li>
             </ul>
-            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+            <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main.js module -->
 </body>
 </html>

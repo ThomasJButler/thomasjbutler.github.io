@@ -1,2 +1,38 @@
 
-skills.html
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project specific
+/tommyprompts website
+/add to website
+CLAUDE.md
+/Website Video mp4 Banners 
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+improvements.md
+animejssetup.md
+projectcheck.md

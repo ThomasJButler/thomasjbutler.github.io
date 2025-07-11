@@ -4,112 +4,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <title>GitHub Repository Showcase | Thomas J Butler</title>
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+        .page-loader.active {
+            display: flex;
+        }
+    </style>
+    <!-- CSS and libraries loaded via JavaScript module -->
+    <script type="module" src="/src/js/main-projects.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
 
-<body>
+<body class="projects">
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
-    <header>
-        <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Projects Showcase</h3>
-            <div class="logo-container">
-            </div>
-            <nav>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul>
-                    <li><a href="index.html">HOME |</a></li>
-                    <li><a href="apps.html">APPS |</a></li>
-                    <li><a href="games.html">GAMES |</a></li>
-                    <li><a href="art.html">ART GALLERY |</a></li>
-                    <li><a href="customgpt.html">CUSTOM GPTS |</a></li>
-                    <li><a href="contact.html">CONTACT |</a></li>
-                    <li class="version-timetravel" data-tooltip="View Version History">
-                        <a href="versionhistory.html" target="_blank" data-text="Version TimeTravel">
-                            Version Time Travel |
-                            <i class="fas fa-rocket"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-root"></div>
 
     <main>
-        <section id="codepen-projects">
+        <section id="featured-projects" class="reveal">
             <div class="container">
-                <h2>CodePen Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Project 1</h3>
-                        <iframe height="600" style="width: 100%;" scrolling="no" title="&lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;" src="https://codepen.io/thomasbutler/embed/QWPjLRx?default-tab=&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-                            See the Pen <a href="https://codepen.io/thomasbutler/pen/QWPjLRx">
-                            &lt;header&gt;ResponsiveCodePenHeaderV1&lt;/header&gt;</a> by Thomas Butler (<a href="https://codepen.io/thomasbutler">@thomasbutler</a>)
-                            on <a href="https://codepen.io">CodePen</a>.
-                          </iframe>
-                    </div>
-                    <!-- Add more CodePen project items as needed -->
+                <h2 class="section-title">GitHub Repository Showcase</h2>
+                <p class="section-description">Explore my open source contributions and personal projects</p>
+                
+                <!-- Category Tabs -->
+                <div class="project-tabs">
+                    <button class="tab-button active" data-category="all">All Projects</button>
+                    <button class="tab-button" data-category="personal">Personal Projects</button>
+                    <button class="tab-button" data-category="client">Client Work</button>
+                    <button class="tab-button" data-category="opensource">Open Source</button>
                 </div>
-                <a href="codepen.html" class="cta-button">View All CodePen Projects</a>
-            </div>
-        </section>
-
-        <section id="python-games">
-            <div class="container">
-                <h2>Python Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Python Game 1</h3>
-                        <div class="game-placeholder">
-                            <!-- Placeholder for Python game embed -->
-                            <p>Python Game Placeholder</p>
+                <div class="github-projects-grid">
+                    <!-- AiTomatic Project -->
+                    <article class="github-card" data-category="personal">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    AiTomatic
+                                </h3>
+                                <span class="repo-visibility">Public</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-star"></i> 12</span>
+                                <span class="stat"><i class="fas fa-code-branch"></i> 3</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Add more Python game items as needed -->
-                </div>
-                <a href="games.html#python" class="cta-button">View All Python Games</a>
-            </div>
-        </section>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
+                            
+                            <div class="repo-topics">
+                                <span class="topic">React</span>
+                                <span class="topic">TypeScript</span>
+                                <span class="topic">AI/ML</span>
+                                <span class="topic">API Integration</span>
+                            </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #3178c6;"></span>
+                                <span class="language-name">TypeScript</span>
+                                <span class="language-percent">68%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://aitomatic.rocks" target="_blank" class="repo-link live">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/ThomasJButler/aitomatic" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
 
-        <section id="web-games">
-            <div class="container">
-                <h2>Web Games</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Web Game 1</h3>
-                        <iframe src="path-to-your-web-game" width="100%" height="400" frameborder="0"></iframe>
-                    </div>
-                    <!-- Add more Web game items as needed -->
-                </div>
-                <a href="games.html#web" class="cta-button">View All Web Games</a>
-            </div>
-        </section>
+                    <!-- AiTomatic Project -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview" class="project-image">
+                            <div class="project-type" data-index="01" data-project="AiTomatic">AI Platform</div>
+                            <div class="project-preview">AiTomatic</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>AiTomatic</h3>
+                            <p class="project-description">An AI Model Creator platform with next-level features. Built with modern technologies to showcase AI model comparison and creation capabilities.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-tags">
+                                        <span>TypeScript</span>
+                                        <span>Python</span>
+                                        <span>React</span>
+                                        <span>Next.js</span>
+                                        <span>OpenAI API</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Learnings</h4>
+                                    <ul>
+                                        <li>AI Model Integration</li>
+                                        <li>Large Scale Data Processing</li>
+                                        <li>Real-time Model Comparison</li>
+                                    </ul>
+                                </div>
+                            </div>
 
-        <section id="gpt-projects">
-            <div class="container">
-                <h2>GPT Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>GPT Project 1</h3>
-                        <p>Description of GPT Project 1</p>
-                        <a href="path-to-gpt-project" class="cta-button">Try GPT Project 1</a>
-                    </div>
-                    <!-- Add more GPT project items as needed -->
+                            <div class="project-links">
+                                <a href="https://aitomatic.co.uk/" target="_blank" rel="noopener" class="btn-contact-us">
+                                    <span class="btn-text">Live Demo</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Matrix Arcade Project -->
+                    <article class="github-card" data-category="personal">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    Matrix Arcade
+                                </h3>
+                                <span class="repo-visibility">Public</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-star"></i> 8</span>
+                                <span class="stat"><i class="fas fa-code-branch"></i> 2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                            
+                            <div class="repo-topics">
+                                <span class="topic">React</span>
+                                <span class="topic">Python</span>
+                                <span class="topic">Vite</span>
+                                <span class="topic">Canvas API</span>
+                                <span class="topic">Game Dev</span>
+                            </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #f1e05a;"></span>
+                                <span class="language-name">JavaScript</span>
+                                <span class="language-percent">72%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://matrixarcade.fun" target="_blank" class="repo-link live">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/ThomasJButler/matrix-arcade" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Open Source Contribution Example -->
+                    <article class="github-card" data-category="opensource">
+                        <div class="github-card-header">
+                            <div class="repo-info">
+                                <h3 class="repo-name">
+                                    <i class="fab fa-github"></i>
+                                    React Documentation
+                                </h3>
+                                <span class="repo-visibility">Contribution</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="stat"><i class="fas fa-code-branch"></i> PR #245</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-body">
+                            <p class="repo-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
+                            
+                            <div class="repo-topics">
+                                <span class="topic">Documentation</span>
+                                <span class="topic">React</span>
+                                <span class="topic">Open Source</span>
+                            </div>
+                            
+                            <div class="repo-language">
+                                <span class="language-color" style="background-color: #e34c26;"></span>
+                                <span class="language-name">MDX</span>
+                                <span class="language-percent">100%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="github-card-footer">
+                            <a href="https://github.com/facebook/react/pull/245" target="_blank" class="repo-link github">
+                                <i class="fab fa-github"></i>
+                                View Pull Request
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- CodePen Showcase Project -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737940141/codepen_mtf6if.png" alt="CodePen Collection Preview" class="project-image">
+                            <div class="project-type" data-index="03" data-project="CodePen Collection">Frontend Experiments</div>
+                            <div class="project-preview">CodePen Collection</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Creative CodePen Collection</h3>
+                            <p class="project-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-tags">
+                                        <span>JavaScript</span>
+                                        <span>CSS3</span>
+                                        <span>HTML5</span>
+                                        <span>SVG</span>
+                                        <span>Canvas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>Advanced CSS Animations</li>
+                                        <li>Interactive Particles</li>
+                                        <li>Creative UI Components</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="btn-contact-us">
+                                    <span class="btn-text">View Collection</span>
+                                    <i class="fab fa-codepen"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Python Projects -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview" class="project-image">
+                            <div class="project-type" data-index="04" data-project="Python Backend">Backend Development</div>
+                            <div class="project-preview">Python Backend</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Python Backend Collection</h3>
+                            <p class="project-description">A suite of Python applications demonstrating API development, data processing, and machine learning implementations.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-tags">
+                                        <span>Python</span>
+                                        <span>FastAPI</span>
+                                        <span>SQLAlchemy</span>
+                                        <span>PyTorch</span>
+                                        <span>Pandas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>REST API Development</li>
+                                        <li>Data Processing Pipelines</li>
+                                        <li>ML Model Integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://github.com/ThomasJButler/python-projects" target="_blank" rel="noopener" class="btn-contact-us">
+                                    <span class="btn-text">View Repository</span>
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Version TimeTravel Website -->
+                    <article class="project-card" onclick="this.classList.toggle('active')">
+                        <div class="project-header">
+                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668237/VersionTimeTravelv1desktop_fcmf21.png" alt="Version TimeTravel Preview" class="project-image">
+                            <div class="project-type" data-index="05" data-project="Version TimeTravel">Portfolio Evolution</div>
+                            <div class="project-preview">Version TimeTravel</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Version TimeTravel</h3>
+                            <p class="project-description">An interactive timeline showcasing the evolution of this portfolio website, featuring different versions and technological improvements.</p>
+                            
+                            <div class="project-details">
+                                <div class="tech-stack">
+                                    <h4>Tech Stack</h4>
+                                    <div class="tech-tags">
+                                        <span>JavaScript</span>
+                                        <span>GSAP</span>
+                                        <span>HTML5</span>
+                                        <span>CSS3</span>
+                                        <span>ScrollMagic</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-learnings">
+                                    <h4>Key Features</h4>
+                                    <ul>
+                                        <li>Interactive Timeline</li>
+                                        <li>Version Comparison</li>
+                                        <li>Animation Effects</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="versionhistory.html" target="_blank" rel="noopener" class="btn-contact-us">
+                                    <span class="btn-text">Time Travel</span>
+                                    <i class="fas fa-clock"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <a href="gpt.html" class="cta-button">View All GPT Projects</a>
             </div>
         </section>
     </main>
@@ -132,11 +371,11 @@
                     </a>
                 </li>
             </ul>
-            <p>&copy; 2024 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
+            <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main-projects.js module -->
 </body>
 
 </html>
