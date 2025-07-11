@@ -58,6 +58,13 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Live & Continuously Updated
 - **Impact**: Showcasing creative game development skills
 
+### 🚀 [Portfolio v3.1 - React Migration](https://thomasjbutler.co.uk/index-react.html)
+**Modern React Portfolio with Anime.js**
+- **Tech Stack**: React 19, TypeScript, Vite 7, Anime.js v4
+- **Features**: Component architecture, smooth animations, Matrix rain effect
+- **Status**: Migration Complete - React Components Live
+- **Impact**: Showcasing modern React development skills
+
 ### 🎨 [Big Bang Art Gallery](https://thomasjbutler.co.uk/art.html) - Website coming soon.
 **3D Interactive CSS Experience**
 - **Tech Stack**: Pure CSS3, JavaScript, GSAP Animations
