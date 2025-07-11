@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 
@@ -6,6 +7,7 @@ export default defineConfig({
   root: '.',
   base: '/',
   plugins: [
+    react(),
     legacy({
       targets: ['defaults', 'not IE 11']
     })
@@ -14,7 +16,9 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: resolve(__dirname, 'index-react.html'),
+        // Legacy HTML files - will be removed after full React migration
+        legacy_index: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
         skills: resolve(__dirname, 'skills.html'),
         projects: resolve(__dirname, 'projects.html'),

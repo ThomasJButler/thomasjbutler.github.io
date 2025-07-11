@@ -1,8 +1,13 @@
 {
   "dependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "animejs": "^4.0.2",
     "aos": "^2.3.4",
     "gsap": "^3.12.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3",
     "scrollmagic": "^2.0.8",
     "scrollmagic-plugin-gsap": "^1.0.4"
   },
@@ -30,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
     "@vitejs/plugin-legacy": "^7.0.0",
+    "@vitejs/plugin-react": "^4.6.0",
     "eslint": "^9.30.1",
     "prettier": "^3.6.2",
     "terser": "^5.43.1",
