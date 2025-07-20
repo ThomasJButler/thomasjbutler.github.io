@@ -388,7 +388,7 @@ export const HomePage: React.FC = () => {
               </p>
               <div className="introduction-expertise-buttons">
                 <a 
-                  href="https://the-matrix-arcade.vercel.app/" 
+                  href="https://www.tomatic.tech/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="neo-matrix-btn"

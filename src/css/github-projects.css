@@ -40,31 +40,30 @@
 /* GitHub Projects Grid */
 .github-projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
     max-width: 1400px;
     margin: 0 auto;
 }
 
 /* GitHub Card Style */
 .github-card {
-    background: rgba(0, 20, 0, 0.8);
+    background: rgba(0, 20, 0, 0.7);
     border: 1px solid rgba(0, 255, 0, 0.2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    min-height: 350px;
 }
 
 .github-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--matrix-green);
-    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.4);
 }
 
 /* Card Header */
@@ -72,7 +71,9 @@
     display: flex;
     justify-content: space-between;
     align-items: start;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
 }
 
 .repo-info {
@@ -80,7 +81,7 @@
 }
 
 .repo-name {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     color: var(--matrix-green);
     margin: 0;
     display: flex;
@@ -122,9 +123,10 @@
 
 .repo-description {
     color: rgba(0, 255, 0, 0.9);
-    line-height: 1.6;
-    font-size: 1rem;
+    line-height: 1.7;
+    font-size: 0.95rem;
     margin: 0;
+    min-height: 3rem;
 }
 
 .repo-topics {
@@ -234,10 +236,23 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .github-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 0 1.5rem;
+    }
+    
+    .github-card {
+        padding: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .github-projects-grid {
         grid-template-columns: 1fr;
-        padding: 1rem;
+        gap: 1.5rem;
+        padding: 0 1rem;
     }
     
     .project-tabs {
@@ -250,11 +265,17 @@
     }
     
     .github-card {
-        padding: 1.25rem;
+        padding: 1rem;
+        min-height: auto;
     }
     
     .repo-name {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+    
+    .repo-description {
+        font-size: 0.9rem;
+        min-height: auto;
     }
     
     .github-card-footer {

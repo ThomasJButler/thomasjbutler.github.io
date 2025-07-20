@@ -48,9 +48,9 @@
   
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Changed to always show 2 columns */
-    gap: 1.5rem;
-    max-width: 1600px; /* Increased from 1400px for wider content */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
     perspective: 1000px;
@@ -61,7 +61,7 @@
     background: var(--gradient-primary);
     border: 2px solid rgba(0, 255, 0, 0.2);
     border-radius: 12px;
-    padding: 1.25rem;
+    padding: 1rem;
     position: relative;
     transition: 
       transform var(--animation-slow) ease-out,
