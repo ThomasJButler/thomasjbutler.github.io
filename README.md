@@ -51,7 +51,7 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Active Development Repository
 - **Impact**: Showcasing the artistic potential of modern CSS
 
-### 🎮 [The Matrix Arcade](https://the-matrix-arcade.vercel.app/)
+### 🎮 [The Matrix Arcade](https://www.tomatic.tech/)
 **Interactive Gaming Platform**
 - **Tech Stack**: Vite, React, Python, Interactive Canvas
 - **Features**: Playable mini-games, responsive design, Matrix theming
@@ -91,6 +91,35 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 <p align="center">
  <img width="1000" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/github-contribution-grid-snake.svg" alt="snake"/>
 </p>
+
+---
+
+## 🚀 Recent Updates
+
+### 📅 2025-07-20 - React Migration Complete - Portfolio v3.0 Live!
+
+Just shipped a **complete React migration** of my portfolio! 🎉
+
+**What's New:**
+- ✅ **Full React + TypeScript** implementation - type-safe components throughout
+- ✅ **Anime.js v4 Integration** - smooth, performant animations that respect the Matrix aesthetic
+- ✅ **Modern Vite Build System** - lightning-fast HMR and optimized production builds
+- ✅ **Component Architecture** - modular, maintainable, and scalable
+- ✅ **CSS Modules** - scoped styling with zero conflicts
+- ✅ **Custom Animation Hooks** - `useMatrixAnimation`, `useScrollAnimation` for reusable effects
+- ✅ **Maintained Matrix Theme** - kept the iconic green-on-black aesthetic during migration
+
+**Technical Highlights:**
+- Migrated from static HTML/JS to React 19 with TypeScript
+- Implemented React Router for seamless SPA navigation
+- Created reusable component library aligned with design system
+- Achieved 100% type coverage with strict mode enabled
+
+**Impact:** Showcasing modern React development skills while maintaining the unique visual identity that sets my portfolio apart.
+
+🔗 **[Check out the live React version →](https://thomasjbutler.co.uk/index-react.html)**
+
+*From Liverpool with love.* 💚
 
 ---
 

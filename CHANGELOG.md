@@ -5,13 +5,16 @@ All notable changes to the Thomas J Butler Portfolio will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - v3.1-custom-css-and-styling
+## [Unreleased]
 ### Planned
-- Custom CSS animations and effects
-- Advanced styling improvements
-- Enhanced visual components
+- Complete Vite setup and build optimization
+- TypeScript migration for remaining JavaScript files
+- Component architecture implementation
+- CI/CD pipeline enhancements
+- WebGL Matrix rain effect
+- Service worker for offline capability
 
-## [3.1.0] - 2025-07-11
+## [3.0.0] - 2025-07-20
 
 ### Added
 - **React Migration**: Converted static HTML site to React with TypeScript
@@ -70,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migration guide from static HTML to React
 - Updated README with React portfolio information
 
-## [3.0.1] - 2025-07-08
+## [2.9.1] - 2025-07-08
 
 ### Added
 - **Design System** (`design_system.md`):
@@ -101,7 +104,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Duplicate style declarations across components
 - Mobile touch target sizes below accessibility standards
 
-## [3.0.0] - 2025-07-05
+## [2.8.5] - 2025-07-05
 
 ### Added
 - **Projects Section Overhaul**:
@@ -135,7 +138,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Form validation edge cases
 - Cross-browser animation inconsistencies
 
-## [3.0-Backend-Enhancements] - 2025-07-03
+## [2.8.4] - 2025-07-03
 
 ### Added
 - **API Integration Layer**:
