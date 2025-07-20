@@ -171,16 +171,6 @@
        font-size: var(--font-size-h3);
    }
    
-   p {
-       color: var(--matrix-magenta);
-       font-family: 'VT323', monospace;
-       font-size: var(--font-size-base);
-       display: flex;
-       flex-direction: row;
-       flex-wrap: wrap;
-       justify-content: center;
-       margin: var(--space-md) 0;
-   }
    
    /* Links & Buttons
       ========================================================================== */
