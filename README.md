@@ -8,9 +8,9 @@
 ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 ```
 
-**`Full-Stack Developer | AI Integration Specialist | Liverpool, UK 🇬🇧`**
+**`Full-Stack Developer | AI Integration Specialist | York, UK 🇬🇧`**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-thomasjbutler.co.uk-00FF00?style=for-the-badge&logo=matrix&logoColor=black)](https://thomasjbutler.co.uk)
+[![Portfolio](https://img.shields.io/badge/Portfolio-thomasjbutler.me-00FF00?style=for-the-badge&logo=matrix&logoColor=black)](https://thomasjbutler.me)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
 [![GitHub followers](https://img.shields.io/github/followers/ThomasJButler?style=for-the-badge&color=00FF00)](https://github.com/ThomasJButler)
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
@@ -19,11 +19,13 @@
 
 ## 🚀 About Me
 
-Hey! I'm a **Full-Stack Developer** and **AI Integration Specialist** from Liverpool, and I'm genuinely passionate about **making technology more human**. You know that feeling when you use an app and it just... works? That's what I'm after.
+Hey! I'm a **Full-Stack Developer** and **AI Integration Specialist** originally from Liverpool, and I'm genuinely passionate about **making technology more human**. You know that feeling when you use an app and it just feels natural? That's what I'm after.
 
-I've got this slightly obsessive thing about building tech that actually helps people rather than just showing off how clever we can be. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating those Matrix-themed interfaces (yes, I'm that person), I'm always asking: "Will this actually make someone's day better?"
+I've got this slightly obsessive thing about building tech that actually empowers people rather than replacing them. It has to be a joyful experience too. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating those Matrix-themed interfaces (yes, I'm that person), I'm always asking: "Will this actually make someone's day better?". 
 
-The truth is, I love the technical challenges - diving deep into React, Python, AI integration - but what really gets me up in the morning is knowing that something I built might help someone feel more confident, more included, or just have a bit more fun with technology.
+I'm currently working on custom models that can disagree with the user if necessary and be a helpful friend, it won't 'mirror you' and take you down self made rabbit holes like the current models do. This would be the start of truly safe AI. (For the record I don't expect to solve this myself! As of July 2025 OpenAI is making this it's company mission to make its models more human friendly, especially for the vunerable).
+
+The truth is, I love the technical challenges too and solving problems with code. Diving deep into React, Python, AI integration - but what really gets me up in the morning is knowing that something I built might help someone feel more confident, more included, or just have a bit more fun with technology.
 
 ### 💫 Key Strengths
 - 🎯 **Live Project Portfolio**: Multiple deployed applications serving real users
@@ -44,7 +46,7 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Complete Platform Overhaul - Pivoting to Human-Centered AI
 - **Impact**: Creating positive change through inclusive technology solutions
 
-### 🎨 [CSS Showcase](https://github.com/ThomasJButler/css-showcase)
+### 🎨 [CSS Showcase](https://thomasjbutler.github.io/css-showcase/)
 **Advanced CSS Demonstrations**
 - **Tech Stack**: Pure CSS3, Advanced Animations, Modern Layouts
 - **Features**: Complex animations, interactive components, cutting-edge CSS techniques
@@ -58,7 +60,7 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Live & Continuously Updated
 - **Impact**: Showcasing creative game development skills
 
-### 🚀 [Portfolio v3.1 - React Migration](https://thomasjbutler.co.uk/index-react.html)
+### 🚀 [Portfolio v3.0 - Vite/React Migration](https://thomasjbutler.co.uk/index.html)
 **Modern React Portfolio with Anime.js**
 - **Tech Stack**: React 19, TypeScript, Vite 7, Anime.js v4
 - **Features**: Component architecture, smooth animations, Matrix rain effect
@@ -72,14 +74,14 @@ The truth is, I love the technical challenges - diving deep into React, Python, 
 - **Status**: Live Interactive Gallery
 - **Impact**: Award-worthy CSS animation showcase
 
-### ⏰ [Version TimeTravel](https://thomasjbutler.co.uk/versionhistory.html) - Website coming soon.
+### ⏰ [Version TimeTravel](https://thomasjbutler.github.io/version-timetravel/) - Website coming soon.
 **Design Evolution Showcase**
 - **Tech Stack**: HTML5, CSS3, Interactive Timeline
 - **Features**: Website version history, before/after comparisons
 - **Status**: Live Documentation Platform
 - **Impact**: Transparent development journey showcase
 
-### 🧠 [Custom GPT Solutions](https://gpt.builders/ThomasJButler) - Currently moving these into their own website. 
+### 🧠 [Custom GPT Solutions] - Currently amend these / moving into their own website. 
 **Bespoke AI Development**
 - **Tech Stack**: OpenAI API, Custom Training, Prompt Engineering
 - **Features**: Specialised AI assistants, custom functionality
@@ -117,7 +119,7 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 
 **Impact:** Showcasing modern React development skills while maintaining the unique visual identity that sets my portfolio apart.
 
-🔗 **[Check out the live React version →](https://thomasjbutler.co.uk/index-react.html)**
+🔗 **[Check out the live React version →](https://thomasjbutler.co.uk/index.html)**
 
 *From Liverpool with love.* 💚
 
@@ -243,25 +245,17 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 
 <div align="center">
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-00FF00?style=for-the-badge&logo=google-chrome&logoColor=black)](https://thomasjbutler.co.uk)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-00FF00?style=for-the-badge&logo=google-chrome&logoColor=black)](https://thomasjbutler.me)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@thomasjbutler.co.uk)
+[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dev@thomasjbutler.me)
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
 
 </div>
 
-### 📍 Location: Liverpool, England, UK 🇬🇧
+### 📍 Location: York, England, UK 🇬🇧
 ### 💼 Available for: Freelance Projects | Collaboration | Full-time Opportunities
 
 ---
-
-<div align="center">
-  
-**"The Matrix has you... but I have the code."** 💊
-
-*Building the future of web development, one line of code at a time.*
-
-</div>
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=00FF00&height=100&section=footer" width="100%" />
