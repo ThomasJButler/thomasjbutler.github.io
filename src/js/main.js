@@ -2,10 +2,8 @@
 import './scripts.ts';
 import { initializeHeader } from './header-init.ts';
 
-// Import CSS files
-import '../css/global.css';
-import '../css/styles.css';
-import '../css/header.css';
+// Import main CSS file (includes all modular styles)
+import '../css/main.css';
 
 // Import GSAP and ScrollMagic as ES modules
 import gsap from 'gsap';

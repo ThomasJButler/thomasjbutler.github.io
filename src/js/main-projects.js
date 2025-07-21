@@ -2,12 +2,11 @@
 import './scripts.ts';
 import { initializeHeader } from './header-init.ts';
 
-// Import CSS files
-import '../css/global.css';
-import '../css/styles.css';
-import '../css/header.css';
-import '../css/projects.css';
-import '../css/github-projects.css';
+// Import main CSS file (includes all modular styles)
+import '../css/main.css';
+// Legacy project-specific styles (to be refactored)
+import '../css/projects-horizontal-grid.css';
+import '../css/projects-tabs.css';
 
 // Import GSAP and ScrollMagic as ES modules
 import gsap from 'gsap';
@@ -20,6 +19,9 @@ ScrollMagicPluginGsap(ScrollMagic, gsap);
 // Make libraries available globally
 window.gsap = gsap;
 window.ScrollMagic = ScrollMagic;
+
+// Import horizontal grid functionality
+import './projects-horizontal.js';
 
 console.log('Projects page initialized with Vite');
 
