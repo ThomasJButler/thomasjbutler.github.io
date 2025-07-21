@@ -4,8 +4,8 @@ import { initializeHeader } from './header-init.ts';
 
 // Import main CSS file (includes all modular styles)
 import '../css/main.css';
-// Legacy project-specific styles (to be refactored)
-import '../css/projects-horizontal-grid.css';
+// Project-specific styles
+import '../css/projects-adjustments.css';
 import '../css/projects-tabs.css';
 
 // Import GSAP and ScrollMagic as ES modules
@@ -60,5 +60,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    });
+    
+    // Image Modal Functionality
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalClose = document.querySelector('.image-modal-close');
+    
+    // Add click event to all project images
+    const projectImages = document.querySelectorAll('.introduction-expertise-icon');
+    projectImages.forEach(imageContainer => {
+        imageContainer.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                const projectCard = this.closest('.introduction-expertise-card');
+                const projectTitle = projectCard.querySelector('h3').textContent;
+                
+                modal.classList.add('active');
+                setTimeout(() => modal.classList.add('show'), 10);
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                modalTitle.textContent = projectTitle;
+                
+                // Prevent body scroll when modal is open
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // Close modal functionality
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            modalImage.src = '';
+            modalTitle.textContent = '';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+    
+    // Close modal when clicking X
+    modalClose.addEventListener('click', closeModal);
+    
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
 });
