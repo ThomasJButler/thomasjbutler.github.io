@@ -4,40 +4,14 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
-import { animate, stagger, createTimeline, eases } from 'animejs';
+import { animate, stagger, createTimeline, Spring } from 'animejs';
 
-// Create anime wrapper function that matches v3 API
-const anime = (params: any) => {
-  if (!params || !params.targets) {
-    console.error('Anime.js: No targets specified');
-    return;
-  }
-  
-  // Extract targets and create animation options
-  const { targets, ...animationOptions } = params;
-  
-  // Ensure all values are properly formatted
-  const options: any = {};
-  for (const key in animationOptions) {
-    const value = animationOptions[key];
-    // Convert arrays to proper format for anime.js v4
-    if (Array.isArray(value) && value.length === 2 && typeof value[0] === 'number') {
-      options[key] = { from: value[0], to: value[1] };
-    } else {
-      options[key] = value;
-    }
-  }
-  
-  return animate(targets, options);
+// Make animate available globally for compatibility
+(window as any).anime = {
+  animate,
+  stagger,
+  createTimeline
 };
-
-// Add utility methods
-anime.stagger = stagger;
-anime.timeline = () => createTimeline();
-anime.easing = eases;
-
-// Make anime available globally
-(window as any).anime = anime;
 
 // Type definitions
 
@@ -487,14 +461,13 @@ function initAnimeAnimations(): void {
   // Staggered fade-in for project cards
   const projectCards = document.querySelectorAll('.project-card');
   if (projectCards.length > 0) {
-    anime({
-      targets: projectCards,
-      opacity: [0, 1],
-      translateY: [30, 0],
-      scale: [0.95, 1],
-      delay: anime.stagger(100, {start: 200}),
+    animate(projectCards, {
+      opacity: { from: 0, to: 1 },
+      translateY: { from: 30, to: 0 },
+      scale: { from: 0.95, to: 1 },
+      delay: stagger(100, {start: 200}),
       duration: 800,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   }
 
@@ -502,32 +475,29 @@ function initAnimeAnimations(): void {
   const counters = document.querySelectorAll('.count');
   counters.forEach(counter => {
     const target = parseInt(counter.getAttribute('data-target') || counter.textContent || '0');
-    anime({
-      targets: counter,
-      textContent: [0, target],
+    animate(counter, {
+      textContent: { from: 0, to: target },
       round: 1,
       duration: 2000,
-      easing: 'easeInOutExpo'
+      ease: 'inOutExpo'
     });
   });
 
   // Subtle button hover effect - removed particle animation
   document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
     button.addEventListener('mouseenter', () => {
-      anime({
-        targets: button,
+      animate(button, {
         scale: 1.05,
         duration: 200,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     });
     
     button.addEventListener('mouseleave', () => {
-      anime({
-        targets: button,
+      animate(button, {
         scale: 1,
         duration: 200,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     });
   });
@@ -535,26 +505,24 @@ function initAnimeAnimations(): void {
   // Simple fade-in for headers - more professional
   const headers = document.querySelectorAll('h1, h2:not(.introduction-h2)');
   headers.forEach((header) => {
-    anime({
-      targets: header,
-      opacity: [0, 1],
-      translateY: [10, 0],
+    animate(header, {
+      opacity: { from: 0, to: 1 },
+      translateY: { from: 10, to: 0 },
       duration: 600,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   });
 
   // Smooth scroll indicator animation
   const scrollIndicators = document.querySelectorAll('.scroll-down');
   if (scrollIndicators.length > 0) {
-    anime({
-      targets: scrollIndicators,
-      translateY: [0, 10],
-      opacity: [1, 0.7],
-      direction: 'alternate',
+    animate(scrollIndicators, {
+      translateY: { from: 0, to: 10 },
+      opacity: { from: 1, to: 0.7 },
+      alternate: true,
       loop: true,
       duration: 1500,
-      easing: 'easeInOutSine'
+      ease: 'inOutSine'
     });
   }
 
@@ -562,20 +530,18 @@ function initAnimeAnimations(): void {
   const galleryItems = document.querySelectorAll('.gallery-item, .introduction-img img');
   galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      anime({
-        targets: item,
+      animate(item, {
         scale: 1.02,
         duration: 300,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     });
 
     item.addEventListener('mouseleave', () => {
-      anime({
-        targets: item,
+      animate(item, {
         scale: 1,
         duration: 300,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     });
   });
@@ -594,13 +560,12 @@ function initScrollReveal(): void {
         
         // Animate section content
         const content = entry.target.querySelectorAll('p, li, .card, .tech-item');
-        anime({
-          targets: content,
-          opacity: [0, 1],
-          translateY: [20, 0],
-          delay: anime.stagger(50),
+        animate(content, {
+          opacity: { from: 0, to: 1 },
+          translateY: { from: 20, to: 0 },
+          delay: stagger(50),
           duration: 600,
-          easing: 'easeOutQuad'
+          ease: 'outQuad'
         });
       }
     });
