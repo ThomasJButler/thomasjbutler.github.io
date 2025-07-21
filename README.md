@@ -251,7 +251,7 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
 
 </div>
-
+``
 ### 📍 Location: York, England, UK 🇬🇧
 ### 💼 Available for: Freelance Projects | Collaboration | Full-time Opportunities
 
