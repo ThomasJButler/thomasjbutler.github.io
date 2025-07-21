@@ -4,10 +4,17 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
-import { animate, stagger, createTimeline, Spring } from 'animejs';
+import { animate, stagger, createTimeline } from 'animejs';
+
+// Define global anime interface
+interface AnimeGlobal {
+  animate: typeof animate;
+  stagger: typeof stagger;
+  createTimeline: typeof createTimeline;
+}
 
 // Make animate available globally for compatibility
-(window as any).anime = {
+(window as Window & { anime: AnimeGlobal }).anime = {
   animate,
   stagger,
   createTimeline

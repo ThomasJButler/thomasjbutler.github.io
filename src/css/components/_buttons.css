@@ -34,7 +34,7 @@
 }
 
 /* CTA Button Arrow */
-.cta-button::before {
+.cta-button:not(.view-all-projects-btn)::before {
     content: "\2192";
     margin-left: var(--space-md);
     transition: all var(--duration-base) var(--ease-out);
@@ -44,8 +44,8 @@
    Matrix Glow Effect
    ========================================================================== */
 
-/* Rotating glow effect - Only for CTA buttons */
-.cta-button::after {
+/* Rotating glow effect - Only for regular CTA buttons */
+.cta-button:not(.view-all-projects-btn)::after {
     content: '';
     position: absolute;
     inset: -50%;
@@ -84,11 +84,11 @@
     text-shadow: var(--matrix-glow);
 }
 
-.cta-button:hover::after {
+.cta-button:not(.view-all-projects-btn):hover::after {
     opacity: 0.5;
 }
 
-.cta-button:hover::before {
+.cta-button:not(.view-all-projects-btn):hover::before {
     transform: translateX(5px);
 }
 
@@ -354,4 +354,67 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   View All Projects Special Button
+   ========================================================================== */
+
+.view-all-projects-btn {
+    position: relative;
+    overflow: visible;
+}
+
+/* Pulse animation for View All Projects button */
+.view-all-projects-btn::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: var(--matrix-green);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    animation: pulse-glow 2s ease-in-out infinite;
+    z-index: -1;
+    filter: blur(8px);
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.05);
+    }
+}
+
+/* Enhanced hover for View All Projects */
+.view-all-projects-btn:hover::before {
+    animation: pulse-glow-hover 0.8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-hover {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.08);
+    }
+}
+
+/* Arrow animation on hover */
+.view-all-projects-btn:hover i {
+    animation: arrow-bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes arrow-bounce {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(5px);
+    }
 }
