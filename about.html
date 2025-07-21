@@ -108,6 +108,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="services.html">Services</a></li>
+                    <li><a href="skills.html">Skills</a></li>
                     <li><a href="about.html" class="active">About Me</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -200,72 +201,6 @@
                     
                     <!-- Featured Qualifications -->
                     <div class="qualifications-grid">
-                        <style>
-                            .qualifications-grid {
-                                display: grid;
-                                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                                gap: 1.5rem;
-                                margin: 2rem 0;
-                            }
-                            
-                            .qualification-card {
-                                background: rgba(0, 255, 0, 0.05);
-                                border: 2px solid var(--neon-green);
-                                border-radius: 8px;
-                                padding: 1.5rem;
-                                transition: all 0.3s ease;
-                            }
-                            
-                            .qualification-card:hover {
-                                transform: translateY(-4px);
-                                box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
-                            }
-                            
-                            .qualification-card h3 {
-                                color: var(--neon-green);
-                                margin-bottom: 0.5rem;
-                                font-size: 1.1rem;
-                            }
-                            
-                            .qualification-date {
-                                color: #888;
-                                font-size: 0.9rem;
-                                margin-bottom: 0.5rem;
-                            }
-                            
-                            .verify-link {
-                                color: var(--neon-green);
-                                text-decoration: none;
-                                font-weight: bold;
-                                transition: color 0.3s ease;
-                            }
-                            
-                            .verify-link:hover {
-                                color: #fff;
-                            }
-                            
-                            .certification-badge {
-                                max-width: 100px;
-                                height: auto;
-                                margin-top: 1rem;
-                            }
-                            
-                            @media (max-width: 768px) {
-                                .qualifications-grid {
-                                    grid-template-columns: 1fr;
-                                    gap: 1rem;
-                                    margin: 1rem 0;
-                                }
-                                
-                                .qualification-card {
-                                    padding: 1rem;
-                                }
-                                
-                                .qualification-card h3 {
-                                    font-size: 1rem;
-                                }
-                            }
-                        </style>
                         <div class="qualification-card">
                             <h3>Estio Level 4 Software Developer Apprenticeship</h3>
                             <p class="qualification-date">Completed 2024</p>
@@ -294,38 +229,37 @@
                         </div>
                     </div>
                     
-                    <!-- Other Certifications -->
-                    <h3 style="margin-top: 3rem; margin-bottom: 2rem;">Additional Certifications</h3>
-                    <div class="certifications-grid">
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
-                            <h4>AWS Skills Builder</h4>
-                            <p>Cloud architecture and serverless computing</p>
-                        </div>
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
-                            <h4>CodeCademy Full Stack Engineer</h4>
-                            <p>Full-stack web development</p>
-                        </div>
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
-                            <h4>Cisco</h4>
-                            <p>-Data Analytics Essentials</p>
-                            <p>-Intro to Cybersecurity</p>
-                        </div>
-                    </div>
-                    <div class="certifications-grid">
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
-                            <h4>HubSpot Certified Developer</h4>
-                            <p>-CMS Integration, HUBL code</p>
-                            <p>-Custom HubSpot Modules</p>
-                        </div>
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
-                            <h4>Free Code Camp</h4>
-                            <p>Data Analysis With Python</p>
-                        </div>
+                    <!-- Other Certifications - Simplified -->
+                    <div class="additional-certifications" style="margin-top: 3rem;">
+                        <h3 style="margin-bottom: 1.5rem;">Additional Certifications & Training</h3>
+                        <ul class="certification-list" style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem;">
+                                <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+                                AWS Skills Builder - Cloud Architecture & Serverless Computing
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+                                CodeCademy Full Stack Engineer Certificate
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+                                Cisco Data Analytics Essentials & Cybersecurity Fundamentals
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+                                HubSpot Certified Developer - CMS Integration & HUBL
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+                                Free Code Camp - Data Analysis With Python
+                            </li>
+                        </ul>
+                        <p style="margin-top: 1.5rem;">
+                            <a href="education.html" class="neo-matrix-btn" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <span>View Full Education & Certification Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
