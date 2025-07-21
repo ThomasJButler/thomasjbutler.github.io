@@ -25,7 +25,6 @@ export default defineConfig({
         services: resolve(__dirname, 'services.html'),
         contact: resolve(__dirname, 'contact.html'),
         codepen: resolve(__dirname, 'codepen.html'),
-        landingpage: resolve(__dirname, 'landingpage.html'),
       }
     },
     minify: 'terser',
