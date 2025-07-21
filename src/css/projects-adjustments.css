@@ -3,6 +3,11 @@
    2-column layout with perfect sizing and image modal
    ========================================================================== */
 
+/* Hidden class for tab filtering */
+.introduction-expertise-card.hidden {
+    display: none !important;
+}
+
 /* Force 2-column layout on desktop */
 #featured-projects .introduction-expertise-grid {
     display: grid;
