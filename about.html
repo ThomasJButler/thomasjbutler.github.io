@@ -23,6 +23,65 @@
         .page-loader.active {
             display: flex;
         }
+        
+        /* Qualifications Section Styles */
+        .qualifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .qualification-card {
+            background: var(--matrix-dark);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: var(--space-xl);
+            transition: all 0.3s var(--ease-out);
+        }
+        
+        .qualification-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
+            border-color: var(--matrix-green);
+        }
+        
+        .qualification-date {
+            color: var(--matrix-green);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .verify-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--matrix-green);
+            text-decoration: none;
+            border-bottom: 1px solid var(--matrix-green);
+            transition: all 0.3s ease;
+        }
+        
+        .verify-link:hover {
+            text-shadow: 0 0 10px var(--matrix-green);
+        }
+
+        .certification-badge {
+            max-width: 200px;
+            margin-top: var(--space-md);
+            filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.3));
+        }
+        
+        /* Better desktop spacing */
+        .about-me-box {
+            padding: var(--space-2xl);
+            margin: var(--space-2xl) auto;
+            max-width: 900px;
+        }
+
+        /* Increase section padding */
+        .section-content {
+            padding: var(--space-3xl) 0;
+        }
     </style>
     <!-- CSS and libraries loaded via JavaScript module -->
     <script type="module" src="/src/js/main-page.js"></script>
@@ -110,11 +169,44 @@
 
         <section id="continuous-learning" class="about-section" data-aos="fade-up">
             <div class="container">
-                <h2 class="section-title">Qualifications</h2>
+                <h2 class="section-title">Qualifications & Certifications</h2>
                 <div class="learning-content">
                     <p class="highlight-text">
                         I believe in staying current with technology trends and continuously expanding my knowledge base.
                     </p>
+                    
+                    <!-- Featured Qualifications -->
+                    <div class="qualifications-grid">
+                        <div class="qualification-card">
+                            <h3>Estio Level 4 Software Developer Apprenticeship</h3>
+                            <p class="qualification-date">Completed 2024</p>
+                            <p>Advanced software development training with real-world application</p>
+                        </div>
+                        
+                        <div class="qualification-card">
+                            <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
+                            <p class="qualification-date">2024</p>
+                            <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw" 
+                               target="_blank" 
+                               class="verify-link">
+                                Verify Credential →
+                            </a>
+                            <div class="badge-embed">
+                                <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/155335744" 
+                                     alt="City & Guilds Certification Badge"
+                                     class="certification-badge">
+                            </div>
+                        </div>
+                        
+                        <div class="qualification-card">
+                            <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
+                            <p class="qualification-date">In Progress - August 2025</p>
+                            <p>Mastering Generative AI and advanced machine learning techniques</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Certifications -->
+                    <h3 style="margin-top: 3rem; margin-bottom: 2rem;">Additional Certifications</h3>
                     <div class="certifications-grid">
                         <div class="certification-item">
                             <i class="fas fa-certificate"></i>
@@ -123,8 +215,8 @@
                         </div>
                         <div class="certification-item">
                             <i class="fas fa-certificate"></i>
-                            <h4>CodeCademy Machine Learning/AI Engineer</h4>
-                            <p>Machine learning and AI model development</p>
+                            <h4>CodeCademy Full Stack Engineer</h4>
+                            <p>Full-stack web development</p>
                         </div>
                         <div class="certification-item">
                             <i class="fas fa-certificate"></i>
@@ -136,19 +228,14 @@
                     <div class="certifications-grid">
                         <div class="certification-item">
                             <i class="fas fa-certificate"></i>
-                            <h4>CodeCademy Full Stack Engineer</h4>
-                            <p>Full-stack web development</p>
-                        </div>
-                        <div class="certification-item">
-                            <i class="fas fa-certificate"></i>
                             <h4>HubSpot Certified Developer</h4>
                             <p>-CMS Integration, HUBL code</p>
                             <p>-Custom HubSpot Modules</p>
                         </div>
                         <div class="certification-item">
                             <i class="fas fa-certificate"></i>
-                            <h4>Free Code Camp </h4>
-                            <p>Data Anaysis With Python</p>
+                            <h4>Free Code Camp</h4>
+                            <p>Data Analysis With Python</p>
                         </div>
                     </div>
                 </div>
