@@ -11,6 +11,7 @@
 @import './base/_variables.css';    /* CSS custom properties */
 @import './base/_reset.css';        /* CSS reset and base styles */
 @import './base/_typography.css';   /* Typography system */
+@import './base/_layout.css';       /* Layout structures and containers */
 
 /* ==========================================================================
    Layout Components
