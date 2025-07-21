@@ -1,0 +1,458 @@
+/* ==========================================================================
+   Animation Utilities
+   Matrix-themed animations and transitions
+   ========================================================================== */
+
+/* ==========================================================================
+   Keyframe Definitions
+   ========================================================================== */
+
+/* Fade animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Scale animations */
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Matrix-specific animations */
+@keyframes matrixRain {
+    0% { 
+        transform: translateY(-100%);
+    }
+    100% { 
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes matrixGlow {
+    0%, 100% {
+        opacity: 0.5;
+        filter: blur(1px);
+    }
+    50% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes scanlines {
+    0% { 
+        transform: translateY(0);
+    }
+    100% { 
+        transform: translateY(100%);
+    }
+}
+
+@keyframes crtFlicker {
+    0%, 100% { 
+        opacity: 1;
+    }
+    50% { 
+        opacity: 0.98;
+    }
+}
+
+/* Loading animations */
+@keyframes spin {
+    from { 
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loadingDots {
+    0%, 100% { 
+        content: '';
+    }
+    25% { 
+        content: '.';
+    }
+    50% { 
+        content: '..';
+    }
+    75% { 
+        content: '...';
+    }
+}
+
+/* Y2K/Retro animations */
+@keyframes y2kPulse {
+    0%, 100% { 
+        background-color: rgba(0, 30, 0, 0.8);
+    }
+    50% { 
+        background-color: rgba(0, 40, 0, 0.8);
+    }
+}
+
+@keyframes dialUp {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+    }
+    70% { 
+        box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    }
+}
+
+@keyframes blink {
+    0%, 50% { 
+        opacity: 1;
+    }
+    51%, 100% { 
+        opacity: 0;
+    }
+}
+
+/* Gradient animations */
+@keyframes rotateGradient {
+    0% { 
+        transform: rotate(0deg);
+    }
+    100% { 
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes addressSweep {
+    0% { 
+        left: -100%;
+    }
+    100% { 
+        left: 100%;
+    }
+}
+
+/* Progress animations */
+@keyframes progressShine {
+    from { 
+        transform: translateX(-20px);
+    }
+    to { 
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   Animation Classes
+   ========================================================================== */
+
+/* Fade animations */
+.fade-in {
+    animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+.fade-out {
+    animation: fadeOut var(--duration-base) var(--ease-out);
+}
+
+.fade-in-up {
+    animation: fadeInUp var(--duration-slow) var(--ease-out);
+}
+
+.fade-in-down {
+    animation: fadeInDown var(--duration-slow) var(--ease-out);
+}
+
+/* Slide animations */
+.slide-up {
+    animation: slideUp var(--duration-slow) var(--ease-out);
+}
+
+.slide-down {
+    animation: slideDown var(--duration-slow) var(--ease-out);
+}
+
+.slide-left {
+    animation: slideLeft var(--duration-slow) var(--ease-out);
+}
+
+.slide-right {
+    animation: slideRight var(--duration-slow) var(--ease-out);
+}
+
+/* Scale animations */
+.scale-in {
+    animation: scaleIn var(--duration-base) var(--ease-elastic);
+}
+
+.scale-out {
+    animation: scaleOut var(--duration-base) var(--ease-in);
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+/* Loading animation */
+.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* Matrix effects */
+.matrix-glow-animation {
+    animation: matrixGlow 2s ease-in-out infinite;
+}
+
+.crt-flicker {
+    animation: crtFlicker 0.15s infinite;
+}
+
+/* ==========================================================================
+   Reveal Animation System
+   ========================================================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--duration-slow) var(--ease-out),
+                transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Directional reveals */
+.reveal-left {
+    transform: translateX(-30px);
+}
+
+.reveal-right {
+    transform: translateX(30px);
+}
+
+.reveal-scale {
+    transform: scale(0.9);
+}
+
+/* Staggered reveal */
+.reveal-stagger {
+    transition-delay: calc(var(--stagger-index, 0) * 100ms);
+}
+
+/* ==========================================================================
+   Transition Utilities
+   ========================================================================== */
+
+.transition-all {
+    transition: all var(--duration-base) var(--ease-in-out);
+}
+
+.transition-colors {
+    transition: color var(--duration-base) var(--ease-in-out),
+                background-color var(--duration-base) var(--ease-in-out),
+                border-color var(--duration-base) var(--ease-in-out);
+}
+
+.transition-transform {
+    transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+.transition-opacity {
+    transition: opacity var(--duration-base) var(--ease-in-out);
+}
+
+.transition-shadow {
+    transition: box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+/* Transition durations */
+.transition-fast {
+    transition-duration: var(--duration-fast);
+}
+
+.transition-slow {
+    transition-duration: var(--duration-slow);
+}
+
+.transition-slower {
+    transition-duration: var(--duration-slower);
+}
+
+/* ==========================================================================
+   Hover Effects
+   ========================================================================== */
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--matrix-glow);
+}
+
+.hover-bright:hover {
+    filter: brightness(1.2);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+}
+
+/* ==========================================================================
+   Animation Delay Utilities
+   ========================================================================== */
+
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
+.delay-1000 {
+    animation-delay: 1000ms;
+}
+
+/* ==========================================================================
+   Animation Control
+   ========================================================================== */
+
+.animation-paused {
+    animation-play-state: paused;
+}
+
+.animation-running {
+    animation-play-state: running;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

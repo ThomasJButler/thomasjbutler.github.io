@@ -1,0 +1,337 @@
+/* ==========================================================================
+   Utility Helpers
+   Common utility classes for rapid development
+   ========================================================================== */
+
+/* ==========================================================================
+   Display Utilities
+   ========================================================================== */
+
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; }
+.d-grid { display: grid !important; }
+.d-table { display: table !important; }
+.d-table-cell { display: table-cell !important; }
+
+/* ==========================================================================
+   Flexbox Utilities
+   ========================================================================== */
+
+/* Flex container */
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.flex-row-reverse { flex-direction: row-reverse !important; }
+.flex-column-reverse { flex-direction: column-reverse !important; }
+
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
+
+/* Justify content */
+.justify-start { justify-content: flex-start !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-around { justify-content: space-around !important; }
+.justify-evenly { justify-content: space-evenly !important; }
+
+/* Align items */
+.align-start { align-items: flex-start !important; }
+.align-end { align-items: flex-end !important; }
+.align-center { align-items: center !important; }
+.align-baseline { align-items: baseline !important; }
+.align-stretch { align-items: stretch !important; }
+
+/* Align self */
+.align-self-start { align-self: flex-start !important; }
+.align-self-end { align-self: flex-end !important; }
+.align-self-center { align-self: center !important; }
+.align-self-baseline { align-self: baseline !important; }
+.align-self-stretch { align-self: stretch !important; }
+
+/* Flex shortcuts */
+.flex-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.flex-between {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Flex grow/shrink */
+.flex-grow-0 { flex-grow: 0 !important; }
+.flex-grow-1 { flex-grow: 1 !important; }
+.flex-shrink-0 { flex-shrink: 0 !important; }
+.flex-shrink-1 { flex-shrink: 1 !important; }
+
+/* Gap */
+.gap-xs { gap: var(--space-xs) !important; }
+.gap-sm { gap: var(--space-sm) !important; }
+.gap-md { gap: var(--space-md) !important; }
+.gap-lg { gap: var(--space-lg) !important; }
+.gap-xl { gap: var(--space-xl) !important; }
+
+/* ==========================================================================
+   Position Utilities
+   ========================================================================== */
+
+.static { position: static !important; }
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.fixed { position: fixed !important; }
+.sticky { position: sticky !important; }
+
+/* Position values */
+.top-0 { top: 0 !important; }
+.right-0 { right: 0 !important; }
+.bottom-0 { bottom: 0 !important; }
+.left-0 { left: 0 !important; }
+
+.inset-0 {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+}
+
+/* ==========================================================================
+   Z-Index Utilities
+   ========================================================================== */
+
+.z-negative { z-index: var(--z-negative) !important; }
+.z-0 { z-index: var(--z-0) !important; }
+.z-10 { z-index: var(--z-10) !important; }
+.z-20 { z-index: var(--z-20) !important; }
+.z-30 { z-index: var(--z-30) !important; }
+.z-40 { z-index: var(--z-40) !important; }
+.z-50 { z-index: var(--z-50) !important; }
+.z-modal { z-index: var(--z-modal) !important; }
+.z-dropdown { z-index: var(--z-dropdown) !important; }
+.z-tooltip { z-index: var(--z-tooltip) !important; }
+
+/* ==========================================================================
+   Size Utilities
+   ========================================================================== */
+
+/* Width */
+.w-0 { width: 0 !important; }
+.w-25 { width: 25% !important; }
+.w-50 { width: 50% !important; }
+.w-75 { width: 75% !important; }
+.w-100 { width: 100% !important; }
+.w-auto { width: auto !important; }
+.w-screen { width: 100vw !important; }
+.w-min { width: min-content !important; }
+.w-max { width: max-content !important; }
+.w-fit { width: fit-content !important; }
+
+/* Max width */
+.max-w-full { max-width: 100% !important; }
+.max-w-screen { max-width: 100vw !important; }
+.max-w-container { max-width: var(--container-max) !important; }
+
+/* Min width */
+.min-w-0 { min-width: 0 !important; }
+.min-w-full { min-width: 100% !important; }
+
+/* Height */
+.h-0 { height: 0 !important; }
+.h-25 { height: 25% !important; }
+.h-50 { height: 50% !important; }
+.h-75 { height: 75% !important; }
+.h-100 { height: 100% !important; }
+.h-auto { height: auto !important; }
+.h-screen { height: 100vh !important; }
+.h-min { height: min-content !important; }
+.h-max { height: max-content !important; }
+.h-fit { height: fit-content !important; }
+
+/* Max height */
+.max-h-full { max-height: 100% !important; }
+.max-h-screen { max-height: 100vh !important; }
+
+/* Min height */
+.min-h-0 { min-height: 0 !important; }
+.min-h-full { min-height: 100% !important; }
+.min-h-screen { min-height: 100vh !important; }
+
+/* ==========================================================================
+   Overflow Utilities
+   ========================================================================== */
+
+.overflow-auto { overflow: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-visible { overflow: visible !important; }
+.overflow-scroll { overflow: scroll !important; }
+
+.overflow-x-auto { overflow-x: auto !important; }
+.overflow-x-hidden { overflow-x: hidden !important; }
+.overflow-x-visible { overflow-x: visible !important; }
+.overflow-x-scroll { overflow-x: scroll !important; }
+
+.overflow-y-auto { overflow-y: auto !important; }
+.overflow-y-hidden { overflow-y: hidden !important; }
+.overflow-y-visible { overflow-y: visible !important; }
+.overflow-y-scroll { overflow-y: scroll !important; }
+
+/* ==========================================================================
+   Font Utilities
+   ========================================================================== */
+
+/* Font family */
+.font-mono { font-family: var(--font-primary) !important; }
+.font-system { font-family: var(--font-body) !important; }
+.font-code { font-family: var(--font-code) !important; }
+
+/* Font size */
+.text-xs { font-size: 0.75rem !important; }
+.text-sm { font-size: var(--font-size-sm) !important; }
+.text-base { font-size: var(--font-size-base) !important; }
+.text-lg { font-size: 1.125rem !important; }
+.text-xl { font-size: 1.25rem !important; }
+.text-2xl { font-size: 1.5rem !important; }
+.text-3xl { font-size: 1.875rem !important; }
+.text-4xl { font-size: 2.25rem !important; }
+
+/* Font weight */
+.fw-light { font-weight: 300 !important; }
+.fw-normal { font-weight: 400 !important; }
+.fw-medium { font-weight: 500 !important; }
+.fw-semibold { font-weight: 600 !important; }
+.fw-bold { font-weight: 700 !important; }
+
+/* Font style */
+.italic { font-style: italic !important; }
+.not-italic { font-style: normal !important; }
+
+/* Line height */
+.leading-none { line-height: 1 !important; }
+.leading-tight { line-height: var(--line-height-tight) !important; }
+.leading-normal { line-height: var(--line-height-base) !important; }
+.leading-relaxed { line-height: var(--line-height-relaxed) !important; }
+
+/* Letter spacing */
+.tracking-tight { letter-spacing: var(--letter-spacing-tight) !important; }
+.tracking-normal { letter-spacing: var(--letter-spacing-base) !important; }
+.tracking-wide { letter-spacing: var(--letter-spacing-wide) !important; }
+.tracking-wider { letter-spacing: var(--letter-spacing-wider) !important; }
+
+/* ==========================================================================
+   Border Utilities
+   ========================================================================== */
+
+.border-0 { border: 0 !important; }
+.border { border: 1px solid var(--border-primary) !important; }
+.border-2 { border: 2px solid var(--border-primary) !important; }
+
+.border-t { border-top: 1px solid var(--border-primary) !important; }
+.border-r { border-right: 1px solid var(--border-primary) !important; }
+.border-b { border-bottom: 1px solid var(--border-primary) !important; }
+.border-l { border-left: 1px solid var(--border-primary) !important; }
+
+/* Border radius */
+.rounded-none { border-radius: 0 !important; }
+.rounded-sm { border-radius: var(--radius-sm) !important; }
+.rounded { border-radius: var(--radius-base) !important; }
+.rounded-md { border-radius: var(--radius-md) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.rounded-xl { border-radius: var(--radius-xl) !important; }
+.rounded-full { border-radius: var(--radius-full) !important; }
+
+/* ==========================================================================
+   Shadow Utilities
+   ========================================================================== */
+
+.shadow-none { box-shadow: none !important; }
+.shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; }
+.shadow { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important; }
+.shadow-md { box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4) !important; }
+.shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5) !important; }
+.shadow-xl { box-shadow: 0 20px 25px rgba(0, 0, 0, 0.7) !important; }
+.shadow-matrix { box-shadow: var(--matrix-glow) !important; }
+.shadow-matrix-intense { box-shadow: var(--matrix-glow-intense) !important; }
+
+/* ==========================================================================
+   Cursor Utilities
+   ========================================================================== */
+
+.cursor-auto { cursor: auto !important; }
+.cursor-default { cursor: default !important; }
+.cursor-pointer { cursor: pointer !important; }
+.cursor-wait { cursor: wait !important; }
+.cursor-text { cursor: text !important; }
+.cursor-move { cursor: move !important; }
+.cursor-not-allowed { cursor: not-allowed !important; }
+.cursor-help { cursor: help !important; }
+
+/* ==========================================================================
+   User Select
+   ========================================================================== */
+
+.select-none { user-select: none !important; }
+.select-text { user-select: text !important; }
+.select-all { user-select: all !important; }
+.select-auto { user-select: auto !important; }
+
+/* ==========================================================================
+   Opacity Utilities
+   ========================================================================== */
+
+.opacity-0 { opacity: 0 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+/* ==========================================================================
+   Visibility Utilities
+   ========================================================================== */
+
+.visible { visibility: visible !important; }
+.invisible { visibility: hidden !important; }
+
+/* ==========================================================================
+   Pointer Events
+   ========================================================================== */
+
+.pointer-events-none { pointer-events: none !important; }
+.pointer-events-auto { pointer-events: auto !important; }
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+
+/* Mobile first approach */
+@media (max-width: 768px) {
+    .mobile-hide { display: none !important; }
+    .mobile-show { display: block !important; }
+    .mobile-flex { display: flex !important; }
+}
+
+@media (min-width: 769px) {
+    .desktop-hide { display: none !important; }
+    .desktop-show { display: block !important; }
+    .desktop-flex { display: flex !important; }
+}
+
+@media (max-width: 480px) {
+    .small-hide { display: none !important; }
+    .small-show { display: block !important; }
+}
+
+/* ==========================================================================
+   Print Utilities
+   ========================================================================== */
+
+@media print {
+    .print-hide { display: none !important; }
+    .print-show { display: block !important; }
+}

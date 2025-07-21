@@ -1,0 +1,357 @@
+/* ==========================================================================
+   Button Components
+   Matrix-themed button styles with hover effects and animations
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Button Styles
+   ========================================================================== */
+
+.cta-button,
+.btn-contact-us,
+.neo-matrix-btn,
+.matrix-btn {
+    align-items: center;
+    background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
+    border: 1px solid var(--matrix-green);
+    border-radius: var(--radius-md);
+    color: var(--matrix-green);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+    font-weight: 400;
+    gap: var(--space-sm);
+    justify-content: center;
+    letter-spacing: var(--letter-spacing-wider);
+    margin-top: var(--space-md);
+    overflow: hidden;
+    padding: 0.75rem 1.5rem;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+/* CTA Button Arrow */
+.cta-button::before {
+    content: "\2192";
+    margin-left: var(--space-md);
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+/* ==========================================================================
+   Matrix Glow Effect
+   ========================================================================== */
+
+/* Rotating glow effect - Only for CTA buttons */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--matrix-green),
+        transparent 30%
+    );
+    animation: rotate 3s linear infinite;
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Button Hover States
+   ========================================================================== */
+
+.cta-button:hover,
+.btn-contact-us:hover,
+.neo-matrix-btn:hover,
+.matrix-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+    color: #fff;
+    border-color: var(--matrix-green);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.5),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    transform: translateY(-2px);
+    text-shadow: var(--matrix-glow);
+}
+
+.cta-button:hover::after {
+    opacity: 0.5;
+}
+
+.cta-button:hover::before {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   Neo Matrix Button (Card-specific)
+   ========================================================================== */
+
+.introduction-expertise-buttons a.neo-matrix-btn,
+.project-buttons a.neo-matrix-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0;
+    padding: 12px 20px;
+    background: var(--matrix-dark);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    color: var(--matrix-green);
+    font-family: var(--font-body);
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+/* Neo Matrix Button Icon */
+.neo-matrix-btn i {
+    margin-left: auto;
+    font-size: 1.2em;
+}
+
+/* Neo Matrix Button Text */
+.neo-matrix-btn .btn-text {
+    flex: 1;
+    text-align: center;
+}
+
+/* Neo Matrix Button Gradient Overlay */
+.neo-matrix-btn::before {
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.2) 50%, 
+        transparent 100%
+    );
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+    width: 100%;
+    z-index: -1;
+}
+
+/* Neo Matrix Button Pattern Overlay */
+.neo-matrix-btn::after {
+    background-image: 
+        radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-position: 0 0, 0 0, -5px -5px, -5px -5px;
+    background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+    border-radius: var(--radius-md);
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.1);
+    transition: opacity var(--duration-slow) var(--ease-out), 
+                transform var(--duration-slow) var(--ease-out);
+}
+
+/* Neo Matrix Button Hover */
+.neo-matrix-btn:hover {
+    background: rgba(0, 30, 0, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.neo-matrix-btn:hover::before {
+    opacity: 1;
+}
+
+.neo-matrix-btn:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ==========================================================================
+   Button Active States
+   ========================================================================== */
+
+.cta-button:active,
+.btn-contact-us:active,
+.neo-matrix-btn:active,
+.matrix-btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.3),
+        inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+/* ==========================================================================
+   Button Variants
+   ========================================================================== */
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 0, 0.1), 
+        rgba(0, 255, 0, 0.05)
+    );
+    border-color: var(--matrix-green);
+    color: var(--matrix-green);
+}
+
+.btn-primary:hover {
+    background: var(--matrix-green);
+    color: #000;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: transparent;
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+    border-color: var(--matrix-green);
+    color: var(--matrix-green);
+}
+
+/* Danger Button */
+.btn-danger {
+    border-color: var(--matrix-red);
+    color: var(--matrix-red);
+}
+
+.btn-danger:hover {
+    background: rgba(255, 40, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 40, 0, 0.5);
+}
+
+/* ==========================================================================
+   Button Sizes
+   ========================================================================== */
+
+.btn-sm {
+    font-size: var(--font-size-sm);
+    padding: 0.5rem 1rem;
+}
+
+.btn-lg {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+}
+
+/* ==========================================================================
+   Button Groups
+   ========================================================================== */
+
+.btn-group {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-group.vertical {
+    flex-direction: column;
+    width: 100%;
+}
+
+.btn-group.vertical .cta-button,
+.btn-group.vertical .neo-matrix-btn {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+.cta-button:disabled,
+.neo-matrix-btn:disabled,
+.matrix-btn:disabled,
+.cta-button.disabled,
+.neo-matrix-btn.disabled,
+.matrix-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .cta-button,
+    .btn-contact-us,
+    .neo-matrix-btn,
+    .matrix-btn {
+        font-size: 1rem;
+        padding: 0.625rem 1.25rem;
+    }
+    
+    .btn-group:not(.vertical) {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group:not(.vertical) .cta-button,
+    .btn-group:not(.vertical) .neo-matrix-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-button,
+    .btn-contact-us,
+    .neo-matrix-btn,
+    .matrix-btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+.btn-loading {
+    color: transparent;
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid transparent;
+    border-top-color: var(--matrix-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

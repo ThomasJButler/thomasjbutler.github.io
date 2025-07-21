@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Main CSS Entry Point
+   Imports all modular CSS files in the correct order
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Styles
+   These must come first to establish fundamentals
+   ========================================================================== */
+
+@import './base/_variables.css';    /* CSS custom properties */
+@import './base/_reset.css';        /* CSS reset and base styles */
+@import './base/_typography.css';   /* Typography system */
+
+/* ==========================================================================
+   Layout Components
+   Core layout structures
+   ========================================================================== */
+
+@import './components/_footer.css';  /* Footer component */
+
+/* ==========================================================================
+   UI Components
+   Reusable component styles
+   ========================================================================== */
+
+@import './components/_buttons.css'; /* Button styles and variants */
+@import './components/_cards.css';   /* Card layouts (introduction-expertise pattern) */
+@import './components/_forms.css';   /* Form elements and styling */
+
+/* ==========================================================================
+   Utilities
+   Helper classes and animations
+   ========================================================================== */
+
+@import './utilities/_spacing.css';   /* Margin and padding utilities */
+@import './utilities/_helpers.css';   /* Display, position, and other utilities */
+@import './utilities/_animations.css'; /* Animation keyframes and classes */
+
+/* ==========================================================================
+   Page-Specific Styles
+   These can override component styles if needed
+   ========================================================================== */
+
+/* Projects page specific styles */
+@import './projects.css';
+
+/* About page specific styles */
+@import './about.css';
+
+/* GitHub projects integration */
+@import './github-projects.css';
+
+/* ==========================================================================
+   Legacy Imports (to be refactored)
+   These will be gradually migrated to the new structure
+   ========================================================================== */
+
+/* Global styles that haven't been modularized yet */
+@import './global.css';
+
+/* Header styles (to be componentized) */
+@import './header.css';
+
+/* Additional styles (to be reviewed and integrated) */
+@import './styles.css';
+
+/* Hover effects (to be integrated into components) */
+@import './hover-effects.css';
+
+/* Typography overrides (to be merged with base typography) */
+@import './typography.css';
+
+/* ==========================================================================
+   Print Styles
+   Must come last to override screen styles
+   ========================================================================== */
+
+@media print {
+    /* Hide non-essential elements */
+    nav,
+    footer,
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Optimize for print */
+    body {
+        background: white;
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+    
+    /* Ensure content fits on page */
+    .container {
+        max-width: 100%;
+    }
+}
