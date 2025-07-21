@@ -46,6 +46,7 @@
     isolation: isolate;
   }
   
+  /* Default vertical grid - will be overridden by horizontal layout */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -55,6 +56,9 @@
     padding: 1rem;
     perspective: 1000px;
   }
+  
+  /* Import horizontal grid styles */
+  @import 'projects-horizontal-grid.css';
 
   .github-projects-grid {
     display: grid;

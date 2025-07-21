@@ -1,0 +1,151 @@
+/* About Page Styles - V3.0 */
+
+/* Qualifications Grid */
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+
+.qualification-card {
+    background: rgba(0, 255, 0, 0.05);
+    border: 2px solid var(--matrix-green);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    transition: all 0.3s var(--ease-out);
+}
+
+.qualification-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
+}
+
+.qualification-card h3 {
+    color: var(--matrix-green);
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+}
+
+.qualification-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-sm);
+}
+
+.verify-link {
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.verify-link:hover {
+    color: #fff;
+}
+
+.certification-badge {
+    max-width: 100px;
+    height: auto;
+    margin-top: var(--space-md);
+}
+
+/* Additional Certifications */
+.additional-certifications {
+    margin-top: var(--space-2xl);
+}
+
+.certification-list {
+    list-style: none;
+    padding: 0;
+}
+
+.certification-list li {
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.certification-list i {
+    color: var(--matrix-green);
+    margin-right: var(--space-sm);
+    font-size: 1.1rem;
+}
+
+/* Neo Matrix Button */
+.neo-matrix-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
+    border: 1px solid var(--matrix-green);
+    border-radius: 6px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.neo-matrix-btn:hover {
+    background: var(--matrix-green);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.neo-matrix-btn i {
+    transition: transform 0.3s ease;
+}
+
+.neo-matrix-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Content Improvements */
+#qualifications h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-h2);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+#qualifications p {
+    max-width: 800px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(0, 255, 0, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .qualifications-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        margin: var(--space-lg) 0;
+    }
+    
+    .qualification-card {
+        padding: var(--space-md);
+    }
+    
+    .qualification-card h3 {
+        font-size: 1rem;
+    }
+    
+    .certification-list li {
+        font-size: 0.9rem;
+    }
+    
+    .neo-matrix-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
