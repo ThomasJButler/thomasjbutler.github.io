@@ -20,10 +20,8 @@ window.ScrollMagic = ScrollMagic;
 // Initialize on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('Portfolio site initialized with Vite');
     initializeHeader();
   });
 } else {
-  console.log('Portfolio site initialized with Vite');
   initializeHeader();
 }

@@ -23,8 +23,6 @@ window.ScrollMagic = ScrollMagic;
 // Import horizontal grid functionality
 import './projects-horizontal.js';
 
-console.log('Projects page initialized with Vite');
-
 // GitHub Projects Tab Functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize header

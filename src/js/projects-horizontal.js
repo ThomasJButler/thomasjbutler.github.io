@@ -3,7 +3,6 @@
 // Wait for both DOM and all resources to load
 window.addEventListener('load', function() {
     setTimeout(() => {
-        console.log('Initializing horizontal grid...');
         // Initialize horizontal grid
         initializeHorizontalGrid();
         
@@ -36,8 +35,7 @@ function initializeHorizontalGrid() {
     // Get all project cards
     const cards = projectsGrid.querySelectorAll('.project-card, .github-card');
     
-    // Assign random sizes for artistic effect
-    const sizes = ['small', 'medium', 'large', 'featured'];
+    // Create horizontal cards
     cards.forEach((card, index) => {
         const newCard = card.cloneNode(true);
         newCard.classList.add('project-card-horizontal');

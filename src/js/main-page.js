@@ -7,7 +7,6 @@ import '../css/main.css';
 
 // Note: Page-specific CSS is now imported in main.css
 // Legacy dynamic imports kept for compatibility
-const bodyClass = document.body.className;
 
 // Import GSAP and ScrollMagic as ES modules
 import gsap from 'gsap';
@@ -32,10 +31,8 @@ AOS.init();
 // Initialize on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('Page initialized with Vite');
     initializeHeader();
   });
 } else {
-  console.log('Page initialized with Vite');
   initializeHeader();
 }

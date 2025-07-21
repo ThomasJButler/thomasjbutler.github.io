@@ -4,16 +4,22 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
-import anime from 'animejs';
+import { animate, stagger, createTimeline, eases } from 'animejs';
+
+// Create anime wrapper function that matches v3 API
+const anime = (params: any) => {
+  return animate(params.targets, params);
+};
+
+// Add utility methods
+anime.stagger = stagger;
+anime.timeline = () => createTimeline();
+anime.easing = eases;
 
 // Make anime available globally
 (window as any).anime = anime;
 
 // Type definitions
-interface MatrixDrop {
-  position: number;
-  color: string;
-}
 
 interface GlitchOptions {
   iterations?: number;
@@ -29,14 +35,12 @@ interface NotificationOptions {
 // Matrix Rain Effect Setup
 const canvas = document.getElementById('matrixCanvas') as HTMLCanvasElement | null;
 let ctx: CanvasRenderingContext2D | null = null;
-let matrixEnabled = true;
+const matrixEnabled = true;
 let frameCount = 0;
 
 // Get drawing context if canvas exists
 if (canvas) {
   ctx = canvas.getContext('2d');
-} else {
-  console.log('Matrix canvas not found.');
 }
 
 // Function to make canvas fullscreen and handle window resizing
@@ -160,7 +164,6 @@ window.addEventListener('scroll', () => {
 // Glitch effect for headings
 function glitchEffect(element: HTMLElement, options: GlitchOptions = {}): void {
   const {
-    iterations = 5,
     duration = 50,
     chars = '!@#$%^&*()_+-=[]{}|;:,.<>?'
   } = options;
@@ -260,12 +263,10 @@ function showNotification(message: string, options: NotificationOptions = {}): v
 
 // Interactive matrix effect on mouse/touch
 if (canvas) {
-  let isInteracting = false;
   let mouseX = 0;
   let mouseY = 0;
   
   function handleInteraction(e: MouseEvent | TouchEvent): void {
-    isInteracting = true;
     
     if (e instanceof MouseEvent) {
       mouseX = e.clientX;
@@ -289,11 +290,9 @@ if (canvas) {
   canvas.addEventListener('touchmove', handleInteraction);
   
   canvas.addEventListener('mouseleave', () => {
-    isInteracting = false;
   });
   
   canvas.addEventListener('touchend', () => {
-    isInteracting = false;
   });
 }
 
@@ -385,7 +384,6 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   
   // Test loader with 'L' key
   if (e.key === 'l' || e.key === 'L') {
-    console.log('Manual loader test triggered');
     showPageLoader();
     setTimeout(() => {
       hidePageLoader();
