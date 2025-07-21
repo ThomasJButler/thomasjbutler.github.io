@@ -1,78 +1,37 @@
-/* ==========================================================================
-   Main CSS Entry Point
-   Imports all modular CSS files in the correct order
-   ========================================================================== */
+/* Main CSS Entry Point - All imports must come first before any other CSS */
 
-/* ==========================================================================
-   Base Styles
-   These must come first to establish fundamentals
-   ========================================================================== */
+/* Base Styles */
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
+@import './base/_layout.css';
 
-@import './base/_variables.css';    /* CSS custom properties */
-@import './base/_reset.css';        /* CSS reset and base styles */
-@import './base/_typography.css';   /* Typography system */
-@import './base/_layout.css';       /* Layout structures and containers */
+/* Layout Components */
+@import './components/_footer.css';
 
-/* ==========================================================================
-   Layout Components
-   Core layout structures
-   ========================================================================== */
+/* UI Components */
+@import './components/_header.css';
+@import './components/_navigation.css';
+@import './components/_buttons.css';
+@import './components/_cards.css';
+@import './components/_forms.css';
+@import './components/_contact-form.css';
 
-@import './components/_footer.css';  /* Footer component */
+/* Utilities */
+@import './utilities/_spacing.css';
+@import './utilities/_helpers.css';
+@import './utilities/_animations.css';
 
-/* ==========================================================================
-   UI Components
-   Reusable component styles
-   ========================================================================== */
-
-@import './components/_header.css';     /* Header container and title styles */
-@import './components/_navigation.css'; /* Navigation and mobile menu */
-@import './components/_buttons.css';    /* Button styles and variants */
-@import './components/_cards.css';      /* Card layouts (introduction-expertise pattern) */
-@import './components/_forms.css';      /* Form elements and styling */
-@import './components/_contact-form.css'; /* Contact form specific enhancements */
-
-/* ==========================================================================
-   Utilities
-   Helper classes and animations
-   ========================================================================== */
-
-@import './utilities/_spacing.css';   /* Margin and padding utilities */
-@import './utilities/_helpers.css';   /* Display, position, and other utilities */
-@import './utilities/_animations.css'; /* Animation keyframes and classes */
-
-/* ==========================================================================
-   Page-Specific Styles
-   These can override component styles if needed
-   ========================================================================== */
-
-/* Projects page specific styles */
+/* Page-Specific Styles */
 @import './projects.css';
-
-/* About page specific styles */
 @import './about.css';
-
-/* GitHub projects integration */
 @import './github-projects.css';
 
-/* ==========================================================================
-   Legacy Imports (to be refactored)
-   These will be gradually migrated to the new structure
-   ========================================================================== */
-
-/* Global styles that haven't been modularized yet */
+/* Legacy Imports */
 @import './global.css';
-
-/* Header styles (to be componentized) */
 @import './header.css';
-
-/* Additional styles (to be reviewed and integrated) */
 @import './styles.css';
-
-/* Hover effects (to be integrated into components) */
 @import './hover-effects.css';
-
-/* Typography overrides (to be merged with base typography) */
 @import './typography.css';
 
 /* ==========================================================================
