@@ -197,14 +197,7 @@ This plan outlines the final refinements needed to achieve a polished v3.0 relea
 
 ## Implementation Priority Order
 
-1. **Immediate (Day 1)**
-   - Update navigation (remove Home, make header clickable)
-   - Fix header font size
-   - Improve text contrast
-   - Add form animations
-
 2. **Short-term (Days 2-3)**
-   - Implement video banners
    - Create loading spinner
    - Add scroll animations
 
