@@ -4,7 +4,7 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
-import anime from 'animejs/lib/anime.es.js';
+import anime from 'animejs';
 
 // Make anime available globally
 (window as any).anime = anime;
