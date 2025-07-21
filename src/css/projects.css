@@ -1,5 +1,8 @@
 /* ULTRA-MODERN PROJECTS.CSS - CYBERPUNK EDITION */
 
+/* Import horizontal grid styles */
+@import 'projects-horizontal-grid.css';
+
 /* 1. CORE SETUP & VARIABLES -------------------------------------------- */
 :root {
     --neon-green: #00ff00;
@@ -57,8 +60,7 @@
     perspective: 1000px;
   }
   
-  /* Import horizontal grid styles */
-  @import 'projects-horizontal-grid.css';
+  /* Horizontal grid styles are imported at the top of this file */
 
   .github-projects-grid {
     display: grid;

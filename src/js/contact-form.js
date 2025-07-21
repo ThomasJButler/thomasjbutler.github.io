@@ -149,23 +149,38 @@ export class ContactForm {
     addFieldAnimations() {
         const fields = this.form.querySelectorAll('input, textarea');
         
+        // Staggered field appearance on page load
+        anime({
+            targets: fields,
+            opacity: [0, 1],
+            translateY: [20, 0],
+            delay: anime.stagger(80, {start: 200}),
+            duration: 500,
+            easing: 'easeOutQuart'
+        });
+        
         fields.forEach(field => {
             const label = field.closest('label');
             
+            // Enhanced focus animation with scale
             field.addEventListener('focus', () => {
                 if (label) {
                     anime({
                         targets: label,
                         color: '#00FF00',
-                        duration: 200
+                        scale: [1, 1.01],
+                        duration: 300,
+                        easing: 'easeOutQuad'
                     });
                 }
                 
                 anime({
                     targets: field,
                     borderColor: '#00FF00',
-                    boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
-                    duration: 200
+                    boxShadow: '0 0 15px rgba(0, 255, 0, 0.4)',
+                    scale: [1, 1.01],
+                    duration: 300,
+                    easing: 'easeOutQuad'
                 });
             });
 
@@ -173,8 +188,10 @@ export class ContactForm {
                 if (label) {
                     anime({
                         targets: label,
-                        color: '#00FF00',
-                        duration: 200
+                        color: 'rgba(0, 255, 0, 0.9)',
+                        scale: 1,
+                        duration: 200,
+                        easing: 'easeOutQuad'
                     });
                 }
                 
@@ -183,9 +200,25 @@ export class ContactForm {
                         targets: field,
                         borderColor: 'rgba(0, 255, 0, 0.3)',
                         boxShadow: '0 0 0 transparent',
-                        duration: 200
+                        scale: 1,
+                        duration: 200,
+                        easing: 'easeOutQuad'
                     });
                 }
+            });
+            
+            // Add subtle animation on typing
+            field.addEventListener('input', () => {
+                anime({
+                    targets: field,
+                    boxShadow: [
+                        '0 0 10px rgba(0, 255, 0, 0.3)',
+                        '0 0 12px rgba(0, 255, 0, 0.35)',
+                        '0 0 10px rgba(0, 255, 0, 0.3)'
+                    ],
+                    duration: 200,
+                    easing: 'easeInOutSine'
+                });
             });
         });
     }

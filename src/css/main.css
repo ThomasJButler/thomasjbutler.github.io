@@ -25,6 +25,7 @@
 /* Page-Specific Styles */
 @import './projects.css';
 @import './about.css';
+@import './contact.css';
 @import './github-projects.css';
 
 /* Legacy Imports */

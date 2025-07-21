@@ -50,13 +50,13 @@ form::before,
 
 form:hover::before,
 .form-container:hover::before {
-    opacity: 0.5;
-    animation: rotateGradient 3s linear infinite;
+    opacity: 0.2;
 }
 
-@keyframes rotateGradient {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+form:hover,
+.form-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 /* ==========================================================================

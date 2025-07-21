@@ -513,13 +513,12 @@
 }
 
 #contact form:hover::before {
-    opacity: 0.5;
-    animation: rotateGradient 3s linear infinite;
+    opacity: 0.3;
 }
 
-@keyframes rotateGradient {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+#contact form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
 }
 
 #contact form label {
