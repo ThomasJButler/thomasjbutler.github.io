@@ -75,7 +75,17 @@
 #featured-projects .introduction-expertise-description {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+}
+
+/* Remove gaps between sections */
+#featured-projects .introduction-expertise-tags {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+#featured-projects .introduction-expertise-buttons {
+    margin-top: 0.75rem;
 }
 
 /* Mobile: Single column, full width */
@@ -164,6 +174,8 @@
     border-radius: 50%;
     border: 2px solid var(--matrix-green);
     z-index: 10001;
+    line-height: 1;
+    text-align: center;
 }
 
 .image-modal-close:hover {
