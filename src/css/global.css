@@ -794,11 +794,46 @@ footer ul {
     justify-content: center;
     list-style-type: none;
     margin-bottom: 20px;
+    gap: var(--space-md);
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-
 footer ul li {
-    margin: 0 15px;
+    margin: 0;
+}
+
+/* Enhanced Footer Buttons */
+footer ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, 
+        rgba(0, 40, 0, 0.9), 
+        rgba(0, 60, 0, 0.9)
+    );
+    border: 1px solid var(--matrix-green);
+    border-radius: 6px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    transition: all 0.3s var(--ease-out);
+    min-width: 120px;
+}
+
+footer ul li a:hover {
+    background: var(--matrix-green);
+    color: var(--matrix-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4);
+}
+
+/* Icon spacing */
+footer ul li a i {
+    margin-right: var(--space-xs);
 }
 
 /* Notification System
