@@ -90,7 +90,30 @@
     <meta name="keywords" content="Full-Stack Developer, AI Integration, Software Engineering, Web Development, AI Enthusiast">
 </head>
 <body class="about">
-    <div id="header-root"></div>
+    <div id="matrix">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Thomas J Butler</h1>
+            <h3>About Me</h3>
+            <nav>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html" class="active">About Me</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
         <section id="why-love-programming" class="about-section" data-aos="fade-up">
             <div class="container">
@@ -177,6 +200,72 @@
                     
                     <!-- Featured Qualifications -->
                     <div class="qualifications-grid">
+                        <style>
+                            .qualifications-grid {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                                gap: 1.5rem;
+                                margin: 2rem 0;
+                            }
+                            
+                            .qualification-card {
+                                background: rgba(0, 255, 0, 0.05);
+                                border: 2px solid var(--neon-green);
+                                border-radius: 8px;
+                                padding: 1.5rem;
+                                transition: all 0.3s ease;
+                            }
+                            
+                            .qualification-card:hover {
+                                transform: translateY(-4px);
+                                box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
+                            }
+                            
+                            .qualification-card h3 {
+                                color: var(--neon-green);
+                                margin-bottom: 0.5rem;
+                                font-size: 1.1rem;
+                            }
+                            
+                            .qualification-date {
+                                color: #888;
+                                font-size: 0.9rem;
+                                margin-bottom: 0.5rem;
+                            }
+                            
+                            .verify-link {
+                                color: var(--neon-green);
+                                text-decoration: none;
+                                font-weight: bold;
+                                transition: color 0.3s ease;
+                            }
+                            
+                            .verify-link:hover {
+                                color: #fff;
+                            }
+                            
+                            .certification-badge {
+                                max-width: 100px;
+                                height: auto;
+                                margin-top: 1rem;
+                            }
+                            
+                            @media (max-width: 768px) {
+                                .qualifications-grid {
+                                    grid-template-columns: 1fr;
+                                    gap: 1rem;
+                                    margin: 1rem 0;
+                                }
+                                
+                                .qualification-card {
+                                    padding: 1rem;
+                                }
+                                
+                                .qualification-card h3 {
+                                    font-size: 1rem;
+                                }
+                            }
+                        </style>
                         <div class="qualification-card">
                             <h3>Estio Level 4 Software Developer Apprenticeship</h3>
                             <p class="qualification-date">Completed 2024</p>
