@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHeader();
     
     const tabs = document.querySelectorAll('.tab-button');
-    const cards = document.querySelectorAll('.github-card');
+    const cards = document.querySelectorAll('.introduction-expertise-card');
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
