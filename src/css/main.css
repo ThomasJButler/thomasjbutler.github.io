@@ -30,6 +30,7 @@
 @import './components/_buttons.css';    /* Button styles and variants */
 @import './components/_cards.css';      /* Card layouts (introduction-expertise pattern) */
 @import './components/_forms.css';      /* Form elements and styling */
+@import './components/_contact-form.css'; /* Contact form specific enhancements */
 
 /* ==========================================================================
    Utilities

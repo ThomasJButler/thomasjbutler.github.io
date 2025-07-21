@@ -140,34 +140,8 @@
         </div>
     </footer>
     <!-- Scripts loaded via main-page.js module -->
-    <script>
-        window.addEventListener("load", function() {
-            const form = document.getElementById("contact-form");
-            const formSuccess = document.getElementById("form-success");
-            
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
-                const data = new FormData(form);
-                fetch(form.action, {
-                    method: form.method,
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        form.style.display = "none";
-                        formSuccess.style.display = "block";
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                })
-                .catch(error => {
-                    alert("Oops! There was a problem submitting your form. Please try again.");
-                });
-            });
-        });
+    <script type="module">
+        import { ContactForm } from '/src/js/contact-form.js';
     </script>
 </body>
 </html>

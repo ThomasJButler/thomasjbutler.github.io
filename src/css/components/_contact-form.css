@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Contact Form Component Styles
+   Enhanced form with animations and validation styling
+   ========================================================================== */
+
+/* Form Container */
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form Groups */
+#contact-form label {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+/* Form Fields */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    margin-top: 0.5rem;
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Textarea specific */
+#contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Focus states */
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    background: rgba(0, 20, 0, 0.8);
+}
+
+/* Valid field indicator */
+#contact-form input:valid:not(:placeholder-shown),
+#contact-form textarea:valid:not(:placeholder-shown) {
+    border-color: rgba(0, 255, 0, 0.5);
+}
+
+/* Error states */
+#contact-form .error {
+    border-color: #ff3333 !important;
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.3) !important;
+}
+
+/* Field error messages */
+.field-error {
+    display: block;
+    color: #ff3333;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-primary);
+}
+
+/* Form error message */
+.form-error-message {
+    background: rgba(255, 51, 51, 0.1);
+    border: 1px solid #ff3333;
+    color: #ff3333;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-error-message i {
+    font-size: 1.2rem;
+}
+
+/* Submit button loading state */
+.btn-contact-us.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-contact-us.loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success message */
+#form-success {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid var(--matrix-green);
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#form-success h3 {
+    color: var(--matrix-green);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-primary);
+}
+
+#form-success p {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: var(--font-primary);
+}
+
+/* Form shake animation (handled by JS) */
+@keyframes formShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+}
+
+/* Placeholder styling */
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: rgba(0, 255, 0, 0.4);
+    font-family: var(--font-primary);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #contact-form {
+        padding: 0 1rem;
+    }
+    
+    #contact-form label {
+        font-size: 1rem;
+    }
+    
+    #contact-form input,
+    #contact-form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    #form-success {
+        padding: 2rem 1.5rem;
+    }
+    
+    #form-success h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Video banner improvements */
+.video-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 3rem auto;
+    max-width: 1200px;
+}
+
+.banner-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Accessibility improvements */
+#contact-form input:focus-visible,
+#contact-form textarea:focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #contact-form input,
+    #contact-form textarea {
+        border-width: 2px;
+    }
+    
+    .field-error {
+        font-weight: bold;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    #contact-form input,
+    #contact-form textarea,
+    #contact-form label {
+        transition: none;
+    }
+    
+    .btn-contact-us.loading i {
+        animation: none;
+    }
+}

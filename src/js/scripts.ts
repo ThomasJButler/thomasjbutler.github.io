@@ -4,7 +4,10 @@
  * @version 2.0.0 - TypeScript Migration
  */
 
-import { animate, stagger, createTimeline } from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
+
+// Make anime available globally
+(window as any).anime = anime;
 
 // Type definitions
 interface MatrixDrop {
@@ -466,11 +469,12 @@ function initAnimeAnimations(): void {
   // Staggered fade-in for project cards
   const projectCards = document.querySelectorAll('.project-card');
   if (projectCards.length > 0) {
-    animate(projectCards, {
+    anime({
+      targets: projectCards,
       opacity: [0, 1],
       translateY: [30, 0],
       scale: [0.95, 1],
-      delay: stagger(100, {start: 200}),
+      delay: anime.stagger(100, {start: 200}),
       duration: 800,
       easing: 'easeOutQuad'
     });
@@ -480,7 +484,8 @@ function initAnimeAnimations(): void {
   const counters = document.querySelectorAll('.count');
   counters.forEach(counter => {
     const target = parseInt(counter.getAttribute('data-target') || counter.textContent || '0');
-    animate(counter, {
+    anime({
+      targets: counter,
       textContent: [0, target],
       round: 1,
       duration: 2000,
@@ -491,7 +496,8 @@ function initAnimeAnimations(): void {
   // Subtle button hover effect - removed particle animation
   document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
     button.addEventListener('mouseenter', () => {
-      animate(button, {
+      anime({
+        targets: button,
         scale: 1.05,
         duration: 200,
         easing: 'easeOutQuad'
@@ -499,7 +505,8 @@ function initAnimeAnimations(): void {
     });
     
     button.addEventListener('mouseleave', () => {
-      animate(button, {
+      anime({
+        targets: button,
         scale: 1,
         duration: 200,
         easing: 'easeOutQuad'
@@ -510,7 +517,8 @@ function initAnimeAnimations(): void {
   // Simple fade-in for headers - more professional
   const headers = document.querySelectorAll('h1, h2:not(.introduction-h2)');
   headers.forEach((header) => {
-    animate(header, {
+    anime({
+      targets: header,
       opacity: [0, 1],
       translateY: [10, 0],
       duration: 600,
@@ -521,7 +529,8 @@ function initAnimeAnimations(): void {
   // Smooth scroll indicator animation
   const scrollIndicators = document.querySelectorAll('.scroll-down');
   if (scrollIndicators.length > 0) {
-    animate(scrollIndicators, {
+    anime({
+      targets: scrollIndicators,
       translateY: [0, 10],
       opacity: [1, 0.7],
       direction: 'alternate',
@@ -535,7 +544,8 @@ function initAnimeAnimations(): void {
   const galleryItems = document.querySelectorAll('.gallery-item, .introduction-img img');
   galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      animate(item, {
+      anime({
+        targets: item,
         scale: 1.02,
         duration: 300,
         easing: 'easeOutQuad'
@@ -543,7 +553,8 @@ function initAnimeAnimations(): void {
     });
 
     item.addEventListener('mouseleave', () => {
-      animate(item, {
+      anime({
+        targets: item,
         scale: 1,
         duration: 300,
         easing: 'easeOutQuad'
@@ -565,10 +576,11 @@ function initScrollReveal(): void {
         
         // Animate section content
         const content = entry.target.querySelectorAll('p, li, .card, .tech-item');
-        animate(content, {
+        anime({
+          targets: content,
           opacity: [0, 1],
           translateY: [20, 0],
-          delay: stagger(50),
+          delay: anime.stagger(50),
           duration: 600,
           easing: 'easeOutQuad'
         });
