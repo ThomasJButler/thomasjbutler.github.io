@@ -24,9 +24,11 @@
    Reusable component styles
    ========================================================================== */
 
-@import './components/_buttons.css'; /* Button styles and variants */
-@import './components/_cards.css';   /* Card layouts (introduction-expertise pattern) */
-@import './components/_forms.css';   /* Form elements and styling */
+@import './components/_header.css';     /* Header container and title styles */
+@import './components/_navigation.css'; /* Navigation and mobile menu */
+@import './components/_buttons.css';    /* Button styles and variants */
+@import './components/_cards.css';      /* Card layouts (introduction-expertise pattern) */
+@import './components/_forms.css';      /* Form elements and styling */
 
 /* ==========================================================================
    Utilities
