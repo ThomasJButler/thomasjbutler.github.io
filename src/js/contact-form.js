@@ -327,4 +327,22 @@ export class ContactForm {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     new ContactForm();
+    
+    // Handle video banner loading
+    const videoBanner = document.querySelector('.video-banner');
+    const bannerVideo = document.querySelector('.banner-video');
+    
+    if (videoBanner && bannerVideo) {
+        // Add loaded class when video is ready
+        bannerVideo.addEventListener('loadeddata', () => {
+            videoBanner.classList.add('video-loaded');
+            bannerVideo.classList.add('loaded');
+        });
+        
+        // Fallback for cached videos
+        if (bannerVideo.readyState >= 2) {
+            videoBanner.classList.add('video-loaded');
+            bannerVideo.classList.add('loaded');
+        }
+    }
 });
