@@ -17,10 +17,10 @@ import { ContactPage } from './pages/ContactPage';
 import { GodModeDisplay } from './components/GodModeDisplay';
 
 // Styles
-import './styles/base/reset.css';
-import './styles/base/typography.css';
-import './styles/base/variables.css';
-import './styles/themes/matrix.css';
+import './css/base/_reset.css';
+import './css/base/_typography.css';
+import './css/base/_variables.css';
+import './css/global.css';
 
 export const App: React.FC = () => {
   useEffect(() => {
