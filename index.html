@@ -41,7 +41,9 @@
 
     <header>
         <div class="container">
-            <h1>Thomas J Butler</h1>
+            <a href="index.html" style="text-decoration: none;">
+                <h1>Thomas J Butler</h1>
+            </a>
             <h3>Full Stack Software Developer</h3>
             <nav>
                 <div class="menu-toggle">
@@ -50,7 +52,6 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="skills.html">Skills</a></li>
@@ -66,7 +67,7 @@
                 <h2>Hey, I'm Tom.</h2>
                 <br>
                 <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
-                <p class="scrolling-text">With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</p>
+                <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
                     <h2 class="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
                 <div class="introduction-img">
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Create a Model">
@@ -233,57 +234,195 @@
     
         <section id="latest-updates" class="reveal">
             <div class="container">
-                <h2 class="section-title">Latest Updates</h2>
-                <p class="section-description" style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">Featured projects I'm currently working on</p>
-                <ul class="introduction-expertise-grid">
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview">
+                <h2 class="section-title">--| Latest Updates |--</h2>
+                <p class="section-description" style="text-align: center; margin-bottom: 4rem; color: var(--text-secondary);">Featured projects I'm currently working on</p>
+                
+                <!-- 3D Rotating Cube Showcase -->
+                <div class="cube-showcase">
+                    <div class="cube-container" id="cube">
+                        <!-- Commercial Portfolio v2.0 - Front Face (1) -->
+                        <div class="cube-face front">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/commercial-portfolio_placeholder.png" alt="Commercial Portfolio Preview">
+                                </div>
+                                <h3>Commercial Portfolio v2.0</h3>
+                                <p class="cube-project-description">Complete site revamp to V2.0 showcasing all commercial work, with Notion integration for dynamic content management.</p>
+                                <div class="cube-project-tags">
+                                    <span>Portfolio</span>
+                                    <span>Notion API</span>
+                                    <span>CMS</span>
+                                    <span>Professional</span>
+                                    <span>Responsive</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://thomasjbutler.notion.site/commercial-portfolio" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/commercial-portfolio" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <h3>AiTomatic (Prototype)</h3>
-                        <p class="introduction-expertise-description">This is an AI Model Creator platform with next level features. The prototype is built with Typescript, Python, React. It's showcasing the dashboard elements and model comparison / creation features. I am currently working on this.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>React</span>
-                            <span>TypeScript</span>
-                            <span>AI/ML</span>
-                            <span>API Integration</span>
-                            <span>Python</span>
-                            <span>Next.js</span>
+                        
+                        <!-- Version TimeTravel - Right Face (2) -->
+                        <div class="cube-face right">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/version-timetravel_placeholder.png" alt="Version TimeTravel Preview">
+                                </div>
+                                <h3>Version TimeTravel</h3>
+                                <p class="cube-project-description">Journey through the evolution of my portfolio website from version 1.0 to the present. Interactive timeline showcasing design and technology progression.</p>
+                                <div class="cube-project-tags">
+                                    <span>JavaScript</span>
+                                    <span>CSS3</span>
+                                    <span>Timeline</span>
+                                    <span>Interactive</span>
+                                    <span>Archive</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/version-timetravel" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://aitomatic.co.uk/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter AiTomatic</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
+                        
+                        <!-- AI Model Comparison Tool - Back Face (3) -->
+                        <div class="cube-face back">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Preview">
+                                </div>
+                                <h3>AI Model Comparison Tool</h3>
+                                <p class="cube-project-description">Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.</p>
+                                <div class="cube-project-tags">
+                                    <span>AI/ML</span>
+                                    <span>Python</span>
+                                    <span>APIs</span>
+                                    <span>Analytics</span>
+                                    <span>Dashboard</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://aitomatic.rocks/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/AiTomatic" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-        
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://github.com/user-attachments/assets/3da3aa0e-013f-4463-807b-29767b348144" alt="Premier League Oracle Preview">
+                        
+                        <!-- The Matrix Arcade - Left Face (4) -->
+                        <div class="cube-face left">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Matrix Arcade Preview">
+                                </div>
+                                <h3>The Matrix Arcade</h3>
+                                <p class="cube-project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                                <div class="cube-project-tags">
+                                    <span>React</span>
+                                    <span>Python</span>
+                                    <span>Vite</span>
+                                    <span>Canvas API</span>
+                                    <span>Game Dev</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/Matrix-Arcade" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <h3>The Premier League Oracle</h3>
-                        <p class="introduction-expertise-description">A comprehensive Premier League prediction platform backed by data science and machine learning. Analyses historical match data to provide statistically-sound predictions.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>Svelte</span>
-                            <span>TypeScript</span>
-                            <span>Python</span>
-                            <span>Machine Learning</span>
-                            <span>Supabase</span>
-                            <span>Data Science</span>
+                        
+                        <!-- Portfolio v3.0 - React Migration - Top Face (5) -->
+                        <div class="cube-face top">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/portfolio-v3_placeholder.png" alt="Portfolio v3.0 Preview">
+                                </div>
+                                <h3>Portfolio v3.0 - React Migration</h3>
+                                <p class="cube-project-description">Complete React migration with TypeScript, Vite, and modern best practices. Features improved performance, accessibility, and developer experience.</p>
+                                <div class="cube-project-tags">
+                                    <span>React</span>
+                                    <span>TypeScript</span>
+                                    <span>Vite</span>
+                                    <span>Anime.js</span>
+                                    <span>Migration</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://thomasjbutler.co.uk" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/ThomasJButler" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://premier-league-oracle.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">View Predictions</span>
-                                <i class="fas fa-chart-line"></i>
-                            </a>
+                        
+                        <!-- AiTomatic Suite - Bottom Face (6) -->
+                        <div class="cube-face bottom">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Preview">
+                                </div>
+                                <h3>AiTomatic Suite</h3>
+                                <p class="cube-project-description">Comprehensive AI toolkit featuring model management, custom GPT creation, and neurodiversity-focused applications. Empowering users with AI technology.</p>
+                                <div class="cube-project-tags">
+                                    <span>AI/ML</span>
+                                    <span>Python</span>
+                                    <span>React</span>
+                                    <span>APIs</span>
+                                    <span>Accessibility</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://aitomatic.rocks/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/AiTomatic" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                    
+                    <!-- Cube Navigation -->
+                    <div class="cube-nav">
+                        <button onclick="rotateCube('front')" class="active">1</button>
+                        <button onclick="rotateCube('right')">2</button>
+                        <button onclick="rotateCube('back')">3</button>
+                        <button onclick="rotateCube('left')">4</button>
+                        <button onclick="rotateCube('top')">5</button>
+                        <button onclick="rotateCube('bottom')">6</button>
+                    </div>
+                </div>
                 
                 <!-- View All Projects Button -->
-                <div style="text-align: center; margin-top: 2.5rem;">
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Explore my complete portfolio with 12+ projects across web development, ML/AI, and games</p>
+                <div style="text-align: center; margin-top: 6rem;">
+                    <p style="color: #FF00FF; margin-bottom: 1.5rem;">Explore my complete portfolio with 12+ projects across web development, ML/AI, and games</p>
                     <a href="projects.html" class="cta-button view-all-projects-btn" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
                         <span class="btn-text">View All Projects</span>
                         <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
@@ -361,5 +500,113 @@
         </div>
     </footer>
     <!-- Scripts loaded via main.js module -->
+    
+    <!-- Rotating Cube Script -->
+    <script>
+        // Rotating Cube 3D Effect
+        const cube = document.getElementById('cube');
+        let currentRotation = { x: 0, y: 0 };
+        let currentFace = 'front';
+        
+        function rotateCube(face) {
+            // Update button states
+            document.querySelectorAll('.cube-nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            switch(face) {
+                case 'front':
+                    currentRotation = { x: 0, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(1)').classList.add('active');
+                    break;
+                case 'right':
+                    currentRotation = { x: 0, y: 90 };
+                    document.querySelector('.cube-nav button:nth-child(2)').classList.add('active');
+                    break;
+                case 'back':
+                    currentRotation = { x: 0, y: 180 };
+                    document.querySelector('.cube-nav button:nth-child(3)').classList.add('active');
+                    break;
+                case 'left':
+                    currentRotation = { x: 0, y: -90 };
+                    document.querySelector('.cube-nav button:nth-child(4)').classList.add('active');
+                    break;
+                case 'top':
+                    currentRotation = { x: -90, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(5)').classList.add('active');
+                    break;
+                case 'bottom':
+                    currentRotation = { x: 90, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(6)').classList.add('active');
+                    break;
+            }
+            
+            cube.style.transform = `rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+            currentFace = face;
+        }
+        
+        // Auto-rotation (optional - currently disabled)
+        let autoRotate = false;
+        let autoRotateInterval;
+        
+        if (autoRotate) {
+            const faces = ['front', 'right', 'back', 'left', 'top', 'bottom'];
+            let faceIndex = 0;
+            
+            autoRotateInterval = setInterval(() => {
+                faceIndex = (faceIndex + 1) % faces.length;
+                rotateCube(faces[faceIndex]);
+            }, 4000);
+        }
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        cube.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        cube.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Minimum swipe distance
+            const minSwipeDistance = 50;
+            
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minSwipeDistance) {
+                // Horizontal swipe
+                if (diffX > 0) {
+                    // Swipe left - rotate right
+                    const nextFace = currentFace === 'front' ? 'right' : 
+                                   currentFace === 'right' ? 'back' : 
+                                   currentFace === 'back' ? 'left' : 'front';
+                    rotateCube(nextFace);
+                } else {
+                    // Swipe right - rotate left
+                    const nextFace = currentFace === 'front' ? 'left' : 
+                                   currentFace === 'left' ? 'back' : 
+                                   currentFace === 'back' ? 'right' : 'front';
+                    rotateCube(nextFace);
+                }
+            } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > minSwipeDistance) {
+                // Vertical swipe
+                if (diffY > 0) {
+                    // Swipe up - rotate to top
+                    if (currentFace !== 'top' && currentFace !== 'bottom') {
+                        rotateCube('top');
+                    }
+                } else {
+                    // Swipe down - rotate to bottom
+                    if (currentFace !== 'top' && currentFace !== 'bottom') {
+                        rotateCube('bottom');
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

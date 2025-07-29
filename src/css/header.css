@@ -55,11 +55,14 @@ header h1:hover {
 }
 
 header h3 {
-    font-size: 1rem;
+    font-size: clamp(1.15rem, 1.1rem + 0.5vw, 1.4rem);
     margin: 0;
-    opacity: 0.8;
-    font-weight: 300;
-    color: var(--text-secondary);
+    opacity: 0.9;
+    font-weight: 400;
+    color: var(--matrix-green);
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
+    letter-spacing: 0.05em;
 }
 
 /* Note: Navigation styles moved to components/_navigation.css */
@@ -88,7 +91,8 @@ header h3 {
     }
 
     header h3 {
-        display: none;
+        font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
+        opacity: 0.8;
     }
 
     /* Note: Mobile navigation styles moved to components/_navigation.css */

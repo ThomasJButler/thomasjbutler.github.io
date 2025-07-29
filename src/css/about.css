@@ -180,6 +180,14 @@
     font-weight: bold;
 }
 
+/* Center the View Full Education button */
+.additional-certifications p:last-of-type {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
 .neo-matrix-btn:hover {
     background: var(--matrix-green);
     color: #000;
@@ -220,8 +228,14 @@
         margin: var(--space-lg) 0;
     }
     
-    .qualification-card {
+      .qualification-card {
+        display: flex;
         padding: var(--space-md);
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
     }
     
     .qualification-card h3 {

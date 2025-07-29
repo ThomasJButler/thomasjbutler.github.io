@@ -33,11 +33,16 @@
         }
 
         .qualification-card {
-            background: var(--matrix-dark);
-            border: 1px solid var(--border-primary);
+            display: flex;
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid var(--matrix-green);
             border-radius: 8px;
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             transition: all 0.3s var(--ease-out);
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
         }
         
         .qualification-card:hover {
@@ -96,7 +101,9 @@
 
     <header>
         <div class="container">
-            <h1>Thomas J Butler</h1>
+            <a href="index.html" style="text-decoration: none;">
+                <h1>Thomas J Butler</h1>
+            </a>
             <h3>About Me</h3>
             <nav>
                 <div class="menu-toggle">
@@ -105,7 +112,6 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="skills.html">Skills</a></li>
@@ -209,7 +215,7 @@
                         
                         <div class="qualification-card">
                             <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
-                            <p class="qualification-date">2024</p>
+                            <p class="qualification-date">July 2025</p>
                             <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw" 
                                target="_blank" 
                                class="verify-link">
@@ -224,7 +230,7 @@
                         
                         <div class="qualification-card">
                             <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
-                            <p class="qualification-date">In Progress - August 2025</p>
+                            <p class="qualification-date">Starting August 2025</p>
                             <p>Mastering Generative AI and advanced machine learning techniques</p>
                         </div>
                     </div>
@@ -255,7 +261,7 @@
                             </li>
                         </ul>
                         <p style="margin-top: 1.5rem;">
-                            <a href="education.html" class="neo-matrix-btn" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <a href="https://www.thomasjbutler.me/#education" target="_blank" rel="noopener" class="neo-matrix-btn" style="display: inline-flex; align-items: center; gap: 0.5rem;">
                                 <span>View Full Education & Certification Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>

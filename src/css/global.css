@@ -838,10 +838,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-    background: var(--matrix-green);
-    color: var(--matrix-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4);
+    opacity: 0.8;
 }
 
 /* Icon spacing */

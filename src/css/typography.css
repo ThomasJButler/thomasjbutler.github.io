@@ -73,6 +73,8 @@ h3 {
   font-size: var(--font-size-xl);
   margin-bottom: 1rem;
   margin-top: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
 }
 
 h4 {
@@ -87,10 +89,10 @@ p {
   line-height: 1.8;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
-  color: rgba(0, 255, 0, 0.9);
+  color: #FF00FF;
   max-width: var(--content-width);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 400;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
 }
 
 /* Remove conflicting flex styles from paragraphs */

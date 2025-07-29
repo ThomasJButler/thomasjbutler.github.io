@@ -46,6 +46,8 @@ h2 {
 h3 {
     font-size: var(--font-size-h3);
     letter-spacing: var(--letter-spacing-base);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
 }
 
 h4 {
@@ -70,9 +72,10 @@ p {
     font-size: var(--font-size-base);
     line-height: var(--line-height-relaxed);
     letter-spacing: var(--letter-spacing-wide);
-    color: var(--text-primary);
+    color: #FF00FF;
     margin-bottom: var(--space-md);
-    font-weight: 400;
+    font-weight: 500;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Optimal reading width */

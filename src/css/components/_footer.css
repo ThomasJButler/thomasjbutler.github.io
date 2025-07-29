@@ -89,13 +89,10 @@ footer ul li a,
     overflow: hidden;
 }
 
-/* Hover state */
+/* Hover state - simplified */
 footer ul li a:hover,
 .footer-link:hover {
-    background: var(--matrix-green);
-    color: #0d0d0d;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4);
+    opacity: 0.8;
 }
 
 /* Active state */
@@ -112,23 +109,7 @@ footer ul li a i,
     font-size: 1.1em;
 }
 
-/* Glow line animation on hover */
-footer ul li a::after,
-.footer-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--matrix-cyan);
-    transition: width var(--duration-base) var(--ease-out);
-}
-
-footer ul li a:hover::after,
-.footer-link:hover::after {
-    width: 100%;
-}
+/* Remove the after effect for cleaner hover state */
 
 /* ==========================================================================
    Footer Copyright
@@ -175,7 +156,7 @@ footer p a:hover {
 .footer-social a:hover {
     color: var(--matrix-cyan);
     transform: translateY(-3px) scale(1.1);
-    text-shadow: var(--matrix-glow);
+    /*text-shadow: var(--matrix-glow); */
 }
 
 /* ==========================================================================

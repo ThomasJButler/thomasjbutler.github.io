@@ -199,11 +199,14 @@ footer a {
   transform: translateY(0);
 }
 
-.social-link:hover,
-footer a:hover {
+.social-link:hover {
   transform: translateY(-3px);
   color: var(--matrix-cyan);
   text-shadow: 0 0 15px currentColor;
+}
+
+footer a:hover {
+  opacity: 0.8;
 }
 
 /* Input/Form Element Hover */

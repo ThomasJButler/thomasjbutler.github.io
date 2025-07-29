@@ -3,12 +3,6 @@
 ## Overview
 This plan outlines the final refinements needed to achieve a polished v3.0 release of the portfolio website, incorporating advanced anime.js animations, improved typography, enhanced contact forms, and overall UX improvements while maintaining the distinctive Matrix theme.
 
-## Navigation Update (Priority 0)
-- Remove "Home" from navigation menu (both desktop and mobile)
-- Make "Thomas J Butler" header text clickable and link to index.html
-- Update all HTML pages with this change
-- Ensure mobile menu reflects the same structure
-
 ## Important Reference Links - Anime.js v4
 
 ### Official Documentation

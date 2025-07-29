@@ -732,6 +732,8 @@
     margin: 0;
     opacity: 0.8;
     transition: all 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
 }
 
 .skills-list li:hover p {
