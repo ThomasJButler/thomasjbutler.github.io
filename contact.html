@@ -142,6 +142,15 @@
     <!-- Scripts loaded via main-page.js module -->
     <script type="module">
         import { ContactForm } from '/src/js/contact-form.js';
+        
+        // Initialize contact form when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                new ContactForm();
+            });
+        } else {
+            new ContactForm();
+        }
     </script>
 </body>
 </html>

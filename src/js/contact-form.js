@@ -3,13 +3,12 @@
  * Manages form submission, validation, and animations
  */
 
-// Anime.js is loaded globally via script tag
-
 export class ContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
         this.successMessage = document.getElementById('form-success');
         this.submitButton = this.form?.querySelector('button[type="submit"]');
+        this.isSubmitting = false;
         this.init();
     }
 
@@ -27,16 +26,23 @@ export class ContactForm {
     async handleSubmit(e) {
         e.preventDefault();
         
+        // Prevent double submission
+        if (this.isSubmitting) {
+            return;
+        }
+        
         if (!this.validateForm()) {
             this.showValidationErrors();
             return;
         }
 
-        // Disable submit button and show loading state
+        // Set submitting flag and disable button
+        this.isSubmitting = true;
         this.setLoadingState(true);
 
         try {
             const formData = new FormData(this.form);
+            
             const response = await fetch(this.form.action, {
                 method: 'POST',
                 body: formData,
@@ -45,15 +51,26 @@ export class ContactForm {
                 }
             });
 
-            if (response.ok) {
+            // Check if response is JSON (Formspree returns JSON)
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Invalid response from server');
+            }
+
+            const responseData = await response.json();
+
+            if (response.ok && responseData.ok) {
                 this.showSuccess();
             } else {
-                throw new Error('Form submission failed');
+                const errorMessage = responseData.error || responseData.errors?.join(', ') || 'Form submission failed';
+                console.error('Form submission failed:', response.status, responseData);
+                throw new Error(errorMessage);
             }
         } catch (error) {
             this.showError('Oops! There was a problem submitting your form. Please try again.');
             console.error('Form submission error:', error);
         } finally {
+            this.isSubmitting = false;
             this.setLoadingState(false);
         }
     }
@@ -79,36 +96,39 @@ export class ContactForm {
      * Show success message with animation
      */
     showSuccess() {
-        // Animate form out
-        anime({
-            targets: this.form,
-            opacity: [1, 0],
-            translateY: [0, -20],
-            duration: 300,
-            easing: 'easeOutQuad',
-            complete: () => {
-                this.form.style.display = 'none';
-                this.successMessage.style.display = 'block';
-                
-                // Animate success message in
-                anime({
-                    targets: this.successMessage,
-                    opacity: [0, 1],
-                    translateY: [20, 0],
-                    scale: [0.9, 1],
-                    duration: 600,
-                    easing: 'easeOutQuad'
-                });
-
-                // Add glow effect
-                anime({
-                    targets: this.successMessage,
-                    boxShadow: ['0 0 0 rgba(0, 255, 0, 0)', '0 0 30px rgba(0, 255, 0, 0.5)', '0 0 0 rgba(0, 255, 0, 0)'],
-                    duration: 1500,
-                    easing: 'easeInOutQuad'
-                });
-            }
-        });
+        // Clear any existing errors first
+        const errorElements = this.form.querySelectorAll('.field-error, .form-error-message');
+        errorElements.forEach(el => el.remove());
+        
+        // Clear error classes
+        const fields = this.form.querySelectorAll('.error');
+        fields.forEach(field => field.classList.remove('error'));
+        
+        // Reset form
+        this.form.reset();
+        
+        // Add fade out class to form
+        this.form.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        this.form.style.opacity = '0';
+        this.form.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            this.form.style.display = 'none';
+            this.successMessage.style.display = 'block';
+            this.successMessage.style.opacity = '0';
+            this.successMessage.style.transform = 'translateY(20px)';
+            this.successMessage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            // Trigger reflow
+            this.successMessage.offsetHeight;
+            
+            // Animate in
+            this.successMessage.style.opacity = '1';
+            this.successMessage.style.transform = 'translateY(0)';
+            
+            // Add glow effect
+            this.successMessage.classList.add('form-glow');
+        }, 300);
     }
 
     /**
@@ -119,27 +139,24 @@ export class ContactForm {
         errorDiv.className = 'form-error-message';
         errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
         
+        errorDiv.style.opacity = '0';
+        errorDiv.style.transform = 'translateY(10px)';
+        errorDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
         this.form.insertBefore(errorDiv, this.submitButton);
         
-        // Animate error message
-        anime({
-            targets: errorDiv,
-            opacity: [0, 1],
-            translateY: [10, 0],
-            duration: 300,
-            easing: 'easeOutQuad'
-        });
+        // Trigger reflow
+        errorDiv.offsetHeight;
+        
+        // Animate in
+        errorDiv.style.opacity = '1';
+        errorDiv.style.transform = 'translateY(0)';
 
         // Remove after 5 seconds
         setTimeout(() => {
-            anime({
-                targets: errorDiv,
-                opacity: [1, 0],
-                translateY: [0, -10],
-                duration: 300,
-                easing: 'easeOutQuad',
-                complete: () => errorDiv.remove()
-            });
+            errorDiv.style.opacity = '0';
+            errorDiv.style.transform = 'translateY(-10px)';
+            setTimeout(() => errorDiv.remove(), 300);
         }, 5000);
     }
 
@@ -149,76 +166,47 @@ export class ContactForm {
     addFieldAnimations() {
         const fields = this.form.querySelectorAll('input, textarea');
         
-        // Staggered field appearance on page load
-        anime({
-            targets: fields,
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(80, {start: 200}),
-            duration: 500,
-            easing: 'easeOutQuart'
+        // Add initial appearance
+        fields.forEach((field, index) => {
+            field.style.opacity = '0';
+            field.style.transform = 'translateY(20px)';
+            field.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+                field.style.opacity = '1';
+                field.style.transform = 'translateY(0)';
+            }, 200 + (index * 80));
         });
         
         fields.forEach(field => {
             const label = field.closest('label');
             
-            // Enhanced focus animation with scale
+            // Focus effects
             field.addEventListener('focus', () => {
+                field.classList.add('field-focused');
                 if (label) {
-                    anime({
-                        targets: label,
-                        color: '#00FF00',
-                        scale: [1, 1.01],
-                        duration: 300,
-                        easing: 'easeOutQuad'
-                    });
+                    label.classList.add('label-focused');
                 }
-                
-                anime({
-                    targets: field,
-                    borderColor: '#00FF00',
-                    boxShadow: '0 0 15px rgba(0, 255, 0, 0.4)',
-                    scale: [1, 1.01],
-                    duration: 300,
-                    easing: 'easeOutQuad'
-                });
             });
 
             field.addEventListener('blur', () => {
+                field.classList.remove('field-focused');
                 if (label) {
-                    anime({
-                        targets: label,
-                        color: 'rgba(0, 255, 0, 0.9)',
-                        scale: 1,
-                        duration: 200,
-                        easing: 'easeOutQuad'
-                    });
+                    label.classList.remove('label-focused');
                 }
-                
                 if (!field.value) {
-                    anime({
-                        targets: field,
-                        borderColor: 'rgba(0, 255, 0, 0.3)',
-                        boxShadow: '0 0 0 transparent',
-                        scale: 1,
-                        duration: 200,
-                        easing: 'easeOutQuad'
-                    });
+                    field.classList.remove('field-has-value');
+                } else {
+                    field.classList.add('field-has-value');
                 }
             });
             
-            // Add subtle animation on typing
+            // Add typing effect
             field.addEventListener('input', () => {
-                anime({
-                    targets: field,
-                    boxShadow: [
-                        '0 0 10px rgba(0, 255, 0, 0.3)',
-                        '0 0 12px rgba(0, 255, 0, 0.35)',
-                        '0 0 10px rgba(0, 255, 0, 0.3)'
-                    ],
-                    duration: 200,
-                    easing: 'easeInOutSine'
-                });
+                field.classList.add('field-typing');
+                setTimeout(() => {
+                    field.classList.remove('field-typing');
+                }, 200);
             });
         });
     }
@@ -234,6 +222,9 @@ export class ContactForm {
         // Email validation
         if (emailField) {
             emailField.addEventListener('blur', () => {
+                // Skip validation if form is hidden (already submitted)
+                if (this.form.style.display === 'none') return;
+                
                 if (!this.isValidEmail(emailField.value) && emailField.value) {
                     this.showFieldError(emailField, 'Please enter a valid email address');
                 } else {
@@ -245,8 +236,11 @@ export class ContactForm {
         // Name validation
         if (nameField) {
             nameField.addEventListener('blur', () => {
-                if (nameField.value.length < 2 && nameField.value) {
-                    this.showFieldError(nameField, 'Name must be at least 2 characters');
+                // Skip validation if form is hidden (already submitted)
+                if (this.form.style.display === 'none') return;
+                
+                if (nameField.value && nameField.value.trim().length < 2) {
+                    this.showFieldError(nameField, 'Please enter your name');
                 } else {
                     this.clearFieldError(nameField);
                 }
@@ -256,8 +250,11 @@ export class ContactForm {
         // Message validation
         if (messageField) {
             messageField.addEventListener('blur', () => {
-                if (messageField.value.length < 10 && messageField.value) {
-                    this.showFieldError(messageField, 'Message must be at least 10 characters');
+                // Skip validation if form is hidden (already submitted)
+                if (this.form.style.display === 'none') return;
+                
+                if (messageField.value && messageField.value.trim().length < 10) {
+                    this.showFieldError(messageField, 'Please enter a message (at least 10 characters)');
                 } else {
                     this.clearFieldError(messageField);
                 }
@@ -275,8 +272,8 @@ export class ContactForm {
 
         let isValid = true;
 
-        if (!nameField.value || nameField.value.length < 2) {
-            this.showFieldError(nameField, 'Name is required (minimum 2 characters)');
+        if (!nameField.value || nameField.value.trim().length < 2) {
+            this.showFieldError(nameField, 'Please enter your name');
             isValid = false;
         }
 
@@ -285,8 +282,8 @@ export class ContactForm {
             isValid = false;
         }
 
-        if (!messageField.value || messageField.value.length < 10) {
-            this.showFieldError(messageField, 'Message is required (minimum 10 characters)');
+        if (!messageField.value || messageField.value.trim().length < 10) {
+            this.showFieldError(messageField, 'Please enter a message (at least 10 characters)');
             isValid = false;
         }
 
@@ -303,16 +300,19 @@ export class ContactForm {
         const errorSpan = document.createElement('span');
         errorSpan.className = 'field-error';
         errorSpan.textContent = message;
+        errorSpan.style.opacity = '0';
+        errorSpan.style.transform = 'translateY(5px)';
+        errorSpan.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        
         field.parentElement.appendChild(errorSpan);
-
         field.classList.add('error');
         
-        anime({
-            targets: errorSpan,
-            opacity: [0, 1],
-            translateY: [5, 0],
-            duration: 200
-        });
+        // Trigger reflow
+        errorSpan.offsetHeight;
+        
+        // Animate in
+        errorSpan.style.opacity = '1';
+        errorSpan.style.transform = 'translateY(0)';
     }
 
     /**
@@ -321,12 +321,8 @@ export class ContactForm {
     clearFieldError(field) {
         const error = field.parentElement.querySelector('.field-error');
         if (error) {
-            anime({
-                targets: error,
-                opacity: [1, 0],
-                duration: 200,
-                complete: () => error.remove()
-            });
+            error.style.opacity = '0';
+            setTimeout(() => error.remove(), 200);
         }
         field.classList.remove('error');
     }
@@ -340,12 +336,10 @@ export class ContactForm {
             firstError.focus();
             
             // Shake animation
-            anime({
-                targets: this.form,
-                translateX: [0, -10, 10, -10, 10, 0],
-                duration: 500,
-                easing: 'easeInOutQuad'
-            });
+            this.form.classList.add('form-shake');
+            setTimeout(() => {
+                this.form.classList.remove('form-shake');
+            }, 500);
         }
     }
 
@@ -357,11 +351,8 @@ export class ContactForm {
     }
 }
 
-// Initialize when DOM is ready
+// Initialize video banner loading handler
 document.addEventListener('DOMContentLoaded', () => {
-    new ContactForm();
-    
-    // Handle video banner loading
     const videoBanner = document.querySelector('.video-banner');
     const bannerVideo = document.querySelector('.banner-video');
     

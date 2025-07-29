@@ -24,7 +24,7 @@ export default defineConfig({
         projects: resolve(__dirname, 'projects.html'),
         services: resolve(__dirname, 'services.html'),
         contact: resolve(__dirname, 'contact.html'),
-        codepen: resolve(__dirname, 'codepen.html'),
+        sitemap: resolve(__dirname, 'sitemap.html'),
       }
     },
     minify: 'terser',
