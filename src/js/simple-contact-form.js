@@ -4,15 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('form-success');
     
     if (!form) {
-        console.error('Contact form not found');
         return;
     }
     
-    console.log('Contact form initialized');
-    
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        console.log('Form submitted');
         
         // Get form data
         const formData = new FormData(form);
@@ -45,8 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            console.log('Sending to Formspree...');
-            
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData,
@@ -54,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Accept': 'application/json'
                 }
             });
-            
-            console.log('Response:', response.status, response.ok);
             
             if (response.ok) {
                 // Hide form and show success
@@ -73,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
         } catch (error) {
-            console.error('Error:', error);
             alert('Sorry, there was an error sending your message. Please try again.');
         } finally {
             // Re-enable button
