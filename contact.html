@@ -140,17 +140,25 @@
         </div>
     </footer>
     <!-- Scripts loaded via main-page.js module -->
-    <script type="module">
-        import { ContactForm } from '/src/js/contact-form.js';
-        
-        // Initialize contact form when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                new ContactForm();
-            });
-        } else {
-            new ContactForm();
-        }
+    <script src="/src/js/simple-contact-form.js"></script>
+    <script>
+        // Video banner handler
+        window.addEventListener('load', function() {
+            const videoBanner = document.querySelector('.video-banner');
+            const bannerVideo = document.querySelector('.banner-video');
+            
+            if (videoBanner && bannerVideo) {
+                bannerVideo.addEventListener('loadeddata', () => {
+                    videoBanner.classList.add('video-loaded');
+                    bannerVideo.classList.add('loaded');
+                });
+                
+                if (bannerVideo.readyState >= 2) {
+                    videoBanner.classList.add('video-loaded');
+                    bannerVideo.classList.add('loaded');
+                }
+            }
+        });
     </script>
 </body>
 </html>

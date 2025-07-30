@@ -351,8 +351,8 @@ export class ContactForm {
     }
 }
 
-// Initialize video banner loading handler
-document.addEventListener('DOMContentLoaded', () => {
+// Export video banner initialization function
+export function initVideoBanner() {
     const videoBanner = document.querySelector('.video-banner');
     const bannerVideo = document.querySelector('.banner-video');
     
@@ -369,4 +369,4 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerVideo.classList.add('loaded');
         }
     }
-});
+}
