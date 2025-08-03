@@ -6,6 +6,19 @@
 
 ## 2025
 
+### August 3, 2025 - Dotnet React Calendar App 🎉
+
+**What I Built:** A simple full stack application which I built to get a full undestanding of .NET and manage the whole build from start to finish.
+
+**The Cool Bit:** This was a code assessment originally, but I turned it into something else bby adding React and API statistics to help me learn as I was building / testing. I now have not just engineered .NET but developed a full application.
+
+**Tech Used:** .NET, C#, React, CSS, Node.js, Vercel, Render
+
+**Impact:** My learning journey to build progressive full stack applications.
+
+*Code is poetry in motion.* 💚
+
+---
 ### January 28, 2025 - Portfolio Update System 🚀
 
 **What I Built:** A comprehensive portfolio update system to make documenting my journey quick and fun!
