@@ -103,29 +103,50 @@ header.transparent.scrolled {
 
     header .container {
         padding: 0 1rem;
+        gap: 1rem;
     }
 
     .header-title {
         flex: 1;
+        gap: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 0;  /* Allow flex item to shrink */
     }
 
     header h1 {
         font-size: 1.5rem;
+        white-space: nowrap;  /* Prevent wrapping */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+        line-height: 1.2;
     }
 
     header h3 {
-        font-size: 0.9rem;
-        opacity: 0.8;
+        display: none;  /* Hide subtitle on mobile for cleaner look */
     }
 }
 
 @media screen and (max-width: 480px) {
     header h1 {
         font-size: 1.25rem;
+        letter-spacing: -0.5px;  /* Tighten letter spacing to save space */
     }
     
     header .container {
         padding: 0 0.75rem;
+        gap: 0.5rem;
+    }
+    
+    .header-title {
+        min-width: 0;
+        flex-shrink: 1;
+    }
+    
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
     }
 }
 

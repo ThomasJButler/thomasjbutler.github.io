@@ -1451,28 +1451,22 @@ nav ul li.version-timetravel:hover {
         font-size: 1.5rem; 
     }
     
-    header h3 {
-        display: none;
-    }
+    /* header h3 is now handled in components/_header.css */
 
-    header .container {
-        column-gap: 18px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        padding: 0px 20px;
-    }
+    /* header .container is now handled in components/_header.css */
 
     /* Navigation */
     .logo-container {
         display: none;
     }
 
-    nav {
+   nav {
         display: inline-flex;
-        flex-direction: column;
+        flex-direction: row-reverse;
         width: 100%;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: space-between;
     }
 
     nav ul {
@@ -1629,14 +1623,7 @@ nav ul li.version-timetravel:hover {
         font-size: 1.5rem; 
     }
 
-    header .container {
-        display: flex;
-        column-gap: 25px;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding: 0px 20px;
-        flex-direction: row;
-    }
+    /* header .container is now handled in components/_header.css */
 
     /* Layout */
     main {
@@ -3194,11 +3181,26 @@ html {
 @media (max-width: 768px) {
     .galleries-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1rem;
     }
     
     .gallery-card {
-        padding: 2rem;
+        padding: 1.5rem;
+        min-height: auto;
+    }
+    
+    /* Reduce icon size on mobile */
+    .gallery-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .gallery-card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-card p {
+        font-size: 0.95rem;
     }
 }
 /* Video Banner Section
