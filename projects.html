@@ -385,10 +385,66 @@
             border-color: rgba(0, 255, 0, 0.6);
         }
         
-        /* Menu toggle - styles imported from navigation.css */
+        /* Menu toggle - ensure it's hidden on desktop */
+        .menu-toggle {
+            display: none;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
+            /* Show menu toggle on mobile with full styles */
+            .menu-toggle {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 45px;
+                height: 45px;
+                padding: 0;
+                background: rgba(0, 20, 0, 0.9);
+                border: 2px solid rgba(0, 255, 0, 0.3);
+                border-radius: 8px;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+            
+            .menu-toggle span {
+                position: absolute;
+                width: 24px;
+                height: 2px;
+                background: #00ff00;
+                transition: all 0.3s ease;
+                box-shadow: 0 0 4px rgba(0, 255, 0, 0.5);
+            }
+            
+            .menu-toggle span:nth-child(1) {
+                top: 12px;
+            }
+            
+            .menu-toggle span:nth-child(2) {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .menu-toggle span:nth-child(3) {
+                bottom: 12px;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                bottom: 50%;
+                transform: translateY(50%) rotate(-45deg);
+            }
             .matrix-project-grid {
                 grid-template-columns: 1fr;
                 padding: 1rem;
@@ -410,10 +466,7 @@
             
             /* Mobile navigation */
             header nav {
-                position: absolute;
-                right: 0;
-                top: 100%;
-                width: 100%;
+                position: static;
             }
             
             header nav ul {
