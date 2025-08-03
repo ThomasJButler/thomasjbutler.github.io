@@ -6,6 +6,7 @@
 
 import { animate, stagger, createTimeline } from 'animejs';
 import { initCardAnimations, optimizeCardPerformance } from './card-animations.js';
+import { throttle, rafThrottle } from '../utils/throttle';
 
 // Define global anime interface
 interface AnimeGlobal {
@@ -15,7 +16,7 @@ interface AnimeGlobal {
 }
 
 // Make animate available globally for compatibility
-(window as Window & { anime: AnimeGlobal }).anime = {
+(window as any).anime = {
   animate,
   stagger,
   createTimeline
@@ -143,8 +144,8 @@ function animateMatrix(currentTime: number = 0): void {
 // Start animation
 requestAnimationFrame(animateMatrix);
 
-// Scroll event handler with parallax
-window.addEventListener('scroll', () => {
+// Throttled scroll handler for better performance
+const handleScroll = rafThrottle(() => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
   // Parallax effect for Matrix canvas
@@ -160,6 +161,9 @@ window.addEventListener('scroll', () => {
     setFadeInterval();
   }
 });
+
+// Scroll event handler with RAF throttling
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 // Mobile menu toggle handler
 document.addEventListener('DOMContentLoaded', () => {
@@ -562,7 +566,7 @@ function initAnimeAnimations(): void {
   // Staggered fade-in for project cards
   const projectCards = document.querySelectorAll('.project-card');
   if (projectCards.length > 0) {
-    animate(projectCards, {
+    animate(projectCards as NodeListOf<HTMLElement>, {
       opacity: { from: 0, to: 1 },
       translateY: { from: 30, to: 0 },
       scale: { from: 0.95, to: 1 },
@@ -576,7 +580,7 @@ function initAnimeAnimations(): void {
   const counters = document.querySelectorAll('.count');
   counters.forEach(counter => {
     const target = parseInt(counter.getAttribute('data-target') || counter.textContent || '0');
-    animate(counter, {
+    animate(counter as HTMLElement, {
       textContent: { from: 0, to: target },
       round: 1,
       duration: 2000,
@@ -587,7 +591,7 @@ function initAnimeAnimations(): void {
   // Subtle button hover effect - removed particle animation
   document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
     button.addEventListener('mouseenter', () => {
-      animate(button, {
+      animate(button as HTMLElement, {
         scale: 1.05,
         duration: 200,
         ease: 'outQuad'
@@ -595,7 +599,7 @@ function initAnimeAnimations(): void {
     });
     
     button.addEventListener('mouseleave', () => {
-      animate(button, {
+      animate(button as HTMLElement, {
         scale: 1,
         duration: 200,
         ease: 'outQuad'
@@ -606,7 +610,7 @@ function initAnimeAnimations(): void {
   // Simple fade-in for headers - more professional
   const headers = document.querySelectorAll('h1, h2:not(.introduction-h2)');
   headers.forEach((header) => {
-    animate(header, {
+    animate(header as HTMLElement, {
       opacity: { from: 0, to: 1 },
       translateY: { from: 10, to: 0 },
       duration: 600,
@@ -617,7 +621,7 @@ function initAnimeAnimations(): void {
   // Smooth scroll indicator animation
   const scrollIndicators = document.querySelectorAll('.scroll-down');
   if (scrollIndicators.length > 0) {
-    animate(scrollIndicators, {
+    animate(scrollIndicators as NodeListOf<HTMLElement>, {
       translateY: { from: 0, to: 10 },
       opacity: { from: 1, to: 0.7 },
       alternate: true,
@@ -631,7 +635,7 @@ function initAnimeAnimations(): void {
   const galleryItems = document.querySelectorAll('.gallery-item, .introduction-img img');
   galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-      animate(item, {
+      animate(item as HTMLElement, {
         scale: 1.02,
         duration: 300,
         ease: 'outQuad'
@@ -639,7 +643,7 @@ function initAnimeAnimations(): void {
     });
 
     item.addEventListener('mouseleave', () => {
-      animate(item, {
+      animate(item as HTMLElement, {
         scale: 1,
         duration: 300,
         ease: 'outQuad'
@@ -661,7 +665,7 @@ function initScrollReveal(): void {
         
         // Animate section content
         const content = entry.target.querySelectorAll('p, li, .card, .tech-item');
-        animate(content, {
+        animate(content as NodeListOf<HTMLElement>, {
           opacity: { from: 0, to: 1 },
           translateY: { from: 20, to: 0 },
           delay: stagger(50),

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import * as anime from 'animejs';
+import { animate, stagger } from 'animejs';
 import styles from './UpdatesFeed.module.css';
 import updatesData from '../../../updates.json';
 
@@ -53,19 +53,17 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
 
   useEffect(() => {
     // Stagger animation for feed items
-    anime.default({
-      targets: itemsRef.current,
+    animate(itemsRef.current, {
       translateY: [20, 0],
       opacity: [0, 1],
       duration: 800,
-      delay: anime.default.stagger(100),
-      easing: 'easeOutExpo'
+      delay: stagger(100),
+      ease: 'outExpo'
     });
   }, []);
 
   const handleUpdateHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    anime.default({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: 1.02,
       duration: 300,
       easing: 'easeOutQuad'
@@ -73,11 +71,10 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
   };
 
   const handleUpdateLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    anime.default({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: 1,
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 
