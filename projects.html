@@ -815,6 +815,31 @@
         // Add loaded class when page is ready
         window.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('loaded');
+            
+            // Simple tab filtering fallback
+            const tabs = document.querySelectorAll('.matrix-tab-button');
+            const cards = document.querySelectorAll('.matrix-project-card');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter cards
+                    cards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'flex';
+                            card.classList.remove('matrix-hidden');
+                        } else {
+                            card.style.display = 'none';
+                            card.classList.add('matrix-hidden');
+                        }
+                    });
+                });
+            });
         });
     </script>
     <!-- Matrix Rain Effect -->
