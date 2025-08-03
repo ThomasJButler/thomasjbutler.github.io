@@ -1,6 +1,5 @@
 // Main entry point for Vite
 import './scripts.ts';
-import { initializeHeader } from './header-init.ts';
 
 // Import main CSS file (includes all modular styles)
 import '../css/main.css';
@@ -17,11 +16,5 @@ ScrollMagicPluginGsap(ScrollMagic, gsap);
 window.gsap = gsap;
 window.ScrollMagic = ScrollMagic;
 
-// Initialize on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    initializeHeader();
-  });
-} else {
-  initializeHeader();
-}
+// Header initialization is now handled by React components
+// See src/components/Header.tsx

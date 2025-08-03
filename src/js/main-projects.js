@@ -1,6 +1,5 @@
 // Entry point for projects page
 import './scripts.ts';
-import { initializeHeader } from './header-init.ts';
 
 // Import main CSS file (includes all modular styles)
 import '../css/main.css';
@@ -26,9 +25,6 @@ import './projects-matrix-animations.js';
 
 // Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize header
-    initializeHeader();
-    
+    // Header initialization is now handled by React components
     // The Matrix animations will auto-initialize from the imported module
-    
 });
