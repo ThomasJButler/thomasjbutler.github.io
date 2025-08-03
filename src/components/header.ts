@@ -34,7 +34,7 @@ export class Header {
   init(): void {
     const headerRoot = document.getElementById('header-root');
     if (!headerRoot) {
-      console.error('Header root element not found');
+      // Header root element not found - using existing header
       return;
     }
 
