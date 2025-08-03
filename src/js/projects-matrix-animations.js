@@ -2,9 +2,21 @@
 // EPIC MATRIX PROJECTS ANIMATIONS WITH ANIME.JS
 // ==========================================================================
 
-import anime from 'animejs';
-
+// No need to import anime as it's loaded via CDN
 console.log('🚀 EPIC Matrix animations script loaded!');
+
+// Check if anime is available
+if (typeof anime === 'undefined') {
+    console.error('❌ Anime.js is not loaded! Loading from CDN...');
+    // Fallback: try to load from CDN if not already loaded
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js';
+    script.onload = () => {
+        console.log('✅ Anime.js loaded from fallback CDN');
+        initMatrixProjectAnimations();
+    };
+    document.head.appendChild(script);
+}
 
 // Global animation controller
 let animationController = {
@@ -77,6 +89,13 @@ function initialize() {
     setupCardInteractions();
     setupTabFiltering();
     setupModalSystem();
+    
+    // Setup epic new effects
+    setupKonamiCode();
+    setupClickBurstEffects();
+    setupElectricArcs();
+    setupTypingEffects();
+    setupPerformanceMonitor();
     
     console.log('✅ All animations initialized!');
 }
@@ -288,6 +307,35 @@ function setupCardInteractions() {
             
             // Particle emission
             emitParticles(card);
+            
+            // Add rainbow chromatic aberration effect
+            const rgbShift = document.createElement('div');
+            rgbShift.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                mix-blend-mode: screen;
+                z-index: 20;
+            `;
+            card.appendChild(rgbShift);
+            
+            anime({
+                targets: rgbShift,
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.1)',
+                    'rgba(0, 255, 0, 0.1)',
+                    'rgba(0, 0, 255, 0.1)',
+                    'rgba(255, 0, 0, 0.1)'
+                ],
+                duration: 2000,
+                loop: true,
+                easing: 'linear'
+            });
+            
+            card.dataset.rgbShift = rgbShift;
         });
         
         // Mouse leave
@@ -741,7 +789,322 @@ function createLightningEffect(container) {
     }
 }
 
+// ==========================================================================
+// KONAMI CODE EASTER EGG
+// ==========================================================================
+
+function setupKonamiCode() {
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            
+            if (konamiIndex === konamiCode.length) {
+                activateMatrixOverdrive();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+}
+
+function activateMatrixOverdrive() {
+    console.log('🔥 MATRIX OVERDRIVE ACTIVATED!');
+    
+    // Flash screen
+    const flash = document.createElement('div');
+    flash.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #00ff00;
+        z-index: 100000;
+        pointer-events: none;
+    `;
+    document.body.appendChild(flash);
+    
+    anime({
+        targets: flash,
+        opacity: [1, 0],
+        duration: 500,
+        easing: 'easeOutQuad',
+        complete: () => flash.remove()
+    });
+    
+    // Crazy card animations
+    const cards = document.querySelectorAll('.matrix-project-card');
+    cards.forEach((card, i) => {
+        anime({
+            targets: card,
+            rotateZ: [0, 360],
+            scale: [1, 1.2, 1],
+            translateY: [0, -50, 0],
+            duration: 2000,
+            delay: i * 100,
+            easing: 'easeInOutElastic'
+        });
+    });
+    
+    // Particle explosion
+    for (let i = 0; i < 200; i++) {
+        createMatrixParticle();
+    }
+    
+    // Glitch all text
+    document.querySelectorAll('h1, h2, h3, p').forEach(el => {
+        glitchText(el);
+    });
+}
+
+// ==========================================================================
+// CLICK BURST EFFECTS
+// ==========================================================================
+
+function setupClickBurstEffects() {
+    document.addEventListener('click', (e) => {
+        createClickBurst(e.clientX, e.clientY);
+        createShockwave(e.clientX, e.clientY);
+    });
+}
+
+function createClickBurst(x, y) {
+    const particles = 15;
+    
+    for (let i = 0; i < particles; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00ff00;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px #00ff00;
+        `;
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        
+        document.body.appendChild(particle);
+        
+        const angle = (i / particles) * Math.PI * 2;
+        const distance = anime.random(50, 200);
+        
+        anime({
+            targets: particle,
+            translateX: Math.cos(angle) * distance,
+            translateY: Math.sin(angle) * distance,
+            scale: [1, 0],
+            opacity: [1, 0],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            complete: () => particle.remove()
+        });
+    }
+}
+
+function createShockwave(x, y) {
+    const shockwave = document.createElement('div');
+    shockwave.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #00ff00;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+    `;
+    shockwave.style.left = x + 'px';
+    shockwave.style.top = y + 'px';
+    
+    document.body.appendChild(shockwave);
+    
+    anime({
+        targets: shockwave,
+        scale: [1, 10],
+        opacity: [1, 0],
+        duration: 800,
+        easing: 'easeOutQuad',
+        complete: () => shockwave.remove()
+    });
+}
+
+// ==========================================================================
+// ELECTRIC ARCS
+// ==========================================================================
+
+function setupElectricArcs() {
+    setInterval(() => {
+        const cards = document.querySelectorAll('.matrix-project-card');
+        if (cards.length < 2) return;
+        
+        const card1 = cards[anime.random(0, cards.length - 1)];
+        const card2 = cards[anime.random(0, cards.length - 1)];
+        
+        if (card1 !== card2) {
+            createElectricArc(card1, card2);
+        }
+    }, 3000);
+}
+
+function createElectricArc(elem1, elem2) {
+    const rect1 = elem1.getBoundingClientRect();
+    const rect2 = elem2.getBoundingClientRect();
+    
+    const x1 = rect1.left + rect1.width / 2;
+    const y1 = rect1.top + rect1.height / 2;
+    const x2 = rect2.left + rect2.width / 2;
+    const y2 = rect2.top + rect2.height / 2;
+    
+    const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+    
+    const arc = document.createElement('div');
+    arc.style.cssText = `
+        position: fixed;
+        width: ${distance}px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00ff00, transparent);
+        pointer-events: none;
+        z-index: 1000;
+        transform-origin: 0 50%;
+        box-shadow: 0 0 10px #00ff00;
+    `;
+    arc.style.left = x1 + 'px';
+    arc.style.top = y1 + 'px';
+    arc.style.transform = `rotate(${angle}deg)`;
+    
+    document.body.appendChild(arc);
+    
+    anime({
+        targets: arc,
+        opacity: [0, 1, 0],
+        scaleX: [0, 1, 0],
+        duration: 500,
+        easing: 'easeInOutQuad',
+        complete: () => arc.remove()
+    });
+}
+
+// ==========================================================================
+// TYPING EFFECTS
+// ==========================================================================
+
+function setupTypingEffects() {
+    const descriptions = document.querySelectorAll('.matrix-project-description');
+    
+    descriptions.forEach((desc, index) => {
+        const text = desc.textContent;
+        desc.textContent = '';
+        desc.style.minHeight = '3em'; // Prevent layout shift
+        
+        // Start typing after entrance animations
+        setTimeout(() => {
+            typeText(desc, text);
+        }, 2000 + index * 200);
+    });
+}
+
+function typeText(element, text) {
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+        if (index < text.length) {
+            element.textContent += text[index];
+            index++;
+        } else {
+            clearInterval(typeInterval);
+            // Add blinking cursor
+            const cursor = document.createElement('span');
+            cursor.textContent = '_';
+            cursor.style.animation = 'blink 1s infinite';
+            element.appendChild(cursor);
+        }
+    }, 30);
+}
+
+// ==========================================================================
+// PERFORMANCE MONITOR
+// ==========================================================================
+
+function setupPerformanceMonitor() {
+    let fps = 0;
+    let lastTime = performance.now();
+    let frames = 0;
+    
+    function updateFPS() {
+        const currentTime = performance.now();
+        frames++;
+        
+        if (currentTime >= lastTime + 1000) {
+            fps = Math.round((frames * 1000) / (currentTime - lastTime));
+            frames = 0;
+            lastTime = currentTime;
+            
+            // Reduce effects if FPS drops below 30
+            if (fps < 30) {
+                console.warn(`⚠️ Low FPS detected: ${fps}`);
+                // Reduce particle count or disable some effects
+            }
+        }
+        
+        requestAnimationFrame(updateFPS);
+    }
+    
+    updateFPS();
+}
+
+// ==========================================================================
+// HELPER FUNCTIONS
+// ==========================================================================
+
+function createMatrixParticle() {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+        position: fixed;
+        width: 10px;
+        height: 20px;
+        color: #00ff00;
+        font-family: monospace;
+        pointer-events: none;
+        z-index: 9999;
+        text-shadow: 0 0 5px #00ff00;
+    `;
+    particle.textContent = String.fromCharCode(33 + Math.random() * 94);
+    particle.style.left = Math.random() * window.innerWidth + 'px';
+    particle.style.top = -20 + 'px';
+    
+    document.body.appendChild(particle);
+    
+    anime({
+        targets: particle,
+        translateY: window.innerHeight + 20,
+        opacity: [1, 0],
+        duration: anime.random(2000, 4000),
+        easing: 'linear',
+        complete: () => particle.remove()
+    });
+}
+
+// Add CSS for blinking cursor
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
 // Initialize on import with delay to ensure CSS loads
 setTimeout(() => {
-    initMatrixProjectAnimations();
+    if (typeof anime !== 'undefined') {
+        initMatrixProjectAnimations();
+    }
 }, 100);

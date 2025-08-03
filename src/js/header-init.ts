@@ -3,7 +3,7 @@
  * This file provides page-specific header configurations
  */
 
-import { Header, defaultNavigation, specialNavItems, NavItem } from '../components/header';
+import { Header, defaultNavigation, specialNavItems, NavItem } from '../components/Header';
 
 // Page-specific navigation configurations
 const pageConfigs: Record<string, { title: string; subtitle?: string; navigation: NavItem[] }> = {
@@ -23,28 +23,13 @@ const pageConfigs: Record<string, { title: string; subtitle?: string; navigation
   },
   projects: {
     title: 'Thomas J Butler',
-    subtitle: 'Project Stack',
-    navigation: [
-      { label: 'HOME', href: 'index.html' },
-      specialNavItems.find(item => item.label === 'APPS')!,
-      specialNavItems.find(item => item.label === 'GAMES')!,
-      specialNavItems.find(item => item.label === 'ART GALLERY')!,
-      specialNavItems.find(item => item.label === 'CUSTOM GPTS')!,
-      { label: 'CONTACT', href: 'contact.html' },
-      specialNavItems.find(item => item.label === 'Version Time Travel')!
-    ]
+    subtitle: 'Full Stack Software Developer',
+    navigation: defaultNavigation
   },
   about: {
     title: 'Thomas J Butler',
-    subtitle: 'About Me',
-    navigation: [
-      { label: 'HOME', href: 'index.html' },
-      specialNavItems.find(item => item.label === 'ART GALLERY')!,
-      { label: 'SKILLS', href: 'skills.html' },
-      { label: 'PROJECTS', href: 'projects.html' },
-      { label: 'SERVICES', href: 'services.html' },
-      { label: 'CONTACT', href: 'contact.html' }
-    ]
+    subtitle: 'Full Stack Software Developer',
+    navigation: defaultNavigation
   },
   default: {
     title: 'Thomas J Butler',

@@ -28,58 +28,7 @@
             background-color: #0d0d0d !important;
         }
         
-        /* Critical header styles */
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 2px solid #00ff00;
-            padding: 1rem 0;
-            position: relative;
-            z-index: 1000;
-        }
-        
-        header .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        header h1 {
-            color: #00ff00;
-            font-size: 2rem;
-            margin: 0;
-            text-shadow: 0 0 10px #00ff00;
-        }
-        
-        header h3 {
-            color: rgba(0, 255, 0, 0.8);
-            font-size: 1rem;
-            margin: 0.5rem 0 0 0;
-            font-weight: normal;
-            letter-spacing: 1px;
-        }
-        
-        header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-        
-        header nav a {
-            color: #00ff00;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        header nav a:hover,
-        header nav a.active {
-            text-shadow: 0 0 10px #00ff00;
-        }
+        /* Header styles are imported from main.css */
         
         /* Matrix canvas background */
         #matrix {
@@ -385,125 +334,11 @@
             border-color: rgba(0, 255, 0, 0.6);
         }
         
-        /* Menu toggle - ensure it's hidden on desktop */
-        .menu-toggle {
-            display: none;
-        }
+        /* Menu toggle styles come from main.css */
         
         /* Responsive */
         @media (max-width: 768px) {
-            /* Show menu toggle on mobile with full styles */
-            .menu-toggle {
-                display: flex !important;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 45px;
-                height: 45px;
-                padding: 0;
-                background: rgba(0, 20, 0, 0.9);
-                border: 2px solid rgba(0, 255, 0, 0.3);
-                border-radius: 8px;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            }
-            
-            .menu-toggle span {
-                position: absolute;
-                width: 24px;
-                height: 2px;
-                background: #00ff00;
-                transition: all 0.3s ease;
-                box-shadow: 0 0 4px rgba(0, 255, 0, 0.5);
-            }
-            
-            .menu-toggle span:nth-child(1) {
-                top: 12px;
-            }
-            
-            .menu-toggle span:nth-child(2) {
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            
-            .menu-toggle span:nth-child(3) {
-                bottom: 12px;
-            }
-            
-            .menu-toggle.active span:nth-child(1) {
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-            }
-            
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .menu-toggle.active span:nth-child(3) {
-                bottom: 50%;
-                transform: translateY(50%) rotate(-45deg);
-            }
-            .matrix-project-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-            
-            /* Mobile header - keep horizontal layout */
-            header .container {
-                position: relative;
-                padding: 0 1rem;
-            }
-            
-            /* Stack title and subtitle */
-            header > div > a,
-            header h3 {
-                flex: 1;
-            }
-            
-            /* Mobile menu toggle - styles come from navigation.css */
-            
-            /* Mobile navigation */
-            header nav {
-                position: static;
-            }
-            
-            header nav ul {
-                display: none;
-                position: absolute;
-                top: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.95);
-                border: 2px solid #00ff00;
-                border-top: none;
-                width: 100%;
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                max-height: calc(100vh - 80px);
-                overflow-y: auto;
-            }
-            
-            header nav ul.show {
-                display: flex;
-            }
-            
-            header nav ul li {
-                width: 100%;
-            }
-            
-            header nav ul a {
-                display: block;
-                padding: 1rem 2rem;
-                border-bottom: 1px solid rgba(0, 255, 0, 0.2);
-                transition: all 0.3s ease;
-            }
-            
-            header nav ul a:hover {
-                background: rgba(0, 255, 0, 0.1);
-                padding-left: 2.5rem;
-            }
+            /* Mobile styles for project-specific elements only */
             
             .matrix-project-tabs {
                 gap: 0.5rem;
