@@ -25,7 +25,10 @@
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "update": "node scripts/portfolio-update.js",
+    "update:quick": "echo '$(date): Quick update' >> devlog.md && git add . && git commit -m 'Portfolio: Quick update' && git push",
+    "update:stats": "node scripts/generate-stats.js"
   },
   "keywords": [],
   "author": "",
