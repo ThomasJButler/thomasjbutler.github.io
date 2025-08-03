@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Footer.module.css';
 
@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             matrixAnimations.fadeInUp(footerRef.current);
           }
           if (socialLinksRef.current) {
-            matrixAnimations.staggerIn(socialLinksRef.current.children, 50);
+            matrixAnimations.staggerIn(Array.from(socialLinksRef.current.children) as HTMLElement[], 50);
           }
         }
       },
@@ -31,22 +31,20 @@ export const Footer: React.FC = () => {
   }, []);
 
   const handleSocialHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: [1, 1.2],
       rotate: [0, 360],
       duration: 500,
-      easing: 'easeOutElastic(1, 0.5)'
+      ease: 'outElastic(1, 0.5)'
     });
   };
 
   const handleSocialLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: 1,
       rotate: 0,
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 

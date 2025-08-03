@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import anime from '../utils/anime';
+import { animate, stagger } from 'animejs';
 import styles from './GodModeDisplay.module.css';
 
 interface TransformationMetric {
@@ -38,13 +38,12 @@ export const GodModeDisplay: React.FC = () => {
       // Animate metrics in
       const metricElements = metricsRef.current.querySelectorAll('.metric');
       
-      anime({
-        targets: metricElements,
+      animate(metricElements as NodeListOf<HTMLElement>, {
         opacity: [0, 1],
         translateX: [-50, 0],
-        delay: anime.stagger(100),
+        delay: stagger(100),
         duration: 800,
-        easing: 'easeOutExpo'
+        ease: 'outExpo'
       });
 
       // Animate progress bars
@@ -52,12 +51,11 @@ export const GodModeDisplay: React.FC = () => {
         const progressBar = element.querySelector('.progress-fill');
         if (progressBar) {
           const width = metrics[index].value / metrics[index].target * 100;
-          anime({
-            targets: progressBar,
+          animate(progressBar as HTMLElement, {
             width: `${Math.min(width, 100)}%`,
             delay: 500 + (index * 100),
             duration: 1000,
-            easing: 'easeOutExpo'
+            ease: 'outExpo'
           });
         }
       });

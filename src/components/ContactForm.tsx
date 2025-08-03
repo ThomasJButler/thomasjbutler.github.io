@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 import styles from './ContactForm.module.css';
 
 interface FormData {
@@ -30,34 +30,31 @@ export const ContactForm: React.FC = () => {
   useEffect(() => {
     // Simple fade in on mount
     if (formRef.current) {
-      anime({
-        targets: formRef.current,
+      animate(formRef.current, {
         opacity: [0, 1],
         duration: 400,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     }
   }, []);
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Simple border color change on focus
-    anime({
-      targets: e.target,
+    animate(e.target, {
       borderColor: '#00FF00',
       boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
       duration: 200,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Revert border color on blur
-    anime({
-      targets: e.target,
+    animate(e.target, {
       borderColor: 'rgba(0, 255, 0, 0.3)',
       boxShadow: '0 0 0 rgba(0, 255, 0, 0)',
       duration: 200,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 

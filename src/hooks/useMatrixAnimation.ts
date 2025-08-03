@@ -1,9 +1,9 @@
 import { useEffect, useRef, useCallback } from 'react';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 
 export const useMatrixAnimation = () => {
-  const animationRef = useRef<anime.AnimeInstance | null>(null);
+  const animationRef = useRef<any | null>(null);
 
   // Clean up animation on unmount
   useEffect(() => {
@@ -31,12 +31,11 @@ export const useMatrixAnimation = () => {
       animationRef.current.pause();
     }
     
-    animationRef.current = anime({
-      targets: element,
+    animationRef.current = animate(element, {
       opacity: [1, 0],
       translateY: [0, -20],
       duration: 300,
-      easing: 'easeInQuad'
+      ease: 'inQuad'
     });
   }, []);
 

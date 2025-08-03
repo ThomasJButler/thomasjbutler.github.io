@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Header.module.css';
 
@@ -41,18 +41,16 @@ export const Header: React.FC = () => {
           // Hide/show header on scroll
           if (headerRef.current) {
             if (scrollTop > lastScrollTop.current && scrollTop > 100) {
-              anime({
-                targets: headerRef.current,
+              animate(headerRef.current, {
                 translateY: '-100%',
                 duration: 300,
-                easing: 'easeInQuad'
+                ease: 'inQuad'
               });
             } else {
-              anime({
-                targets: headerRef.current,
+              animate(headerRef.current, {
                 translateY: 0,
                 duration: 300,
-                easing: 'easeOutQuad'
+                ease: 'outQuad'
               });
             }
           }
@@ -75,7 +73,7 @@ export const Header: React.FC = () => {
   // Animate nav items on mount
   useEffect(() => {
     if (navRef.current) {
-      matrixAnimations.staggerIn(navRef.current.children);
+      matrixAnimations.staggerIn(Array.from(navRef.current.children) as HTMLElement[]);
     }
   }, []);
 
@@ -87,22 +85,20 @@ export const Header: React.FC = () => {
     if (navRef.current) {
       if (newState) {
         navRef.current.style.display = 'flex';
-        anime({
-          targets: navRef.current,
+        animate(navRef.current, {
           opacity: [0, 1],
           translateY: [-10, 0],
           scale: [0.95, 1],
           duration: 300,
-          easing: 'easeOutQuad'
+          ease: 'outQuad'
         });
       } else {
-        anime({
-          targets: navRef.current,
+        animate(navRef.current, {
           opacity: [1, 0],
           translateY: [0, -10],
           scale: [1, 0.95],
           duration: 300,
-          easing: 'easeInQuad',
+          ease: 'inQuad',
           complete: () => {
             if (navRef.current && !isMenuOpen) {
               navRef.current.style.display = 'none';

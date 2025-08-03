@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
-import anime from '../utils/anime';
+import { animate, stagger } from 'animejs';
 
 interface Project {
   id: string;
@@ -135,13 +135,12 @@ export const ProjectsPage: React.FC = () => {
 
   useEffect(() => {
     if (gridRef.current) {
-      anime({
-        targets: gridRef.current.children,
+      animate(gridRef.current.children, {
         opacity: [0, 1],
         translateY: [20, 0],
-        delay: anime.stagger(100, {from: 'first'}),
+        delay: stagger(100, {from: 'first'}),
         duration: 600,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     }
   }, [visibleProjects]);
@@ -150,29 +149,27 @@ export const ProjectsPage: React.FC = () => {
     setActiveCategory(category);
     
     // Animate tab change
-    anime({
-      targets: '.tab-button',
+    const tabButtons = document.querySelectorAll('.tab-button');
+    animate(tabButtons, {
       scale: [1, 0.95, 1],
       duration: 300,
-      easing: 'easeInOutQuad'
+      ease: 'inOutQuad'
     });
   };
 
   const handleCardHover = (e: React.MouseEvent<HTMLElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: 1.02,
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 
   const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       scale: 1,
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 

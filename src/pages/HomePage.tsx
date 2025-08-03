@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import anime from '../utils/anime';
+import { animate, stagger } from 'animejs';
 import { useScrollAnimation, useHoverAnimation } from '../hooks/useMatrixAnimation';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 
@@ -21,24 +21,22 @@ export const HomePage: React.FC = () => {
       }
 
       // Stagger paragraphs
-      anime({
-        targets: paragraphs,
+      animate(paragraphs, {
         opacity: [0, 1],
         translateY: [20, 0],
-        delay: anime.stagger(200, { start: 1000 }),
+        delay: stagger(200, { start: 1000 }),
         duration: 800,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
 
       // Image animations
-      anime({
-        targets: images,
+      animate(images, {
         opacity: [0, 1],
         scale: [0.8, 1],
         rotateY: [45, 0],
-        delay: anime.stagger(100, { start: 1500 }),
+        delay: stagger(100, { start: 1500 }),
         duration: 1000,
-        easing: 'easeOutExpo'
+        ease: 'outExpo'
       });
     }
 
@@ -53,14 +51,13 @@ export const HomePage: React.FC = () => {
         if (entry.isIntersecting) {
           const cards = entry.target.querySelectorAll('.introduction-expertise-card');
           
-          anime({
-            targets: cards,
+          animate(cards, {
             opacity: [0, 1],
             translateY: [50, 0],
             scale: [0.9, 1],
-            delay: anime.stagger(100),
+            delay: stagger(100),
             duration: 800,
-            easing: 'easeOutQuad'
+            ease: 'outQuad'
           });
 
           // Animate progress bars
@@ -70,12 +67,11 @@ export const HomePage: React.FC = () => {
               const width = progressBar.style.width;
               progressBar.style.width = '0%';
               
-              anime({
-                targets: progressBar,
+              animate(progressBar, {
                 width: width,
                 delay: 200 + (index * 100),
                 duration: 1000,
-                easing: 'easeOutExpo'
+                ease: 'outExpo'
               });
             }
           });
@@ -93,22 +89,20 @@ export const HomePage: React.FC = () => {
 
   // Handle card hover
   const handleCardHover = (e: React.MouseEvent<HTMLLIElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       translateY: -10,
       boxShadow: '0 20px 40px rgba(0, 255, 0, 0.3)',
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 
   const handleCardLeave = (e: React.MouseEvent<HTMLLIElement>) => {
-    anime({
-      targets: e.currentTarget,
+    animate(e.currentTarget, {
       translateY: 0,
       boxShadow: '0 5px 15px rgba(0, 255, 0, 0.1)',
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 
 export const MatrixRain: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,29 +34,10 @@ export const MatrixRain: React.FC = () => {
       )
     }));
 
-    // Animate drops with Anime.js for smooth performance
+    // Initialize drop animation
     const animateDrop = (dropIndex: number) => {
-      const drop = dropsRef.current[dropIndex];
-      
-      anime({
-        targets: drop,
-        y: canvas.height + 100,
-        duration: drop.speed * 1000,
-        easing: 'linear',
-        loop: true,
-        update: () => {
-          // Randomly change characters
-          if (Math.random() > 0.98) {
-            drop.chars = drop.chars.map(() => 
-              matrixChars[Math.floor(Math.random() * matrixChars.length)]
-            );
-          }
-        },
-        loopComplete: () => {
-          drop.y = Math.random() * -100;
-          drop.speed = Math.random() * 3 + 2;
-        }
-      });
+      // Drops are animated in the draw loop, not with anime.js
+      // This function is kept for compatibility
     };
 
     // Start animations for all drops
@@ -134,12 +115,7 @@ export const MatrixRain: React.FC = () => {
         const radius = 3;
         for (let i = x - radius; i <= x + radius; i++) {
           if (dropsRef.current[i]) {
-            anime({
-              targets: dropsRef.current[i],
-              speed: 8,
-              duration: 500,
-              easing: 'easeOutQuad'
-            });
+            dropsRef.current[i].speed = 8;
           }
         }
       }

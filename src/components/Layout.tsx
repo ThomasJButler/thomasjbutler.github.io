@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import anime from '../utils/anime';
+import { animate } from 'animejs';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
@@ -16,20 +16,18 @@ export const Layout: React.FC = () => {
     // Animate page content on route change
     if (contentRef.current) {
       // Exit animation
-      anime({
-        targets: contentRef.current,
+      animate(contentRef.current, {
         opacity: [1, 0],
         translateY: [0, -20],
         duration: 300,
-        easing: 'easeInQuad',
+        ease: 'inQuad',
         complete: () => {
           // Enter animation
-          anime({
-            targets: contentRef.current,
+          animate(contentRef.current!, {
             opacity: [0, 1],
             translateY: [20, 0],
             duration: 600,
-            easing: 'easeOutQuad'
+            ease: 'outQuad'
           });
         }
       });
@@ -40,7 +38,7 @@ export const Layout: React.FC = () => {
   }, [location]);
 
   return (
-    <div ref={pageRef} className={styles.appLayout}>
+    <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
       {/* Matrix Rain Background */}
       <MatrixRain />
       

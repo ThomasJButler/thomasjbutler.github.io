@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
-import anime from '../utils/anime';
+import { animate, stagger } from 'animejs';
 
 interface SkillCategory {
   title: string;
@@ -74,32 +74,36 @@ export const AboutPage: React.FC = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  useMatrixAnimation(containerRef);
+  const matrixAnim = useMatrixAnimation('fadeIn');
+  
+  useEffect(() => {
+    if (containerRef.current) {
+      matrixAnim.animateIn(containerRef.current);
+    }
+  }, [matrixAnim]);
 
   useEffect(() => {
     // Animate skills on mount
     if (skillsRef.current) {
-      anime({
-        targets: skillsRef.current.querySelectorAll('.skill-card'),
+      animate(skillsRef.current.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>, {
         opacity: [0, 1],
         translateY: [30, 0],
-        delay: anime.stagger(100),
+        delay: stagger(100),
         duration: 800,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     }
 
     // Animate timeline
     if (timelineRef.current) {
-      anime({
-        targets: timelineRef.current.querySelectorAll('.timeline-item'),
+      animate(timelineRef.current.querySelectorAll('.timeline-item') as NodeListOf<HTMLElement>, {
         opacity: [0, 1],
         translateX: function(el: any, i: number) {
           return i % 2 === 0 ? [-50, 0] : [50, 0];
         },
-        delay: anime.stagger(150, {start: 300}),
+        delay: stagger(150, {start: 300}),
         duration: 1000,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
       });
     }
   }, []);
@@ -108,12 +112,11 @@ export const AboutPage: React.FC = () => {
     const card = e.currentTarget;
     const icons = card.querySelectorAll('.skill-item');
     
-    anime({
-      targets: icons,
+    animate(icons as NodeListOf<HTMLElement>, {
       scale: [1, 1.1],
       duration: 300,
-      delay: anime.stagger(50),
-      easing: 'easeOutQuad'
+      delay: stagger(50),
+      ease: 'outQuad'
     });
   };
 
@@ -121,11 +124,10 @@ export const AboutPage: React.FC = () => {
     const card = e.currentTarget;
     const icons = card.querySelectorAll('.skill-item');
     
-    anime({
-      targets: icons,
+    animate(icons as NodeListOf<HTMLElement>, {
       scale: 1,
       duration: 300,
-      easing: 'easeOutQuad'
+      ease: 'outQuad'
     });
   };
 
