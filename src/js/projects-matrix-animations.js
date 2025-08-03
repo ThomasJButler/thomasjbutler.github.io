@@ -530,6 +530,15 @@ function setupTabFiltering() {
     const tabs = document.querySelectorAll('.matrix-tab-button');
     const cards = document.querySelectorAll('.matrix-project-card');
     
+    console.log(`📑 Setting up tab filtering with ${tabs.length} tabs and ${cards.length} cards`);
+    
+    // Ensure all cards are visible initially
+    cards.forEach(card => {
+        card.classList.remove('matrix-hidden');
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+    });
+    
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const category = tab.dataset.category;
@@ -538,32 +547,41 @@ function setupTabFiltering() {
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
-            // Disintegration effect for non-matching cards
+            console.log(`🎯 Tab clicked: ${category}`);
+            
+            // Filter cards with animation
             cards.forEach((card, index) => {
                 const cardCategory = card.dataset.category;
                 const shouldShow = category === 'all' || cardCategory === category;
                 
-                if (shouldShow && card.classList.contains('matrix-hidden')) {
-                    // Materialize card
-                    card.classList.remove('matrix-hidden');
-                    
-                    anime({
-                        targets: card,
-                        opacity: [0, 1],
-                        scale: [0, 1],
-                        rotateY: [-180, 0],
-                        duration: 600,
-                        delay: index * 50,
-                        easing: 'easeOutBack',
-                        begin: () => {
-                            createDigitalRain(card);
-                        }
-                    });
-                } else if (!shouldShow && !card.classList.contains('matrix-hidden')) {
-                    // Disintegrate card
-                    disintegrateCard(card, () => {
-                        card.classList.add('matrix-hidden');
-                    });
+                console.log(`Card ${index}: category=${cardCategory}, shouldShow=${shouldShow}`);
+                
+                if (shouldShow) {
+                    // Show card
+                    if (card.classList.contains('matrix-hidden')) {
+                        card.classList.remove('matrix-hidden');
+                        
+                        anime({
+                            targets: card,
+                            opacity: [0, 1],
+                            scale: [0, 1],
+                            rotateY: [-180, 0],
+                            duration: 600,
+                            delay: index * 50,
+                            easing: 'easeOutBack',
+                            begin: () => {
+                                createDigitalRain(card);
+                            }
+                        });
+                    }
+                } else {
+                    // Hide card
+                    if (!card.classList.contains('matrix-hidden')) {
+                        // Disintegrate card
+                        disintegrateCard(card, () => {
+                            card.classList.add('matrix-hidden');
+                        });
+                    }
                 }
             });
         });
