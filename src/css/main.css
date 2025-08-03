@@ -26,7 +26,7 @@
 @import './projects.css';
 @import './about.css';
 @import './contact.css';
-@import './github-projects.css';
+/* @import './github-projects.css'; - Replaced with projects-matrix.css */
 @import './rotating-cube.css';
 
 /* Legacy Imports */

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Repository Showcase | Thomas J Butler</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Critical CSS to prevent FOUC -->
     <style>
         /* Dark Matrix background */
@@ -13,6 +15,7 @@
             color: #00ff00;
             margin: 0;
             padding: 0;
+            font-family: 'VT323', 'Courier New', monospace;
         }
         body:not(.loaded) {
             visibility: hidden;
@@ -24,6 +27,69 @@
             opacity: 1 !important;
             background-color: #0d0d0d !important;
         }
+        
+        /* Critical header styles */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        header h1 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header nav a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        header nav a:hover,
+        header nav a.active {
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        /* Matrix canvas background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Main content area */
+        main {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+        
         .page-loader {
             position: fixed;
             top: 0;
@@ -36,6 +102,330 @@
         }
         .page-loader.active {
             display: flex;
+        }
+        
+        /* Critical project card styles to prevent wide images */
+        .matrix-project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .matrix-project-card {
+            background: rgba(0, 20, 0, 0.6);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .matrix-project-icon {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .matrix-project-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0 1rem;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            font-family: 'Orbitron', 'VT323', monospace;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .section-description {
+            text-align: center;
+            color: rgba(0, 255, 0, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+        
+        /* Matrix effects containers */
+        .matrix-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .matrix-scanner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            opacity: 0.5;
+            z-index: 5;
+        }
+        
+        .matrix-energy-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        /* Main showcase container */
+        #matrix-projects-showcase {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .matrix-project-container {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Tab container */
+        .matrix-project-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Tab buttons */
+        .matrix-tab-button {
+            background: rgba(0, 20, 0, 0.7);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            padding: 0.8rem 1.5rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-tab-button:hover,
+        .matrix-tab-button.active {
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            border-color: #00ff00;
+            transform: translateY(-2px);
+        }
+        
+        /* Project button container */
+        .matrix-project-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+        
+        /* Project buttons */
+        .matrix-project-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            text-decoration: none;
+            text-align: center;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-project-btn:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00, inset 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer styling */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00ff00;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        footer ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0 0 1rem 0;
+            padding: 0;
+        }
+        
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        footer a:hover {
+            border-color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        footer p {
+            color: rgba(0, 255, 0, 0.7);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Project tags */
+        .matrix-project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .matrix-project-tag {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+        
+        .matrix-project-tag:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        /* Project titles and descriptions */
+        .matrix-project-title {
+            color: #00ff00;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .matrix-project-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        /* Hover effect for cards */
+        .matrix-project-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .matrix-project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.6);
+        }
+        
+        /* Menu toggle for mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #00ff00;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .matrix-project-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            header nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .matrix-project-tabs {
+                gap: 0.5rem;
+            }
+            
+            .matrix-tab-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            footer ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
     <!-- CSS and libraries loaded via JavaScript module -->
@@ -73,316 +463,320 @@
     </header>
 
     <main>
-        <section id="featured-projects" class="reveal">
-            <div class="container">
+        <section id="matrix-projects-showcase" class="reveal">
+            <!-- Epic Matrix Effects Container -->
+            <div class="matrix-particles"></div>
+            <div class="matrix-scanner"></div>
+            <canvas class="matrix-energy-grid"></canvas>
+            
+            <div class="matrix-project-container">
                 <h2 class="section-title">GitHub Repository Showcase</h2>
                 <p class="section-description">Explore my open source contributions and personal projects</p>
                 
                 <!-- Category Tabs -->
-                <div class="project-tabs">
-                    <button class="tab-button active" data-category="all">All Projects</button>
-                    <button class="tab-button" data-category="web">Web Showcases</button>
-                    <button class="tab-button" data-category="ml-python">ML and Python</button>
-                    <button class="tab-button" data-category="games">Games</button>
-                    <button class="tab-button" data-category="personal">Personal</button>
+                <div class="matrix-project-tabs">
+                    <button class="matrix-tab-button active" data-category="all">All Projects</button>
+                    <button class="matrix-tab-button" data-category="web">Web Showcases</button>
+                    <button class="matrix-tab-button" data-category="ml-python">ML and Python</button>
+                    <button class="matrix-tab-button" data-category="games">Games</button>
+                    <button class="matrix-tab-button" data-category="personal">Personal</button>
                 </div>
-                <ul class="github-projects-grid">
+                <div class="matrix-project-grid">
                     <!-- AiTomatic Project -->
-                    <li class="github-card" data-category="ml-python">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="ml-python">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview">
                         </div>
-                        <h3>AiTomatic</h3>
-                        <p class="repo-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
-                        <div class="repo-topics">
-                            <span class="topic">React</span>
-                            <span class="topic">TypeScript</span>
-                            <span class="topic">AI/ML</span>
-                            <span class="topic">API Integration</span>
-                            <span class="topic">Python</span>
-                            <span class="topic">Next.js</span>
+                        <h3 class="matrix-project-title">AiTomatic</h3>
+                        <p class="matrix-project-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">React</span>
+                            <span class="matrix-project-tag">TypeScript</span>
+                            <span class="matrix-project-tag">AI/ML</span>
+                            <span class="matrix-project-tag">API Integration</span>
+                            <span class="matrix-project-tag">Python</span>
+                            <span class="matrix-project-tag">Next.js</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://aitomatic.rocks" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://aitomatic.rocks" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Live Demo</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
 
                     <!-- Matrix Arcade Project -->
-                    <li class="github-card" data-category="games">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="games">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Matrix Arcade Preview">
                         </div>
-                        <h3>The Matrix Arcade</h3>
-                        <p class="repo-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
-                        <div class="repo-topics">
-                            <span class="topic">React</span>
-                            <span class="topic">Python</span>
-                            <span class="topic">Vite</span>
-                            <span class="topic">Canvas API</span>
-                            <span class="topic">Game Dev</span>
-                            <span class="topic">JavaScript</span>
+                        <h3 class="matrix-project-title">The Matrix Arcade</h3>
+                        <p class="matrix-project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">React</span>
+                            <span class="matrix-project-tag">Python</span>
+                            <span class="matrix-project-tag">Vite</span>
+                            <span class="matrix-project-tag">Canvas API</span>
+                            <span class="matrix-project-tag">Game Dev</span>
+                            <span class="matrix-project-tag">JavaScript</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Enter The Arcade</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
-                            <a href="https://github.com/ThomasJButler/the-matrix-arcade" target="_blank" rel="noopener" class="repo-link">
+                            <a href="https://github.com/ThomasJButler/the-matrix-arcade" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Code</span>
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Open Source Contribution Example -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <i class="fab fa-react" style="font-size: 4rem; color: var(--matrix-cyan);"></i>
                         </div>
-                        <h3>React Documentation</h3>
-                        <p class="repo-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
-                        <div class="repo-topics">
-                            <span class="topic">Documentation</span>
-                            <span class="topic">React</span>
-                            <span class="topic">Open Source</span>
-                            <span class="topic">MDX</span>
-                            <span class="topic">GitHub</span>
-                            <span class="topic">Collaboration</span>
+                        <h3 class="matrix-project-title">React Documentation</h3>
+                        <p class="matrix-project-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">Documentation</span>
+                            <span class="matrix-project-tag">React</span>
+                            <span class="matrix-project-tag">Open Source</span>
+                            <span class="matrix-project-tag">MDX</span>
+                            <span class="matrix-project-tag">GitHub</span>
+                            <span class="matrix-project-tag">Collaboration</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/facebook/react/pull/245" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://github.com/facebook/react/pull/245" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Pull Request</span>
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- CodePen Showcase Project -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737940141/codepen_mtf6if.png" alt="CodePen Collection Preview">
                         </div>
-                        <h3>Creative CodePen Collection</h3>
-                        <p class="repo-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
-                        <div class="repo-topics">
-                            <span class="topic">JavaScript</span>
-                            <span class="topic">CSS3</span>
-                            <span class="topic">HTML5</span>
-                            <span class="topic">SVG</span>
-                            <span class="topic">Canvas</span>
-                            <span class="topic">Animation</span>
+                        <h3 class="matrix-project-title">Creative CodePen Collection</h3>
+                        <p class="matrix-project-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">JavaScript</span>
+                            <span class="matrix-project-tag">CSS3</span>
+                            <span class="matrix-project-tag">HTML5</span>
+                            <span class="matrix-project-tag">SVG</span>
+                            <span class="matrix-project-tag">Canvas</span>
+                            <span class="matrix-project-tag">Animation</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Collection</span>
                                 <i class="fab fa-codepen"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Python Projects -->
-                    <li class="github-card" data-category="ml-python">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="ml-python">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview">
                         </div>
-                        <h3>Python Projects</h3>
-                        <p class="repo-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
-                        <div class="repo-topics">
-                            <span class="topic">Python</span>
-                            <span class="topic">Algorithms</span>
-                            <span class="topic">Mathematics</span>
-                            <span class="topic">Fractals</span>
-                            <span class="topic">Machine Learning</span>
-                            <span class="topic">Games</span>
+                        <h3 class="matrix-project-title">Python Projects</h3>
+                        <p class="matrix-project-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">Python</span>
+                            <span class="matrix-project-tag">Algorithms</span>
+                            <span class="matrix-project-tag">Mathematics</span>
+                            <span class="matrix-project-tag">Fractals</span>
+                            <span class="matrix-project-tag">Machine Learning</span>
+                            <span class="matrix-project-tag">Games</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Repository</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Commercial Portfolio Update -->
-                    <li class="github-card" data-category="personal">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="personal">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/commercial-portfolio_placeholder.png" alt="Commercial Portfolio Preview">
                         </div>
-                        <h3>Commercial Portfolio v2.0</h3>
-                        <p class="repo-description">Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.</p>
-                        <div class="repo-topics">
-                            <span class="topic">Portfolio</span>
-                            <span class="topic">Notion API</span>
-                            <span class="topic">CMS</span>
-                            <span class="topic">Professional</span>
-                            <span class="topic">Dynamic</span>
-                            <span class="topic">Responsive</span>
+                        <h3 class="matrix-project-title">Commercial Portfolio v2.0</h3>
+                        <p class="matrix-project-description">Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">Portfolio</span>
+                            <span class="matrix-project-tag">Notion API</span>
+                            <span class="matrix-project-tag">CMS</span>
+                            <span class="matrix-project-tag">Professional</span>
+                            <span class="matrix-project-tag">Dynamic</span>
+                            <span class="matrix-project-tag">Responsive</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://thomasjbutler.notion.site/commercial-portfolio" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://thomasjbutler.notion.site/commercial-portfolio" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Portfolio</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Personal Portfolio React Update -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/react-migration_placeholder.png" alt="React Migration Preview">
                         </div>
-                        <h3>Portfolio v3.0 - React Migration</h3>
-                        <p class="repo-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.</p>
-                        <div class="repo-topics">
-                            <span class="topic">React 19</span>
-                            <span class="topic">TypeScript</span>
-                            <span class="topic">Vite 7</span>
-                            <span class="topic">Anime.js</span>
-                            <span class="topic">Components</span>
-                            <span class="topic">Migration</span>
+                        <h3 class="matrix-project-title">Portfolio v3.0 - React Migration</h3>
+                        <p class="matrix-project-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">React 19</span>
+                            <span class="matrix-project-tag">TypeScript</span>
+                            <span class="matrix-project-tag">Vite 7</span>
+                            <span class="matrix-project-tag">Anime.js</span>
+                            <span class="matrix-project-tag">Components</span>
+                            <span class="matrix-project-tag">Migration</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="/index-react.html" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="/index-react.html" class="matrix-project-btn">
                                 <span class="btn-text">View React Version</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- CSS Showcase -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/css-showcase_placeholder.png" alt="CSS Showcase Preview">
                         </div>
-                        <h3>CSS Showcase</h3>
-                        <p class="repo-description">Advanced CSS demonstrations featuring complex animations, interactive components, and cutting-edge techniques.</p>
-                        <div class="repo-topics">
-                            <span class="topic">CSS3</span>
-                            <span class="topic">Animations</span>
-                            <span class="topic">Grid</span>
-                            <span class="topic">Flexbox</span>
-                            <span class="topic">Custom Properties</span>
-                            <span class="topic">Advanced</span>
+                        <h3 class="matrix-project-title">CSS Showcase</h3>
+                        <p class="matrix-project-description">Advanced CSS demonstrations featuring complex animations, interactive components, and cutting-edge techniques.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">CSS3</span>
+                            <span class="matrix-project-tag">Animations</span>
+                            <span class="matrix-project-tag">Grid</span>
+                            <span class="matrix-project-tag">Flexbox</span>
+                            <span class="matrix-project-tag">Custom Properties</span>
+                            <span class="matrix-project-tag">Advanced</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Explore CSS Magic</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Landing Page -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668231/landingpagedesktop_ssozki.png" alt="Landing Page Preview">
                         </div>
-                        <h3>Landing Page</h3>
-                        <p class="repo-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
-                        <div class="repo-topics">
-                            <span class="topic">HTML5</span>
-                            <span class="topic">CSS3</span>
-                            <span class="topic">JavaScript</span>
-                            <span class="topic">Responsive</span>
-                            <span class="topic">Animation</span>
-                            <span class="topic">UI/UX</span>
+                        <h3 class="matrix-project-title">Landing Page</h3>
+                        <p class="matrix-project-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">HTML5</span>
+                            <span class="matrix-project-tag">CSS3</span>
+                            <span class="matrix-project-tag">JavaScript</span>
+                            <span class="matrix-project-tag">Responsive</span>
+                            <span class="matrix-project-tag">Animation</span>
+                            <span class="matrix-project-tag">UI/UX</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="/landingpage.html" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="/landingpage.html" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Enter Landing Page</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Version TimeTravel Website -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/Versiontimetravel_uai2rc.png" alt="Version TimeTravel Preview">
                         </div>
-                        <h3>Version TimeTravel</h3>
-                        <p class="repo-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
-                        <div class="repo-topics">
-                            <span class="topic">JavaScript</span>
-                            <span class="topic">GSAP</span>
-                            <span class="topic">ScrollMagic</span>
-                            <span class="topic">Timeline</span>
-                            <span class="topic">Animation</span>
-                            <span class="topic">History</span>
+                        <h3 class="matrix-project-title">Version TimeTravel</h3>
+                        <p class="matrix-project-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">JavaScript</span>
+                            <span class="matrix-project-tag">GSAP</span>
+                            <span class="matrix-project-tag">ScrollMagic</span>
+                            <span class="matrix-project-tag">Timeline</span>
+                            <span class="matrix-project-tag">Animation</span>
+                            <span class="matrix-project-tag">History</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Enter Time Travel</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- The Big Bang Gallery -->
-                    <li class="github-card" data-category="web">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="web">
+                        <div class="matrix-project-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737689452/artgallery_kswku9.png" alt="Big Bang Gallery Preview">
                         </div>
-                        <h3>The Big Bang Gallery</h3>
-                        <p class="repo-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
-                        <div class="repo-topics">
-                            <span class="topic">CSS3</span>
-                            <span class="topic">Grid Layout</span>
-                            <span class="topic">MidJourney</span>
-                            <span class="topic">Gallery</span>
-                            <span class="topic">Interactive</span>
-                            <span class="topic">Art</span>
+                        <h3 class="matrix-project-title">The Big Bang Gallery</h3>
+                        <p class="matrix-project-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">CSS3</span>
+                            <span class="matrix-project-tag">Grid Layout</span>
+                            <span class="matrix-project-tag">MidJourney</span>
+                            <span class="matrix-project-tag">Gallery</span>
+                            <span class="matrix-project-tag">Interactive</span>
+                            <span class="matrix-project-tag">Art</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://thomasjbutler.github.io/bigbang-gallery/" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://thomasjbutler.github.io/bigbang-gallery/" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">Enter Gallery</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </div>
 
                     <!-- Premier League Oracle -->
-                    <li class="github-card" data-category="ml-python">
-                        <div class="github-card-icon">
+                    <div class="matrix-project-card" data-category="ml-python">
+                        <div class="matrix-project-icon">
                             <img src="https://github.com/user-attachments/assets/3da3aa0e-013f-4463-807b-29767b348144" alt="Premier League Oracle Preview">
                         </div>
-                        <h3>The Premier League Oracle</h3>
-                        <p class="repo-description">A comprehensive Premier League prediction platform backed by data science and machine learning. Analyses historical match data to provide statistically-sound predictions.</p>
-                        <div class="repo-topics">
-                            <span class="topic">Svelte</span>
-                            <span class="topic">TypeScript</span>
-                            <span class="topic">Python</span>
-                            <span class="topic">Machine Learning</span>
-                            <span class="topic">Supabase</span>
-                            <span class="topic">Data Science</span>
+                        <h3 class="matrix-project-title">The Premier League Oracle</h3>
+                        <p class="matrix-project-description">A comprehensive Premier League prediction platform backed by data science and machine learning. Analyses historical match data to provide statistically-sound predictions.</p>
+                        <div class="matrix-project-tags">
+                            <span class="matrix-project-tag">Svelte</span>
+                            <span class="matrix-project-tag">TypeScript</span>
+                            <span class="matrix-project-tag">Python</span>
+                            <span class="matrix-project-tag">Machine Learning</span>
+                            <span class="matrix-project-tag">Supabase</span>
+                            <span class="matrix-project-tag">Data Science</span>
                         </div>
-                        <div class="repo-links">
-                            <a href="https://premier-league-oracle.vercel.app/" target="_blank" rel="noopener" class="repo-link">
+                        <div class="matrix-project-buttons">
+                            <a href="https://premier-league-oracle.vercel.app/" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Predictions</span>
                                 <i class="fas fa-chart-line"></i>
                             </a>
-                            <a href="https://github.com/ThomasJButler/premier-league-oracle" target="_blank" rel="noopener" class="repo-link">
+                            <a href="https://github.com/ThomasJButler/premier-league-oracle" target="_blank" rel="noopener" class="matrix-project-btn">
                                 <span class="btn-text">View Code</span>
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
     
-    <!-- Image Modal -->
-    <div class="image-modal" id="imageModal">
-        <span class="image-modal-close">&times;</span>
-        <div class="image-modal-content">
-            <img id="modalImage" src="" alt="">
+    <!-- Epic Matrix Modal -->
+    <div class="matrix-modal-overlay">
+        <div class="matrix-modal">
+            <button class="matrix-modal-close">&times;</button>
+            <div class="matrix-modal-content"></div>
         </div>
-        <div class="image-modal-title" id="modalTitle"></div>
     </div>
     
     <footer>
@@ -415,6 +809,8 @@
             document.body.classList.add('loaded');
         });
     </script>
+    <!-- Matrix Rain Effect -->
+    <script src="/src/js/matrix-rain.js"></script>
 </body>
 
 </html>
