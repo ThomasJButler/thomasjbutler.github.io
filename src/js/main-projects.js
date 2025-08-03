@@ -21,7 +21,8 @@ window.gsap = gsap;
 window.ScrollMagic = ScrollMagic;
 
 // Import horizontal grid functionality
-import './projects-horizontal.js';
+// Temporarily disabled to debug glitch
+// import './projects-horizontal.js';
 
 // GitHub Projects Tab Functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHeader();
     
     const tabs = document.querySelectorAll('.tab-button');
-    const cards = document.querySelectorAll('.introduction-expertise-card');
+    const cards = document.querySelectorAll('.github-card');
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -67,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalClose = document.querySelector('.image-modal-close');
     
     // Add click event to all project images
-    const projectImages = document.querySelectorAll('.introduction-expertise-icon');
+    const projectImages = document.querySelectorAll('.github-card-icon');
     projectImages.forEach(imageContainer => {
         imageContainer.addEventListener('click', function() {
             const img = this.querySelector('img');
             if (img) {
-                const projectCard = this.closest('.introduction-expertise-card');
+                const projectCard = this.closest('.github-card');
                 const projectTitle = projectCard.querySelector('h3').textContent;
                 
                 modal.classList.add('active');

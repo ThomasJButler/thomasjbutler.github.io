@@ -7,19 +7,22 @@
     <title>GitHub Repository Showcase | Thomas J Butler</title>
     <!-- Critical CSS to prevent FOUC -->
     <style>
+        /* Dark Matrix background */
+        body {
+            background-color: #0d0d0d;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+        }
         body:not(.loaded) {
             visibility: hidden;
             opacity: 0;
         }
-        /* Fallback to show content after 2 seconds */
-        body {
-            animation: showFallback 2s forwards;
-        }
-        @keyframes showFallback {
-            to {
-                visibility: visible;
-                opacity: 1;
-            }
+        /* Ensure body is visible */
+        body.loaded {
+            visibility: visible !important;
+            opacity: 1 !important;
+            background-color: #0d0d0d !important;
         }
         .page-loader {
             position: fixed;
@@ -83,24 +86,24 @@
                     <button class="tab-button" data-category="games">Games</button>
                     <button class="tab-button" data-category="personal">Personal</button>
                 </div>
-                <ul class="introduction-expertise-grid">
+                <ul class="github-projects-grid">
                     <!-- AiTomatic Project -->
-                    <li class="introduction-expertise-card" data-category="ml-python">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="ml-python">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview">
                         </div>
                         <h3>AiTomatic</h3>
-                        <p class="introduction-expertise-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>React</span>
-                            <span>TypeScript</span>
-                            <span>AI/ML</span>
-                            <span>API Integration</span>
-                            <span>Python</span>
-                            <span>Next.js</span>
+                        <p class="repo-description">Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.</p>
+                        <div class="repo-topics">
+                            <span class="topic">React</span>
+                            <span class="topic">TypeScript</span>
+                            <span class="topic">AI/ML</span>
+                            <span class="topic">API Integration</span>
+                            <span class="topic">Python</span>
+                            <span class="topic">Next.js</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://aitomatic.rocks" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://aitomatic.rocks" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Live Demo</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
@@ -109,26 +112,26 @@
 
 
                     <!-- Matrix Arcade Project -->
-                    <li class="introduction-expertise-card" data-category="games">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="games">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Matrix Arcade Preview">
                         </div>
                         <h3>The Matrix Arcade</h3>
-                        <p class="introduction-expertise-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>React</span>
-                            <span>Python</span>
-                            <span>Vite</span>
-                            <span>Canvas API</span>
-                            <span>Game Dev</span>
-                            <span>JavaScript</span>
+                        <p class="repo-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                        <div class="repo-topics">
+                            <span class="topic">React</span>
+                            <span class="topic">Python</span>
+                            <span class="topic">Vite</span>
+                            <span class="topic">Canvas API</span>
+                            <span class="topic">Game Dev</span>
+                            <span class="topic">JavaScript</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Enter The Arcade</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
-                            <a href="https://github.com/ThomasJButler/the-matrix-arcade" target="_blank" rel="noopener" class="neo-matrix-btn">
+                            <a href="https://github.com/ThomasJButler/the-matrix-arcade" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Code</span>
                                 <i class="fab fa-github"></i>
                             </a>
@@ -136,22 +139,22 @@
                     </li>
 
                     <!-- Open Source Contribution Example -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <i class="fab fa-react" style="font-size: 4rem; color: var(--matrix-cyan);"></i>
                         </div>
                         <h3>React Documentation</h3>
-                        <p class="introduction-expertise-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>Documentation</span>
-                            <span>React</span>
-                            <span>Open Source</span>
-                            <span>MDX</span>
-                            <span>GitHub</span>
-                            <span>Collaboration</span>
+                        <p class="repo-description">Contributed to React's official documentation by improving examples and fixing typos in the Hooks section.</p>
+                        <div class="repo-topics">
+                            <span class="topic">Documentation</span>
+                            <span class="topic">React</span>
+                            <span class="topic">Open Source</span>
+                            <span class="topic">MDX</span>
+                            <span class="topic">GitHub</span>
+                            <span class="topic">Collaboration</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://github.com/facebook/react/pull/245" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://github.com/facebook/react/pull/245" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Pull Request</span>
                                 <i class="fab fa-github"></i>
                             </a>
@@ -159,22 +162,22 @@
                     </li>
 
                     <!-- CodePen Showcase Project -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737940141/codepen_mtf6if.png" alt="CodePen Collection Preview">
                         </div>
                         <h3>Creative CodePen Collection</h3>
-                        <p class="introduction-expertise-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>JavaScript</span>
-                            <span>CSS3</span>
-                            <span>HTML5</span>
-                            <span>SVG</span>
-                            <span>Canvas</span>
-                            <span>Animation</span>
+                        <p class="repo-description">A curated collection of interactive web experiments, animations, and UI components showcasing creative frontend development.</p>
+                        <div class="repo-topics">
+                            <span class="topic">JavaScript</span>
+                            <span class="topic">CSS3</span>
+                            <span class="topic">HTML5</span>
+                            <span class="topic">SVG</span>
+                            <span class="topic">Canvas</span>
+                            <span class="topic">Animation</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://codepen.io/thomasbutler" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Collection</span>
                                 <i class="fab fa-codepen"></i>
                             </a>
@@ -182,22 +185,22 @@
                     </li>
 
                     <!-- Python Projects -->
-                    <li class="introduction-expertise-card" data-category="ml-python">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="ml-python">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview">
                         </div>
                         <h3>Python Projects</h3>
-                        <p class="introduction-expertise-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>Python</span>
-                            <span>Algorithms</span>
-                            <span>Mathematics</span>
-                            <span>Fractals</span>
-                            <span>Machine Learning</span>
-                            <span>Games</span>
+                        <p class="repo-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
+                        <div class="repo-topics">
+                            <span class="topic">Python</span>
+                            <span class="topic">Algorithms</span>
+                            <span class="topic">Mathematics</span>
+                            <span class="topic">Fractals</span>
+                            <span class="topic">Machine Learning</span>
+                            <span class="topic">Games</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Repository</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -205,22 +208,22 @@
                     </li>
 
                     <!-- Commercial Portfolio Update -->
-                    <li class="introduction-expertise-card" data-category="personal">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="personal">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/commercial-portfolio_placeholder.png" alt="Commercial Portfolio Preview">
                         </div>
                         <h3>Commercial Portfolio v2.0</h3>
-                        <p class="introduction-expertise-description">Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>Portfolio</span>
-                            <span>Notion API</span>
-                            <span>CMS</span>
-                            <span>Professional</span>
-                            <span>Dynamic</span>
-                            <span>Responsive</span>
+                        <p class="repo-description">Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.</p>
+                        <div class="repo-topics">
+                            <span class="topic">Portfolio</span>
+                            <span class="topic">Notion API</span>
+                            <span class="topic">CMS</span>
+                            <span class="topic">Professional</span>
+                            <span class="topic">Dynamic</span>
+                            <span class="topic">Responsive</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://thomasjbutler.notion.site/commercial-portfolio" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://thomasjbutler.notion.site/commercial-portfolio" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Portfolio</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -228,22 +231,22 @@
                     </li>
 
                     <!-- Personal Portfolio React Update -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/react-migration_placeholder.png" alt="React Migration Preview">
                         </div>
                         <h3>Portfolio v3.0 - React Migration</h3>
-                        <p class="introduction-expertise-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>React 19</span>
-                            <span>TypeScript</span>
-                            <span>Vite 7</span>
-                            <span>Anime.js</span>
-                            <span>Components</span>
-                            <span>Migration</span>
+                        <p class="repo-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.</p>
+                        <div class="repo-topics">
+                            <span class="topic">React 19</span>
+                            <span class="topic">TypeScript</span>
+                            <span class="topic">Vite 7</span>
+                            <span class="topic">Anime.js</span>
+                            <span class="topic">Components</span>
+                            <span class="topic">Migration</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="/index-react.html" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="/index-react.html" class="repo-link">
                                 <span class="btn-text">View React Version</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -251,22 +254,22 @@
                     </li>
 
                     <!-- CSS Showcase -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/css-showcase_placeholder.png" alt="CSS Showcase Preview">
                         </div>
                         <h3>CSS Showcase</h3>
-                        <p class="introduction-expertise-description">Advanced CSS demonstrations featuring complex animations, interactive components, and cutting-edge techniques.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>CSS3</span>
-                            <span>Animations</span>
-                            <span>Grid</span>
-                            <span>Flexbox</span>
-                            <span>Custom Properties</span>
-                            <span>Advanced</span>
+                        <p class="repo-description">Advanced CSS demonstrations featuring complex animations, interactive components, and cutting-edge techniques.</p>
+                        <div class="repo-topics">
+                            <span class="topic">CSS3</span>
+                            <span class="topic">Animations</span>
+                            <span class="topic">Grid</span>
+                            <span class="topic">Flexbox</span>
+                            <span class="topic">Custom Properties</span>
+                            <span class="topic">Advanced</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Explore CSS Magic</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -274,22 +277,22 @@
                     </li>
 
                     <!-- Landing Page -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668231/landingpagedesktop_ssozki.png" alt="Landing Page Preview">
                         </div>
                         <h3>Landing Page</h3>
-                        <p class="introduction-expertise-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
-                            <span>Responsive</span>
-                            <span>Animation</span>
-                            <span>UI/UX</span>
+                        <p class="repo-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
+                        <div class="repo-topics">
+                            <span class="topic">HTML5</span>
+                            <span class="topic">CSS3</span>
+                            <span class="topic">JavaScript</span>
+                            <span class="topic">Responsive</span>
+                            <span class="topic">Animation</span>
+                            <span class="topic">UI/UX</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="/landingpage.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="/landingpage.html" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Enter Landing Page</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -297,22 +300,22 @@
                     </li>
 
                     <!-- Version TimeTravel Website -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/Versiontimetravel_uai2rc.png" alt="Version TimeTravel Preview">
                         </div>
                         <h3>Version TimeTravel</h3>
-                        <p class="introduction-expertise-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>JavaScript</span>
-                            <span>GSAP</span>
-                            <span>ScrollMagic</span>
-                            <span>Timeline</span>
-                            <span>Animation</span>
-                            <span>History</span>
+                        <p class="repo-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
+                        <div class="repo-topics">
+                            <span class="topic">JavaScript</span>
+                            <span class="topic">GSAP</span>
+                            <span class="topic">ScrollMagic</span>
+                            <span class="topic">Timeline</span>
+                            <span class="topic">Animation</span>
+                            <span class="topic">History</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Enter Time Travel</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -320,22 +323,22 @@
                     </li>
 
                     <!-- The Big Bang Gallery -->
-                    <li class="introduction-expertise-card" data-category="web">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="web">
+                        <div class="github-card-icon">
                             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737689452/artgallery_kswku9.png" alt="Big Bang Gallery Preview">
                         </div>
                         <h3>The Big Bang Gallery</h3>
-                        <p class="introduction-expertise-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
-                        <div class="introduction-expertise-tags">
-                            <span>CSS3</span>
-                            <span>Grid Layout</span>
-                            <span>MidJourney</span>
-                            <span>Gallery</span>
-                            <span>Interactive</span>
-                            <span>Art</span>
+                        <p class="repo-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
+                        <div class="repo-topics">
+                            <span class="topic">CSS3</span>
+                            <span class="topic">Grid Layout</span>
+                            <span class="topic">MidJourney</span>
+                            <span class="topic">Gallery</span>
+                            <span class="topic">Interactive</span>
+                            <span class="topic">Art</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://thomasjbutler.github.io/bigbang-gallery/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://thomasjbutler.github.io/bigbang-gallery/" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">Enter Gallery</span>
                                 <i class="fas fa-chevron-right"></i>
                             </a>
@@ -343,26 +346,26 @@
                     </li>
 
                     <!-- Premier League Oracle -->
-                    <li class="introduction-expertise-card" data-category="ml-python">
-                        <div class="introduction-expertise-icon">
+                    <li class="github-card" data-category="ml-python">
+                        <div class="github-card-icon">
                             <img src="https://github.com/user-attachments/assets/3da3aa0e-013f-4463-807b-29767b348144" alt="Premier League Oracle Preview">
                         </div>
                         <h3>The Premier League Oracle</h3>
-                        <p class="introduction-expertise-description">A comprehensive Premier League prediction platform backed by data science and machine learning. Analyses historical match data to provide statistically-sound predictions.</p>
-                        <div class="introduction-expertise-tags">
-                            <span>Svelte</span>
-                            <span>TypeScript</span>
-                            <span>Python</span>
-                            <span>Machine Learning</span>
-                            <span>Supabase</span>
-                            <span>Data Science</span>
+                        <p class="repo-description">A comprehensive Premier League prediction platform backed by data science and machine learning. Analyses historical match data to provide statistically-sound predictions.</p>
+                        <div class="repo-topics">
+                            <span class="topic">Svelte</span>
+                            <span class="topic">TypeScript</span>
+                            <span class="topic">Python</span>
+                            <span class="topic">Machine Learning</span>
+                            <span class="topic">Supabase</span>
+                            <span class="topic">Data Science</span>
                         </div>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://premier-league-oracle.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                        <div class="repo-links">
+                            <a href="https://premier-league-oracle.vercel.app/" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Predictions</span>
                                 <i class="fas fa-chart-line"></i>
                             </a>
-                            <a href="https://github.com/ThomasJButler/premier-league-oracle" target="_blank" rel="noopener" class="neo-matrix-btn">
+                            <a href="https://github.com/ThomasJButler/premier-league-oracle" target="_blank" rel="noopener" class="repo-link">
                                 <span class="btn-text">View Code</span>
                                 <i class="fab fa-github"></i>
                             </a>
@@ -406,6 +409,12 @@
     </footer>
 
     <!-- Scripts loaded via main-projects.js module -->
+    <script>
+        // Add loaded class when page is ready
+        window.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 
 </html>
