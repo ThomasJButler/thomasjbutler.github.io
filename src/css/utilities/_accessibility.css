@@ -47,11 +47,124 @@
 *:focus-visible {
     outline: 2px solid var(--matrix-green);
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(0, 255, 0, 0.3);
+    transition: outline-offset 0.2s ease;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--matrix-green);
+    outline-offset: 4px;
+    box-shadow: 
+        0 0 0 4px rgba(0, 255, 0, 0.3),
+        0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* Matrix-style focus animation */
+@keyframes matrixFocus {
+    0% {
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(0, 255, 0, 0.3);
+    }
+    50% {
+        outline-offset: 6px;
+        box-shadow: 
+            0 0 0 4px rgba(0, 255, 0, 0.3),
+            0 0 30px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        outline-offset: 4px;
+        box-shadow: 
+            0 0 0 4px rgba(0, 255, 0, 0.3),
+            0 0 20px rgba(0, 255, 0, 0.5);
+    }
+}
+
+/* Apply animation to form inputs on focus */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    animation: matrixFocus 0.3s ease-out;
 }
 
 /* Remove default outline for mouse users */
 *:focus:not(:focus-visible) {
     outline: none;
+}
+
+/* ==========================================================================
+   Keyboard Navigation Indicators
+   ========================================================================== */
+
+/* Skip to content link */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--matrix-darker);
+    color: var(--matrix-green);
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    border: 2px solid var(--matrix-green);
+    z-index: var(--z-modal);
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Tab navigation hints */
+.tab-hint {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--matrix-green);
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border: 1px solid var(--matrix-green);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Show tab hints on focus */
+*:focus-visible .tab-hint,
+*:focus-visible + .tab-hint {
+    opacity: 1;
+}
+
+/* Keyboard user indicator */
+body.keyboard-nav *:focus {
+    outline: 3px solid var(--matrix-green) !important;
+    outline-offset: 4px !important;
+}
+
+/* Tab order indicators for development */
+.show-tab-order [tabindex]:not([tabindex="-1"])::before {
+    content: attr(tabindex);
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background: var(--matrix-green);
+    color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    z-index: 999;
 }
 
 /* ==========================================================================

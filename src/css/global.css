@@ -4,6 +4,9 @@
    Author: Thomas J Butler
    ========================================================================== */
 
+/* Import component styles */
+@import "./components/_keyboard-help.css";
+
 /* CSS Custom Properties - Design System
    ========================================================================== */
 :root {
@@ -1629,4 +1632,3 @@ button:active,
     color: #FFFFFF;
     text-shadow: 0 0 8px #00FF00, 0 0 12px #00FF00;
 }
-
