@@ -3,16 +3,15 @@
 // ==========================================================================
 
 // No need to import anime as it's loaded via CDN
-console.log('🚀 EPIC Matrix animations script loaded!');
+// Matrix animations script loaded
 
 // Check if anime is available
 if (typeof anime === 'undefined') {
-    console.error('❌ Anime.js is not loaded! Loading from CDN...');
-    // Fallback: try to load from CDN if not already loaded
+    // Anime.js is not loaded - loading from CDN
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js';
     script.onload = () => {
-        console.log('✅ Anime.js loaded from fallback CDN');
+        // Anime.js loaded from fallback CDN
         initMatrixProjectAnimations();
     };
     document.head.appendChild(script);
@@ -42,18 +41,18 @@ export function initMatrixProjectAnimations() {
 }
 
 function initialize() {
-    console.log('🎬 Initializing EPIC Matrix animations...');
+    
     
     // Debug: Check if CSS is loaded
     const testElement = document.querySelector('#matrix-projects-showcase');
     if (testElement) {
         const styles = window.getComputedStyle(testElement);
-        console.log('🔍 CSS Debug - showcase element found');
-        console.log('🔍 CSS Debug - background:', styles.background);
-        console.log('🔍 CSS Debug - position:', styles.position);
-        console.log('🔍 CSS Debug - minHeight:', styles.minHeight);
+        
+        
+        
+        
     } else {
-        console.error('❌ #matrix-projects-showcase element not found!');
+        
     }
     
     animationController.isInitialized = true;
@@ -65,24 +64,24 @@ function initialize() {
     });
     
     // Initialize all epic effects
-    console.log('✨ Setting up particle system...');
+    
     initializeParticles();
-    console.log('⚡ Creating energy grid...');
+    
     initializeEnergyGrid();
-    console.log('📡 Activating scanner line...');
+    
     initializeScannerLine();
     
     // Debug: Check for cards
     const cards = document.querySelectorAll('.matrix-project-card');
-    console.log(`🔍 Found ${cards.length} project cards`);
+    
     if (cards.length > 0) {
         const cardStyles = window.getComputedStyle(cards[0]);
-        console.log('🔍 CSS Debug - card background:', cardStyles.background);
-        console.log('🔍 CSS Debug - card border:', cardStyles.border);
+        
+        
     }
     
     // Epic entrance animations
-    console.log('🎭 Starting epic entrance animations...');
+    
     animatePageEntrance();
     
     // Setup interactions
@@ -97,7 +96,7 @@ function initialize() {
     setupTypingEffects();
     setupPerformanceMonitor();
     
-    console.log('✅ All animations initialized!');
+    
 }
 
 // ==========================================================================
@@ -578,7 +577,7 @@ function setupTabFiltering() {
     const tabs = document.querySelectorAll('.matrix-tab-button');
     const cards = document.querySelectorAll('.matrix-project-card');
     
-    console.log(`📑 Setting up tab filtering with ${tabs.length} tabs and ${cards.length} cards`);
+    
     
     // Ensure all cards are visible initially
     cards.forEach(card => {
@@ -595,14 +594,14 @@ function setupTabFiltering() {
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
-            console.log(`🎯 Tab clicked: ${category}`);
+            
             
             // Filter cards with animation
             cards.forEach((card, index) => {
                 const cardCategory = card.dataset.category;
                 const shouldShow = category === 'all' || cardCategory === category;
                 
-                console.log(`Card ${index}: category=${cardCategory}, shouldShow=${shouldShow}`);
+                
                 
                 if (shouldShow) {
                     // Show card
@@ -812,7 +811,7 @@ function setupKonamiCode() {
 }
 
 function activateMatrixOverdrive() {
-    console.log('🔥 MATRIX OVERDRIVE ACTIVATED!');
+    
     
     // Flash screen
     const flash = document.createElement('div');

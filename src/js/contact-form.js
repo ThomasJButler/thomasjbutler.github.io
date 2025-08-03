@@ -63,12 +63,12 @@ export class ContactForm {
                 this.showSuccess();
             } else {
                 const errorMessage = responseData.error || responseData.errors?.join(', ') || 'Form submission failed';
-                console.error('Form submission failed:', response.status, responseData);
+                
                 throw new Error(errorMessage);
             }
         } catch (error) {
             this.showError('Oops! There was a problem submitting your form. Please try again.');
-            console.error('Form submission error:', error);
+            
         } finally {
             this.isSubmitting = false;
             this.setLoadingState(false);

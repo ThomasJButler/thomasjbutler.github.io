@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    console.log('Contact form initialized successfully');
+    
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        console.log('Form submission started');
+        
         
         // Get form data
         const formData = new FormData(form);
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            console.log('Sending form to:', form.action);
+            
             
             // Add timeout to prevent hanging
             const controller = new AbortController();
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             clearTimeout(timeoutId);
-            console.log('Response received:', response.status, response.statusText);
+            
             
             // Check if response is ok first
             if (response.ok) {
@@ -72,25 +72,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (contentType && contentType.includes('application/json')) {
                     try {
                         responseData = await response.json();
-                        console.log('Formspree response data:', responseData);
+                        
                         
                         // Check if Formspree actually accepted it
                         if (responseData.ok === false) {
-                            console.error('Formspree rejected submission:', responseData);
+                            
                             throw new Error('Formspree rejected the submission');
                         }
                     } catch (jsonError) {
-                        console.error('Failed to parse JSON response:', jsonError);
+                        
                         // Continue anyway - Formspree might return success without JSON
                     }
                 } else {
                     console.warn('Non-JSON response from Formspree. Content-Type:', contentType);
                     // Try to read as text
                     const textResponse = await response.text();
-                    console.log('Text response:', textResponse);
+                    
                 }
                 
-                console.log('Form submission successful! Check your email.');
+                
                 
                 // Hide form and show success
                 form.style.display = 'none';
@@ -116,16 +116,16 @@ document.addEventListener('DOMContentLoaded', function() {
                             errorMessage = errorData.errors.join(', ');
                         }
                     } catch (jsonError) {
-                        console.error('Failed to parse error response:', jsonError);
+                        
                     }
                 }
                 
-                console.error('Form submission failed:', response.status, errorMessage);
+                
                 throw new Error(errorMessage);
             }
             
         } catch (error) {
-            console.error('Contact form error:', error);
+            
             
             let userMessage = 'Sorry, there was an error sending your message. ';
             

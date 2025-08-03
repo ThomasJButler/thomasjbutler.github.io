@@ -21,7 +21,7 @@ function initializeHorizontalGrid() {
     // Transform existing grid to horizontal layout
     const projectsGrid = document.querySelector('.github-projects-grid');
     if (!projectsGrid) {
-        console.error('Projects grid not found');
+        
         return;
     }
     

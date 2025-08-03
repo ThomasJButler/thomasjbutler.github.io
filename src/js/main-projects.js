@@ -30,5 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHeader();
     
     // The Matrix animations will auto-initialize from the imported module
-    console.log('🎭 Projects page initialized with epic Matrix animations!');
+    
 });
