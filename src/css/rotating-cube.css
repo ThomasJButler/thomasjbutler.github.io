@@ -277,42 +277,56 @@
 
 @media (max-width: 480px) {
     .cube-showcase {
-        max-width: 280px;
-        height: 280px;
-        margin: 2rem auto;
+        max-width: 320px;
+        height: 320px;
+        margin: 3rem auto 4rem;
     }
-    .front { transform: translateZ(140px); }
-    .back { transform: translateZ(-140px) rotateY(180deg); }
-    .right { transform: translateX(140px) rotateY(90deg); }
-    .left { transform: translateX(-140px) rotateY(-90deg); }
-    .top { transform: translateY(-140px) rotateX(90deg); }
-    .bottom { transform: translateY(140px) rotateX(-90deg); }
+    .front { transform: translateZ(160px); }
+    .back { transform: translateZ(-160px) rotateY(180deg); }
+    .right { transform: translateX(160px) rotateY(90deg); }
+    .left { transform: translateX(-160px) rotateY(-90deg); }
+    .top { transform: translateY(-160px) rotateX(90deg); }
+    .bottom { transform: translateY(160px) rotateX(-90deg); }
 
     .cube-face {
-        padding: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .cube-project {
+        gap: 1.25rem;
+        justify-content: flex-start;
+        padding-top: 1rem;
     }
     
     .cube-nav {
-        gap: 8px;
+        gap: 10px;
         display: flex;
-        flex-direction: row;
-        bottom: -50px;
-        padding: 0.6rem;
-        background: rgba(0, 20, 0, 0.8);
+        flex-wrap: wrap;
+        justify-content: center;
+        bottom: -70px;
+        padding: 0.75rem;
+        background: rgba(0, 20, 0, 0.9);
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        max-width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .cube-nav button {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+        min-width: 45px;
     }
 
     .cube-project h3 {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
     }
 
     .cube-project-description {
-        font-size: 0.85rem;
-        line-height: 1.5;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
     }
 
     .cube-project-tags {
@@ -320,16 +334,41 @@
     }
 
     .cube-project-buttons {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         width: 100%;
-        gap: 0.5rem;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-top: auto;
     }
 
     .cube-project-buttons .neo-matrix-btn {
         width: auto;
         justify-content: center;
-        padding: 0.5rem 0.8rem;
+        padding: 0.6rem 1rem;
         font-size: 0.85rem;
-        min-width: 80px;
+        min-width: 100px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .cube-showcase {
+        max-width: 280px;
+        height: 280px;
+    }
+    .front { transform: translateZ(140px); }
+    .back { transform: translateZ(-140px) rotateY(180deg); }
+    .right { transform: translateX(140px) rotateY(90deg); }
+    .left { transform: translateX(-140px) rotateY(-90deg); }
+    .top { transform: translateY(-140px) rotateX(90deg); }
+    .bottom { transform: translateY(140px) rotateX(-90deg); }
+    
+    .cube-project h3 {
+        font-size: 1.2rem;
+    }
+    
+    .cube-project-description {
+        font-size: 0.85rem;
     }
 }

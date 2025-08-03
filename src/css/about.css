@@ -224,18 +224,19 @@
 @media (max-width: 768px) {
     .qualifications-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-md);
-        margin: var(--space-lg) 0;
+        gap: var(--space-sm);
+        margin: var(--space-md) 0;
     }
     
-      .qualification-card {
+    .qualification-card {
         display: flex;
-        padding: var(--space-md);
+        padding: var(--space-sm);
         flex-direction: column;
         flex-wrap: wrap;
         align-content: center;
         justify-content: center;
         align-items: center;
+        min-height: auto;
     }
     
     .qualification-card h3 {

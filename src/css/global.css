@@ -101,11 +101,6 @@
        padding: 0;
        box-sizing: border-box;
    }
-
-   /* Hide Menu Toggle Button by Default */
-   .menu-toggle {
-    display: none;
-    }
    
    /* Base Elements
       ========================================================================== */

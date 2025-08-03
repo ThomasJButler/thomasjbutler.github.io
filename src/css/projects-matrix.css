@@ -338,11 +338,35 @@
 @media (max-width: 768px) {
     .matrix-project-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
     
     .matrix-project-container {
         padding: 1rem;
+    }
+    
+    /* Make cards more compact on mobile */
+    .matrix-project-card {
+        min-height: auto;
+        padding: 1rem;
+    }
+    
+    /* Hide or reduce images on mobile */
+    .matrix-project-icon {
+        height: 0;
+        margin-bottom: 0;
+        display: none;
+    }
+    
+    /* Adjust content spacing */
+    .matrix-project-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .matrix-project-description {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
     }
     
     .matrix-modal {
