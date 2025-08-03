@@ -11,6 +11,16 @@
             visibility: hidden;
             opacity: 0;
         }
+        /* Fallback to show content after 2 seconds */
+        body {
+            animation: showFallback 2s forwards;
+        }
+        @keyframes showFallback {
+            to {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
         .page-loader {
             position: fixed;
             top: 0;

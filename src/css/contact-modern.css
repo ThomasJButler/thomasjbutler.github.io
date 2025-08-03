@@ -1,0 +1,189 @@
+/* Modern Contact Form with Floating Labels */
+
+/* Form Group with Floating Labels */
+.form-group {
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-lg) var(--space-md) var(--space-sm);
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: var(--radius-base);
+    color: var(--matrix-green);
+    font-size: var(--font-size-base);
+    font-family: var(--font-body);
+    transition: all var(--duration-base) var(--ease-out);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-group label {
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    pointer-events: none;
+    transition: all var(--duration-base) var(--ease-out);
+    background: transparent;
+    padding: 0 var(--space-xs);
+}
+
+/* Textarea label positioning */
+.form-group:has(textarea) label {
+    top: var(--space-lg);
+    transform: translateY(0);
+}
+
+/* Floating label effect */
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: var(--font-size-sm);
+    color: var(--matrix-green);
+    background: #000;
+    padding: 0 var(--space-sm);
+    font-weight: 500;
+}
+
+/* Focus states */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--matrix-green);
+    background: rgba(0, 30, 0, 0.8);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 2px rgba(0, 255, 0, 0.1);
+}
+
+/* Placeholder hidden when not focused */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: transparent;
+}
+
+/* Submit button modern style */
+.btn-submit-modern {
+    position: relative;
+    width: 100%;
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.05));
+    border: 1px solid var(--matrix-green);
+    border-radius: var(--radius-base);
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--duration-base) var(--ease-out);
+    box-shadow: 
+        0 2px 8px rgba(0, 255, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-submit-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-submit-modern:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
+    transform: translateY(-2px);
+    box-shadow: 
+        0 4px 12px rgba(0, 255, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-submit-modern:hover::before {
+    left: 100%;
+}
+
+.btn-submit-modern:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 6px rgba(0, 255, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Form container modern style */
+#contact-form {
+    background: rgba(0, 10, 0, 0.4);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#contact-form::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Success animation */
+.form-success {
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Loading state */
+.btn-submit-modern.loading {
+    color: transparent;
+}
+
+.btn-submit-modern.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--matrix-green);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #contact-form {
+        padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .form-group {
+        margin-bottom: var(--space-lg);
+    }
+}

@@ -207,9 +207,12 @@
    .neo-matrix-btn,
    .matrix-btn {
        align-items: center;
-       background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
-       border: 1px solid var(--matrix-green);
-       border-radius: 8px;
+       background: rgba(0, 255, 0, 0.05);
+       backdrop-filter: blur(8px);
+       -webkit-backdrop-filter: blur(8px);
+       border: 1px solid rgba(0, 255, 0, 0.3);
+       border-radius: var(--radius-base);
+       box-shadow: var(--shadow-sm);
        color: var(--matrix-green);
        cursor: pointer;
        display: inline-flex;
@@ -221,11 +224,11 @@
        letter-spacing: 0.1em;
        margin-top: var(--space-md);
        overflow: hidden;
-       padding: 0.75rem 1.5rem;
+       padding: 0.9rem 2rem;
        position: relative;
        text-decoration: none;
        text-transform: uppercase;
-       transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+       transition: all var(--duration-base) var(--ease-out);
    }
    
    .cta-button::before {
@@ -260,14 +263,12 @@
    .btn-contact-us:hover,
    .neo-matrix-btn:hover,
    .matrix-btn:hover {
-       background: rgba(0, 255, 0, 0.1);
+       background: rgba(0, 255, 0, 0.15);
        color: #fff;
-       border-color: var(--matrix-green);
-       box-shadow: 
-           0 0 20px rgba(0, 255, 0, 0.5),
-           inset 0 0 20px rgba(0, 255, 0, 0.1);
-       transform: translateY(-2px);
-       text-shadow: 0 0 8px var(--matrix-green);
+       border-color: rgba(0, 255, 0, 0.6);
+       box-shadow: var(--shadow-lg);
+       transform: translateY(-3px);
+       text-shadow: var(--matrix-glow);
    }
    
    .cta-button:hover::after {
@@ -1095,6 +1096,234 @@ body.loaded {
 
 .glow-intense {
     box-shadow: var(--matrix-glow-intense);
+}
+
+/* ==========================================================================
+   Professional Utility Classes
+   ========================================================================== */
+
+/* Glassmorphism Effects */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur) var(--glass-saturate);
+    -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturate);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.glass-card {
+    background: rgba(0, 20, 0, 0.4);
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    border: 1px solid rgba(0, 255, 0, 0.15);
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-md);
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.glass-card:hover {
+    background: rgba(0, 20, 0, 0.5);
+    border-color: rgba(0, 255, 0, 0.25);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Professional Hover Effects */
+.hover-lift {
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hover-glow {
+    transition: box-shadow var(--duration-base) var(--ease-out),
+                text-shadow var(--duration-base) var(--ease-out);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+    text-shadow: var(--matrix-glow);
+}
+
+/* Professional Spacing */
+.section-spacing {
+    padding: var(--space-4xl) 0;
+}
+
+.content-spacing {
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+/* Professional Borders */
+.border-subtle {
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-base);
+}
+
+.border-glow {
+    border: 1px solid var(--matrix-green);
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+    border-radius: var(--radius-base);
+}
+
+/* Professional Shadows */
+.shadow-professional {
+    box-shadow: var(--shadow-md);
+}
+
+.shadow-deep {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Text Enhancements */
+.text-subtle-glow {
+    text-shadow: 0 1px 3px rgba(0, 255, 0, 0.3);
+}
+
+/* Button Enhancements */
+.btn-professional {
+    padding: var(--space-md) var(--space-xl);
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    border-radius: var(--radius-base);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    display: inline-block;
+    transition: all var(--duration-base) var(--ease-out);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-professional:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-shadow: var(--matrix-glow);
+}
+
+.btn-professional:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Micro-interactions & Hover Effects
+   ========================================================================== */
+
+/* Link hover underline animation */
+a {
+    position: relative;
+    text-decoration: none;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--matrix-green);
+    transition: width var(--duration-base) var(--ease-out);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* Interactive element focus ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+}
+
+/* Smooth active state for clickable elements */
+button:active,
+.btn:active,
+.card:active {
+    transform: scale(0.98);
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
+/* Card interaction states */
+.interactive-card {
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.interactive-card:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.interactive-card:active {
+    transform: translateY(0) scale(1);
+}
+
+/* Image hover zoom */
+.hover-zoom {
+    overflow: hidden;
+    border-radius: var(--radius-base);
+}
+
+.hover-zoom img {
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.hover-zoom:hover img {
+    transform: scale(1.1);
+}
+
+/* Subtle pulse animation for important elements */
+@keyframes subtlePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+}
+
+.pulse-subtle {
+    animation: subtlePulse 3s var(--ease-in-out) infinite;
+}
+
+/* Loading state animation */
+.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--matrix-green);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .glow-text {

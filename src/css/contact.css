@@ -107,22 +107,26 @@
 
 #contact-form input,
 #contact-form textarea {
-    background: rgba(0, 20, 0, 0.8);
-    border: 2px solid rgba(0, 255, 0, 0.3);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
     color: var(--matrix-green);
-    padding: var(--space-md);
-    font-size: 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    font-family: var(--font-primary);
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-base);
+    transition: all var(--duration-base) var(--ease-out);
+    font-family: var(--font-body);
+    box-shadow: var(--shadow-sm);
 }
 
 #contact-form input:focus,
 #contact-form textarea:focus {
     outline: none;
-    border-color: var(--matrix-green);
-    background: rgba(0, 30, 0, 0.9);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.5);
+    background: rgba(0, 30, 0, 0.7);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
 }
 
 #contact-form textarea {
@@ -132,22 +136,25 @@
 
 /* Button Enhancement */
 .btn-contact-us {
-    background: linear-gradient(135deg, rgba(0, 100, 0, 0.9), rgba(0, 150, 0, 0.9));
-    border: 2px solid var(--matrix-green);
+    background: rgba(0, 255, 0, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 255, 0, 0.3);
     color: var(--matrix-green);
     padding: var(--space-md) var(--space-xl);
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 6px;
+    transition: all var(--duration-base) var(--ease-out);
+    border-radius: var(--radius-base);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
     margin-top: var(--space-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-contact-us:hover {

@@ -97,6 +97,20 @@
     --matrix-glow: 0 0 10px var(--matrix-green);
     --matrix-glow-intense: 0 0 20px var(--matrix-green);
     
+    /* Shadow System - Professional depth with Matrix tint */
+    --shadow-sm: 0 2px 4px rgba(0, 255, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 255, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 255, 0, 0.2);
+    --shadow-xl: 0 12px 24px rgba(0, 255, 0, 0.25);
+    --shadow-glow: 0 0 30px rgba(0, 255, 0, 0.3);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    
+    /* Glassmorphism Effects */
+    --glass-bg: rgba(0, 20, 0, 0.6);
+    --glass-border: rgba(0, 255, 0, 0.2);
+    --glass-blur: blur(12px);
+    --glass-saturate: saturate(180%);
+    
     /* Border Radius */
     --radius-sm: 4px;
     --radius-base: 6px;

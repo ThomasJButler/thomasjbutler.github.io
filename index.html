@@ -10,6 +10,16 @@
             visibility: hidden;
             opacity: 0;
         }
+        /* Fallback to show content after 2 seconds */
+        body {
+            animation: showFallback 2s forwards;
+        }
+        @keyframes showFallback {
+            to {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
         .page-loader {
             position: fixed;
             top: 0;
@@ -75,12 +85,11 @@
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern">
                 </div>
                 <div class="galleries-mobile">
-                    <a href="#galleries" class="galleries-link-mobile">
-                        View Galleries
+                    <a href="#galleries" class="btn-professional glass-card hover-lift">
                         <i class="fas fa-images"></i>
+                        View Galleries
                     </a>
                 </div>
-                <p>Please explore my portfolio to see how I blend technical skill with artistic vision.</p>
             </div>
         </section>
         
@@ -422,7 +431,7 @@
                 
                 <!-- View All Projects Button -->
                 <div style="text-align: center; margin-top: 6rem;">
-                    <p style="color: #FF00FF; margin-bottom: 1.5rem;">Explore my complete portfolio with 12+ projects across web development, ML/AI, and games</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Explore my complete portfolio with 12+ projects across web development, ML/AI, and games</p>
                     <a href="projects.html" class="cta-button view-all-projects-btn" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
                         <span class="btn-text">View All Projects</span>
                         <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>

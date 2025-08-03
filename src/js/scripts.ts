@@ -5,6 +5,7 @@
  */
 
 import { animate, stagger, createTimeline } from 'animejs';
+import { initCardAnimations, optimizeCardPerformance } from './card-animations.js';
 
 // Define global anime interface
 interface AnimeGlobal {
@@ -586,10 +587,14 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initAnimeAnimations();
     initScrollReveal();
+    initCardAnimations();
+    optimizeCardPerformance();
   });
 } else {
   initAnimeAnimations();
   initScrollReveal();
+  initCardAnimations();
+  optimizeCardPerformance();
 }
 
 // Export for use in other modules

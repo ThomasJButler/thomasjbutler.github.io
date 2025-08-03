@@ -22,14 +22,15 @@
 
 .introduction-expertise-card,
 .project-card {
-    background: var(--matrix-dark);
-    border: 1px solid var(--border-primary);
+    background: rgba(0, 20, 0, 0.85); /* Solid background for better performance */
+    /* backdrop-filter removed for performance - using solid background instead */
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
-    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
+    box-shadow: var(--shadow-md);
     color: var(--matrix-green);
     display: flex;
     flex-direction: column;
-    padding: var(--space-lg);
+    padding: var(--space-xl);
     position: relative;
     text-align: center;
     transition: all var(--duration-base) var(--ease-out);
@@ -39,9 +40,10 @@
 /* Hover Effects */
 .introduction-expertise-card:hover,
 .project-card:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
-    transform: translateY(-5px);
-    border-color: var(--matrix-green);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: rgba(0, 255, 0, 0.4);
+    background: rgba(0, 20, 0, 0.7);
 }
 
 /* Card scan line effect on hover */

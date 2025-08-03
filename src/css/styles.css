@@ -181,8 +181,8 @@
     opacity: 1;
 }
 
-/* Pulsing glow effect */
-.introduction-expertise-card:hover::before {
+/* Pulsing glow effect - now only on hover */
+.introduction-expertise-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -190,9 +190,14 @@
     right: 0;
     bottom: 0;
     border-radius: 15px;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     background: rgba(0, 255, 0, 0.1);
     z-index: -2;
+}
+
+.introduction-expertise-card:hover::before {
+    opacity: 0.3;
 }
 
 /* Enhanced tag hover effects */
@@ -226,7 +231,9 @@
 }
 
 .introduction-expertise-tags span:hover::before {
-    animation: shimmer 1.5s infinite;
+    /* animation: shimmer 1.5s infinite; - Removed for performance */
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
 }
 
 /* Matrix Rain Canvas Styles */
@@ -634,7 +641,7 @@
 
 /* Matrix Rain Effect */
 .skills-list li::before {
-    animation: matrixRain 2s linear infinite;
+    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(180deg, 
         transparent 0%, 
         rgba(0, 255, 0, 0.3) 45%, 
@@ -819,7 +826,7 @@
 
 .services-list li:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
     border-color: #00FF00;
     background: linear-gradient(145deg, rgba(0, 30, 0, 0.95), rgba(0, 50, 0, 0.85));
 }
@@ -1050,7 +1057,7 @@ body > py-terminal.py-terminal-docked {
 }
 
 .version-container::before {
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     background: linear-gradient(45deg, 
         transparent 48%, 
         rgba(0, 255, 0, 0.1) 49%, 
@@ -2017,7 +2024,7 @@ nav ul li.version-timetravel:hover {
         rgba(0, 255, 0, 0.1) 51%,
         transparent 52%);
     background-size: 10px 10px;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
 }
 
@@ -2108,7 +2115,7 @@ nav ul li.version-timetravel:hover {
 
 .counter:hover::before {
     opacity: 1;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .count {
@@ -2317,12 +2324,12 @@ nav ul li.version-timetravel:hover {
 
 .story-content:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .story-content:hover::before {
     opacity: 1;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .highlight-text {
@@ -2571,7 +2578,7 @@ html {
         linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.05) 49%, rgba(0, 255, 0, 0.05) 51%, transparent 52%),
         radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 100%);
     background-size: 10px 10px, 100px 100px;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
     pointer-events: none;
 }
@@ -2623,7 +2630,7 @@ html {
 
 .journey-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .journey-item i {
@@ -2681,7 +2688,7 @@ html {
 
 .expertise-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .expertise-list {
@@ -2739,7 +2746,7 @@ html {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .project-tech {
@@ -2784,7 +2791,7 @@ html {
 
 .certification-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .certification-item i {
@@ -2964,7 +2971,7 @@ html {
 }
 
 .btn-contact-us::before {
-    animation: matrixRain 2s linear infinite;
+    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(to bottom, 
         transparent, 
         rgba(0, 255, 0, 0.2), 
@@ -3134,7 +3141,7 @@ html {
 
 .gallery-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
 }
 
 .gallery-icon {
