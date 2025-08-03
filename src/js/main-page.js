@@ -1,6 +1,6 @@
 // Generic entry point for Vite pages
 import './scripts.ts';
-import { initializeHeader } from './header-init.ts';
+// Header initialization removed - HTML pages use static headers
 
 // Import main CSS file (includes all modular styles)
 import '../css/main.css';
@@ -28,11 +28,4 @@ window.AOS = AOS;
 // Initialize AOS
 AOS.init();
 
-// Initialize on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    initializeHeader();
-  });
-} else {
-  initializeHeader();
-}
+// DOM ready handled by scripts.ts for menu functionality
