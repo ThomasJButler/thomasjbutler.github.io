@@ -10,6 +10,19 @@
 nav {
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+/* Visual divider before navigation */
+nav::before {
+    content: '|';
+    position: absolute;
+    left: -50px;
+    color: var(--matrix-green);
+    opacity: 0.6;
+    font-size: 2rem;
+    font-weight: 300;
+    animation: pulse 2s infinite;
 }
 
 nav ul {
