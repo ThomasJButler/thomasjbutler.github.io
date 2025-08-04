@@ -194,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         // Open menu
         nav.style.display = 'flex';
+        // Force reflow to ensure animation plays
+        nav.offsetHeight;
         setTimeout(() => {
           nav.classList.add('show');
           menuToggle.classList.add('active');
