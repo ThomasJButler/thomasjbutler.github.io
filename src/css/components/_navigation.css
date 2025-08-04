@@ -385,6 +385,10 @@ nav ul li:active {
 }
 
 @media screen and (max-width: 480px) {
+        /* Hide divider on mobile */
+        nav::before {
+        content: '';
+        }
     nav ul {
         padding: 0.25rem;
         left: 5px;
