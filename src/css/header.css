@@ -36,9 +36,9 @@ header .container {
    ========================================================================== */
 .header-title {
     display: flex;
-    align-items: baseline;
-    gap: 15px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
 }
 
 header h1 {
