@@ -243,8 +243,9 @@
 /* Mobile video banner adjustments */
 @media (max-width: 768px) {
     .video-banner {
-        margin: 2rem -1rem 1.5rem;
-        border-radius: 0;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        border-radius: 10px;
     }
     
     .video-banner:hover {
