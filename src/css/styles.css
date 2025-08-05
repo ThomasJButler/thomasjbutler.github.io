@@ -2865,6 +2865,7 @@ html {
 }
 
 #contact p {
+    text-align: center;
     color: #FF00FF;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;

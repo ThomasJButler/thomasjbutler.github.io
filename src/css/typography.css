@@ -336,6 +336,11 @@ footer p {
   h3 {
     font-size: var(--font-size-lg);
   }
+
+  .welcome-text {
+    margin-top: 0 !important;
+    margin-bottom: -20px !important;
+  }
 }
 
 /* Print Styles */
