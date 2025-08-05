@@ -789,10 +789,11 @@
         padding: 15px;
     }
 
+    /* Removed to allow footer component styles to control layout
     footer ul {
         flex-direction: column;
         gap: 20px;
-    }
+    } */
 }
 
 /* ==========================================================================
