@@ -452,20 +452,20 @@ p.info-card {
 /* Form Groups - Enhanced */
 .form-group {
     position: relative;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-lg);
 }
 
 .form-group:last-of-type {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 /* Form Icons */
 .form-group-icon {
     position: absolute;
     left: 0;
-    top: 18px;
+    top: 10px;
     color: rgba(0, 255, 0, 0.3);
-    font-size: 1rem;
+    font-size: 0.85rem;
     transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
     pointer-events: none;
 }
@@ -474,39 +474,39 @@ p.info-card {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: var(--space-md) var(--space-xs) var(--space-md) var(--space-xl);
+    padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-xl);
     background: rgba(0, 255, 0, 0.01);
     border: none;
     border-bottom: 1.5px solid rgba(0, 255, 0, 0.15);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-family: inherit;
     transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
     outline: none;
-    min-height: 48px;
+    min-height: 38px;
 }
 
 .form-group textarea {
-    min-height: 120px;
+    min-height: 90px;
     resize: vertical;
-    padding-top: var(--space-lg);
+    padding-top: var(--space-sm);
 }
 
 /* Floating Labels - Refined */
 .form-group label {
     position: absolute;
     left: var(--space-xl);
-    top: 18px;
+    top: 10px;
     color: rgba(0, 255, 0, 0.4);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     pointer-events: none;
     transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
     font-weight: 400;
 }
 
 .form-group textarea + label {
-    top: var(--space-lg);
+    top: var(--space-md);
 }
 
 /* Active/Filled state */
@@ -853,6 +853,12 @@ p.info-card {
     .form-group input,
     .form-group textarea {
         font-size: 1rem;
+        padding: var(--space-md) var(--space-xs) var(--space-md) var(--space-xl);
+        min-height: 48px;
+    }
+    
+    .form-group textarea {
+        min-height: 120px;
     }
     
     .btn-submit-modern {
