@@ -1,6 +1,362 @@
-/* Modern Contact Form with Floating Labels */
+/* Modern Contact Form with Professional Matrix Styling */
 
-/* Form Group with Floating Labels */
+/* Contact Grid Layout - Professional */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: stretch;
+}
+
+/* Desktop side-by-side layout */
+@media (min-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3xl);
+    }
+    
+    .contact-container {
+        padding: var(--space-3xl) var(--space-xl);
+    }
+}
+
+/* Contact Info Section - Professional Cards */
+.contact-info {
+    background: linear-gradient(135deg, rgba(0, 20, 0, 0.95), rgba(0, 10, 0, 0.95));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 255, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(0, 255, 0, 0.1),
+        inset 0 1px 0 rgba(0, 255, 0, 0.2);
+}
+
+/* Glassmorphism overlay */
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 0, 0.3) 20%, 
+        rgba(0, 255, 0, 0.3) 80%, 
+        transparent);
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(600px); opacity: 0; }
+}
+
+.contact-info h2 {
+    color: var(--matrix-green);
+    margin-bottom: var(--space-xl);
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+/* Info Sections with Icons */
+.info-section {
+    margin-bottom: var(--space-xl);
+    text-align: left;
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+}
+
+.info-section h3 {
+    color: var(--matrix-green);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.info-section h3 i {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+/* Contact Cards */
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.info-card:hover {
+    background: rgba(0, 255, 0, 0.08);
+    border-color: rgba(0, 255, 0, 0.3);
+    transform: translateX(4px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.info-card i {
+    color: var(--matrix-green);
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.info-content {
+    flex: 1;
+    font-size: 1rem;
+    transition: color 300ms ease;
+}
+
+.info-card:hover .info-content {
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Single info card for location */
+p.info-card {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: var(--space-md);
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+/* Availability List - Enhanced */
+.availability-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.availability-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: var(--radius-sm);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.availability-list li:hover {
+    background: rgba(0, 255, 0, 0.08);
+    border-color: rgba(0, 255, 0, 0.3);
+    transform: translateX(4px);
+}
+
+.availability-list i {
+    color: var(--matrix-green);
+    font-size: 1.2rem;
+    min-width: 24px;
+    opacity: 0.8;
+}
+
+/* Coffee Section - Premium */
+.coffee-section {
+    text-align: center;
+    padding: var(--space-xl) 0 0;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.support-text {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.coffee-button-premium {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-2xl);
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.05));
+    border: 2px solid var(--matrix-green);
+    border-radius: 50px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.coffee-button-premium::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 600ms, height 600ms;
+}
+
+.coffee-button-premium:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 255, 0, 0.3);
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
+}
+
+.coffee-button-premium:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.coffee-button-premium i {
+    font-size: 1.3rem;
+}
+
+/* Coffee Steam Animation */
+.coffee-steam {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    display: flex;
+    gap: 3px;
+}
+
+.coffee-steam span {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to top, transparent, rgba(0, 255, 0, 0.6), transparent);
+    animation: steam 2s ease-in-out infinite;
+    opacity: 0;
+}
+
+.coffee-steam span:nth-child(1) { animation-delay: 0s; }
+.coffee-steam span:nth-child(2) { animation-delay: 0.4s; }
+.coffee-steam span:nth-child(3) { animation-delay: 0.8s; }
+
+@keyframes steam {
+    0% { transform: translateY(0) scaleY(0); opacity: 0; }
+    15% { opacity: 1; }
+    50% { transform: translateY(-20px) scaleY(1); opacity: 0.5; }
+    100% { transform: translateY(-30px) scaleY(0.5); opacity: 0; }
+}
+
+.coffee-button-premium:hover .coffee-steam span {
+    animation-duration: 1.5s;
+}
+
+/* Form Section - Professional */
+.contact-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.contact-form-wrapper h2 {
+    color: var(--matrix-green);
+    margin-bottom: var(--space-xl);
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+/* Form Container with Glassmorphism */
+#contact-form {
+    background: linear-gradient(135deg, rgba(0, 20, 0, 0.95), rgba(0, 10, 0, 0.95));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 255, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(0, 255, 0, 0.1),
+        inset 0 1px 0 rgba(0, 255, 0, 0.2);
+}
+
+/* Scanline effect for form */
+#contact-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 0, 0.3) 20%, 
+        rgba(0, 255, 0, 0.3) 80%, 
+        transparent);
+    animation: scanline 8s linear infinite;
+    animation-delay: 4s;
+}
+
+/* Form Groups with Floating Labels */
 .form-group {
     position: relative;
     margin-bottom: var(--space-xl);
@@ -9,158 +365,130 @@
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: var(--space-lg) var(--space-md) var(--space-sm);
-    background: rgba(0, 20, 0, 0.6);
-    border: 1px solid rgba(0, 255, 0, 0.2);
-    border-radius: var(--radius-base);
+    padding: var(--space-md) 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
     color: var(--matrix-green);
-    font-size: var(--font-size-base);
-    font-family: var(--font-body);
-    transition: all var(--duration-base) var(--ease-out);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
 }
 
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    padding-top: var(--space-lg);
+}
+
+/* Floating Labels */
 .form-group label {
     position: absolute;
-    left: var(--space-md);
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    font-size: var(--font-size-base);
-    font-weight: 400;
+    left: 0;
+    top: var(--space-md);
+    color: rgba(0, 255, 0, 0.5);
+    font-size: 1rem;
     pointer-events: none;
-    transition: all var(--duration-base) var(--ease-out);
-    background: transparent;
-    padding: 0 var(--space-xs);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 400;
 }
 
-/* Textarea label positioning */
-.form-group:has(textarea) label {
+.form-group textarea + label {
     top: var(--space-lg);
-    transform: translateY(0);
 }
 
-/* Floating label effect */
-.form-group input:focus ~ label,
-.form-group input:not(:placeholder-shown) ~ label,
-.form-group textarea:focus ~ label,
-.form-group textarea:not(:placeholder-shown) ~ label {
-    top: 0;
-    transform: translateY(-50%);
-    font-size: var(--font-size-sm);
+/* Active/Filled state for floating labels */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -var(--space-sm);
+    font-size: 0.85rem;
     color: var(--matrix-green);
-    background: #000;
-    padding: 0 var(--space-sm);
     font-weight: 500;
 }
 
-/* Focus states */
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--matrix-green);
-    background: rgba(0, 30, 0, 0.8);
-    box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.3),
-        0 0 0 2px rgba(0, 255, 0, 0.1);
+/* Form line animation */
+.form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--matrix-green);
+    transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Placeholder hidden when not focused */
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: transparent;
+.form-group input:focus ~ .form-line,
+.form-group textarea:focus ~ .form-line {
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
-/* Submit button modern style */
+/* Input hover effects */
+.form-group input:hover,
+.form-group textarea:hover {
+    border-bottom-color: rgba(0, 255, 0, 0.4);
+}
+
+/* Submit Button - Professional */
 .btn-submit-modern {
     position: relative;
     width: 100%;
-    padding: var(--space-md) var(--space-xl);
+    margin-top: var(--space-2xl);
+    padding: var(--space-lg) var(--space-xl);
     background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.05));
-    border: 1px solid var(--matrix-green);
-    border-radius: var(--radius-base);
+    border: 2px solid var(--matrix-green);
+    border-radius: var(--radius-sm);
     color: var(--matrix-green);
-    font-family: var(--font-primary);
     font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     cursor: pointer;
     overflow: hidden;
-    transition: all var(--duration-base) var(--ease-out);
-    box-shadow: 
-        0 2px 8px rgba(0, 255, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .btn-submit-modern::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
-    transition: left 0.5s ease;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.3), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 600ms, height 600ms;
 }
 
 .btn-submit-modern:hover {
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: 
-        0 4px 12px rgba(0, 255, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 255, 0, 0.3);
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
 }
 
 .btn-submit-modern:hover::before {
-    left: 100%;
+    width: 500px;
+    height: 500px;
 }
 
 .btn-submit-modern:active {
-    transform: translateY(0);
-    box-shadow: 
-        0 2px 6px rgba(0, 255, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
 }
 
-/* Form container modern style */
-#contact-form {
-    background: rgba(0, 10, 0, 0.4);
-    padding: var(--space-2xl);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(0, 255, 0, 0.1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(0, 255, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-#contact-form::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-/* Success animation */
-.form-success {
-    animation: successPulse 0.6s ease;
-}
-
-@keyframes successPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+.btn-submit-modern i {
+    margin-right: var(--space-sm);
 }
 
 /* Loading state */
 .btn-submit-modern.loading {
     color: transparent;
+    pointer-events: none;
 }
 
 .btn-submit-modern.loading::after {
@@ -168,22 +496,149 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid var(--matrix-green);
-    border-top-color: transparent;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-top-color: var(--matrix-green);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    #contact-form {
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Success Message */
+#form-success {
+    text-align: center;
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.05));
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--matrix-green);
+    margin-bottom: var(--space-xl);
+    animation: successPulse 0.6s ease;
+}
+
+#form-success h3 {
+    color: var(--matrix-green);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+}
+
+#form-success p {
+    color: var(--text-primary);
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* Video Banner Enhancement */
+.video-banner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: var(--space-3xl);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .contact-container {
         padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .contact-grid {
+        gap: var(--space-xl);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-container {
+        padding: var(--space-lg) var(--space-md);
+    }
+    
+    .contact-grid {
+        gap: var(--space-lg);
+    }
+    
+    .contact-info,
+    #contact-form {
+        padding: var(--space-lg);
+    }
+    
+    .contact-info h2,
+    .contact-form-wrapper h2 {
+        font-size: 1.5rem;
+    }
+    
+    .coffee-button-premium {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1rem;
+    }
+    
+    .info-card,
+    .availability-list li {
+        padding: var(--space-sm) var(--space-md);
     }
     
     .form-group {
         margin-bottom: var(--space-lg);
+    }
+    
+    .btn-submit-modern {
+        padding: var(--space-md) var(--space-lg);
+    }
+}
+
+/* Touch-friendly targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .info-card,
+    .availability-list li,
+    .coffee-button-premium,
+    .btn-submit-modern {
+        min-height: 44px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .contact-info,
+    #contact-form {
+        border-width: 2px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        border-bottom-width: 2px;
     }
 }
