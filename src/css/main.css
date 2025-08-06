@@ -25,7 +25,6 @@
 /* Page-Specific Styles */
 @import './projects.css';
 @import './about.css';
-@import './contact.css';
 /* @import './github-projects.css'; - Replaced with projects-matrix.css */
 @import './rotating-cube.css';
 
@@ -35,6 +34,9 @@
 @import './styles.css';
 @import './hover-effects.css';
 @import './typography.css';
+
+/* Contact Modern - Must come after legacy to override */
+@import './contact-modern.css';
 
 /* ==========================================================================
    Print Styles

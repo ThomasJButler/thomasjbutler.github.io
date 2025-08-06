@@ -62,7 +62,6 @@
     <!-- CSS and libraries loaded via JavaScript module -->
     <script type="module" src="/src/js/main-page.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/src/css/contact-modern.css">
 </head>
 <body class="contact">
     <div id="matrix">
@@ -164,22 +163,32 @@
                             <p>I'll get back to you soon.</p>
                         </div>
                         <form id="contact-form" action="https://formspree.io/f/xeoeenqv" method="POST">
+                    <div class="form-progress">
+                        <div class="form-progress-bar"></div>
+                    </div>
                     <div class="form-group">
-                        <input type="text" name="name" id="name" placeholder=" " required>
+                        <i class="fas fa-user form-group-icon"></i>
+                        <input type="text" name="name" id="name" placeholder=" " required aria-label="Your name">
                         <label for="name">Name</label>
                         <span class="form-line"></span>
+                        <span class="error-message">Please enter your name</span>
                     </div>
                     
                     <div class="form-group">
-                        <input type="email" name="email" id="email" placeholder=" " required>
+                        <i class="fas fa-envelope form-group-icon"></i>
+                        <input type="email" name="email" id="email" placeholder=" " required aria-label="Your email address">
                         <label for="email">Email</label>
                         <span class="form-line"></span>
+                        <span class="error-message">Please enter a valid email</span>
                     </div>
                     
                     <div class="form-group">
-                        <textarea name="message" id="message" placeholder=" " rows="8" required></textarea>
+                        <i class="fas fa-comment-alt form-group-icon"></i>
+                        <textarea name="message" id="message" placeholder=" " rows="8" required maxlength="1000" aria-label="Your message"></textarea>
                         <label for="message">Message</label>
                         <span class="form-line"></span>
+                        <span class="char-counter">0 / 1000</span>
+                        <span class="error-message">Please enter your message</span>
                     </div>
                     
                     <button type="submit" class="btn-submit-modern">

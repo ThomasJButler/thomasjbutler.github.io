@@ -3,11 +3,7 @@
    Enhanced form with animations and validation styling
    ========================================================================== */
 
-/* Form Container */
-#contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-}
+
 
 /* Form Groups */
 #contact-form label {
