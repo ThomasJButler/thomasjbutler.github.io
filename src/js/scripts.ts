@@ -126,16 +126,21 @@ function drawMatrix(): void {
 let lastFrameTime = 0;
 const targetFPS = 30; // Limit to 30 FPS for better performance
 const frameInterval = 1000 / targetFPS;
+let isScrolling = false;
+let scrollTimeout: number | null = null;
 
-// Animation loop function with FPS limiting
+// Animation loop function with FPS limiting and scroll optimization
 function animateMatrix(currentTime: number = 0): void {
   if (!canvas) return;
   
   const deltaTime = currentTime - lastFrameTime;
   
-  if (deltaTime >= frameInterval) {
+  // Reduce frame rate when scrolling for better performance
+  const currentInterval = isScrolling ? frameInterval * 2 : frameInterval;
+  
+  if (deltaTime >= currentInterval) {
     drawMatrix();
-    lastFrameTime = currentTime - (deltaTime % frameInterval);
+    lastFrameTime = currentTime - (deltaTime % currentInterval);
   }
   
   requestAnimationFrame(animateMatrix);
@@ -148,8 +153,19 @@ requestAnimationFrame(animateMatrix);
 const handleScroll = rafThrottle(() => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  // Parallax effect for Matrix canvas
-  if (canvas) {
+  // Mark as scrolling for performance optimization
+  isScrolling = true;
+  
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
+  }
+  
+  scrollTimeout = window.setTimeout(() => {
+    isScrolling = false;
+  }, 150);
+  
+  // Parallax effect for Matrix canvas - disabled during scroll for performance
+  if (canvas && !isScrolling) {
     const parallaxSpeed = 0.5;
     canvas.style.transform = `translateY(${scrollTop * parallaxSpeed}px)`;
   }

@@ -1,5 +1,5 @@
 /**
- * Professional Contact Page Animations
+ * Professional Contact Page Animations with Performance Optimizations
  * Following design system guidelines - clean, smooth, no glitchy effects
  */
 
@@ -10,6 +10,30 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prefersReducedMotion) {
         return; // Skip animations for accessibility
     }
+    
+    // Performance: Control scanline animations based on viewport visibility
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const animationObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            } else {
+                entry.target.classList.remove('in-view');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements with scanline animations
+    const contactInfo = document.querySelector('.contact-info');
+    const contactForm = document.querySelector('#contact-form');
+    
+    if (contactInfo) animationObserver.observe(contactInfo);
+    if (contactForm) animationObserver.observe(contactForm);
 
     // Professional Fade In Sequence for Headers
     anime({

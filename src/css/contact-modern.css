@@ -1,4 +1,15 @@
-/* Premium Contact Form with Refined Matrix Design */
+/* Premium Contact Form with Refined Matrix Design - Performance Optimized */
+
+/* Performance optimization layer */
+.contact-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.contact-grid {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
 
 /* Contact Grid Layout - Optimized */
 .contact-container {
@@ -28,29 +39,26 @@
         rgba(0, 15, 0, 0.98),
         rgba(0, 25, 0, 0.95)
     );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: var(--space-2xl);
     border-radius: 16px;
     border: 1px solid rgba(0, 255, 0, 0.1);
     position: relative;
     overflow: hidden;
-    box-shadow: 
-        0 24px 48px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(0, 255, 0, 0.05) inset,
-        0 0 80px rgba(0, 255, 0, 0.02) inset;
-    transition: all 500ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: opacity 300ms ease, box-shadow 300ms ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style paint;
 }
 
 .contact-info:hover {
-    transform: translateY(-4px);
-    box-shadow: 
-        0 32px 64px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(0, 255, 0, 0.1) inset,
-        0 0 120px rgba(0, 255, 0, 0.03) inset;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Subtle scanline effect */
+/* Subtle scanline effect - optimized */
 .contact-info::before {
     content: '';
     position: absolute;
@@ -65,7 +73,13 @@
         transparent
     );
     animation: scanline 12s linear infinite;
+    animation-play-state: paused;
     opacity: 0.6;
+    will-change: transform;
+}
+
+.contact-info.in-view::before {
+    animation-play-state: running;
 }
 
 @keyframes scanline {
@@ -138,9 +152,11 @@
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
     position: relative;
     overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    will-change: background;
 }
 
 .info-card::before {
@@ -166,7 +182,6 @@
         rgba(0, 255, 0, 0.03)
     );
     border-color: rgba(0, 255, 0, 0.3);
-    transform: translateX(6px);
     color: var(--matrix-green);
 }
 
@@ -214,9 +229,10 @@ p.info-card {
     );
     border: 1px solid rgba(0, 255, 0, 0.08);
     border-radius: 8px;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: background 200ms ease, border-color 200ms ease;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
+    transform: translate3d(0, 0, 0);
 }
 
 .availability-list li:hover {
@@ -226,7 +242,6 @@ p.info-card {
         rgba(0, 255, 0, 0.03)
     );
     border-color: rgba(0, 255, 0, 0.2);
-    transform: translateX(6px);
 }
 
 .availability-list i {
@@ -267,12 +282,12 @@ p.info-card {
     font-weight: 500;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
-    transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: box-shadow 300ms ease, border-color 300ms ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 
-        0 0 40px rgba(0, 255, 0, 0.1),
-        0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transform: translate3d(0, 0, 0);
+    will-change: box-shadow;
 }
 
 .coffee-button-premium::before {
@@ -292,10 +307,7 @@ p.info-card {
 }
 
 .coffee-button-premium:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 0 60px rgba(0, 255, 0, 0.2),
-        0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     border-color: var(--matrix-green);
 }
 
@@ -379,34 +391,31 @@ p.info-card {
         rgba(0, 15, 0, 0.98),
         rgba(0, 25, 0, 0.95)
     );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: var(--space-2xl);
     border-radius: 16px;
     border: 1px solid rgba(0, 255, 0, 0.1);
     position: relative;
     overflow: hidden;
-    box-shadow: 
-        0 24px 48px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(0, 255, 0, 0.05) inset,
-        0 0 80px rgba(0, 255, 0, 0.02) inset;
-    transition: all 500ms cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: opacity 300ms ease, box-shadow 300ms ease;
     flex: 1;
     display: flex;
     flex-direction: column;
     width: 100% !important;
     max-width: none !important;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style paint;
 }
 
 #contact-form:hover {
-    transform: translateY(-4px);
-    box-shadow: 
-        0 32px 64px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(0, 255, 0, 0.1) inset,
-        0 0 120px rgba(0, 255, 0, 0.03) inset;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Subtle scanline for form */
+/* Subtle scanline for form - optimized */
 #contact-form::before {
     content: '';
     position: absolute;
@@ -422,7 +431,13 @@ p.info-card {
     );
     animation: scanline 12s linear infinite;
     animation-delay: 6s;
+    animation-play-state: paused;
     opacity: 0.6;
+    will-change: transform;
+}
+
+#contact-form.in-view::before {
+    animation-play-state: running;
 }
 
 /* Form Progress Bar */
@@ -466,8 +481,9 @@ p.info-card {
     top: 10px;
     color: rgba(0, 255, 0, 0.3);
     font-size: 0.85rem;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: color 200ms ease, transform 200ms ease;
     pointer-events: none;
+    will-change: color, transform;
 }
 
 /* Form Inputs - Premium Style */
@@ -482,9 +498,10 @@ p.info-card {
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.9rem;
     font-family: inherit;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
     outline: none;
     min-height: 38px;
+    transform: translate3d(0, 0, 0);
 }
 
 .form-group textarea {
@@ -501,8 +518,9 @@ p.info-card {
     color: rgba(0, 255, 0, 0.4);
     font-size: 0.9rem;
     pointer-events: none;
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
     font-weight: 400;
+    will-change: top, left, font-size;
 }
 
 .form-group textarea + label {
@@ -544,8 +562,10 @@ p.info-card {
     width: 0;
     height: 2px;
     background: var(--matrix-green);
-    transition: width 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: width 200ms ease;
     box-shadow: 0 0 10px var(--matrix-green);
+    will-change: width;
+    transform: translateZ(0);
 }
 
 .form-group input:focus ~ .form-line,
@@ -627,11 +647,11 @@ p.info-card {
     text-transform: uppercase;
     cursor: pointer;
     overflow: hidden;
-    transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 
-        0 0 40px rgba(0, 255, 0, 0.1),
-        0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 300ms ease, border-color 300ms ease, background 300ms ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     min-height: 56px;
+    transform: translate3d(0, 0, 0);
+    will-change: box-shadow;
 }
 
 .btn-submit-modern::before {
@@ -651,10 +671,7 @@ p.info-card {
 }
 
 .btn-submit-modern:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 0 60px rgba(0, 255, 0, 0.2),
-        0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.15),
@@ -668,7 +685,7 @@ p.info-card {
 }
 
 .btn-submit-modern:active {
-    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .btn-submit-modern i {
