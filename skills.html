@@ -3,24 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <title>Skills & Technologies | Thomas J Butler - Full-Stack Developer</title>
+    
+    <!-- Basic Meta Tags -->
+    <meta name="description" content="Technical skills and expertise of Thomas J Butler including React, TypeScript, Node.js, Python, AI integration, and modern web development technologies.">
+    <meta name="keywords" content="Thomas J Butler skills, React developer, TypeScript expertise, full-stack skills, web development technologies, AI integration, Liverpool developer">
+    <meta name="author" content="Thomas J Butler">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thomasjbutler.github.io/ThomasJButler/skills.html">
+    <meta property="og:title" content="Skills & Technologies - Thomas J Butler">
+    <meta property="og:description" content="Full-stack developer skills including React, TypeScript, Node.js, AI integration, and modern web technologies.">
+    <meta property="og:image" content="https://thomasjbutler.github.io/ThomasJButler/images/og-skills.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://thomasjbutler.github.io/ThomasJButler/skills.html">
+    <meta name="twitter:title" content="Skills | Thomas J Butler">
+    <meta name="twitter:description" content="Technical expertise in React, TypeScript, Node.js, and modern web development.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thomasjbutler.github.io/ThomasJButler/skills.html">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#00FF00">
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+        .page-loader.active {
+            display: flex;
+        }
+    </style>
+    <!-- CSS and libraries loaded via JavaScript module -->
+    <script type="module" src="/src/js/main-page.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="skills">
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
+
     <header>
         <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Skills Showcase</h3>
-            <div class="logo-container">
+            <div class="header-title">
+                <a href="index.html" style="text-decoration: none;">
+                    <h1>Thomas J Butler</h1>
+                </a>
             </div>
             <nav>
                 <div class="menu-toggle">
@@ -29,13 +73,11 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li><a href="index.html">HOME |</a></li>
-                    <li><a href="about.html">ABOUT ME |</a></li>
-                    <li><a href="https://the-matrix-arcade.vercel.app/" target="_blank">GAMES |</a></li>
-                    <li><a href="projects.html">PROJECTS |</a></li>
-                    <li><a href="art.html">ART GALLERY |</a></li>
-                    <li><a href="services.html">SERVICES |</a></li>
-                    <li><a href="contact.html">CONTACT |</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="skills.html" class="active">Skills</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,7 +85,7 @@
     <main>
         <section id="skills">
             <div class="container">
-                <h2>Technical Proficiencies</h2>
+                <h2>My Skills</h2>
                 <p>A comprehensive overview of my technical expertise and proficiencies</p>
                 <ul class="skills-list">
                     <li data-tooltip="Crafting Semantic and Accessible Web Structures">
@@ -82,17 +124,9 @@
                         <h3>AI & Machine Learning</h3>
                         <p>Knowledgeable in machine learning algorithms, neural networks, and AI model deployment.</p>
                     </li>
-                    <li data-tooltip="Mastering AI Communication">
-                        <h3>AI Prompting</h3>
-                        <p>Skilled in crafting effective prompts for large language models like GPT and Claude.</p>
-                    </li>
                     <li data-tooltip="AI-Powered Visual Creativity">
-                        <h3>MidJourney</h3>
-                        <p>Experienced in leveraging AI for generating unique and captivating visual assets.</p>
-                    </li>
-                    <li data-tooltip="Crafting Interactive Digital Experiences">
-                        <h3>Game Development</h3>
-                        <p>Proficient with Unity and Unreal Engine for creating immersive gaming experiences.</p>
+                        <h3>AI Asset Generation</h3>
+                        <p>Experienced in leveraging AI for generating unique and captivating visual assets using a variety of tools.</p>
                     </li>
                     <li data-tooltip="Managing and Optimising Data">
                         <h3>Database Management</h3>
@@ -102,16 +136,12 @@
                         <h3>API Development</h3>
                         <p>Experienced in designing and implementing RESTful and GraphQL APIs.</p>
                     </li>
-                    <li data-tooltip="Connecting Systems Seamlessly">
-                        <h3>Runway ML</h3>
-                        <p>Experienced in generating custom AI video assets</p>
-                    </li>
                 </ul>
             </div>
         </section>
     </main>
     <footer>
-        <div class="container">
+        <div class="container-footer">
             <ul>
                 <li data-tooltip="Connect on LinkedIn">
                     <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" rel="noopener" data-text="LinkedIn">
@@ -132,6 +162,6 @@
             <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main-page.js module -->
 </body>
 </html>

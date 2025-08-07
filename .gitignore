@@ -1,10 +1,41 @@
 
-skills.html
+# Dependencies
 /node_modules
+
+# Build output
+/dist
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project specific
 /tommyprompts website
 /add to website
 CLAUDE.md
-Website Video mp4 Banners /todo.txt
-Website Video mp4 Banners /large green banner.mp4
 /Website Video mp4 Banners 
-Website Video mp4 Banners /.DS_Store
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+improvements.md
+animejssetup.md
+projectcheck.md
+v3.0-content-update-plan.md
+plan.md
+/.claude

@@ -1,0 +1,342 @@
+/* ==========================================================================
+   Footer Component
+   Matrix-themed footer with navigation links
+   ========================================================================== */
+
+/* ==========================================================================
+   Footer Container
+   ========================================================================== */
+
+footer,
+.footer {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid var(--border-primary);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: relative;
+    z-index: var(--z-10);
+}
+
+/* Container-footer specific styles */
+.container-footer {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Matrix scan line effect */
+footer::before,
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--matrix-green), 
+        transparent
+    );
+    animation: scanFooter 8s linear infinite;
+}
+
+@keyframes scanFooter {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ==========================================================================
+   Footer Navigation
+   ========================================================================== */
+
+footer ul,
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: var(--space-md);
+    gap: var(--space-md);
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+footer ul li,
+.footer-nav-item {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Footer Links/Buttons
+   ========================================================================== */
+
+footer ul li a,
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, 
+        rgba(0, 40, 0, 0.9), 
+        rgba(0, 60, 0, 0.9)
+    );
+    border: 1px solid var(--matrix-green);
+    border-radius: var(--radius-base);
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    transition: all var(--duration-base) var(--ease-out);
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover state - simplified */
+footer ul li a:hover,
+.footer-link:hover {
+    opacity: 0.8;
+}
+
+/* Active state */
+footer ul li a:active,
+.footer-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Icon spacing */
+footer ul li a i,
+.footer-link i {
+    margin-right: var(--space-xs);
+    font-size: 1.1em;
+}
+
+/* Remove the after effect for cleaner hover state */
+
+/* ==========================================================================
+   Footer Copyright
+   ========================================================================== */
+
+.footer-copyright,
+footer p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: var(--space-md) 0 0;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.footer-copyright a,
+footer p a {
+    color: var(--matrix-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-copyright a:hover,
+footer p a:hover {
+    color: var(--matrix-cyan);
+    text-shadow: var(--matrix-glow);
+}
+
+/* ==========================================================================
+   Footer Social Links
+   ========================================================================== */
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+}
+
+.footer-social a {
+    color: var(--matrix-green);
+    font-size: 1.5rem;
+    transition: all var(--duration-fast) var(--ease-out);
+}
+
+.footer-social a:hover {
+    color: var(--matrix-cyan);
+    transform: translateY(-3px) scale(1.1);
+    /*text-shadow: var(--matrix-glow); */
+}
+
+/* ==========================================================================
+   Sticky Footer
+   ========================================================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ==========================================================================
+   Footer Variants
+   ========================================================================== */
+
+/* Minimal footer */
+.footer-minimal {
+    padding: var(--space-md) 0;
+    background: transparent;
+    border-top: 1px solid var(--border-primary);
+}
+
+.footer-minimal ul {
+    margin-bottom: 0;
+}
+
+/* Dark footer */
+.footer-dark {
+    background: #000;
+    border-top-color: var(--matrix-green);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    footer,
+    .footer {
+        padding: var(--space-md) var(--space-sm);
+    }
+    
+    footer ul,
+    .footer-nav {
+        flex-direction: row;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    footer ul li a,
+    .footer-link {
+        min-width: auto;
+        padding: var(--space-xs) var(--space-md);
+        font-size: 0.9rem;
+    }
+    
+    /* Hide sitemap link on mobile - for both regular footer and container-footer */
+    footer ul li:has(a[href*="sitemap"]),
+    .container-footer ul li:has(a[href*="sitemap"]) {
+        display: none;
+    }
+    
+    /* Container-footer mobile styles */
+    .container-footer ul {
+        flex-direction: row;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    
+    /* Remove ::before content on mobile for container-footer */
+    .container-footer ul li::before {
+        content: '';
+        padding: 0 0.25rem;
+    }
+    
+    /* Hide text, show only icons for container-footer on mobile */
+    .container-footer ul li a {
+        font-size: 0;
+        padding: 0.75rem;
+        min-width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .container-footer ul li a i {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    footer ul,
+    .footer-nav {
+        gap: 0.5rem;
+    }
+    
+    footer ul li a,
+    .footer-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        min-width: auto;
+    }
+    
+    /* Container-footer on small screens */
+    .container-footer ul {
+        gap: 1.2rem;
+    }
+    
+    .container-footer ul li a i {
+        font-size: 1.3rem;
+    }
+    
+    .footer-social {
+        gap: var(--space-md);
+    }
+    
+    .footer-social a {
+        font-size: 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   Footer Accessibility
+   ========================================================================== */
+
+/* Skip to footer link */
+.skip-to-footer {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--matrix-green);
+    color: #000;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    border-radius: 0 0 var(--radius-base) 0;
+}
+
+.skip-to-footer:focus {
+    top: 0;
+}
+
+/* Focus styles */
+footer a:focus-visible,
+.footer a:focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Footer Animation Classes
+   ========================================================================== */
+
+.footer-fade-in {
+    animation: fadeInUp var(--duration-slow) var(--ease-out);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

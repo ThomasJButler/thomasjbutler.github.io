@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Card Components
+   Based on introduction-expertise pattern - Matrix themed cards
+   ========================================================================== */
+
+/* ==========================================================================
+   Project/Expertise Card Grid
+   ========================================================================== */
+
+.introduction-expertise-grid,
+.project-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: var(--space-lg);
+    width: 100%;
+}
+
+/* ==========================================================================
+   Card Base Styles
+   ========================================================================== */
+
+.introduction-expertise-card,
+.project-card {
+    background: rgba(0, 20, 0, 0.85); /* Solid background for better performance */
+    /* backdrop-filter removed for performance - using solid background instead */
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    color: var(--matrix-green);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    position: relative;
+    text-align: center;
+    transition: all var(--duration-base) var(--ease-out);
+    overflow: hidden;
+}
+
+/* Hover Effects */
+.introduction-expertise-card:hover,
+.project-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: rgba(0, 255, 0, 0.4);
+    background: rgba(0, 20, 0, 0.7);
+}
+
+/* Card scan line effect on hover */
+.introduction-expertise-card::before,
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--matrix-green), 
+        transparent
+    );
+    transition: left var(--duration-slower);
+}
+
+.introduction-expertise-card:hover::before,
+.project-card:hover::before {
+    left: 100%;
+}
+
+/* ==========================================================================
+   Card Image/Icon Section
+   ========================================================================== */
+
+.introduction-expertise-icon,
+.project-icon {
+    margin-bottom: var(--space-md);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-base);
+}
+
+.introduction-expertise-icon img,
+.project-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-base);
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.introduction-expertise-card:hover .introduction-expertise-icon img,
+.project-card:hover .project-icon img {
+    transform: scale(1.05);
+}
+
+/* Icon for cards without images */
+.introduction-expertise-icon i,
+.project-icon i {
+    font-size: 3rem;
+    color: var(--matrix-green);
+    margin-bottom: var(--space-sm);
+}
+
+/* ==========================================================================
+   Card Content
+   ========================================================================== */
+
+.introduction-expertise-card h3,
+.project-card h3 {
+    color: var(--matrix-green);
+    font-size: var(--font-size-h3);
+    font-family: var(--font-primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: var(--letter-spacing-wide);
+    text-shadow: var(--matrix-glow);
+}
+
+.introduction-expertise-description,
+.project-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-md) 0;
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   Card Tags/Tech Stack
+   ========================================================================== */
+
+.introduction-expertise-tags,
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+    justify-content: center;
+}
+
+.introduction-expertise-tags span,
+.project-tags span {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    padding: var(--space-xs) var(--space-md);
+    transition: all var(--duration-fast) var(--ease-out);
+}
+
+.introduction-expertise-tags span:hover,
+.project-tags span:hover {
+    background: var(--matrix-green);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* ==========================================================================
+   Card Progress Bars (for expertise cards)
+   ========================================================================== */
+
+.introduction-expertise-details {
+    margin: var(--space-md) 0;
+}
+
+.introduction-expertise-bar {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    height: 8px;
+    margin: var(--space-sm) 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.introduction-expertise-progress {
+    background: linear-gradient(90deg, 
+        var(--matrix-green) 0%, 
+        var(--matrix-cyan) 100%
+    );
+    height: 100%;
+    position: relative;
+    transition: width var(--duration-slower) var(--ease-out);
+}
+
+.introduction-expertise-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.5)
+    );
+    animation: progressShine 2s linear infinite;
+}
+
+@keyframes progressShine {
+    from { transform: translateX(-20px); }
+    to { transform: translateX(0); }
+}
+
+.introduction-expertise-level {
+    color: var(--matrix-cyan);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+}
+
+/* ==========================================================================
+   Card Buttons Section
+   ========================================================================== */
+
+.introduction-expertise-buttons,
+.project-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: auto;
+    width: 100%;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .introduction-expertise-grid,
+    .project-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-md);
+    }
+    
+    .introduction-expertise-card,
+    .project-card {
+        padding: var(--space-md);
+    }
+    
+    .introduction-expertise-card h3,
+    .project-card h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .introduction-expertise-grid,
+    .project-grid {
+        padding: var(--space-sm);
+    }
+    
+    .introduction-expertise-tags span,
+    .project-tags span {
+        font-size: 0.75rem;
+        padding: 0.125rem 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Special Card Variants
+   ========================================================================== */
+
+/* Featured Card */
+.introduction-expertise-card.featured,
+.project-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, 
+        var(--matrix-dark), 
+        rgba(0, 255, 0, 0.05)
+    );
+}
+
+/* Coming Soon Card */
+.introduction-expertise-card.coming-soon,
+.project-card.coming-soon {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.introduction-expertise-card.coming-soon::after,
+.project-card.coming-soon::after {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 2rem;
+    font-family: var(--font-primary);
+    color: var(--matrix-cyan);
+    text-shadow: 0 0 20px var(--matrix-cyan);
+    opacity: 0.3;
+}

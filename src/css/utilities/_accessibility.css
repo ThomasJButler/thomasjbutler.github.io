@@ -1,0 +1,449 @@
+/* ==========================================================================
+   Accessibility Utilities
+   Ensuring inclusive design for all users
+   ========================================================================== */
+
+/* ==========================================================================
+   Screen Reader Only
+   ========================================================================== */
+
+.sr-only,
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Show on focus (for skip links) */
+.sr-only-focusable:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: var(--space-sm) var(--space-md);
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    z-index: var(--z-modal);
+}
+
+/* ==========================================================================
+   Focus Indicators
+   ========================================================================== */
+
+/* Enhanced focus outline */
+.focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+}
+
+/* Custom focus styles */
+*:focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(0, 255, 0, 0.3);
+    transition: outline-offset 0.2s ease;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--matrix-green);
+    outline-offset: 4px;
+    box-shadow: 
+        0 0 0 4px rgba(0, 255, 0, 0.3),
+        0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* Matrix-style focus animation */
+@keyframes matrixFocus {
+    0% {
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(0, 255, 0, 0.3);
+    }
+    50% {
+        outline-offset: 6px;
+        box-shadow: 
+            0 0 0 4px rgba(0, 255, 0, 0.3),
+            0 0 30px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        outline-offset: 4px;
+        box-shadow: 
+            0 0 0 4px rgba(0, 255, 0, 0.3),
+            0 0 20px rgba(0, 255, 0, 0.5);
+    }
+}
+
+/* Apply animation to form inputs on focus */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    animation: matrixFocus 0.3s ease-out;
+}
+
+/* Remove default outline for mouse users */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ==========================================================================
+   Keyboard Navigation Indicators
+   ========================================================================== */
+
+/* Skip to content link */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--matrix-darker);
+    color: var(--matrix-green);
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    border: 2px solid var(--matrix-green);
+    z-index: var(--z-modal);
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Tab navigation hints */
+.tab-hint {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--matrix-green);
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border: 1px solid var(--matrix-green);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Show tab hints on focus */
+*:focus-visible .tab-hint,
+*:focus-visible + .tab-hint {
+    opacity: 1;
+}
+
+/* Keyboard user indicator */
+body.keyboard-nav *:focus {
+    outline: 3px solid var(--matrix-green) !important;
+    outline-offset: 4px !important;
+}
+
+/* Tab order indicators for development */
+.show-tab-order [tabindex]:not([tabindex="-1"])::before {
+    content: attr(tabindex);
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background: var(--matrix-green);
+    color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    /* Stronger borders */
+    * {
+        border-width: 2px;
+    }
+    
+    /* Enhanced text contrast */
+    body {
+        color: #00FF00;
+        background: #000000;
+    }
+    
+    /* Stronger shadows */
+    .card,
+    .button,
+    .form-input {
+        border: 2px solid var(--matrix-green);
+        box-shadow: none;
+    }
+    
+    /* Improved link visibility */
+    a {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+    }
+    
+    /* Better form field contrast */
+    input,
+    textarea,
+    select {
+        background: #000;
+        color: #00FF00;
+        border: 2px solid #00FF00;
+    }
+    
+    /* Enhanced button states */
+    button,
+    .btn {
+        border: 2px solid #00FF00;
+        font-weight: bold;
+    }
+    
+    /* Error states more visible */
+    .error {
+        border-color: #FF0000;
+        color: #FF0000;
+        font-weight: bold;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all animations */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* Remove parallax effects */
+    .parallax {
+        transform: none !important;
+    }
+    
+    /* Simplify hover states */
+    .hover-lift:hover {
+        transform: none;
+    }
+    
+    /* Static loading states */
+    .loading {
+        animation: none;
+    }
+    
+    /* Remove auto-playing videos */
+    video[autoplay] {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Keyboard Navigation
+   ========================================================================== */
+
+/* Skip to main content */
+.skip-link {
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    background: var(--matrix-green);
+    color: #000;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    font-weight: bold;
+    z-index: var(--z-notification);
+    transition: top 0.1s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Keyboard focus indicators */
+.keyboard-only:not(:focus) {
+    outline: none;
+}
+
+/* Tab focus order indicators */
+[tabindex]:focus {
+    outline: 3px solid var(--matrix-cyan);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Touch Target Sizing
+   ========================================================================== */
+
+/* Ensure minimum touch target size (44x44px) */
+.touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add padding to small interactive elements */
+.small-target {
+    position: relative;
+}
+
+.small-target::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+}
+
+/* ==========================================================================
+   Color Contrast Utilities
+   ========================================================================== */
+
+/* Force high contrast text */
+.high-contrast {
+    color: #00FF00 !important;
+    background: #000000 !important;
+}
+
+/* Ensure readable overlays */
+.overlay-readable {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+}
+
+/* ==========================================================================
+   ARIA Helpers
+   ========================================================================== */
+
+/* Hide decorative elements from screen readers */
+.decorative {
+    aria-hidden: true;
+}
+
+/* Live region for dynamic updates */
+.live-region {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Ensure interactive elements are announced */
+[role="button"],
+[role="link"] {
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    /* Already dark by default, but ensure consistency */
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    /* Hide non-essential elements */
+    .no-print,
+    nav,
+    footer,
+    .video-banner,
+    .matrix-rain {
+        display: none !important;
+    }
+    
+    /* Optimize colors for print */
+    * {
+        color: #000 !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    /* Ensure links are visible */
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+    
+    /* Page breaks */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    /* Avoid breaking inside elements */
+    p, blockquote, ul, ol {
+        page-break-inside: avoid;
+    }
+}
+
+/* ==========================================================================
+   Cognitive Accessibility
+   ========================================================================== */
+
+/* Clear focus indicators */
+.clear-focus:focus {
+    outline: 3px solid var(--matrix-green);
+    outline-offset: 5px;
+    box-shadow: 0 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+/* Consistent interaction patterns */
+.predictable-interaction {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Error prevention */
+.confirm-action {
+    position: relative;
+}
+
+.confirm-action::before {
+    content: attr(data-confirm);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--matrix-red);
+    color: #fff;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-base);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-base);
+}
+
+.confirm-action:hover::before {
+    opacity: 1;
+}

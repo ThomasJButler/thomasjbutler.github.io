@@ -1,0 +1,1 @@
+export { UpdatesFeed } from './UpdatesFeed';

@@ -1,0 +1,311 @@
+{
+  "template_version": "2.0",
+  "created_by": "Thomas J Butler",
+  "description": "Universal Code Review Configuration - Tech Stack Presets",
+  
+  "project_types": {
+    "web-app": {
+      "description": "Frontend web applications",
+      "focus_areas": ["performance", "accessibility", "seo", "user_experience"],
+      "common_frameworks": ["React", "Vue", "Angular", "Svelte"],
+      "analysis_time": "15-20 minutes"
+    },
+    "api": {
+      "description": "REST/GraphQL APIs and microservices",
+      "focus_areas": ["security", "performance", "scalability", "documentation"],
+      "common_frameworks": ["Express", "FastAPI", "Django", "ASP.NET"],
+      "analysis_time": "20-25 minutes"
+    },
+    "mobile": {
+      "description": "Mobile applications (iOS/Android)",
+      "focus_areas": ["performance", "battery_optimization", "ui_guidelines", "security"],
+      "common_frameworks": ["Swift", "Kotlin", "React Native", "Flutter"],
+      "analysis_time": "25-30 minutes"
+    },
+    "enterprise": {
+      "description": "Large-scale enterprise applications",
+      "focus_areas": ["architecture", "security", "scalability", "maintainability"],
+      "common_frameworks": [".NET", "Spring", "Django", "Laravel"],
+      "analysis_time": "30-45 minutes"
+    },
+    "library": {
+      "description": "Reusable packages and modules",
+      "focus_areas": ["api_design", "documentation", "testing", "versioning"],
+      "common_frameworks": ["NPM", "PyPI", "NuGet", "Maven"],
+      "analysis_time": "15-20 minutes"
+    },
+    "automation": {
+      "description": "Scripts, workflows, and automation tools",
+      "focus_areas": ["reliability", "error_handling", "logging", "maintainability"],
+      "common_frameworks": ["n8n", "GitHub Actions", "Jenkins", "Ansible"],
+      "analysis_time": "10-15 minutes"
+    }
+  },
+
+  "tech_stacks": {
+    "react-stack": {
+      "name": "Modern React Stack",
+      "technologies": ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase"],
+      "focus_rules": {
+        "component_architecture": "Check for proper component composition and reusability",
+        "state_management": "Evaluate useState, useContext, and external state management",
+        "performance": "Analyze bundle size, lazy loading, and memoization",
+        "accessibility": "WCAG compliance and semantic HTML usage",
+        "typescript": "Type safety and proper interface definitions"
+      },
+      "common_issues": [
+        "Unnecessary re-renders",
+        "Poor component structure",
+        "Missing error boundaries",
+        "Accessibility violations",
+        "Bundle size optimization"
+      ]
+    },
+    
+    "python-stack": {
+      "name": "Python Web Development",
+      "technologies": ["Python", "Django/FastAPI", "PostgreSQL", "Redis", "Docker"],
+      "focus_rules": {
+        "code_structure": "Follow PEP 8 and proper module organization",
+        "database": "Optimize queries and proper ORM usage",
+        "security": "Authentication, authorization, and input validation",
+        "async_patterns": "Proper async/await usage in FastAPI",
+        "testing": "Comprehensive unit and integration tests"
+      },
+      "common_issues": [
+        "N+1 database queries",
+        "Missing input validation",
+        "Poor error handling",
+        "Security vulnerabilities",
+        "Inadequate testing coverage"
+      ]
+    },
+
+    "dotnet-stack": {
+      "name": "Enterprise .NET Stack",
+      "technologies": ["C#", ".NET", "Azure", "SQL Server", "Entity Framework"],
+      "focus_rules": {
+        "solid_principles": "Single Responsibility, Open/Closed, etc.",
+        "dependency_injection": "Proper DI container usage",
+        "entity_framework": "Efficient queries and proper migrations",
+        "azure_integration": "Cloud-native patterns and services",
+        "security": "Identity management and data protection"
+      },
+      "common_issues": [
+        "SOLID principle violations",
+        "Improper exception handling",
+        "EF query optimization",
+        "Missing async patterns",
+        "Inadequate logging"
+      ]
+    },
+
+    "node-stack": {
+      "name": "Node.js Backend",
+      "technologies": ["Node.js", "Express", "MongoDB", "JWT", "Socket.io"],
+      "focus_rules": {
+        "async_patterns": "Proper Promise and async/await usage",
+        "security": "Authentication, rate limiting, input validation",
+        "performance": "Connection pooling and caching strategies",
+        "error_handling": "Comprehensive error middleware",
+        "real_time": "WebSocket implementation best practices"
+      },
+      "common_issues": [
+        "Callback hell or Promise anti-patterns",
+        "Missing error handling",
+        "Security vulnerabilities",
+        "Memory leaks",
+        "Poor API design"
+      ]
+    },
+
+    "mobile-stack": {
+      "name": "Mobile Development",
+      "technologies": ["Swift/Kotlin", "Native APIs", "Core Data/Room", "Push Notifications"],
+      "focus_rules": {
+        "performance": "Memory management and battery optimization",
+        "ui_guidelines": "Platform-specific design patterns",
+        "data_management": "Local storage and synchronization",
+        "security": "Secure data storage and network communication",
+        "accessibility": "Platform accessibility standards"
+      },
+      "common_issues": [
+        "Memory leaks and retain cycles",
+        "UI thread blocking",
+        "Poor offline handling",
+        "Security vulnerabilities",
+        "Accessibility violations"
+      ]
+    },
+
+    "automation-stack": {
+      "name": "Automation & Workflows",
+      "technologies": ["n8n", "Python Scripts", "GitHub Actions", "APIs", "Webhooks"],
+      "focus_rules": {
+        "reliability": "Error handling and retry mechanisms",
+        "monitoring": "Logging and alerting capabilities",
+        "security": "API key management and secure communications",
+        "maintainability": "Clear documentation and modular design",
+        "testing": "Automated testing for workflows"
+      },
+      "common_issues": [
+        "Poor error handling",
+        "Hardcoded credentials",
+        "Missing monitoring",
+        "Inadequate documentation",
+        "No rollback mechanisms"
+      ]
+    }
+  },
+
+  "analysis_depths": {
+    "quick": {
+      "description": "Critical issues only (~5 minutes)",
+      "focus": ["critical_bugs", "security_vulnerabilities", "performance_blockers"],
+      "skip": ["code_style", "documentation", "optimization_opportunities"]
+    },
+    "standard": {
+      "description": "Comprehensive review (~15 minutes)",
+      "focus": ["all_categories"],
+      "emphasis": ["functionality", "security", "maintainability"]
+    },
+    "comprehensive": {
+      "description": "Deep analysis with recommendations (~30 minutes)",
+      "focus": ["all_categories", "architecture_review", "optimization_suggestions"],
+      "includes": ["performance_profiling", "dependency_analysis", "future_scalability"]
+    }
+  },
+
+  "severity_levels": {
+    "critical": {
+      "description": "Issues that could cause system failure or security breaches",
+      "examples": ["SQL injection vulnerabilities", "Memory leaks", "Data corruption risks"],
+      "action_required": "Immediate fix required"
+    },
+    "high": {
+      "description": "Significant issues affecting functionality or performance",
+      "examples": ["Performance bottlenecks", "Missing error handling", "API design flaws"],
+      "action_required": "Fix within current sprint"
+    },
+    "medium": {
+      "description": "Code quality issues affecting maintainability",
+      "examples": ["Code duplication", "Complex methods", "Missing tests"],
+      "action_required": "Address in next sprint"
+    },
+    "low": {
+      "description": "Minor improvements and optimizations",
+      "examples": ["Code style", "Documentation gaps", "Minor optimizations"],
+      "action_required": "Address when convenient"
+    }
+  },
+
+  "focus_areas": {
+    "security": {
+      "checks": [
+        "Input validation and sanitization",
+        "Authentication and authorization",
+        "Data encryption and protection",
+        "API security (rate limiting, CORS)",
+        "Dependency vulnerabilities"
+      ]
+    },
+    "performance": {
+      "checks": [
+        "Database query optimization",
+        "Caching strategies",
+        "Memory usage patterns",
+        "Bundle size and loading times",
+        "Async operations efficiency"
+      ]
+    },
+    "maintainability": {
+      "checks": [
+        "Code organization and structure",
+        "Documentation quality",
+        "Test coverage and quality",
+        "Dependency management",
+        "Technical debt assessment"
+      ]
+    },
+    "scalability": {
+      "checks": [
+        "Architecture patterns",
+        "Database design",
+        "Caching and session management",
+        "Load balancing considerations",
+        "Microservices patterns"
+      ]
+    },
+    "accessibility": {
+      "checks": [
+        "WCAG compliance",
+        "Semantic HTML usage",
+        "Keyboard navigation",
+        "Screen reader compatibility",
+        "Color contrast and visual design"
+      ]
+    }
+  },
+
+  "output_formats": {
+    "markdown": {
+      "description": "Human-readable format for documentation",
+      "file_extension": ".md",
+      "suitable_for": ["Documentation", "GitHub", "README files"]
+    },
+    "json": {
+      "description": "Machine-readable format for automation",
+      "file_extension": ".json",
+      "suitable_for": ["CI/CD integration", "API consumption", "Data processing"]
+    },
+    "html": {
+      "description": "Web-friendly format with styling",
+      "file_extension": ".html",
+      "suitable_for": ["Web dashboards", "Email reports", "Presentations"]
+    },
+    "pdf": {
+      "description": "Professional presentation format",
+      "file_extension": ".pdf",
+      "suitable_for": ["Client reports", "Executive summaries", "Archive documentation"]
+    }
+  },
+
+  "integration_options": {
+    "github": {
+      "description": "GitHub Pull Request integration",
+      "features": ["PR comments", "Status checks", "Review automation"],
+      "setup": "Configure GitHub Actions workflow"
+    },
+    "slack": {
+      "description": "Slack notifications and reports",
+      "features": ["Channel notifications", "Direct messages", "Interactive reports"],
+      "setup": "Configure Slack webhook"
+    },
+    "email": {
+      "description": "Email report distribution",
+      "features": ["HTML reports", "Scheduled summaries", "Team notifications"],
+      "setup": "Configure SMTP settings"
+    },
+    "cicd": {
+      "description": "CI/CD pipeline integration",
+      "features": ["Quality gates", "Automated reviews", "Build failures"],
+      "setup": "Add to pipeline configuration"
+    }
+  },
+
+  "thomas_butler_standards": {
+    "description": "Professional coding standards by Thomas J Butler",
+    "principles": [
+      "Making technology more human through clean, accessible code",
+      "Security and privacy by design",
+      "Performance optimization without complexity sacrifice",
+      "Comprehensive testing and documentation",
+      "Future-proof architecture and maintainable solutions"
+    ],
+    "matrix_theme_integration": {
+      "report_styling": "Green-on-black colour scheme for HTML reports",
+      "ascii_art": "Matrix-style headers in documentation",
+      "branding": "Professional Matrix aesthetic in all outputs"
+    }
+  }
+}

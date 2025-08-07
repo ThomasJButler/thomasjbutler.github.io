@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Keyboard Help Modal
+   Modal showing keyboard shortcuts
+   ========================================================================== */
+
+.keyboard-help-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal, 9999);
+    padding: var(--space-md);
+    animation: fadeIn var(--duration-base) ease-out;
+}
+
+.keyboard-help-content {
+    background: var(--matrix-darker, rgba(0, 20, 0, 0.95));
+    border: 2px solid var(--matrix-green);
+    border-radius: 8px;
+    padding: var(--space-xl);
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 
+        0 0 40px rgba(0, 255, 0, 0.3),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+.keyboard-help-content h2 {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.keyboard-help-content dl {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-sm);
+    margin: 0;
+}
+
+.keyboard-help-content dt {
+    color: var(--matrix-green);
+    font-family: var(--font-code, monospace);
+    font-weight: bold;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--matrix-green);
+    padding: var(--space-xs) var(--space-sm);
+    text-align: center;
+    border-radius: 4px;
+}
+
+.keyboard-help-content dd {
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.keyboard-help-content .close-button {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: transparent;
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all var(--duration-fast) ease;
+}
+
+.keyboard-help-content .close-button:hover,
+.keyboard-help-content .close-button:focus {
+    background: var(--matrix-green);
+    color: black;
+    transform: rotate(90deg);
+}
+
+/* Scrollbar styling */
+.keyboard-help-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.keyboard-help-content::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.keyboard-help-content::-webkit-scrollbar-thumb {
+    background: var(--matrix-green);
+    border-radius: 4px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .keyboard-help-content {
+        padding: var(--space-md);
+        max-height: 90vh;
+    }
+    
+    .keyboard-help-content dl {
+        grid-template-columns: 80px 1fr;
+        font-size: 0.875rem;
+    }
+}

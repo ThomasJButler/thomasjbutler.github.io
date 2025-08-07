@@ -1,0 +1,25 @@
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  padding: var(--spacing-lg);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: var(--spacing-md);
+  }
+}

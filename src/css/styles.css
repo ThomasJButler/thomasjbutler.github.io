@@ -181,8 +181,8 @@
     opacity: 1;
 }
 
-/* Pulsing glow effect */
-.introduction-expertise-card:hover::before {
+/* Pulsing glow effect - now only on hover */
+.introduction-expertise-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -190,9 +190,14 @@
     right: 0;
     bottom: 0;
     border-radius: 15px;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     background: rgba(0, 255, 0, 0.1);
     z-index: -2;
+}
+
+.introduction-expertise-card:hover::before {
+    opacity: 0.3;
 }
 
 /* Enhanced tag hover effects */
@@ -226,7 +231,52 @@
 }
 
 .introduction-expertise-tags span:hover::before {
-    animation: shimmer 1.5s infinite;
+    /* animation: shimmer 1.5s infinite; - Removed for performance */
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+}
+
+/* Matrix Rain Canvas Styles */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#matrixCanvas {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    opacity: 0.8;
+}
+
+/* Scrolling Text Styles - Desktop */
+.scrolling-text {
+    color: var(--matrix-green);
+    font-family: 'VT323', monospace;
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: var(--space-md) auto;
+    max-width: 800px;
+    line-height: 1.6;
+    /* Remove any animations */
+    animation: none !important;
+    /* Ensure text is always visible */
+    opacity: 1 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    /* Prevent transform issues */
+    transform: none !important;
+    position: relative !important;
+    /* Ensure smooth rendering */
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 /* Keyframe Animations */
@@ -259,7 +309,7 @@
         rgba(0, 255, 0, 0.2),
         transparent
     );
-    animation: scanline 3s linear infinite;
+    /* animation: scanline 3s linear infinite; - Removed for professional look */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -268,14 +318,7 @@
     opacity: 1;
 }
 
-@keyframes scanline {
-    0% {
-        top: -100%;
-    }
-    100% {
-        top: 300%;
-    }
-}
+/* @keyframes scanline removed for professional look */
 
 /* Smooth transitions for all properties */
 .introduction-expertise-card *,
@@ -598,7 +641,7 @@
 
 /* Matrix Rain Effect */
 .skills-list li::before {
-    animation: matrixRain 2s linear infinite;
+    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(180deg, 
         transparent 0%, 
         rgba(0, 255, 0, 0.3) 45%, 
@@ -696,6 +739,8 @@
     margin: 0;
     opacity: 0.8;
     transition: all 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
 }
 
 .skills-list li:hover p {
@@ -736,7 +781,7 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    animation: scanningTop 2s linear infinite;
+    /* animation: scanningTop 2s linear infinite; - Removed for professional look */
 }
 
 .services-list {
@@ -776,12 +821,12 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    animation: scanning 2s linear infinite;
+    /* animation: scanning 2s linear infinite; - Removed for professional look */
 }
 
 .services-list li:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
     border-color: #00FF00;
     background: linear-gradient(145deg, rgba(0, 30, 0, 0.95), rgba(0, 50, 0, 0.85));
 }
@@ -825,15 +870,7 @@
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
 }
 
-@keyframes scanning {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-@keyframes scanningTop {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
+/* @keyframes scanning and scanningTop removed for professional look */
 
 @media (min-width: 768px) {
     .services-list {
@@ -1020,7 +1057,7 @@ body > py-terminal.py-terminal-docked {
 }
 
 .version-container::before {
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     background: linear-gradient(45deg, 
         transparent 48%, 
         rgba(0, 255, 0, 0.1) 49%, 
@@ -1152,12 +1189,7 @@ body > py-terminal.py-terminal-docked {
     100% { top: 200%; }
 }
 
-@keyframes glitch {
-    0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); }
-    25% { text-shadow: -2px 0 #00FFFF, 2px 2px #FF00FF; }
-    50% { text-shadow: 2px -2px #00FFFF, -2px 2px #FF00FF; }
-    75% { text-shadow: -2px 2px #00FFFF, 2px -2px #FF00FF; }
-}
+/* @keyframes glitch removed for professional look */
 
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
@@ -1176,10 +1208,7 @@ body > py-terminal.py-terminal-docked {
     }
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
+/* @keyframes typing removed for professional look */
 
 /* View-Specific Styles
    ========================================================================== */
@@ -1422,28 +1451,22 @@ nav ul li.version-timetravel:hover {
         font-size: 1.5rem; 
     }
     
-    header h3 {
-        display: none;
-    }
+    /* header h3 is now handled in components/_header.css */
 
-    header .container {
-        column-gap: 18px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        padding: 0px 20px;
-    }
+    /* header .container is now handled in components/_header.css */
 
     /* Navigation */
     .logo-container {
         display: none;
     }
 
-    nav {
+   nav {
         display: inline-flex;
-        flex-direction: column;
+        flex-direction: row-reverse;
         width: 100%;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: space-between;
     }
 
     nav ul {
@@ -1600,14 +1623,7 @@ nav ul li.version-timetravel:hover {
         font-size: 1.5rem; 
     }
 
-    header .container {
-        display: flex;
-        column-gap: 25px;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding: 0px 20px;
-        flex-direction: row;
-    }
+    /* header .container is now handled in components/_header.css */
 
     /* Layout */
     main {
@@ -1995,7 +2011,7 @@ nav ul li.version-timetravel:hover {
         rgba(0, 255, 0, 0.1) 51%,
         transparent 52%);
     background-size: 10px 10px;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
 }
 
@@ -2029,7 +2045,7 @@ nav ul li.version-timetravel:hover {
     width: 100%;
     height: 100%;
     clip: rect(0, 900px, 0, 0);
-    animation: glitch 2s infinite linear alternate-reverse;
+    /* animation: glitch 2s infinite linear alternate-reverse; - Removed for professional look */
 }
 
 .glitch-text::before {
@@ -2086,7 +2102,7 @@ nav ul li.version-timetravel:hover {
 
 .counter:hover::before {
     opacity: 1;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .count {
@@ -2156,29 +2172,7 @@ nav ul li.version-timetravel:hover {
     100% { background-position: 100% 100%; }
 }
 
-@keyframes glitch {
-    0% { clip: rect(44px, 450px, 56px, 0); }
-    5% { clip: rect(9px, 450px, 89px, 0); }
-    10% { clip: rect(78px, 450px, 98px, 0); }
-    15% { clip: rect(23px, 450px, 45px, 0); }
-    20% { clip: rect(67px, 450px, 89px, 0); }
-    25% { clip: rect(12px, 450px, 34px, 0); }
-    30% { clip: rect(90px, 450px, 101px, 0); }
-    35% { clip: rect(45px, 450px, 67px, 0); }
-    40% { clip: rect(56px, 450px, 78px, 0); }
-    45% { clip: rect(23px, 450px, 45px, 0); }
-    50% { clip: rect(89px, 450px, 123px, 0); }
-    55% { clip: rect(12px, 450px, 34px, 0); }
-    60% { clip: rect(78px, 450px, 90px, 0); }
-    65% { clip: rect(34px, 450px, 56px, 0); }
-    70% { clip: rect(67px, 450px, 89px, 0); }
-    75% { clip: rect(12px, 450px, 34px, 0); }
-    80% { clip: rect(45px, 450px, 67px, 0); }
-    85% { clip: rect(23px, 450px, 45px, 0); }
-    90% { clip: rect(89px, 450px, 123px, 0); }
-    95% { clip: rect(12px, 450px, 34px, 0); }
-    100% { clip: rect(78px, 450px, 90px, 0); }
-}
+/* @keyframes glitch removed for professional look */
 
 @keyframes scroll {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -2287,13 +2281,15 @@ nav ul li.version-timetravel:hover {
 
 .story-content {
     background: var(--card-bg);
-    padding: 3rem;
+    padding: 1.75rem 2rem;
     border-radius: 15px;
     border: var(--border-glow);
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
     transition: var(--transition-smooth);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .story-content::before {
@@ -2314,24 +2310,36 @@ nav ul li.version-timetravel:hover {
 }
 
 .story-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .story-content:hover::before {
     opacity: 1;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .highlight-text {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: var(--neon-green);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
     font-weight: 500;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
     position: relative;
     padding-left: 2rem;
+}
+
+.story-content p {
+    color: #FF00FF;
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+.story-content p:last-child {
+    margin-bottom: 0;
 }
 
 .highlight-text::before {
@@ -2465,12 +2473,17 @@ nav ul li.version-timetravel:hover {
         grid-template-columns: 1fr;
     }
 
-    .highlight-text {
-        font-size: 1.2rem;
-    }
-
     .story-content {
-        padding: 1.5rem;
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .highlight-text {
+        font-size: 1.1rem;
+        padding-left: 1.5rem;
+    }
+    
+    .story-content p {
+        font-size: 0.95rem;
     }
 
     .achievement-list li {
@@ -2552,7 +2565,7 @@ html {
         linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.05) 49%, rgba(0, 255, 0, 0.05) 51%, transparent 52%),
         radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 100%);
     background-size: 10px 10px, 100px 100px;
-    animation: matrixBg 20s linear infinite;
+    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
     pointer-events: none;
 }
@@ -2604,7 +2617,7 @@ html {
 
 .journey-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .journey-item i {
@@ -2662,7 +2675,7 @@ html {
 
 .expertise-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .expertise-list {
@@ -2720,7 +2733,7 @@ html {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .project-tech {
@@ -2765,7 +2778,7 @@ html {
 
 .certification-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
 }
 
 .certification-item i {
@@ -2818,19 +2831,22 @@ html {
     }
 
     .story-content {
-        padding: 2rem;
+        padding: 1.25rem 1rem;
+    }
+    
+    .story-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .highlight-text {
+        font-size: 1rem;
+        padding-left: 1rem;
     }
 }
 
 /* Animation Keyframes */
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
+/* @keyframes glitch removed for professional look */
 
 /* Contact Section */
 #contact {
@@ -2849,6 +2865,7 @@ html {
 }
 
 #contact p {
+    text-align: center;
     color: #FF00FF;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
@@ -2942,7 +2959,7 @@ html {
 }
 
 .btn-contact-us::before {
-    animation: matrixRain 2s linear infinite;
+    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(to bottom, 
         transparent, 
         rgba(0, 255, 0, 0.2), 
@@ -3065,5 +3082,189 @@ html {
     #contact form input,
     #contact form textarea {
         padding: 0.6rem;
+    }
+}
+/* Galleries Section
+   ========================================================================== */
+#galleries {
+    padding: 80px 0;
+    background: rgba(0, 20, 0, 0.3);
+}
+
+.galleries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.gallery-card {
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid #00FF00;
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00FF00, #FF00FF);
+    border-radius: 15px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
+}
+
+.gallery-icon {
+    font-size: 3rem;
+    color: #00FF00;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-icon i {
+    transition: transform 0.6s ease;
+    display: inline-block;
+}
+
+.gallery-card h3 {
+    color: #00FF00;
+    font-family: 'VT323', monospace;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.gallery-card p {
+    color: #FF00FF;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.gallery-link {
+    display: inline-block;
+    background: #00FF00;
+    color: #000;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-link:hover {
+    background: #FF00FF;
+    color: #000;
+    box-shadow: 0 0 20px #FF00FF;
+}
+
+@media (max-width: 768px) {
+    .galleries-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .gallery-card {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+    
+    /* Reduce icon size on mobile */
+    .gallery-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .gallery-card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-card p {
+        font-size: 0.95rem;
+    }
+}
+/* Video Banner Section
+   ========================================================================== */
+.video-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin-top: 100px; /* Account for fixed header */
+    border-bottom: 2px solid var(--matrix-green);
+}
+
+.banner-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.video-banner .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 20, 0, 0.3) 0%,
+        rgba(0, 20, 0, 0.5) 100%
+    );
+    pointer-events: none;
+}
+
+/* Adjust introduction section spacing */
+#introduction {
+    padding-top: var(--space-lg);
+}
+
+/* Performance optimization for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .banner-video {
+        display: none;
+    }
+    
+    .video-banner {
+        background: linear-gradient(
+            to right,
+            var(--matrix-dark),
+            var(--matrix-green),
+            var(--matrix-dark)
+        );
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .video-banner {
+        height: 200px;
+        margin-top: 80px;
+    }
+    
+    .banner-video {
+        opacity: 0.6;
     }
 }

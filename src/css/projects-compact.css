@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Projects Page Compact Cards
+   Streamlined version of introduction-expertise cards for better viewport fit
+   ========================================================================== */
+
+/* Compact card modifications for projects page */
+.introduction-expertise-card.compact {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+}
+
+.introduction-expertise-card.compact .introduction-expertise-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--space-sm);
+}
+
+.introduction-expertise-card.compact .introduction-expertise-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.introduction-expertise-card.compact .introduction-expertise-icon i {
+    font-size: 3rem;
+}
+
+.introduction-expertise-card.compact h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+}
+
+.introduction-expertise-card.compact .introduction-expertise-description {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin-bottom: var(--space-sm);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.introduction-expertise-card.compact .introduction-expertise-tags {
+    margin-bottom: var(--space-sm);
+}
+
+.introduction-expertise-card.compact .introduction-expertise-tags span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.introduction-expertise-card.compact .introduction-expertise-buttons {
+    gap: var(--space-xs);
+}
+
+.introduction-expertise-card.compact .neo-matrix-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* More compact grid for projects */
+#featured-projects .introduction-expertise-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+    padding: var(--space-md);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    #featured-projects .introduction-expertise-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #featured-projects .introduction-expertise-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    #featured-projects .introduction-expertise-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,266 @@
+/* ContactForm.module.css - Matrix-themed animated contact form */
+
+.contactFormWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(0, 20, 0, 0.6);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.formTitle {
+  font-size: 2.5rem;
+  color: var(--neon-green, #00ff00);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: 'VT323', monospace;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 0, 0.5),
+    0 0 20px rgba(0, 255, 0, 0.3);
+  letter-spacing: 0.1em;
+}
+
+.formSubtitle {
+  text-align: center;
+  color: rgba(0, 255, 0, 0.8);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.contactForm {
+  position: relative;
+  z-index: 1;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.label {
+  display: block;
+  color: var(--neon-green, #00ff00);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'VT323', monospace;
+  transition: all 0.3s ease;
+  transform-origin: left center;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 4px;
+  color: var(--neon-green, #00ff00);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--neon-green, #00ff00);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.input:disabled,
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error {
+  display: block;
+  color: #ff0066;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-family: 'VT323', monospace;
+  text-shadow: 0 0 5px rgba(255, 0, 102, 0.5);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-green, #00ff00);
+  border-radius: 4px;
+  color: var(--neon-green, #00ff00);
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+
+.submitButton:hover:not(:disabled) {
+  background: rgba(0, 255, 0, 0.1);
+  border-color: var(--neon-green, #00ff00);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loadingDots {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+
+.loadingDots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.successMessage {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid var(--neon-green, #00ff00);
+  border-radius: 4px;
+  color: var(--neon-green, #00ff00);
+  text-align: center;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: successFadeIn 0.5s ease-out;
+}
+
+.successMessage i {
+  font-size: 1.3rem;
+  animation: checkBounce 0.6s ease-out;
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes checkBounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactFormWrapper {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .formTitle {
+    font-size: 2rem;
+  }
+
+  .formSubtitle {
+    font-size: 1rem;
+  }
+
+  .input,
+  .textarea {
+    padding: 0.875rem 1rem;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  .submitButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactFormWrapper {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .formTitle {
+    font-size: 1.75rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .input,
+  .textarea {
+    border-width: 2px;
+  }
+
+  .error {
+    font-weight: bold;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contactFormWrapper::before {
+    animation: none;
+  }
+
+  .label,
+  .input,
+  .textarea,
+  .submitButton {
+    transition: none;
+  }
+
+  .loadingDots span {
+    animation: none;
+  }
+
+  .successMessage,
+  .successMessage i {
+    animation: none;
+  }
+}

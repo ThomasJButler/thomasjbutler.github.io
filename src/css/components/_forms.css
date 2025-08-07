@@ -1,0 +1,428 @@
+/* ==========================================================================
+   Form Components
+   Matrix-themed form styles with glassmorphism effects
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Form Container
+   ========================================================================== */
+
+form,
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.1),
+        inset 0 0 30px rgba(0, 255, 0, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Form glow effect on hover */
+form::before,
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--matrix-green), 
+        transparent, 
+        var(--matrix-cyan), 
+        transparent, 
+        var(--matrix-green)
+    );
+    border-radius: var(--radius-lg);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+form:hover::before,
+.form-container:hover::before {
+    opacity: 0.2;
+}
+
+form:hover,
+.form-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+/* ==========================================================================
+   Form Labels
+   ========================================================================== */
+
+label,
+.form-label {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+    margin-bottom: var(--space-sm);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+label.required::after,
+.form-label.required::after {
+    content: ' *';
+    color: var(--matrix-red);
+}
+
+/* ==========================================================================
+   Form Inputs & Textareas
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select,
+.form-input {
+    width: 100%;
+    background: rgba(0, 10, 0, 0.8);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-base);
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+    margin-bottom: var(--space-lg);
+    padding: 0.875rem 1rem;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+/* Focus state */
+input:focus,
+textarea:focus,
+select:focus,
+.form-input:focus {
+    background: rgba(0, 20, 0, 0.9);
+    border-color: var(--matrix-green);
+    box-shadow: 
+        0 0 0 2px rgba(0, 255, 0, 0.1),
+        0 0 20px rgba(0, 255, 0, 0.2);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+/* Textarea specific */
+textarea {
+    min-height: 120px;
+    max-height: 300px;
+    resize: vertical;
+    line-height: var(--line-height-base);
+}
+
+/* ==========================================================================
+   Placeholder Styling
+   ========================================================================== */
+
+::placeholder {
+    color: rgba(0, 255, 0, 0.4);
+    font-style: italic;
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Select Dropdown
+   ========================================================================== */
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300FF00' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.7rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Checkboxes & Radio Buttons
+   ========================================================================== */
+
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 10, 0, 0.8);
+    border: 1px solid var(--border-primary);
+    cursor: pointer;
+    display: inline-block;
+    margin-right: var(--space-sm);
+    position: relative;
+    vertical-align: middle;
+    transition: all var(--duration-fast) var(--ease-out);
+}
+
+input[type="checkbox"] {
+    border-radius: var(--radius-sm);
+}
+
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background: var(--matrix-green);
+    border-color: var(--matrix-green);
+}
+
+/* Checkbox checkmark */
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Radio button dot */
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+}
+
+/* Focus state */
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3);
+}
+
+/* ==========================================================================
+   Form Groups
+   ========================================================================== */
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Inline form groups */
+.form-group.inline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.form-group.inline label {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Form Validation States
+   ========================================================================== */
+
+/* Error state */
+.form-input.error,
+input.error,
+textarea.error,
+select.error {
+    border-color: var(--matrix-red);
+    background: rgba(255, 40, 0, 0.05);
+}
+
+.form-input.error:focus,
+input.error:focus,
+textarea.error:focus,
+select.error:focus {
+    border-color: var(--matrix-red);
+    box-shadow: 
+        0 0 0 2px rgba(255, 40, 0, 0.1),
+        0 0 20px rgba(255, 40, 0, 0.2);
+}
+
+/* Success state */
+.form-input.success,
+input.success,
+textarea.success,
+select.success {
+    border-color: var(--matrix-green);
+    background: rgba(0, 255, 0, 0.05);
+}
+
+/* Help text */
+.form-help {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: calc(var(--space-sm) * -1);
+    margin-bottom: var(--space-md);
+}
+
+.form-help.error {
+    color: var(--matrix-red);
+}
+
+.form-help.success {
+    color: var(--matrix-green);
+}
+
+/* ==========================================================================
+   Form Actions
+   ========================================================================== */
+
+.form-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    justify-content: flex-end;
+}
+
+.form-actions.center {
+    justify-content: center;
+}
+
+.form-actions.space-between {
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   Input Groups
+   ========================================================================== */
+
+.input-group {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: var(--space-lg);
+}
+
+.input-group input {
+    flex: 1;
+    margin-bottom: 0;
+    border-radius: var(--radius-base) 0 0 var(--radius-base);
+}
+
+.input-group-addon {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--border-primary);
+    border-left: 0;
+    border-radius: 0 var(--radius-base) var(--radius-base) 0;
+    color: var(--matrix-green);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-md);
+    font-family: var(--font-primary);
+}
+
+.input-group-addon:first-child {
+    border-left: 1px solid var(--border-primary);
+    border-right: 0;
+    border-radius: var(--radius-base) 0 0 var(--radius-base);
+}
+
+.input-group-addon:first-child + input {
+    border-radius: 0 var(--radius-base) var(--radius-base) 0;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    form,
+    .form-container {
+        padding: var(--space-lg);
+        margin: var(--space-md) auto;
+    }
+    
+    input,
+    textarea,
+    select {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button,
+    .form-actions .cta-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    form,
+    .form-container {
+        padding: var(--space-md);
+    }
+    
+    label {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+input:disabled,
+textarea:disabled,
+select:disabled,
+.form-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 5, 0, 0.5);
+}
+
+/* ==========================================================================
+   File Input
+   ========================================================================== */
+
+input[type="file"] {
+    padding: var(--space-sm);
+    cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: var(--matrix-green);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #000;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    padding: var(--space-sm) var(--space-md);
+    margin-right: var(--space-md);
+    transition: all var(--duration-fast) var(--ease-out);
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: var(--matrix-cyan);
+    transform: translateY(-1px);
+}

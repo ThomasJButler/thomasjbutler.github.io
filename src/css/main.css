@@ -1,0 +1,70 @@
+/* Main CSS Entry Point - All imports must come first before any other CSS */
+
+/* Base Styles */
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
+@import './base/_layout.css';
+
+/* Layout Components */
+@import './components/_footer.css';
+
+/* UI Components */
+@import './components/_header.css';
+@import './components/_navigation.css';
+@import './components/_scroll-behavior.css';
+@import './components/_back-to-top.css';
+@import './components/_buttons.css';
+@import './components/_cards.css';
+@import './components/_forms.css';
+@import './components/_contact-form.css';
+
+/* Utilities */
+@import './utilities/_spacing.css';
+@import './utilities/_helpers.css';
+@import './utilities/_animations.css';
+
+/* Page-Specific Styles */
+@import './projects.css';
+@import './about.css';
+/* @import './github-projects.css'; - Replaced with projects-matrix.css */
+@import './rotating-cube.css';
+
+/* Legacy Imports */
+@import './global.css';
+@import './header.css';
+@import './styles.css';
+@import './hover-effects.css';
+@import './typography.css';
+
+/* Contact Modern - Must come after legacy to override */
+@import './contact-modern.css';
+
+/* ==========================================================================
+   Print Styles
+   Must come last to override screen styles
+   ========================================================================== */
+
+@media print {
+    /* Hide non-essential elements */
+    nav,
+    footer,
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Optimize for print */
+    body {
+        background: white;
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+    
+    /* Ensure content fits on page */
+    .container {
+        max-width: 100%;
+    }
+}

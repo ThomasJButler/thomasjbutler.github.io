@@ -1,5 +1,8 @@
 /* ULTRA-MODERN PROJECTS.CSS - CYBERPUNK EDITION */
 
+/* Import horizontal grid styles */
+@import 'projects-horizontal-grid.css';
+
 /* 1. CORE SETUP & VARIABLES -------------------------------------------- */
 :root {
     --neon-green: #00ff00;
@@ -37,7 +40,7 @@
   .projects-section {
     position: relative;
     min-height: 100vh;
-    padding: 4rem 2rem;
+    padding: 2rem 1rem;
     background: 
       radial-gradient(circle at top right, rgba(0, 255, 0, 0.1), transparent 50%),
       radial-gradient(circle at bottom left, rgba(0, 255, 255, 0.05), transparent 50%),
@@ -46,53 +49,84 @@
     isolation: isolate;
   }
   
+  /* Default vertical grid - will be overridden by horizontal layout */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Changed to always show 2 columns */
-    gap: 3rem;
-    max-width: 1600px; /* Increased from 1400px for wider content */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     perspective: 1000px;
+  }
+  
+  /* Horizontal grid styles are imported at the top of this file */
+
+  .github-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 2rem auto 0;
+    padding: 1rem;
   }
   
   /* 4. PROJECT CARDS & IMAGES --------------------------------------------- */
   .project-card {
-    background: var(--gradient-primary);
-    border: 2px solid rgba(0, 255, 0, 0.2);
+    background: linear-gradient(135deg, 
+        rgba(0, 40, 0, 0.9), 
+        rgba(0, 60, 0, 0.9)
+    );
+    border: 2px solid var(--neon-green);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
-    transition: 
-      transform var(--animation-slow) ease-out,
-      box-shadow var(--animation-slow) ease-out;
+    overflow: hidden;
+    transition: all 0.3s ease;
     transform-style: preserve-3d;
     backface-visibility: hidden;
+  }
+
+  .github-card {
+    background: linear-gradient(135deg, 
+        rgba(0, 40, 0, 0.9), 
+        rgba(0, 60, 0, 0.9)
+    );
+    border: 2px solid var(--neon-green);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
   }
   
   .project-card::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      45deg,
-      transparent 0%,
-      rgba(0, 255, 0, 0.1) 45%,
-      rgba(0, 255, 0, 0.2) 50%,
-      rgba(0, 255, 0, 0.1) 55%,
-      transparent 100%
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 0, 0.2), 
+        transparent
     );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
+    transition: left 0.5s;
+  }
+  
+  .project-card:hover::before {
+    left: 100%;
   }
   
   .project-card:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-8px);
     box-shadow: 
-      0 12px 30px rgba(0, 255, 0, 0.15),
-      0 0 0 1px rgba(0, 255, 0, 0.2),
-      0 0 20px rgba(0, 255, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        0 8px 15px rgba(0, 255, 0, 0.3),
+        inset 0 0 10px rgba(0, 255, 0, 0.1);
   }
   
   .project-card::after {
@@ -118,10 +152,10 @@
   
   .project-image {
     width: 100%;
-    height: 220px;
+    height: 160px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border: 1px solid rgba(0, 255, 0, 0.3);
     transition: all var(--animation-slow) ease;
     filter: brightness(0.8) contrast(1.2);
@@ -130,7 +164,7 @@
   .project-card:hover .project-image {
     transform: scale(1.05);
     filter: brightness(1.2) contrast(1.4);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
   }
   
   /* 5. PROJECT CONTENT ------------------------------------------ */
@@ -138,23 +172,28 @@
     position: relative;
     z-index: 1;
     text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   
   .project-title {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     text-shadow: 
         0 0 8px rgba(0, 255, 0, 0.5),
         0 0 15px rgba(0, 255, 0, 0.3);
+    line-height: 1.3;
   }
   
   .project-description {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: #c0c0c0;
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
+    margin-bottom: 1rem;
+    line-height: 1.5;
     letter-spacing: 0.02em;
+    flex-grow: 1;
   }
 
   /* Add these new styles for project header elements */
@@ -190,15 +229,15 @@
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin: 1.5rem 0;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
   }
   
   .tech-badge {
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.6rem;
     border: 1px solid var(--neon-green);
+    font-size: 0.8rem;
     border-radius: 20px;
-    font-size: 0.9rem;
     color: var(--neon-green);
     background: rgba(0, 255, 0, 0.05);
     transition: all var(--animation-fast);
@@ -214,26 +253,24 @@
   /* 7. PROJECT LINKS --------------------------------------- */
   .project-links {
     display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 0.75rem;
+    margin-top: auto;
+    flex-wrap: wrap;
   }
   
   .project-link {
-    padding: 0.8rem 1.5rem;
-    border: 2px solid var(--neon-green);
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neon-green);
+    border-radius: 6px;
     color: var(--neon-green);
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
     position: relative;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 
-        0 0 10px rgba(0, 255, 0, 0.2),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
+    transition: all 0.3s var(--ease-out);
   }
   
   .project-link:hover {
@@ -403,7 +440,8 @@
     height: 12px;
     border-radius: 50%;
     background: var(--neon-blue);
-    animation: pulse 2s infinite;
+    /* animation: pulse 2s infinite; - Removed for performance */
+    transition: transform 0.3s ease;
 }
 
 .dot-tooltip {
@@ -467,11 +505,13 @@
   }
   
   @media (max-width: 768px) {
-    .projects-grid {
-      grid-template-columns: 1fr; /* Single column on mobile */
-      max-width: 100%; /* Changed from 600px to use full width */
-      padding: 1rem;
-      gap: 2rem;
+    .projects-grid,
+    .github-projects-grid {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      padding: 0.5rem;
+      gap: 1.5rem;
+      margin: 1rem auto 0;
     }
     
     .projects-heading {
@@ -479,52 +519,52 @@
       letter-spacing: 0.3rem;
     }
   
-    .project-card {
-      padding: 1.5rem;
+    .project-card,
+    .github-card {
+      padding: 1rem;
       width: 100%;
-      margin: 0; /* Remove any margin */
+      margin: 0;
+      min-height: auto;
     }
   
     .tech-stack {
       gap: 0.5rem;
+      margin: 1rem 0;
     }
   
     .project-links {
       flex-direction: column;
+      gap: 0.5rem;
     }
 
     .introduction-expertise-buttons {
         flex-direction: column;
+        gap: 0.5rem;
     }
 
     .introduction-expertise-buttons .neo-matrix-btn {
         width: 100%;
+        min-width: auto;
+        padding: 0.6rem 1rem;
     }
 
     .projects-section {
-      padding: 2rem 1rem; /* Reduce padding */
+      padding: 1rem 0.5rem;
     }
 
     .project-image {
-      height: 200px; /* Slightly shorter images on mobile */
+      height: 180px;
     }
 
-    /* Adjust container width */
     .container {
       width: 95%;
       max-width: none;
-      padding: 0;
+      padding: 0 0.5rem;
     }
 
-    /* Make content more compact */
     .project-details {
       margin: 1rem 0;
       padding: 1rem;
-    }
-
-    .tech-stack {
-      gap: 0.5rem;
-      margin: 1rem 0;
     }
 
     .tech-tags {
@@ -532,7 +572,19 @@
     }
 
     .tech-tags span {
-      padding: 0.4rem 0.8rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .project-tabs {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .tab-button {
+      padding: 0.5rem 1rem;
       font-size: 0.85rem;
     }
   }
@@ -542,16 +594,33 @@
       font-size: 2rem;
     }
   
-    .project-card {
-      padding: 1rem;
+    .project-card,
+    .github-card {
+      padding: 0.75rem;
     }
 
-    .projects-grid {
-      padding: 0.5rem;
+    .projects-grid,
+    .github-projects-grid {
+      padding: 0.25rem;
+      gap: 1rem;
     }
 
     .projects-section {
-      padding: 1rem 0.5rem;
+      padding: 0.5rem 0.25rem;
+    }
+
+    .container {
+      padding: 0 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
   }
   
@@ -662,4 +731,39 @@
       font-size: 0.8rem;
       padding: 0.4rem 0.8rem;
     }
+  }
+
+  /* CSS Showcase Section */
+  .css-showcase-section {
+      margin-top: var(--space-4xl);
+      padding: var(--space-2xl);
+      background: var(--matrix-darker);
+      border-top: 2px solid var(--matrix-green);
+  }
+
+  .css-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+  }
+
+  .css-demo-card {
+      aspect-ratio: 1;
+      background: var(--matrix-dark);
+      border: 1px solid var(--border-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+  }
+
+  .css-demo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--matrix-green);
+      box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
   }

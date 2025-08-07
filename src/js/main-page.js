@@ -1,0 +1,34 @@
+// Generic entry point for Vite pages
+import './scripts.ts';
+// Header initialization removed - HTML pages use static headers
+
+// Import main CSS file (includes all modular styles)
+import '../css/main.css';
+
+// Import scroll detection utility for hide-on-scroll header and back-to-top button
+import '../utils/scrollDetection.ts';
+
+// Note: Page-specific CSS is now imported in main.css
+// Legacy dynamic imports kept for compatibility
+
+// Import GSAP and ScrollMagic as ES modules
+import gsap from 'gsap';
+import ScrollMagic from 'scrollmagic';
+import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
+
+// Import AOS if needed
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+// Initialize ScrollMagic with GSAP
+ScrollMagicPluginGsap(ScrollMagic, gsap);
+
+// Make libraries available globally for existing scripts
+window.gsap = gsap;
+window.ScrollMagic = ScrollMagic;
+window.AOS = AOS;
+
+// Initialize AOS
+AOS.init();
+
+// DOM ready handled by scripts.ts for menu functionality

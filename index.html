@@ -3,12 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler - Portfolio</title>
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <title>Thomas J Butler - Portfolio | Full-Stack Developer | Liverpool</title>
+    
+    <!-- Basic Meta Tags -->
+    <meta name="description" content="Thomas J Butler - Full-Stack Developer specializing in React, TypeScript, AI integration, and neurodiversity applications. Liverpool-based tech innovator with expertise in modern web development.">
+    <meta name="keywords" content="Thomas J Butler, full-stack developer, React developer, TypeScript, Liverpool developer, AI integration, neurodiversity tech, portfolio, web development">
+    <meta name="author" content="Thomas J Butler">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thomasjbutler.github.io/ThomasJButler/">
+    <meta property="og:title" content="Thomas J Butler - Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Explore the portfolio of Thomas J Butler, a Liverpool-based full-stack developer specializing in React, TypeScript, and AI integration.">
+    <meta property="og:image" content="https://thomasjbutler.github.io/ThomasJButler/images/og-image.jpg">
+    <meta property="og:site_name" content="Thomas J Butler Portfolio">
+    <meta property="og:locale" content="en_GB">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://thomasjbutler.github.io/ThomasJButler/">
+    <meta name="twitter:title" content="Thomas J Butler - Full-Stack Developer Portfolio">
+    <meta name="twitter:description" content="Liverpool-based full-stack developer specializing in React, TypeScript, and AI integration. View my projects and expertise.">
+    <meta name="twitter:image" content="https://thomasjbutler.github.io/ThomasJButler/images/twitter-card.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thomasjbutler.github.io/ThomasJButler/">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#00FF00">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thomas J Butler",
+      "jobTitle": "Full-Stack Developer",
+      "url": "https://thomasjbutler.github.io/ThomasJButler",
+      "sameAs": [
+        "https://github.com/ThomasJButler",
+        "https://linkedin.com/in/thomasjbutler"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Liverpool",
+        "addressCountry": "GB"
+      },
+      "knowsAbout": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Python",
+        "AI Integration",
+        "Web Development",
+        "Full-Stack Development"
+      ],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "City & Guilds"
+      },
+      "description": "Liverpool-based full-stack developer specializing in React, TypeScript, AI integration, and creating accessible web applications for neurodiversity."
+    }
+    </script>
+    
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+        body:not(.loaded) {
+            visibility: hidden;
+            opacity: 0;
+        }
+        /* Fallback to show content after 2 seconds */
+        body {
+            animation: showFallback 2s forwards;
+        }
+        @keyframes showFallback {
+            to {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .page-loader.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <!-- CSS will be imported via JavaScript module -->
+    <script type="module" src="/src/js/main.js"></script>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -16,10 +120,14 @@
     <div id="matrix">
         <canvas id="matrixCanvas"></canvas>
     </div>
+
     <header>
         <div class="container">
-            <h1>Thomas J Butler</h1>
-            <h3>Full Stack Software Developer</h3>
+            <div class="header-title">
+                <a href="index.html" style="text-decoration: none;">
+                    <h1>Thomas J Butler</h1>
+                </a>
+            </div>
             <nav>
                 <div class="menu-toggle">
                     <span></span>
@@ -27,17 +135,11 @@
                     <span></span>
                 </div>
                 <ul>
-                    <li data-tooltip="Learn About Me"><a href="about.html" data-text="About Me">About Me |</a></li>
-                    <li data-tooltip="Check My Skills"><a href="skills.html" data-text="Skills">Skills |</a></li>
-                    <li data-tooltip="View My Projects"><a href="projects.html" data-text="Projects">Projects |</a></li>
-                    <li data-tooltip="Explore My Services"><a href="services.html" data-text="Services">Services |</a></li>
-                    <li data-tooltip="Get in Touch"><a href="contact.html" data-text="Contact">Contact |</a></li>
-                    <li class="version-timetravel" data-tooltip="View Version History">
-                        <a href="versionhistory.html" target="_blank" data-text="Version TimeTravel">
-                            Version Time Travel |
-                            <i class="fas fa-rocket"></i>
-                        </a>
-                    </li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -45,27 +147,234 @@
     <main>
         <section id="introduction">
             <div class="container">
-                <h2>Hey, I'm Tom.</h2>
+                <h2 class="welcome-text">Hey, I'm Tom.</h2>
                 <br>
                 <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
-                <p class="scrolling-text">With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.<p>
+                <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
                     <h2 class="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
                 <div class="introduction-img">
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Create a Model">
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png" alt="The Matrix Arcade">
                     <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern">
                 </div>
-                <div class="version-timetravel-mobile">
-                    <a href="versionhistory.html" class="version-link" target="_blank">
-                        Version Time Travel
-                        <i class="fas fa-rocket"></i>
+                <div class="galleries-mobile">
+                    <a href="#galleries" class="btn-professional glass-card hover-lift">
+                        <i class="fas fa-images"></i>
+                        View Galleries
                     </a>
                 </div>
-                <p>Please explore my portfolio to see how I blend technical skill with artistic vision.</p>
             </div>
         </section>
         
-        <section id="introduction-expertise">
+        <section id="latest-updates" class="reveal">
+            <div class="container">
+                <h2 class="section-title">--| Latest Updates |--</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <span style="font-weight: bold var(--text-secondary);">You can timetravel through different iterations of this portfolio since day 1 via this link:</span>
+                    <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" class="neo-matrix-btn" style="margin-left: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span class="btn-text">Enter TimeTravel</span>
+                        <i class="fas fa-history"></i>
+                    </a>
+                </p>
+                <p class="section-description" style="text-decoration: underline; padding: 5px; text-align: center; margin-bottom: 4rem; color: var(--text-secondary);">Featured projects I'm currently working on</p>
+                
+                <!-- 3D Rotating Cube Showcase -->
+                <div class="cube-showcase">
+                    <div class="cube-container" id="cube">
+                        <!-- Commercial Portfolio v2.0 - Front Face (1) -->
+                        <div class="cube-face front">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png" alt="Commercial Portfolio Preview">
+                                </div>
+                                <h3>Commercial Portfolio v2.0</h3>
+                                <p class="cube-project-description">Complete site revamp to V2.0 showcasing all commercial work, with Notion integration for dynamic content management.</p>
+                                <div class="cube-project-tags">
+                                    <span>Portfolio</span>
+                                    <span>Notion API</span>
+                                    <span>CMS</span>
+                                    <span>Professional</span>
+                                    <span>Responsive</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://thomasjbutler.me" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/commercial-portfolio-react" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Portfolio v3.0 - React Migration - Right Face (2) -->
+                        <div class="cube-face right">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png" alt="React Migration Preview">
+                                </div>
+                                <h3>Portfolio v3.0 - React Migration</h3>
+                                <p class="cube-project-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.</p>
+                                <div class="cube-project-tags">
+                                    <span>React 19</span>
+                                    <span>TypeScript</span>
+                                    <span>Vite 7</span>
+                                    <span>Anime.js</span>
+                                    <span>Components</span>
+                                    <span>Migration</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="/index-react.html" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">View React Version</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/ThomasJButler" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Model Comparison Tool - Back Face (3) -->
+                        <div class="cube-face back">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png" alt="AiTomatic Preview">
+                                </div>
+                                <h3>AI Model Comparison Tool</h3>
+                                <p class="cube-project-description">Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.</p>
+                                <div class="cube-project-tags">
+                                    <span>AI/ML</span>
+                                    <span>Python</span>
+                                    <span>APIs</span>
+                                    <span>Analytics</span>
+                                    <span>Dashboard</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://ai-comparison-showcase.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/AI-Comparison-Showcase-" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- The Matrix Arcade - Left Face (4) -->
+                        <div class="cube-face left">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png" alt="Matrix Arcade Preview">
+                                </div>
+                                <h3>The Matrix Arcade</h3>
+                                <p class="cube-project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
+                                <div class="cube-project-tags">
+                                    <span>React</span>
+                                    <span>Python</span>
+                                    <span>Vite</span>
+                                    <span>Canvas API</span>
+                                    <span>Game Dev</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/The-Matrix-Arcade" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CSS Showcase - Top Face (5) -->
+                        <div class="cube-face top">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png
+                                    " alt="CSS Showcase Preview">
+                                </div>
+                                <h3>CSS Showcase</h3>
+                                <p class="cube-project-description">Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.</p>
+                                <div class="cube-project-tags">
+                                    <span>CSS3</span>
+                                    <span>Animation</span>
+                                    <span>Grid</span>
+                                    <span>Flexbox</span>
+                                    <span>Creative</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">Website</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/css-showcase" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dotnet React Calculator - Bottom Face (6) -->
+                        <div class="cube-face bottom">
+                            <div class="cube-project">
+                                <div class="cube-project-icon">
+                                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/dotnetreactapp_qflyte.png" alt="Dotnet React Calculator">
+                                </div>
+                                <h3>Dotnet React Calculator</h3>
+                                <p class="cube-project-description">Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.</p>
+                                <div class="cube-project-tags">
+                                    <span>.NET</span>
+                                    <span>React</span>
+                                    <span>C#</span>
+                                    <span>API</span>
+                                    <span>Full Stack</span>
+                                </div>
+                                <div class="cube-project-buttons">
+                                    <a href="https://dotnet-react-calendar.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">View App</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/ThomasJButler/Dotnet-React-Calendar" target="_blank" rel="noopener" class="neo-matrix-btn">
+                                        <span class="btn-text">GitHub</span>
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cube Navigation -->
+                    <div class="cube-nav">
+                        <button onclick="rotateCube('front')" class="active">1</button>
+                        <button onclick="rotateCube('right')">2</button>
+                        <button onclick="rotateCube('back')">3</button>
+                        <button onclick="rotateCube('left')">4</button>
+                        <button onclick="rotateCube('top')">5</button>
+                        <button onclick="rotateCube('bottom')">6</button>
+                    </div>
+                </div>
+                
+                <!-- View All Projects Button -->
+                <div style="text-align: center; margin-top: 6rem;">
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Explore my complete portfolio with 12+ projects across web development, ML/AI, and games</p>
+                    <a href="projects.html" class="cta-button view-all-projects-btn" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+                        <span class="btn-text">View All Projects</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+                <section id="introduction-expertise">
             <div class="container">
                 <h2 class="introduction-heading">--| Core Expertise |--</h2>
                 <ul class="introduction-expertise-grid">
@@ -213,98 +522,35 @@
             </div>
         </section>
     
-        <section id="latest-updates" class="reveal">
-            <div class="container">
-                <h2 class="section-title">Latest Updates</h2>
-                <ul class="introduction-expertise-grid">
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" alt="AiTomatic Preview">
-                        </div>
-                        <h3>AiTomatic (Prototype)</h3>
-                        <p class="introduction-expertise-description">This is an AI Model Creator platform with next level features. The prototype is built with Typescript, Python, React. It's showcasing the dashboard elements and model comparison / creation features. I am currently working on this.</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://aitomatic.co.uk/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter AiTomatic</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-        
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" alt="Web Projects Preview">
-                        </div>
-                        <h3>The Matrix Arcade</h3>
-                        <p class="introduction-expertise-description">This is an arcade website I built using Vite, Python and React to showcase playable mini games created during my learning journey. I plan to continue to add to this over time and update the functionality.</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://the-matrix-arcade.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter The Arcade</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-        
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668231/landingpagedesktop_ssozki.png" alt="Python Projects Preview">
-                        </div>
-                        <h3>Landing Page</h3>
-                        <p class="introduction-expertise-description">Whilst developing the website, I created an interactive landing page to showcase my CV and CodePen work.</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="/landingpage.html" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter Landing Page</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737685435/Versiontimetravel_uai2rc.png" alt="Python Projects Preview">
-                        </div>
-                        <h3>Version TimeTravel</h3>
-                        <p class="introduction-expertise-description">As my website progressed over time, I wanted to showcase these changes and the idea is you can 'Time Travel' through previous iterations.</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="/versionhistory.html" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter Time Travel</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737689452/artgallery_kswku9.png" alt="Python Projects Preview">
-                        </div>
-                        <h3>The Big Bang Gallery</h3>
-                        <p class="introduction-expertise-description">A custom CSS interactive art gallery using 'The Big Bang' cosmos MidJourney v5 images</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="/art.html" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">Enter Gallery</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="introduction-expertise-card">
-                        <div class="introduction-expertise-icon">
-                            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737694764/python_projects_cxbrnj.png" alt="Python Projects Preview">
-                        </div>
-                        <h3>Python Projects</h3>
-                        <p class="introduction-expertise-description">Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.</p>
-                        <div class="introduction-expertise-buttons">
-                            <a href="https://github.com/ThomasJButler/PythonProjects" target="_blank" rel="noopener" class="neo-matrix-btn">
-                                <span class="btn-text">View Repository</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+    <section id="galleries" class="reveal">
+        <div class="container">
+            <h2 class="section-heading">--| Interactive Galleries |--</h2>
+            <div class="galleries-grid">
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>The Big Bang Gallery</h3>
+                    <p>AI-generated cosmic artwork showcasing the birth of the universe through intricate designs.</p>
+                    <a href="https://thomasjbutler.github.io/bigbang-gallery/" target="_blank" class="gallery-link">
+                        Enter Gallery <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Version TimeTravel</h3>
+                    <p>Journey through the evolution of my portfolio website from version 1.0 to the present.</p>
+                    <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" class="gallery-link">
+                        Time Travel <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
-        </section>
-    
-    <section id="contact">
+        </div>
+    </section>
+
+        <section id="contact">
         <div class="container">
             <h2>--| Get in Touch |--</h2>
             <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
@@ -316,9 +562,10 @@
             </div>
         </div>
     </section>
+
 </main>
     <footer>
-        <div class="container">
+        <div class="container-footer">
             <ul>
                 <li data-tooltip="Connect on LinkedIn">
                     <a href="https://www.linkedin.com/in/thomasbutleruk/" target="_blank" rel="noopener" data-text="LinkedIn">
@@ -335,15 +582,123 @@
                         <i class="fab fa-codepen"></i> CodePen
                     </a>
                 </li>
-                <li data-tooltip="Sitemap">
-                    <a href="sitemap.html" target="_blank" rel="noopener" data-text="Sitemap">
-                        <i class="fab fa-codepen"></i> Sitemap
+                <li data-tooltip="Site Navigation">
+                    <a href="sitemap.html" data-text="Sitemap">
+                        <i class="fas fa-sitemap"></i> Sitemap
                     </a>
                 </li>
             </ul>
             <p>&copy; 2025 Thomas J Butler - AI and Web Development Expert. All rights reserved.</p>
         </div>
     </footer>
-    <script src="src/js/scripts.js"></script>
+    <!-- Scripts loaded via main.js module -->
+    
+    <!-- Rotating Cube Script -->
+    <script>
+        // Rotating Cube 3D Effect
+        const cube = document.getElementById('cube');
+        let currentRotation = { x: 0, y: 0 };
+        let currentFace = 'front';
+        
+        function rotateCube(face) {
+            // Update button states
+            document.querySelectorAll('.cube-nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            switch(face) {
+                case 'front':
+                    currentRotation = { x: 0, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(1)').classList.add('active');
+                    break;
+                case 'right':
+                    currentRotation = { x: 0, y: 90 };
+                    document.querySelector('.cube-nav button:nth-child(2)').classList.add('active');
+                    break;
+                case 'back':
+                    currentRotation = { x: 0, y: 180 };
+                    document.querySelector('.cube-nav button:nth-child(3)').classList.add('active');
+                    break;
+                case 'left':
+                    currentRotation = { x: 0, y: -90 };
+                    document.querySelector('.cube-nav button:nth-child(4)').classList.add('active');
+                    break;
+                case 'top':
+                    currentRotation = { x: -90, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(5)').classList.add('active');
+                    break;
+                case 'bottom':
+                    currentRotation = { x: 90, y: 0 };
+                    document.querySelector('.cube-nav button:nth-child(6)').classList.add('active');
+                    break;
+            }
+            
+            cube.style.transform = `rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+            currentFace = face;
+        }
+        
+        // Auto-rotation (optional - currently disabled)
+        let autoRotate = false;
+        let autoRotateInterval;
+        
+        if (autoRotate) {
+            const faces = ['front', 'right', 'back', 'left', 'top', 'bottom'];
+            let faceIndex = 0;
+            
+            autoRotateInterval = setInterval(() => {
+                faceIndex = (faceIndex + 1) % faces.length;
+                rotateCube(faces[faceIndex]);
+            }, 4000);
+        }
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        cube.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        cube.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Minimum swipe distance
+            const minSwipeDistance = 50;
+            
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > minSwipeDistance) {
+                // Horizontal swipe
+                if (diffX > 0) {
+                    // Swipe left - rotate right
+                    const nextFace = currentFace === 'front' ? 'right' : 
+                                   currentFace === 'right' ? 'back' : 
+                                   currentFace === 'back' ? 'left' : 'front';
+                    rotateCube(nextFace);
+                } else {
+                    // Swipe right - rotate left
+                    const nextFace = currentFace === 'front' ? 'left' : 
+                                   currentFace === 'left' ? 'back' : 
+                                   currentFace === 'back' ? 'right' : 'front';
+                    rotateCube(nextFace);
+                }
+            } else if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > minSwipeDistance) {
+                // Vertical swipe
+                if (diffY > 0) {
+                    // Swipe up - rotate to top
+                    if (currentFace !== 'top' && currentFace !== 'bottom') {
+                        rotateCube('top');
+                    }
+                } else {
+                    // Swipe down - rotate to bottom
+                    if (currentFace !== 'top' && currentFace !== 'bottom') {
+                        rotateCube('bottom');
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
