@@ -61,7 +61,7 @@
 .cube-project-icon {
     width: 100%;
     max-width: 500px;
-    height: 200px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,7 +140,7 @@
 
 .cube-project-buttons .neo-matrix-btn:hover {
     background: var(--matrix-green, #00FF00);
-    color: #001a00;
+    color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
