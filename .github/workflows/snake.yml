@@ -8,6 +8,10 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -26,13 +30,13 @@ jobs:
         with:
           github_user_name: ThomasJButler
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            snake/github-contribution-grid-snake.svg
+            snake/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       - name: Push to GitHub
         uses: EndBug/add-and-commit@v9
         with:
           new_branch: output
-          add: 'dist'
+          add: 'snake'
           message: 'Generate contribution snake'
           default_author: github_actions
