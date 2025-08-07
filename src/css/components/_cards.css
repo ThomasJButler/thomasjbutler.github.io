@@ -152,7 +152,7 @@
 .introduction-expertise-tags span:hover,
 .project-tags span:hover {
     background: var(--matrix-green);
-    color: #000;
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
