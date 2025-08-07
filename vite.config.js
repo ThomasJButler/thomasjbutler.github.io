@@ -16,9 +16,10 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index-react.html'),
-        // Legacy HTML files - will be removed after full React migration
-        legacy_index: resolve(__dirname, 'index.html'),
+        // React app entry point
+        react: resolve(__dirname, 'react.html'),
+        // Main portfolio page and legacy HTML files
+        main: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
         skills: resolve(__dirname, 'skills.html'),
         projects: resolve(__dirname, 'projects.html'),
