@@ -39,7 +39,7 @@ The truth is, I love the technical challenges too and solving problems with code
 
 ## 🚀 Featured Live Projects
 
-### 🤖 [AiTomatic](https://aitomatic.co.uk/)
+### 🤖 [AI Model Comparison Showcase](https://ai-comparison-showcase.vercel.app)
 **AI Neurodiversity Applications Suite (In Development)**
 - **Tech Stack**: TypeScript, React, Python, Human-Centered Design
 - **Mission**: Making technology more accessible for neurodiverse individuals
@@ -68,34 +68,67 @@ The truth is, I love the technical challenges too and solving problems with code
 - **Status**: Migration Complete - React Components Live
 - **Impact**: Showcasing modern React development skills
 
-### 🎨 [Big Bang Art Gallery](https://thomasjbutler.co.uk/art.html) - Website coming soon.
+### 🎨 [Big Bang Art Gallery](https://thomasjbutler.github.io/bigbang-gallery/) - Website coming soon.
 **3D Interactive CSS Experience**
-- **Tech Stack**: Pure CSS3, JavaScript, GSAP Animations
+- **Tech Stack**: React, TypeScript, CSS3, JavaScript, GSAP Animations
 - **Features**: 3D hover effects, perspective tracking, immersive gallery
 - **Status**: Live Interactive Gallery
 - **Impact**: Award-worthy CSS animation showcase
 
 ### ⏰ [Version TimeTravel](https://thomasjbutler.github.io/version-timetravel/) - Website coming soon.
 **Design Evolution Showcase**
-- **Tech Stack**: HTML5, CSS3, Interactive Timeline
+- **Tech Stack**: React, Vite, TypeScript, HTML5, CSS3, Interactive Timeline
 - **Features**: Website version history, before/after comparisons
 - **Status**: Live Documentation Platform
 - **Impact**: Transparent development journey showcase
 
-### 🧠 [Custom GPT Solutions] - Currently amend these / moving into their own website. 
-**Bespoke AI Development**
-- **Tech Stack**: OpenAI API, Custom Training, Prompt Engineering
-- **Features**: Specialised AI assistants, custom functionality
-- **Status**: Active Development Portfolio
-- **Impact**: Tailored AI solutions for specific use cases
+### 🧮 [Dotnet React Calculator](https://dotnet-react-calendar.vercel.app/)
+**Full-Stack .NET Application**
+- **Tech Stack**: .NET, React, C#, TypeScript, API Development
+- **Features**: Custom API endpoints, React frontend integration, calendar functionality
+- **Status**: Live & Continuously Enhanced
+- **Impact**: Demonstrating full-stack .NET expertise and API customization
 
+### ⚽ [Premier League Oracle](https://premier-league-oracle.vercel.app/)
+**ML-Powered Football Predictions**
+- **Tech Stack**: Svelte, TypeScript, Python, Machine Learning, Supabase
+- **Features**: Historical data analysis, statistical predictions, real-time updates
+- **Status**: Live Prediction Platform
+- **Impact**: Showcasing data science and ML implementation skills
+
+### 🐍 [Python Projects](https://github.com/ThomasJButler/PythonProjects)
+**Algorithm & ML Repository**
+- **Tech Stack**: Python, Mathematical Algorithms, Machine Learning, Games
+- **Features**: Fractals, Fibonacci calculations, model predictions, mini-games
+- **Status**: Active Development Repository
+- **Impact**: Demonstrating Python proficiency across diverse applications
+
+### 💼 [Commercial Portfolio v2.0](https://thomasjbutler.me)
+**Professional Work Showcase**
+- **Tech Stack**: React, Notion API, CMS Integration, Responsive Design
+- **Features**: Dynamic content management, commercial project gallery, client work
+- **Status**: Complete Platform Overhaul - Version 2.0 Live
+- **Impact**: Professional portfolio with real client projects
+
+### 🎨 [Creative CodePen Collection](https://codepen.io/thomasbutler)
+**Interactive Web Experiments**
+- **Tech Stack**: JavaScript, CSS3, HTML5, SVG, Canvas, Animation
+- **Features**: Creative frontend experiments, UI components, interactive animations
+- **Status**: Continuously Updated Collection
+- **Impact**: Showcasing creative coding and experimental web development
+
+### 🚀 [Landing Page](https://thomasjbutler.github.io/version-timetravel/viewer.html?version=landingpage.html&id=landing&num=Landing+Page&date=November+2024)
+**Interactive Portfolio Entry**
+- **Tech Stack**: HTML5, CSS3, JavaScript, Responsive Design, Animations
+- **Features**: CV showcase, CodePen integration, animated UI elements
+- **Status**: Live Interactive Experience
+- **Impact**: Creative entry point to portfolio ecosystem
 ---
 
 <p align="center">
  <img width="1000" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/github-contribution-grid-snake.svg" alt="snake"/>
 </p>
 
----
 
 ## 🚀 Recent Updates
 
@@ -120,7 +153,7 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 
 **Impact:** Showcasing modern React development skills while maintaining the unique visual identity that sets my portfolio apart.
 
-🔗 **[Check out the live React version →](https://thomasjbutler.co.uk/index.html)**
+🔗 **[Check out the live React version →](https://github.com/ThomasJButler/ThomasJButler)**
 
 *From Liverpool with love.* 💚
 
