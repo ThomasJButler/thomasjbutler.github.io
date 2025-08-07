@@ -46,10 +46,11 @@ The truth is, I love the technical challenges too and solving problems with code
 ### 🤖 [AI Model Comparison Showcase](https://ai-comparison-showcase.vercel.app)
 **AI Neurodiversity Applications Suite (In Development)**
 - **Tech Stack**: TypeScript, React, Python, Human-Centered Design
-- **Mission**: Making technology more accessible for neurodiverse individuals
-- **Vision**: AI-powered tools that celebrate cognitive differences and enhance daily life
-- **Status**: Complete Platform Overhaul - Pivoting to Human-Centered AI
-- **Impact**: Creating positive change through inclusive technology solutions
+- **Mission**: demonstrating advanced AI model comparison capabilities
+- **Status**: Working prototype with custom API routing.
+
+
+- AI Comparison Showcase is a portfolio project demonstrating advanced AI model comparison capabilities.
 
 ### 🎨 [CSS Showcase](https://thomasjbutler.github.io/css-showcase/)
 **Advanced CSS Demonstrations**
