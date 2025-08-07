@@ -78,8 +78,15 @@ header h3 {
    ========================================================================== */
 
 /* Hidden header state (for scroll behavior) */
-header.hidden {
+header.header-hidden {
     transform: translateY(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Visible header state */
+header:not(.header-hidden) {
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* Transparent header for hero sections */
@@ -99,6 +106,17 @@ header.transparent.scrolled {
 @media screen and (max-width: 768px) {
     header {
         padding: 0.75rem 0;
+    }
+
+    /* Enhanced mobile hide behavior - faster animation */
+    header.header-hidden {
+        transform: translateY(-100%);
+        transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    header:not(.header-hidden) {
+        transform: translateY(0);
+        transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     header .container {
@@ -125,6 +143,19 @@ header.transparent.scrolled {
 
     header h3 {
         display: none;  /* Hide subtitle on mobile for cleaner look */
+    }
+
+    /* Ensure mobile navigation menu doesn't interfere with hide behavior */
+    nav ul.mobile-open {
+        /* Keep menu visible even when header is hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: calc(var(--z-modal) + 1);
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
     }
 }
 

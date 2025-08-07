@@ -9,6 +9,9 @@ import gsap from 'gsap';
 import ScrollMagic from 'scrollmagic';
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 
+// Import scroll detection utility
+import '../utils/scrollDetection.ts';
+
 // Initialize ScrollMagic with GSAP
 ScrollMagicPluginGsap(ScrollMagic, gsap);
 

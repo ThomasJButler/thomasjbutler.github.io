@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
+import { useHeaderVisibility } from '../hooks/useScrollDetection';
 import styles from './Header.module.css';
 
 interface NavItem {
@@ -27,9 +28,15 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
-  const lastScrollTop = useRef(0);
 
-  // Handle scroll behavior
+  // Use scroll detection hook
+  const { getState } = useHeaderVisibility({
+    headerSelector: 'header',
+    hideThreshold: 100,
+    showThreshold: 50
+  });
+
+  // Handle scroll state updates
   useEffect(() => {
     let ticking = false;
     
@@ -37,31 +44,9 @@ export const Header: React.FC = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          
-          // Hide/show header on scroll
-          if (headerRef.current) {
-            if (scrollTop > lastScrollTop.current && scrollTop > 100) {
-              animate(headerRef.current, {
-                translateY: '-100%',
-                duration: 300,
-                ease: 'inQuad'
-              });
-            } else {
-              animate(headerRef.current, {
-                translateY: 0,
-                duration: 300,
-                ease: 'outQuad'
-              });
-            }
-          }
-          
-          // Add shadow on scroll
           setIsScrolled(scrollTop > 50);
-          
-          lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
           ticking = false;
         });
-        
         ticking = true;
       }
     };

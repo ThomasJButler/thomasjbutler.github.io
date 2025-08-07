@@ -5,6 +5,9 @@ import './scripts.ts';
 // Import main CSS file (includes all modular styles)
 import '../css/main.css';
 
+// Import scroll detection utility for hide-on-scroll header and back-to-top button
+import '../utils/scrollDetection.ts';
+
 // Note: Page-specific CSS is now imported in main.css
 // Legacy dynamic imports kept for compatibility
 
