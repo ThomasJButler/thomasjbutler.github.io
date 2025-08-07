@@ -126,7 +126,7 @@ The truth is, I love the technical challenges too and solving problems with code
 ---
 
 <p align="center">
- <img width="1000" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/github-contribution-grid-snake.svg" alt="snake"/>
+ <img width="1000" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/dist/github-contribution-grid-snake.svg" alt="snake"/>
 </p>
 
 
