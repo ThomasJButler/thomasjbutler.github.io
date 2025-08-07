@@ -55,7 +55,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .cube-project-icon {
@@ -89,6 +89,7 @@
     line-height: 1.6;
     color: #FF00FF;
     max-width: 500px;
+    text-align: center;
 }
 
 .cube-project-tags {
