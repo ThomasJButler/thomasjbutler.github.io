@@ -1,0 +1,1 @@
+function i(){import.meta.url,import("_").catch(()=>1),async function*(){}().next()}import"./anime.esm-DuX8JFBU.js";import{s as o,S as t,g as n}from"./index-DD4xVVxK.js";import"./scrollDetection-C6-D5hK6.js";o.ScrollMagicPluginGsap(t,n),window.gsap=n,window.ScrollMagic=t;export{i as __vite_legacy_guard};

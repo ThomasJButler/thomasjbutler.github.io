@@ -1,0 +1,1 @@
+function t(){import.meta.url,import("_").catch(()=>1),async function*(){}().next()}import"./anime.esm-DuX8JFBU.js";import"./main-page-CGKOawMA.js";import"./index-DD4xVVxK.js";import"./scrollDetection-C6-D5hK6.js";export{t as __vite_legacy_guard};

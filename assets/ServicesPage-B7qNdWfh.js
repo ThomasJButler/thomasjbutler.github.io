@@ -1,0 +1,1 @@
+import{j as e}from"./react-B8sX_4AD.js";import"./anime.esm-DuX8JFBU.js";import"./scrollDetection-C6-D5hK6.js";const i=()=>e.jsxs("div",{children:[e.jsx("h1",{children:"Services"}),e.jsx("p",{children:"Coming soon - This page is being migrated to React"})]});export{i as ServicesPage};

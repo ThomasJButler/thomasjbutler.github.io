@@ -380,11 +380,17 @@
         }
     </style>
     <!-- CSS and libraries loaded via JavaScript module -->
-    <script type="module" src="/src/js/main-projects.js"></script>
     <!-- Anime.js CDN for epic animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+  <script type="module" crossorigin src="/ThomasJButler/assets/projects-BAnyqxDj.js"></script>
+  <link rel="modulepreload" crossorigin href="/ThomasJButler/assets/anime.esm-DuX8JFBU.js">
+  <link rel="modulepreload" crossorigin href="/ThomasJButler/assets/index-DD4xVVxK.js">
+  <link rel="stylesheet" crossorigin href="/ThomasJButler/assets/index-CR1qOpW7.css">
+  <link rel="stylesheet" crossorigin href="/ThomasJButler/assets/projects-BYgtsCz1.css">
+  <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();window.__vite_is_modern_browser=true</script>
+  <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
 </head>
 
 <body class="projects">
@@ -833,7 +839,7 @@
                 console.log('🎬 Anime.js loaded! Initializing epic animations...');
                 
                 // Import and initialize the epic animations
-                import('/src/js/projects-matrix-animations.js').then(module => {
+                import('/ThomasJButler/assets/projects-matrix-animations-DgNnPM1G.js').then(module => {
                     console.log('🚀 Matrix animations module loaded!');
                     if (module.initMatrixProjectAnimations) {
                         module.initMatrixProjectAnimations();
@@ -847,7 +853,9 @@
         });
     </script>
     <!-- Matrix Rain Effect -->
-    <script type="module" src="/src/js/projects-matrix-animations.js"></script>
+  <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+  <script nomodule crossorigin id="vite-legacy-polyfill" src="/ThomasJButler/assets/polyfills-legacy-BucbFPqR.js"></script>
+  <script nomodule crossorigin id="vite-legacy-entry" data-src="/ThomasJButler/assets/projects-legacy-BuWDORHi.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
 </body>
 
 </html>

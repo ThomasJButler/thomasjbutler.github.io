@@ -1,0 +1,1 @@
+System.register(["./react-legacy-BExpoZ1s.js","./anime.esm-legacy-BosNHZUj.js","./scrollDetection-legacy-BLTuatsx.js"],function(e,s){"use strict";var i;return{setters:[e=>{i=e.j},null,null],execute:function(){e("SkillsPage",()=>i.jsxs("div",{children:[i.jsx("h1",{children:"Skills"}),i.jsx("p",{children:"Coming soon - This page is being migrated to React"})]}))}}});

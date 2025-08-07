@@ -1,0 +1,1 @@
+System.register(["./anime.esm-legacy-BosNHZUj.js","./index-legacy-B5pnv-Eb.js","./scrollDetection-legacy-BLTuatsx.js"],function(e,l){"use strict";var s,c,n;return{setters:[null,e=>{s=e.s,c=e.S,n=e.g},null],execute:function(){s.ScrollMagicPluginGsap(c,n),window.gsap=n,window.ScrollMagic=c}}});
