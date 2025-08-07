@@ -14,6 +14,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - WebGL Matrix rain effect
 - Service worker for offline capability
 
+## [3.0.1] - 2025-08-07
+
+### Added
+- **Hide-on-Scroll Header**: Smart header navigation that elegantly hides when scrolling down and smoothly reappears when scrolling up
+  - Performance-optimized with 60fps throttled scroll detection
+  - Mobile-optimized with faster animation timing (0.2s vs 0.3s desktop)
+  - Maintains accessibility with keyboard navigation support
+  
+- **Back-to-Top Button**: Matrix-themed floating button with authentic terminal aesthetics
+  - Glassmorphism effects with backdrop blur
+  - Scan line animations and blinking cursor effect
+  - Appears after 300px scroll threshold
+  - Full ARIA labels and keyboard accessibility
+  
+- **Scroll Detection System**: Comprehensive scroll handling utilities
+  - `ScrollDetection` class for vanilla JavaScript compatibility
+  - `useScrollDetection` React hook for component integration
+  - RequestAnimationFrame optimization for smooth 60fps performance
+  - Respects user's prefers-reduced-motion settings
+  
+- **Google Maps Integration**: Interactive map link for York location on contact page
+- **.NET React Calendar Project**: New showcase project featuring .NET backend with React frontend
+  - Live deployment on Vercel
+  - Full-stack calendar application with event management
+
+### Changed
+- **Latest Updates Section**: Enhanced rotating cube showcase
+  - Added Commercial Portfolio v2.0
+  - Added Portfolio v3.0 React Migration
+  - Added AI Model Comparison Tool
+  - Added CSS Showcase
+  - Replaced React Documentation with .NET React Calendar
+  
+- **Project Gallery**: Updated with current project screenshots
+  - Replaced placeholder images with actual screenshots
+  - Updated Cloudinary-hosted images for better performance
+  
+- **Contact Form**: Refined layout and styling
+  - More compact input fields on desktop
+  - Optimized scroll performance
+  - Enhanced mobile responsiveness
+
+### Fixed
+- **Project Link Consistency**: Synchronized all project URLs between index.html and projects.html
+  - AI Model Comparison Tool now uses correct Vercel deployment
+  - Commercial Portfolio GitHub link points to react repository
+  - Added missing live demo links
+  
+- **Canonical URLs**: Corrected self-referencing canonical links on all HTML pages
+- **HTML Validation**: Removed invalid h3 tags from header structure
+- **Tag Hover States**: Fixed visibility with white text on green background
+- **Rotating Cube**: Fixed image height and button hover visibility issues
+- **Mobile Navigation**: Improved dropdown layout and footer container responsiveness
+- **Contact Form Width**: Fixed expansion issue on desktop viewports
+
+### Enhanced
+- **Scroll Experience**: 
+  - Smooth hide/show transitions with hardware acceleration
+  - Different timing for mobile (0.2s) vs desktop (0.3s)
+  - Prevents layout shift with proper transform usage
+  
+- **Matrix Theme Consistency**:
+  - Added `--matrix-green-bright` color variable for hover states
+  - Enhanced scan line effects across components
+  - Maintained terminal aesthetic throughout new features
+  
+- **Documentation**:
+  - Added comprehensive scroll features documentation
+  - Created test suite for scroll functionality validation
+  - Updated component documentation with new features
+
+### Infrastructure
+- **Testing**: Added `test-scroll-features.html` for cross-platform validation
+- **CSS Architecture**: New modular components for scroll behaviors
+  - `_back-to-top.css` for button styling
+  - `_scroll-behavior.css` for header transitions
+
 ## [3.0.0] - 2025-07-20
 
 ### Added
