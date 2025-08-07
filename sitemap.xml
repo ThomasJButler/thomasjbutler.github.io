@@ -37,18 +37,6 @@
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/apps.html</loc>
-        <lastmod>2025-07-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://thomasjbutler.co.uk/codepen.html</loc>
-        <lastmod>2025-07-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
         <loc>https://thomasjbutler.co.uk/sitemap.html</loc>
         <lastmod>2025-07-21</lastmod>
         <changefreq>yearly</changefreq>
