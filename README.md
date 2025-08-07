@@ -16,6 +16,10 @@
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFB000?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/thomasjbutler)
 
+<p align="center">
+ <img width="1005" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/snake/github-contribution-grid-snake.svg" alt="snake"/>
+</p>
+
 ---
 
 ## 🚀 About Me
@@ -124,11 +128,6 @@ The truth is, I love the technical challenges too and solving problems with code
 - **Status**: Live Interactive Experience
 - **Impact**: Creative entry point to portfolio ecosystem
 ---
-
-<p align="center">
- <img width="1005" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/snake/github-contribution-grid-snake.svg" alt="snake"/>
-</p>
-
 
 ## 🚀 Recent Updates
 
