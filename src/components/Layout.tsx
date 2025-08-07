@@ -4,6 +4,7 @@ import { animate } from 'animejs';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
+import { BackToTop } from './BackToTop';
 import { usePageTransition } from '../hooks/useMatrixAnimation';
 import styles from './Layout.module.css';
 
@@ -52,6 +53,13 @@ export const Layout: React.FC = () => {
       
       {/* Footer */}
       <Footer />
+      
+      {/* Back to Top Button */}
+      <BackToTop 
+        threshold={300}
+        showText={true}
+        enableScanLine={true}
+      />
     </div>
   );
 };
