@@ -10,6 +10,7 @@
     
     /* Primary Colors */
     --matrix-green: #00FF00;                  /* Primary brand color */
+    --matrix-green-bright: #44ff44;          /* Bright variant for hover states */
     --matrix-dark: rgba(0, 20, 0, 0.8);      /* Dark backgrounds */
     --matrix-darker: rgba(13, 13, 13, 0.7);  /* Section backgrounds */
     

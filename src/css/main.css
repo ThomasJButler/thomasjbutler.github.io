@@ -12,6 +12,8 @@
 /* UI Components */
 @import './components/_header.css';
 @import './components/_navigation.css';
+@import './components/_scroll-behavior.css';
+@import './components/_back-to-top.css';
 @import './components/_buttons.css';
 @import './components/_cards.css';
 @import './components/_forms.css';
