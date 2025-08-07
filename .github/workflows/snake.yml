@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 10
     
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Generate GitHub Contribution Snake
         uses: Platane/snk/svg-only@v3
         with:
@@ -26,6 +29,6 @@ jobs:
       - name: Push to GitHub
         uses: EndBug/add-and-commit@v9
         with:
-          branch: output
+          new_branch: output
           add: 'dist/*'
           message: 'Generate contribution snake'

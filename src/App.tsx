@@ -52,7 +52,7 @@ export const App: React.FC = () => {
 
   return (
     <>
-      <Router>
+      <Router basename="/ThomasJButler">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={
