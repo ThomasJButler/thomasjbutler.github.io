@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
 
@@ -26,6 +26,24 @@ import './css/base/_typography.css';
 import './css/base/_variables.css';
 import './css/global.css';
 import './css/blog.css';
+
+// Component to handle redirects when landing on react.html
+const ReactHtmlRedirect: React.FC = () => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Check for redirect from sessionStorage (set by blog.html)
+    const redirectTo = sessionStorage.getItem('redirectTo');
+    if (redirectTo) {
+      sessionStorage.removeItem('redirectTo');
+      navigate(redirectTo);
+    } else {
+      navigate('/');
+    }
+  }, [navigate]);
+  
+  return <div>Redirecting...</div>;
+};
 
 export const App: React.FC = () => {
   useEffect(() => {
@@ -57,6 +75,9 @@ export const App: React.FC = () => {
     <>
       <Router basename="/ThomasJButler">
         <Routes>
+          {/* Handle direct navigation to react.html */}
+          <Route path="react.html" element={<ReactHtmlRedirect />} />
+          
           <Route path="/" element={<Layout />}>
             <Route index element={
               <Suspense fallback={<PageLoader />}>

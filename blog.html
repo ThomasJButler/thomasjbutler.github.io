@@ -6,7 +6,7 @@
     <title>Blog - Thomas J Butler | Redirecting...</title>
     
     <!-- Immediate redirect to React blog -->
-    <meta http-equiv="refresh" content="0; url=/ThomasJButler/react.html#/blog">
+    <meta http-equiv="refresh" content="0; url=/ThomasJButler/react.html">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Read thought leadership articles by Thomas J Butler on AI, development, and human-centered technology.">
@@ -49,16 +49,19 @@
     </style>
     
     <script>
-        // JavaScript redirect as backup
+        // JavaScript redirect as backup - navigate to React app then to blog route
         window.onload = function() {
-            window.location.replace('/ThomasJButler/react.html#/blog');
+            // Redirect to React app and then navigate to blog
+            window.location.replace('/ThomasJButler/react.html');
+            // Store intended destination in sessionStorage for React app to handle
+            sessionStorage.setItem('redirectTo', '/blog');
         };
     </script>
 </head>
 <body>
     <div class="redirect-message">
         <h1 class="matrix-text">Redirecting to Blog...</h1>
-        <p>If you are not redirected automatically, <a href="/ThomasJButler/react.html#/blog">click here</a>.</p>
+        <p>If you are not redirected automatically, <a href="/ThomasJButler/react.html">click here</a>.</p>
     </div>
 </body>
 </html>
