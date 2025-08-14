@@ -51,10 +51,10 @@
     <script>
         // JavaScript redirect as backup - navigate to React app then to blog route
         window.onload = function() {
-            // Redirect to React app and then navigate to blog
-            window.location.replace('/ThomasJButler/react.html');
             // Store intended destination in sessionStorage for React app to handle
             sessionStorage.setItem('redirectTo', '/blog');
+            // Then redirect to React app
+            window.location.replace('/ThomasJButler/react.html');
         };
     </script>
 </head>
