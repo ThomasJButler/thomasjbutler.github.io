@@ -10,7 +10,8 @@
 
 **`Full-Stack Developer | AI Integration Specialist | York, UK 🇬🇧`**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-thomasjbutler.me-00FF00?style=for-the-badge&logo=matrix&logoColor=black)](https://thomasjbutler.me)
+[![Commercial Portfolio](https://img.shields.io/badge/Commercial-Portfolio-00FF00?style=for-the-badge&logo=web&logoColor=black)](https://thomasjbutler.me)
+[![GitHub Portfolio](https://img.shields.io/badge/Personal-Portfolio-DC143C?style=for-the-badge&logo=github&logoColor=black)](https://thomasjbutler.github.io/ThomasJButler/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
 [![GitHub followers](https://img.shields.io/github/followers/ThomasJButler?style=for-the-badge&color=00FF00)](https://github.com/ThomasJButler)
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
@@ -26,11 +27,9 @@
 
 Hey! I'm a **Full-Stack Developer** and **AI Integration Specialist** originally from Liverpool, and I'm genuinely passionate about **making technology more human**. You know that feeling when you use an app and it just feels natural? That's what I'm after.
 
-I've got this slightly obsessive thing about building tech that actually empowers people rather than replacing them. It has to be a joyful experience too. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating those Matrix-themed interfaces (yes, I'm that person), I'm always asking: "Will this actually make someone's day better?". 
+I've got this slightly obsessive thing about building tech that actually empowers people rather than replacing them. It has to be a joyful experience too. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating passion projects, I'm always asking: "Will this actually make someone's day better?". 
 
-I'm currently working on custom models that can disagree with the user if necessary and be a helpful friend, it won't 'mirror you' and take you down self made rabbit holes like the current models do. This would be the start of truly safe AI. (For the record I don't expect to solve this myself! As of July 2025 OpenAI is making this it's company mission to make its models more human friendly, especially for the vunerable).
-
-The truth is, I love the technical challenges too and solving problems with code. Diving deep into React, Python, AI integration - but what really gets me up in the morning is knowing that something I built might help someone feel more confident, more included, or just have a bit more fun with technology.
+The truth is, I love the technical challenges too and solving problems with code. Diving deep into React, Python, AI integration, but what really gets me up in the morning is knowing that something I built might help someone feel more confident, more included, or just have a bit more fun with technology that works around them.
 
 ### 💫 Key Strengths
 - 🎯 **Live Project Portfolio**: Multiple deployed applications serving real users
@@ -66,21 +65,21 @@ The truth is, I love the technical challenges too and solving problems with code
 - **Status**: Live & Continuously Updated
 - **Impact**: Showcasing creative game development skills
 
-### 🚀 [Portfolio v3.0 - Vite/React Migration](https://thomasjbutler.co.uk/index.html)
+### 🚀 [Portfolio v3.0 - Vite/React Migration](thomasjbutler.github.io/ThomasJButler/)
 **Modern React Portfolio with Anime.js**
 - **Tech Stack**: React 19, TypeScript, Vite 7, Anime.js v4
 - **Features**: Component architecture, smooth animations, Matrix rain effect
 - **Status**: Migration Complete - React Components Live
 - **Impact**: Showcasing modern React development skills
 
-### 🎨 [Big Bang Art Gallery](https://thomasjbutler.github.io/bigbang-gallery/) - Website coming soon.
+### 🎨 [Big Bang Art Gallery](https://thomasjbutler.github.io/bigbang-gallery/) 
 **3D Interactive CSS Experience**
 - **Tech Stack**: React, TypeScript, CSS3, JavaScript, GSAP Animations
 - **Features**: 3D hover effects, perspective tracking, immersive gallery
 - **Status**: Live Interactive Gallery
 - **Impact**: Award-worthy CSS animation showcase
 
-### ⏰ [Version TimeTravel](https://thomasjbutler.github.io/version-timetravel/) - Website coming soon.
+### ⏰ [Version TimeTravel](https://thomasjbutler.github.io/version-timetravel/) 
 **Design Evolution Showcase**
 - **Tech Stack**: React, Vite, TypeScript, HTML5, CSS3, Interactive Timeline
 - **Features**: Website version history, before/after comparisons
@@ -94,7 +93,7 @@ The truth is, I love the technical challenges too and solving problems with code
 - **Status**: Live & Continuously Enhanced
 - **Impact**: Demonstrating full-stack .NET expertise and API customization
 
-### ⚽ [Premier League Oracle](https://premier-league-oracle.vercel.app/)
+### ⚽ [Premier League Oracle](https://the-premier-league-oracle.vercel.app/)
 **ML-Powered Football Predictions**
 - **Tech Stack**: Svelte, TypeScript, Python, Machine Learning, Supabase
 - **Features**: Historical data analysis, statistical predictions, real-time updates
@@ -122,12 +121,6 @@ The truth is, I love the technical challenges too and solving problems with code
 - **Status**: Continuously Updated Collection
 - **Impact**: Showcasing creative coding and experimental web development
 
-### 🚀 [Landing Page](https://thomasjbutler.github.io/version-timetravel/viewer.html?version=landingpage.html&id=landing&num=Landing+Page&date=November+2024)
-**Interactive Portfolio Entry**
-- **Tech Stack**: HTML5, CSS3, JavaScript, Responsive Design, Animations
-- **Features**: CV showcase, CodePen integration, animated UI elements
-- **Status**: Live Interactive Experience
-- **Impact**: Creative entry point to portfolio ecosystem
 ---
 
 ## 🚀 Recent Updates
@@ -141,6 +134,7 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 - ✅ **Anime.js v4 Integration** - smooth, performant animations that respect the Matrix aesthetic
 - ✅ **Modern Vite Build System** - lightning-fast HMR and optimized production builds
 - ✅ **Component Architecture** - modular, maintainable, and scalable
+- ✅ **Blog Section** - Over 20 blogs added and a user reading experience.
 - ✅ **CSS Modules** - scoped styling with zero conflicts
 - ✅ **Custom Animation Hooks** - `useMatrixAnimation`, `useScrollAnimation` for reusable effects
 - ✅ **Maintained Matrix Theme** - kept the iconic green-on-black aesthetic during migration
@@ -153,7 +147,7 @@ Just shipped a **complete React migration** of my portfolio! 🎉
 
 **Impact:** Showcasing modern React development skills while maintaining the unique visual identity that sets my portfolio apart.
 
-🔗 **[Check out the live React version →](https://github.com/ThomasJButler/ThomasJButler)**
+🔗 **[Check out the live React version →](https://thomasjbutler.github.io/ThomasJButler/)**
 
 *From Liverpool with love.* 💚
 

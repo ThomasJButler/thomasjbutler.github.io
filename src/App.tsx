@@ -17,12 +17,15 @@ const SkillsPage = lazy(() => import('./pages/SkillsPage').then(module => ({ def
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(module => ({ default: module.ProjectsPage })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(module => ({ default: module.ContactPage })));
+const BlogPage = lazy(() => import('./pages/BlogPage').then(module => ({ default: module.BlogPage })));
+const BlogReader = lazy(() => import('./components/BlogReader').then(module => ({ default: module.BlogReader })));
 
 // Styles
 import './css/base/_reset.css';
 import './css/base/_typography.css';
 import './css/base/_variables.css';
 import './css/global.css';
+import './css/blog.css';
 
 export const App: React.FC = () => {
   useEffect(() => {
@@ -83,6 +86,16 @@ export const App: React.FC = () => {
             <Route path="contact" element={
               <Suspense fallback={<PageLoader />}>
                 <ContactPage />
+              </Suspense>
+            } />
+            <Route path="blog" element={
+              <Suspense fallback={<PageLoader />}>
+                <BlogPage />
+              </Suspense>
+            } />
+            <Route path="blog/:slug" element={
+              <Suspense fallback={<PageLoader />}>
+                <BlogReader />
               </Suspense>
             } />
             

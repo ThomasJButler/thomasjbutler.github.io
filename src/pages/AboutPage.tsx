@@ -36,6 +36,13 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
+const qualifications = [
+  { name: 'AWS Qualified', description: 'Cloud Architecture & Solutions', icon: '🏆' },
+  { name: 'Azure Qualified', description: 'Cloud Infrastructure & DevOps', icon: '🏆' },
+  { name: 'Cisco Qualified', description: 'Network Security & Data Analytics', icon: '🏆' },
+  { name: 'HubSpot Qualified', description: 'CMS Development & Integration', icon: '🏆' }
+];
+
 const timeline = [
   {
     year: '2020',
@@ -195,6 +202,19 @@ export const AboutPage: React.FC = () => {
           </div>
         </section>
 
+        <section className="qualifications-section">
+          <h2 className="section-title">Professional Qualifications</h2>
+          <div className="qualifications-grid">
+            {qualifications.map((qual, index) => (
+              <div key={index} className="qualification-badge">
+                <span className="qualification-icon">{qual.icon}</span>
+                <h3>{qual.name}</h3>
+                <p>{qual.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="timeline-section" ref={timelineRef}>
           <h2 className="section-title">My Journey</h2>
           <div className="timeline">
@@ -230,6 +250,10 @@ export const AboutPage: React.FC = () => {
             <a href="/projects" className="btn-secondary">
               <span>View My Work</span>
               <i className="fas fa-code"></i>
+            </a>
+            <a href="/blog" className="btn-primary">
+              <span>Read My Blog</span>
+              <i className="fas fa-book-open"></i>
             </a>
           </div>
         </section>
