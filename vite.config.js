@@ -16,10 +16,11 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        // React app entry point
-        react: resolve(__dirname, 'react.html'),
-        // Main portfolio page and legacy HTML files
+        // Main static portfolio site
         main: resolve(__dirname, 'index.html'),
+        // React app (for gradual migration)
+        react: resolve(__dirname, 'react.html'),
+        // Other HTML pages
         about: resolve(__dirname, 'about.html'),
         skills: resolve(__dirname, 'skills.html'),
         projects: resolve(__dirname, 'projects.html'),

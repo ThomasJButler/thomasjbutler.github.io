@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
 
@@ -11,46 +11,26 @@ import { GodModeDisplay } from './components/GodModeDisplay';
 import { MatrixSpinner } from './components/MatrixSpinner';
 
 // Lazy load pages for code splitting
-const HomePage = lazy(() => import('./pages/HomePage').then(module => ({ default: module.HomePage })));
-const AboutPage = lazy(() => import('./pages/AboutPage').then(module => ({ default: module.AboutPage })));
-const SkillsPage = lazy(() => import('./pages/SkillsPage').then(module => ({ default: module.SkillsPage })));
-const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(module => ({ default: module.ProjectsPage })));
-const ServicesPage = lazy(() => import('./pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
-const ContactPage = lazy(() => import('./pages/ContactPage').then(module => ({ default: module.ContactPage })));
-const BlogPage = lazy(() => import('./pages/BlogPage').then(module => ({ default: module.BlogPage })));
-const BlogReader = lazy(() => import('./components/BlogReader').then(module => ({ default: module.BlogReader })));
+const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const SkillsPage = lazy(() => import('./pages/SkillsPage').then(m => ({ default: m.SkillsPage })));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
+const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
 
-// Styles
+// Styles - Import order matters!
 import './css/base/_reset.css';
-import './css/base/_typography.css';
 import './css/base/_variables.css';
+import './css/base/_typography.css';
+import './css/main.css';
+import './css/styles.css';
 import './css/global.css';
+import './css/projects.css';
+import './css/projects-matrix.css';
+import './css/cube.css';
 import './css/blog.css';
-
-// Component to handle redirects when landing on react.html
-const ReactHtmlRedirect: React.FC = () => {
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    // Check URL parameters for redirect destination
-    const params = new URLSearchParams(window.location.search);
-    const redirectTo = params.get('redirect');
-    
-    // Debug logging
-    console.log('ReactHtmlRedirect - URL params:', window.location.search);
-    console.log('ReactHtmlRedirect - Redirect to:', redirectTo);
-    
-    if (redirectTo) {
-      // Navigate to the specified route
-      navigate('/' + redirectTo);
-    } else {
-      // Default to home if no redirect specified
-      navigate('/');
-    }
-  }, [navigate]);
-  
-  return <div>Redirecting...</div>;
-};
 
 export const App: React.FC = () => {
   useEffect(() => {
@@ -82,9 +62,6 @@ export const App: React.FC = () => {
     <>
       <Router basename="/ThomasJButler">
         <Routes>
-          {/* Handle direct navigation to react.html */}
-          <Route path="react.html" element={<ReactHtmlRedirect />} />
-          
           <Route path="/" element={<Layout />}>
             <Route index element={
               <Suspense fallback={<PageLoader />}>
