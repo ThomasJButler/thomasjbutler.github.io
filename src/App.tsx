@@ -32,12 +32,19 @@ const ReactHtmlRedirect: React.FC = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    // Check for redirect from sessionStorage (set by blog.html)
-    const redirectTo = sessionStorage.getItem('redirectTo');
+    // Check URL parameters for redirect destination
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get('redirect');
+    
+    // Debug logging
+    console.log('ReactHtmlRedirect - URL params:', window.location.search);
+    console.log('ReactHtmlRedirect - Redirect to:', redirectTo);
+    
     if (redirectTo) {
-      sessionStorage.removeItem('redirectTo');
-      navigate(redirectTo);
+      // Navigate to the specified route
+      navigate('/' + redirectTo);
     } else {
+      // Default to home if no redirect specified
       navigate('/');
     }
   }, [navigate]);
