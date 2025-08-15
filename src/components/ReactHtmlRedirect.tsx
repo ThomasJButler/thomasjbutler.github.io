@@ -17,7 +17,10 @@ export const ReactHtmlRedirect: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
     const redirect = searchParams.get('redirect') || hash;
     
-    if (redirect && !hasNavigated.current) {
+    // Check if we're on react.html path and need to redirect
+    const isReactHtml = window.location.pathname.includes('react.html');
+    
+    if ((redirect || isReactHtml) && !hasNavigated.current) {
       hasNavigated.current = true;
       
       // Map redirect values to routes
@@ -30,14 +33,15 @@ export const ReactHtmlRedirect: React.FC = () => {
         'contact': '/contact'
       };
       
-      const route = routeMap[redirect.toLowerCase()];
-      if (route) {
-        // Clear the hash and navigate to the route
-        window.location.hash = '';
-        navigate(route, { replace: true });
-      }
+      const route = routeMap[redirect?.toLowerCase()] || '/';
+      
+      // Clear the hash and navigate to the route using React Router
+      window.location.hash = '';
+      
+      // Use React Router's navigate function for SPA navigation
+      navigate(route, { replace: true });
     }
-  }, [navigate, location.search]);
+  }, [navigate, location.search, location.pathname]);
 
   return null;
 };

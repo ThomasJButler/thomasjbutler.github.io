@@ -1,13 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animate } from 'animejs';
+import { marked } from 'marked';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
+
+// Configure marked for better rendering
+marked.setOptions({
+  breaks: true,
+  gfm: true,
+  sanitize: false // We trust our own content
+});
+
+// Enhanced markdown parser using marked
+const parseMarkdown = (markdown: string): string => {
+  try {
+    return marked(markdown) as string;
+  } catch (error) {
+    console.error('Markdown parsing error:', error);
+    // Fallback to simple text
+    return `<p>${markdown.replace(/\n/g, '<br>')}</p>`;
+  }
+};
 
 export const BlogReader: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [fontSize, setFontSize] = useState(() => {
     const saved = localStorage.getItem('blogFontSize');
     return saved ? parseInt(saved) : 18;
@@ -19,20 +39,40 @@ export const BlogReader: React.FC = () => {
   // Load blog post
   useEffect(() => {
     const loadPost = async () => {
-      if (!slug) return;
+      if (!slug) {
+        setError('No blog post specified');
+        setLoading(false);
+        return;
+      }
       
       setLoading(true);
-      const loadedPost = await loadBlogPost(slug);
+      setError(null);
       
-      if (loadedPost) {
-        setPost(loadedPost);
-        // Parse markdown to HTML (simple version - in production use a proper markdown parser)
-        const htmlContent = parseMarkdown(loadedPost.content);
-        if (contentRef.current) {
-          contentRef.current.innerHTML = htmlContent;
+      try {
+        const loadedPost = await loadBlogPost(slug);
+        
+        if (loadedPost) {
+          setPost(loadedPost);
+          // Parse markdown to HTML using marked
+          console.log('Loading blog post:', loadedPost.title);
+          console.log('Raw content length:', loadedPost.content.length);
+          
+          const htmlContent = parseMarkdown(loadedPost.content);
+          console.log('Parsed HTML length:', htmlContent.length);
+          console.log('Parsed HTML preview:', htmlContent.substring(0, 200));
+          
+          if (contentRef.current) {
+            contentRef.current.innerHTML = htmlContent;
+            console.log('Content added to DOM, element HTML:', contentRef.current.innerHTML.substring(0, 200));
+          } else {
+            console.error('contentRef.current is null');
+          }
+        } else {
+          setError('Blog post not found');
         }
-      } else {
-        navigate('/blog');
+      } catch (err) {
+        console.error('Error loading blog post:', err);
+        setError('Failed to load blog post');
       }
       
       setLoading(false);
@@ -67,36 +107,6 @@ export const BlogReader: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Simple markdown parser (for production, use marked or remark)
-  const parseMarkdown = (markdown: string): string => {
-    let html = markdown
-      // Headers
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-      // Bold
-      .replace(/\*\*(.*)\*\*/g, '<strong>$1</strong>')
-      // Italic
-      .replace(/\*(.*)\*/g, '<em>$1</em>')
-      // Links
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-      // Line breaks
-      .replace(/\n\n/g, '</p><p>')
-      // Code blocks
-      .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
-      // Inline code
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      // Lists
-      .replace(/^\- (.+)$/gm, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-    
-    // Wrap in paragraphs
-    if (!html.startsWith('<')) {
-      html = `<p>${html}</p>`;
-    }
-    
-    return html;
-  };
 
   const adjustFontSize = (delta: number) => {
     const newSize = Math.min(24, Math.max(14, fontSize + delta));
@@ -120,15 +130,20 @@ export const BlogReader: React.FC = () => {
     );
   }
 
-  if (!post) {
+  if (error || (!loading && !post)) {
     return (
       <div className="blog-reader-error">
-        <h2>Article not found</h2>
+        <h2>{error || 'Article not found'}</h2>
+        <p>The blog post you're looking for could not be loaded.</p>
         <Link to="/blog" className="back-link">
           <i className="fas fa-arrow-left"></i> Back to Blog
         </Link>
       </div>
     );
+  }
+
+  if (!post) {
+    return null; // Still loading
   }
 
   return (
@@ -199,7 +214,14 @@ export const BlogReader: React.FC = () => {
             ref={contentRef}
             className="article-content"
             style={{ lineHeight: fontSize >= 20 ? '1.8' : '1.6' }}
-          />
+          >
+            {/* Fallback content while loading */}
+            {!contentRef.current?.innerHTML && (
+              <div className="content-loading">
+                <p>Loading article content...</p>
+              </div>
+            )}
+          </div>
 
           <footer className="article-footer">
             <div className="article-nav">
