@@ -10,9 +10,12 @@ export const ReactHtmlRedirect: React.FC = () => {
     // Only process redirect once
     if (hasNavigated.current) return;
     
-    // Get redirect parameter from URL
+    // Check for hash-based redirect (e.g., #blog)
+    const hash = window.location.hash.replace('#', '');
+    
+    // Also check for query parameter redirect
     const searchParams = new URLSearchParams(location.search);
-    const redirect = searchParams.get('redirect');
+    const redirect = searchParams.get('redirect') || hash;
     
     if (redirect && !hasNavigated.current) {
       hasNavigated.current = true;
@@ -29,7 +32,8 @@ export const ReactHtmlRedirect: React.FC = () => {
       
       const route = routeMap[redirect.toLowerCase()];
       if (route) {
-        // Navigate to the route and remove the query parameter
+        // Clear the hash and navigate to the route
+        window.location.hash = '';
         navigate(route, { replace: true });
       }
     }
