@@ -2,6 +2,7 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
+import { performanceOptimizer } from './utils/performanceOptimizer';
 
 // Layout (not lazy loaded as it's needed immediately)
 import { Layout } from './components/Layout';
@@ -32,27 +33,33 @@ import './css/projects.css';
 import './css/projects-matrix.css';
 import './css/rotating-cube.css';
 import './css/blog.css';
+import './css/react-app-fixes.css'; // React-specific fixes
 
 export const App: React.FC = () => {
   useEffect(() => {
+    // Initialize performance optimization
+    const settings = performanceOptimizer.getSettings();
+    console.log('App initialized with performance settings:', settings);
+    
     // Add loaded class to body to show content (prevent FOUC hiding)
     document.body.classList.add('loaded');
     
     // Initialize keyboard navigation
     initKeyboardNavigation();
     
-    // Initial app load animation
+    // Quick fade-in without heavy animation
     const root = document.getElementById('root');
     if (root) {
-      animate(root, {
-        opacity: [0, 1],
-        duration: 1000,
-        ease: 'outQuad',
-        complete: () => {
-          // Trigger Matrix rain effect after app loads
+      root.style.opacity = '0';
+      requestAnimationFrame(() => {
+        root.style.transition = 'opacity 0.3s ease-out';
+        root.style.opacity = '1';
+        
+        // Trigger Matrix rain effect after app loads
+        setTimeout(() => {
           const event = new CustomEvent('appLoaded');
           window.dispatchEvent(event);
-        }
+        }, 300);
       });
     }
   }, []);

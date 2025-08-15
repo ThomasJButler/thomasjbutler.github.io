@@ -212,7 +212,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
       )}
 
       {/* CSS-in-JS styles for animations */}
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes matrixScan {
           0% { 
             transform: translateX(-100%) rotate(0deg); 
@@ -327,7 +327,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
             box-shadow: 0 0 0 3px #00FF00 !important;
           }
         }
-      `}</style>
+      `}} />
     </button>
   );
 };
