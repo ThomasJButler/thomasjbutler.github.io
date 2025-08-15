@@ -1,263 +1,185 @@
-import React, { useEffect, useRef } from 'react';
-import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
-import { animate, stagger } from 'animejs';
-
-interface SkillCategory {
-  title: string;
-  icon: string;
-  skills: string[];
-  color: string;
-}
-
-const skillCategories: SkillCategory[] = [
-  {
-    title: 'Frontend Development',
-    icon: 'fa-code',
-    skills: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'CSS3/SASS', 'Tailwind CSS'],
-    color: '#00ff00'
-  },
-  {
-    title: 'Backend Development',
-    icon: 'fa-server',
-    skills: ['Node.js', 'Python', 'Express.js', 'FastAPI', 'PostgreSQL', 'MongoDB'],
-    color: '#00ffff'
-  },
-  {
-    title: 'AI & Machine Learning',
-    icon: 'fa-brain',
-    skills: ['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI API', 'Claude API', 'RAG Systems'],
-    color: '#ff00ff'
-  },
-  {
-    title: 'Cloud & DevOps',
-    icon: 'fa-cloud',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform', 'GitHub Actions'],
-    color: '#ffff00'
-  }
-];
-
-const qualifications = [
-  { name: 'AWS Qualified', description: 'Cloud Architecture & Solutions', icon: '🏆' },
-  { name: 'Azure Qualified', description: 'Cloud Infrastructure & DevOps', icon: '🏆' },
-  { name: 'Cisco Qualified', description: 'Network Security & Data Analytics', icon: '🏆' },
-  { name: 'HubSpot Qualified', description: 'CMS Development & Integration', icon: '🏆' }
-];
-
-const timeline = [
-  {
-    year: '2020',
-    title: 'Started Web Development Journey',
-    description: 'Began learning HTML, CSS, and JavaScript. Built first portfolio website.',
-    icon: 'fa-rocket'
-  },
-  {
-    year: '2021',
-    title: 'Mastered Modern Frameworks',
-    description: 'Deep dive into React, Node.js, and full-stack development.',
-    icon: 'fa-layer-group'
-  },
-  {
-    year: '2022',
-    title: 'AI Integration Specialist',
-    description: 'Started integrating AI models into web applications. Worked with GPT-3 and early LLMs.',
-    icon: 'fa-robot'
-  },
-  {
-    year: '2023',
-    title: 'Founded AiTomatic',
-    description: 'Launched AI platform that streamlines workflows with 10+ integrated models.',
-    icon: 'fa-building'
-  },
-  {
-    year: '2024',
-    title: 'Open Source Contributor',
-    description: 'Active contributions to major open source projects and community involvement.',
-    icon: 'fa-code-branch'
-  }
-];
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const AboutPage: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
-
-  const matrixAnim = useMatrixAnimation('fadeIn');
-  
-  useEffect(() => {
-    if (containerRef.current) {
-      matrixAnim.animateIn(containerRef.current);
-    }
-  }, [matrixAnim]);
-
-  useEffect(() => {
-    // Animate skills on mount
-    if (skillsRef.current) {
-      animate(skillsRef.current.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>, {
-        opacity: [0, 1],
-        translateY: [30, 0],
-        delay: stagger(100),
-        duration: 800,
-        ease: 'outQuad'
-      });
-    }
-
-    // Animate timeline
-    if (timelineRef.current) {
-      animate(timelineRef.current.querySelectorAll('.timeline-item') as NodeListOf<HTMLElement>, {
-        opacity: [0, 1],
-        translateX: function(el: any, i: number) {
-          return i % 2 === 0 ? [-50, 0] : [50, 0];
-        },
-        delay: stagger(150, {start: 300}),
-        duration: 1000,
-        ease: 'outQuad'
-      });
-    }
-  }, []);
-
-  const handleSkillHover = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    const icons = card.querySelectorAll('.skill-item');
-    
-    animate(icons as NodeListOf<HTMLElement>, {
-      scale: [1, 1.1],
-      duration: 300,
-      delay: stagger(50),
-      ease: 'outQuad'
-    });
-  };
-
-  const handleSkillLeave = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    const icons = card.querySelectorAll('.skill-item');
-    
-    animate(icons as NodeListOf<HTMLElement>, {
-      scale: 1,
-      duration: 300,
-      ease: 'outQuad'
-    });
-  };
-
   return (
-    <div ref={containerRef} className="about-section">
-      <div className="container">
-        <section className="about-intro">
-          <h1 className="about-title">About Me</h1>
-          <div className="about-content">
-            <div className="about-text">
-              <p className="lead">
-                I'm a full-stack developer with a passion for creating innovative web solutions 
-                that leverage the power of artificial intelligence.
-              </p>
-              <p>
-                With expertise spanning from responsive front-end interfaces to scalable backend 
-                architectures, I specialize in building modern web applications that push the 
-                boundaries of what's possible with today's technologies.
-              </p>
-              <p>
-                My journey in tech has been driven by curiosity and a desire to solve complex 
-                problems. From crafting pixel-perfect UIs to implementing sophisticated AI 
-                integrations, I bring a holistic approach to every project.
+    <>
+      <section id="why-love-programming" className="about-section">
+        <div className="container">
+          <h2 className="section-title">Why I Love Programming</h2>
+          <div className="story-content">
+            <p className="highlight-text">
+              Programming is not just a profession for me; it's a passion. The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
+            </p>
+            <p>
+              From a young age, I was fascinated by technology and how it can be used to create amazing things. This curiosity led me to explore various programming languages and frameworks, and I quickly realized that programming was the perfect outlet for my creativity and problem-solving skills.
+            </p>
+            <p>
+              Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
+            </p>
+          </div>
+          <div className="programming-journey">
+            <h2 className="section-title">My Programming Journey</h2>
+            <div className="journey-grid">
+              <div className="journey-item">
+                <i className="fas fa-lightbulb"></i>
+                <h4>The Beginning</h4>
+                <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
+              </div>
+              <div className="journey-item">
+                <i className="fas fa-code"></i>
+                <h4>Learning & Growth</h4>
+                <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
+              </div>
+              <div className="journey-item">
+                <i className="fas fa-robot"></i>
+                <h4>AI Exploration</h4>
+                <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="technical-expertise" className="about-section">
+        <div className="container">
+          <h2 className="section-title">Technical Expertise</h2>
+          <div className="expertise-grid">
+            <div className="expertise-card">
+              <h3>Frontend Development</h3>
+              <ul className="expertise-list">
+                <li>React & Next.js</li>
+                <li>TypeScript</li>
+                <li>Modern CSS (Tailwind, SASS)</li>
+                <li>Performance Optimization</li>
+                <li>Responsive Design</li>
+              </ul>
+            </div>
+            <div className="expertise-card">
+              <h3>Backend Development</h3>
+              <ul className="expertise-list">
+                <li>Node.js & Express</li>
+                <li>Python & Django</li>
+                <li>RESTful APIs</li>
+                <li>Database Design</li>
+                <li>Microservices</li>
+              </ul>
+            </div>
+            <div className="expertise-card">
+              <h3>AI & Machine Learning</h3>
+              <ul className="expertise-list">
+                <li>Natural Language Processing</li>
+                <li>TensorFlow & PyTorch</li>
+                <li>Custom GPT Models</li>
+                <li>Computer Vision</li>
+                <li>Data Analysis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="continuous-learning" className="about-section">
+        <div className="container">
+          <h2 className="section-title">Qualifications & Certifications</h2>
+          <div className="learning-content">
+            <p className="highlight-text">
+              I believe in staying current with technology trends and continuously expanding my knowledge base.
+            </p>
+            
+            <div className="qualifications-grid">
+              <div className="qualification-card">
+                <h3>Estio Level 4 Software Developer Apprenticeship</h3>
+                <p className="qualification-date">Completed 2024</p>
+                <p>Advanced software development training with real-world application</p>
+              </div>
+              
+              <div className="qualification-card">
+                <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
+                <p className="qualification-date">July 2025</p>
+                <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw" 
+                   target="_blank" 
+                   rel="noopener"
+                   className="verify-link">
+                    Verify Credential →
+                </a>
+                <div className="badge-embed">
+                  <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/155335744" 
+                       alt="City & Guilds Certification Badge"
+                       className="certification-badge" />
+                </div>
+              </div>
+              
+              <div className="qualification-card">
+                <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
+                <p className="qualification-date">Starting August 2025</p>
+                <p>Mastering Generative AI and advanced machine learning techniques</p>
+              </div>
+            </div>
+            
+            <div className="additional-certifications">
+              <h3>Additional Certifications & Training</h3>
+              <ul className="certification-list">
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  🏆 AWS Qualified - Cloud Architecture & Serverless Computing
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  🏆 Azure Qualified - Cloud Infrastructure & DevOps
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  🏆 Cisco Qualified - Network Security & Data Analytics
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  🏆 HubSpot Qualified - CMS Development & Integration
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  CodeCademy Full Stack Engineer Certificate
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i>
+                  Free Code Camp - Data Analysis With Python
+                </li>
+              </ul>
+              <p style={{marginTop: '1.5rem'}}>
+                <a href="https://www.thomasjbutler.me/#education" 
+                   target="_blank" 
+                   rel="noopener" 
+                   className="neo-matrix-btn" 
+                   style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span>View Full Education & Certification Details</span>
+                  <i className="fas fa-arrow-right"></i>
+                </a>
               </p>
             </div>
-            <div className="about-stats">
-              <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Projects Completed</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">4+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">10+</span>
-                <span className="stat-label">AI Models Integrated</span>
-              </div>
-            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="skills-section" ref={skillsRef}>
-          <h2 className="section-title">Technical Skills</h2>
-          <div className="skills-grid">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className="skill-card"
-                onMouseEnter={handleSkillHover}
-                onMouseLeave={handleSkillLeave}
-                style={{ '--skill-color': category.color } as React.CSSProperties}
-              >
-                <div className="skill-header">
-                  <i className={`fas ${category.icon}`}></i>
-                  <h3>{category.title}</h3>
-                </div>
-                <div className="skill-list">
-                  {category.skills.map((skill, idx) => (
-                    <span key={idx} className="skill-item">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="qualifications-section">
-          <h2 className="section-title">Professional Qualifications</h2>
-          <div className="qualifications-grid">
-            {qualifications.map((qual, index) => (
-              <div key={index} className="qualification-badge">
-                <span className="qualification-icon">{qual.icon}</span>
-                <h3>{qual.name}</h3>
-                <p>{qual.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="timeline-section" ref={timelineRef}>
-          <h2 className="section-title">My Journey</h2>
-          <div className="timeline">
-            {timeline.map((item, index) => (
-              <div key={index} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
-                <div className="timeline-content">
-                  <div className="timeline-icon">
-                    <i className={`fas ${item.icon}`}></i>
-                  </div>
-                  <div className="timeline-info">
-                    <span className="timeline-year">{item.year}</span>
-                    <h3 className="timeline-title">{item.title}</h3>
-                    <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <div className="timeline-line"></div>
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <h2>Let's Build Something Amazing Together</h2>
-          <p>
-            Whether you need a cutting-edge web application, AI integration, or creative 
-            technical solutions, I'm here to help bring your vision to life.
-          </p>
-          <div className="cta-buttons">
-            <a href="/contact" className="btn-primary">
-              <span>Get In Touch</span>
-              <i className="fas fa-arrow-right"></i>
-            </a>
-            <a href="/projects" className="btn-secondary">
-              <span>View My Work</span>
-              <i className="fas fa-code"></i>
-            </a>
-            <a href="/blog" className="btn-primary">
-              <span>Read My Blog</span>
+      <section id="blog-cta" className="about-section">
+        <div className="container">
+          <div style={{textAlign: 'center', padding: '40px 0'}}>
+            <h2 className="section-title">Explore My Thoughts on Tech</h2>
+            <p className="highlight-text" style={{marginBottom: '30px'}}>
+              Dive into my collection of articles on AI, development, and human-centered technology
+            </p>
+            <Link to="/blog" 
+                  className="neo-matrix-btn" 
+                  style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', padding: '15px 30px'}}>
               <i className="fas fa-book-open"></i>
-            </a>
+              <span>Read My Blog</span>
+              <i className="fas fa-arrow-right"></i>
+            </Link>
+            <p style={{marginTop: '20px', color: 'rgba(0, 255, 0, 0.7)'}}>
+              20+ articles on making technology more human
+            </p>
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   );
 };

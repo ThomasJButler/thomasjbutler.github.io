@@ -54,8 +54,21 @@ export const MatrixRain: React.FC = () => {
       ctx.font = `${fontSize}px monospace`;
       ctx.textAlign = 'center';
 
-      // Draw characters
+      // Draw and update characters
       dropsRef.current.forEach((drop, x) => {
+        // Update drop position
+        drop.y += drop.speed;
+        
+        // Reset when drop goes off screen
+        if (drop.y > canvas.height) {
+          drop.y = -drop.chars.length * fontSize;
+          drop.speed = Math.random() * 3 + 2;
+          // Randomize characters on reset
+          drop.chars = drop.chars.map(() => 
+            matrixChars[Math.floor(Math.random() * matrixChars.length)]
+          );
+        }
+        
         drop.chars.forEach((char, i) => {
           const y = drop.y + i * fontSize;
           
@@ -76,6 +89,11 @@ export const MatrixRain: React.FC = () => {
             ctx.fillText(char, x * fontSize + fontSize / 2, y);
           }
         });
+        
+        // Gradually slow down sped-up drops
+        if (drop.speed > 5) {
+          drop.speed *= 0.98;
+        }
       });
 
       animationRef.current = requestAnimationFrame(draw);

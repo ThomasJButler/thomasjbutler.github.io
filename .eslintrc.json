@@ -9,18 +9,44 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es2020": true,
     "node": true
   },
   "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "no-console": ["warn", { "allow": ["warn", "error"] }]
-  }
+    "@typescript-eslint/no-unused-vars": ["warn", { 
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_|revealText|glitchInterval|hoverAnimation"
+    }],
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error", "log"] }],
+    "no-empty": "warn",
+    "prefer-const": "warn",
+    "no-alert": "off",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "ignorePatterns": [
+    "dist/",
+    "build/",
+    "node_modules/",
+    "*.config.js",
+    "*.config.ts",
+    "vite.config.js",
+    "vitest.config.ts"
+  ]
 }

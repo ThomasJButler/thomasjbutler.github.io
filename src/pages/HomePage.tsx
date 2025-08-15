@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export const HomePage: React.FC = () => {
   useEffect(() => {
@@ -70,10 +71,10 @@ export const HomePage: React.FC = () => {
               <i className="fas fa-images"></i>
               View Galleries
             </a>
-            <a href="blog.html" className="btn-professional glass-card hover-lift" style={{background: 'linear-gradient(135deg, #00ff00 0%, #003300 100%)'}}>
+            <Link to="/blog" className="btn-professional glass-card hover-lift" style={{background: 'linear-gradient(135deg, #00ff00 0%, #003300 100%)'}}>
               <i className="fas fa-book-open"></i>
               View Blog
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -309,9 +310,9 @@ export const HomePage: React.FC = () => {
               </div>
               <h3>Thought Leadership Blog</h3>
               <p>20+ articles on AI, development, and human-centered technology.</p>
-              <a href="/blog" className="gallery-link">
+              <Link to="/blog" className="gallery-link">
                 Read Blog <i className="fas fa-arrow-right"></i>
-              </a>
+              </Link>
             </div>
             <div className="gallery-card">
               <div className="gallery-icon">
@@ -332,10 +333,10 @@ export const HomePage: React.FC = () => {
           <h2>--| Get in Touch |--</h2>
           <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
           <div className="contact-button-container">
-            <a href="/contact" className="btn-contact-us">
+            <Link to="/contact" className="btn-contact-us">
               <i className="fas fa-envelope"></i>
               Contact Me
-            </a>
+            </Link>
           </div>
         </div>
       </section>
