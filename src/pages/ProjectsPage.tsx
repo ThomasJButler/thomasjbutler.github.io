@@ -26,11 +26,31 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 'aitomatic',
-    name: 'AiTomatic',
+    id: 'python-projects',
+    name: 'Python Projects',
     visibility: 'Public',
-    description: 'Revolutionary AI/ML platform streamlining workflows with 10+ integrated models including ChatGPT, Claude, and Gemini.',
-    topics: ['React', 'TypeScript', 'AI/ML', 'API Integration'],
+    description: 'Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.',
+    topics: ['Python', 'Algorithms', 'Mathematics', 'Fractals', 'Machine Learning', 'Games'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 100
+    },
+    stats: {
+      stars: 5,
+      forks: 2
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/PythonProjects'
+    },
+    category: 'personal'
+  },
+  {
+    id: 'commercial-portfolio',
+    name: 'Commercial Portfolio v2.0',
+    visibility: 'Public',
+    description: 'Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.',
+    topics: ['Portfolio', 'Notion API', 'CMS', 'Professional', 'Dynamic', 'Responsive'],
     language: {
       name: 'TypeScript',
       color: '#3178c6',
@@ -41,17 +61,17 @@ const projects: Project[] = [
       forks: 3
     },
     links: {
-      demo: 'https://aitomatic.rocks',
-      github: 'https://github.com/ThomasJButler/aitomatic'
+      demo: 'https://thomasjbutler.me',
+      github: 'https://github.com/ThomasJButler/commercial-portfolio-react'
     },
     category: 'personal'
   },
   {
-    id: 'thomasjbutler',
-    name: 'ThomasJButler',
+    id: 'portfolio-v3',
+    name: 'Portfolio v3.0 - React Migration',
     visibility: 'Public',
-    description: 'Personal portfolio website showcasing full-stack development projects with Matrix-themed design.',
-    topics: ['React', 'TypeScript', 'Anime.js', 'CSS3'],
+    description: 'Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.',
+    topics: ['React 19', 'TypeScript', 'Vite 7', 'Anime.js', 'Components', 'Migration'],
     language: {
       name: 'TypeScript',
       color: '#3178c6',
@@ -62,17 +82,38 @@ const projects: Project[] = [
       forks: 2
     },
     links: {
-      demo: 'https://thomasjbutler.co.uk',
+      demo: '/react.html',
       github: 'https://github.com/ThomasJButler/ThomasJButler'
     },
-    category: 'personal'
+    category: 'web'
+  },
+  {
+    id: 'css-showcase',
+    name: 'CSS Showcase',
+    visibility: 'Public',
+    description: 'Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.',
+    topics: ['Pure CSS', 'Vanilla JS', ':has()', 'Container Queries', 'Responsive', 'No Framework'],
+    language: {
+      name: 'CSS',
+      color: '#563d7c',
+      percent: 85
+    },
+    stats: {
+      stars: 23,
+      forks: 7
+    },
+    links: {
+      demo: 'https://thomasjbutler.github.io/css-showcase/',
+      github: 'https://github.com/ThomasJButler/css-showcase'
+    },
+    category: 'web'
   },
   {
     id: 'matrix-arcade',
     name: 'The Matrix Arcade',
     visibility: 'Public',
-    description: 'Interactive gaming platform with multiple mini-games built with React and Canvas API.',
-    topics: ['React', 'Canvas API', 'Game Development', 'TypeScript'],
+    description: 'An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.',
+    topics: ['React', 'Python', 'Vite', 'Canvas API', 'Game Dev'],
     language: {
       name: 'JavaScript',
       color: '#f1e05a',
@@ -84,37 +125,60 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://www.tomatic.tech/',
-      github: 'https://github.com/ThomasJButler/the-matrix-arcade'
+      github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
     },
-    category: 'personal'
+    category: 'games'
   },
   {
-    id: 'css-showcase',
-    name: 'CSS Showcase',
+    id: 'ai-comparison',
+    name: 'AI Model Comparison Tool',
     visibility: 'Public',
-    description: 'Advanced CSS demonstrations featuring complex animations, 3D transforms, and modern layout techniques.',
-    topics: ['CSS3', 'Animations', 'Web Design', 'Creative'],
+    description: 'Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.',
+    topics: ['AI/ML', 'Python', 'APIs', 'Analytics', 'Dashboard'],
     language: {
-      name: 'CSS',
-      color: '#563d7c',
-      percent: 85
+      name: 'Python',
+      color: '#3572A5',
+      percent: 60
     },
     stats: {
-      stars: 23,
-      forks: 7
+      stars: 10,
+      forks: 4
     },
     links: {
-      github: 'https://github.com/ThomasJButler/css-showcase'
+      demo: 'https://ai-comparison-showcase.vercel.app/',
+      github: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-'
     },
-    category: 'opensource'
+    category: 'ml'
+  },
+  {
+    id: 'dotnet-calculator',
+    name: 'Dotnet React Calculator',
+    visibility: 'Public',
+    description: 'Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.',
+    topics: ['.NET', 'React', 'C#', 'API', 'Full Stack'],
+    language: {
+      name: 'C#',
+      color: '#178600',
+      percent: 55
+    },
+    stats: {
+      stars: 6,
+      forks: 1
+    },
+    links: {
+      demo: 'https://dotnet-react-calendar.vercel.app/',
+      github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
+    },
+    category: 'web'
   }
 ];
 
 const categories = [
   { id: 'all', label: 'All Projects' },
-  { id: 'personal', label: 'Personal Projects' },
-  { id: 'client', label: 'Client Work' },
-  { id: 'opensource', label: 'Open Source' }
+  { id: 'web', label: 'Web Development' },
+  { id: 'ml', label: 'AI & ML' },
+  { id: 'games', label: 'Games' },
+  { id: 'personal', label: 'Personal' }
 ];
 
 export const ProjectsPage: React.FC = () => {
