@@ -35,6 +35,9 @@ import './css/blog.css';
 
 export const App: React.FC = () => {
   useEffect(() => {
+    // Add loaded class to body to show content (prevent FOUC hiding)
+    document.body.classList.add('loaded');
+    
     // Initialize keyboard navigation
     initKeyboardNavigation();
     

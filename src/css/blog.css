@@ -3,7 +3,27 @@
   min-height: 100vh;
   padding: 120px 0 80px;
   background: #000;
+  color: var(--text-primary);
   position: relative;
+}
+
+.blog-page .container {
+  color: var(--text-primary);
+}
+
+/* Blog Loading */
+.blog-loading {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+.matrix-spinner {
+  text-align: center;
+  color: var(--matrix-green);
+  font-family: 'Courier New', monospace;
 }
 
 .blog-header {
