@@ -9,6 +9,7 @@ import { Layout } from './components/Layout';
 // Components (not lazy loaded as they're used frequently)
 import { GodModeDisplay } from './components/GodModeDisplay';
 import { MatrixSpinner } from './components/MatrixSpinner';
+import { ReactHtmlRedirect } from './components/ReactHtmlRedirect';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
@@ -61,6 +62,7 @@ export const App: React.FC = () => {
   return (
     <>
       <Router basename="/ThomasJButler">
+        <ReactHtmlRedirect />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={

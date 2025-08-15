@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CubeFace, type CubeProject } from '../components/CubeFace';
+import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
+import { animate } from 'animejs';
 
 // Cube projects data
 const cubeProjects: Record<string, CubeProject> = {
@@ -66,6 +68,19 @@ const cubeProjects: Record<string, CubeProject> = {
 export const HomePage: React.FC = () => {
   const cubeRef = useRef<HTMLDivElement>(null);
   const currentFaceRef = useRef<string>('front');
+  
+  // Scroll animation refs
+  const latestUpdatesRef = useScrollAnimation({ threshold: 0.2 });
+  const expertiseRef = useScrollReveal();
+  const galleriesRef = useScrollAnimation({ 
+    threshold: 0.3,
+    animationProps: {
+      opacity: [0, 1],
+      scale: [0.9, 1],
+      duration: 1200,
+      ease: 'outElastic'
+    }
+  });
 
   useEffect(() => {
     // Initialize cube rotation functionality
@@ -124,6 +139,43 @@ export const HomePage: React.FC = () => {
   const handleCubeRotate = (face: string) => {
     (window as any).rotateCube?.(face);
   };
+  
+  // Add hover effects for buttons and cards
+  useEffect(() => {
+    // Hover effects for gallery cards
+    const cards = document.querySelectorAll('.gallery-card, .introduction-expertise-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', (e) => {
+        animate(e.currentTarget, {
+          scale: 1.05,
+          translateY: -5,
+          duration: 300,
+          ease: 'outQuad'
+        });
+      });
+      
+      card.addEventListener('mouseleave', (e) => {
+        animate(e.currentTarget, {
+          scale: 1,
+          translateY: 0,
+          duration: 300,
+          ease: 'outQuad'
+        });
+      });
+    });
+    
+    // Pulse animation for buttons
+    const buttons = document.querySelectorAll('.neo-matrix-btn, .btn-professional');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', (e) => {
+        animate(e.currentTarget, {
+          scale: [1, 1.05, 1],
+          duration: 600,
+          ease: 'inOutQuad'
+        });
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -152,7 +204,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="latest-updates" className="reveal">
+      <section id="latest-updates" className="reveal" ref={latestUpdatesRef as React.RefObject<HTMLElement>}>
         <div className="container">
           <h2 className="section-title">--| Latest Updates |--</h2>
           <p style={{textAlign: 'center', marginBottom: '2rem'}}>
@@ -185,11 +237,11 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="introduction-expertise">
+      <section id="introduction-expertise" ref={expertiseRef as React.RefObject<HTMLElement>}>
         <div className="container">
           <h2 className="introduction-heading">--| Core Expertise |--</h2>
           <ul className="introduction-expertise-grid">
-            <li className="introduction-expertise-card">
+            <li className="introduction-expertise-card reveal-item">
               <div className="introduction-expertise-icon">
                 <i className="fas fa-code"></i>
               </div>
@@ -209,7 +261,7 @@ export const HomePage: React.FC = () => {
               </div>
             </li>
 
-            <li className="introduction-expertise-card">
+            <li className="introduction-expertise-card reveal-item">
               <div className="introduction-expertise-icon">
                 <i className="fas fa-robot"></i>
               </div>
@@ -232,7 +284,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="galleries" className="reveal">
+      <section id="galleries" className="reveal" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
           <h2 className="section-heading">--| Galleries & Blogs |--</h2>
           <div className="galleries-grid">
