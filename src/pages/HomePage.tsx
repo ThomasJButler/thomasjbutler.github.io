@@ -1,56 +1,129 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { CubeFace, type CubeProject } from '../components/CubeFace';
+
+// Cube projects data
+const cubeProjects: Record<string, CubeProject> = {
+  front: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png",
+    title: "Commercial Portfolio v2.0",
+    description: "Complete site revamp to V2.0 showcasing all commercial work, with Notion integration for dynamic content management.",
+    tags: ["Portfolio", "Notion API", "CMS"],
+    links: {
+      website: "https://thomasjbutler.me",
+      github: "https://github.com/ThomasJButler/commercial-portfolio-react"
+    }
+  },
+  right: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png",
+    title: "Portfolio v3.0 - React Migration",
+    description: "Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4.",
+    tags: ["React 19", "TypeScript", "Vite 7"],
+    links: {}
+  },
+  back: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png",
+    title: "AI Model Comparison Tool",
+    description: "Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.",
+    tags: ["AI/ML", "Python", "APIs", "Analytics", "Dashboard"],
+    links: {
+      website: "https://ai-comparison-showcase.vercel.app/",
+      github: "https://github.com/ThomasJButler/AI-Comparison-Showcase-"
+    }
+  },
+  left: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png",
+    title: "The Matrix Arcade",
+    description: "An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.",
+    tags: ["React", "Python", "Vite", "Canvas API", "Game Dev"],
+    links: {
+      website: "https://www.tomatic.tech/",
+      github: "https://github.com/ThomasJButler/The-Matrix-Arcade"
+    }
+  },
+  top: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png",
+    title: "CSS Showcase",
+    description: "Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.",
+    tags: ["CSS3", "Animation", "Grid", "Flexbox", "Creative"],
+    links: {
+      website: "https://thomasjbutler.github.io/css-showcase/",
+      github: "https://github.com/ThomasJButler/css-showcase"
+    }
+  },
+  bottom: {
+    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/dotnetreactapp_qflyte.png",
+    title: "Dotnet React Calculator",
+    description: "Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.",
+    tags: [".NET", "React", "C#", "API", "Full Stack"],
+    links: {
+      website: "https://dotnet-react-calendar.vercel.app/",
+      github: "https://github.com/ThomasJButler/Dotnet-React-Calendar"
+    }
+  }
+};
 
 export const HomePage: React.FC = () => {
+  const cubeRef = useRef<HTMLDivElement>(null);
+  const currentFaceRef = useRef<string>('front');
+
   useEffect(() => {
-    // Initialize cube rotation
-    const script = document.createElement('script');
-    script.innerHTML = `
-      const cube = document.getElementById('cube');
-      if (cube) {
-        let currentRotation = { x: 0, y: 0 };
-        window.rotateCube = function(face) {
-          document.querySelectorAll('.cube-nav button').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          
-          switch(face) {
-            case 'front':
-              currentRotation = { x: 0, y: 0 };
-              document.querySelector('.cube-nav button:nth-child(1)')?.classList.add('active');
-              break;
-            case 'right':
-              currentRotation = { x: 0, y: 90 };
-              document.querySelector('.cube-nav button:nth-child(2)')?.classList.add('active');
-              break;
-            case 'back':
-              currentRotation = { x: 0, y: 180 };
-              document.querySelector('.cube-nav button:nth-child(3)')?.classList.add('active');
-              break;
-            case 'left':
-              currentRotation = { x: 0, y: -90 };
-              document.querySelector('.cube-nav button:nth-child(4)')?.classList.add('active');
-              break;
-            case 'top':
-              currentRotation = { x: -90, y: 0 };
-              document.querySelector('.cube-nav button:nth-child(5)')?.classList.add('active');
-              break;
-            case 'bottom':
-              currentRotation = { x: 90, y: 0 };
-              document.querySelector('.cube-nav button:nth-child(6)')?.classList.add('active');
-              break;
-          }
-          
-          cube.style.transform = \`rotateX(\${currentRotation.x}deg) rotateY(\${currentRotation.y}deg)\`;
-        };
+    // Initialize cube rotation functionality
+    const rotateCube = (face: string) => {
+      const cube = cubeRef.current;
+      if (!cube) return;
+
+      // Update button states
+      document.querySelectorAll('.cube-nav button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      let rotation = { x: 0, y: 0 };
+      let buttonIndex = 1;
+      
+      switch(face) {
+        case 'front':
+          rotation = { x: 0, y: 0 };
+          buttonIndex = 1;
+          break;
+        case 'right':
+          rotation = { x: 0, y: 90 };
+          buttonIndex = 2;
+          break;
+        case 'back':
+          rotation = { x: 0, y: 180 };
+          buttonIndex = 3;
+          break;
+        case 'left':
+          rotation = { x: 0, y: -90 };
+          buttonIndex = 4;
+          break;
+        case 'top':
+          rotation = { x: -90, y: 0 };
+          buttonIndex = 5;
+          break;
+        case 'bottom':
+          rotation = { x: 90, y: 0 };
+          buttonIndex = 6;
+          break;
       }
-    `;
-    document.body.appendChild(script);
+      
+      cube.style.transform = `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`;
+      document.querySelector(`.cube-nav button:nth-child(${buttonIndex})`)?.classList.add('active');
+      currentFaceRef.current = face;
+    };
+
+    // Make rotateCube available globally for button clicks
+    (window as any).rotateCube = rotateCube;
     
     return () => {
-      document.body.removeChild(script);
+      delete (window as any).rotateCube;
     };
   }, []);
+
+  const handleCubeRotate = (face: string) => {
+    (window as any).rotateCube?.(face);
+  };
 
   return (
     <>
@@ -91,161 +164,22 @@ export const HomePage: React.FC = () => {
           </p>
           
           <div className="cube-showcase">
-            <div className="cube-container" id="cube">
-              {/* Cube faces - using dangerouslySetInnerHTML for complex HTML */}
-              <div className="cube-face front" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png" alt="Commercial Portfolio Preview">
-                  </div>
-                  <h3>Commercial Portfolio v2.0</h3>
-                  <p class="cube-project-description">Complete site revamp to V2.0 showcasing all commercial work, with Notion integration for dynamic content management.</p>
-                  <div class="cube-project-tags">
-                    <span>Portfolio</span>
-                    <span>Notion API</span>
-                    <span>CMS</span>
-                  </div>
-                  <div class="cube-project-buttons">
-                    <a href="https://thomasjbutler.me" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">Website</span>
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                  </div>
-                </div>
-              `}} />
-              
-              {/* Add other cube faces similarly */}
-              <div className="cube-face right" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png" alt="React Migration Preview">
-                  </div>
-                  <h3>Portfolio v3.0 - React Migration</h3>
-                  <p class="cube-project-description">Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4.</p>
-                  <div class="cube-project-tags">
-                    <span>React 19</span>
-                    <span>TypeScript</span>
-                    <span>Vite 7</span>
-                  </div>
-                </div>
-              `}} />
-              
-              <div className="cube-face back" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png" alt="AiTomatic Preview">
-                  </div>
-                  <h3>AI Model Comparison Tool</h3>
-                  <p class="cube-project-description">Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.</p>
-                  <div class="cube-project-tags">
-                    <span>AI/ML</span>
-                    <span>Python</span>
-                    <span>APIs</span>
-                    <span>Analytics</span>
-                    <span>Dashboard</span>
-                  </div>
-                  <div class="cube-project-buttons">
-                    <a href="https://ai-comparison-showcase.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">Website</span>
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://github.com/ThomasJButler/AI-Comparison-Showcase-" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">GitHub</span>
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              `}} />
-              
-              <div className="cube-face left" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png" alt="Matrix Arcade Preview">
-                  </div>
-                  <h3>The Matrix Arcade</h3>
-                  <p class="cube-project-description">An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.</p>
-                  <div class="cube-project-tags">
-                    <span>React</span>
-                    <span>Python</span>
-                    <span>Vite</span>
-                    <span>Canvas API</span>
-                    <span>Game Dev</span>
-                  </div>
-                  <div class="cube-project-buttons">
-                    <a href="https://www.tomatic.tech/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">Website</span>
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://github.com/ThomasJButler/The-Matrix-Arcade" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">GitHub</span>
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              `}} />
-              
-              <div className="cube-face top" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png" alt="CSS Showcase Preview">
-                  </div>
-                  <h3>CSS Showcase</h3>
-                  <p class="cube-project-description">Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.</p>
-                  <div class="cube-project-tags">
-                    <span>CSS3</span>
-                    <span>Animation</span>
-                    <span>Grid</span>
-                    <span>Flexbox</span>
-                    <span>Creative</span>
-                  </div>
-                  <div class="cube-project-buttons">
-                    <a href="https://thomasjbutler.github.io/css-showcase/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">Website</span>
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://github.com/ThomasJButler/css-showcase" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">GitHub</span>
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              `}} />
-              
-              <div className="cube-face bottom" dangerouslySetInnerHTML={{__html: `
-                <div class="cube-project">
-                  <div class="cube-project-icon">
-                    <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/dotnetreactapp_qflyte.png" alt="Dotnet React Calculator">
-                  </div>
-                  <h3>Dotnet React Calculator</h3>
-                  <p class="cube-project-description">Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.</p>
-                  <div class="cube-project-tags">
-                    <span>.NET</span>
-                    <span>React</span>
-                    <span>C#</span>
-                    <span>API</span>
-                    <span>Full Stack</span>
-                  </div>
-                  <div class="cube-project-buttons">
-                    <a href="https://dotnet-react-calendar.vercel.app/" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">View App</span>
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://github.com/ThomasJButler/Dotnet-React-Calendar" target="_blank" rel="noopener" class="neo-matrix-btn">
-                      <span class="btn-text">GitHub</span>
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              `}} />
+            <div className="cube-container" id="cube" ref={cubeRef}>
+              <CubeFace face="front" project={cubeProjects.front} />
+              <CubeFace face="right" project={cubeProjects.right} />
+              <CubeFace face="back" project={cubeProjects.back} />
+              <CubeFace face="left" project={cubeProjects.left} />
+              <CubeFace face="top" project={cubeProjects.top} />
+              <CubeFace face="bottom" project={cubeProjects.bottom} />
             </div>
             
             <div className="cube-nav">
-              <button onClick={() => (window as any).rotateCube('front')} className="active">1</button>
-              <button onClick={() => (window as any).rotateCube('right')}>2</button>
-              <button onClick={() => (window as any).rotateCube('back')}>3</button>
-              <button onClick={() => (window as any).rotateCube('left')}>4</button>
-              <button onClick={() => (window as any).rotateCube('top')}>5</button>
-              <button onClick={() => (window as any).rotateCube('bottom')}>6</button>
+              <button onClick={() => handleCubeRotate('front')} className="active">1</button>
+              <button onClick={() => handleCubeRotate('right')}>2</button>
+              <button onClick={() => handleCubeRotate('back')}>3</button>
+              <button onClick={() => handleCubeRotate('left')}>4</button>
+              <button onClick={() => handleCubeRotate('top')}>5</button>
+              <button onClick={() => handleCubeRotate('bottom')}>6</button>
             </div>
           </div>
         </div>
@@ -294,8 +228,6 @@ export const HomePage: React.FC = () => {
                 <span>API</span>
               </div>
             </li>
-
-            {/* Add other expertise cards similarly */}
           </ul>
         </div>
       </section>
