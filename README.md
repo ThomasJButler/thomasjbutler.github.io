@@ -26,9 +26,7 @@
 
 Hey! I'm a **Full-Stack Developer** and **AI Integration Specialist** originally from Liverpool, and I'm genuinely passionate about **making technology more human**. You know that feeling when you use an app and it just feels natural? That's what I'm after.
 
-I've got this slightly obsessive thing about building tech that actually empowers people rather than replacing them. It has to be a joyful experience too. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating those Matrix-themed interfaces (yes, I'm that person), I'm always asking: "Will this actually make someone's day better?". 
-
-I'm currently working on custom models that can disagree with the user if necessary and be a helpful friend, it won't 'mirror you' and take you down self made rabbit holes like the current models do. This would be the start of truly safe AI. (For the record I don't expect to solve this myself! As of July 2025 OpenAI is making this it's company mission to make its models more human friendly, especially for the vunerable).
+I've got this slightly obsessive thing about building tech that actually empowers people rather than replacing them. It has to be a joyful experience too. Whether I'm working on AI applications for neurodiversity support (which I'm really excited about) or creating those Matrix-themed interfaces, I'm always asking: "Will this actually make someone's day better? Is it safe and designed purely with the end user in mind?"
 
 The truth is, I love the technical challenges too and solving problems with code. Diving deep into React, Python, AI integration - but what really gets me up in the morning is knowing that something I built might help someone feel more confident, more included, or just have a bit more fun with technology.
 
