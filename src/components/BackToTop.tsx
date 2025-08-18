@@ -49,12 +49,17 @@ export const BackToTop: React.FC<BackToTopProps> = ({
       }
     };
 
+    // Use passive listener for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchmove', handleScroll, { passive: true });
     
     // Check initial state
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+    };
   }, [threshold, isVisible]);
 
   // Handle button click with animation
@@ -63,18 +68,24 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 
     setIsAnimating(true);
 
+    // Improved smooth scroll for all devices including iOS Safari
+    const scrollToTopSmooth = () => {
+      const c = document.documentElement.scrollTop || document.body.scrollTop;
+      if (c > 0) {
+        window.requestAnimationFrame(scrollToTopSmooth);
+        window.scrollTo(0, c - c / 8);
+      } else {
+        setIsAnimating(false);
+      }
+    };
+
     // Pulse animation before scroll
     animate('.back-to-top-react', {
       scale: [1, 1.1, 1],
       duration: 200,
       ease: 'outQuad',
       complete: () => {
-        scrollToTop(true);
-        
-        // Reset animation state after scroll completes
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 1000);
+        scrollToTopSmooth();
       }
     });
 
@@ -102,6 +113,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     <button
       className={`back-to-top-react ${className}`}
       onClick={handleClick}
+      onTouchEnd={handleClick}
       onKeyDown={handleKeyDown}
       aria-label="Scroll back to top"
       title="Back to top"
@@ -110,7 +122,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         position: 'fixed',
         bottom: '30px',
         right: '30px',
-        zIndex: 1000,
+        zIndex: 9999,
         width: '60px',
         height: '60px',
         background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 0, 0.05) 100%)',
@@ -118,6 +130,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         borderRadius: '50%',
         color: 'var(--matrix-green)',
         cursor: isAnimating ? 'wait' : 'pointer',
+        touchAction: 'manipulation',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

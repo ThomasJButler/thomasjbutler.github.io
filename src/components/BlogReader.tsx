@@ -1,25 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animate } from 'animejs';
-import { marked } from 'marked';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
 
-// Configure marked for better rendering
-marked.setOptions({
-  breaks: true,
-  gfm: true,
-  sanitize: false // We trust our own content
-});
-
-// Enhanced markdown parser using marked
-const parseMarkdown = (markdown: string): string => {
-  try {
-    return marked(markdown) as string;
-  } catch (error) {
-    console.error('Markdown parsing error:', error);
-    // Fallback to simple text
-    return `<p>${markdown.replace(/\n/g, '<br>')}</p>`;
-  }
+// Custom components for ReactMarkdown
+const markdownComponents = {
+  h1: ({children}: any) => <h1 className="article-h1">{children}</h1>,
+  h2: ({children}: any) => <h2 className="article-h2">{children}</h2>,
+  h3: ({children}: any) => <h3 className="article-h3">{children}</h3>,
+  h4: ({children}: any) => <h4 className="article-h4">{children}</h4>,
+  p: ({children}: any) => <p className="article-paragraph">{children}</p>,
+  ul: ({children}: any) => <ul className="article-list">{children}</ul>,
+  ol: ({children}: any) => <ol className="article-list article-list-ordered">{children}</ol>,
+  li: ({children}: any) => <li className="article-list-item">{children}</li>,
+  blockquote: ({children}: any) => <blockquote className="article-blockquote">{children}</blockquote>,
+  code: ({inline, children}: any) => 
+    inline ? (
+      <code className="inline-code">{children}</code>
+    ) : (
+      <pre className="code-block">
+        <code>{children}</code>
+      </pre>
+    ),
+  a: ({href, children}: any) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="article-link">
+      {children}
+    </a>
+  ),
+  img: ({src, alt}: any) => (
+    <img src={src} alt={alt} className="article-image" loading="lazy" />
+  ),
+  table: ({children}: any) => (
+    <div className="table-wrapper">
+      <table className="article-table">{children}</table>
+    </div>
+  ),
 };
 
 export const BlogReader: React.FC = () => {
@@ -28,7 +45,6 @@ export const BlogReader: React.FC = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [htmlContent, setHtmlContent] = useState<string>('');
   const [fontSize, setFontSize] = useState(() => {
     const saved = localStorage.getItem('blogFontSize');
     return saved ? parseInt(saved) : 18;
@@ -56,12 +72,7 @@ export const BlogReader: React.FC = () => {
           console.log('Loading blog post:', loadedPost.title);
           console.log('Raw content length:', loadedPost.content.length);
           
-          // Parse markdown to HTML using marked
-          const parsedHtml = parseMarkdown(loadedPost.content);
-          console.log('Parsed HTML length:', parsedHtml.length);
-          
-          // Set HTML content in state instead of directly manipulating DOM
-          setHtmlContent(parsedHtml);
+          // Content will be rendered directly by ReactMarkdown
         } else {
           setError('Blog post not found');
         }
@@ -208,8 +219,14 @@ export const BlogReader: React.FC = () => {
           <div 
             className="article-content"
             style={{ lineHeight: fontSize >= 20 ? '1.8' : '1.6' }}
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-          />
+          >
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={markdownComponents}
+            >
+              {post.content}
+            </ReactMarkdown>
+          </div>
 
           <footer className="article-footer">
             <div className="article-nav">

@@ -18,6 +18,7 @@ export const BlogPage: React.FC = () => {
   const [allTags, setAllTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const matrixAnim = useMatrixAnimation();
@@ -158,9 +159,40 @@ export const BlogPage: React.FC = () => {
             <i className="fas fa-search search-icon"></i>
           </div>
 
-          <div className="tags-container">
-            <div className="tags-label">Filter by topic:</div>
-            <div className="tags-list">
+          {/* Mobile filter toggle */}
+          <button 
+            className="filter-toggle mobile-only"
+            onClick={() => setShowFilters(!showFilters)}
+            aria-expanded={showFilters}
+            aria-label="Toggle filters"
+          >
+            <i className="fas fa-filter"></i>
+            <span>Filter by Topic</span>
+            {selectedTag && <span className="active-badge">1</span>}
+            <i className={`fas fa-chevron-${showFilters ? 'up' : 'down'}`}></i>
+          </button>
+
+          {/* Desktop tags and mobile dropdown */}
+          <div className={`tags-container ${!showFilters ? 'collapsed-mobile' : ''}`}>
+            <div className="tags-label desktop-only">Filter by topic:</div>
+            
+            {/* Mobile select dropdown */}
+            <select 
+              className="tags-select mobile-only"
+              value={selectedTag || ''}
+              onChange={(e) => {
+                handleTagClick(e.target.value || null);
+                setShowFilters(false);
+              }}
+            >
+              <option value="">All Topics</option>
+              {allTags.map(tag => (
+                <option key={tag} value={tag}>{tag}</option>
+              ))}
+            </select>
+            
+            {/* Desktop tag buttons */}
+            <div className="tags-list desktop-only">
               {allTags.map(tag => (
                 <button
                   key={tag}
