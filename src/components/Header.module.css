@@ -36,7 +36,7 @@
 
 .headerTitle {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 2rem;
   cursor: pointer;
   text-decoration: none;
@@ -53,6 +53,7 @@
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
   transition: all 0.3s ease;
   position: relative;
+  white-space: nowrap;
 }
 
 .headerTitle h1:hover {

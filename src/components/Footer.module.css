@@ -34,11 +34,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: flex-start;
+  align-items: center;
+  justify-items: center;
 }
 
 .footerSection {
   min-width: 0; /* Prevent overflow */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footerSection h3 {
@@ -59,7 +64,8 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 40px;
   height: 1px;
   background: linear-gradient(90deg, var(--matrix-green, #00ff00), transparent);
@@ -251,11 +257,7 @@
   .footerSection {
     width: 100%;
     text-align: center;
-  }
-
-  .footerSection h3::after {
-    left: 50%;
-    transform: translateX(-50%);
+    align-items: center;
   }
 
   .socialLinks {

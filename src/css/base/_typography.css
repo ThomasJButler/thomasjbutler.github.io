@@ -142,6 +142,7 @@ ul {
     list-style-type: none;
 }
 
+/* Removed arrow indicators to clean up navigation
 ul li::before {
     content: "▸ ";
     color: var(--matrix-green);
@@ -149,7 +150,7 @@ ul li::before {
     display: inline-block;
     width: 1em;
     margin-left: 1em;
-}
+} */
 
 ol {
     list-style-type: decimal;
