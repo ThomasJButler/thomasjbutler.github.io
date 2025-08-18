@@ -5,6 +5,13 @@
    Global React App Fixes
    ========================================================================== */
 
+/* React App Layout Fixes */
+/* Addresses header, footer, and general layout issues in React version */
+
+/* ==========================================================================
+   Global React App Fixes
+   ========================================================================== */
+
 /* Fix body and root container */
 body {
   margin: 0;
