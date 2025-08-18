@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
+  const location = useLocation();
   const footerRef = useRef<HTMLElement>(null);
   const socialLinksRef = useRef<HTMLDivElement>(null);
+  
+  // Check if we're on a blog page
+  const isBlogPage = location.pathname.startsWith('/blog');
 
   useEffect(() => {
     // Animate footer on scroll into view
@@ -95,15 +100,17 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.footerSection}>
-          <h3>Quick Links</h3>
-          <ul className={styles.footerLinks}>
-            <li><a href="/projects">Featured Projects</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Get in Touch</a></li>
-            <li><a href="https://aitomatic.co.uk/" target="_blank" rel="noopener noreferrer">AI Apps</a></li>
-          </ul>
-        </div>
+        {!isBlogPage && (
+          <div className={styles.footerSection}>
+            <h3>Quick Links</h3>
+            <ul className={styles.footerLinks}>
+              <li><a href="/projects">Featured Projects</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/contact">Get in Touch</a></li>
+              <li><a href="https://aitomatic.co.uk/" target="_blank" rel="noopener noreferrer">AI Apps</a></li>
+            </ul>
+          </div>
+        )}
 
         <div className={styles.footerSection}>
           <h3>Tech Stack</h3>

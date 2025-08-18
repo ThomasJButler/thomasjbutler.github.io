@@ -3,10 +3,10 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-fixed);
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
-  transition: transform var(--duration-normal) ease;
+  transition: transform 0.3s ease;
   border-bottom: 1px solid rgba(0, 255, 0, 0.2);
 }
 
@@ -15,9 +15,9 @@
 }
 
 .container {
-  max-width: var(--container-max-width);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-md) var(--space-lg);
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,22 +32,22 @@
 
 .headerTitle h1 {
   font-size: 2rem;
-  color: var(--matrix-green);
+  color: #00ff00;
   margin: 0;
-  font-family: var(--font-primary);
-  text-shadow: var(--matrix-glow);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-shadow: 0 0 10px #00ff00;
   cursor: pointer;
   line-height: 1.2;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.05em;
 }
 
 .headerTitle h3 {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: rgba(0, 255, 0, 0.7);
   margin: 0.25rem 0 0;
   font-weight: 300;
-  font-family: var(--font-body);
-  letter-spacing: var(--letter-spacing-base);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  letter-spacing: 0.02em;
 }
 
 nav ul {
@@ -55,25 +55,25 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: var(--spacing-lg);
+  gap: 2rem;
 }
 
 nav a {
-  color: var(--color-primary);
+  color: #00ff00;
   text-decoration: none;
-  font-family: var(--font-primary);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
   font-size: 1.2rem;
   position: relative;
-  transition: all var(--duration-fast) var(--easing-default);
+  transition: all 0.3s ease;
 }
 
 nav a:hover {
-  text-shadow: 0 0 15px var(--glow-intense);
+  text-shadow: 0 0 15px #00ff00;
 }
 
 nav li.active a {
-  color: var(--color-text-bright);
-  text-shadow: 0 0 20px var(--glow-intense);
+  color: #00ff00;
+  text-shadow: 0 0 20px #00ff00;
 }
 
 .menuToggle {
@@ -81,7 +81,7 @@ nav li.active a {
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--spacing-xs);
+  padding: 0.25rem;
   position: relative;
   width: 30px;
   height: 30px;
@@ -91,9 +91,9 @@ nav li.active a {
   display: block;
   width: 100%;
   height: 2px;
-  background: var(--color-primary);
+  background: #00ff00;
   margin: 5px 0;
-  transition: all var(--duration-fast) ease;
+  transition: all 0.3s ease;
   position: absolute;
   left: 0;
 }
@@ -118,7 +118,7 @@ nav li.active a {
 
 @media (max-width: 768px) {
   .container {
-    padding: var(--spacing-md);
+    padding: 1rem;
   }
   
   .headerTitle h1 {
@@ -141,9 +141,11 @@ nav li.active a {
     right: 0;
     background: rgba(0, 0, 0, 0.95);
     flex-direction: column;
-    padding: var(--spacing-md);
-    gap: var(--spacing-md);
+    padding: 1rem;
+    gap: 1rem;
     border-top: 1px solid rgba(0, 255, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2);
+    z-index: 999;
   }
   
   nav ul.show {

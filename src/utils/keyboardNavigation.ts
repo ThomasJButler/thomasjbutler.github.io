@@ -27,8 +27,8 @@ export function initKeyboardNavigation(): void {
     }
   });
 
-  // Add skip to content link if not present
-  addSkipLink();
+  // Skip link removed - not needed for this site
+  // addSkipLink();
   
   // Initialize focus trap utilities
   initFocusTrap();

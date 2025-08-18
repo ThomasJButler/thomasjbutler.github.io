@@ -155,11 +155,7 @@ function generateExcerpt(content: string, maxLength: number = 150): string {
 
 // Get the correct base path for the current environment
 function getBasePath(): string {
-  // In development, Vite serves files from root
-  if (import.meta.env.DEV) {
-    return '';
-  }
-  // In production, use the configured base path
+  // Always use the configured base path since Vite handles this correctly in both dev and production
   return '/ThomasJButler';
 }
 

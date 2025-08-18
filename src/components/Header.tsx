@@ -116,9 +116,11 @@ export const Header: React.FC = () => {
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <div className={styles.headerTitle}>
-          <h1 onMouseEnter={(e) => matrixAnimations.glitchText(e.currentTarget)}>
-            Thomas J Butler
-          </h1>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <h1 onMouseEnter={location.pathname.includes('/blog') ? undefined : (e) => matrixAnimations.glitchText(e.currentTarget)}>
+              Thomas J Butler
+            </h1>
+          </Link>
           <h3>Full Stack Developer | AI Integration Specialist</h3>
         </div>
         
