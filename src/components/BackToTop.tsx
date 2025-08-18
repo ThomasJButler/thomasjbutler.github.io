@@ -73,7 +73,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
       const c = document.documentElement.scrollTop || document.body.scrollTop;
       if (c > 0) {
         window.requestAnimationFrame(scrollToTopSmooth);
-        window.scrollTo(0, c - c / 8);
+        window.scrollTo(0, c - c / 3);  // Much faster scroll speed
       } else {
         setIsAnimating(false);
       }
