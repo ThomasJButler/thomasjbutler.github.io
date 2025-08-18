@@ -2050,7 +2050,7 @@ nav ul li.version-timetravel:hover {
 
 .glitch-text::before {
     left: 2px;
-    text-shadow: -2px 0 #ff00ff;
+    text-shadow: -2px 0 #00ff00;
     clip: rect(44px, 450px, 56px, 0);
 }
 

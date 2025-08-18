@@ -153,10 +153,21 @@ function generateExcerpt(content: string, maxLength: number = 150): string {
   return cleanContent.substring(0, maxLength).trim() + '...';
 }
 
+// Get the correct base path for the current environment
+function getBasePath(): string {
+  // In development, Vite serves files from root
+  if (import.meta.env.DEV) {
+    return '';
+  }
+  // In production, use the configured base path
+  return '/ThomasJButler';
+}
+
 // Load a single blog post
 export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const response = await fetch(`/ThomasJButler/docs/blog/${slug}.md`);
+    const basePath = getBasePath();
+    const response = await fetch(`${basePath}/docs/blog/${slug}.md`);
     if (!response.ok) return null;
     
     const content = await response.text();

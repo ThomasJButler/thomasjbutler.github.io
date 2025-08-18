@@ -7,7 +7,7 @@
 :root {
     --neon-green: #00ff00;
     --neon-blue: #00ffff;
-    --neon-pink: #ff00ff;
+    --neon-pink: #00ff00;
     --dark-bg: #000000;
     --card-bg: rgba(0, 255, 0, 0.05);
     --gradient-primary: linear-gradient(145deg, rgba(0, 255, 0, 0.05), rgba(0, 40, 0, 0.2));
