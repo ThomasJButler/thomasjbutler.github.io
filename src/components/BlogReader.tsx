@@ -8,14 +8,42 @@ import { loadBlogPost, BlogPost } from '../utils/blogLoader';
 // Custom components for ReactMarkdown
 const markdownComponents = {
   h1: ({children}: any) => <h1 className="article-h1">{children}</h1>,
-  h2: ({children}: any) => <h2 className="article-h2">{children}</h2>,
-  h3: ({children}: any) => <h3 className="article-h3">{children}</h3>,
-  h4: ({children}: any) => <h4 className="article-h4">{children}</h4>,
+  h2: ({children}: any) => (
+    <h2 className="article-h2 article-h2-underlined">
+      {children}
+      <span className="h2-underline"></span>
+    </h2>
+  ),
+  h3: ({children}: any) => (
+    <h3 className="article-h3 article-h3-accented">
+      {children}
+    </h3>
+  ),
+  h4: ({children}: any) => (
+    <h4 className="article-h4 article-h4-subtle">
+      {children}
+    </h4>
+  ),
   p: ({children}: any) => <p className="article-paragraph">{children}</p>,
   ul: ({children}: any) => <ul className="article-list">{children}</ul>,
   ol: ({children}: any) => <ol className="article-list article-list-ordered">{children}</ol>,
   li: ({children}: any) => <li className="article-list-item">{children}</li>,
   blockquote: ({children}: any) => <blockquote className="article-blockquote">{children}</blockquote>,
+  hr: () => (
+    <div className="article-divider">
+      <span className="divider-glow"></span>
+      <span className="divider-line"></span>
+      <span className="divider-center"></span>
+      <span className="divider-line"></span>
+      <span className="divider-glow"></span>
+    </div>
+  ),
+  strong: ({children}: any) => (
+    <strong className="article-strong">{children}</strong>
+  ),
+  em: ({children}: any) => (
+    <em className="article-emphasis">{children}</em>
+  ),
   code: ({inline, children}: any) => 
     inline ? (
       <code className="inline-code">{children}</code>
