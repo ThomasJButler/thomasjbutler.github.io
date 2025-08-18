@@ -123,7 +123,6 @@ export const App: React.FC = () => {
             <Route path="projects.html" element={<Navigate to="/projects" replace />} />
             <Route path="services.html" element={<Navigate to="/services" replace />} />
             <Route path="contact.html" element={<Navigate to="/contact" replace />} />
-            <Route path="react.html" element={<Navigate to="/blog" replace />} />
           </Route>
         </Routes>
       </Router>

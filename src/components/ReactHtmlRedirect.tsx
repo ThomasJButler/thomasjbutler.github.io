@@ -33,7 +33,9 @@ export const ReactHtmlRedirect: React.FC = () => {
         'contact': '/contact'
       };
       
-      const route = routeMap[redirect?.toLowerCase()] || '/';
+      // Only redirect to a specific route if we have a redirect parameter
+      // Otherwise, if we're just on react.html, go to homepage
+      const route = redirect ? (routeMap[redirect.toLowerCase()] || '/') : '/';
       
       // Clear the hash and navigate to the route using React Router
       window.location.hash = '';
