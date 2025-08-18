@@ -455,7 +455,7 @@ button:focus-visible {
 .article-meta {
   display: flex;
   gap: 30px;
-  color: rgba(0, 255, 0, 0.6);
+  color: rgba(0, 255, 0, 0.7); /* Slightly brighter green for metadata */
   margin-bottom: 20px;
 }
 
@@ -467,16 +467,16 @@ button:focus-visible {
 
 .article-tag {
   padding: 6px 12px;
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(0, 255, 0, 0.08);
   border: 1px solid rgba(0, 255, 0, 0.3);
   border-radius: 15px;
-  color: rgba(0, 255, 0, 0.8);
+  color: rgba(0, 255, 0, 0.9); /* Brighter green for tags */
   font-size: 0.9rem;
 }
 
-/* Article Typography */
+/* Article Typography - Optimized for Readability */
 .article-content {
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.95); /* Brighter white for better readability */
   font-size: 18px;
   line-height: 1.8;
   letter-spacing: 0.02em;
@@ -484,18 +484,40 @@ button:focus-visible {
   max-width: 65ch;
   position: relative;
   z-index: 2;
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 10, 10, 0.9); /* Slightly darker background for contrast */
   padding: 20px;
   border-radius: 8px;
   min-height: 200px;
 }
 
+/* Custom Markdown Component Styles */
+.article-paragraph {
+  color: #ffffff; /* Pure white for main text */
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.article-h1,
+.article-h2,
+.article-h3,
+.article-h4 {
+  color: rgba(0, 255, 0, 0.85); /* Softer green for headers */
+  margin: 30px 0 15px;
+  text-shadow: 0 0 3px rgba(0, 255, 0, 0.2); /* Subtle glow */
+  font-weight: 600;
+}
+
+.article-h1 { font-size: 2.5rem; margin-top: 40px; }
+.article-h2 { font-size: 2rem; margin-top: 32px; }
+.article-h3 { font-size: 1.6rem; margin-top: 24px; }
+.article-h4 { font-size: 1.3rem; margin-top: 20px; }
+
 .article-content h1,
 .article-content h2,
 .article-content h3 {
-  color: var(--matrix-green);
+  color: rgba(0, 255, 0, 0.85); /* Softer green */
   margin: 30px 0 15px;
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 3px rgba(0, 255, 0, 0.2);
 }
 
 .article-content h1 { font-size: 2.5rem; margin-top: 40px; }
@@ -504,31 +526,52 @@ button:focus-visible {
 
 .article-content p {
   margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.95); /* Bright white for paragraphs */
+}
+
+.article-list {
+  color: rgba(255, 255, 255, 0.9); /* White for list items */
+  margin: 20px 0;
+  padding-left: 30px;
+}
+
+.article-list-ordered {
+  list-style-type: decimal;
+}
+
+.article-list-item {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .article-content ul,
 .article-content ol {
   margin: 20px 0;
   padding-left: 30px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .article-content li {
   margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
+.inline-code,
 .article-content code {
-  background: rgba(0, 255, 0, 0.08);
-  color: #66ff66;
+  background: rgba(0, 0, 0, 0.5); /* Dark background */
+  color: #00ff88; /* Softer green-cyan for code */
   padding: 3px 6px;
   font-size: 0.9em;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
+  border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
+.code-block,
 .article-content pre {
-  background: rgba(0, 255, 0, 0.03);
-  border: 1px solid rgba(0, 255, 0, 0.2);
-  color: rgba(255, 255, 255, 0.87);
+  background: rgba(0, 0, 0, 0.6); /* Dark background for code blocks */
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  color: #ffffff; /* White text for readability */
   line-height: 1.6;
   border-radius: 8px;
   padding: 20px;
@@ -536,35 +579,45 @@ button:focus-visible {
   margin: 20px 0;
 }
 
+.code-block code,
 .article-content pre code {
   background: none;
   padding: 0;
+  color: #ffffff; /* White text in code blocks */
+  border: none;
 }
 
+.article-link,
 .article-content a {
-  color: #66ff66;
+  color: #00ccaa; /* Blue-green for better distinction */
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: all 0.2s ease;
 }
 
+.article-link:hover,
 .article-content a:hover {
-  color: #00ff00;
-  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+  color: #00ff99; /* Brighter green-cyan on hover */
+  text-shadow: 0 0 8px rgba(0, 255, 153, 0.4);
 }
 
+.article-link:focus-visible,
 .article-content a:focus-visible {
-  outline: 2px solid #00ff00;
+  outline: 2px solid #00ccaa;
   outline-offset: 4px;
   border-radius: 2px;
 }
 
+.article-blockquote,
 .article-content blockquote {
-  border-left: 4px solid var(--matrix-green);
+  border-left: 4px solid rgba(0, 255, 0, 0.6); /* Green accent border */
   padding-left: 20px;
   margin: 20px 0;
   font-style: italic;
-  color: rgba(0, 255, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8); /* Light gray text instead of green */
+  background: rgba(0, 255, 0, 0.02); /* Very subtle green background */
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
 }
 
 /* Article Footer */
@@ -900,6 +953,41 @@ button:focus-visible {
 .tags-select option {
   background: #000;
   color: var(--matrix-green);
+}
+
+/* Article Table Styles */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.article-table th {
+  background: rgba(0, 255, 0, 0.1);
+  color: rgba(0, 255, 0, 0.9);
+  padding: 10px;
+  text-align: left;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.article-table td {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+/* Article Image Styles */
+.article-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid rgba(0, 255, 0, 0.3);
 }
 
 /* Mobile Responsive Styles */
