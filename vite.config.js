@@ -2,16 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 
 export default defineConfig({
   root: '.',
   base: '/ThomasJButler/',
-  plugins: [
-    react(),
-    legacy({
-      targets: ['defaults', 'not IE 11']
-    })
-  ],
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -38,6 +33,39 @@ export default defineConfig({
       }
     }
   },
+  // Custom plugin to copy blog markdown files
+  plugins: [
+    react(),
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    }),
+    {
+      name: 'copy-blog-files',
+      writeBundle() {
+        const blogSrcDir = resolve(__dirname, 'docs/blog');
+        const blogDestDir = resolve(__dirname, 'dist/docs/blog');
+        
+        // Ensure destination directory exists
+        if (!existsSync(resolve(__dirname, 'dist/docs'))) {
+          mkdirSync(resolve(__dirname, 'dist/docs'), { recursive: true });
+        }
+        if (!existsSync(blogDestDir)) {
+          mkdirSync(blogDestDir, { recursive: true });
+        }
+        
+        // Copy all markdown files
+        if (existsSync(blogSrcDir)) {
+          const files = readdirSync(blogSrcDir);
+          files.forEach(file => {
+            if (file.endsWith('.md')) {
+              copyFileSync(resolve(blogSrcDir, file), resolve(blogDestDir, file));
+              console.log(`Copied blog file: ${file}`);
+            }
+          });
+        }
+      }
+    }
+  ],
   server: {
     port: 3000,
     open: true,
