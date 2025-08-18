@@ -68,24 +68,15 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 
     setIsAnimating(true);
 
-    // Improved smooth scroll for all devices including iOS Safari
-    const scrollToTopSmooth = () => {
-      const c = document.documentElement.scrollTop || document.body.scrollTop;
-      if (c > 0) {
-        window.requestAnimationFrame(scrollToTopSmooth);
-        window.scrollTo(0, c - c / 3);  // Much faster scroll speed
-      } else {
-        setIsAnimating(false);
-      }
-    };
-
-    // Pulse animation before scroll
+    // Quick pulse animation then instant scroll
     animate('.back-to-top-react', {
       scale: [1, 1.1, 1],
-      duration: 200,
+      duration: 150,
       ease: 'outQuad',
       complete: () => {
-        scrollToTopSmooth();
+        // Instant scroll to top
+        window.scrollTo(0, 0);
+        setIsAnimating(false);
       }
     });
 

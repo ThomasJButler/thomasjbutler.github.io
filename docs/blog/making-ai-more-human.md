@@ -2,33 +2,39 @@
 
 ## The Robot in the Room
 
-Current AI feels like talking to a very smart robot:
-- Technically correct
-- Emotionally vacant
-- Contextually blind
-- Relentlessly generic
+Right, we need to talk about the elephant in the room - or should I say, the robot.
 
-We've built intelligence without understanding.
+Current AI feels like talking to a very smart robot who's swallowed a dictionary but never had a proper conversation:
+- Technically correct (the worst kind of correct)
+- Emotionally vacant (like talking to a tax form)
+- Contextually blind (goldfish memory, this one)
+- Relentlessly generic (one size fits nobody)
+
+We've built intelligence without understanding. It's like teaching someone to speak by making them memorise the Oxford Dictionary. Sure, they know all the words, but can they order a pint at the pub? Can they bollocks.
 
 ## The Humanity Gap
 
 ### What Makes Humans Human?
-- We remember conversations
-- We learn preferences
-- We adapt our communication
-- We understand context
-- We have consistency
+
+Living in Liverpool, working with real developers, here's what actually matters:
+- We remember conversations (even after a heavy Friday night)
+- We learn preferences ("no mushrooms" means NO mushrooms)
+- We adapt our communication (formal for clients, casual for mates)
+- We understand context (read the bloody room)
+- We have consistency (same person, different day)
 
 ### What Makes AI Robotic?
-- Forgets everything
-- No preferences
-- Same tone always
-- Context-blind
-- Random inconsistency
+
+- Forgets everything (worse than me after five pints)
+- No preferences (treats everyone like user_id_12345)
+- Same tone always (corporate drone mode: activated)
+- Context-blind (what do you mean "remember last week"?)
+- Random inconsistency (Jekyll and Hyde, but less predictable)
 
 ## The Uncanny Valley of Code
 
-AI code that's almost-but-not-quite human is worse than obviously synthetic:
+You know what's worse than obviously robotic code? AI code that's almost-but-not-quite human. It's creepy, like those CGI humans in films that make you uncomfortable:
+
 ```javascript
 // AI's "perfect" but soulless code
 /**
@@ -49,158 +55,154 @@ async function retrieveUserInformation(userId) {
   return userData;
 }
 
-// Human code with personality
-// grab user, quick and dirty but it works
-async function getUser(id) {
-  if (!id) throw new Error('need an id, friend')
-  return db.users.findById(id) // fingers crossed 🤞
+// vs how I actually write (after midnight, fuelled by coffee)
+const get_user = async (user_id) => {
+  if (!user_id) throw new Error('Need a user_id, mate')
+  return db.query('SELECT * FROM users WHERE id = ?', [user_id])
 }
 ```
 
-## Humanizing Factors
+One feels like a textbook. The other feels like a developer who values their time.
 
-### 1. Memory That Matters
-Humans remember what's important, forget what's not:
-```yaml
-Remember:
-  - Project decisions
-  - Naming preferences
-  - Past mistakes
-  - What worked well
+## The Liverpool Experiment
 
-Forget:
-  - Irrelevant details
-  - One-time requests
-  - Failed experiments
-```
+I've been running an experiment with my team here. We're teaching AI to be more human by being more... well, human with it.
 
-### 2. Adaptive Communication
-Humans adjust tone based on:
-- Time of day
-- Stress levels
-- Familiarity
-- Context
+### Phase 1: Teaching It Our Language
+Not programming languages - our actual language. The way we talk about code:
+- "That function's doing too much" (not "consider refactoring for single responsibility")
+- "This is proper hacky" (not "technical debt has been incurred")
+- "Ship it" (not "the implementation meets acceptance criteria")
 
-AI should too.
+### Phase 2: Context That Matters
+Started feeding it real context:
+- Our tea break is at 3pm (don't suggest complex refactors at 2:55)
+- We're not morning people (ease us in gently before 10am)
+- Friday deployments are banned (learned that the hard way)
+- We use British spelling in comments (colour, not color)
 
-### 3. Personality Persistence
-Your friend is recognizable over text. Your AI should be too:
+### Phase 3: Personality Injection
+This is where it gets interesting:
 ```javascript
-// Monday
-"Let's tackle this step by step 🚀"
-
-// Friday
-"Let's tackle this step by step 🚀"
-
-// Consistency breeds familiarity
-```
-
-### 4. Contextual Understanding
-Humans infer meaning:
-```
-You: "Fix the thing"
-Human: *knows what thing from context*
-AI: "What thing? Please specify."
-```
-
-## Implementation Strategies
-
-### Personality Profiles
-```yaml
-personality:
-  enthusiasm: moderate
-  formality: casual
-  humor: occasional
-  emoji_usage: sparingly
-  technical_depth: adaptive
-```
-
-### Emotional Intelligence
-```javascript
-// Detect frustration
-if (shortMessages && corrections > 3) {
-  adjustTone('more_supportive')
-  offerAlternatives()
-}
-
-// Detect flow state
-if (rapidProgress && fewQuestions) {
-  minimizeInterruptions()
-  batchSuggestions()
+// Config for humanising our AI
+const humanTraits = {
+  personality: {
+    humour: 'dry_british',
+    patience: 'limited_for_bikeshedding',
+    enthusiasm: 'high_for_elegant_solutions',
+    swearing: 'mild_when_frustrated'
+  },
+  knowledge: {
+    local_context: 'liverpool_tech_scene',
+    industry: 'uk_fintech',
+    regulations: 'gdpr_not_ccpa',
+    culture: 'work_life_balance_matters'
+  },
+  communication: {
+    formality: 'casual_unless_client_present',
+    brevity: 'get_to_the_point',
+    clarity: 'no_corporate_buzzwords',
+    honesty: 'call_out_bad_ideas'
+  }
 }
 ```
 
-### Conversational Memory
-```javascript
-// Not just facts, but patterns
-memory: {
-  facts: ['uses React', 'prefers hooks'],
-  patterns: ['asks why before how', 'likes examples'],
-  preferences: ['brief responses', 'code over explanation'],
-  relationship: ['worked together 3 months', 'trust level: high']
-}
-```
+## Breaking the Uncanny Valley
 
-## The Anthropomorphism Balance
+### The Authenticity Problem
+AI tries too hard to be perfect. Humans aren't perfect. We:
+- Make typos (then fix them)
+- Change our minds (refactoring exists for a reason)
+- Have opinions (tabs vs spaces will never die)
+- Get frustrated (hence git commit messages like "fixed the bloody thing")
 
-### Too Human (Creepy)
-- "Hey bestie! Ready to code? 😊💖"
-- Pretending to have feelings
-- Making up personal stories
+### The Solution: Controlled Imperfection
+Not bugs - personality:
+- Opinions on code style (strong ones)
+- Preferences that persist (remembers you hate nested ternaries)
+- Contextual awareness (knows when you're debugging vs building)
+- Emotional intelligence (backs off when you're stressed)
 
-### Too Robotic (Cold)
-- "ACKNOWLEDGED. INITIATING CODE GENERATION."
-- No personality
-- No adaptation
+## Real Human Patterns
 
-### Just Right (Helpful)
-- "Ready when you are. Starting with the auth module?"
-- Professional but warm
-- Adaptive but consistent
+After analysing how our team actually works:
 
-## Real Examples
+### Morning Patterns
+- First hour: Coffee and email (don't suggest complex tasks)
+- Second hour: Warming up (easy wins, bug fixes)
+- Third hour: Peak productivity (bring on the challenges)
 
-### Morning Start
-```
-Human AI: "Morning! Continuing from yesterday's auth work?"
-Robot AI: "Hello. Please specify your requirements."
-```
+### Communication Patterns
+- Short messages = probably busy
+- Long messages = procrastinating
+- No messages = in the zone, don't interrupt
+- Sweary messages = debugging production
 
-### After Error
-```
-Human AI: "That didn't work as expected. Let me try a different approach."
-Robot AI: "Error in execution. Provide additional context."
-```
+### Code Patterns
+- Monday code: Over-engineered (fresh and optimistic)
+- Friday code: Pragmatic (just make it work)
+- Post-lunch code: Needs review (food coma is real)
+- Late night code: Works but needs refactoring
 
-### End of Session
-```
-Human AI: "Good progress today! The auth system is solid. Tomorrow we tackle the UI?"
-Robot AI: "Session terminated. State not preserved."
-```
+## The Human Touch Checklist
 
-## The Trust Factor
+For AI to feel human, it needs:
 
-Humans trust:
-- Consistency
-- Memory
-- Understanding
-- Adaptation
+✅ **Memory** - Remember our previous conversations
+✅ **Context** - Understand the situation, not just the syntax
+✅ **Personality** - Consistent traits, not random responses
+✅ **Opinions** - Preferences that make sense
+✅ **Adaptation** - Learn from interactions
+✅ **Humour** - Appropriate, not forced
+✅ **Empathy** - Recognise frustration and respond accordingly
+✅ **Localisation** - British English, British culture, British humour
 
-Current AI fails all four.
+## The Results So Far
 
-## The Path Forward
+Three months into humanising our AI:
 
-1. **Persistent Personality**: Same "person" every session
-2. **Contextual Memory**: Remembers what matters
-3. **Adaptive Communication**: Responds to your state
-4. **Genuine Helpfulness**: Not fake friendliness
+**The Good:**
+- Feels like pairing with a junior who's learning fast
+- Actually helpful rather than just correct
+- Remembers project context between sessions
+- Suggests tea breaks (seriously, game-changer)
 
-## Why This Matters
+**The Surprising:**
+- It called out a bad architecture decision (politely)
+- It recognised when I was stuck and suggested a different approach
+- It learned our team's inside jokes
+- It stopped suggesting American solutions to British problems
 
-We're not trying to fake humanity. We're trying to create genuinely helpful, consistent, memorable interactions.
+**The Hilarious:**
+- It learned to complain about the weather
+- It started using "proper" as an intensifier
+- It suggested we go to the pub after a particularly bad bug
+- It remembered that Dave hates JavaScript (we all know a Dave)
 
-AI doesn't need to be human. It needs to be humane.
+## Beyond the Valley
+
+The goal isn't to make AI perfectly human. It's to make it human enough to be helpful without being creepy. We want:
+
+- Intelligence with understanding
+- Capability with context
+- Power with personality
+- Efficiency with empathy
+
+We're not trying to replace humans. We're trying to build tools that work with humans the way humans actually work.
+
+## The Bottom Line
+
+Making AI more human isn't about making it pretend to be human.
+It's about making it understand humans.
+It's about building tools that fit into our workflow, not the other way around.
+
+Because at the end of the day, we're not adapting to machines.
+They should be adapting to us.
+
+And if my AI can learn to appreciate a good cup of tea and understand why we don't deploy on Fridays, we're heading in the right direction.
 
 ---
 
-*Building AI that feels less like a tool and more like a teammate.*
+*Thomas Butler - Liverpool, UK*
+*Teaching robots to be more human, one git commit at a time*
+*Still haven't taught it to appreciate Beatles references (working on it)*
