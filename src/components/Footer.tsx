@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
@@ -34,6 +34,8 @@ export const Footer: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+
 
   const handleSocialHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     animate(e.currentTarget, {
@@ -100,27 +102,12 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {!isBlogPage && (
-          <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul className={styles.footerLinks}>
-              <li><a href="/projects">Featured Projects</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/contact">Get in Touch</a></li>
-              <li><a href="https://aitomatic.co.uk/" target="_blank" rel="noopener noreferrer">AI Apps</a></li>
-            </ul>
-          </div>
-        )}
-
         <div className={styles.footerSection}>
-          <h3>Tech Stack</h3>
-          <div className={styles.techStack}>
-            <span className={styles.techBadge}>React</span>
-            <span className={styles.techBadge}>TypeScript</span>
-            <span className={styles.techBadge}>Node.js</span>
-            <span className={styles.techBadge}>Python</span>
-            <span className={styles.techBadge}>AI/ML</span>
-          </div>
+          <h3>Quick Links</h3>
+          <ul className={styles.footerLinks}>
+            <li><a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
         </div>
       </div>
 
@@ -130,6 +117,7 @@ export const Footer: React.FC = () => {
           <i className="fas fa-map-marker-alt"></i> Liverpool, UK | Making technology more human
         </p>
       </div>
+
     </footer>
   );
 };

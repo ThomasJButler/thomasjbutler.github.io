@@ -115,18 +115,14 @@ export const Header: React.FC = () => {
   return (
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <div className={styles.headerTitle}>
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <h1 onMouseEnter={location.pathname.includes('/blog') ? undefined : (e) => matrixAnimations.glitchText(e.currentTarget)}>
-              Thomas J Butler
-            </h1>
-          </Link>
-          <h3>Full Stack Developer | AI Integration Specialist</h3>
-        </div>
+        <Link to="/" className={styles.headerTitle}>
+          <h1>Thomas J Butler</h1>
+          <span className={styles.tagline}>Full Stack Developer | AI Integration Specialist</span>
+        </Link>
         
-        <nav>
+        <nav className={styles.nav}>
           <button 
-            className={`${styles.menuToggle} ${isMenuOpen ? styles.active : ''}`}
+            className={`${styles.menuToggle} ${isMenuOpen ? styles.open : ''}`}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             onClick={toggleMenu}
@@ -136,33 +132,32 @@ export const Header: React.FC = () => {
             <span></span>
           </button>
           
-          <ul ref={navRef} className={isMenuOpen ? styles.show : ''}>
+          <ul ref={navRef} className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}>
             {navigation.map((item) => (
               <li 
                 key={item.href}
-                data-tooltip={item.tooltip}
-                className={location.pathname === item.href ? styles.active : ''}
+                className={styles.navItem}
               >
                 {item.external ? (
                   <a 
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-text={item.label}
+                    className={styles.navLink}
                     onMouseEnter={handleNavHover}
                   >
-                    {item.label} |
-                    {item.icon && <i className={item.icon}></i>}
+                    {item.label}
+                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`}></i>}
                   </a>
                 ) : (
                   <Link 
                     to={item.href}
-                    data-text={item.label}
+                    className={`${styles.navLink} ${location.pathname === item.href ? styles.active : ''}`}
                     onMouseEnter={handleNavHover}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.label} |
-                    {item.icon && <i className={item.icon}></i>}
+                    {item.label}
+                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`}></i>}
                   </Link>
                 )}
               </li>

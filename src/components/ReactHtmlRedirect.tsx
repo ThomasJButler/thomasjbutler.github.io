@@ -10,7 +10,7 @@ export const ReactHtmlRedirect: React.FC = () => {
     // Only process redirect once
     if (hasNavigated.current) return;
     
-    // Check for hash-based redirect (e.g., #blog)
+    // Check for hash-based redirect (e.g., #blog or #/blog/slug)
     const hash = window.location.hash.replace('#', '');
     
     // Also check for query parameter redirect
@@ -23,19 +23,26 @@ export const ReactHtmlRedirect: React.FC = () => {
     if ((redirect || isReactHtml) && !hasNavigated.current) {
       hasNavigated.current = true;
       
-      // Map redirect values to routes
-      const routeMap: Record<string, string> = {
-        'blog': '/blog',
-        'about': '/about',
-        'skills': '/skills',
-        'projects': '/projects',
-        'services': '/services',
-        'contact': '/contact'
-      };
+      let route = '/';
       
-      // Only redirect to a specific route if we have a redirect parameter
-      // Otherwise, if we're just on react.html, go to homepage
-      const route = redirect ? (routeMap[redirect.toLowerCase()] || '/') : '/';
+      if (redirect) {
+        // Handle full path redirects (e.g., "/blog/slug")
+        if (redirect.startsWith('/')) {
+          route = redirect;
+        } else {
+          // Map simple redirect values to routes
+          const routeMap: Record<string, string> = {
+            'blog': '/blog',
+            'about': '/about',
+            'skills': '/skills',
+            'projects': '/projects',
+            'services': '/services',
+            'contact': '/contact'
+          };
+          
+          route = routeMap[redirect.toLowerCase()] || '/';
+        }
+      }
       
       // Clear the hash and navigate to the route using React Router
       window.location.hash = '';

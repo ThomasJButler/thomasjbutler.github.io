@@ -142,7 +142,7 @@ export const useHeaderVisibility = (options: UseScrollDetectionOptions = {}) => 
 export const useBackToTop = (threshold: number = 300) => {
   const { getState, scrollToTop } = useScrollDetection({
     backToTopThreshold: threshold,
-    enableBackToTop: true
+    enableBackToTop: false  // Don't create DOM elements, only manage state
   });
 
   return {

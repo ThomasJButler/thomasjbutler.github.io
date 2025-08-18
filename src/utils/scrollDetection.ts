@@ -78,10 +78,12 @@ class ScrollDetection {
       return;
     }
 
-    // Create or find back-to-top button
-    this.backToTopElement = document.querySelector(this.options.backToTopSelector!);
-    if (!this.backToTopElement) {
-      this.createBackToTopButton();
+    // Only create back-to-top button if explicitly enabled
+    if (this.options.enableBackToTop) {
+      this.backToTopElement = document.querySelector(this.options.backToTopSelector!);
+      if (!this.backToTopElement) {
+        this.createBackToTopButton();
+      }
     }
 
     // Set initial state
@@ -266,10 +268,7 @@ class ScrollDetection {
   }
 }
 
-// Create and export a singleton instance
-export const scrollDetection = new ScrollDetection();
-
-// Export the class for custom instances
+// Export only the class - no singleton to prevent auto-initialization
 export { ScrollDetection };
 
 // Auto-initialize on legacy pages (non-React)

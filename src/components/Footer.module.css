@@ -1,225 +1,302 @@
+/* ========================================================================
+   Minimalistic Matrix Footer - Clean, Professional, Cool
+   ======================================================================== */
+
 .siteFooter {
-  background: linear-gradient(
-    to bottom,
-    var(--matrix-dark) 0%,
-    rgba(0, 0, 0, 0.98) 100%
-  );
-  border-top: 2px solid var(--border-primary);
-  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
-  margin-top: var(--space-3xl);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid var(--matrix-green, #00ff00);
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
   position: relative;
-  z-index: var(--z-base);
   opacity: 0;
-  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Matrix scanline effect */
-.siteFooter::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 255, 0, 0.03) 2px,
-    rgba(0, 255, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  opacity: 0.5;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+/* ========================================================================
+   Footer Container - Clean Horizontal Layout
+   ======================================================================== */
 
 .footerContent {
-  max-width: var(--container-max-width);
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.footerSection {
+  min-width: 0; /* Prevent overflow */
 }
 
 .footerSection h3 {
-  color: var(--matrix-green);
-  margin-bottom: var(--space-lg);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-h3);
-  text-shadow: var(--matrix-glow);
-  letter-spacing: var(--letter-spacing-wider);
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1.25rem;
+  color: var(--matrix-green, #00ff00);
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   position: relative;
-  padding-bottom: var(--space-sm);
+  padding-bottom: 0.5rem;
 }
 
-/* Underline effect for section headers */
+/* Subtle underline */
 .footerSection h3::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 50px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--matrix-green) 0%,
-    transparent 100%
-  );
-  box-shadow: 0 0 10px var(--matrix-green);
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--matrix-green, #00ff00), transparent);
 }
 
-.socialLinks {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.socialLinks a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.1) 0%,
-    rgba(0, 255, 0, 0.05) 100%
-  );
-  border: 1px solid var(--border-primary);
-  border-radius: 50%;
-  color: var(--matrix-green);
-  font-size: 1.3rem;
-  transition: all var(--duration-base) var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Pulse effect on hover */
-.socialLinks a::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 0, 0.4) 0%,
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-  transition: all var(--duration-slow) ease-out;
-}
-
-.socialLinks a:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.2) 0%,
-    rgba(0, 255, 0, 0.1) 100%
-  );
-  box-shadow: 
-    0 0 30px var(--matrix-green),
-    inset 0 0 15px rgba(0, 255, 0, 0.2);
-  color: var(--color-text-bright);
-  transform: translateY(-2px);
-}
-
-.socialLinks a:hover::before {
-  width: 100px;
-  height: 100px;
-}
+/* ========================================================================
+   Quick Links - Clean List Style
+   ======================================================================== */
 
 .footerLinks {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .footerLinks li {
-  margin-bottom: var(--spacing-xs);
+  margin: 0;
 }
 
 .footerLinks a {
-  color: var(--color-text-dim);
+  color: rgba(0, 255, 0, 0.7);
   text-decoration: none;
-  transition: all var(--duration-fast) ease;
-  position: relative;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .footerLinks a:hover {
-  color: var(--color-primary);
-  text-shadow: 0 0 10px var(--glow-primary);
+  color: var(--matrix-green, #00ff00);
+  background: rgba(0, 255, 0, 0.05);
+  border-color: rgba(0, 255, 0, 0.3);
+  transform: translateX(5px);
 }
 
-.techStack {
+/* ========================================================================
+   Social Links - Clean Icons with Text
+   ======================================================================== */
+
+.socialLinks {
   display: flex;
+  gap: 1.5rem;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
 }
 
-.techBadge {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.15) 0%,
-    rgba(0, 255, 0, 0.08) 100%
-  );
-  border: 1px solid var(--border-primary);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--border-radius-full);
-  font-size: var(--font-size-sm);
-  color: var(--matrix-green);
-  font-family: var(--font-primary);
-  letter-spacing: var(--letter-spacing-wide);
-  transition: all var(--duration-fast) var(--ease-out);
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(0, 255, 0, 0.7);
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
 }
 
-.techBadge:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.25) 0%,
-    rgba(0, 255, 0, 0.15) 100%
-  );
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-  transform: translateY(-1px);
+.socialLink i {
+  font-size: 1.25rem;
+  width: 20px;
+  text-align: center;
 }
+
+.socialLink span {
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+.socialLink:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.socialLink:hover i {
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+
+/* ========================================================================
+   Footer Bottom - Copyright & Location
+   ======================================================================== */
 
 .footerBottom {
+  max-width: 1280px;
+  margin: 3rem auto 0;
+  padding: 2rem 2rem 0;
+  border-top: 1px solid rgba(0, 255, 0, 0.1);
   text-align: center;
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid rgba(0, 255, 0, 0.2);
-  color: var(--color-text-dim);
 }
 
-.footerBottom p {
-  margin: var(--spacing-xs) 0;
+.copyright {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: rgba(0, 255, 0, 0.5);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.copyright a {
+  color: rgba(0, 255, 0, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.copyright a:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .location {
-  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 20px;
+  color: rgba(0, 255, 0, 0.6);
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
 }
 
-.location i {
-  margin-right: var(--spacing-xs);
+.location:hover {
+  border-color: rgba(0, 255, 0, 0.4);
+  background: rgba(0, 255, 0, 0.03);
 }
+
+
+/* ========================================================================
+   Cool Minimalist Effects
+   ======================================================================== */
+
+/* Subtle matrix rain on footer hover - very subtle */
+.siteFooter:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--matrix-green, #00ff00),
+    transparent
+  );
+  animation: scan 3s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+
+/* ========================================================================
+   Mobile Responsive Design
+   ======================================================================== */
 
 @media (max-width: 768px) {
-  .siteFooter {
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
-  }
-
   .footerContent {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: 2rem;
+  }
+
+  .footerSection {
+    width: 100%;
     text-align: center;
+  }
+
+  .footerSection h3::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .socialLinks {
     justify-content: center;
   }
 
-  .techStack {
-    justify-content: center;
+  .footerBottom {
+    padding: 1.5rem 1rem 0;
   }
+}
+
+@media (max-width: 480px) {
+  .socialLink span {
+    display: none;
+  }
+
+  .socialLinks {
+    gap: 2rem;
+  }
+}
+
+/* ========================================================================
+   Accessibility
+   ======================================================================== */
+
+.socialLink:focus-visible {
+  outline: 2px solid var(--matrix-green, #00ff00);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hardware acceleration */
+.siteFooter {
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }

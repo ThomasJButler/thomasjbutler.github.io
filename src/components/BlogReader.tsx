@@ -28,12 +28,12 @@ export const BlogReader: React.FC = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [htmlContent, setHtmlContent] = useState<string>('');
   const [fontSize, setFontSize] = useState(() => {
     const saved = localStorage.getItem('blogFontSize');
     return saved ? parseInt(saved) : 18;
   });
   const [readingProgress, setReadingProgress] = useState(0);
-  const contentRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
 
   // Load blog post
@@ -53,20 +53,15 @@ export const BlogReader: React.FC = () => {
         
         if (loadedPost) {
           setPost(loadedPost);
-          // Parse markdown to HTML using marked
           console.log('Loading blog post:', loadedPost.title);
           console.log('Raw content length:', loadedPost.content.length);
           
-          const htmlContent = parseMarkdown(loadedPost.content);
-          console.log('Parsed HTML length:', htmlContent.length);
-          console.log('Parsed HTML preview:', htmlContent.substring(0, 200));
+          // Parse markdown to HTML using marked
+          const parsedHtml = parseMarkdown(loadedPost.content);
+          console.log('Parsed HTML length:', parsedHtml.length);
           
-          if (contentRef.current) {
-            contentRef.current.innerHTML = htmlContent;
-            console.log('Content added to DOM, element HTML:', contentRef.current.innerHTML.substring(0, 200));
-          } else {
-            console.error('contentRef.current is null');
-          }
+          // Set HTML content in state instead of directly manipulating DOM
+          setHtmlContent(parsedHtml);
         } else {
           setError('Blog post not found');
         }
@@ -211,17 +206,10 @@ export const BlogReader: React.FC = () => {
           </header>
 
           <div 
-            ref={contentRef}
             className="article-content"
             style={{ lineHeight: fontSize >= 20 ? '1.8' : '1.6' }}
-          >
-            {/* Fallback content while loading */}
-            {!contentRef.current?.innerHTML && (
-              <div className="content-loading">
-                <p>Loading article content...</p>
-              </div>
-            )}
-          </div>
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
 
           <footer className="article-footer">
             <div className="article-nav">

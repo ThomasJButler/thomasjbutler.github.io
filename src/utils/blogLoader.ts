@@ -155,7 +155,12 @@ function generateExcerpt(content: string, maxLength: number = 150): string {
 
 // Get the correct base path for the current environment
 function getBasePath(): string {
-  // Always use the configured base path since Vite handles this correctly in both dev and production
+  // In development, use the Vite dev server
+  if (import.meta.env.DEV) {
+    // In development, files are served from the root
+    return '';
+  }
+  // In production, use the full base path
   return '/ThomasJButler';
 }
 
@@ -163,8 +168,16 @@ function getBasePath(): string {
 export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const basePath = getBasePath();
-    const response = await fetch(`${basePath}/docs/blog/${slug}.md`);
-    if (!response.ok) return null;
+    const url = `${basePath}/docs/blog/${slug}.md`;
+    
+    console.log(`Loading blog post from: ${url}`);
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.error(`Failed to fetch blog post: ${slug}, Status: ${response.status}`);
+      return null;
+    }
     
     const content = await response.text();
     const metadata = blogMetadata[slug] || {};

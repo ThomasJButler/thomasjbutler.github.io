@@ -1,8 +1,27 @@
+/* CSS Variables */
+:root {
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --matrix-green: #00ff00;
+  --matrix-green-dim: rgba(0, 255, 0, 0.7);
+  --matrix-green-faint: rgba(0, 255, 0, 0.3);
+}
+
+/* Accessibility - Focus Indicators */
+*:focus-visible {
+  outline: 2px solid var(--matrix-green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+button:focus-visible {
+  outline-offset: 2px;
+}
+
 /* Blog Page Styles */
 .blog-page {
   min-height: 100vh;
   padding: 120px 0 80px;
-  background: #000;
+  background: #0a0a0a;
   color: var(--text-primary);
   position: relative;
 }
@@ -319,7 +338,7 @@
 /* Blog Reader Styles */
 .blog-reader {
   min-height: 100vh;
-  background: #000;
+  background: #0a0a0a;
   color: var(--text-primary);
   position: relative;
   z-index: 1;
@@ -458,11 +477,15 @@
 
 /* Article Typography */
 .article-content {
-  color: rgba(0, 255, 0, 0.9);
-  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  max-width: 65ch;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(10, 10, 10, 0.8);
   padding: 20px;
   border-radius: 8px;
   min-height: 200px;
@@ -476,12 +499,12 @@
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
-.article-content h1 { font-size: 2rem; }
-.article-content h2 { font-size: 1.6rem; }
-.article-content h3 { font-size: 1.3rem; }
+.article-content h1 { font-size: 2.5rem; margin-top: 40px; }
+.article-content h2 { font-size: 2rem; margin-top: 32px; }
+.article-content h3 { font-size: 1.6rem; margin-top: 24px; }
 
 .article-content p {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .article-content ul,
@@ -495,16 +518,19 @@
 }
 
 .article-content code {
-  background: rgba(0, 255, 0, 0.1);
-  padding: 2px 6px;
+  background: rgba(0, 255, 0, 0.08);
+  color: #66ff66;
+  padding: 3px 6px;
+  font-size: 0.9em;
   border-radius: 3px;
   font-family: 'Courier New', monospace;
-  color: var(--matrix-green);
 }
 
 .article-content pre {
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(0, 255, 0, 0.03);
   border: 1px solid rgba(0, 255, 0, 0.2);
+  color: rgba(255, 255, 255, 0.87);
+  line-height: 1.6;
   border-radius: 8px;
   padding: 20px;
   overflow-x: auto;
@@ -517,13 +543,21 @@
 }
 
 .article-content a {
-  color: var(--matrix-green);
+  color: #66ff66;
   text-decoration: underline;
-  transition: all 0.3s ease;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
 }
 
 .article-content a:hover {
-  text-shadow: 0 0 10px var(--matrix-green);
+  color: #00ff00;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.article-content a:focus-visible {
+  outline: 2px solid #00ff00;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 .article-content blockquote {
@@ -657,13 +691,64 @@
 /* Loading & Error States */
 .blog-loading,
 .blog-reader-loading,
-.blog-reader-error {
+.blog-reader-error,
+.blog-error {
   min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--matrix-green);
+}
+
+.blog-error .error-content {
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+}
+
+.blog-error .error-content i {
+  font-size: 3rem;
+  color: var(--matrix-green);
+  margin-bottom: 20px;
+  display: block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.blog-error h2 {
+  color: var(--matrix-green);
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.blog-error p {
+  color: var(--matrix-green-dim);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.retry-button {
+  background: transparent;
+  border: 2px solid var(--matrix-green);
+  color: var(--matrix-green);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.retry-button:hover {
+  background: rgba(0, 255, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.retry-button:active {
+  transform: translateY(0);
 }
 
 .matrix-spinner {
@@ -770,6 +855,29 @@
     max-width: 100%;
     overflow-x: auto;
     padding-bottom: 10px;
+  }
+  
+  /* Enhanced Mobile Typography */
+  .article-content {
+    font-size: 16px; /* Prevents iOS zoom */
+    padding: 24px 16px; /* Better mobile padding */
+    line-height: 1.7;
+  }
+  
+  /* Touch targets - minimum 48px */
+  .blog-controls button,
+  .tag-button,
+  .clear-filters {
+    min-height: 48px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+  
+  .article-nav .nav-link {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
   }
   
   .reader-header {

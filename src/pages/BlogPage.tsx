@@ -17,21 +17,36 @@ export const BlogPage: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [allTags, setAllTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const matrixAnim = useMatrixAnimation();
 
+  // Load blog posts function
+  const loadPosts = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const loadedPosts = await loadAllBlogPosts();
+      
+      if (loadedPosts.length === 0) {
+        setError('No blog posts found. Please check your connection and try again.');
+      } else {
+        setPosts(loadedPosts);
+        setFilteredPosts(loadedPosts);
+        setAllTags(getAllTags(loadedPosts));
+      }
+    } catch (err) {
+      console.error('Error loading blog posts:', err);
+      setError('Failed to load blog posts. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Load blog posts on mount
   useEffect(() => {
-    const loadPosts = async () => {
-      setLoading(true);
-      const loadedPosts = await loadAllBlogPosts();
-      setPosts(loadedPosts);
-      setFilteredPosts(loadedPosts);
-      setAllTags(getAllTags(loadedPosts));
-      setLoading(false);
-    };
-    
     loadPosts();
   }, []);
 
@@ -84,6 +99,21 @@ export const BlogPage: React.FC = () => {
       <div className="blog-loading">
         <div className="matrix-spinner">
           <span>Loading blog posts...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="blog-error">
+        <div className="error-content">
+          <i className="fas fa-exclamation-triangle"></i>
+          <h2>Unable to Load Blog</h2>
+          <p>{error}</p>
+          <button className="retry-button" onClick={loadPosts}>
+            <i className="fas fa-redo"></i> Try Again
+          </button>
         </div>
       </div>
     );

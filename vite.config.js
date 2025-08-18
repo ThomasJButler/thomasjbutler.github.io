@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
-import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
 
 export default defineConfig({
   root: '.',
@@ -33,12 +33,69 @@ export default defineConfig({
       }
     }
   },
-  // Custom plugin to copy blog markdown files
+  // Custom plugins
   plugins: [
     react(),
     legacy({
       targets: ['defaults', 'not IE 11']
     }),
+    // Development middleware to serve blog markdown files
+    {
+      name: 'serve-blog-files',
+      configureServer(server) {
+        // Serve markdown files - handle both /docs/blog and /ThomasJButler/docs/blog paths
+        server.middlewares.use((req, res, next) => {
+          // Check if this is a request for a blog markdown file
+          const url = req.url;
+          let blogPath = null;
+          
+          if (url.startsWith('/docs/blog/')) {
+            blogPath = url.replace('/docs/blog/', '');
+          } else if (url.startsWith('/ThomasJButler/docs/blog/')) {
+            blogPath = url.replace('/ThomasJButler/docs/blog/', '');
+          }
+          
+          if (blogPath && blogPath.endsWith('.md')) {
+            const filePath = resolve(__dirname, 'docs/blog', blogPath);
+            
+            if (existsSync(filePath)) {
+              try {
+                const content = readFileSync(filePath, 'utf-8');
+                res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Cache-Control', 'no-cache');
+                res.end(content);
+                return;
+              } catch (error) {
+                console.error('Error serving blog file:', error);
+              }
+            }
+          }
+          
+          next();
+        });
+
+        // Redirect blog article routes to React app with hash
+        server.middlewares.use('/ThomasJButler/blog/', (req, res, next) => {
+          // Extract the blog slug from the URL
+          const path = req.url;
+          const slug = path.split('/').pop();
+          
+          if (slug && slug !== 'blog') {
+            // Redirect to react.html with hash routing
+            const redirectUrl = `/ThomasJButler/react.html#/blog/${slug}`;
+            res.writeHead(302, { Location: redirectUrl });
+            res.end();
+          } else {
+            // For /blog route, redirect to blog list
+            const redirectUrl = `/ThomasJButler/react.html#/blog`;
+            res.writeHead(302, { Location: redirectUrl });
+            res.end();
+          }
+        });
+      }
+    },
+    // Build-time plugin to copy blog markdown files
     {
       name: 'copy-blog-files',
       writeBundle() {
