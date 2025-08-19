@@ -142,37 +142,7 @@ footer .container {
   -webkit-backdrop-filter: none !important;
 }
 
-/* ==========================================================================
-   Blog Page Specific Fixes
-   ========================================================================== */
-
-.blog-reader {
-  padding-top: 60px; /* Account for fixed header */
-}
-
-.blog-reader .article-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.blog-reader .reader-header {
-  position: fixed;
-  top: 60px; /* Below main header */
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1rem 0;
-  z-index: 999;
-  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
-}
-
-.blog-reader .article-content {
-  margin-top: 60px; /* Account for reader header */
-  line-height: 1.6;
-}
+/* Blog-specific styles have been moved to blog.css */
 
 /* ==========================================================================
    Matrix Rain Background Performance

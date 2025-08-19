@@ -81,6 +81,8 @@ export const BlogReader: React.FC = () => {
     return saved ? parseInt(saved) : 18;
   });
   const [readingProgress, setReadingProgress] = useState(0);
+  const [showShareToast, setShowShareToast] = useState(false);
+  const [shareMessage, setShareMessage] = useState('');
   const articleRef = useRef<HTMLElement>(null);
 
   // Load blog post
@@ -156,6 +158,47 @@ export const BlogReader: React.FC = () => {
     const newSize = Math.min(24, Math.max(14, fontSize + delta));
     setFontSize(newSize);
     localStorage.setItem('blogFontSize', newSize.toString());
+  };
+
+  const shareArticle = async (platform: string) => {
+    if (!post) return;
+    
+    const url = window.location.href;
+    const title = post.title;
+    const text = `Check out this article: ${title}`;
+    
+    switch (platform) {
+      case 'copy':
+        try {
+          await navigator.clipboard.writeText(url);
+          setShareMessage('Link copied to clipboard!');
+          setShowShareToast(true);
+          setTimeout(() => setShowShareToast(false), 3000);
+        } catch (err) {
+          setShareMessage('Failed to copy link');
+          setShowShareToast(true);
+          setTimeout(() => setShowShareToast(false), 3000);
+        }
+        break;
+      
+      case 'twitter':
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+          '_blank'
+        );
+        break;
+      
+      case 'linkedin':
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          '_blank'
+        );
+        break;
+      
+      case 'email':
+        window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(text + '\n\n' + url)}`;
+        break;
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -293,10 +336,35 @@ export const BlogReader: React.FC = () => {
               <div className="share-buttons">
                 <button 
                   className="share-btn"
-                  onClick={() => navigator.clipboard.writeText(window.location.href)}
+                  onClick={() => shareArticle('copy')}
                   title="Copy link"
+                  aria-label="Copy link to clipboard"
                 >
                   <i className="fas fa-link"></i>
+                </button>
+                <button 
+                  className="share-btn"
+                  onClick={() => shareArticle('twitter')}
+                  title="Share on Twitter"
+                  aria-label="Share on Twitter"
+                >
+                  <i className="fab fa-twitter"></i>
+                </button>
+                <button 
+                  className="share-btn"
+                  onClick={() => shareArticle('linkedin')}
+                  title="Share on LinkedIn"
+                  aria-label="Share on LinkedIn"
+                >
+                  <i className="fab fa-linkedin"></i>
+                </button>
+                <button 
+                  className="share-btn"
+                  onClick={() => shareArticle('email')}
+                  title="Share via Email"
+                  aria-label="Share via Email"
+                >
+                  <i className="fas fa-envelope"></i>
                 </button>
               </div>
             </div>
@@ -324,6 +392,14 @@ export const BlogReader: React.FC = () => {
           {Math.round(readingProgress)}%
         </div>
       </div>
+
+      {/* Share Toast Notification */}
+      {showShareToast && (
+        <div className="share-toast">
+          <i className="fas fa-check-circle"></i>
+          <span>{shareMessage}</span>
+        </div>
+      )}
     </div>
   );
 };
