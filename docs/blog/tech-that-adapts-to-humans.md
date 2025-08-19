@@ -11,7 +11,7 @@ When did we become the ones who adapt? I didn't sign up for this.
 
 ## The Current Madness
 
-Every day in Liverpool, I watch developers contort themselves to fit technology's demands. It's mental.
+Every day, I watch developers contort themselves to fit technology's demands. It's mental.
 
 ### We Learn Their Language
 - SQL instead of "show me the bloody users"
@@ -72,7 +72,7 @@ Shut up. I just want to write.
 
 Now we're talking.
 
-## Building Adaptive Systems in Liverpool
+## Building Adaptive Systems
 
 Here's how we do it properly:
 
@@ -169,7 +169,7 @@ Make them learn yours.
 Stop adapting to bad design.
 Demand design that adapts to you.
 
-## The Liverpool Approach
+## Our Approach
 
 We're building this differently:
 - Local first (your data, your rules)
@@ -192,7 +192,7 @@ Join us.
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Making technology that fits humans, not the other way around*
 
 *The best interface is no interface - just understanding.*

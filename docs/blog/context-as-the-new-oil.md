@@ -21,7 +21,7 @@ AI becomes invaluable. Like having your best mate who knows you hate mushrooms, 
 
 ## The Context Advantage
 
-Right, let me break this down with some real numbers from projects I've worked on here in Liverpool:
+Right, let me break this down with some real numbers from projects I've worked on:
 
 **Companies with proper context systems:**
 - 10x productivity (not exaggerating)
@@ -59,7 +59,7 @@ I've been building context systems for UK fintech, and the transformation is men
 - Your definition of "done"
 - Whether "quick chat" means 5 minutes or an hour
 
-## The Liverpool Approach
+## Our Approach
 
 Here's how we're doing it differently up north:
 
@@ -67,7 +67,7 @@ Here's how we're doing it differently up north:
 Your individual working style. I'm a night owl who codes best after 10pm with proper coffee (none of that instant rubbish). My AI assistant knows this and adjusts accordingly.
 
 ### Layer 2: Team Context
-Your team's collective knowledge. We use Scouse expressions in our commit messages. Our AI gets it. "Sound, la" means the PR is approved.
+Your team's collective knowledge. We use local expressions in our commit messages. Our AI gets it. "Sound" means the PR is approved.
 
 ### Layer 3: Project Context
 The specific requirements and constraints. Working on a banking app? Different context than a creative agency site. The AI adapts its suggestions based on compliance needs, performance requirements, the lot.
@@ -79,7 +79,7 @@ The specific requirements and constraints. Working on a banking app? Different c
 const context = {
   developer: {
     name: "Thomas Butler",
-    location: "Liverpool, UK",
+    location: "UK",
     preferred_style: "functional_with_common_sense",
     coffee_threshold: 3, // cups before coherent
     best_hours: "22:00-02:00"
@@ -141,7 +141,7 @@ Not everything needs documenting, but context does:
 # PROJECT_CONTEXT.md
 
 ## What This Is
-Liverpool-based fintech serving UK SMEs
+UK-based fintech serving UK SMEs
 
 ## What This Isn't
 - Not another Silicon Valley unicorn wannabe
@@ -170,7 +170,7 @@ I've seen it happen repeatedly. The teams that invest in context early are the o
 
 The next wave of AI won't be about better models or more parameters. It'll be about better context. The winners will be those who can capture, maintain, and leverage context effectively.
 
-We're building that future here in Liverpool. Not because we're trying to compete with Silicon Valley (we're not), but because we understand that local context matters. UK developers need UK solutions. Northern businesses need northern understanding.
+We're building that future. Not because we're trying to compete with Silicon Valley (we're not), but because we understand that local context matters. UK developers need UK solutions. Regional businesses need regional understanding.
 
 ## The Bottom Line
 
@@ -183,5 +183,5 @@ It's the whole bloody kingdom.
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Converting caffeine into context-aware code since forever*

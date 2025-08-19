@@ -16,7 +16,7 @@ We've built intelligence without understanding. It's like teaching someone to sp
 
 ### What Makes Humans Human?
 
-Living in Liverpool, working with real developers, here's what actually matters:
+Working with real developers, here's what actually matters:
 - We remember conversations (even after a heavy Friday night)
 - We learn preferences ("no mushrooms" means NO mushrooms)
 - We adapt our communication (formal for clients, casual for mates)
@@ -64,7 +64,7 @@ const get_user = async (user_id) => {
 
 One feels like a textbook. The other feels like a developer who values their time.
 
-## The Liverpool Experiment
+## The Real World Experiment
 
 I've been running an experiment with my team here. We're teaching AI to be more human by being more... well, human with it.
 
@@ -203,6 +203,6 @@ And if my AI can learn to appreciate a good cup of tea and understand why we don
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Teaching robots to be more human, one git commit at a time*
 *Still haven't taught it to appreciate Beatles references (working on it)*

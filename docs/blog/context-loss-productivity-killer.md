@@ -123,5 +123,5 @@ Your time is worth more than that. Your sanity definitely is.
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Saving 1.6 hours daily by not repeating myself to robots*

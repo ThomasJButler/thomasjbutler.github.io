@@ -44,14 +44,17 @@ const markdownComponents = {
   em: ({children}: any) => (
     <em className="article-emphasis">{children}</em>
   ),
-  code: ({inline, children}: any) => 
-    inline ? (
+  code: ({inline, className, children}: any) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const lang = match ? match[1] : '';
+    return inline ? (
       <code className="inline-code">{children}</code>
     ) : (
-      <pre className="code-block">
-        <code>{children}</code>
+      <pre className="code-block" data-language={lang}>
+        <code className={className}>{children}</code>
       </pre>
-    ),
+    );
+  },
   a: ({href, children}: any) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className="article-link">
       {children}
@@ -127,17 +130,24 @@ export const BlogReader: React.FC = () => {
     }
   }, [loading]);
 
-  // Track reading progress
+  // Track reading progress with throttling
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight - windowHeight;
-      const scrollTop = window.scrollY;
-      const progress = (scrollTop / documentHeight) * 100;
-      setReadingProgress(Math.min(100, Math.max(0, progress)));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight - windowHeight;
+          const scrollTop = window.scrollY;
+          const progress = (scrollTop / documentHeight) * 100;
+          setReadingProgress(Math.min(100, Math.max(0, progress)));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -151,6 +161,16 @@ export const BlogReader: React.FC = () => {
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       navigate('/blog');
+    } else if (e.key === 'ArrowUp' && e.ctrlKey) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (e.key === 'ArrowDown' && e.ctrlKey) {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    } else if (e.key === '+' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      adjustFontSize(2);
+    } else if (e.key === '-' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      adjustFontSize(-2);
     }
   };
 
@@ -183,11 +203,12 @@ export const BlogReader: React.FC = () => {
   return (
     <div className="blog-reader" onKeyDown={handleKeyPress}>
       {/* Reading progress bar */}
-      <div className="reading-progress-bar">
+      <div className="reading-progress-bar" role="progressbar" aria-valuenow={readingProgress} aria-valuemin={0} aria-valuemax={100}>
         <div 
           className="reading-progress-fill" 
           style={{ width: `${readingProgress}%` }}
         />
+        <div className="progress-glow" style={{ width: `${readingProgress}%` }} />
       </div>
 
       {/* Reader header */}
@@ -232,6 +253,9 @@ export const BlogReader: React.FC = () => {
               </span>
               <span className="article-date">
                 <i className="far fa-calendar"></i> {post.publishDate}
+              </span>
+              <span className="reading-position">
+                <i className="fas fa-book-reader"></i> {Math.round(readingProgress)}% read
               </span>
             </div>
 

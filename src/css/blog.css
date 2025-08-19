@@ -367,16 +367,34 @@ button:focus-visible {
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: rgba(0, 255, 0, 0.1);
+  height: 4px;
+  background: rgba(0, 0, 0, 0.9);
   z-index: 1000;
+  overflow: hidden;
 }
 
 .reading-progress-fill {
   height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(0, 255, 0, 0.8) 10%,
+    var(--matrix-green) 50%,
+    rgba(0, 255, 0, 0.8) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 0 20px var(--matrix-green);
+  transition: width 0.15s ease-out;
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   background: var(--matrix-green);
-  box-shadow: 0 0 10px var(--matrix-green);
-  transition: width 0.2s ease;
+  filter: blur(8px);
+  opacity: 0.5;
+  transition: width 0.15s ease-out;
 }
 
 .blog-reader .reader-header  {

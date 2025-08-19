@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
               <i className="fab fa-github"></i>
             </a>
             <a 
-              href="https://linkedin.com/in/thomas-j-butler" 
+              href="https://www.linkedin.com/in/thomasbutleruk/" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -82,14 +82,14 @@ export const Footer: React.FC = () => {
               <i className="fab fa-linkedin"></i>
             </a>
             <a 
-              href="https://twitter.com/thomasjbutler" 
+              href="https://codepen.io/thomasbutler" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="CodePen"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-codepen"></i>
             </a>
             <a 
               href="mailto:dev@thomasjbutler.me"
@@ -114,7 +114,7 @@ export const Footer: React.FC = () => {
       <div className={styles.footerBottom}>
         <p>&copy; {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
         <p className={styles.location}>
-          <i className="fas fa-map-marker-alt"></i> Liverpool, UK | Making technology more human
+          <i className="fas fa-map-marker-alt"></i> UK | Making technology more human
         </p>
       </div>
 

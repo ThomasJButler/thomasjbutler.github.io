@@ -50,7 +50,7 @@ Honestly, why are we putting up with this? It's like having a brilliant assistan
 
 ### Teach Once, Apply Forever
 
-Here's what I've been working on here in Liverpool - proper game-changer, this:
+Here's what I've been working on - proper game-changer, this:
 
 ```markdown
 # customcodestyle.md
@@ -193,5 +193,5 @@ And if anyone tells you otherwise, send them my way. We'll have a proper chat ab
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Building AI that respects developers, not replaces them*

@@ -10,7 +10,7 @@ AI development is currently controlled by:
 - Self-proclaimed prompt engineering "experts" (give me strength)
 - The technically elite (or those who think they are)
 
-This has to change. And it is changing. From my desk in Liverpool, I'm watching the walls come down.
+This has to change. And it is changing. I'm watching the walls come down.
 
 ## The Democratisation Vision
 
@@ -20,7 +20,7 @@ Picture this, mate:
 - Maintain their own context (remember that bug from last Tuesday?)
 - Own their AI relationship (not rent it from California)
 
-This isn't a pipe dream. I'm literally doing this right now, and I'm just a lad from Liverpool with a laptop.
+This isn't a pipe dream. I'm literally doing this right now, and I'm just a lad with a laptop.
 
 ## Breaking Down Barriers
 
@@ -72,13 +72,13 @@ Snake_case? Tabs? British spelling? It's YOUR AI.
 
 ### Collective Intelligence
 This is where it gets exciting:
-- Shared learnings (what worked for Liverpool devs)
+- Shared learnings (what worked for devs)
 - Community patterns (UK-specific solutions)
 - Collaborative evolution (we all get better together)
 
 Last week, someone in Manchester shared a pattern for handling NHS data. Now we're all using it. That's democratisation.
 
-## The Liverpool Laboratory
+## The Real World Laboratory
 
 Here's what we're building in the real world:
 
@@ -89,7 +89,7 @@ Helped 15 shops on Bold Street implement AI:
 - Built by: Local developers, not consultants
 
 ### Community Code Assistant
-AI that understands Scouse:
+AI that understands local language:
 - "Make it dead good" = optimise aggressively
 - "That's proper ming" = refactor needed
 - "Sound, la" = PR approved
@@ -110,10 +110,10 @@ One kid built an AI to help with his dyslexia. That's the future.
 When AI is truly democratised:
 
 ### Innovation Explodes
-Not just Silicon Valley innovation. Liverpool innovation. Bradford innovation. Rural Wales innovation. Different problems, different solutions, different perspectives.
+Not just Silicon Valley innovation. Local innovation. Regional innovation. Rural innovation. Different problems, different solutions, different perspectives.
 
 ### Diversity Flourishes
-AI trained on California data gives California solutions. We need Scouse solutions for Scouse problems.
+AI trained on California data gives California solutions. We need local solutions for local problems.
 
 ### Problems Get Solved
 Real problems. Not "how to optimise ad clicks" but "how to reduce A&E wait times" or "how to help my dad's shop compete with Amazon."
@@ -126,7 +126,7 @@ No more digital colonialism. No more one-size-fits-all. No more "that's how they
 You don't need:
 - A computer science degree (I studied music)
 - Venture capital (bootstrap everything)
-- Silicon Valley connections (Liverpool connections work fine)
+- Silicon Valley connections (local connections work fine)
 - Permission (just start)
 
 You do need:
@@ -167,6 +167,6 @@ Welcome to the democratised future of AI development.
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Building AI for the people, by the people*
 *Proving you don't need a trust fund to train transformers*

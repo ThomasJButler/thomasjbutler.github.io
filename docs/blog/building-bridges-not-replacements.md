@@ -16,9 +16,9 @@ I've been coding since before Stack Overflow existed (dark times, those), and I'
 
 And yet here we are, more developers than ever, getting paid more than ever. Funny that.
 
-## The Liverpool Reality Check
+## The Reality Check
 
-Look, I work with AI every day here in Liverpool. I've built AI systems for UK businesses, trained models on British data, and integrated more AI tools than I can count. And you know what I've learned?
+Look, I work with AI every day. I've built AI systems for UK businesses, trained models on British data, and integrated more AI tools than I can count. And you know what I've learned?
 
 AI is brilliant at the boring bits.
 Humans are brilliant at the brilliant bits.
@@ -94,10 +94,10 @@ But unlike actual junior developers, it:
 **Result**: 2-week job done in 3 days
 
 ### The Bad: Customer Service Bot
-**Task**: Build a support chatbot for a Liverpool restaurant chain
+**Task**: Build a support chatbot for a restaurant chain
 **AI Role**: Handle basic queries about opening hours, menu items
-**Human Role**: Everything else, because Scousers don't speak like ChatGPT
-**Result**: Scrapped AI, hired actual Scousers
+**Human Role**: Everything else, because locals don't speak like ChatGPT
+**Result**: Scrapped AI, hired actual locals
 
 ### The Ugly: "AI-First" Startup
 **Task**: Build entire platform with AI
@@ -197,6 +197,6 @@ That's a future worth building bridges toward.
 
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler*
 *Building the future where developers and AI work together, not apart*
 *Currently teaching AI about British sarcasm (it's a work in progress)*
