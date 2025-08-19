@@ -170,6 +170,89 @@ const projects: Project[] = [
       github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
     },
     category: 'web'
+  },
+  {
+    id: 'landing-page',
+    name: 'Landing Page',
+    visibility: 'Public',
+    description: 'Interactive landing page with Matrix-inspired animations and effects',
+    topics: ['HTML5', 'CSS3', 'JavaScript', 'Animations', 'Matrix Theme'],
+    language: {
+      name: 'JavaScript',
+      color: '#f1e05a',
+      percent: 65
+    },
+    stats: {
+      stars: 3,
+      forks: 1
+    },
+    links: {
+      demo: 'landingpage.html',
+      github: 'https://github.com/ThomasJButler/landing-page'
+    },
+    category: 'web'
+  },
+  {
+    id: 'version-timetravel',
+    name: 'Version TimeTravel',
+    visibility: 'Public',
+    description: 'Visual timeline of portfolio evolution and version history',
+    topics: ['Timeline', 'Version Control', 'Interactive', 'History'],
+    language: {
+      name: 'JavaScript',
+      color: '#f1e05a',
+      percent: 70
+    },
+    stats: {
+      stars: 2,
+      forks: 0
+    },
+    links: {
+      demo: 'timetravel.html',
+      github: 'https://github.com/ThomasJButler/version-timetravel'
+    },
+    category: 'web'
+  },
+  {
+    id: 'big-bang-gallery',
+    name: 'The Big Bang Gallery',
+    visibility: 'Public',
+    description: 'Creative visual gallery showcasing design work and experiments',
+    topics: ['Gallery', 'Creative', 'Visual', 'Design', 'Showcase'],
+    language: {
+      name: 'CSS',
+      color: '#563d7c',
+      percent: 80
+    },
+    stats: {
+      stars: 4,
+      forks: 2
+    },
+    links: {
+      demo: 'gallery.html',
+      github: 'https://github.com/ThomasJButler/big-bang-gallery'
+    },
+    category: 'personal'
+  },
+  {
+    id: 'premier-league-oracle',
+    name: 'The Premier League Oracle',
+    visibility: 'Public',
+    description: 'Football statistics and prediction system using data analysis',
+    topics: ['Python', 'Data Analysis', 'Machine Learning', 'Sports', 'Predictions'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 85
+    },
+    stats: {
+      stars: 7,
+      forks: 3
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/premier-league-oracle'
+    },
+    category: 'ml'
   }
 ];
 
