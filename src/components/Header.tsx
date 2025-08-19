@@ -117,7 +117,6 @@ export const Header: React.FC = () => {
       <div className={styles.container}>
         <Link to="/" className={styles.headerTitle}>
           <h1>Thomas J Butler</h1>
-          <span className={styles.tagline}>Full Stack Developer | AI Integration Specialist</span>
         </Link>
         
         <nav className={styles.nav}>
