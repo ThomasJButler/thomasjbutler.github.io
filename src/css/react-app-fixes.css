@@ -123,16 +123,15 @@ footer .container {
    Page Transition Performance
    ========================================================================== */
 
-/* Disable heavy animations for better performance */
-* {
-  animation-duration: 0.3s !important;
-}
+/* Allow natural animation durations for better UX */
+/* Animation durations are now controlled per-component */
 
-/* Optimize transitions */
+/* Smooth default transitions */
 *,
 *::before,
 *::after {
-  transition-duration: 0.2s !important;
+  transition-property: opacity, transform, background-color, border-color;
+  transition-timing-function: ease-in-out;
 }
 
 /* Disable filters on scroll for performance */

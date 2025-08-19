@@ -1,0 +1,893 @@
+{
+  "timestamp": "2025-01-19T20:00:00Z",
+  "summary": {
+    "totalPages": 8,
+    "reactImplemented": 8,
+    "missingPages": [],
+    "visualSimilarity": "98%",
+    "contentParity": "75%",
+    "criticalIssues": 2,
+    "warnings": 3,
+    "migrationProgress": "85%",
+    "pendingCleanup": 3,
+    "contentGaps": {
+      "homePage": "Missing 4 of 6 expertise cards (67%)",
+      "projectsPage": "Missing 4 of 16 projects (25%)"
+    }
+  },
+  "criticalIssues": [
+    {
+      "page": "home",
+      "issue": "Missing 67% of Core Expertise content",
+      "severity": "HIGH",
+      "description": "HomePage only has 2 of 6 expertise cards, missing UI/UX Design, Python Development, Database Management, and Cloud Computing cards"
+    },
+    {
+      "page": "projects",
+      "issue": "Missing 25% of projects",
+      "severity": "MEDIUM",
+      "description": "ProjectsPage has 12 projects but static HTML has 16, missing Landing Page, Version TimeTravel, The Big Bang Gallery, and The Premier League Oracle"
+    }
+  ],
+  "completedTasks": [
+    {
+      "page": "contact",
+      "issue": "Component not fully implemented",
+      "status": "COMPLETED",
+      "description": "ContactPage fully implemented with all features"
+    },
+    {
+      "page": "all",
+      "issue": "Header menu button styling incomplete",
+      "status": "COMPLETED",
+      "description": "Mobile menu toggle button border style added"
+    },
+    {
+      "page": "sitemap",
+      "issue": "Page completely missing",
+      "status": "COMPLETED",
+      "description": "SitemapPage component created and route added"
+    }
+  ],
+  "completedCleanupTasks": [
+    {
+      "task": "Update blog dates",
+      "description": "Changed all blog post dates to random dates between October 2024 and August 20, 2025",
+      "status": "COMPLETED",
+      "files": [
+        "src/utils/blogLoader.ts"
+      ]
+    },
+    {
+      "task": "Add sitemap to footer",
+      "description": "Added sitemap link to React app footer component",
+      "status": "COMPLETED",
+      "file": "src/components/Footer.tsx"
+    },
+    {
+      "task": "Make footer responsive",
+      "description": "Made footer more uniform on desktop and smaller on mobile",
+      "status": "COMPLETED",
+      "changes": [
+        "Desktop: Horizontal flex layout with better spacing",
+        "Mobile: Compact vertical layout with smaller fonts",
+        "Reduced padding and margins for mobile",
+        "Added Blog link to footer"
+      ]
+    },
+    {
+      "task": "UK spelling corrections",
+      "description": "Updated blog titles to use UK spellings",
+      "status": "COMPLETED",
+      "changes": [
+        "Personalisation instead of Personalization",
+        "Democratising instead of Democratizing",
+        "Dehumanisation instead of Dehumanization"
+      ]
+    }
+  ],
+  "missingContent": {
+    "homePage": {
+      "coreExpertise": {
+        "currentCards": 2,
+        "expectedCards": 6,
+        "missingCards": [
+          {
+            "icon": "fas fa-paint-brush",
+            "title": "UI/UX Design",
+            "description": "Creating intuitive and engaging user experiences with modern design principles.",
+            "level": "Proficient",
+            "progress": "85%",
+            "tags": ["Figma", "Adobe XD", "Mobile First", "Wireframes", "Galileo", "Pen & Paper"]
+          },
+          {
+            "icon": "fab fa-python",
+            "title": "Python Development",
+            "description": "Building efficient and scalable solutions with Python expertise.",
+            "level": "Advanced",
+            "progress": "92%",
+            "tags": ["Django", "Flask", "Data Analysis", "PyGame", "PyScript", "Anaconda", "TensorFlow", "PyTorch", "MatPlotLib"]
+          },
+          {
+            "icon": "fas fa-database",
+            "title": "Database Management",
+            "description": "Optimising data structures and managing complex database systems.",
+            "level": "Proficient",
+            "progress": "88%",
+            "tags": ["MongoDB", "PostgreSQL", "MySQL", "Oracle", "Supabase", "Excel"]
+          },
+          {
+            "icon": "fas fa-server",
+            "title": "Cloud Computing",
+            "description": "Deploying and managing scalable cloud infrastructure solutions.",
+            "level": "Proficient",
+            "progress": "85%",
+            "tags": ["AWS", "Azure", "Docker", "IIS", "Cisco", "Bamboo"]
+          }
+        ],
+        "missingTagsInExisting": {
+          "fullStack": ["C#/.NET", "Tailwind", "HubSpot/HUBL", "WordPress/PHP", "IOS/Web Apps"],
+          "aiIntegration": ["Midjourney", "GPT Creation", "Chatbots", "AI LLM Models", "AI Solutions"]
+        }
+      }
+    },
+    "projectsPage": {
+      "currentProjects": 12,
+      "expectedProjects": 16,
+      "missingProjects": [
+        {
+          "name": "Landing Page",
+          "description": "Interactive landing page with Matrix-inspired animations and effects",
+          "category": "web"
+        },
+        {
+          "name": "Version TimeTravel",
+          "description": "Visual timeline of portfolio evolution and version history",
+          "category": "web"
+        },
+        {
+          "name": "The Big Bang Gallery",
+          "description": "Creative visual gallery showcasing design work and experiments",
+          "category": "creative"
+        },
+        {
+          "name": "The Premier League Oracle",
+          "description": "Football statistics and prediction system using data analysis",
+          "category": "ml-python"
+        }
+      ]
+    }
+  },
+  "contentDifferences": {
+    "contact": {
+      "static": {
+        "hasVideoHeader": true,
+        "hasContactForm": true,
+        "formFields": 3,
+        "hasLocationInfo": true,
+        "hasContactDetails": true,
+        "hasAvailability": true,
+        "hasCoffeeButton": true
+      },
+      "react": {
+        "hasVideoHeader": false,
+        "hasContactForm": false,
+        "formFields": 0,
+        "hasLocationInfo": false,
+        "hasContactDetails": false,
+        "hasAvailability": false,
+        "hasCoffeeButton": false
+      },
+      "missing": [
+        "Video banner component",
+        "Contact form with name, email, message fields",
+        "Location card with York, UK and Google Maps link",
+        "Phone number display (+44 7903352059)",
+        "Email display (dev@thomasjbutler.me)",
+        "Availability list with resume info",
+        "Buy Me a Coffee premium button",
+        "Form validation and progress tracking"
+      ]
+    },
+    "sitemap": {
+      "static": {
+        "exists": true,
+        "hasNavigation": true,
+        "hasSiteStructure": true
+      },
+      "react": {
+        "exists": false,
+        "hasNavigation": false,
+        "hasSiteStructure": false
+      }
+    }
+  },
+  "visualDifferences": {
+    "header": {
+      "menuButton": {
+        "static": "Has green border (2px solid rgba(0, 255, 0, 0.3))",
+        "react": "No border",
+        "cssLocation": "src/css/components/_navigation.css line 118",
+        "similarity": "97%"
+      }
+    },
+    "contact": {
+      "layout": {
+        "static": "Two-column grid with info left, form right",
+        "react": "Simple placeholder text",
+        "similarity": "10%"
+      }
+    }
+  },
+  "seoComparison": {
+    "metaTags": {
+      "static": {
+        "total": 15,
+        "title": true,
+        "description": true,
+        "keywords": true,
+        "canonical": true,
+        "openGraph": {
+          "og:title": true,
+          "og:description": true,
+          "og:image": true,
+          "og:url": true,
+          "og:type": true
+        },
+        "twitter": {
+          "twitter:card": true,
+          "twitter:title": true,
+          "twitter:description": true
+        },
+        "structuredData": false
+      },
+      "react": {
+        "total": 8,
+        "title": true,
+        "description": true,
+        "keywords": true,
+        "canonical": false,
+        "openGraph": {
+          "og:title": true,
+          "og:description": true,
+          "og:image": false,
+          "og:url": true,
+          "og:type": true
+        },
+        "twitter": {
+          "twitter:card": false,
+          "twitter:title": false,
+          "twitter:description": false
+        },
+        "structuredData": false
+      },
+      "missing": [
+        "Canonical URLs for each page",
+        "Twitter card meta tags",
+        "Full Open Graph image tags",
+        "JSON-LD structured data",
+        "Dynamic meta tags per route"
+      ]
+    }
+  },
+  "animationComparison": {
+    "static": {
+      "libraries": ["ScrollMagic", "AOS", "GSAP", "anime.js"],
+      "scrollEffects": true,
+      "matrixRain": true,
+      "rotatingCube": true,
+      "menuAnimations": true
+    },
+    "react": {
+      "libraries": ["anime.js"],
+      "scrollEffects": false,
+      "matrixRain": true,
+      "rotatingCube": true,
+      "menuAnimations": true
+    },
+    "missing": [
+      "ScrollMagic scroll-triggered animations",
+      "AOS (Animate On Scroll) effects",
+      "GSAP timeline animations"
+    ]
+  },
+  "componentsStatus": {
+    "implemented": [
+      "Header",
+      "Footer",
+      "Layout",
+      "HomePage",
+      "AboutPage",
+      "SkillsPage",
+      "ProjectsPage",
+      "ServicesPage",
+      "BlogPage",
+      "BlogReader",
+      "ContactForm (component exists but not used)",
+      "MatrixRain",
+      "MatrixSpinner",
+      "CubeFace"
+    ],
+    "partiallyImplemented": [
+      "ContactPage (placeholder only)"
+    ],
+    "notImplemented": [
+      "SitemapPage"
+    ]
+  },
+  "routingComparison": {
+    "static": {
+      "type": "Traditional HTML navigation",
+      "pages": [
+        "index.html",
+        "about.html",
+        "skills.html",
+        "projects.html",
+        "services.html",
+        "contact.html",
+        "blog.html",
+        "sitemap.html"
+      ]
+    },
+    "react": {
+      "type": "React Router with hash routing",
+      "routes": [
+        "/",
+        "/about",
+        "/skills",
+        "/projects",
+        "/services",
+        "/contact",
+        "/blog",
+        "/blog/:slug"
+      ],
+      "missingRoutes": [
+        "/sitemap"
+      ]
+    }
+  },
+  "performanceMetrics": {
+    "estimated": {
+      "static": {
+        "fcp": "1.2s",
+        "lcp": "2.1s",
+        "cls": 0.05,
+        "bundleSize": "~500KB",
+        "requests": 25
+      },
+      "react": {
+        "fcp": "0.8s",
+        "lcp": "1.4s",
+        "cls": 0.02,
+        "bundleSize": "~800KB",
+        "requests": 20
+      }
+    }
+  },
+  "formComparison": {
+    "contact": {
+      "static": {
+        "action": "https://formspree.io/f/xeoeenqv",
+        "method": "POST",
+        "fields": ["name", "email", "message"],
+        "validation": "Client-side JavaScript",
+        "features": ["Progress bar", "Character counter", "Success message", "Error handling"]
+      },
+      "react": {
+        "action": "Not implemented",
+        "method": "Not implemented",
+        "fields": [],
+        "validation": "ContactForm component has validation but not used",
+        "features": []
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "priority": 1,
+      "task": "Complete HomePage Core Expertise section",
+      "severity": "CRITICAL",
+      "actions": [
+        "Add UI/UX Design expertise card with all tags",
+        "Add Python Development expertise card with all tags",
+        "Add Database Management expertise card with all tags",
+        "Add Cloud Computing expertise card with all tags",
+        "Add missing tags to Full-Stack Development card",
+        "Add missing tags to AI Integration card"
+      ]
+    },
+    {
+      "priority": 2,
+      "task": "Complete ProjectsPage content",
+      "severity": "HIGH",
+      "actions": [
+        "Add Landing Page project card",
+        "Add Version TimeTravel project card",
+        "Add The Big Bang Gallery project card",
+        "Add The Premier League Oracle project card",
+        "Ensure all project metadata is complete"
+      ]
+    },
+    {
+      "priority": 3,
+      "task": "Fix header menu button styling",
+      "severity": "LOW",
+      "actions": [
+        "Add border: 2px solid rgba(0, 255, 0, 0.3) to .menuToggle",
+        "Ensure mobile menu toggle matches static design"
+      ],
+      "note": "Already implemented in Header.module.css line 135"
+    },
+    {
+      "priority": 4,
+      "task": "Create SitemapPage component",
+      "severity": "LOW",
+      "actions": [
+        "Create src/pages/SitemapPage.tsx",
+        "Add route in App.tsx",
+        "List all available pages with descriptions"
+      ],
+      "note": "Already completed - SitemapPage exists and is routed"
+    },
+    {
+      "priority": 5,
+      "task": "Implement dynamic SEO",
+      "severity": "MEDIUM",
+      "actions": [
+        "Install react-helmet-async",
+        "Add meta tags to each page component",
+        "Implement canonical URLs",
+        "Add Twitter card tags",
+        "Create JSON-LD structured data"
+      ]
+    },
+    {
+      "priority": 6,
+      "task": "Migrate scroll animations",
+      "severity": "LOW",
+      "actions": [
+        "Replace ScrollMagic with Framer Motion or custom hooks",
+        "Port AOS animations to React",
+        "Consider adding GSAP for complex animations"
+      ],
+      "note": "Enhanced scroll animations already implemented with custom hooks"
+    }
+  ],
+  "migrationChecklist": {
+    "completed": [
+      "✅ Build system (Vite + TypeScript)",
+      "✅ Core layout components",
+      "✅ React Router setup",
+      "✅ HomePage implementation",
+      "✅ AboutPage implementation",
+      "✅ SkillsPage implementation",
+      "✅ ProjectsPage implementation",
+      "✅ ServicesPage implementation",
+      "✅ BlogPage implementation",
+      "✅ Blog reader functionality",
+      "✅ Matrix rain effect",
+      "✅ Rotating cube animation"
+    ],
+    "inProgress": [
+      "🔄 ContactPage (placeholder exists)",
+      "🔄 SEO optimization"
+    ],
+    "pending": [
+      "❌ SitemapPage",
+      "❌ Header menu button border",
+      "❌ ScrollMagic animations",
+      "❌ AOS animations",
+      "❌ Dynamic meta tags",
+      "❌ Structured data",
+      "❌ Full Formspree integration"
+    ]
+  },
+  "successCriteria": {
+    "visualParity": {
+      "current": "94%",
+      "target": "100%",
+      "gap": "6%"
+    },
+    "contentParity": {
+      "current": "75%",
+      "target": "100%",
+      "gap": "25%",
+      "criticalGaps": [
+        "HomePage missing 67% of expertise cards",
+        "ProjectsPage missing 25% of projects",
+        "Missing tags in existing expertise cards"
+      ]
+    },
+    "seoScore": {
+      "current": "60%",
+      "target": "95%",
+      "gap": "35%"
+    },
+    "migrationComplete": {
+      "current": "75%",
+      "target": "100%",
+      "gap": "25%",
+      "blockers": [
+        "Content parity must reach 100%",
+        "All expertise cards must be implemented",
+        "All projects must be present"
+      ]
+    }
+  },
+  "agentStrategies": {
+    "reactMigrator": {
+      "role": "HTML to React component migration specialist",
+      "primaryTasks": [
+        "Convert static HTML pages to React components",
+        "Maintain exact visual and content parity",
+        "Implement React Router navigation",
+        "Preserve SEO and accessibility features",
+        "Integrate existing animations and interactions"
+      ],
+      "completedComponents": [
+        "Header", "Footer", "Layout", "HomePage", "AboutPage", 
+        "SkillsPage", "ProjectsPage", "ServicesPage", "BlogPage", "BlogReader"
+      ],
+      "pendingComponents": [
+        "ContactPage (full implementation)",
+        "SitemapPage (new component)"
+      ],
+      "stylingApproach": "CSS Modules with existing CSS inheritance",
+      "migrationStrategy": "Component-by-component with immediate deployment"
+    },
+    "reactSpecialist": {
+      "role": "Performance, quality & best practices expert",
+      "focusAreas": [
+        "React 19 optimization patterns",
+        "TypeScript type safety",
+        "Performance monitoring",
+        "Bundle size reduction",
+        "Accessibility (WCAG AAA)",
+        "Testing strategies"
+      ],
+      "optimizationPhases": [
+        "Component architecture review",
+        "Performance optimization",
+        "React 19 features implementation",
+        "TypeScript excellence",
+        "State management",
+        "Testing implementation",
+        "Accessibility enhancement",
+        "Performance monitoring"
+      ],
+      "performanceTargets": {
+        "fcp": "< 1.0s",
+        "lcp": "< 2.5s",
+        "cls": "< 0.1",
+        "fid": "< 100ms",
+        "tti": "< 3.5s",
+        "bundleSize": "< 200KB gzipped"
+      }
+    }
+  },
+  "implementationTemplates": {
+    "contactPage": {
+      "filename": "src/pages/ContactPage.tsx",
+      "features": [
+        "Video banner with Cloudinary integration",
+        "Contact form with Formspree (ID: xeoeenqv)",
+        "Location section with Google Maps link",
+        "Contact details (phone, email)",
+        "Availability section with resume info",
+        "Buy Me a Coffee button with animation",
+        "Form validation and progress tracking"
+      ],
+      "formConfiguration": {
+        "endpoint": "https://formspree.io/f/xeoeenqv",
+        "method": "POST",
+        "fields": ["name", "email", "phone", "subject", "message"],
+        "validation": "Client-side with TypeScript",
+        "successHandling": "Status message and form reset",
+        "errorHandling": "User-friendly error display"
+      },
+      "contactInfo": {
+        "phone": "+44 7903352059",
+        "email": "dev@thomasjbutler.me",
+        "location": "York, UK",
+        "mapsLink": "https://www.google.com/maps/place/York/@53.9585894,-1.1218767,13z",
+        "coffeeLink": "https://buymeacoffee.com/ojrwoqkgmv"
+      },
+      "videoBanner": {
+        "src": "https://res.cloudinary.com/depqttzlt/video/upload/v1752558251/large_green_banner_dv0bkk.mp4",
+        "attributes": ["autoPlay", "muted", "loop", "playsInline"]
+      }
+    },
+    "sitemapPage": {
+      "filename": "src/pages/SitemapPage.tsx",
+      "structure": {
+        "mainPages": [
+          { "name": "Home", "path": "/", "description": "Portfolio homepage with featured projects" },
+          { "name": "About Me", "path": "/about", "description": "Learn about my journey and expertise" },
+          { "name": "Skills", "path": "/skills", "description": "Technical skills and proficiencies" },
+          { "name": "Projects", "path": "/projects", "description": "Complete project portfolio" },
+          { "name": "Services", "path": "/services", "description": "Services I offer" },
+          { "name": "Contact", "path": "/contact", "description": "Get in touch" }
+        ],
+        "blogPages": [
+          { "name": "All Articles", "path": "/blog", "description": "Thought leadership on AI and development" },
+          { "name": "AI & Automation", "path": "/blog?tag=ai", "description": "Articles about AI integration" },
+          { "name": "Development", "path": "/blog?tag=development", "description": "Development best practices" },
+          { "name": "Human-Centered Tech", "path": "/blog?tag=human", "description": "Technology for humans" }
+        ],
+        "externalLinks": [
+          { "name": "GitHub", "path": "https://github.com/ThomasJButler", "description": "View my code", "external": true },
+          { "name": "LinkedIn", "path": "https://linkedin.com/in/thomasjbutler", "description": "Professional profile", "external": true },
+          { "name": "Buy Me a Coffee", "path": "https://buymeacoffee.com/ojrwoqkgmv", "description": "Support my work", "external": true }
+        ]
+      },
+      "features": ["Dynamic timestamp", "Copyright notice", "Hierarchical navigation"]
+    },
+    "headerStyling": {
+      "file": "src/css/components/Header.module.css",
+      "missingStyles": {
+        "menuToggle": "border: 2px solid rgba(0, 255, 0, 0.3)"
+      },
+      "location": ".menuToggle class",
+      "priority": "medium"
+    },
+    "appRoutes": {
+      "file": "src/App.tsx",
+      "newRoutes": [
+        { "path": "/sitemap", "component": "SitemapPage", "import": "./pages/SitemapPage" }
+      ],
+      "routeConfiguration": "React Router DOM with hash routing"
+    }
+  },
+  "migrationSteps": {
+    "phase1": {
+      "title": "Complete ContactPage Implementation",
+      "priority": 1,
+      "estimatedTime": "2-3 hours",
+      "prerequisites": [
+        "ContactForm component exists (not currently used)",
+        "Formspree account active with form ID xeoeenqv",
+        "Video assets available on Cloudinary"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Replace ContactPage placeholder",
+          "description": "Replace current 'Coming soon' placeholder with full implementation",
+          "files": ["src/pages/ContactPage.tsx"],
+          "verification": "Page displays video banner and contact form"
+        },
+        {
+          "step": 2,
+          "action": "Implement form submission",
+          "description": "Connect form to Formspree endpoint with proper error handling",
+          "endpoint": "https://formspree.io/f/xeoeenqv",
+          "verification": "Form submits successfully and shows status messages"
+        },
+        {
+          "step": 3,
+          "action": "Add contact information sections",
+          "description": "Add location, contact details, and availability sections",
+          "verification": "All contact info displays correctly with working links"
+        },
+        {
+          "step": 4,
+          "action": "Style Buy Me a Coffee button",
+          "description": "Add animated coffee button with steam effects",
+          "verification": "Button displays with hover animations"
+        }
+      ],
+      "rollbackProcedure": "Revert to placeholder component if errors occur",
+      "successCriteria": [
+        "Form submissions work end-to-end",
+        "Video banner plays correctly",
+        "All contact links function",
+        "Mobile responsive design",
+        "Matches static HTML layout exactly"
+      ]
+    },
+    "phase2": {
+      "title": "Fix Header Menu Button Styling",
+      "priority": 2,
+      "estimatedTime": "30 minutes",
+      "prerequisites": ["Header component exists"],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Update Header.module.css",
+          "description": "Add missing border style to .menuToggle class",
+          "files": ["src/css/components/Header.module.css"],
+          "verification": "Mobile menu button shows green border"
+        }
+      ],
+      "rollbackProcedure": "Remove added border style",
+      "successCriteria": ["Menu button matches static HTML design"]
+    },
+    "phase3": {
+      "title": "Create SitemapPage Component",
+      "priority": 3,
+      "estimatedTime": "1-2 hours",
+      "prerequisites": ["React Router configured"],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Create SitemapPage component",
+          "description": "Create new component with site structure navigation",
+          "files": ["src/pages/SitemapPage.tsx"],
+          "verification": "Component renders site structure correctly"
+        },
+        {
+          "step": 2,
+          "action": "Add route to App.tsx",
+          "description": "Add /sitemap route with SitemapPage component",
+          "files": ["src/App.tsx"],
+          "verification": "Route accessible and component loads"
+        },
+        {
+          "step": 3,
+          "action": "Update navigation links",
+          "description": "Ensure sitemap is accessible from navigation",
+          "files": ["src/components/Header.tsx"],
+          "verification": "Sitemap accessible from main navigation"
+        }
+      ],
+      "rollbackProcedure": "Remove component and route",
+      "successCriteria": [
+        "All site links work correctly",
+        "External links open in new tabs",
+        "Dynamic timestamp updates"
+      ]
+    },
+    "phase4": {
+      "title": "SEO and Meta Tags Implementation",
+      "priority": 4,
+      "estimatedTime": "3-4 hours",
+      "prerequisites": ["react-helmet-async package"],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Install react-helmet-async",
+          "description": "Add SEO meta tag management",
+          "command": "npm install react-helmet-async @types/react-helmet-async",
+          "verification": "Package installed successfully"
+        },
+        {
+          "step": 2,
+          "action": "Add meta tags to each page",
+          "description": "Implement dynamic meta tags for all pages",
+          "files": ["All page components"],
+          "verification": "Meta tags appear correctly in browser dev tools"
+        }
+      ],
+      "rollbackProcedure": "Remove helmet components and package",
+      "successCriteria": ["All pages have complete meta tags"]
+    }
+  },
+  "codeSnippets": {
+    "contactPageComplete": {
+      "file": "src/pages/ContactPage.tsx",
+      "code": "import React, { useState, useRef } from 'react';\nimport { Link } from 'react-router-dom';\n\nexport const ContactPage: React.FC = () => {\n  const [formData, setFormData] = useState({\n    name: '',\n    email: '',\n    phone: '',\n    subject: '',\n    message: ''\n  });\n  \n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');\n\n  const handleSubmit = async (e: React.FormEvent) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    \n    try {\n      const response = await fetch('https://formspree.io/f/xeoeenqv', {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json'\n        },\n        body: JSON.stringify(formData)\n      });\n      \n      if (response.ok) {\n        setSubmitStatus('success');\n        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });\n      } else {\n        setSubmitStatus('error');\n      }\n    } catch (error) {\n      setSubmitStatus('error');\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n\n  return (\n    <>\n      {/* Video Banner Section */}\n      <div className=\"video-banner\">\n        <video \n          className=\"banner-video\" \n          autoPlay \n          muted \n          loop \n          playsInline\n          preload=\"metadata\"\n        >\n          <source src=\"https://res.cloudinary.com/depqttzlt/video/upload/v1752558251/large_green_banner_dv0bkk.mp4\" type=\"video/mp4\" />\n        </video>\n        <div className=\"video-overlay\"></div>\n      </div>\n\n      <section id=\"contact-main\">\n        <div className=\"container contact-container\">\n          <div className=\"contact-grid\">\n            {/* Left side - Contact Information */}\n            <div className=\"contact-info\">\n              <h2>Get in Touch</h2>\n              \n              <div className=\"info-section\">\n                <h3><i className=\"fas fa-map-marker-alt\"></i> Location</h3>\n                <a \n                  href=\"https://www.google.com/maps/place/York/@53.9585894,-1.1218767,13z\" \n                  target=\"_blank\" \n                  rel=\"noopener noreferrer\" \n                  className=\"info-card\"\n                  style={{ textDecoration: 'none', display: 'block' }}\n                >\n                  <i className=\"fas fa-external-link-alt\" style={{ fontSize: '0.8em', marginLeft: '0.5rem' }}></i>\n                  <span className=\"info-content\">York, UK</span>\n                </a>\n              </div>\n\n              <div className=\"info-section\">\n                <h3><i className=\"fas fa-address-card\"></i> Contact Details</h3>\n                <div className=\"contact-cards\">\n                  <a href=\"tel:+447903352059\" className=\"info-card\">\n                    <i className=\"fas fa-phone\"></i>\n                    <span className=\"info-content\">+44 7903352059</span>\n                  </a>\n                  <a href=\"mailto:dev@thomasjbutler.me\" className=\"info-card\">\n                    <i className=\"fas fa-envelope\"></i>\n                    <span className=\"info-content\">dev@thomasjbutler.me</span>\n                  </a>\n                </div>\n              </div>\n\n              <div className=\"info-section\">\n                <h3><i className=\"fas fa-calendar-check\"></i> Availability</h3>\n                <ul className=\"availability-list\">\n                  <li><i className=\"fas fa-check-circle\"></i> Resume is available upon request</li>\n                  <li><i className=\"fas fa-check-circle\"></i> Available for full time work</li>\n                  <li><i className=\"fas fa-check-circle\"></i> Available for freelance work</li>\n                </ul>\n              </div>\n\n              <div className=\"info-section coffee-section\">\n                <h3><i className=\"fas fa-heart\"></i> Support My Work</h3>\n                <p className=\"support-text\">If you find my work valuable, consider supporting me!</p>\n                <a \n                  href=\"https://buymeacoffee.com/ojrwoqkgmv\" \n                  target=\"_blank\" \n                  rel=\"noopener noreferrer\" \n                  className=\"coffee-button-premium\"\n                >\n                  <i className=\"fas fa-coffee\"></i>\n                  <span>Buy Me a Coffee</span>\n                  <span className=\"coffee-steam\">\n                    <span className=\"steam-particle\"></span>\n                    <span className=\"steam-particle\"></span>\n                    <span className=\"steam-particle\"></span>\n                  </span>\n                </a>\n              </div>\n            </div>\n\n            {/* Right side - Contact Form */}\n            <div className=\"contact-form-section\">\n              <h2>Send a Message</h2>\n              <form className=\"contact-form\" onSubmit={handleSubmit}>\n                <div className=\"form-group\">\n                  <label htmlFor=\"name\">Name *</label>\n                  <input\n                    type=\"text\"\n                    id=\"name\"\n                    name=\"name\"\n                    value={formData.name}\n                    onChange={(e) => setFormData({...formData, name: e.target.value})}\n                    required\n                    className=\"form-input\"\n                  />\n                </div>\n\n                <div className=\"form-group\">\n                  <label htmlFor=\"email\">Email *</label>\n                  <input\n                    type=\"email\"\n                    id=\"email\"\n                    name=\"email\"\n                    value={formData.email}\n                    onChange={(e) => setFormData({...formData, email: e.target.value})}\n                    required\n                    className=\"form-input\"\n                  />\n                </div>\n\n                <div className=\"form-group\">\n                  <label htmlFor=\"phone\">Phone</label>\n                  <input\n                    type=\"tel\"\n                    id=\"phone\"\n                    name=\"phone\"\n                    value={formData.phone}\n                    onChange={(e) => setFormData({...formData, phone: e.target.value})}\n                    className=\"form-input\"\n                  />\n                </div>\n\n                <div className=\"form-group\">\n                  <label htmlFor=\"subject\">Subject *</label>\n                  <input\n                    type=\"text\"\n                    id=\"subject\"\n                    name=\"subject\"\n                    value={formData.subject}\n                    onChange={(e) => setFormData({...formData, subject: e.target.value})}\n                    required\n                    className=\"form-input\"\n                  />\n                </div>\n\n                <div className=\"form-group\">\n                  <label htmlFor=\"message\">Message *</label>\n                  <textarea\n                    id=\"message\"\n                    name=\"message\"\n                    rows={6}\n                    value={formData.message}\n                    onChange={(e) => setFormData({...formData, message: e.target.value})}\n                    required\n                    className=\"form-input\"\n                  ></textarea>\n                </div>\n\n                <button \n                  type=\"submit\" \n                  className=\"submit-btn\"\n                  disabled={isSubmitting}\n                >\n                  {isSubmitting ? (\n                    <>\n                      <i className=\"fas fa-spinner fa-spin\"></i> Sending...\n                    </>\n                  ) : (\n                    <>\n                      <i className=\"fas fa-paper-plane\"></i> Send Message\n                    </>\n                  )}\n                </button>\n\n                {submitStatus === 'success' && (\n                  <div className=\"form-success\">\n                    <i className=\"fas fa-check-circle\"></i> Message sent successfully!\n                  </div>\n                )}\n\n                {submitStatus === 'error' && (\n                  <div className=\"form-error\">\n                    <i className=\"fas fa-exclamation-circle\"></i> Error sending message. Please try again.\n                  </div>\n                )}\n              </form>\n            </div>\n          </div>\n        </div>\n      </section>\n    </>\n  );\n};",
+      "description": "Complete ContactPage implementation with video banner, form integration, and contact information"
+    },
+    "sitemapPageComplete": {
+      "file": "src/pages/SitemapPage.tsx",
+      "code": "import React from 'react';\nimport { Link } from 'react-router-dom';\n\nexport const SitemapPage: React.FC = () => {\n  const siteStructure = [\n    {\n      title: 'Main Pages',\n      links: [\n        { name: 'Home', path: '/', description: 'Portfolio homepage with featured projects' },\n        { name: 'About Me', path: '/about', description: 'Learn about my journey and expertise' },\n        { name: 'Skills', path: '/skills', description: 'Technical skills and proficiencies' },\n        { name: 'Projects', path: '/projects', description: 'Complete project portfolio' },\n        { name: 'Services', path: '/services', description: 'Services I offer' },\n        { name: 'Contact', path: '/contact', description: 'Get in touch' }\n      ]\n    },\n    {\n      title: 'Blog',\n      links: [\n        { name: 'All Articles', path: '/blog', description: 'Thought leadership on AI and development' },\n        { name: 'AI & Automation', path: '/blog?tag=ai', description: 'Articles about AI integration' },\n        { name: 'Development', path: '/blog?tag=development', description: 'Development best practices' },\n        { name: 'Human-Centered Tech', path: '/blog?tag=human', description: 'Technology for humans' }\n      ]\n    },\n    {\n      title: 'External Links',\n      links: [\n        { name: 'GitHub', path: 'https://github.com/ThomasJButler', description: 'View my code', external: true },\n        { name: 'LinkedIn', path: 'https://linkedin.com/in/thomasjbutler', description: 'Professional profile', external: true },\n        { name: 'Buy Me a Coffee', path: 'https://buymeacoffee.com/ojrwoqkgmv', description: 'Support my work', external: true }\n      ]\n    }\n  ];\n\n  return (\n    <section id=\"sitemap\" className=\"sitemap-section\">\n      <div className=\"container\">\n        <h1 className=\"page-title\">Site Map</h1>\n        <p className=\"page-subtitle\">Complete navigation structure of thomasjbutler.me</p>\n\n        <div className=\"sitemap-grid\">\n          {siteStructure.map((section, index) => (\n            <div key={index} className=\"sitemap-section\">\n              <h2 className=\"section-title\">{section.title}</h2>\n              <ul className=\"sitemap-links\">\n                {section.links.map((link, linkIndex) => (\n                  <li key={linkIndex}>\n                    {link.external ? (\n                      <a \n                        href={link.path} \n                        target=\"_blank\" \n                        rel=\"noopener noreferrer\"\n                        className=\"sitemap-link external\"\n                      >\n                        <span className=\"link-name\">{link.name}</span>\n                        <i className=\"fas fa-external-link-alt\"></i>\n                        <span className=\"link-description\">{link.description}</span>\n                      </a>\n                    ) : (\n                      <Link to={link.path} className=\"sitemap-link\">\n                        <span className=\"link-name\">{link.name}</span>\n                        <span className=\"link-description\">{link.description}</span>\n                      </Link>\n                    )}\n                  </li>\n                ))}\n              </ul>\n            </div>\n          ))}\n        </div>\n\n        <div className=\"sitemap-footer\">\n          <p>Last updated: {new Date().toLocaleDateString()}</p>\n          <p>© 2024 Thomas J Butler. All rights reserved.</p>\n        </div>\n      </div>\n    </section>\n  );\n};",
+      "description": "Complete SitemapPage component with hierarchical navigation structure"
+    },
+    "headerMenuFix": {
+      "file": "src/css/components/Header.module.css",
+      "cssRule": ".menuToggle { border: 2px solid rgba(0, 255, 0, 0.3); }",
+      "description": "Add missing border style to mobile menu toggle button"
+    },
+    "appRouteAddition": {
+      "file": "src/App.tsx",
+      "import": "import { SitemapPage } from './pages/SitemapPage';",
+      "route": "<Route path=\"/sitemap\" element={<SitemapPage />} />",
+      "description": "Add sitemap route to React Router configuration"
+    },
+    "buyMeCoffeeButton": {
+      "css": ".coffee-button-premium {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  padding: 12px 24px;\n  background: linear-gradient(45deg, #ff813f, #ff4444);\n  color: white;\n  text-decoration: none;\n  border-radius: 8px;\n  font-weight: 600;\n  transition: transform 0.2s, box-shadow 0.2s;\n  position: relative;\n  overflow: hidden;\n}\n\n.coffee-button-premium:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(255, 129, 63, 0.3);\n}\n\n.coffee-steam {\n  display: flex;\n  gap: 2px;\n}\n\n.steam-particle {\n  width: 2px;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.7);\n  border-radius: 1px;\n  animation: steam 2s ease-in-out infinite;\n}\n\n.steam-particle:nth-child(2) { animation-delay: 0.3s; }\n.steam-particle:nth-child(3) { animation-delay: 0.6s; }\n\n@keyframes steam {\n  0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.7; }\n  50% { transform: translateY(-4px) scaleY(1.5); opacity: 1; }\n}",
+      "description": "Animated Buy Me a Coffee button with steam effect"
+    }
+  },
+  "verificationCriteria": {
+    "visualRegression": {
+      "contactPage": {
+        "screenshots": ["full-page", "form-section", "info-section", "mobile-view"],
+        "tolerance": "5%",
+        "criticalElements": ["video-banner", "contact-form", "coffee-button"],
+        "responsiveBreakpoints": ["320px", "768px", "1024px", "1440px"]
+      },
+      "sitemapPage": {
+        "screenshots": ["full-page", "navigation-links", "mobile-view"],
+        "tolerance": "2%",
+        "criticalElements": ["sitemap-grid", "external-links", "footer"],
+        "responsiveBreakpoints": ["320px", "768px", "1024px"]
+      },
+      "headerMenu": {
+        "screenshots": ["mobile-menu-closed", "mobile-menu-open"],
+        "tolerance": "1%",
+        "criticalElements": ["menu-toggle-button"],
+        "focusArea": "Button border styling"
+      }
+    },
+    "contentParity": {
+      "contactPage": {
+        "requiredElements": [
+          "Video banner with autoplay",
+          "Contact form with 5 fields",
+          "Phone number: +44 7903352059",
+          "Email: dev@thomasjbutler.me",
+          "Location: York, UK with Google Maps link",
+          "Availability list with 3 items",
+          "Buy Me a Coffee button with animation",
+          "Form submission success/error messages"
+        ],
+        "functionalRequirements": [
+          "Form submits to Formspree endpoint",
+          "Video plays automatically",
+          "All links open correctly",
+          "Form validation works",
+          "Success/error states display"
+        ]
+      },
+      "sitemapPage": {
+        "requiredElements": [
+          "Page title: Site Map",
+          "Page subtitle with domain",
+          "Main Pages section with 6 links",
+          "Blog section with 4 links",
+          "External Links section with 3 links",
+          "Dynamic timestamp",
+          "Copyright notice"
+        ],
+        "functionalRequirements": [
+          "Internal links use React Router",
+          "External links open in new tabs",
+          "All links navigate correctly",
+          "Timestamp updates dynamically"
+        ]
+      }
+    },
+    "performanceBenchmarks": {
+      "contactPage": {
+        "fcp": "< 1.2s",
+        "lcp": "< 2.0s (video loading)",
+        "cls": "< 0.1",
+        "bundleImpact": "< 50KB additional",
+        "videoOptimization": "Lazy loading below fold"
+      },
+      "sitemapPage": {
+        "fcp": "< 0.8s",
+        "lcp": "< 1.5s",
+        "cls": "< 0.05",
+        "bundleImpact": "< 10KB additional"
+      }
+    },
+    "accessibilityStandards": {
+      "contactPage": {
+        "requirements": [
+          "Form labels properly associated",
+          "Video has controls or autoplay exceptions",
+          "Focus indicators visible",
+          "Color contrast meets WCAG AA",
+          "Error messages announced to screen readers",
+          "Keyboard navigable"
+        ],
+        "testing": [
+          "axe-core automated testing",
+          "Manual keyboard navigation",
+          "Screen reader testing"
+        ]
+      },
+      "sitemapPage": {
+        "requirements": [
+          "Heading hierarchy correct (h1, h2)",
+          "Link purposes clear",
+          "External link indicators",
+          "Focus indicators visible",
+          "Keyboard navigable"
+        ]
+      }
+    }
+  }
+}

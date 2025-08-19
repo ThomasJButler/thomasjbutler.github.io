@@ -7,6 +7,13 @@
 /* Import component styles */
 @import "./components/_keyboard-help.css";
 
+/* Prevent horizontal scrolling globally */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
 /* CSS Custom Properties - Design System
    ========================================================================== */
 :root {

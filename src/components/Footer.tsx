@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Footer.module.css';
@@ -106,7 +106,9 @@ export const Footer: React.FC = () => {
           <h3>Quick Links</h3>
           <ul className={styles.footerLinks}>
             <li><a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/sitemap">Sitemap</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
           </ul>
         </div>
       </div>

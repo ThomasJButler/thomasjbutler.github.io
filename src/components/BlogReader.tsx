@@ -254,6 +254,27 @@ export const BlogReader: React.FC = () => {
         <div className="progress-glow" style={{ width: `${readingProgress}%` }} />
       </div>
 
+      {/* Mobile top bar - moved from bottom */}
+      <div className="mobile-top-bar">
+        <Link to="/blog" className="mobile-back">
+          <i className="fas fa-arrow-left"></i>
+        </Link>
+        
+        <div className="mobile-font-controls">
+          <button onClick={() => adjustFontSize(-2)}>
+            <i className="fas fa-minus"></i>
+          </button>
+          <span>{fontSize}px</span>
+          <button onClick={() => adjustFontSize(2)}>
+            <i className="fas fa-plus"></i>
+          </button>
+        </div>
+        
+        <div className="progress-indicator">
+          {Math.round(readingProgress)}%
+        </div>
+      </div>
+
       {/* Reader header */}
       <header className="reader-header">
         <div className="reader-header-content">
@@ -372,26 +393,6 @@ export const BlogReader: React.FC = () => {
         </div>
       </article>
 
-      {/* Mobile bottom bar */}
-      <div className="mobile-bottom-bar">
-        <Link to="/blog" className="mobile-back">
-          <i className="fas fa-arrow-left"></i>
-        </Link>
-        
-        <div className="mobile-font-controls">
-          <button onClick={() => adjustFontSize(-2)}>
-            <i className="fas fa-minus"></i>
-          </button>
-          <span>{fontSize}px</span>
-          <button onClick={() => adjustFontSize(2)}>
-            <i className="fas fa-plus"></i>
-          </button>
-        </div>
-        
-        <div className="progress-indicator">
-          {Math.round(readingProgress)}%
-        </div>
-      </div>
 
       {/* Share Toast Notification */}
       {showShareToast && (

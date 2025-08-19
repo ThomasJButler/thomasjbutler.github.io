@@ -258,6 +258,11 @@ export const HomePage: React.FC = () => {
                 <span>JavaScript</span>
                 <span>React</span>
                 <span>Node.js</span>
+                <span>C#/.NET</span>
+                <span>Tailwind</span>
+                <span>HubSpot/HUBL</span>
+                <span>WordPress/PHP</span>
+                <span>IOS/Web Apps</span>
               </div>
             </li>
 
@@ -276,7 +281,12 @@ export const HomePage: React.FC = () => {
               <div className="introduction-expertise-tags">
                 <span>ChatGPT</span>
                 <span>Claude</span>
+                <span>Midjourney</span>
+                <span>GPT Creation</span>
+                <span>Chatbots</span>
                 <span>ML</span>
+                <span>AI LLM Models</span>
+                <span>AI Solutions</span>
                 <span>API</span>
               </div>
             </li>

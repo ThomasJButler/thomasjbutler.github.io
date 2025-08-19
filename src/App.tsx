@@ -19,6 +19,7 @@ const SkillsPage = lazy(() => import('./pages/SkillsPage').then(m => ({ default:
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const SitemapPage = lazy(() => import('./pages/SitemapPage').then(m => ({ default: m.SitemapPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
 
@@ -105,6 +106,11 @@ export const App: React.FC = () => {
                 <ContactPage />
               </Suspense>
             } />
+            <Route path="sitemap" element={
+              <Suspense fallback={<PageLoader />}>
+                <SitemapPage />
+              </Suspense>
+            } />
             <Route path="blog" element={
               <Suspense fallback={<PageLoader />}>
                 <BlogPage />
@@ -123,6 +129,7 @@ export const App: React.FC = () => {
             <Route path="projects.html" element={<Navigate to="/projects" replace />} />
             <Route path="services.html" element={<Navigate to="/services" replace />} />
             <Route path="contact.html" element={<Navigate to="/contact" replace />} />
+            <Route path="sitemap.html" element={<Navigate to="/sitemap" replace />} />
           </Route>
         </Routes>
       </Router>

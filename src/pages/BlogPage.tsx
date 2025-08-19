@@ -172,36 +172,46 @@ export const BlogPage: React.FC = () => {
             <i className={`fas fa-chevron-${showFilters ? 'up' : 'down'}`}></i>
           </button>
 
-          {/* Desktop tags and mobile dropdown */}
-          <div className={`tags-container ${!showFilters ? 'collapsed-mobile' : ''}`}>
-            <div className="tags-label desktop-only">Filter by topic:</div>
-            
-            {/* Mobile select dropdown */}
-            <select 
-              className="tags-select mobile-only"
-              value={selectedTag || ''}
-              onChange={(e) => {
-                handleTagClick(e.target.value || null);
-                setShowFilters(false);
-              }}
-            >
-              <option value="">All Topics</option>
-              {allTags.map(tag => (
-                <option key={tag} value={tag}>{tag}</option>
-              ))}
-            </select>
-            
-            {/* Desktop tag buttons */}
-            <div className="tags-list desktop-only">
-              {allTags.map(tag => (
-                <button
-                  key={tag}
-                  className={`tag-button ${selectedTag === tag ? 'active' : ''}`}
-                  onClick={() => handleTagClick(tag)}
+          {/* Desktop and Mobile dropdown */}
+          <div className={`tags-container ${!showFilters && 'collapsed-mobile'}`}>
+            <div className="tags-dropdown-wrapper">
+              <label htmlFor="topic-filter" className="tags-label">
+                <i className="fas fa-tags"></i>
+                Filter by topic:
+              </label>
+              
+              {/* Unified dropdown for both desktop and mobile */}
+              <select 
+                id="topic-filter"
+                className="tags-select"
+                value={selectedTag || ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSelectedTag(value === '' ? null : value);
+                  setShowFilters(false);
+                }}
+              >
+                <option value="">All Topics ({posts.length})</option>
+                {allTags.map(tag => {
+                  const count = posts.filter(post => post.tags.includes(tag)).length;
+                  return (
+                    <option key={tag} value={tag}>
+                      {tag} ({count})
+                    </option>
+                  );
+                })}
+              </select>
+              
+              {/* Clear selection button if tag is selected */}
+              {selectedTag && (
+                <button 
+                  className="clear-tag-btn"
+                  onClick={() => setSelectedTag(null)}
+                  aria-label="Clear topic filter"
                 >
-                  {tag}
+                  <i className="fas fa-times"></i>
                 </button>
-              ))}
+              )}
             </div>
           </div>
 
