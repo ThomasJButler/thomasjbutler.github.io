@@ -56,7 +56,7 @@
 /* Grid container */
 .introduction-expertise-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns on desktop */
+    grid-template-columns: repeat(3, 1fr); /* Three columns on desktop for 6 cards (3x2 layout) */
     gap: 2rem;
     padding: 2rem 0;
 }
