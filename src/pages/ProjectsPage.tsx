@@ -296,7 +296,7 @@ export const ProjectsPage: React.FC = () => {
     setActiveCategory(category);
     
     // Animate tab change
-    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabButtons = document.querySelectorAll('.matrix-tab-button');
     animate(tabButtons, {
       scale: [1, 0.95, 1],
       duration: 300,
@@ -321,16 +321,16 @@ export const ProjectsPage: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="projects-section">
-      <div className="container">
-        <h2 className="section-title">GitHub Repository Showcase</h2>
+    <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
+      <div className="matrix-project-container">
+        <h2 className="section-title">--| Project Showcase |--</h2>
         <p className="section-description">Explore my open source contributions and personal projects</p>
         
-        <div className="project-tabs">
+        <div className="matrix-project-tabs">
           {categories.map(cat => (
             <button
               key={cat.id}
-              className={`tab-button ${activeCategory === cat.id ? 'active' : ''}`}
+              className={`matrix-tab-button ${activeCategory === cat.id ? 'active' : ''}`}
               onClick={() => handleCategoryClick(cat.id)}
               data-category={cat.id}
             >
@@ -339,24 +339,20 @@ export const ProjectsPage: React.FC = () => {
           ))}
         </div>
 
-        <div ref={gridRef} className="github-projects-grid">
+        <div ref={gridRef} className="matrix-project-grid">
           {visibleProjects.map((project) => (
             <article
               key={project.id}
-              className="github-card"
+              className="matrix-project-card"
               data-category={project.category}
               onMouseEnter={handleCardHover}
               onMouseLeave={handleCardLeave}
             >
-              <div className="github-card-header">
-                <div className="repo-info">
-                  <h3 className="repo-name">
-                    <i className="fab fa-github"></i>
-                    {project.name}
-                  </h3>
-                  <span className="repo-visibility">{project.visibility}</span>
-                </div>
-                <div className="repo-stats">
+              <div className="matrix-project-header">
+                <h3 className="matrix-project-title">
+                  <i className="fas fa-terminal"></i> {project.name}
+                </h3>
+                <div className="matrix-project-stats">
                   <span className="stat">
                     <i className="fas fa-star"></i> {project.stats.stars}
                   </span>
@@ -366,18 +362,18 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="github-card-body">
-                <p className="repo-description">{project.description}</p>
+              <div className="matrix-project-content">
+                <p className="matrix-project-description">{project.description}</p>
                 
-                <div className="repo-topics">
+                <div className="matrix-project-tags">
                   {project.topics.map((topic, index) => (
-                    <span key={index} className="topic">{topic}</span>
+                    <span key={index} className="matrix-tag">{topic}</span>
                   ))}
                 </div>
                 
-                <div className="repo-language">
+                <div className="matrix-project-language">
                   <span 
-                    className="language-color" 
+                    className="language-dot" 
                     style={{ backgroundColor: project.language.color }}
                   ></span>
                   <span className="language-name">{project.language.name}</span>
@@ -385,27 +381,29 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="github-card-footer">
+              <div className="matrix-project-buttons">
                 {project.links.demo && (
                   <a 
                     href={project.links.demo} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="repo-link live"
+                    className="neo-matrix-btn"
                   >
                     <i className="fas fa-external-link-alt"></i>
                     Live Demo
                   </a>
                 )}
-                <a 
-                  href={project.links.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="repo-link github"
-                >
-                  <i className="fab fa-github"></i>
-                  View on GitHub
-                </a>
+                {project.links.github && (
+                  <a 
+                    href={project.links.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="neo-matrix-btn"
+                  >
+                    <i className="fab fa-github"></i>
+                    View Code
+                  </a>
+                )}
               </div>
             </article>
           ))}
