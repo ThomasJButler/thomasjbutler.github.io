@@ -13,16 +13,8 @@ export default defineConfig({
       input: {
         // Main static portfolio site
         main: resolve(__dirname, 'index.html'),
-        // React app (for gradual migration)
+        // React app - fully migrated v3.5
         react: resolve(__dirname, 'react.html'),
-        // Other HTML pages
-        about: resolve(__dirname, 'about.html'),
-        skills: resolve(__dirname, 'skills.html'),
-        projects: resolve(__dirname, 'projects.html'),
-        services: resolve(__dirname, 'services.html'),
-        contact: resolve(__dirname, 'contact.html'),
-        sitemap: resolve(__dirname, 'sitemap.html'),
-        blog: resolve(__dirname, 'blog.html'),
       }
     },
     minify: 'terser',
