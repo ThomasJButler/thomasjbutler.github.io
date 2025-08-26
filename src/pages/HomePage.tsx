@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CubeFace, type CubeProject } from '../components/CubeFace';
 import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
+import { useCardAnimations } from '../hooks/useCardAnimations';
 
 // Cube projects data
 const cubeProjects: Record<string, CubeProject> = {
@@ -68,6 +69,9 @@ const cubeProjects: Record<string, CubeProject> = {
 export const HomePage: React.FC = () => {
   const cubeRef = useRef<HTMLDivElement>(null);
   const currentFaceRef = useRef<string>('front');
+  
+  // Card animations hook
+  useCardAnimations();
   
   // Scroll animation refs
   const latestUpdatesRef = useScrollAnimation({ threshold: 0.2 });

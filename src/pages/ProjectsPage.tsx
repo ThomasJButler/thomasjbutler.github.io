@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
+import { useCardAnimations } from '../hooks/useCardAnimations';
 
 interface Project {
   id: string;
@@ -271,6 +272,7 @@ export const ProjectsPage: React.FC = () => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useMatrixAnimation(containerRef);
+  useCardAnimations();
 
   useEffect(() => {
     if (activeCategory === 'all') {

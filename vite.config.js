@@ -11,10 +11,12 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        // Main static portfolio site
+        // Main entry - redirects to React app
         main: resolve(__dirname, 'index.html'),
         // React app - fully migrated v3.5
         react: resolve(__dirname, 'react.html'),
+        // Blog redirect for backward compatibility
+        blog: resolve(__dirname, 'blog.html'),
       }
     },
     minify: 'terser',
