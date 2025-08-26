@@ -16,11 +16,11 @@ export const useCardAnimations = () => {
       const expertiseCards = document.querySelectorAll('.introduction-expertise-card');
       if (expertiseCards.length > 0) {
         animate({
-          targets: expertiseCards,
+          targets: Array.from(expertiseCards),
           translateY: [30, 0],
           opacity: [0, 1],
           duration: 600,
-          delay: stagger(100, { start: 200 }),
+          delay: stagger(100),
           easing: 'easeOutQuad'
         });
       }
@@ -29,11 +29,11 @@ export const useCardAnimations = () => {
       const projectCards = document.querySelectorAll('.project-card, .matrix-project-card');
       if (projectCards.length > 0) {
         animate({
-          targets: projectCards,
+          targets: Array.from(projectCards),
           translateY: [40, 0],
           opacity: [0, 1],
           duration: 800,
-          delay: stagger(150, { start: 300 }),
+          delay: stagger(150),
           easing: 'easeOutQuad'
         });
       }
@@ -65,11 +65,11 @@ export const useCardAnimations = () => {
             const tags = entry.target.querySelectorAll('.introduction-expertise-tags span, .project-tags span');
             if (tags.length > 0) {
               animate({
-                targets: tags,
+                targets: Array.from(tags),
                 translateX: [-10, 0],
                 opacity: [0, 1],
                 duration: 400,
-                delay: stagger(50, { start: 300 }),
+                delay: stagger(50),
                 easing: 'easeOutQuad'
               });
             }
@@ -191,14 +191,8 @@ export const useCardAnimations = () => {
       });
       hoverAnimationsRef.current.clear();
 
-      // Remove event listeners
-      const cards = document.querySelectorAll(
-        '.introduction-expertise-card, .project-card, .matrix-project-card'
-      );
-      cards.forEach(card => {
-        const cardElement = card as HTMLElement;
-        cardElement.replaceWith(cardElement.cloneNode(true));
-      });
+      // Note: Event listeners will be cleaned up when component unmounts
+      // React handles DOM cleanup automatically
     };
   }, []);
 

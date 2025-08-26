@@ -270,11 +270,3 @@ class ScrollDetection {
 
 // Export only the class - no singleton to prevent auto-initialization
 export { ScrollDetection };
-
-// Auto-initialize on legacy pages (non-React)
-if (typeof window !== 'undefined' && !window.location.pathname.includes('index-react')) {
-  // Delay initialization to ensure all other scripts have loaded
-  setTimeout(() => {
-    scrollDetection.init();
-  }, 100);
-}

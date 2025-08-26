@@ -49,6 +49,7 @@ export const ReactHtmlRedirect: React.FC = () => {
       
       // Use React Router's navigate function for SPA navigation
       navigate(route, { replace: true });
+      return;
     }
   }, [navigate, location.search, location.pathname]);
 

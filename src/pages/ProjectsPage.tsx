@@ -289,7 +289,7 @@ export const ProjectsPage: React.FC = () => {
         translateY: [20, 0],
         delay: stagger(100, {from: 'first'}),
         duration: 600,
-        ease: 'outQuad'
+        easing: 'easeOutQuad'
       });
     }
   }, [visibleProjects]);
@@ -302,7 +302,7 @@ export const ProjectsPage: React.FC = () => {
     animate(tabButtons, {
       scale: [1, 0.95, 1],
       duration: 300,
-      ease: 'inOutQuad'
+      easing: 'easeInOutQuad'
     });
   };
 
@@ -310,7 +310,7 @@ export const ProjectsPage: React.FC = () => {
     animate(e.currentTarget, {
       scale: 1.02,
       duration: 300,
-      ease: 'outQuad'
+      easing: 'easeOutQuad'
     });
   };
 
@@ -318,7 +318,7 @@ export const ProjectsPage: React.FC = () => {
     animate(e.currentTarget, {
       scale: 1,
       duration: 300,
-      ease: 'outQuad'
+      easing: 'easeOutQuad'
     });
   };
 
