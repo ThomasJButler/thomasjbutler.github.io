@@ -520,17 +520,17 @@ p.info-card {
 .form-group textarea,
 .form-input {
     width: 100%;
-    padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-xl);
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
     background: rgba(0, 255, 0, 0.01);
     border: none;
     border-bottom: 1.5px solid rgba(0, 255, 0, 0.15);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: inherit;
     transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
     outline: none;
-    min-height: 38px;
+    min-height: 48px;
     transform: translate3d(0, 0, 0);
 }
 
@@ -543,10 +543,10 @@ p.info-card {
 /* Floating Labels - Refined */
 .form-group label {
     position: absolute;
-    left: var(--space-xl);
-    top: 10px;
+    left: 0.5rem;
+    top: 1.25rem;
     color: rgba(0, 255, 0, 0.4);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     pointer-events: none;
     transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
     font-weight: 400;
@@ -558,18 +558,20 @@ p.info-card {
 }
 
 /* Active/Filled state */
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label,
-.form-input:focus + label,
-.form-input:not(:placeholder-shown) + label {
-    top: 10px;
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label,
+.form-input:focus ~ label,
+.form-input:not(:placeholder-shown) ~ label {
+    top: -0.5rem;
     left: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--matrix-green);
     font-weight: 500;
     letter-spacing: 0.05em;
+    background: linear-gradient(145deg, rgba(0, 15, 0, 0.98), rgba(0, 25, 0, 0.95));
+    padding: 0 0.25rem;
 }
 
 /* Focus states */

@@ -125,7 +125,6 @@ export const ContactPage: React.FC = () => {
               <h2>Send a Message</h2>
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -134,11 +133,12 @@ export const ContactPage: React.FC = () => {
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required
                     className="form-input"
+                    placeholder=" "
                   />
+                  <label htmlFor="name">Name *</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email *</label>
                   <input
                     type="email"
                     id="email"
@@ -147,11 +147,12 @@ export const ContactPage: React.FC = () => {
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     required
                     className="form-input"
+                    placeholder=" "
                   />
+                  <label htmlFor="email">Email *</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="phone">Phone</label>
                   <input
                     type="tel"
                     id="phone"
@@ -159,11 +160,12 @@ export const ContactPage: React.FC = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     className="form-input"
+                    placeholder=" "
                   />
+                  <label htmlFor="phone">Phone</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="subject">Subject *</label>
                   <input
                     type="text"
                     id="subject"
@@ -172,11 +174,12 @@ export const ContactPage: React.FC = () => {
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     required
                     className="form-input"
+                    placeholder=" "
                   />
+                  <label htmlFor="subject">Subject *</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -185,7 +188,9 @@ export const ContactPage: React.FC = () => {
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     required
                     className="form-input"
+                    placeholder=" "
                   ></textarea>
+                  <label htmlFor="message">Message *</label>
                 </div>
 
                 <button 
