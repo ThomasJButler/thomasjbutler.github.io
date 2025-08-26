@@ -4,6 +4,70 @@
    Author: Thomas J Butler
    ========================================================================== */
 
+/* ==========================================================================
+   Performance & Layout Optimizations
+   ========================================================================== */
+
+/* Fix body and root container */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent horizontal scroll and layout shifts */
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+/* Use GPU acceleration for smooth animations */
+.mainContent,
+header,
+footer,
+.back-to-top,
+.back-to-top-react {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Low-end device optimizations */
+body.low-end-device * {
+  animation: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+body.low-end-device .matrix-rain {
+  display: none !important;
+}
+
+/* Mobile device optimizations */
+body.mobile-device * {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Import component styles */
 @import "./components/_keyboard-help.css";
 
@@ -590,12 +654,12 @@ html, body {
     color: #00FF00;
     cursor: pointer;
     font-family: 'VT323', monospace;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 1.5px;
     margin: 1.5rem auto 0;
     overflow: hidden;
-    padding: 1rem 2.5rem;
+    padding: 0.75rem 1.75rem;
     position: relative;
     text-transform: uppercase;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -694,10 +758,10 @@ html, body {
     }
     
     .btn-contact-us {
-        font-size: 1.1rem;
-        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
         width: 100%;
-        max-width: 300px;
+        max-width: 250px;
     }
     
     #contact form input,
@@ -713,8 +777,8 @@ html, body {
     }
     
     .btn-contact-us {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        padding: 0.65rem 1.25rem;
     }
 }
    
@@ -1191,6 +1255,17 @@ body.loaded {
     text-shadow: 0 1px 3px rgba(0, 255, 0, 0.3);
 }
 
+/* Galleries Mobile Section */
+.galleries-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto 2rem;
+    padding: 1rem;
+    max-width: 600px;
+    flex-wrap: wrap;
+}
+
 /* Button Enhancements */
 .btn-professional {
     padding: var(--space-md) var(--space-xl);
@@ -1201,7 +1276,9 @@ body.loaded {
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     transition: all var(--duration-base) var(--ease-out);
     cursor: pointer;
     box-shadow: var(--shadow-sm);
@@ -1505,9 +1582,20 @@ button:active,
 /* Introduction Expertise Card Styles */
 .introduction-expertise-grid {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustment for expertise grid */
+@media (max-width: 768px) {
+    .introduction-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
 }
 
 .introduction-expertise-card {
@@ -1532,6 +1620,14 @@ button:active,
 
 .introduction-expertise-icon {
     margin-bottom: 15px;
+    font-size: 2.5rem;
+    color: #00FF00;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.introduction-expertise-icon i {
+    font-size: 2.5rem;
+    color: #00FF00;
 }
 
 .introduction-expertise-icon img {

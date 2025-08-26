@@ -210,6 +210,7 @@ button:focus-visible {
   align-items: center;
   margin: 20px 0;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .tags-dropdown-wrapper {
@@ -243,6 +244,7 @@ button:focus-visible {
 
 /* Enhanced Dropdown with Dracula Theme */
 .tags-select {
+  display: inline-block !important;
   background: #282a36;
   color: #f8f8f2;
   border: 1px solid #44475a;
@@ -862,7 +864,8 @@ button:focus-visible {
 
 /* Inline code - Dracula theme */
 .inline-code,
-.article-content code {
+.article-content p code,
+.article-content li code {
   background: #44475a; /* Dracula current line */
   color: #50fa7b; /* Dracula green */
   padding: 3px 8px;
@@ -873,23 +876,52 @@ button:focus-visible {
   white-space: nowrap;
 }
 
-/* Code blocks - Dracula theme */
+/* Code blocks - Matrix theme for better readability */
 .code-block,
 .article-content pre {
-  background: #282a36; /* Dracula background */
-  border: 1px solid #44475a; /* Dracula current line */
-  color: #f8f8f2; /* Dracula foreground */
-  line-height: 1.7;
-  border-radius: 12px;
-  padding: 24px;
+  background: rgba(0, 0, 0, 0.95); /* Darker background for contrast */
+  border: 1px solid rgba(0, 255, 0, 0.3); /* Matrix green border */
+  color: #00ff00; /* Matrix green text */
+  line-height: 1.6;
+  border-radius: 8px;
+  padding: 20px 24px;
   overflow-x: auto;
   margin: 32px 0;
-  font-family: 'Fira Code', 'Courier New', monospace;
-  font-size: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+  font-size: 15px;
+  font-weight: 400;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(0, 255, 0, 0.1);
   position: relative;
   max-width: 100%;
   box-sizing: border-box;
+  /* Keep original formatting for code */
+  white-space: pre;
+  /* But allow horizontal scroll when needed */
+  overflow-wrap: normal;
+  /* Anti-aliasing for crisp text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom scrollbar for code blocks */
+.code-block::-webkit-scrollbar,
+.article-content pre::-webkit-scrollbar {
+  height: 8px;
+  background: #44475a;
+  border-radius: 4px;
+}
+
+.code-block::-webkit-scrollbar-thumb,
+.article-content pre::-webkit-scrollbar-thumb {
+  background: #50fa7b;
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover,
+.article-content pre::-webkit-scrollbar-thumb:hover {
+  background: #8be9fd;
 }
 
 /* Code block language badge */
@@ -912,15 +944,19 @@ button:focus-visible {
 .article-content pre code {
   background: none;
   padding: 0;
-  color: #f8f8f2;
+  color: #00ff00; /* Matrix green for better readability */
   border: none;
   font-size: inherit;
+  white-space: pre;
+  display: block;
+  font-weight: 400;
+  text-shadow: 0 0 1px rgba(0, 255, 0, 0.5); /* Subtle glow for clarity */
 }
 
-/* Dracula Syntax Highlighting Colors */
+/* Matrix Theme Syntax Highlighting */
 .hljs-comment,
 .hljs-quote {
-  color: #6272a4;
+  color: rgba(0, 255, 0, 0.5); /* Dimmed green for comments */
   font-style: italic;
 }
 
@@ -1341,6 +1377,17 @@ button:focus-visible {
   display: block;
 }
 
+/* Ensure tags container is always visible on desktop */
+@media (min-width: 769px) {
+  .tags-container {
+    display: flex !important;
+  }
+  
+  .tags-container.collapsed-mobile {
+    display: flex !important;
+  }
+}
+
 /* Mobile filter toggle button */
 .filter-toggle {
   display: none;
@@ -1460,6 +1507,35 @@ button:focus-visible {
   .blog-page .container {
     padding: 0 1rem;
     max-width: 100%;
+  }
+  
+  /* Code blocks mobile optimization */
+  .code-block,
+  .article-content pre {
+    font-size: 13px;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 24px 0;
+    width: 100%;
+  }
+  
+  /* Blog content mobile */
+  .article-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  
+  .article-content h2 {
+    font-size: 1.6rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .article-content h3 {
+    font-size: 1.3rem;
+    margin-top: 32px;
+    margin-bottom: 16px;
   }
 
   .blog-title .matrix-text {
