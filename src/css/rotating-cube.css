@@ -36,7 +36,7 @@
     background: 
         linear-gradient(135deg, rgba(0, 20, 0, 0.9) 0%, rgba(0, 40, 0, 0.7) 50%, rgba(0, 20, 0, 0.9) 100%),
         radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.1), transparent 70%);
-    border: 2px solid var(--border-primary);
+    border: 2px solid rgba(0, 255, 0, 0.4);
     border-radius: 15px;
     overflow: visible;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,9 +77,9 @@
 }
 
 .cube-face:hover {
-    border-color: var(--text-primary);
+    border-color: rgba(0, 255, 0, 0.8);
     box-shadow: 
-        0 0 60px var(--text-secondary),
+        0 0 60px rgba(0, 255, 0, 0.5),
         0 0 120px rgba(0, 255, 0, 0.2),
         inset 0 0 40px rgba(0, 255, 0, 0.2);
 }
@@ -164,7 +164,7 @@
 
 .cube-project-tags span {
     background: rgba(0, 255, 0, 0.1);
-    border: 1px solid var(--border-primary);
+    border: 1px solid rgba(0, 255, 0, 0.3);
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -187,8 +187,8 @@
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
     background: rgba(0, 40, 0, 0.9);
-    border: 1px solid var(--matrix-green);
-    color: var(--matrix-green);
+    border: 1px solid var(--matrix-green, #00FF00);
+    color: var(--matrix-green, #00FF00);
     text-decoration: none;
     border-radius: 6px;
     display: inline-flex;
@@ -203,7 +203,7 @@
 }
 
 .cube-project-buttons .neo-matrix-btn:hover {
-    background: var(--matrix-green);
+    background: var(--matrix-green, #00FF00);
     color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
@@ -220,7 +220,7 @@
     z-index: 10;
     padding: 1rem;
     background: linear-gradient(135deg, rgba(0, 20, 0, 0.8) 0%, rgba(0, 40, 0, 0.6) 100%);
-    border: 1px solid var(--border-primary);
+    border: 1px solid rgba(0, 255, 0, 0.3);
     border-radius: 30px;
     box-shadow: 
         0 10px 40px rgba(0, 0, 0, 0.5),
@@ -231,8 +231,8 @@
 
 .cube-nav button {
     background: rgba(0, 40, 0, 0.8);
-    border: 1px solid var(--matrix-green);
-    color: var(--matrix-green);
+    border: 1px solid #00FF00;
+    color: #00FF00;
     padding: 0.6rem 1rem;
     border-radius: 20px;
     cursor: pointer;
@@ -246,7 +246,7 @@
 
 .cube-nav button:hover {
     background: rgba(0, 60, 0, 0.9);
-    box-shadow: var(--matrix-glow);
+    box-shadow: 0 0 15px #00FF00;
     transform: translateY(-2px);
 }
 
@@ -281,26 +281,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--matrix-green);
+    color: #00FF00;
     font-size: 1.5rem;
-    text-shadow: var(--matrix-glow);
-}
-
-/* Accessibility - Respect user preferences */
-@media (prefers-reduced-motion: reduce) {
-    .cube-container,
-    .cube-face {
-        animation: none !important;
-        transition: opacity var(--duration-fast) ease !important;
-    }
-    
-    .cube-nav button::before {
-        animation: none !important;
-    }
-    
-    .cube-container:hover {
-        animation: none !important;
-    }
+    text-shadow: 0 0 5px #00FF00;
 }
 
 /* Responsive Design */

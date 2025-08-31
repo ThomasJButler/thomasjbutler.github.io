@@ -128,25 +128,6 @@ html, body {
     --matrix-glow: 0 0 10px var(--matrix-green);
     --matrix-glow-intense: 0 0 20px var(--matrix-green);
     
-    /* Text color utilities from design_system.md */
-    --text-primary: rgba(0, 255, 0, 0.9);
-    --text-secondary: rgba(0, 255, 0, 0.7);
-    --text-muted: rgba(0, 255, 0, 0.5);
-    --border-primary: rgba(0, 255, 0, 0.3);
-    --bg-overlay: rgba(0, 0, 0, 0.8);
-    
-    /* Animation durations from design_system.md */
-    --duration-fast: 150ms;
-    --duration-base: 300ms;
-    --duration-slow: 500ms;
-    --duration-slower: 1000ms;
-    
-    /* Animation timing functions from design_system.md */
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
     /* Responsive breakpoints as CSS variables */
     --break-mobile: 480px;
     --break-tablet: 768px;

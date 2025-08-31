@@ -124,7 +124,7 @@ export const HomePage: React.FC = () => {
     animationProps: {
       opacity: [0, 1],
       scale: [0.9, 1],
-      duration: 500, // --duration-slow from design system
+      duration: 1200,
       ease: 'outElastic'
     }
   });
@@ -265,7 +265,7 @@ export const HomePage: React.FC = () => {
               animate(el as HTMLElement, {
                 opacity: [0, 1],
                 translateY: [20, 0],
-                duration: 300, // --duration-base
+                duration: 600,
                 easing: 'easeOutQuad'
               });
             }
@@ -294,7 +294,7 @@ export const HomePage: React.FC = () => {
         animate(el as HTMLElement, {
           opacity: [0, 1],
           translateY: [20, 0],
-          duration: 300, // --duration-base
+          duration: 600,
           delay: index * 100,
           easing: 'easeOutQuad'
         });
@@ -322,7 +322,7 @@ export const HomePage: React.FC = () => {
           opacity: [0, 1],
           scale: [0.9, 1],
           translateY: [20, 0],
-          duration: 500, // --duration-slow
+          duration: 700,
           delay: 400 + index * 150,
           easing: 'easeOutQuad'
         });
@@ -337,7 +337,7 @@ export const HomePage: React.FC = () => {
         
         animate(cubeRef.current, {
           opacity: [0, 1],
-          duration: 500, // --duration-slow
+          duration: 1000,
           delay: 600,
           easing: 'easeOutQuart',
           update: (anim) => {
@@ -364,7 +364,7 @@ export const HomePage: React.FC = () => {
           opacity: [0, 1],
           translateY: [50, 0],
           rotateX: [-15, 0],
-          duration: 500, // --duration-slow
+          duration: 1000,
           delay: 1200 + index * 100,
           easing: 'easeOutQuint'
         });
@@ -379,7 +379,7 @@ export const HomePage: React.FC = () => {
         animate(btn as HTMLElement, {
           opacity: [0, 1],
           scale: [0, 1.1, 1],
-          duration: 300, // --duration-base
+          duration: 600,
           delay: 1500 + index * 100,
           easing: 'easeOutBack'
         });
@@ -397,7 +397,7 @@ export const HomePage: React.FC = () => {
           animate(e.currentTarget as HTMLElement, {
             scale: 1.05,
             translateY: -5,
-            duration: 150, // --duration-fast
+            duration: 300,
             easing: 'easeOutQuad'
           });
         }
@@ -408,7 +408,7 @@ export const HomePage: React.FC = () => {
           animate(e.currentTarget as HTMLElement, {
             scale: 1,
             translateY: 0,
-            duration: 150, // --duration-fast
+            duration: 300,
             easing: 'easeOutQuad'
           });
         }
@@ -499,7 +499,7 @@ export const HomePage: React.FC = () => {
         // Pulse animation
         animate(btn, {
           scale: [1, 0.95, 1.05, 1],
-          duration: 300, // --duration-base
+          duration: 400,
           easing: 'easeOutElastic(1, .5)'
         });
       };
