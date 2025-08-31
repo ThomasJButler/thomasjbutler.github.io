@@ -1,0 +1,328 @@
+/* React App Layout Fixes */
+/* Addresses header, footer, and general layout issues in React version */
+
+/* ==========================================================================
+   Global React App Fixes
+   ========================================================================== */
+
+/* React App Layout Fixes */
+/* Addresses header, footer, and general layout issues in React version */
+
+/* ==========================================================================
+   Global React App Fixes
+   ========================================================================== */
+
+/* Fix body and root container */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Header Fixes
+   ========================================================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--matrix-green, #00ff00);
+  padding: 1rem 0;
+  width: 100%;
+}
+
+/* Ensure header content is properly contained */
+header .container {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Fix navigation alignment */
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Main Content Area Fixes
+   ========================================================================== */
+
+main {
+  flex: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove excessive padding from layout module */
+main.mainContent {
+  padding-top: 2rem !important;
+}
+
+/* Ensure proper container width */
+main > * {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ==========================================================================
+   Footer Fixes
+   ========================================================================== */
+
+footer {
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid var(--matrix-green, #00ff00);
+  padding: 2rem 0;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+footer .container {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ==========================================================================
+   Back to Top Button Fixes
+   ========================================================================== */
+
+.back-to-top-react {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 9999 !important;
+}
+
+/* ==========================================================================
+   Page Transition Performance
+   ========================================================================== */
+
+/* Allow natural animation durations for better UX */
+/* Animation durations are now controlled per-component */
+
+/* Smooth default transitions */
+*,
+*::before,
+*::after {
+  transition-property: opacity, transform, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+
+/* Disable filters on scroll for performance */
+.scrolling * {
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Blog-specific styles have been moved to blog.css */
+
+/* ==========================================================================
+   Matrix Rain Background Performance
+   ========================================================================== */
+
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  /* Removed opacity override - let component control visibility */
+}
+
+/* ==========================================================================
+   Responsive Fixes
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  header nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  main > *,
+  header .container,
+  footer .container {
+    padding: 0 1rem;
+  }
+  
+  .back-to-top-react {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem 0;
+  }
+  
+  main {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  footer {
+    padding: 1rem 0;
+  }
+  
+  .back-to-top-react {
+    bottom: 15px !important;
+    right: 15px !important;
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
+
+/* ==========================================================================
+   Performance Optimizations
+   ========================================================================== */
+
+/* Use GPU acceleration for smooth animations */
+.mainContent,
+header,
+footer,
+.back-to-top-react,
+.cube-container,
+.cube-face,
+.gallery-card,
+.introduction-img img,
+.neo-matrix-btn,
+.btn-professional,
+.particle,
+.sound-wave {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* GPU acceleration for hover states */
+*:hover {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Optimize animation performance */
+.animate-entrance,
+.revealed,
+.typing-text,
+.glitch-text {
+  will-change: transform, opacity;
+}
+
+/* Low-end device optimizations */
+body.low-end-device * {
+  animation: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+body.low-end-device .matrix-rain {
+  display: none !important;
+}
+
+body.low-end-device .back-to-top-react {
+  animation: none !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Mobile device optimizations */
+body.mobile-device * {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Disable animations class */
+body.disable-animations * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Disable background effects */
+body.disable-backgrounds .matrix-rain,
+body.disable-backgrounds .particle-effect,
+body.disable-backgrounds .background-animation {
+  display: none !important;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Quick Fixes for Common Issues
+   ========================================================================== */
+
+/* Fix overlapping elements */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure text is readable over matrix background */
+p, h1, h2, h3, h4, h5, h6, span, div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix scrollbar appearing/disappearing causing layout shift */
+html {
+  overflow-y: scroll;
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Fix sticky header jumping */
+header {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
