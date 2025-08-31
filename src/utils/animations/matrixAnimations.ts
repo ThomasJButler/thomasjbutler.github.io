@@ -30,12 +30,16 @@ export const matrixAnimations = {
   },
 
   // Typewriter effect
-  typewriter: (target: string | HTMLElement, text: string) => {
+  typewriter: (target: string | HTMLElement, text?: string) => {
     const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return;
 
+    // Use provided text or element's current text content
+    const textToType = text || element.textContent || '';
+    if (!textToType) return;
+
     element.textContent = '';
-    const letters = text.split('');
+    const letters = textToType.split('');
     
     letters.forEach((letter, i) => {
       setTimeout(() => {
