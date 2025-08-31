@@ -23,6 +23,178 @@ button,
   transition: all var(--hover-duration) var(--hover-timing);
 }
 
+/* Glitch Effect for Headers */
+@keyframes glitch {
+  0%, 100% {
+    text-shadow: 
+      0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  20% {
+    text-shadow: 
+      0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  40% {
+    text-shadow: 
+      -0.02em 0 0 rgba(255, 0, 0, 0.75),
+      0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  60% {
+    text-shadow: 
+      0.02em 0.01em 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0.01em 0 rgba(0, 255, 255, 0.75);
+  }
+}
+
+h1:hover,
+h2:hover,
+.section-title:hover {
+  animation: glitch 0.3s infinite;
+}
+
+/* Glitch text class for animations */
+.glitch-text {
+  position: relative;
+  animation: glitchText 0.5s ease-in-out;
+}
+
+@keyframes glitchText {
+  0%, 100% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+      0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 255, 0.75),
+      0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+      -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+      -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 255, 0.75),
+      0 -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 255, 0.75),
+      0 -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+}
+
+/* Typing effect */
+.typing-text {
+  overflow: hidden;
+  border-right: 3px solid var(--matrix-green);
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--matrix-green); }
+}
+
+/* Particle Effects */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--matrix-green);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 6px var(--matrix-green);
+  animation: particleFade 1s ease-out forwards;
+}
+
+@keyframes particleFade {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+.particle-burst {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--matrix-green);
+  box-shadow: 
+    0 0 10px var(--matrix-green),
+    0 0 20px var(--matrix-green);
+  animation: burstParticle 0.8s ease-out forwards;
+}
+
+@keyframes burstParticle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Visual Sound Feedback */
+.sound-wave {
+  position: absolute;
+  border: 2px solid var(--matrix-green);
+  border-radius: 50%;
+  animation: soundWave 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes soundWave {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
 /* Link Hover Effects */
 a:not(.btn):not(.button):not(.nav-link) {
   position: relative;
@@ -74,6 +246,76 @@ button:hover,
   background-color: rgba(0, 255, 0, 0.1);
   border-color: var(--matrix-green);
   color: #fff;
+}
+
+/* Pulse Animation */
+@keyframes matrixPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 5px rgba(0, 255, 0, 0.4);
+  }
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.neo-matrix-btn,
+.matrix-btn,
+.btn,
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-matrix-btn::before,
+.matrix-btn::before,
+.btn::before,
+button::before {
+  content: '';
+  position: absolute;
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(0, 255, 0, 0.3) 40%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: none;
+}
+
+.neo-matrix-btn:active::before,
+.matrix-btn:active::before,
+.btn:active::before,
+button:active::before {
+  width: 300px;
+  height: 300px;
+  animation: ripple 0.6s ease-out;
+}
+
+/* Magnetic Cursor Effect */
+.neo-matrix-btn,
+.matrix-btn {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+}
+
+.neo-matrix-btn:hover,
+.matrix-btn:hover {
+  animation: matrixPulse 0.6s ease-in-out;
+  transform: var(--magnetic-transform, translateY(-2px));
 }
 
 /* Shine Effect for Buttons */

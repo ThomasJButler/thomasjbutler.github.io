@@ -91,9 +91,12 @@
     opacity: 1; /* Show by default */
     transform: none; /* No transform by default */
     cursor: pointer;
-    min-height: 400px;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    backdrop-filter: blur(5px);
 }
 
 /* Card Back Side (for 3D flip) */
@@ -115,6 +118,45 @@
 /* Hidden state for filtering */
 .matrix-project-card.matrix-hidden {
     display: none !important;
+}
+
+/* Enhanced hover state */
+.matrix-project-card:hover {
+    border-color: var(--matrix-green);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(0, 255, 0, 0.3),
+            inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 40px rgba(0, 255, 0, 0.5),
+            inset 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+}
+
+/* Scanline effect for cards */
+.matrix-project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.03) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 3px
+    );
+    pointer-events: none;
+    animation: scanlines 8s linear infinite;
+    z-index: 1;
 }
 
 /* ==========================================================================
@@ -158,11 +200,17 @@
 }
 
 .matrix-project-description {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     flex-grow: 1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 4px;
+    position: relative;
+    z-index: 3;
 }
 
 /* ==========================================================================
@@ -176,15 +224,17 @@
     margin: 1rem 0;
 }
 
-.matrix-project-tag {
-    background: rgba(0, 255, 0, 0.1);
-    border: 1px solid var(--card-border);
+.matrix-tag {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
     padding: 0.3rem 0.8rem;
     font-size: 0.85rem;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    z-index: 3;
 }
 
 /* ==========================================================================

@@ -4,6 +4,8 @@ import { CubeFace, type CubeProject } from '../components/CubeFace';
 import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
+import '../css/rotating-cube.css';
+import '../css/hover-effects.css';
 
 // Cube projects data
 const cubeProjects: Record<string, CubeProject> = {
@@ -70,6 +72,47 @@ export const HomePage: React.FC = () => {
   const cubeRef = useRef<HTMLDivElement>(null);
   const currentFaceRef = useRef<string>('front');
   
+  // Unified cube rotation state system
+  const rotationState = useRef({
+    idle: { x: -15, y: 0 },
+    scroll: { x: 0, y: 0, translateY: 0 },
+    user: { x: 0, y: 0 },
+    entrance: { scale: 1, translateY: 0 },
+    isIdle: true,
+    isUserControlled: false,
+    lastInteraction: Date.now()
+  });
+  
+  // Single function to update cube transform combining all states
+  const updateCubeTransform = () => {
+    if (!cubeRef.current) return;
+    
+    const state = rotationState.current;
+    let transform = '';
+    
+    // Combine transforms based on active states
+    if (state.isUserControlled) {
+      // User control takes priority
+      transform = `rotateX(${state.user.x}deg) rotateY(${state.user.y}deg)`;
+    } else if (state.isIdle) {
+      // Idle animation + scroll effects
+      const totalX = state.idle.x;
+      const totalY = state.idle.y + state.scroll.y;
+      const translateY = state.scroll.translateY;
+      transform = `translateY(${translateY}px) rotateX(${totalX}deg) rotateY(${totalY}deg)`;
+    } else {
+      // Just scroll effects when not idle
+      transform = `translateY(${state.scroll.translateY}px) rotateX(${state.scroll.x}deg) rotateY(${state.scroll.y}deg)`;
+    }
+    
+    // Apply entrance animation if needed
+    if (state.entrance.scale !== 1 || state.entrance.translateY !== 0) {
+      transform = `scale(${state.entrance.scale}) translateY(${state.entrance.translateY}px) ${transform}`;
+    }
+    
+    cubeRef.current.style.transform = transform;
+  };
+  
   // Card animations hook
   useCardAnimations();
   
@@ -106,15 +149,15 @@ export const HomePage: React.FC = () => {
           buttonIndex = 1;
           break;
         case 'right':
-          rotation = { x: 0, y: 90 };
+          rotation = { x: 0, y: -90 };
           buttonIndex = 2;
           break;
         case 'back':
-          rotation = { x: 0, y: 180 };
+          rotation = { x: 0, y: -180 };
           buttonIndex = 3;
           break;
         case 'left':
-          rotation = { x: 0, y: -90 };
+          rotation = { x: 0, y: 90 };
           buttonIndex = 4;
           break;
         case 'top':
@@ -127,16 +170,60 @@ export const HomePage: React.FC = () => {
           break;
       }
       
-      cube.style.transform = `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`;
+      // Update unified state instead of direct transform
+      rotationState.current.user = rotation;
+      rotationState.current.isUserControlled = true;
+      rotationState.current.isIdle = false;
+      rotationState.current.lastInteraction = Date.now();
+      updateCubeTransform();
+      
       document.querySelector(`.cube-nav button:nth-child(${buttonIndex})`)?.classList.add('active');
       currentFaceRef.current = face;
+      
+      // Resume idle after 5 seconds
+      setTimeout(() => {
+        if (Date.now() - rotationState.current.lastInteraction >= 5000) {
+          rotationState.current.isIdle = true;
+          rotationState.current.isUserControlled = false;
+        }
+      }, 5000);
     };
 
     // Make rotateCube available globally for button clicks
     (window as any).rotateCube = rotateCube;
     
+    // Animation frame reference
+    let idleAnimationFrame: number | null = null;
+    
+    // Continuous idle rotation for 3D effect - using unified state
+    const animateIdleRotation = () => {
+      if (rotationState.current.isIdle && !rotationState.current.isUserControlled) {
+        rotationState.current.idle.y += 0.2;
+        rotationState.current.idle.x = -15 + Math.sin(rotationState.current.idle.y * 0.008) * 3;
+        updateCubeTransform();
+        
+        // Subtle pulse glow effect
+        if (cubeRef.current) {
+          const glowIntensity = 0.3 + Math.sin(rotationState.current.idle.y * 0.03) * 0.15;
+          cubeRef.current.style.boxShadow = `
+            0 0 ${15 + glowIntensity * 8}px rgba(0, 255, 0, ${glowIntensity * 0.8}),
+            inset 0 0 ${5 + glowIntensity * 3}px rgba(0, 255, 0, ${glowIntensity * 0.2})
+          `;
+        }
+      }
+      idleAnimationFrame = requestAnimationFrame(animateIdleRotation);
+    };
+    
+    // Start idle animation after a delay
+    setTimeout(() => {
+      animateIdleRotation();
+    }, 500);
+    
     return () => {
       delete (window as any).rotateCube;
+      if (idleAnimationFrame) {
+        cancelAnimationFrame(idleAnimationFrame);
+      }
     };
   }, []);
 
@@ -144,40 +231,282 @@ export const HomePage: React.FC = () => {
     (window as any).rotateCube?.(face);
   };
   
+  // Parallax scrolling effect - refined for smoother performance
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          
+          // Subtle parallax for introduction images
+          const introImages = document.querySelectorAll('.introduction-img img');
+          introImages.forEach((img, index) => {
+            const speed = 0.05 + index * 0.02; // Much more subtle
+            (img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
+          });
+          
+          // Update scroll values in unified state
+          if (!rotationState.current.isUserControlled) {
+            rotationState.current.scroll.translateY = scrolled * 0.1;
+            rotationState.current.scroll.y = scrolled * 0.05;
+            updateCubeTransform();
+          }
+          
+          // Reveal animations on scroll - only once per element
+          const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
+          revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+            
+            if (isVisible) {
+              el.classList.add('revealed');
+              animate(el as HTMLElement, {
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 600,
+                easing: 'easeOutQuad'
+              });
+            }
+          });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   // Add hover effects for buttons and cards
   useEffect(() => {
+    // Cascade entrance animations on page load
+    const animatePageEntrance = () => {
+      // Animate main introduction text with subtle cascade effect
+      const introElements = document.querySelectorAll('#introduction h2, .welcome-text');
+      introElements.forEach((el, index) => {
+        (el as HTMLElement).style.opacity = '0';
+        (el as HTMLElement).style.transform = 'translateY(20px)';
+        
+        animate(el as HTMLElement, {
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 600,
+          delay: index * 100,
+          easing: 'easeOutQuad'
+        });
+        
+        // Add glitch effect to welcome text and typing animation
+        if (el.classList.contains('welcome-text')) {
+          el.classList.add('typing-text');
+          setTimeout(() => {
+            el.classList.add('glitch-text');
+            setTimeout(() => {
+              el.classList.remove('glitch-text');
+              el.classList.remove('typing-text');
+            }, 500);
+          }, 2000);
+        }
+      });
+      
+      // Animate introduction images with subtle entrance
+      const introImages = document.querySelectorAll('.introduction-img img');
+      introImages.forEach((img, index) => {
+        (img as HTMLElement).style.opacity = '0';
+        (img as HTMLElement).style.transform = 'scale(0.9) translateY(20px)';
+        
+        animate(img as HTMLElement, {
+          opacity: [0, 1],
+          scale: [0.9, 1],
+          translateY: [20, 0],
+          duration: 700,
+          delay: 400 + index * 150,
+          easing: 'easeOutQuad'
+        });
+      });
+      
+      // Animate cube with smooth entrance using unified state
+      if (cubeRef.current) {
+        cubeRef.current.style.opacity = '0';
+        rotationState.current.entrance.scale = 0.8;
+        rotationState.current.entrance.translateY = 30;
+        updateCubeTransform();
+        
+        animate(cubeRef.current, {
+          opacity: [0, 1],
+          duration: 1000,
+          delay: 600,
+          easing: 'easeOutQuart',
+          update: (anim) => {
+            const progress = (anim.currentTime / anim.duration) || 0;
+            rotationState.current.entrance.scale = 0.8 + (0.2 * progress);
+            rotationState.current.entrance.translateY = 30 * (1 - progress);
+            updateCubeTransform();
+          },
+          complete: () => {
+            rotationState.current.entrance.scale = 1;
+            rotationState.current.entrance.translateY = 0;
+            updateCubeTransform();
+          }
+        });
+      }
+      
+      // Animate gallery cards with stagger effect
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      galleryCards.forEach((card, index) => {
+        (card as HTMLElement).style.opacity = '0';
+        (card as HTMLElement).style.transform = 'translateY(50px) rotateX(-15deg)';
+        
+        animate(card as HTMLElement, {
+          opacity: [0, 1],
+          translateY: [50, 0],
+          rotateX: [-15, 0],
+          duration: 1000,
+          delay: 1200 + index * 100,
+          easing: 'easeOutQuint'
+        });
+      });
+      
+      // Animate buttons with bounce effect
+      const buttons = document.querySelectorAll('.btn-professional, .neo-matrix-btn');
+      buttons.forEach((btn, index) => {
+        (btn as HTMLElement).style.opacity = '0';
+        (btn as HTMLElement).style.transform = 'scale(0)';
+        
+        animate(btn as HTMLElement, {
+          opacity: [0, 1],
+          scale: [0, 1.1, 1],
+          duration: 600,
+          delay: 1500 + index * 100,
+          easing: 'easeOutBack'
+        });
+      });
+    };
+    
+    // Run entrance animations
+    animatePageEntrance();
+    
     // Hover effects for gallery cards
     const cards = document.querySelectorAll('.gallery-card, .introduction-expertise-card');
     cards.forEach(card => {
       card.addEventListener('mouseenter', (e) => {
-        animate(e.currentTarget, {
-          scale: 1.05,
-          translateY: -5,
-          duration: 300,
-          ease: 'outQuad'
-        });
+        if (e.currentTarget) {
+          animate(e.currentTarget as HTMLElement, {
+            scale: 1.05,
+            translateY: -5,
+            duration: 300,
+            easing: 'easeOutQuad'
+          });
+        }
       });
       
       card.addEventListener('mouseleave', (e) => {
-        animate(e.currentTarget, {
-          scale: 1,
-          translateY: 0,
-          duration: 300,
-          ease: 'outQuad'
-        });
+        if (e.currentTarget) {
+          animate(e.currentTarget as HTMLElement, {
+            scale: 1,
+            translateY: 0,
+            duration: 300,
+            easing: 'easeOutQuad'
+          });
+        }
       });
     });
     
-    // Pulse animation for buttons
-    const buttons = document.querySelectorAll('.neo-matrix-btn, .btn-professional');
+    // Enhanced button effects with magnetic cursor and ripple
+    const buttons = document.querySelectorAll('.neo-matrix-btn, .btn-professional, .matrix-btn, button');
     buttons.forEach(button => {
-      button.addEventListener('mouseenter', (e) => {
-        animate(e.currentTarget, {
-          scale: [1, 1.05, 1],
-          duration: 600,
-          ease: 'inOutQuad'
+      const btn = button as HTMLElement;
+      
+      // Magnetic cursor effect
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        // Calculate distance from center
+        const distance = Math.sqrt(x * x + y * y);
+        const maxDistance = 100;
+        
+        if (distance < maxDistance) {
+          const strength = (1 - distance / maxDistance) * 0.3;
+          const translateX = x * strength;
+          const translateY = y * strength;
+          
+          btn.style.setProperty('--magnetic-transform', `translate(${translateX}px, ${translateY}px)`);
+          btn.style.transform = `translate(${translateX}px, ${translateY}px) scale(1.02)`;
+        }
+      };
+      
+      const handleMouseLeave = () => {
+        btn.style.transform = '';
+        btn.style.removeProperty('--magnetic-transform');
+      };
+      
+      // Create particle effect - reduced for better performance
+      const createParticles = (x: number, y: number) => {
+        const particleCount = 8; // Reduced particle count
+        let container = document.querySelector('.particle-container');
+        
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'particle-container';
+          document.body.appendChild(container);
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          
+          const angle = (Math.PI * 2 * i) / particleCount;
+          const velocity = 30 + Math.random() * 40; // Reduced velocity
+          const tx = Math.cos(angle) * velocity;
+          const ty = Math.sin(angle) * velocity;
+          
+          particle.style.left = `${x}px`;
+          particle.style.top = `${y}px`;
+          particle.style.setProperty('--tx', `${tx}px`);
+          particle.style.setProperty('--ty', `${ty}px`);
+          
+          container.appendChild(particle);
+          
+          setTimeout(() => particle.remove(), 1000);
+        }
+        
+        // Create sound wave effect
+        const wave = document.createElement('div');
+        wave.className = 'sound-wave';
+        wave.style.left = `${x - 50}px`;
+        wave.style.top = `${y - 50}px`;
+        container.appendChild(wave);
+        setTimeout(() => wave.remove(), 600);
+      };
+      
+      // Ripple effect on click with particles
+      const handleClick = (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        btn.style.setProperty('--ripple-x', `${x}%`);
+        btn.style.setProperty('--ripple-y', `${y}%`);
+        
+        // Create particle effect at click position
+        createParticles(e.clientX, e.clientY);
+        
+        // Pulse animation
+        animate(btn, {
+          scale: [1, 0.95, 1.05, 1],
+          duration: 400,
+          easing: 'easeOutElastic(1, .5)'
         });
-      });
+      };
+      
+      btn.addEventListener('mousemove', handleMouseMove);
+      btn.addEventListener('mouseleave', handleMouseLeave);
+      btn.addEventListener('click', handleClick);
     });
   }, []);
 
@@ -211,7 +540,7 @@ export const HomePage: React.FC = () => {
       <section id="latest-updates" className="reveal" ref={latestUpdatesRef as React.RefObject<HTMLElement>}>
         <div className="container">
           <h2 className="section-title">--| Latest Updates |--</h2>
-          <p style={{textAlign: 'center', marginBottom: '2rem'}}>
+          <p style={{textAlign: 'center', marginBottom: '5rem'}}>
             <span style={{fontWeight: 'bold'}}>You can timetravel through different iterations of this portfolio since day 1 via this link:</span>
             <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" className="neo-matrix-btn" style={{marginLeft: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}>
               <span className="btn-text">Enter TimeTravel</span>

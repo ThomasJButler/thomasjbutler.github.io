@@ -1,0 +1,15 @@
+Go to live site and get the matrix rain and rotating grid animations, and button animations and all unique stuff back into the react version of the site
+
+make sure mobile is good too
+
+commit things and then fix css so it looks perfect, make sure fonts are all fixed and it all looks professional 
+
+commit these changes, now we will clean up file by file and test the page each time, get rid of unused css and js files 
+
+then deploy 
+
+optional but good to do - update version timetravel with v3.5 latest and add a section for v3.0 and add the index.html into that project
+
+
+make the projects page better as well (just looks wise, and add an area for an image that is the            │
+│   background of the projects tab)     

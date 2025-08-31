@@ -23,6 +23,8 @@ interface Project {
     github: string;
   };
   category: string;
+  backgroundImage?: string;
+  gradient?: string;
 }
 
 const projects: Project[] = [
@@ -44,7 +46,9 @@ const projects: Project[] = [
     links: {
       github: 'https://github.com/ThomasJButler/PythonProjects'
     },
-    category: 'personal'
+    category: 'personal',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214156/pythonprojects_vvszeh.png',
+    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'commercial-portfolio',
@@ -65,7 +69,9 @@ const projects: Project[] = [
       demo: 'https://thomasjbutler.me',
       github: 'https://github.com/ThomasJButler/commercial-portfolio-react'
     },
-    category: 'personal'
+    category: 'personal',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png',
+    gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'portfolio-v3',
@@ -86,7 +92,9 @@ const projects: Project[] = [
       demo: '/react.html',
       github: 'https://github.com/ThomasJButler/ThomasJButler'
     },
-    category: 'web'
+    category: 'web',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png',
+    gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
     id: 'css-showcase',
@@ -107,7 +115,9 @@ const projects: Project[] = [
       demo: 'https://thomasjbutler.github.io/css-showcase/',
       github: 'https://github.com/ThomasJButler/css-showcase'
     },
-    category: 'web'
+    category: 'web',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png',
+    gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'matrix-arcade',
@@ -128,7 +138,9 @@ const projects: Project[] = [
       demo: 'https://www.tomatic.tech/',
       github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
     },
-    category: 'games'
+    category: 'games',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png',
+    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
     id: 'ai-comparison',
@@ -149,7 +161,9 @@ const projects: Project[] = [
       demo: 'https://ai-comparison-showcase.vercel.app/',
       github: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-'
     },
-    category: 'ml'
+    category: 'ml',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png',
+    gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'dotnet-calculator',
@@ -170,7 +184,9 @@ const projects: Project[] = [
       demo: 'https://dotnet-react-calendar.vercel.app/',
       github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
     },
-    category: 'web'
+    category: 'web',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/dotnetcalculator_hjltgc.png',
+    gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'landing-page',
@@ -191,7 +207,9 @@ const projects: Project[] = [
       demo: 'landingpage.html',
       github: 'https://github.com/ThomasJButler/landing-page'
     },
-    category: 'web'
+    category: 'web',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/landingpage_nxcdeb.png',
+    gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.2) 0%, rgba(0, 20, 0, 0.95) 100%)'
   },
   {
     id: 'version-timetravel',
@@ -212,7 +230,9 @@ const projects: Project[] = [
       demo: 'timetravel.html',
       github: 'https://github.com/ThomasJButler/version-timetravel'
     },
-    category: 'web'
+    category: 'web',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/timetravel_dqpgqu.png',
+    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'big-bang-gallery',
@@ -233,7 +253,9 @@ const projects: Project[] = [
       demo: 'gallery.html',
       github: 'https://github.com/ThomasJButler/big-bang-gallery'
     },
-    category: 'personal'
+    category: 'personal',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214152/bigbanggallery_s7lkfg.png',
+    gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'premier-league-oracle',
@@ -253,7 +275,9 @@ const projects: Project[] = [
     links: {
       github: 'https://github.com/ThomasJButler/premier-league-oracle'
     },
-    category: 'ml'
+    category: 'ml',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/plpredictor_w4fqjr.png',
+    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.3) 0%, rgba(0, 40, 0, 0.9) 100%)'
   }
 ];
 
@@ -271,7 +295,7 @@ export const ProjectsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  useMatrixAnimation(containerRef);
+  useMatrixAnimation(containerRef, {});
   useCardAnimations();
 
   useEffect(() => {
@@ -284,7 +308,8 @@ export const ProjectsPage: React.FC = () => {
 
   useEffect(() => {
     if (gridRef.current) {
-      animate(gridRef.current.children, {
+      const children = Array.from(gridRef.current.children) as HTMLElement[];
+      animate(children, {
         opacity: [0, 1],
         translateY: [20, 0],
         delay: stagger(100, {from: 'first'}),
@@ -293,13 +318,64 @@ export const ProjectsPage: React.FC = () => {
       });
     }
   }, [visibleProjects]);
+  
+  // Create particle burst effect - refined for better performance
+  const createParticleBurst = (x: number, y: number) => {
+    const particleCount = 10; // Reduced particle count
+    let container = document.querySelector('.particle-container');
+    
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'particle-container';
+      document.body.appendChild(container);
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle-burst';
+      
+      const angle = (Math.PI * 2 * i) / particleCount;
+      const velocity = 50 + Math.random() * 50; // Reduced velocity
+      const tx = Math.cos(angle) * velocity;
+      const ty = Math.sin(angle) * velocity;
+      
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      particle.style.setProperty('--x', `${tx}px`);
+      particle.style.setProperty('--y', `${ty}px`);
+      particle.style.width = Math.random() * 4 + 2 + 'px';
+      particle.style.height = particle.style.width;
+      
+      container.appendChild(particle);
+      
+      setTimeout(() => particle.remove(), 800);
+    }
+  };
+  
+  // Add particle effects to buttons
+  useEffect(() => {
+    const handleButtonClick = (e: MouseEvent) => {
+      createParticleBurst(e.clientX, e.clientY);
+    };
+    
+    const buttons = document.querySelectorAll('.neo-matrix-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', handleButtonClick);
+    });
+    
+    return () => {
+      buttons.forEach(btn => {
+        btn.removeEventListener('click', handleButtonClick);
+      });
+    };
+  }, [visibleProjects]);
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
     
     // Animate tab change
     const tabButtons = document.querySelectorAll('.matrix-tab-button');
-    animate(tabButtons, {
+    animate(tabButtons as NodeListOf<HTMLElement>, {
       scale: [1, 0.95, 1],
       duration: 300,
       easing: 'easeInOutQuad'
@@ -307,19 +383,76 @@ export const ProjectsPage: React.FC = () => {
   };
 
   const handleCardHover = (e: React.MouseEvent<HTMLElement>) => {
-    animate(e.currentTarget, {
-      scale: 1.02,
+    const card = e.currentTarget;
+    
+    // Enhanced 3D tilt effect
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -5; // Reduced tilt
+      const rotateY = ((x - centerX) / centerX) * 5;  // Reduced tilt
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateZ(10px)`;
+      
+      // Move overlay based on mouse position
+      const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+      if (overlay) {
+        overlay.style.background = `
+          radial-gradient(
+            circle at ${x}px ${y}px,
+            rgba(0, 255, 0, 0.1) 0%,
+            rgba(0, 0, 0, 0.4) 20%,
+            rgba(0, 20, 0, 0.9) 60%,
+            rgba(0, 20, 0, 0.95) 100%
+          )
+        `;
+      }
+    };
+    
+    card.addEventListener('mousemove', handleMouseMove);
+    card.dataset.mouseHandler = 'true';
+    
+    // Animate in
+    animate(card, {
+      scale: 1.05,
+      boxShadow: ['0 2px 10px rgba(0, 0, 0, 0.3)', '0 20px 40px rgba(0, 255, 0, 0.4)'],
       duration: 300,
       easing: 'easeOutQuad'
     });
+    
+    // Glow effect
+    card.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1)';
   };
 
   const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
-    animate(e.currentTarget, {
+    const card = e.currentTarget;
+    
+    // Remove mouse move handler
+    if (card.dataset.mouseHandler) {
+      card.style.transform = '';
+      delete card.dataset.mouseHandler;
+    }
+    
+    // Reset overlay
+    const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+    if (overlay) {
+      overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)';
+    }
+    
+    // Animate out
+    animate(card, {
       scale: 1,
+      boxShadow: ['0 20px 40px rgba(0, 255, 0, 0.4)', '0 2px 10px rgba(0, 0, 0, 0.3)'],
       duration: 300,
       easing: 'easeOutQuad'
     });
+    
+    card.style.boxShadow = '';
   };
 
   return (
@@ -349,8 +482,27 @@ export const ProjectsPage: React.FC = () => {
               data-category={project.category}
               onMouseEnter={handleCardHover}
               onMouseLeave={handleCardLeave}
+              style={{
+                background: project.gradient || 'rgba(0, 20, 0, 0.6)',
+                backgroundImage: project.backgroundImage ? `url(${project.backgroundImage})` : undefined,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundBlendMode: 'overlay'
+              }}
             >
-              <div className="matrix-project-header">
+              {/* Background overlay for better text readability */}
+              <div className="project-card-overlay" style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)',
+                zIndex: 1,
+                pointerEvents: 'none'
+              }} />
+              
+              <div className="matrix-project-header" style={{ position: 'relative', zIndex: 2 }}>
                 <h3 className="matrix-project-title">
                   <i className="fas fa-terminal"></i> {project.name}
                 </h3>
@@ -364,7 +516,7 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="matrix-project-content">
+              <div className="matrix-project-content" style={{ position: 'relative', zIndex: 2 }}>
                 <p className="matrix-project-description">{project.description}</p>
                 
                 <div className="matrix-project-tags">
@@ -383,7 +535,7 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="matrix-project-buttons">
+              <div className="matrix-project-buttons" style={{ position: 'relative', zIndex: 2 }}>
                 {project.links.demo && (
                   <a 
                     href={project.links.demo} 

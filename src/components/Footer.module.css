@@ -43,6 +43,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1rem;
 }
 
 .footerSection h3 {
@@ -78,8 +79,8 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .footerLinks li {
@@ -91,18 +92,29 @@
   text-decoration: none;
   font-family: 'Courier New', monospace;
   font-size: 0.875rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0;
   display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.footerLinks a::before {
+  content: '>';
+  position: absolute;
+  left: -15px;
+  opacity: 0;
   transition: all 0.3s ease;
 }
 
 .footerLinks a:hover {
   color: var(--matrix-green, #00ff00);
-  background: rgba(0, 255, 0, 0.05);
-  border-color: rgba(0, 255, 0, 0.3);
-  transform: translateX(5px);
+  transform: translateX(10px);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.footerLinks a:hover::before {
+  opacity: 1;
+  left: -10px;
 }
 
 /* ========================================================================
@@ -113,6 +125,7 @@
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .socialLink {
@@ -155,6 +168,24 @@
   50% {
     transform: scale(1.2);
   }
+}
+
+/* Social icons without text */
+.socialLinks a {
+  color: rgba(0, 255, 0, 0.7);
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.socialLinks a:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  transform: translateY(-3px) scale(1.1);
 }
 
 
@@ -275,13 +306,17 @@
   }
 
   .footerLinks {
-    justify-content: center;
-    gap: 0.5rem 1rem;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .footerLinks a {
     font-size: 0.8rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 0;
+  }
+  
+  .footerLinks a::before {
+    display: none;
   }
 
   .socialLinks {

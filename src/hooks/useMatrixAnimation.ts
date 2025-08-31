@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 
-export const useMatrixAnimation = () => {
+export const useMatrixAnimation = (containerRef?: React.RefObject<HTMLElement>, options?: any) => {
   const animationRef = useRef<any | null>(null);
 
   // Clean up animation on unmount

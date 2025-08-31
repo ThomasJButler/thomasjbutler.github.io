@@ -4,6 +4,9 @@
    Author: Thomas J Butler
    ========================================================================== */
 
+/* Import component styles - must be at top */
+@import "./components/_keyboard-help.css";
+
 /* ==========================================================================
    Performance & Layout Optimizations
    ========================================================================== */
@@ -67,9 +70,6 @@ body.mobile-device * {
     scroll-behavior: auto !important;
   }
 }
-
-/* Import component styles */
-@import "./components/_keyboard-help.css";
 
 /* Prevent horizontal scrolling globally */
 html, body {

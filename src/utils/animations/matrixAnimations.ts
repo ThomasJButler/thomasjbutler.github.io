@@ -3,7 +3,7 @@ import { animate, stagger } from 'animejs';
 export const matrixAnimations = {
   // Fade in with upward movement
   fadeInUp: (target: string | HTMLElement, delay = 0) => {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return null;
     return animate(element, {
       opacity: [0, 1],
@@ -16,7 +16,7 @@ export const matrixAnimations = {
 
   // Matrix-style glitch effect
   glitchText: (target: string | HTMLElement) => {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return null;
     return animate(element, {
       keyframes: [
@@ -31,7 +31,7 @@ export const matrixAnimations = {
 
   // Typewriter effect
   typewriter: (target: string | HTMLElement, text: string) => {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return;
 
     element.textContent = '';
@@ -51,7 +51,7 @@ export const matrixAnimations = {
 
   // Matrix rain reveal
   matrixReveal: (target: string | HTMLElement) => {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return null;
     return animate(element, {
       opacity: [0, 1],
@@ -81,7 +81,7 @@ export const matrixAnimations = {
 
   // Pulse effect
   pulse: (target: string | HTMLElement) => {
-    const element = typeof target === 'string' ? document.querySelector(target) : target;
+    const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
     if (!element) return null;
     return animate(element, {
       scale: [1, 1.05, 1],
@@ -98,7 +98,7 @@ export const matrixAnimations = {
   // Page transition
   pageTransition: {
     in: (target: string | HTMLElement) => {
-      const element = typeof target === 'string' ? document.querySelector(target) : target;
+      const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
       if (!element) return null;
       return animate(element, {
         opacity: [0, 1],
@@ -108,7 +108,7 @@ export const matrixAnimations = {
       });
     },
     out: (target: string | HTMLElement) => {
-      const element = typeof target === 'string' ? document.querySelector(target) : target;
+      const element = typeof target === 'string' ? document.querySelector(target) as HTMLElement : target;
       if (!element) return null;
       return animate(element, {
         opacity: [1, 0],

@@ -15,8 +15,7 @@ export const useCardAnimations = () => {
       // Expertise cards animation
       const expertiseCards = document.querySelectorAll('.introduction-expertise-card');
       if (expertiseCards.length > 0) {
-        animate({
-          targets: Array.from(expertiseCards),
+        animate(Array.from(expertiseCards) as HTMLElement[], {
           translateY: [30, 0],
           opacity: [0, 1],
           duration: 600,
@@ -28,8 +27,7 @@ export const useCardAnimations = () => {
       // Project cards animation
       const projectCards = document.querySelectorAll('.project-card, .matrix-project-card');
       if (projectCards.length > 0) {
-        animate({
-          targets: Array.from(projectCards),
+        animate(Array.from(projectCards) as HTMLElement[], {
           translateY: [40, 0],
           opacity: [0, 1],
           duration: 800,
@@ -52,8 +50,7 @@ export const useCardAnimations = () => {
             entry.target.classList.add('animated');
 
             // Animate the card
-            animate({
-              targets: entry.target,
+            animate(entry.target as HTMLElement, {
               translateY: [20, 0],
               opacity: [0, 1],
               scale: [0.95, 1],
@@ -64,8 +61,7 @@ export const useCardAnimations = () => {
             // Animate child elements (tags)
             const tags = entry.target.querySelectorAll('.introduction-expertise-tags span, .project-tags span');
             if (tags.length > 0) {
-              animate({
-                targets: Array.from(tags),
+              animate(Array.from(tags) as HTMLElement[], {
                 translateX: [-10, 0],
                 opacity: [0, 1],
                 duration: 400,
@@ -100,8 +96,7 @@ export const useCardAnimations = () => {
           const existingAnimation = hoverAnimationsRef.current.get(cardElement);
           if (existingAnimation) existingAnimation.pause();
 
-          const hoverAnimation = animate({
-            targets: cardElement,
+          const hoverAnimation = animate(cardElement, {
             translateY: -8,
             scale: 1.02,
             duration: 300,
@@ -111,8 +106,7 @@ export const useCardAnimations = () => {
           hoverAnimationsRef.current.set(cardElement, hoverAnimation);
 
           // Glow effect
-          animate({
-            targets: cardElement,
+          animate(cardElement, {
             boxShadow: [
               '0 4px 15px rgba(0, 255, 0, 0.2)',
               '0 8px 25px rgba(0, 255, 0, 0.4)'
@@ -127,8 +121,7 @@ export const useCardAnimations = () => {
           const existingAnimation = hoverAnimationsRef.current.get(cardElement);
           if (existingAnimation) existingAnimation.pause();
 
-          const leaveAnimation = animate({
-            targets: cardElement,
+          const leaveAnimation = animate(cardElement, {
             translateY: 0,
             scale: 1,
             duration: 300,
@@ -138,8 +131,7 @@ export const useCardAnimations = () => {
           hoverAnimationsRef.current.set(cardElement, leaveAnimation);
 
           // Remove glow
-          animate({
-            targets: cardElement,
+          animate(cardElement, {
             boxShadow: '0 4px 15px rgba(0, 255, 0, 0.2)',
             duration: 300,
             easing: 'easeOutQuad'
@@ -203,8 +195,7 @@ export const useCardAnimations = () => {
     );
     
     if (cards.length > 0) {
-      animate({
-        targets: cards,
+      animate(cards as NodeListOf<HTMLElement>, {
         translateY: [20, 0],
         opacity: [0, 1],
         duration: 600,
