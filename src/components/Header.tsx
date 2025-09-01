@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import { useHeaderVisibility } from '../hooks/useScrollDetection';
+import { ThemeToggle } from './ThemeToggle';
 import styles from './Header.module.css';
 
 interface NavItem {
@@ -161,6 +162,7 @@ export const Header: React.FC = () => {
               </li>
             ))}
           </ul>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

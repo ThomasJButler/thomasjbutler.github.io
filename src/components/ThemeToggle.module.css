@@ -1,0 +1,95 @@
+/* ========================================================================
+   Theme Toggle Button
+   ======================================================================== */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border-color, rgba(0, 255, 0, 0.3));
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.themeToggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-color, #00ff00), transparent);
+  opacity: 0.1;
+  transition: left 0.5s ease;
+}
+
+.themeToggle:hover::before {
+  left: 100%;
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-color, #00ff00);
+  text-shadow: 0 0 10px currentColor;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.themeToggle i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.themeToggle:hover i {
+  transform: rotate(180deg);
+}
+
+.themeLabel {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Matrix theme specific styles */
+[data-theme="matrix"] .themeToggle {
+  border-color: rgba(0, 255, 0, 0.3);
+  color: #00ff00;
+}
+
+[data-theme="matrix"] .themeToggle:hover {
+  background: rgba(0, 255, 0, 0.05);
+  border-color: #00ff00;
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] .themeToggle {
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .themeToggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #00ff00;
+  color: #00ff00;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .themeToggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .themeLabel {
+    display: none;
+  }
+  
+  .themeToggle i {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,243 @@
+/* ========================================================================
+   Theme System - Matrix and Dark Modes
+   ======================================================================== */
+
+/* Default Matrix Theme */
+:root,
+[data-theme="matrix"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #050505;
+  --text-primary: #00ff00;
+  --text-secondary: rgba(0, 255, 0, 0.8);
+  --text-tertiary: rgba(0, 255, 0, 0.6);
+  --text-inverse: #000000;
+  --accent-color: #00ff00;
+  --accent-hover: #00cc00;
+  --matrix-green: #00ff00;
+  --border-color: rgba(0, 255, 0, 0.3);
+  --border-hover: rgba(0, 255, 0, 0.5);
+  --card-bg: rgba(0, 0, 0, 0.9);
+  --card-hover: rgba(0, 0, 0, 0.95);
+  --shadow-color: rgba(0, 255, 0, 0.2);
+  --shadow-glow: rgba(0, 255, 0, 0.5);
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --code-bg: rgba(0, 255, 0, 0.05);
+  --scrollbar-bg: #000000;
+  --scrollbar-thumb: #00ff00;
+}
+
+/* Dark Theme (Professional) */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  --text-inverse: #0a0a0a;
+  --accent-color: #00ff00;
+  --accent-hover: #00cc00;
+  --matrix-green: #00ff00;
+  --border-color: #333333;
+  --border-hover: #444444;
+  --card-bg: rgba(20, 20, 20, 0.95);
+  --card-hover: rgba(30, 30, 30, 0.95);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-glow: rgba(0, 255, 0, 0.3);
+  --overlay-bg: rgba(10, 10, 10, 0.9);
+  --code-bg: rgba(255, 255, 255, 0.05);
+  --scrollbar-bg: #1a1a1a;
+  --scrollbar-thumb: #444444;
+}
+
+/* ========================================================================
+   Theme Transitions
+   ======================================================================== */
+
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+/* Prevent transition on initial load */
+.no-transition * {
+  transition: none !important;
+}
+
+/* ========================================================================
+   Theme-Specific Adjustments
+   ======================================================================== */
+
+/* Matrix Theme Glow Effects */
+[data-theme="matrix"] a:hover,
+[data-theme="matrix"] button:hover {
+  text-shadow: 0 0 10px var(--matrix-green);
+}
+
+[data-theme="matrix"] input:focus,
+[data-theme="matrix"] textarea:focus {
+  box-shadow: 0 0 15px var(--shadow-glow);
+  border-color: var(--accent-color);
+}
+
+/* Dark Theme Professional Look */
+[data-theme="dark"] a:hover,
+[data-theme="dark"] button:hover {
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus {
+  box-shadow: 0 0 10px var(--shadow-glow);
+  border-color: var(--accent-color);
+}
+
+/* ========================================================================
+   Component-Specific Theme Overrides
+   ======================================================================== */
+
+/* Cards */
+[data-theme="matrix"] .card,
+[data-theme="matrix"] .project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+/* Buttons */
+[data-theme="matrix"] .btn-primary {
+  background: transparent;
+  border: 2px solid var(--matrix-green);
+  color: var(--matrix-green);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--accent-color);
+  border: none;
+  color: var(--text-inverse);
+}
+
+/* Code Blocks */
+[data-theme="matrix"] pre,
+[data-theme="matrix"] code {
+  background: var(--code-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+  background: var(--code-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Form Elements */
+[data-theme="matrix"] input,
+[data-theme="matrix"] textarea,
+[data-theme="matrix"] select {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ========================================================================
+   Scrollbar Theming
+   ======================================================================== */
+
+/* Matrix Theme Scrollbar */
+[data-theme="matrix"]::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: var(--scrollbar-bg);
+}
+
+[data-theme="matrix"]::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 0;
+}
+
+[data-theme="matrix"]::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 5px var(--matrix-green);
+}
+
+/* Dark Theme Scrollbar */
+[data-theme="dark"]::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: var(--scrollbar-bg);
+}
+
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 5px;
+}
+
+[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* ========================================================================
+   Header & Navigation Theming
+   ======================================================================== */
+
+[data-theme="matrix"] header {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] header {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ========================================================================
+   Accessibility
+   ======================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Default to Dark theme for dark mode preference */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(255, 255, 255, 0.5);
+    --text-secondary: rgba(255, 255, 255, 0.9);
+  }
+  
+  [data-theme="dark"] {
+    --border-color: #666666;
+    --text-secondary: #e0e0e0;
+  }
+}

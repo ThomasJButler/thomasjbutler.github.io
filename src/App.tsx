@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
 import { performanceOptimizer } from './utils/performanceOptimizer';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Layout (not lazy loaded as it's needed immediately)
 import { Layout } from './components/Layout';
@@ -27,6 +28,7 @@ const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ def
 import './css/base/_reset.css';
 import './css/base/_variables.css';
 import './css/base/_typography.css';
+import './css/themes.css'; // Theme system
 import './css/main.css';
 import './css/styles.css';
 import './css/global.css';
@@ -71,7 +73,7 @@ export const App: React.FC = () => {
   );
 
   return (
-    <>
+    <ThemeProvider>
       <Router basename="/ThomasJButler">
         <ReactHtmlRedirect />
         <Routes>
@@ -134,6 +136,6 @@ export const App: React.FC = () => {
         </Routes>
       </Router>
       <GodModeDisplay />
-    </>
+    </ThemeProvider>
   );
 };
