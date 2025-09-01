@@ -27,28 +27,28 @@
   --scrollbar-thumb: #00ff00;
 }
 
-/* Dark Theme (Professional) */
+/* Dark Theme (Clean Professional) */
 [data-theme="dark"] {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #2a2a2a;
+  --bg-primary: #000000;
+  --bg-secondary: #0f0f0f;
+  --bg-tertiary: #1a1a1a;
   --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --text-tertiary: #808080;
-  --text-inverse: #0a0a0a;
-  --accent-color: #00ff00;
-  --accent-hover: #00cc00;
-  --matrix-green: #00ff00;
-  --border-color: #333333;
-  --border-hover: #444444;
-  --card-bg: rgba(20, 20, 20, 0.95);
-  --card-hover: rgba(30, 30, 30, 0.95);
+  --text-secondary: #cccccc;
+  --text-tertiary: #999999;
+  --text-inverse: #000000;
+  --accent-color: #40a040;
+  --accent-hover: #50b050;
+  --matrix-green: #40a040;
+  --border-color: #404040;
+  --border-hover: #606060;
+  --card-bg: rgba(15, 15, 15, 0.95);
+  --card-hover: rgba(25, 25, 25, 0.95);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --shadow-glow: rgba(0, 255, 0, 0.3);
-  --overlay-bg: rgba(10, 10, 10, 0.9);
+  --shadow-glow: rgba(0, 0, 0, 0);
+  --overlay-bg: rgba(0, 0, 0, 0.9);
   --code-bg: rgba(255, 255, 255, 0.05);
-  --scrollbar-bg: #1a1a1a;
-  --scrollbar-thumb: #444444;
+  --scrollbar-bg: #0f0f0f;
+  --scrollbar-thumb: #505050;
 }
 
 /* ========================================================================
@@ -82,16 +82,20 @@
   border-color: var(--accent-color);
 }
 
-/* Dark Theme Professional Look */
-[data-theme="dark"] a:hover,
+/* Dark Theme Clean Look - No Effects */
+[data-theme="dark"] a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
 [data-theme="dark"] button:hover {
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] input:focus,
 [data-theme="dark"] textarea:focus {
-  box-shadow: 0 0 10px var(--shadow-glow);
-  border-color: var(--accent-color);
+  border-color: var(--border-hover);
+  outline: 1px solid var(--border-hover);
 }
 
 /* ========================================================================
@@ -120,9 +124,14 @@
 }
 
 [data-theme="dark"] .btn-primary {
-  background: var(--accent-color);
-  border: none;
-  color: var(--text-inverse);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-color);
 }
 
 /* Code Blocks */
@@ -204,8 +213,8 @@
 }
 
 [data-theme="dark"] header {
-  background: rgba(10, 10, 10, 0.95);
-  border-bottom: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid #303030;
 }
 
 /* ========================================================================

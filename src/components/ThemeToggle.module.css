@@ -66,16 +66,22 @@
   border-color: #00ff00;
 }
 
-/* Dark theme specific styles */
+/* Dark theme specific styles - Clean look */
 [data-theme="dark"] .themeToggle {
-  border-color: #333333;
+  border-color: #404040;
   color: #ffffff;
 }
 
 [data-theme="dark"] .themeToggle:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: #00ff00;
-  color: #00ff00;
+  border-color: #606060;
+  color: #ffffff;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .themeToggle::before {
+  display: none;
 }
 
 /* Mobile responsive */

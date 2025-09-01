@@ -6,12 +6,14 @@ import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
 import { BackToTop } from './BackToTop';
 import { usePageTransition } from '../hooks/useMatrixAnimation';
+import { useTheme } from '../contexts/ThemeContext';
 import styles from './Layout.module.css';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
   const contentRef = useRef<HTMLDivElement>(null);
   const pageRef = usePageTransition();
+  const { theme } = useTheme();
 
   useEffect(() => {
     // Simple fade transition for better performance
@@ -31,8 +33,8 @@ export const Layout: React.FC = () => {
 
   return (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
-      {/* Matrix Rain Background */}
-      <MatrixRain />
+      {/* Matrix Rain Background - Only in Matrix theme */}
+      {theme === 'matrix' && <MatrixRain />}
       
       {/* Header */}
       <Header />

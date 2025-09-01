@@ -43,15 +43,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     
     switch (theme) {
       case 'dark':
-        root.style.setProperty('--bg-primary', '#0a0a0a');
-        root.style.setProperty('--bg-secondary', '#1a1a1a');
+        root.style.setProperty('--bg-primary', '#000000');
+        root.style.setProperty('--bg-secondary', '#0f0f0f');
         root.style.setProperty('--text-primary', '#ffffff');
-        root.style.setProperty('--text-secondary', '#b0b0b0');
-        root.style.setProperty('--accent-color', '#00ff00');
-        root.style.setProperty('--matrix-green', '#00ff00');
-        root.style.setProperty('--border-color', '#333333');
-        root.style.setProperty('--card-bg', 'rgba(20, 20, 20, 0.95)');
-        root.style.setProperty('--shadow-color', 'rgba(0, 255, 0, 0.1)');
+        root.style.setProperty('--text-secondary', '#cccccc');
+        root.style.setProperty('--accent-color', '#40a040');
+        root.style.setProperty('--matrix-green', '#40a040');
+        root.style.setProperty('--border-color', '#404040');
+        root.style.setProperty('--card-bg', 'rgba(15, 15, 15, 0.95)');
+        root.style.setProperty('--shadow-color', 'rgba(0, 0, 0, 0.3)');
         break;
       
       case 'matrix':

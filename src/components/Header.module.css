@@ -286,6 +286,52 @@
 }
 
 /* ========================================================================
+   Dark Theme Override - Clean Professional Look
+   ======================================================================== */
+
+[data-theme="dark"] .siteHeader {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid #303030;
+}
+
+[data-theme="dark"] .siteHeader.scrolled {
+  background: rgba(0, 0, 0, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .headerTitle h1 {
+  color: #ffffff;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .navLink {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .navLink:hover {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+[data-theme="dark"] .navLink.active {
+  color: #40a040;
+}
+
+[data-theme="dark"] .navLink::after {
+  background: #40a040;
+}
+
+[data-theme="dark"] .menuToggle span {
+  background: #ffffff;
+}
+
+[data-theme="dark"] .menuToggle:hover span {
+  background: #40a040;
+}
+
+/* ========================================================================
    Accessibility & Performance
    ======================================================================== */
 

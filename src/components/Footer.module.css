@@ -340,6 +340,65 @@
   }
 }
 
+/* ========================================================================
+   Dark Theme Override - Clean Professional Look
+   ======================================================================== */
+
+[data-theme="dark"] .siteFooter {
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid #303030;
+}
+
+[data-theme="dark"] .footerSection h3 {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+[data-theme="dark"] .footerSection h3::after {
+  background: linear-gradient(90deg, #606060, transparent);
+}
+
+[data-theme="dark"] .footerLinks a {
+  color: #cccccc;
+}
+
+[data-theme="dark"] .footerLinks a::before {
+  content: '•';
+  color: #606060;
+}
+
+[data-theme="dark"] .footerLinks a:hover {
+  color: #ffffff;
+  text-shadow: none;
+  transform: translateX(5px);
+}
+
+[data-theme="dark"] .socialLinks a {
+  color: #cccccc;
+  border: 1px solid #404040;
+  background: transparent;
+}
+
+[data-theme="dark"] .socialLinks a:hover {
+  color: #40a040;
+  border-color: #40a040;
+  background: rgba(64, 160, 64, 0.1);
+  text-shadow: none;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .footerBottom {
+  border-top: 1px solid #303030;
+  color: #999999;
+}
+
+[data-theme="dark"] .location {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #404040;
+  color: #cccccc;
+}
+
 @media (max-width: 480px) {
   .socialLink span {
     display: none;
