@@ -2973,9 +2973,10 @@ html {
 
 /* Contact Section */
 #contact {
+    margin-top: 3rem;
     padding: 3rem 1rem;
     text-align: center;
-    max-width: 700px;
+    max-width: 1200px;
     margin: 0 auto;
     background: #000000;
     position: relative;
@@ -3239,7 +3240,9 @@ html {
 }
 
 section#contact {
-    border: 5px solid #00FF00;
+    border: 1px solid #00FF00;
+    border-top: 1px solid #00FF00;
+    border-bottom: 1px solid #00FF00;
     border-radius: 15px;
 }
 /* Galleries Section
@@ -3264,7 +3267,7 @@ section#contact {
         linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%),
         radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
     z-index: -1;
-    animation: matrixFlow 25s linear infinite;
+    animation: matrixFlow 25s linear infinite; 
 }
 
 [data-theme="matrix"] #galleries {
