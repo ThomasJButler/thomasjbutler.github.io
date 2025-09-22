@@ -259,7 +259,7 @@ export const HomePage: React.FC = () => {
           revealElements.forEach(el => {
             const rect = el.getBoundingClientRect();
             const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
-            
+
             if (isVisible) {
               el.classList.add('revealed');
               animate(el as HTMLElement, {
@@ -288,9 +288,9 @@ export const HomePage: React.FC = () => {
       // Animate main introduction text with subtle cascade effect
       const introElements = document.querySelectorAll('#introduction h2, .welcome-text');
       introElements.forEach((el, index) => {
-        (el as HTMLElement).style.opacity = '0';
-        (el as HTMLElement).style.transform = 'translateY(20px)';
-        
+        // Remove inline styles - let CSS classes handle initial state
+        el.classList.add('animated');
+
         animate(el as HTMLElement, {
           opacity: [0, 1],
           translateY: [20, 0],
@@ -315,9 +315,9 @@ export const HomePage: React.FC = () => {
       // Animate introduction images with subtle entrance
       const introImages = document.querySelectorAll('.introduction-img img');
       introImages.forEach((img, index) => {
-        (img as HTMLElement).style.opacity = '0';
-        (img as HTMLElement).style.transform = 'scale(0.9) translateY(20px)';
-        
+        // Remove inline styles - let CSS classes handle initial state
+        img.classList.add('animated');
+
         animate(img as HTMLElement, {
           opacity: [0, 1],
           scale: [0.9, 1],
@@ -357,9 +357,9 @@ export const HomePage: React.FC = () => {
       // Animate gallery cards with stagger effect
       const galleryCards = document.querySelectorAll('.gallery-card');
       galleryCards.forEach((card, index) => {
-        (card as HTMLElement).style.opacity = '0';
-        (card as HTMLElement).style.transform = 'translateY(50px) rotateX(-15deg)';
-        
+        // Remove inline styles - let CSS classes handle initial state
+        card.classList.add('revealed');
+
         animate(card as HTMLElement, {
           opacity: [0, 1],
           translateY: [50, 0],
@@ -373,9 +373,9 @@ export const HomePage: React.FC = () => {
       // Animate buttons with bounce effect
       const buttons = document.querySelectorAll('.btn-professional, .neo-matrix-btn');
       buttons.forEach((btn, index) => {
-        (btn as HTMLElement).style.opacity = '0';
-        (btn as HTMLElement).style.transform = 'scale(0)';
-        
+        // Remove inline styles - let CSS classes handle initial state
+        btn.classList.add('animated');
+
         animate(btn as HTMLElement, {
           opacity: [0, 1],
           scale: [0, 1.1, 1],

@@ -11,8 +11,31 @@
 /* Introduction Section
    ========================================================================== */
    #introduction {
-    padding-top: 30px;
+    padding: var(--space-3xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for introduction */
+[data-theme="matrix"] #introduction::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+[data-theme="matrix"] #introduction {
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.05);
 }
 
 .introduction-img {
@@ -52,6 +75,33 @@
 }
 
 /* Introduction Skills Grid Section - Three Columns */
+#introduction-expertise {
+    padding: var(--space-4xl) 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for expertise section */
+[data-theme="matrix"] #introduction-expertise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 40%, rgba(0, 255, 0, 0.02) 50%, transparent 60%),
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: matrixSweep 20s linear infinite;
+}
+
+[data-theme="matrix"] #introduction-expertise {
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+}
 
 /* Grid container */
 .introduction-expertise-grid {
@@ -328,6 +378,22 @@
     }
 }
 
+/* Matrix theme animation keyframes */
+@keyframes matrixPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+@keyframes matrixFlow {
+    0% { transform: translateX(-100%) translateY(-50%); }
+    100% { transform: translateX(100%) translateY(50%); }
+}
+
+@keyframes matrixSweep {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(360deg); }
+}
+
 /* Matrix-style scan line effect */
 .introduction-expertise-card::after {
     content: '';
@@ -577,12 +643,13 @@
 
 /* Skills Section
    ========================================================================== */
-#skills, 
+#skills,
 #learning {
-    background: rgba(0, 20, 0, 0.8);
+    background: #000000;
     overflow: hidden;
     padding: 40px 0;
     position: relative;
+    isolation: isolate;
 }
 
 #skills::before, 
@@ -1811,8 +1878,31 @@ nav ul li.version-timetravel:hover {
 /* Latest Updates Section Homepage */ 
 #latest-updates {
     padding: 4rem 0;
-    background: rgba(0, 20, 0, 0.3);
- }
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for latest updates */
+[data-theme="matrix"] #latest-updates::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, transparent 30%),
+        radial-gradient(circle at 70% 30%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: matrixPulse 15s ease-in-out infinite;
+}
+
+[data-theme="matrix"] #latest-updates {
+    border-top: 1px solid rgba(0, 255, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.12);
+}
  
  .section-title {
     color: #00FF00;
@@ -2887,6 +2977,36 @@ html {
     text-align: center;
     max-width: 700px;
     margin: 0 auto;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for contact section */
+[data-theme="matrix"] #contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.04) 0%, transparent 40%),
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, transparent 30%);
+    z-index: -1;
+    animation: matrixContactPulse 18s ease-in-out infinite;
+}
+
+[data-theme="matrix"] #contact {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 0 60px rgba(0, 255, 0, 0.04);
+}
+
+@keyframes matrixContactPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.01); }
 }
 
 #contact h2 {
@@ -3117,11 +3237,39 @@ html {
         padding: 0.6rem;
     }
 }
+
+section#contact {
+    border: 5px solid #00FF00;
+    border-radius: 15px;
+}
 /* Galleries Section
    ========================================================================== */
 #galleries {
     padding: 80px 0;
-    background: rgba(0, 20, 0, 0.3);
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for galleries */
+[data-theme="matrix"] #galleries::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: matrixFlow 25s linear infinite;
+}
+
+[data-theme="matrix"] #galleries {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(0, 255, 0, 0.05);
 }
 
 .galleries-grid {
