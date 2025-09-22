@@ -1,70 +1,230 @@
-/* Main CSS Entry Point - All imports must come first before any other CSS */
+/* ========================================================================
+   MATRIX PORTFOLIO - SHADCN REVOLUTION
+   ======================================================================== */
 
-/* Base Styles */
+/* Core Matrix Variables */
 @import './base/_variables.css';
-@import './base/_reset.css';
-@import './base/_typography.css';
-@import './base/_layout.css';
 
-/* Layout Components */
-@import './components/_footer.css';
+/* Matrix Theme System + shadcn Integration */
+/* @import './matrix-shadcn.css'; */
 
-/* UI Components */
-@import './components/_header.css';
-@import './components/_navigation.css';
-@import './components/_scroll-behavior.css';
-@import './components/_buttons.css';
-@import './components/_cards.css';
-@import './components/_forms.css';
-@import './components/_contact-form.css';
+/* Matrix Component System */
+/* @import './matrix-components.css'; */
 
-/* Utilities */
-@import './utilities/_spacing.css';
-@import './utilities/_helpers.css';
-@import './utilities/_animations.css';
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Page-Specific Styles */
-@import './projects.css';
-@import './about.css';
-@import './skills-icons.css';
-/* @import './github-projects.css'; - Replaced with projects-matrix.css */
-@import './rotating-cube.css';
+/* Global Matrix Styles */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
 
-/* Legacy Imports */
-@import './global.css';
-@import './header.css';
-@import './styles.css';
-@import './hover-effects.css';
-@import './typography.css';
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
 
-/* Contact Modern - Must come after legacy to override */
-@import './contact-modern.css';
+  /* Matrix Rain Canvas Background */
+  #matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
 
-/* ==========================================================================
-   Print Styles
-   Must come last to override screen styles
-   ========================================================================== */
+  /* Custom scrollbar with Matrix theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-@media print {
-    /* Hide non-essential elements */
-    nav,
-    footer,
-    .no-print {
-        display: none !important;
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg, #000000);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--matrix-green);
+    border-radius: 4px;
+    box-shadow: var(--matrix-glow);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--matrix-green-bright);
+    box-shadow: var(--matrix-glow-intense);
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Matrix Typography */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    text-shadow: var(--matrix-glow);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .matrix-text {
+    font-family: var(--font-primary);
+    color: var(--matrix-green);
+    text-shadow: var(--matrix-glow);
+  }
+
+  .glitch-text {
+    animation: glitch 2s infinite;
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+  }
+}
+
+/* Matrix Animation System */
+@layer utilities {
+  .matrix-glow {
+    box-shadow: var(--matrix-glow);
+  }
+
+  .matrix-glow-intense {
+    box-shadow: var(--matrix-glow-intense);
+  }
+
+  .matrix-border {
+    border: 1px solid var(--matrix-green);
+  }
+
+  .matrix-bg {
+    background: var(--matrix-dark);
+  }
+
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur) var(--glass-saturate);
+    border: 1px solid var(--glass-border);
+  }
+
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .hologram-effect {
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .hologram-effect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(0, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    transform: translateZ(1px);
+    pointer-events: none;
+  }
+
+  .scan-lines {
+    position: relative;
+  }
+
+  .scan-lines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 0, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 3px
+    );
+    pointer-events: none;
+    animation: scan 4s linear infinite;
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(20px); }
+  }
+
+  .matrix-pulse {
+    animation: matrix-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes matrix-pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: var(--matrix-glow);
     }
-    
-    /* Optimize for print */
-    body {
-        background: white;
-        color: black;
+    50% {
+      opacity: 0.7;
+      box-shadow: var(--matrix-glow-intense);
     }
-    
-    a {
-        text-decoration: underline;
+  }
+
+  .terminal-cursor::after {
+    content: '█';
+    color: var(--matrix-green);
+    animation: cursor-blink 1s infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+}
+
+/* Performance optimizations */
+@layer base {
+  .matrix-optimized {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
-    
-    /* Ensure content fits on page */
-    .container {
-        max-width: 100%;
+
+    #matrix-rain {
+      display: none !important;
     }
+  }
+
+  /* Dark mode override for system preference */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 0 0% 0%;
+      --foreground: 120 100% 50%;
+    }
+  }
 }

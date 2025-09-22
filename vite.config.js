@@ -129,7 +129,9 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
       '@css': resolve(__dirname, './src/css'),
       '@js': resolve(__dirname, './src/js'),
-      '@images': resolve(__dirname, './src/images')
+      '@images': resolve(__dirname, './src/images'),
+      '@lib': resolve(__dirname, './src/lib'),
+      '@components': resolve(__dirname, './src/components')
     }
   }
 });

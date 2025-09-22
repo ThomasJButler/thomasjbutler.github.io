@@ -23,6 +23,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ defaul
 const SitemapPage = lazy(() => import('./pages/SitemapPage').then(m => ({ default: m.SitemapPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
+const ShadcnDemoPage = lazy(() => import('./pages/ShadcnDemoPage').then(m => ({ default: m.ShadcnDemoPage })));
 
 // Styles - Import order matters!
 import './css/base/_reset.css';
@@ -120,6 +121,11 @@ export const App: React.FC = () => {
             <Route path="blog/:slug" element={
               <Suspense fallback={<PageLoader />}>
                 <BlogReader />
+              </Suspense>
+            } />
+            <Route path="shadcn-demo" element={
+              <Suspense fallback={<PageLoader />}>
+                <ShadcnDemoPage />
               </Suspense>
             } />
             

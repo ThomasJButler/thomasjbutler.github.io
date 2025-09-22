@@ -23,7 +23,8 @@
       "@utils/*": ["src/utils/*"],
       "@css/*": ["src/css/*"],
       "@js/*": ["src/js/*"],
-      "@images/*": ["src/images/*"]
+      "@images/*": ["src/images/*"],
+      "@lib/*": ["src/lib/*"]
     },
     "types": ["vite/client", "node", "gsap", "scrollmagic"]
   },

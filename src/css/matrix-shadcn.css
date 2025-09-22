@@ -1,0 +1,348 @@
+/* ========================================================================
+   MATRIX + SHADCN INTEGRATION
+   Advanced theme system mapping Matrix aesthetics to shadcn variables
+   ======================================================================== */
+
+@layer base {
+  :root {
+    /* shadcn base variables - Matrix theme */
+    --background: 0 0% 0%;                    /* Pure black background */
+    --foreground: 120 100% 50%;               /* Matrix green foreground */
+    --card: 0 0% 2%;                          /* Very dark card background */
+    --card-foreground: 120 80% 50%;           /* Slightly muted green */
+    --popover: 0 0% 0%;                       /* Black popover */
+    --popover-foreground: 120 100% 50%;       /* Green text */
+    --primary: 120 100% 50%;                  /* Matrix green primary */
+    --primary-foreground: 0 0% 0%;            /* Black text on green */
+    --secondary: 0 0% 4%;                     /* Dark gray secondary */
+    --secondary-foreground: 120 60% 50%;      /* Muted green */
+    --muted: 0 0% 6%;                         /* Muted background */
+    --muted-foreground: 120 40% 50%;          /* Very muted green */
+    --accent: 120 100% 60%;                   /* Bright accent green */
+    --accent-foreground: 0 0% 0%;             /* Black on accent */
+    --destructive: 0 84% 60%;                 /* Red for errors */
+    --destructive-foreground: 0 0% 98%;       /* White on red */
+    --border: 120 30% 30%;                    /* Green border */
+    --input: 120 30% 30%;                     /* Input borders */
+    --ring: 120 100% 50%;                     /* Focus rings */
+    --radius: 0.5rem;                         /* Border radius */
+
+    /* Matrix-specific extensions */
+    --matrix-primary: 120 100% 50%;
+    --matrix-secondary: 180 100% 50%;         /* Cyan accent */
+    --matrix-tertiary: 300 100% 50%;          /* Magenta highlight */
+    --matrix-glow-color: 120 100% 50%;
+    --matrix-glow-intensity: 0.5;
+
+    /* Glass morphism */
+    --glass-background: 0 0% 0% / 0.7;
+    --glass-border: 120 50% 50% / 0.2;
+    --glass-blur: 12px;
+  }
+
+  /* Matrix Dark Theme Variant */
+  [data-theme="matrix-dark"] {
+    --background: 0 0% 0%;
+    --foreground: 120 80% 50%;
+    --primary: 120 80% 45%;
+    --ring: 120 80% 45%;
+    --border: 120 20% 25%;
+    --input: 120 20% 25%;
+    --matrix-glow-intensity: 0.3;
+  }
+
+  /* Cyberpunk Neon Theme */
+  [data-theme="cyberpunk"] {
+    --background: 220 20% 4%;
+    --foreground: 300 100% 70%;
+    --primary: 300 100% 60%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 180 100% 50%;
+    --accent: 60 100% 50%;
+    --matrix-primary: 300 100% 60%;
+    --matrix-secondary: 180 100% 50%;
+    --matrix-tertiary: 60 100% 50%;
+    --matrix-glow-color: 300 100% 60%;
+  }
+
+  /* Terminal Amber Theme */
+  [data-theme="terminal"] {
+    --background: 30 20% 5%;
+    --foreground: 45 100% 60%;
+    --primary: 45 100% 55%;
+    --primary-foreground: 30 20% 5%;
+    --matrix-primary: 45 100% 55%;
+    --matrix-glow-color: 45 100% 55%;
+  }
+
+  /* Ghost in Shell Theme */
+  [data-theme="ghost"] {
+    --background: 200 20% 8%;
+    --foreground: 200 80% 90%;
+    --primary: 200 100% 70%;
+    --primary-foreground: 200 20% 8%;
+    --matrix-primary: 200 100% 70%;
+    --matrix-secondary: 180 100% 70%;
+    --matrix-glow-color: 200 100% 70%;
+  }
+}
+
+/* Enhanced shadcn components with Matrix styling */
+@layer components {
+  /* Matrix Button Variants */
+  .btn-matrix {
+    /* @apply bg-transparent border-2 border-primary text-primary; */
+    /* @apply hover:bg-primary hover:text-primary-foreground; */
+    background: transparent;
+    border: 2px solid hsl(var(--primary));
+    color: hsl(var(--primary));
+    transition: all 0.3s ease-out;
+    @apply font-mono tracking-wider uppercase;
+    box-shadow: 0 0 10px hsl(var(--matrix-glow-color) / var(--matrix-glow-intensity));
+  }
+
+  .btn-matrix:hover {
+    box-shadow: 0 0 20px hsl(var(--matrix-glow-color) / calc(var(--matrix-glow-intensity) * 2));
+    transform: translateY(-2px);
+  }
+
+  .btn-matrix-ghost {
+    /* @apply border-0 text-primary; */
+    /* @apply hover:bg-primary/10 hover:text-primary; */
+    border: 0;
+    color: hsl(var(--primary));
+  }
+
+  .btn-matrix-neon {
+    /* @apply bg-primary text-primary-foreground; */
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    @apply shadow-[0_0_20px_hsl(var(--matrix-glow-color)_/_0.6)];
+    @apply hover:shadow-[0_0_30px_hsl(var(--matrix-glow-color)_/_0.8)];
+    @apply animate-pulse;
+  }
+
+  /* Matrix Card Variants */
+  .card-matrix {
+    @apply bg-card/50 border border-border;
+    @apply backdrop-blur-sm;
+    background: linear-gradient(135deg,
+      hsl(var(--card) / 0.7) 0%,
+      hsl(var(--card) / 0.5) 100%);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .card-matrix:hover {
+    border-color: hsl(var(--primary) / 0.7);
+    box-shadow: 0 0 20px hsl(var(--matrix-glow-color) / 0.3);
+    transform: translateY(-4px);
+  }
+
+  .card-hologram {
+    @apply card-matrix relative;
+    transform-style: preserve-3d;
+  }
+
+  .card-hologram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      hsl(var(--matrix-secondary) / 0.1) 50%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Matrix Input Styles */
+  .input-matrix {
+    @apply bg-transparent border border-input text-foreground;
+    @apply focus:border-ring focus:ring-2 focus:ring-ring/20;
+    @apply font-mono placeholder:text-muted-foreground/60;
+    transition: all 0.3s ease;
+  }
+
+  .input-matrix:focus {
+    box-shadow: 0 0 10px hsl(var(--ring) / 0.3);
+  }
+
+  /* Matrix Navigation */
+  .nav-matrix {
+    @apply bg-background/80 backdrop-blur-md;
+    @apply border-b border-border/50;
+    position: relative;
+  }
+
+  .nav-matrix::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary)) 50%,
+      transparent
+    );
+  }
+
+  /* Matrix Dialog/Modal */
+  .dialog-matrix {
+    @apply bg-background/95 backdrop-blur-lg;
+    @apply border border-border/50;
+    box-shadow:
+      0 0 40px hsl(var(--background)),
+      0 0 80px hsl(var(--matrix-glow-color) / 0.2);
+  }
+
+  /* Matrix Badge */
+  .badge-matrix {
+    /* @apply bg-primary/20 text-primary border border-primary/30; */
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.3);
+    @apply font-mono text-xs tracking-wider;
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+  }
+
+  /* Matrix Progress */
+  .progress-matrix {
+    @apply bg-muted;
+  }
+
+  .progress-matrix [data-state="complete"] {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)),
+      hsl(var(--matrix-secondary))
+    );
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  /* Matrix Separator */
+  .separator-matrix {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--border)),
+      transparent
+    );
+  }
+
+  /* Matrix Scroll Area */
+  .scroll-matrix {
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+
+  .scroll-matrix::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scroll-matrix::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  .scroll-matrix::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+  }
+
+  .scroll-matrix::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.7);
+  }
+
+  /* Matrix Toast */
+  .toast-matrix {
+    @apply bg-background border border-border;
+    box-shadow: 0 0 20px hsl(var(--background) / 0.8);
+  }
+
+  /* Matrix Command Palette */
+  .command-matrix {
+    @apply bg-background/95 backdrop-blur-lg;
+    @apply border border-border/50;
+    box-shadow:
+      0 0 40px hsl(var(--background)),
+      0 0 80px hsl(var(--matrix-glow-color) / 0.3);
+  }
+
+  .command-matrix [cmdk-input] {
+    @apply font-mono text-foreground placeholder:text-muted-foreground;
+    caret-color: hsl(var(--primary));
+  }
+
+  .command-matrix [cmdk-item] {
+    @apply font-mono;
+    /* @apply hover:bg-primary/10 hover:text-primary; */
+  }
+
+  .command-matrix [cmdk-item][data-selected="true"] {
+    /* @apply bg-primary/20 text-primary; */
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+  }
+}
+
+/* Matrix-specific utility classes */
+@layer utilities {
+  .text-matrix {
+    color: hsl(var(--matrix-primary));
+    text-shadow: 0 0 10px hsl(var(--matrix-glow-color) / 0.5);
+  }
+
+  .text-matrix-secondary {
+    color: hsl(var(--matrix-secondary));
+  }
+
+  .text-matrix-tertiary {
+    color: hsl(var(--matrix-tertiary));
+  }
+
+  .border-matrix {
+    border-color: hsl(var(--matrix-primary) / 0.5);
+  }
+
+  .bg-matrix {
+    background-color: hsl(var(--background));
+  }
+
+  .bg-matrix-card {
+    background-color: hsl(var(--card));
+  }
+
+  .shadow-matrix {
+    box-shadow: 0 0 10px hsl(var(--matrix-glow-color) / var(--matrix-glow-intensity));
+  }
+
+  .shadow-matrix-lg {
+    box-shadow: 0 0 20px hsl(var(--matrix-glow-color) / var(--matrix-glow-intensity));
+  }
+
+  .shadow-matrix-xl {
+    box-shadow: 0 0 40px hsl(var(--matrix-glow-color) / var(--matrix-glow-intensity));
+  }
+
+  .glow-matrix {
+    filter: drop-shadow(0 0 10px hsl(var(--matrix-glow-color) / 0.6));
+  }
+
+  .glow-matrix-intense {
+    filter: drop-shadow(0 0 20px hsl(var(--matrix-glow-color) / 0.8));
+  }
+
+  .backdrop-matrix {
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+    background: hsl(var(--glass-background));
+    border: 1px solid hsl(var(--glass-border));
+  }
+}

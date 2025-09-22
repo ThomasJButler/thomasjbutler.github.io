@@ -1,0 +1,201 @@
+/* ========================================================================
+   shadcn/ui Global Variables - Integrated with Matrix Theme System
+   ======================================================================== */
+
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Default radius for rounded corners */
+    --radius: 0.5rem;
+  }
+
+  /* Matrix Theme (Default) - shadcn variables */
+  :root,
+  [data-theme="matrix"] {
+    --background: 0 0% 0%; /* #000000 */
+    --foreground: 120 100% 50%; /* #00ff00 */
+
+    --card: 0 0% 4%; /* #0a0a0a */
+    --card-foreground: 120 100% 50%; /* #00ff00 */
+
+    --popover: 0 0% 0%; /* #000000 */
+    --popover-foreground: 120 100% 50%; /* #00ff00 */
+
+    --primary: 120 100% 50%; /* #00ff00 */
+    --primary-foreground: 0 0% 0%; /* #000000 */
+
+    --secondary: 0 0% 4%; /* #0a0a0a */
+    --secondary-foreground: 120 80% 50%; /* rgba(0, 255, 0, 0.8) */
+
+    --muted: 0 0% 2%; /* #050505 */
+    --muted-foreground: 120 60% 50%; /* rgba(0, 255, 0, 0.6) */
+
+    --accent: 120 100% 50%; /* #00ff00 */
+    --accent-foreground: 0 0% 0%; /* #000000 */
+
+    --destructive: 0 84.2% 60.2%; /* #ef4444 equivalent in matrix */
+    --destructive-foreground: 0 0% 98%; /* #fafafa */
+
+    --border: 120 30% 50%; /* rgba(0, 255, 0, 0.3) */
+    --input: 120 30% 50%; /* rgba(0, 255, 0, 0.3) */
+    --ring: 120 100% 50%; /* #00ff00 */
+  }
+
+  /* Dark Theme - shadcn variables */
+  [data-theme="dark"] {
+    --background: 0 0% 0%; /* #000000 */
+    --foreground: 0 0% 100%; /* #ffffff */
+
+    --card: 0 0% 6%; /* #0f0f0f */
+    --card-foreground: 0 0% 80%; /* #cccccc */
+
+    --popover: 0 0% 0%; /* #000000 */
+    --popover-foreground: 0 0% 100%; /* #ffffff */
+
+    --primary: 120 25% 50%; /* #40a040 */
+    --primary-foreground: 0 0% 0%; /* #000000 */
+
+    --secondary: 0 0% 10%; /* #1a1a1a */
+    --secondary-foreground: 0 0% 80%; /* #cccccc */
+
+    --muted: 0 0% 6%; /* #0f0f0f */
+    --muted-foreground: 0 0% 60%; /* #999999 */
+
+    --accent: 120 25% 50%; /* #40a040 */
+    --accent-foreground: 0 0% 100%; /* #ffffff */
+
+    --destructive: 0 62.8% 30.6%; /* #991b1b */
+    --destructive-foreground: 0 0% 98%; /* #fafafa */
+
+    --border: 0 0% 25%; /* #404040 */
+    --input: 0 0% 25%; /* #404040 */
+    --ring: 120 25% 50%; /* #40a040 */
+  }
+}
+
+/* ========================================================================
+   Custom shadcn Component Styles for Matrix Theme
+   ======================================================================== */
+
+@layer components {
+  /* Matrix-themed button variants */
+  .btn-matrix {
+    @apply bg-transparent border border-matrix-green text-matrix-green hover:bg-matrix-green hover:text-black transition-all duration-300;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+
+  .btn-matrix:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    text-shadow: none;
+  }
+
+  /* Matrix-themed card styles */
+  .card-matrix {
+    @apply bg-black border border-matrix-green/30 backdrop-blur-sm;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+  }
+
+  .card-matrix:hover {
+    @apply border-matrix-green/50;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+  }
+
+  /* Matrix-themed input styles */
+  .input-matrix {
+    @apply bg-transparent border border-matrix-green/30 text-matrix-green placeholder:text-matrix-green/60;
+    font-family: 'Courier New', monospace;
+  }
+
+  .input-matrix:focus {
+    @apply border-matrix-green ring-matrix-green;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+
+  /* Matrix typography */
+  .text-matrix-primary {
+    @apply text-matrix-green;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  }
+
+  .text-matrix-secondary {
+    @apply text-matrix-green/80;
+  }
+
+  .text-matrix-mono {
+    font-family: 'VT323', 'Courier New', monospace;
+  }
+
+  /* Matrix animations */
+  .matrix-glow {
+    animation: matrix-glow 2s ease-in-out infinite alternate;
+  }
+
+  .matrix-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* ========================================================================
+   Utility Classes for Matrix Theme Integration
+   ======================================================================== */
+
+@layer utilities {
+  /* Background utilities */
+  .bg-matrix-primary { background-color: var(--bg-primary); }
+  .bg-matrix-secondary { background-color: var(--bg-secondary); }
+  .bg-matrix-card { background-color: var(--card-bg); }
+
+  /* Text utilities */
+  .text-matrix-green { color: var(--matrix-green); }
+  .text-matrix-primary { color: var(--text-primary); }
+  .text-matrix-secondary { color: var(--text-secondary); }
+
+  /* Border utilities */
+  .border-matrix { border-color: var(--border-color); }
+  .border-matrix-hover { border-color: var(--border-hover); }
+
+  /* Matrix-specific shadows */
+  .shadow-matrix {
+    box-shadow: 0 0 10px var(--shadow-color);
+  }
+
+  .shadow-matrix-lg {
+    box-shadow: 0 0 20px var(--shadow-color);
+  }
+
+  .shadow-matrix-glow {
+    box-shadow: 0 0 30px var(--shadow-glow);
+  }
+
+  /* Cyberpunk effects */
+  .cyberpunk-border {
+    position: relative;
+    border: 1px solid var(--matrix-green);
+  }
+
+  .cyberpunk-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, var(--matrix-green), transparent, var(--matrix-green));
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  /* Matrix rain effect trigger */
+  .matrix-interactive {
+    transition: all 0.3s ease;
+  }
+
+  .matrix-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+  }
+}
