@@ -36,7 +36,6 @@ import './css/projects.css';
 import './css/projects-matrix.css';
 import './css/rotating-cube.css';
 import './css/blog.css';
-import './css/react-app-fixes.css'; // React-specific fixes
 
 export const App: React.FC = () => {
   useEffect(() => {
