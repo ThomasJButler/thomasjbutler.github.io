@@ -38,7 +38,7 @@ export const CyberGrid: React.FC<CyberGridProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [nodes, setNodes] = useState<GridNode[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   const getVariantStyles = () => {
     switch (variant) {

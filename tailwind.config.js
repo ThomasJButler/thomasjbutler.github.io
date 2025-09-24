@@ -44,6 +44,7 @@ export default {
         // Matrix theme colors
         matrix: {
           green: "var(--matrix-green)",
+          primary: "hsl(var(--matrix-primary, 120 100% 50%))", // Default matrix green
           bg: "var(--bg-primary)",
           "bg-secondary": "var(--bg-secondary)",
           "text-primary": "var(--text-primary)",
@@ -73,6 +74,11 @@ export default {
           "0%": { boxShadow: "0 0 5px rgba(0, 255, 0, 0.3)" },
           "100%": { boxShadow: "0 0 20px rgba(0, 255, 0, 0.6)" },
         },
+      },
+      boxShadow: {
+        'matrix': '0 0 10px rgba(0, 255, 0, 0.3)',
+        'matrix-lg': '0 0 20px rgba(0, 255, 0, 0.4)',
+        'matrix-glow': '0 0 30px rgba(0, 255, 0, 0.6)',
       },
     },
   },

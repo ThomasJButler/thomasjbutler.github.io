@@ -40,7 +40,7 @@ export function initKeyboardNavigation(): void {
 /**
  * Add skip to content link for screen readers
  */
-function addSkipLink(): void {
+function _addSkipLink(): void {
   const existingSkipLink = document.querySelector('.skip-to-content');
   if (existingSkipLink) return;
 

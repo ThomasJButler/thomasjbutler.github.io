@@ -227,4 +227,13 @@
       --foreground: 120 100% 50%;
     }
   }
+
+  /* Theme switching optimization - disable transitions during theme change */
+  .theme-switching,
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition: none !important;
+    animation-duration: 0s !important;
+  }
 }

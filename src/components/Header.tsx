@@ -162,6 +162,14 @@ export const Header: React.FC = () => {
               </li>
             ))}
           </ul>
+
+          {/* Command Palette Hint */}
+          <div className={styles.commandHint}>
+            <span className={styles.commandKeys}>
+              <kbd>⌘</kbd><kbd>K</kbd>
+            </span>
+          </div>
+
           <ThemeToggle />
         </nav>
       </div>

@@ -38,36 +38,56 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio-theme', theme);
 
-    // Update CSS variables based on theme
+    // Temporarily disable transitions for instant theme switching
     const root = document.documentElement;
-    
-    switch (theme) {
+    root.classList.add('theme-switching');
+
+    // Use requestAnimationFrame to batch CSS variable updates
+    requestAnimationFrame(() => {
+      const variables = getThemeVariables(theme);
+
+      // Batch all CSS variable updates
+      Object.entries(variables).forEach(([property, value]) => {
+        root.style.setProperty(property, value);
+      });
+
+      // Re-enable transitions after variables are set
+      requestAnimationFrame(() => {
+        root.classList.remove('theme-switching');
+      });
+    });
+  }, [theme]);
+
+  const getThemeVariables = (selectedTheme: Theme): Record<string, string> => {
+    switch (selectedTheme) {
       case 'dark':
-        root.style.setProperty('--bg-primary', '#000000');
-        root.style.setProperty('--bg-secondary', '#0f0f0f');
-        root.style.setProperty('--text-primary', '#ffffff');
-        root.style.setProperty('--text-secondary', '#cccccc');
-        root.style.setProperty('--accent-color', '#40a040');
-        root.style.setProperty('--matrix-green', '#40a040');
-        root.style.setProperty('--border-color', '#404040');
-        root.style.setProperty('--card-bg', 'rgba(15, 15, 15, 0.95)');
-        root.style.setProperty('--shadow-color', 'rgba(0, 0, 0, 0.3)');
-        break;
-      
+        return {
+          '--bg-primary': '#000000',
+          '--bg-secondary': '#0f0f0f',
+          '--text-primary': '#ffffff',
+          '--text-secondary': '#cccccc',
+          '--accent-color': '#40a040',
+          '--matrix-green': '#40a040',
+          '--border-color': '#404040',
+          '--card-bg': 'rgba(15, 15, 15, 0.95)',
+          '--shadow-color': 'rgba(0, 0, 0, 0.3)'
+        };
+
       case 'matrix':
       default:
-        root.style.setProperty('--bg-primary', '#000000');
-        root.style.setProperty('--bg-secondary', '#0a0a0a');
-        root.style.setProperty('--text-primary', '#00ff00');
-        root.style.setProperty('--text-secondary', 'rgba(0, 255, 0, 0.8)');
-        root.style.setProperty('--accent-color', '#00ff00');
-        root.style.setProperty('--matrix-green', '#00ff00');
-        root.style.setProperty('--border-color', 'rgba(0, 255, 0, 0.3)');
-        root.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.9)');
-        root.style.setProperty('--shadow-color', 'rgba(0, 255, 0, 0.2)');
-        break;
+        return {
+          '--bg-primary': '#000000',
+          '--bg-secondary': '#0a0a0a',
+          '--text-primary': '#00ff00',
+          '--text-secondary': 'rgba(0, 255, 0, 0.8)',
+          '--accent-color': '#00ff00',
+          '--matrix-green': '#00ff00',
+          '--border-color': 'rgba(0, 255, 0, 0.3)',
+          '--card-bg': 'rgba(0, 0, 0, 0.9)',
+          '--shadow-color': 'rgba(0, 255, 0, 0.2)'
+        };
     }
-  }, [theme]);
+  };
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);

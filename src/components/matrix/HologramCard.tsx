@@ -88,7 +88,7 @@ export const HologramCard: React.FC<HologramCardProps> = ({
     <CardComponent
       className={cn(
         'relative overflow-hidden border-2 bg-black/80 backdrop-blur-sm',
-        'transition-all duration-300 cursor-pointer group',
+        'transition-[transform,border-color,box-shadow] duration-300 cursor-pointer group',
         'hover:scale-[1.02] hover:border-opacity-100',
         styles.textColor,
         className
@@ -133,7 +133,12 @@ export const HologramCard: React.FC<HologramCardProps> = ({
           <img
             src={image}
             alt={title}
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         </div>

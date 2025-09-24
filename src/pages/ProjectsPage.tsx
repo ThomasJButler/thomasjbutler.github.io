@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
+import { WebGL3DGallery } from '../components/projects/WebGL3DGallery';
+import '../css/components/webgl-3d-gallery.css';
 
 interface Project {
   id: string;
@@ -292,11 +294,27 @@ const categories = [
 export const ProjectsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
+  const [viewMode, setViewMode] = useState<'grid' | '3d'>('grid');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useMatrixAnimation(containerRef, {});
   useCardAnimations();
+
+  // Convert projects to 3D Gallery format
+  const convert3DProjects = (projectList: Project[]) => {
+    return projectList.map(project => ({
+      id: project.id,
+      title: project.name,
+      description: project.description,
+      image: project.backgroundImage || '',
+      tags: project.topics,
+      liveUrl: project.links.demo,
+      githubUrl: project.links.github,
+      featured: project.stats.stars > 10 // Mark high-starred projects as featured
+    }));
+  };
 
   useEffect(() => {
     if (activeCategory === 'all') {
@@ -399,18 +417,36 @@ export const ProjectsPage: React.FC = () => {
       
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateZ(10px)`;
       
-      // Move overlay based on mouse position
+      // Enhanced glass morphism hover effect
       const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+      const contentBg = card.querySelector('.content-glass-bg') as HTMLElement;
+
       if (overlay) {
         overlay.style.background = `
           radial-gradient(
             circle at ${x}px ${y}px,
-            rgba(0, 255, 0, 0.1) 0%,
-            rgba(0, 0, 0, 0.4) 20%,
-            rgba(0, 20, 0, 0.9) 60%,
-            rgba(0, 20, 0, 0.95) 100%
+            rgba(0, 255, 0, 0.15) 0%,
+            rgba(0, 0, 0, 0.5) 25%,
+            rgba(0, 20, 0, 0.8) 60%,
+            rgba(0, 0, 0, 0.95) 100%
           )
         `;
+        overlay.style.backdropFilter = 'blur(12px) saturate(1.4)';
+        (overlay.style as any).WebkitBackdropFilter = 'blur(12px) saturate(1.4)';
+      }
+
+      if (contentBg) {
+        contentBg.style.background = `
+          linear-gradient(to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 255, 0, 0.1) 30%,
+            rgba(0, 20, 0, 0.6) 50%,
+            rgba(0, 0, 0, 0.2) 100%
+          )
+        `;
+        contentBg.style.backdropFilter = 'blur(16px) saturate(1.6)';
+        (contentBg.style as any).WebkitBackdropFilter = 'blur(16px) saturate(1.6)';
+        contentBg.style.borderTop = '1px solid rgba(0, 255, 0, 0.4)';
       }
     };
     
@@ -431,19 +467,30 @@ export const ProjectsPage: React.FC = () => {
 
   const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget;
-    
+
     // Remove mouse move handler
     if (card.dataset.mouseHandler) {
       card.style.transform = '';
       delete card.dataset.mouseHandler;
     }
-    
-    // Reset overlay
+
+    // Reset glass morphism overlays
     const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+    const contentBg = card.querySelector('.content-glass-bg') as HTMLElement;
+
     if (overlay) {
-      overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)';
+      overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 20, 0, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%)';
+      overlay.style.backdropFilter = 'blur(8px) saturate(1.2)';
+      (overlay.style as any).WebkitBackdropFilter = 'blur(8px) saturate(1.2)';
     }
-    
+
+    if (contentBg) {
+      contentBg.style.background = 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 20, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 100%)';
+      contentBg.style.backdropFilter = 'blur(12px) saturate(1.5)';
+      (contentBg.style as any).WebkitBackdropFilter = 'blur(12px) saturate(1.5)';
+      contentBg.style.borderTop = '1px solid rgba(0, 255, 0, 0.2)';
+    }
+
     // Animate out
     animate(card, {
       scale: 1,
@@ -451,8 +498,19 @@ export const ProjectsPage: React.FC = () => {
       duration: 300,
       easing: 'easeOutQuad'
     });
-    
+
     card.style.boxShadow = '';
+  };
+
+  // Handle 3D Gallery project selection
+  const handle3DProjectSelect = (project: any) => {
+    // Find the original project from our data
+    const originalProject = projects.find(p => p.id === project.id);
+    if (originalProject) {
+      setSelectedProject(originalProject);
+      // You could add additional logic here, like opening a modal
+      console.log('Selected project:', originalProject);
+    }
   };
 
   return (
@@ -460,7 +518,48 @@ export const ProjectsPage: React.FC = () => {
       <div className="matrix-project-container">
         <h2 className="section-title">--| Project Showcase |--</h2>
         <p className="section-description">Explore my open source contributions and personal projects</p>
-        
+
+        {/* View Mode Toggle */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '20px 0',
+          gap: '10px'
+        }}>
+          <button
+            className={`matrix-tab-button ${viewMode === 'grid' ? 'active' : ''}`}
+            onClick={() => setViewMode('grid')}
+            style={{
+              background: viewMode === 'grid' ? 'rgba(0, 255, 0, 0.2)' : 'rgba(0, 0, 0, 0.3)',
+              border: '1px solid rgba(0, 255, 0, 0.5)',
+              color: '#00ff00',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'monospace',
+              fontSize: '14px'
+            }}
+          >
+            <i className="fas fa-th"></i> Grid View
+          </button>
+          <button
+            className={`matrix-tab-button ${viewMode === '3d' ? 'active' : ''}`}
+            onClick={() => setViewMode('3d')}
+            style={{
+              background: viewMode === '3d' ? 'rgba(0, 255, 0, 0.2)' : 'rgba(0, 0, 0, 0.3)',
+              border: '1px solid rgba(0, 255, 0, 0.5)',
+              color: '#00ff00',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'monospace',
+              fontSize: '14px'
+            }}
+          >
+            <i className="fas fa-cube"></i> 3D Gallery
+          </button>
+        </div>
+
         <div className="matrix-project-tabs">
           {categories.map(cat => (
             <button
@@ -474,8 +573,17 @@ export const ProjectsPage: React.FC = () => {
           ))}
         </div>
 
-        <div ref={gridRef} className="matrix-project-grid">
-          {visibleProjects.map((project) => (
+        {/* Conditional rendering based on view mode */}
+        {viewMode === '3d' ? (
+          <WebGL3DGallery
+            projects={convert3DProjects(visibleProjects)}
+            onProjectSelect={handle3DProjectSelect}
+            autoRotate={true}
+            cameraControls={true}
+          />
+        ) : (
+          <div ref={gridRef} className="matrix-project-grid">
+            {visibleProjects.map((project) => (
             <article
               key={project.id}
               className="matrix-project-card"
@@ -490,52 +598,104 @@ export const ProjectsPage: React.FC = () => {
                 backgroundBlendMode: 'overlay'
               }}
             >
-              {/* Background overlay for better text readability */}
+              {/* Enhanced glass morphism overlay for better text readability */}
               <div className="project-card-overlay" style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)',
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 20, 0, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%)',
+                backdropFilter: 'blur(8px) saturate(1.2)',
+                WebkitBackdropFilter: 'blur(8px) saturate(1.2)', // Safari support
+                zIndex: 1,
+                pointerEvents: 'none'
+              }} />
+
+              {/* Content glass background for enhanced readability */}
+              <div className="content-glass-bg" style={{
+                position: 'absolute',
+                bottom: '0',
+                left: '0',
+                right: '0',
+                height: '65%',
+                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 20, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 100%)',
+                backdropFilter: 'blur(12px) saturate(1.5)',
+                WebkitBackdropFilter: 'blur(12px) saturate(1.5)', // Safari support
+                borderTop: '1px solid rgba(0, 255, 0, 0.2)',
                 zIndex: 1,
                 pointerEvents: 'none'
               }} />
               
-              <div className="matrix-project-header" style={{ position: 'relative', zIndex: 2 }}>
-                <h3 className="matrix-project-title">
+              <div className="matrix-project-header" style={{
+                position: 'relative',
+                zIndex: 3,
+                textShadow: '0 0 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9)'
+              }}>
+                <h3 className="matrix-project-title" style={{
+                  color: '#00ff00',
+                  fontWeight: 'bold',
+                  textShadow: '0 0 15px rgba(0, 255, 0, 0.8), 0 0 5px rgba(0, 0, 0, 1)'
+                }}>
                   <i className="fas fa-terminal"></i> {project.name}
                 </h3>
                 <div className="matrix-project-stats">
-                  <span className="stat">
+                  <span className="stat" style={{
+                    textShadow: '0 0 10px rgba(0, 0, 0, 0.9)',
+                    color: '#ffffff'
+                  }}>
                     <i className="fas fa-star"></i> {project.stats.stars}
                   </span>
-                  <span className="stat">
+                  <span className="stat" style={{
+                    textShadow: '0 0 10px rgba(0, 0, 0, 0.9)',
+                    color: '#ffffff'
+                  }}>
                     <i className="fas fa-code-branch"></i> {project.stats.forks}
                   </span>
                 </div>
               </div>
-              
-              <div className="matrix-project-content" style={{ position: 'relative', zIndex: 2 }}>
-                <p className="matrix-project-description">{project.description}</p>
-                
+
+              <div className="matrix-project-content" style={{
+                position: 'relative',
+                zIndex: 3,
+                textShadow: '0 0 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.8)'
+              }}>
+                <p className="matrix-project-description" style={{
+                  color: '#ffffff',
+                  fontWeight: '500',
+                  textShadow: '0 0 10px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 1)'
+                }}>{project.description}</p>
+
                 <div className="matrix-project-tags">
                   {project.topics.map((topic, index) => (
-                    <span key={index} className="matrix-tag">{topic}</span>
+                    <span key={index} className="matrix-tag" style={{
+                      background: 'rgba(0, 255, 0, 0.15)',
+                      border: '1px solid rgba(0, 255, 0, 0.4)',
+                      backdropFilter: 'blur(4px)',
+                      WebkitBackdropFilter: 'blur(4px)',
+                      color: '#00ff00',
+                      textShadow: '0 0 8px rgba(0, 0, 0, 0.9)'
+                    }}>{topic}</span>
                   ))}
                 </div>
-                
-                <div className="matrix-project-language">
-                  <span 
-                    className="language-dot" 
-                    style={{ backgroundColor: project.language.color }}
+
+                <div className="matrix-project-language" style={{
+                  color: '#ffffff',
+                  textShadow: '0 0 8px rgba(0, 0, 0, 0.9)'
+                }}>
+                  <span
+                    className="language-dot"
+                    style={{
+                      backgroundColor: project.language.color,
+                      boxShadow: `0 0 8px ${project.language.color}`
+                    }}
                   ></span>
                   <span className="language-name">{project.language.name}</span>
                   <span className="language-percent">{project.language.percent}%</span>
                 </div>
               </div>
-              
-              <div className="matrix-project-buttons" style={{ position: 'relative', zIndex: 2 }}>
+
+              <div className="matrix-project-buttons" style={{ position: 'relative', zIndex: 3 }}>
                 {project.links.demo && (
                   <a 
                     href={project.links.demo} 
@@ -560,8 +720,9 @@ export const ProjectsPage: React.FC = () => {
                 )}
               </div>
             </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

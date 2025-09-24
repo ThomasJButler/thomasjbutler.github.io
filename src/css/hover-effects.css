@@ -20,7 +20,7 @@ button,
 .hover-effect,
 [role="button"],
 [data-hover] {
-  transition: all var(--hover-duration) var(--hover-timing);
+  transition: transform var(--hover-duration) var(--hover-timing), color var(--hover-duration) var(--hover-timing), background-color var(--hover-duration) var(--hover-timing), box-shadow var(--hover-duration) var(--hover-timing);
 }
 
 /* Glitch Effect for Headers */
@@ -308,7 +308,7 @@ button:active::before {
 /* Magnetic Cursor Effect */
 .neo-matrix-btn,
 .matrix-btn {
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   will-change: transform;
 }
 
@@ -420,7 +420,7 @@ nav a:hover {
 .fas,
 .far,
 i[class*="fa-"] {
-  transition: all var(--hover-duration) var(--hover-timing);
+  transition: transform var(--hover-duration) var(--hover-timing), color var(--hover-duration) var(--hover-timing), background-color var(--hover-duration) var(--hover-timing), box-shadow var(--hover-duration) var(--hover-timing);
 }
 
 .icon:hover,
@@ -505,7 +505,7 @@ tbody tr:hover {
 
 /* Dropdown Hover */
 .dropdown-item {
-  transition: all var(--hover-duration) var(--hover-timing);
+  transition: transform var(--hover-duration) var(--hover-timing), color var(--hover-duration) var(--hover-timing), background-color var(--hover-duration) var(--hover-timing), box-shadow var(--hover-duration) var(--hover-timing);
 }
 
 .dropdown-item:hover {
@@ -603,7 +603,7 @@ a:hover {
 
 /* Timeline Item Hover */
 .timeline-item {
-  transition: all var(--hover-duration) var(--hover-timing);
+  transition: transform var(--hover-duration) var(--hover-timing), color var(--hover-duration) var(--hover-timing), background-color var(--hover-duration) var(--hover-timing), box-shadow var(--hover-duration) var(--hover-timing);
 }
 
 .timeline-item:hover {
@@ -618,7 +618,7 @@ a:hover {
 /* Skill Item Hover */
 .skill-item {
   display: inline-block;
-  transition: all var(--hover-duration) var(--hover-timing);
+  transition: transform var(--hover-duration) var(--hover-timing), color var(--hover-duration) var(--hover-timing), background-color var(--hover-duration) var(--hover-timing), box-shadow var(--hover-duration) var(--hover-timing);
 }
 
 .skill-item:hover {

@@ -1,5 +1,5 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
 import { performanceOptimizer } from './utils/performanceOptimizer';
@@ -12,6 +12,13 @@ import { Layout } from './components/Layout';
 import { GodModeDisplay } from './components/GodModeDisplay';
 import { MatrixSpinner } from './components/MatrixSpinner';
 import { ReactHtmlRedirect } from './components/ReactHtmlRedirect';
+import { CommandPalette } from './components/matrix/CommandPalette';
+import { WebGLParticleCursor } from './components/matrix/WebGLParticleCursor';
+import { MatrixTerminalGames } from './components/terminal/MatrixTerminalGames';
+
+// Hooks
+import { useCommandPalette } from './hooks/useCommandPalette';
+import { useParticleSettings } from './hooks/useParticleSettings';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
@@ -39,17 +46,29 @@ import './css/rotating-cube.css';
 import './css/blog.css';
 
 export const App: React.FC = () => {
+  const { isOpen, closePalette } = useCommandPalette();
+  const {
+    isEnabled: isParticlesEnabled,
+    getAdaptiveIntensity,
+    getAdaptiveParticleCount,
+    settings: particleSettings
+  } = useParticleSettings();
+
+  // Terminal Games state
+  const [isTerminalGamesOpen, setIsTerminalGamesOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<string | undefined>();
+
   useEffect(() => {
     // Initialize performance optimization
     const settings = performanceOptimizer.getSettings();
     console.log('App initialized with performance settings:', settings);
-    
+
     // Add loaded class to body to show content (prevent FOUC hiding)
     document.body.classList.add('loaded');
-    
+
     // Initialize keyboard navigation
     initKeyboardNavigation();
-    
+
     // Quick fade-in without heavy animation
     const root = document.getElementById('root');
     if (root) {
@@ -57,7 +76,7 @@ export const App: React.FC = () => {
       requestAnimationFrame(() => {
         root.style.transition = 'opacity 0.3s ease-out';
         root.style.opacity = '1';
-        
+
         // Trigger Matrix rain effect after app loads
         setTimeout(() => {
           const event = new CustomEvent('appLoaded');
@@ -67,6 +86,17 @@ export const App: React.FC = () => {
     }
   }, []);
 
+  // Terminal Games handlers
+  const handleOpenTerminalGames = (gameId?: string) => {
+    setSelectedGame(gameId);
+    setIsTerminalGamesOpen(true);
+  };
+
+  const handleCloseTerminalGames = () => {
+    setIsTerminalGamesOpen(false);
+    setSelectedGame(undefined);
+  };
+
   // Page loading fallback component
   const PageLoader = () => (
     <MatrixSpinner isLoading={true} size="large" text="Loading page..." />
@@ -74,7 +104,7 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <Router basename="/ThomasJButler">
+      <Router>
         <ReactHtmlRedirect />
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -139,8 +169,24 @@ export const App: React.FC = () => {
             <Route path="sitemap.html" element={<Navigate to="/sitemap" replace />} />
           </Route>
         </Routes>
+        <GodModeDisplay />
+        <CommandPalette
+          isOpen={isOpen}
+          onClose={closePalette}
+          onOpenTerminalGames={handleOpenTerminalGames}
+        />
+        <WebGLParticleCursor
+          enabled={isParticlesEnabled()}
+          particleCount={getAdaptiveParticleCount()}
+          particleLife={particleSettings.particleLife}
+          intensity={getAdaptiveIntensity()}
+        />
+        <MatrixTerminalGames
+          isOpen={isTerminalGamesOpen}
+          onClose={handleCloseTerminalGames}
+          initialGame={selectedGame}
+        />
       </Router>
-      <GodModeDisplay />
     </ThemeProvider>
   );
 };

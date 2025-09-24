@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { default as compression } from 'vite-plugin-compression';
 import { resolve } from 'path';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
 
@@ -9,6 +11,10 @@ export default defineConfig({
   base: '/ThomasJButler/',
   build: {
     outDir: 'dist',
+    target: 'es2020',
+    sourcemap: false,
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
     rollupOptions: {
       input: {
         // Main entry - redirects to React app
@@ -17,13 +23,54 @@ export default defineConfig({
         react: resolve(__dirname, 'react.html'),
         // Blog redirect for backward compatibility
         blog: resolve(__dirname, 'blog.html'),
+      },
+      output: {
+        // Advanced chunking strategy for optimal loading
+        manualChunks: {
+          // Vendor libraries
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-three': ['three'],
+          'vendor-animation': ['animejs', 'gsap', 'aos'],
+          'vendor-motion': ['framer-motion'],
+          // Matrix components
+          'matrix-components': [
+            './src/components/matrix/WebGLMatrixRain',
+            './src/components/matrix/WebGLParticleCursor',
+            './src/components/matrix/MatrixLayout',
+            './src/components/matrix/CommandPalette'
+          ]
+        },
+        // Optimal chunk naming
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)$/.test(assetInfo.name)) {
+            return `assets/media/[name]-[hash].${ext}`;
+          }
+          if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(assetInfo.name)) {
+            return `assets/images/[name]-[hash].${ext}`;
+          }
+          if (/\.css$/.test(assetInfo.name)) {
+            return `assets/css/[name]-[hash].${ext}`;
+          }
+          return `assets/[name]-[hash].${ext}`;
+        }
       }
     },
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: false,  // Keep console logs for debugging
-        drop_debugger: true
+        drop_console: process.env.NODE_ENV === 'production',
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.warn'],
+        unsafe_arrows: true,
+        unsafe_math: true,
+        unsafe_methods: true
+      },
+      mangle: {
+        safari10: true
       }
     }
   },
@@ -32,6 +79,27 @@ export default defineConfig({
     react(),
     legacy({
       targets: ['defaults', 'not IE 11']
+    }),
+    // Gzip compression for production
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 1024,
+      deleteOriginFile: false
+    }),
+    // Brotli compression for modern browsers
+    compression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 1024,
+      deleteOriginFile: false
+    }),
+    // Bundle analyzer - only in build mode
+    process.env.ANALYZE && visualizer({
+      filename: 'dist/bundle-analysis.html',
+      open: true,
+      gzipSize: true,
+      brotliSize: true
     }),
     // Development middleware to serve blog markdown files
     {

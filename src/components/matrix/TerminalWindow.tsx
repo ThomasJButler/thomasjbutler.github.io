@@ -17,6 +17,9 @@ interface TerminalWindowProps {
   responses?: { [key: string]: string | string[] };
   height?: string;
   interactive?: boolean;
+  isActive?: boolean; // Controls if terminal is active
+  onActivate?: () => void; // Callback when user wants to activate
+  rateLimit?: number; // Commands per minute (default: 10)
 }
 
 export const TerminalWindow: React.FC<TerminalWindowProps> = ({
@@ -27,14 +30,25 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   commands = [],
   responses = {},
   height = 'h-96',
-  interactive = true
+  interactive = true,
+  isActive = false,
+  onActivate,
+  rateLimit = 10
 }) => {
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [currentCommand, setCurrentCommand] = useState(0);
+  const [commandHistory, setCommandHistory] = useState<{ timestamp: number; command: string }[]>([]);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Security: Command whitelist - only safe, simulated commands allowed
+  const allowedCommands = new Set([
+    'help', 'clear', 'whoami', 'status', 'matrix', 'hack', 'exit',
+    'about', 'skills', 'projects', 'contact', 'theme', 'version',
+    'time', 'date', 'echo', 'cowsay', 'fortune', 'uptime', 'pwd'
+  ]);
 
   const getVariantStyles = () => {
     switch (variant) {
@@ -102,8 +116,26 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
 
   const allResponses = { ...defaultResponses, ...responses };
 
+  // Security: Rate limiting function
+  const isRateLimited = () => {
+    const now = Date.now();
+    const oneMinuteAgo = now - 60000;
+    const recentCommands = commandHistory.filter(cmd => cmd.timestamp > oneMinuteAgo);
+    return recentCommands.length >= rateLimit;
+  };
+
+  // Security: Input sanitization
+  const sanitizeInput = (input: string): string => {
+    return input
+      .trim()
+      .toLowerCase()
+      .replace(/[<>"/\\&']/g, '') // Remove potentially dangerous characters
+      .substring(0, 50); // Limit length
+  };
+
   useEffect(() => {
-    if (autoType && commands.length > 0 && currentCommand < commands.length) {
+    // Security: Only auto-type when terminal is explicitly activated
+    if (isActive && autoType && commands.length > 0 && currentCommand < commands.length) {
       const timer = setTimeout(() => {
         typeCommand(commands[currentCommand]);
         setCurrentCommand(prev => prev + 1);
@@ -111,7 +143,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
 
       return () => clearTimeout(timer);
     }
-  }, [currentCommand, autoType, commands]);
+  }, [currentCommand, autoType, commands, isActive]);
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -140,20 +172,46 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   };
 
   const processCommand = (command: string) => {
-    const cmd = command.toLowerCase().trim();
+    // Security: Sanitize and validate input
+    const sanitizedCmd = sanitizeInput(command);
 
-    if (cmd === 'clear') {
+    // Security: Rate limiting check
+    if (isRateLimited()) {
+      setLines(prev => [...prev, {
+        type: 'error',
+        content: 'Rate limit exceeded. Please wait before running more commands.',
+        timestamp: new Date()
+      }]);
+      return;
+    }
+
+    // Security: Command whitelist check
+    if (!allowedCommands.has(sanitizedCmd)) {
+      setLines(prev => [...prev, {
+        type: 'error',
+        content: `Command '${sanitizedCmd}' not allowed. Type "help" for available commands.`,
+        timestamp: new Date()
+      }]);
+      return;
+    }
+
+    // Log command for rate limiting
+    setCommandHistory(prev => [...prev, { timestamp: Date.now(), command: sanitizedCmd }]);
+
+    // Handle special commands
+    if (sanitizedCmd === 'clear') {
       setLines([]);
       return;
     }
 
-    const response = allResponses[cmd] || [`Command not found: ${command}`, 'Type "help" for available commands.'];
+    // Get response (only from safe, predefined responses)
+    const response = allResponses[sanitizedCmd as keyof typeof allResponses] || [`Command not found: ${sanitizedCmd}`, 'Type "help" for available commands.'];
 
     if (Array.isArray(response)) {
       response.forEach((line, index) => {
         setTimeout(() => {
           setLines(prev => [...prev, {
-            type: cmd === 'hack' || cmd === 'matrix' ? 'success' : 'output',
+            type: sanitizedCmd === 'hack' || sanitizedCmd === 'matrix' ? 'success' : 'output',
             content: line,
             timestamp: new Date()
           }]);
@@ -215,43 +273,77 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
         ref={terminalRef}
         className={cn('p-4 font-mono text-sm overflow-y-auto scrollbar-thin', height)}
       >
-        <AnimatePresence>
-          {lines.map((line, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className={cn('mb-1', getLineColor(line.type))}
-            >
-              {line.type === 'input' && (
-                <span className={styles.primary}>thomas@matrix:~$ </span>
+        {!isActive ? (
+          // Activation Screen
+          <div className="flex flex-col items-center justify-center h-full space-y-4">
+            <div className={cn('text-lg mb-4', styles.primary)}>
+              🔒 SECURE TERMINAL INTERFACE
+            </div>
+            <div className="text-center text-gray-400 mb-6 space-y-2">
+              <p>Click to activate secured terminal session</p>
+              <p className="text-xs">Rate limited • Command whitelist • XSS protected</p>
+            </div>
+            <motion.button
+              onClick={onActivate}
+              className={cn(
+                'px-6 py-3 border-2 rounded bg-transparent font-bold uppercase tracking-wider',
+                'transition-all duration-300 hover:scale-105',
+                styles.border,
+                styles.primary
               )}
-              {line.content}
-            </motion.div>
-          ))}
-        </AnimatePresence>
-
-        {/* Current input line */}
-        {interactive && (
-          <div className="flex items-center">
-            <span className={cn('mr-2', styles.primary)}>thomas@matrix:~$ </span>
-            <input
-              ref={inputRef}
-              value={currentInput}
-              onChange={(e) => setCurrentInput(e.target.value)}
-              onKeyDown={handleInputSubmit}
-              className="bg-transparent outline-none flex-1 text-gray-300"
-              disabled={isTyping}
-              placeholder={isTyping ? 'Processing...' : 'Type a command...'}
-            />
-            <motion.span
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-              className={cn('ml-1', styles.primary)}
+              style={{
+                boxShadow: `0 0 10px ${styles.primary}40`,
+              }}
+              whileHover={{
+                boxShadow: `0 0 20px ${styles.primary}80`,
+              }}
+              whileTap={{ scale: 0.95 }}
             >
-              █
-            </motion.span>
+              ⚡ ACTIVATE TERMINAL ⚡
+            </motion.button>
           </div>
+        ) : (
+          // Active Terminal
+          <>
+            <AnimatePresence>
+              {lines.map((line, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className={cn('mb-1', getLineColor(line.type))}
+                >
+                  {line.type === 'input' && (
+                    <span className={styles.primary}>thomas@matrix:~$ </span>
+                  )}
+                  {line.content}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {/* Current input line - only when active */}
+            {interactive && (
+              <div className="flex items-center">
+                <span className={cn('mr-2', styles.primary)}>thomas@matrix:~$ </span>
+                <input
+                  ref={inputRef}
+                  value={currentInput}
+                  onChange={(e) => setCurrentInput(e.target.value)}
+                  onKeyDown={handleInputSubmit}
+                  className="bg-transparent outline-none flex-1 text-gray-300"
+                  disabled={isTyping}
+                  placeholder={isTyping ? 'Processing...' : 'Type a command...'}
+                />
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className={cn('ml-1', styles.primary)}
+                >
+                  █
+                </motion.span>
+              </div>
+            )}
+          </>
         )}
       </div>
     </motion.div>

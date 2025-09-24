@@ -83,6 +83,7 @@ export const SystemInitialization: React.FC = () => {
 
   const [currentTerminalPhase, setCurrentTerminalPhase] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const [terminalActive, setTerminalActive] = useState(false);
 
   useEffect(() => {
     // Initialize system startup sequence
@@ -118,14 +119,14 @@ export const SystemInitialization: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Auto-progress terminal commands
-    if (systemStatus.initialized && currentTerminalPhase < systemInitCommands.length) {
+    // Auto-progress terminal commands only when terminal is active
+    if (terminalActive && systemStatus.initialized && currentTerminalPhase < systemInitCommands.length) {
       const timer = setTimeout(() => {
         setCurrentTerminalPhase(prev => prev + 1);
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [currentTerminalPhase, systemStatus.initialized]);
+  }, [currentTerminalPhase, systemStatus.initialized, terminalActive]);
 
   const renderSystemStartup = () => (
     <div className="min-h-screen flex items-center justify-center">
@@ -283,6 +284,9 @@ export const SystemInitialization: React.FC = () => {
               commands={systemInitCommands.slice(0, currentTerminalPhase + 1)}
               responses={systemInitResponses}
               interactive={true}
+              isActive={terminalActive}
+              onActivate={() => setTerminalActive(true)}
+              rateLimit={5} // Lower rate limit for demo
             />
           </motion.div>
         </div>
@@ -446,6 +450,8 @@ export const SystemInitialization: React.FC = () => {
     <MatrixLayout
       enableRain={true}
       variant="default"
+      intensity={0.3} // Dimmed for better content readability
+      adaptiveDimming={true}
       className="min-h-screen"
     >
       <AnimatePresence mode="wait">
