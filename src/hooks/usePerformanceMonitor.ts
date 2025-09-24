@@ -63,10 +63,12 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
 
     // Log performance summary in development
     if (enableLogging && process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
       console.groupCollapsed(`📊 ${componentName} Performance`);
-      console.log(`Render time: ${renderTime.toFixed(2)}ms`);
-      console.log(`Mount time: ${mountTime.current.toFixed(2)}ms`);
-      console.log(`Update count: ${updateCount.current}`);
+      console.warn(`Render time: ${renderTime.toFixed(2)}ms`);
+      console.warn(`Mount time: ${mountTime.current.toFixed(2)}ms`);
+      console.warn(`Update count: ${updateCount.current}`);
+      // eslint-disable-next-line no-console
       console.groupEnd();
     }
   });
@@ -88,7 +90,7 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
         const result = await fn();
         const end = performance.now();
         if (enableLogging) {
-          console.log(`⏱️ ${componentName} ${label}: ${(end - start).toFixed(2)}ms`);
+          console.warn(`⏱️ ${componentName} ${label}: ${(end - start).toFixed(2)}ms`);
         }
         return result;
       } catch (error) {
@@ -115,7 +117,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
           const lastEntry = entries[entries.length - 1];
           
           if (lastEntry && enableLogging) {
-            console.log(`🎯 LCP: ${lastEntry.startTime.toFixed(2)}ms`);
+            console.warn(`🎯 LCP: ${lastEntry.startTime.toFixed(2)}ms`);
           }
         });
         observer.observe({ entryTypes: ['largest-contentful-paint'] });
@@ -133,7 +135,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
           const entries = list.getEntries();
           entries.forEach((entry) => {
             if (enableLogging) {
-              console.log(`⚡ FID: ${entry.processingStart - entry.startTime}ms`);
+              console.warn(`⚡ FID: ${entry.processingStart - entry.startTime}ms`);
             }
           });
         });
@@ -151,14 +153,14 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
         let clsValue = 0;
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { value?: number; hadRecentInput?: boolean }) => {
             if (!entry.hadRecentInput) {
               clsValue += entry.value;
             }
           });
           
           if (enableLogging) {
-            console.log(`📐 CLS: ${clsValue.toFixed(4)}`);
+            console.warn(`📐 CLS: ${clsValue.toFixed(4)}`);
           }
         });
         observer.observe({ entryTypes: ['layout-shift'] });
@@ -205,7 +207,7 @@ export const usePerformanceBudget = (budget: { [key: string]: number }) => {
             `💸 Performance budget exceeded for ${metric}: ${value.toFixed(2)}ms (budget: ${budgetValue}ms)`
           );
         } else if (budgetValue) {
-          console.log(`✅ ${metric}: ${value.toFixed(2)}ms (under budget: ${budgetValue}ms)`);
+          console.warn(`✅ ${metric}: ${value.toFixed(2)}ms (under budget: ${budgetValue}ms)`);
         }
       });
     };

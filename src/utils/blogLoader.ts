@@ -190,7 +190,6 @@ export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
     const basePath = getBasePath();
     const url = `${basePath}/docs/blog/${slug}.md`;
     
-    console.log(`Loading blog post from: ${url}`);
     
     const response = await fetch(url);
     

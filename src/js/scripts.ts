@@ -6,17 +6,11 @@
 
 import { animate, stagger, createTimeline } from 'animejs';
 import { initCardAnimations, optimizeCardPerformance } from './card-animations.js';
-import { throttle, rafThrottle } from '../utils/throttle';
+import { rafThrottle } from '../utils/throttle';
 
-// Define global anime interface
-interface AnimeGlobal {
-  animate: typeof animate;
-  stagger: typeof stagger;
-  createTimeline: typeof createTimeline;
-}
 
 // Make animate available globally for compatibility
-(window as any).anime = {
+(window as { anime?: unknown }).anime = {
   animate,
   stagger,
   createTimeline
@@ -211,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Open menu
         nav.style.display = 'flex';
         // Force reflow to ensure animation plays
-        nav.offsetHeight;
+        void nav.offsetHeight;
         setTimeout(() => {
           nav.classList.add('show');
           menuToggle.classList.add('active');
@@ -291,7 +285,7 @@ function glitchEffect(element: HTMLElement, options: GlitchOptions = {}): void {
   const interval = window.setInterval(() => {
     element.textContent = originalText
       .split('')
-      .map((char, index) => {
+      .map((_, index) => {
         if (index < iteration) return originalText[index];
         return chars[Math.floor(Math.random() * chars.length)];
       })

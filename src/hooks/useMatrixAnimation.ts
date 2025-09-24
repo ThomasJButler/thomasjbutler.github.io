@@ -2,8 +2,8 @@ import { useEffect, useRef, useCallback } from 'react';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 
-export const useMatrixAnimation = (containerRef?: React.RefObject<HTMLElement>, options?: any) => {
-  const animationRef = useRef<any | null>(null);
+export const useMatrixAnimation = (_containerRef?: React.RefObject<HTMLElement>, _options?: Record<string, unknown>) => {
+  const animationRef = useRef<ReturnType<typeof animate> | null>(null);
 
   // Clean up animation on unmount
   useEffect(() => {

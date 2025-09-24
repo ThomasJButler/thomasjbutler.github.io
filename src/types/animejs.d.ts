@@ -40,10 +40,10 @@ declare module 'animejs' {
     textContent?: number | [number, number] | string | {from: number, to: number};
     
     // Custom properties
-    [key: string]: any;
+    [key: string]: unknown;
     
     // Keyframes
-    keyframes?: Array<{ [key: string]: any }>;
+    keyframes?: Array<{ [key: string]: unknown }>;
     
     // Playback
     loop?: boolean | number;
@@ -91,7 +91,7 @@ declare module 'animejs' {
   }
 
   export interface Timeline extends AnimationInstance {
-    add(params: AnimateOptions & { targets?: any }, timelineOffset?: string | number): Timeline;
+    add(params: AnimateOptions & { targets?: HTMLElement | HTMLElement[] | NodeListOf<HTMLElement> | string }, timelineOffset?: string | number): Timeline;
   }
 
   export interface SpringOptions {

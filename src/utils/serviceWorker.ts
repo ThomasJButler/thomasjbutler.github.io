@@ -33,7 +33,7 @@ export function register(config?: Config) {
 
         // Add some additional logging to localhost
         navigator.serviceWorker.ready.then(() => {
-          console.log(
+          console.warn(
             'This web app is being served cache-first by a service worker.'
           );
         });
@@ -59,7 +59,7 @@ function registerValidSW(swUrl: string, config?: Config) {
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older content
-              console.log(
+              console.warn(
                 'New content is available and will be used when all tabs are closed.'
               );
 
@@ -69,7 +69,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               }
             } else {
               // At this point, everything has been precached.
-              console.log('Content is cached for offline use.');
+              console.warn('Content is cached for offline use.');
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -109,7 +109,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       }
     })
     .catch(() => {
-      console.log('No internet connection found. App is running in offline mode.');
+      console.warn('No internet connection found. App is running in offline mode.');
     });
 }
 
