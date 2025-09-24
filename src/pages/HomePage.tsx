@@ -556,8 +556,6 @@ export const HomePage: React.FC = () => {
               <CubeFace face="left" project={cubeProjects.left} />
               <CubeFace face="top" project={cubeProjects.top} />
               <CubeFace face="bottom" project={cubeProjects.bottom} />
-            </div>
-            
             <div className="cube-nav">
               <button onClick={() => handleCubeRotate('front')} className="active">1</button>
               <button onClick={() => handleCubeRotate('right')}>2</button>
@@ -566,157 +564,11 @@ export const HomePage: React.FC = () => {
               <button onClick={() => handleCubeRotate('top')}>5</button>
               <button onClick={() => handleCubeRotate('bottom')}>6</button>
             </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="introduction-expertise" ref={expertiseRef as React.RefObject<HTMLElement>}>
-        <div className="container">
-          <h2 className="introduction-heading">--| Core Expertise |--</h2>
-          <ul className="introduction-expertise-grid">
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-code"></i>
-              </div>
-              <h3>Full-Stack Development</h3>
-              <p className="introduction-expertise-description">Crafting robust web applications with modern technologies and best practices.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '95%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>HTML5/CSS3</span>
-                <span>JavaScript</span>
-                <span>React</span>
-                <span>Node.js</span>
-                <span>C#/.NET</span>
-                <span>Tailwind</span>
-                <span>HubSpot/HUBL</span>
-                <span>WordPress/PHP</span>
-                <span>IOS/Web Apps</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-robot"></i>
-              </div>
-              <h3>AI Integration</h3>
-              <p className="introduction-expertise-description">Implementing cutting-edge AI solutions for real-world applications.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '90%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>ChatGPT</span>
-                <span>Claude</span>
-                <span>Midjourney</span>
-                <span>GPT Creation</span>
-                <span>Chatbots</span>
-                <span>ML</span>
-                <span>AI LLM Models</span>
-                <span>AI Solutions</span>
-                <span>API</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-paint-brush"></i>
-              </div>
-              <h3>UI/UX Design</h3>
-              <p className="introduction-expertise-description">Creating intuitive and engaging user experiences with modern design principles.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '85%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Figma</span>
-                <span>Adobe XD</span>
-                <span>Mobile First</span>
-                <span>Wireframes</span>
-                <span>Galileo</span>
-                <span>Pen & Paper</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fab fa-python"></i>
-              </div>
-              <h3>Python Development</h3>
-              <p className="introduction-expertise-description">Building efficient and scalable solutions with Python expertise.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '92%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Django</span>
-                <span>Flask</span>
-                <span>Data Analysis</span>
-                <span>PyGame</span>
-                <span>PyScript</span>
-                <span>Anaconda</span>
-                <span>TensorFlow</span>
-                <span>PyTorch</span>
-                <span>MatPlotLib</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-database"></i>
-              </div>
-              <h3>Database Management</h3>
-              <p className="introduction-expertise-description">Optimising data structures and managing complex database systems.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '88%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>MongoDB</span>
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>Oracle</span>
-                <span>Supabase</span>
-                <span>Excel</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-server"></i>
-              </div>
-              <h3>Cloud Computing</h3>
-              <p className="introduction-expertise-description">Deploying and managing scalable cloud infrastructure solutions.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '85%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>AWS</span>
-                <span>Azure</span>
-                <span>Docker</span>
-                <span>IIS</span>
-                <span>Cisco</span>
-                <span>Bamboo</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
 
       <section id="galleries" className="reveal" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
