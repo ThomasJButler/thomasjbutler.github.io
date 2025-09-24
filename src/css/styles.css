@@ -13,6 +13,7 @@
    #introduction {
     padding: var(--space-3xl) 0;
     text-align: center;
+    background: #000000;
     position: relative;
     overflow: hidden;
     isolation: isolate;
