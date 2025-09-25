@@ -27,8 +27,6 @@
 @import './projects.css';
 @import './about.css';
 @import './skills-icons.css';
-/* @import './github-projects.css'; - Replaced with projects-matrix.css */
-@import './rotating-cube.css';
 
 /* Legacy Imports */
 @import './global.css';

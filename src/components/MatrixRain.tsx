@@ -5,8 +5,21 @@ export const MatrixRain: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
   const dropsRef = useRef<Array<{ y: number; speed: number; chars: string[]; color?: string; brightness?: number; glitchRate?: number }>>([]);
+  const [isVisible, setIsVisible] = React.useState(false);
 
   useEffect(() => {
+    // Add a 2-second delay before showing the matrix rain effect
+    const delayTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(delayTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -203,10 +216,12 @@ export const MatrixRain: React.FC = () => {
       canvas.removeEventListener('mousemove', handleMouseMove);
       // Clean up animations - pause is sufficient in v4
     };
-  }, []);
+  }, [isVisible]);
+
+  if (!isVisible) return null;
 
   return (
-    <canvas 
+    <canvas
       ref={canvasRef}
       className="matrix-rain"
       style={{
@@ -217,7 +232,9 @@ export const MatrixRain: React.FC = () => {
         height: '100%',
         zIndex: -1,
         pointerEvents: 'none',
-        background: 'transparent'
+        background: 'transparent',
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 1s ease-in-out'
       }}
     />
   );

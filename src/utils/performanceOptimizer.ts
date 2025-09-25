@@ -31,7 +31,7 @@ class PerformanceOptimizer {
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     // Check device memory (if available)
-    const deviceMemory = (navigator as any).deviceMemory;
+    const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory;
     const isLowMemory = deviceMemory && deviceMemory < 4;
     
     // Check hardware concurrency (CPU cores)
@@ -39,7 +39,7 @@ class PerformanceOptimizer {
     const isLowCPU = hardwareConcurrency < 4;
     
     // Check connection speed
-    const connection = (navigator as any).connection;
+    const connection = (navigator as { connection?: { effectiveType?: string } }).connection;
     const isSlowConnection = connection && (
       connection.effectiveType === 'slow-2g' ||
       connection.effectiveType === '2g' ||
@@ -100,12 +100,14 @@ class PerformanceOptimizer {
     document.body.classList.toggle('disable-animations', !this.settings.enableAnimations);
     document.body.classList.toggle('disable-backgrounds', !this.settings.enableBackgroundEffects);
     
-    // Log performance settings
-    console.log('Performance settings applied:', {
-      device: this.isLowEndDevice ? 'low-end' : 'high-end',
-      mobile: this.isMobile,
-      ...this.settings
-    });
+    // Log performance settings in development
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Performance settings applied:', {
+        device: this.isLowEndDevice ? 'low-end' : 'high-end',
+        mobile: this.isMobile,
+        ...this.settings
+      });
+    }
   }
 
   public getSettings(): PerformanceSettings {

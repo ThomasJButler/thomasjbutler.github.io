@@ -7,7 +7,7 @@ import { animate, stagger } from 'animejs';
  */
 export const useCardAnimations = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const hoverAnimationsRef = useRef<Map<HTMLElement, any>>(new Map());
+  const hoverAnimationsRef = useRef<Map<HTMLElement, ReturnType<typeof animate>>>(new Map());
 
   useEffect(() => {
     // Initial card reveal animation
@@ -171,17 +171,18 @@ export const useCardAnimations = () => {
     // Cleanup
     return () => {
       clearTimeout(initTimeout);
-      
+
       // Disconnect observer
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
 
-      // Clean up hover animations
-      hoverAnimationsRef.current.forEach(animation => {
+      // Clean up hover animations - capture current value
+      const currentAnimations = hoverAnimationsRef.current;
+      currentAnimations.forEach(animation => {
         animation.pause();
       });
-      hoverAnimationsRef.current.clear();
+      currentAnimations.clear();
 
       // Note: Event listeners will be cleaned up when component unmounts
       // React handles DOM cleanup automatically

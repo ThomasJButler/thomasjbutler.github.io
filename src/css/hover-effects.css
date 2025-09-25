@@ -50,7 +50,8 @@ button,
 h1:hover,
 h2:hover,
 .section-title:hover {
-  animation: glitch 0.3s infinite;
+  /* animation: glitch 0.3s infinite; */
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 /* Glitch text class for animations */

@@ -3,7 +3,7 @@ import { animate } from 'animejs';
 
 interface ScrollAnimationOptions {
   threshold?: number;
-  animationProps?: any;
+  animationProps?: Record<string, unknown>;
   animationType?: 'fade' | 'fadeUp' | 'fadeDown' | 'fadeLeft' | 'fadeRight' | 'zoom' | 'flip' | 'custom';
   duration?: number;
   delay?: number;

@@ -4,7 +4,7 @@
  * for React components in the Thomas J Butler portfolio
  */
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { ScrollDetection } from '../utils/scrollDetection';
 
 interface UseScrollDetectionOptions {
@@ -33,7 +33,7 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     scrollY: 0
   });
 
-  const defaultOptions = {
+  const defaultOptions = useMemo(() => ({
     headerSelector: 'header',
     backToTopSelector: '#back-to-top',
     showThreshold: 100,
@@ -42,7 +42,7 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     throttleMs: 16,
     enableBackToTop: true,
     ...options
-  };
+  }), [options]);
 
   // Initialize scroll detection
   useEffect(() => {
@@ -57,14 +57,14 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
         scrollDetectionRef.current = null;
       }
     };
-  }, []);
+  }, [defaultOptions]);
 
   // Update options when they change
   useEffect(() => {
     if (scrollDetectionRef.current) {
       scrollDetectionRef.current.updateOptions(defaultOptions);
     }
-  }, [JSON.stringify(defaultOptions)]);
+  }, [defaultOptions]);
 
   // Get current state
   const getState = useCallback((): ScrollDetectionState => {

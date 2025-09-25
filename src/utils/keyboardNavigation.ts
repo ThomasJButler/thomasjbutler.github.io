@@ -37,30 +37,6 @@ export function initKeyboardNavigation(): void {
   initKeyboardShortcuts();
 }
 
-/**
- * Add skip to content link for screen readers
- */
-function addSkipLink(): void {
-  const existingSkipLink = document.querySelector('.skip-to-content');
-  if (existingSkipLink) return;
-
-  const skipLink = document.createElement('a');
-  skipLink.href = '#main-content';
-  skipLink.className = 'skip-to-content';
-  skipLink.textContent = 'Skip to main content';
-  
-  skipLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) {
-      mainContent.tabIndex = -1;
-      mainContent.focus();
-      mainContent.removeAttribute('tabindex');
-    }
-  });
-
-  document.body.insertBefore(skipLink, document.body.firstChild);
-}
 
 /**
  * Focus trap utility for modals and overlays
@@ -145,12 +121,13 @@ function initKeyboardShortcuts(): void {
 
     // Keyboard shortcuts
     switch(e.key) {
-      case '/':
+      case '/': {
         // Focus search if available
         e.preventDefault();
         const searchInput = document.querySelector<HTMLInputElement>('input[type="search"], input[name="search"]');
         searchInput?.focus();
         break;
+      }
         
       case 'g':
         if (e.ctrlKey || e.metaKey) {

@@ -1,125 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { CubeFace, type CubeProject } from '../components/CubeFace';
+import { NavigationGuide } from '../components/NavigationGuide';
 import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
-import '../css/rotating-cube.css';
 import '../css/hover-effects.css';
 
-// Cube projects data
-const cubeProjects: Record<string, CubeProject> = {
-  front: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png",
-    title: "Commercial Portfolio v2.0",
-    description: "Complete site revamp to V2.0 showcasing all commercial work, with Notion integration for dynamic content management.",
-    tags: ["Portfolio", "Notion API", "CMS"],
-    links: {
-      website: "https://thomasjbutler.me",
-      github: "https://github.com/ThomasJButler/commercial-portfolio-react"
-    }
-  },
-  right: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png",
-    title: "Portfolio v3.0 - React Migration",
-    description: "Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4.",
-    tags: ["React 19", "TypeScript", "Vite 7"],
-    links: {}
-  },
-  back: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png",
-    title: "AI Model Comparison Tool",
-    description: "Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.",
-    tags: ["AI/ML", "Python", "APIs", "Analytics", "Dashboard"],
-    links: {
-      website: "https://ai-comparison-showcase.vercel.app/",
-      github: "https://github.com/ThomasJButler/AI-Comparison-Showcase-"
-    }
-  },
-  left: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png",
-    title: "The Matrix Arcade",
-    description: "An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.",
-    tags: ["React", "Python", "Vite", "Canvas API", "Game Dev"],
-    links: {
-      website: "https://www.tomatic.tech/",
-      github: "https://github.com/ThomasJButler/The-Matrix-Arcade"
-    }
-  },
-  top: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png",
-    title: "CSS Showcase",
-    description: "Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.",
-    tags: ["CSS3", "Animation", "Grid", "Flexbox", "Creative"],
-    links: {
-      website: "https://thomasjbutler.github.io/css-showcase/",
-      github: "https://github.com/ThomasJButler/css-showcase"
-    }
-  },
-  bottom: {
-    icon: "https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/dotnetreactapp_qflyte.png",
-    title: "Dotnet React Calculator",
-    description: "Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.",
-    tags: [".NET", "React", "C#", "API", "Full Stack"],
-    links: {
-      website: "https://dotnet-react-calendar.vercel.app/",
-      github: "https://github.com/ThomasJButler/Dotnet-React-Calendar"
-    }
-  }
-};
 
 export const HomePage: React.FC = () => {
-  const cubeRef = useRef<HTMLDivElement>(null);
-  const currentFaceRef = useRef<string>('front');
-  
-  // Unified cube rotation state system
-  const rotationState = useRef({
-    idle: { x: -15, y: 0 },
-    scroll: { x: 0, y: 0, translateY: 0 },
-    user: { x: 0, y: 0 },
-    entrance: { scale: 1, translateY: 0 },
-    isIdle: true,
-    isUserControlled: false,
-    lastInteraction: Date.now()
-  });
-  
-  // Single function to update cube transform combining all states
-  const updateCubeTransform = () => {
-    if (!cubeRef.current) return;
-    
-    const state = rotationState.current;
-    let transform = '';
-    
-    // Combine transforms based on active states
-    if (state.isUserControlled) {
-      // User control takes priority
-      transform = `rotateX(${state.user.x}deg) rotateY(${state.user.y}deg)`;
-    } else if (state.isIdle) {
-      // Idle animation + scroll effects
-      const totalX = state.idle.x;
-      const totalY = state.idle.y + state.scroll.y;
-      const translateY = state.scroll.translateY;
-      transform = `translateY(${translateY}px) rotateX(${totalX}deg) rotateY(${totalY}deg)`;
-    } else {
-      // Just scroll effects when not idle
-      transform = `translateY(${state.scroll.translateY}px) rotateX(${state.scroll.x}deg) rotateY(${state.scroll.y}deg)`;
-    }
-    
-    // Apply entrance animation if needed
-    if (state.entrance.scale !== 1 || state.entrance.translateY !== 0) {
-      transform = `scale(${state.entrance.scale}) translateY(${state.entrance.translateY}px) ${transform}`;
-    }
-    
-    cubeRef.current.style.transform = transform;
-  };
   
   // Card animations hook
   useCardAnimations();
   
   // Scroll animation refs
-  const latestUpdatesRef = useScrollAnimation({ threshold: 0.2 });
   const expertiseRef = useScrollReveal();
-  const galleriesRef = useScrollAnimation({ 
+  const galleriesRef = useScrollAnimation({
     threshold: 0.3,
     animationProps: {
       opacity: [0, 1],
@@ -129,107 +24,6 @@ export const HomePage: React.FC = () => {
     }
   });
 
-  useEffect(() => {
-    // Initialize cube rotation functionality
-    const rotateCube = (face: string) => {
-      const cube = cubeRef.current;
-      if (!cube) return;
-
-      // Update button states
-      document.querySelectorAll('.cube-nav button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      let rotation = { x: 0, y: 0 };
-      let buttonIndex = 1;
-      
-      switch(face) {
-        case 'front':
-          rotation = { x: 0, y: 0 };
-          buttonIndex = 1;
-          break;
-        case 'right':
-          rotation = { x: 0, y: -90 };
-          buttonIndex = 2;
-          break;
-        case 'back':
-          rotation = { x: 0, y: -180 };
-          buttonIndex = 3;
-          break;
-        case 'left':
-          rotation = { x: 0, y: 90 };
-          buttonIndex = 4;
-          break;
-        case 'top':
-          rotation = { x: -90, y: 0 };
-          buttonIndex = 5;
-          break;
-        case 'bottom':
-          rotation = { x: 90, y: 0 };
-          buttonIndex = 6;
-          break;
-      }
-      
-      // Update unified state instead of direct transform
-      rotationState.current.user = rotation;
-      rotationState.current.isUserControlled = true;
-      rotationState.current.isIdle = false;
-      rotationState.current.lastInteraction = Date.now();
-      updateCubeTransform();
-      
-      document.querySelector(`.cube-nav button:nth-child(${buttonIndex})`)?.classList.add('active');
-      currentFaceRef.current = face;
-      
-      // Resume idle after 5 seconds
-      setTimeout(() => {
-        if (Date.now() - rotationState.current.lastInteraction >= 5000) {
-          rotationState.current.isIdle = true;
-          rotationState.current.isUserControlled = false;
-        }
-      }, 5000);
-    };
-
-    // Make rotateCube available globally for button clicks
-    (window as any).rotateCube = rotateCube;
-    
-    // Animation frame reference
-    let idleAnimationFrame: number | null = null;
-    
-    // Continuous idle rotation for 3D effect - using unified state
-    const animateIdleRotation = () => {
-      if (rotationState.current.isIdle && !rotationState.current.isUserControlled) {
-        rotationState.current.idle.y += 0.2;
-        rotationState.current.idle.x = -15 + Math.sin(rotationState.current.idle.y * 0.008) * 3;
-        updateCubeTransform();
-        
-        // Subtle pulse glow effect
-        if (cubeRef.current) {
-          const glowIntensity = 0.3 + Math.sin(rotationState.current.idle.y * 0.03) * 0.15;
-          cubeRef.current.style.boxShadow = `
-            0 0 ${15 + glowIntensity * 8}px rgba(0, 255, 0, ${glowIntensity * 0.8}),
-            inset 0 0 ${5 + glowIntensity * 3}px rgba(0, 255, 0, ${glowIntensity * 0.2})
-          `;
-        }
-      }
-      idleAnimationFrame = requestAnimationFrame(animateIdleRotation);
-    };
-    
-    // Start idle animation after a delay
-    setTimeout(() => {
-      animateIdleRotation();
-    }, 500);
-    
-    return () => {
-      delete (window as any).rotateCube;
-      if (idleAnimationFrame) {
-        cancelAnimationFrame(idleAnimationFrame);
-      }
-    };
-  }, []);
-
-  const handleCubeRotate = (face: string) => {
-    (window as any).rotateCube?.(face);
-  };
   
   // Parallax scrolling effect - refined for smoother performance
   useEffect(() => {
@@ -247,12 +41,6 @@ export const HomePage: React.FC = () => {
             (img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
           });
           
-          // Update scroll values in unified state
-          if (!rotationState.current.isUserControlled) {
-            rotationState.current.scroll.translateY = scrolled * 0.1;
-            rotationState.current.scroll.y = scrolled * 0.05;
-            updateCubeTransform();
-          }
           
           // Reveal animations on scroll - only once per element
           const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
@@ -283,6 +71,14 @@ export const HomePage: React.FC = () => {
   
   // Add hover effects for buttons and cards
   useEffect(() => {
+    // Add matrix-loaded class to galleries section after delay to prevent visual glitch
+    const galleries = document.getElementById('galleries');
+    if (galleries) {
+      setTimeout(() => {
+        galleries.classList.add('matrix-loaded');
+      }, 2000);
+    }
+
     // Cascade entrance animations on page load
     const animatePageEntrance = () => {
       // Animate main introduction text with subtle cascade effect
@@ -328,38 +124,10 @@ export const HomePage: React.FC = () => {
         });
       });
       
-      // Animate cube with smooth entrance using unified state
-      if (cubeRef.current) {
-        cubeRef.current.style.opacity = '0';
-        rotationState.current.entrance.scale = 0.8;
-        rotationState.current.entrance.translateY = 30;
-        updateCubeTransform();
-        
-        animate(cubeRef.current, {
-          opacity: [0, 1],
-          duration: 1000,
-          delay: 600,
-          easing: 'easeOutQuart',
-          update: (anim) => {
-            const progress = (anim.currentTime / anim.duration) || 0;
-            rotationState.current.entrance.scale = 0.8 + (0.2 * progress);
-            rotationState.current.entrance.translateY = 30 * (1 - progress);
-            updateCubeTransform();
-          },
-          complete: () => {
-            rotationState.current.entrance.scale = 1;
-            rotationState.current.entrance.translateY = 0;
-            updateCubeTransform();
-          }
-        });
-      }
       
       // Animate gallery cards with stagger effect
       const galleryCards = document.querySelectorAll('.gallery-card');
       galleryCards.forEach((card, index) => {
-        // Remove inline styles - let CSS classes handle initial state
-        card.classList.add('revealed');
-
         animate(card as HTMLElement, {
           opacity: [0, 1],
           translateY: [50, 0],
@@ -368,6 +136,11 @@ export const HomePage: React.FC = () => {
           delay: 1200 + index * 100,
           easing: 'easeOutQuint'
         });
+
+        // Add revealed class after animation completes and sync with MatrixRain delay
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, 2200 + index * 100); // 2200ms = 2000ms MatrixRain delay + 200ms buffer
       });
       
       // Animate buttons with bounce effect
@@ -537,200 +310,21 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="latest-updates" className="reveal" ref={latestUpdatesRef as React.RefObject<HTMLElement>}>
-        <div className="container">
-          <h2 className="section-title">--| Latest Updates |--</h2>
-          <p style={{textAlign: 'center', marginBottom: '5rem'}}>
-            <span style={{fontWeight: 'bold'}}>You can timetravel through different iterations of this portfolio since day 1 via this link:</span>
-            <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener" className="neo-matrix-btn" style={{marginLeft: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}>
-              <span className="btn-text">Enter TimeTravel</span>
-              <i className="fas fa-history"></i>
-            </a>
-          </p>
-          
-          <div className="cube-showcase">
-            <div className="cube-container" id="cube" ref={cubeRef}>
-              <CubeFace face="front" project={cubeProjects.front} />
-              <CubeFace face="right" project={cubeProjects.right} />
-              <CubeFace face="back" project={cubeProjects.back} />
-              <CubeFace face="left" project={cubeProjects.left} />
-              <CubeFace face="top" project={cubeProjects.top} />
-              <CubeFace face="bottom" project={cubeProjects.bottom} />
-            </div>
-            
-            <div className="cube-nav">
-              <button onClick={() => handleCubeRotate('front')} className="active">1</button>
-              <button onClick={() => handleCubeRotate('right')}>2</button>
-              <button onClick={() => handleCubeRotate('back')}>3</button>
-              <button onClick={() => handleCubeRotate('left')}>4</button>
-              <button onClick={() => handleCubeRotate('top')}>5</button>
-              <button onClick={() => handleCubeRotate('bottom')}>6</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="introduction-expertise" ref={expertiseRef as React.RefObject<HTMLElement>}>
-        <div className="container">
-          <h2 className="introduction-heading">--| Core Expertise |--</h2>
-          <ul className="introduction-expertise-grid">
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-code"></i>
-              </div>
-              <h3>Full-Stack Development</h3>
-              <p className="introduction-expertise-description">Crafting robust web applications with modern technologies and best practices.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '95%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>HTML5/CSS3</span>
-                <span>JavaScript</span>
-                <span>React</span>
-                <span>Node.js</span>
-                <span>C#/.NET</span>
-                <span>Tailwind</span>
-                <span>HubSpot/HUBL</span>
-                <span>WordPress/PHP</span>
-                <span>IOS/Web Apps</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-robot"></i>
-              </div>
-              <h3>AI Integration</h3>
-              <p className="introduction-expertise-description">Implementing cutting-edge AI solutions for real-world applications.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '90%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>ChatGPT</span>
-                <span>Claude</span>
-                <span>Midjourney</span>
-                <span>GPT Creation</span>
-                <span>Chatbots</span>
-                <span>ML</span>
-                <span>AI LLM Models</span>
-                <span>AI Solutions</span>
-                <span>API</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-paint-brush"></i>
-              </div>
-              <h3>UI/UX Design</h3>
-              <p className="introduction-expertise-description">Creating intuitive and engaging user experiences with modern design principles.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '85%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Figma</span>
-                <span>Adobe XD</span>
-                <span>Mobile First</span>
-                <span>Wireframes</span>
-                <span>Galileo</span>
-                <span>Pen & Paper</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fab fa-python"></i>
-              </div>
-              <h3>Python Development</h3>
-              <p className="introduction-expertise-description">Building efficient and scalable solutions with Python expertise.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '92%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Django</span>
-                <span>Flask</span>
-                <span>Data Analysis</span>
-                <span>PyGame</span>
-                <span>PyScript</span>
-                <span>Anaconda</span>
-                <span>TensorFlow</span>
-                <span>PyTorch</span>
-                <span>MatPlotLib</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-database"></i>
-              </div>
-              <h3>Database Management</h3>
-              <p className="introduction-expertise-description">Optimising data structures and managing complex database systems.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '88%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>MongoDB</span>
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>Oracle</span>
-                <span>Supabase</span>
-                <span>Excel</span>
-              </div>
-            </li>
-
-            <li className="introduction-expertise-card reveal-item">
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-server"></i>
-              </div>
-              <h3>Cloud Computing</h3>
-              <p className="introduction-expertise-description">Deploying and managing scalable cloud infrastructure solutions.</p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{width: '85%'}}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>AWS</span>
-                <span>Azure</span>
-                <span>Docker</span>
-                <span>IIS</span>
-                <span>Cisco</span>
-                <span>Bamboo</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <NavigationGuide />
 
       <section id="galleries" className="reveal" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <h2 className="section-heading">--| Galleries & Blogs |--</h2>
+          <h2 className="section-heading">--| Showcases |--</h2>
           <div className="galleries-grid">
             <div className="gallery-card">
               <div className="gallery-icon">
-                <i className="fas fa-book-open"></i>
+                <i className="fas fa-graduation-cap"></i>
               </div>
-              <h3>Thought Leadership Blog</h3>
-              <p>20+ articles on AI, development, and human-centered technology.</p>
-              <Link to="/blog" className="gallery-link">
-                Read Blog <i className="fas fa-arrow-right"></i>
-              </Link>
+              <h3>GenAI Bootcamp Portfolio</h3>
+              <p>Comprehensive AI portfolio showcasing practical applications and innovative solutions.</p>
+              <a href="https://aitomatic.io/" target="_blank" rel="noopener noreferrer" className="gallery-link">
+                View Portfolio <i className="fas fa-external-link-alt"></i>
+              </a>
             </div>
             <div className="gallery-card">
               <div className="gallery-icon">

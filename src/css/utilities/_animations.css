@@ -348,6 +348,18 @@
     transform: translateY(50px) rotateX(-15deg);
 }
 
+/* Ensure gallery card pseudo-elements are also hidden during loading */
+.gallery-card:not(.revealed)::before {
+    opacity: 0 !important;
+    background: none !important;
+}
+
+/* Enable gradient hover effects only after reveal */
+.gallery-card.revealed::before {
+    background: none;
+    transition: all 0.3s ease;
+}
+
 .btn-professional:not(.animated),
 .neo-matrix-btn:not(.animated) {
     opacity: 0;
