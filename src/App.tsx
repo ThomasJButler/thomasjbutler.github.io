@@ -34,7 +34,6 @@ import './css/styles.css';
 import './css/global.css';
 import './css/projects.css';
 import './css/projects-matrix.css';
-import './css/rotating-cube.css';
 import './css/blog.css';
 
 export const App: React.FC = () => {
