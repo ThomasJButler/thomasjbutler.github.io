@@ -1,0 +1,280 @@
+/* ==========================================================================
+   Utility Classes - Common Patterns Extracted from Codebase
+   Uses existing CSS variables from base/_variables.css
+   ========================================================================== */
+
+/* ==========================================================================
+   Transitions - Replace 63+ instances of repeated transition declarations
+   ========================================================================== */
+
+.transition-default {
+    transition: all var(--duration-base) var(--ease-in-out);
+}
+
+.transition-fast {
+    transition: all var(--duration-fast) var(--ease-in-out);
+}
+
+.transition-slow {
+    transition: all var(--duration-slow) var(--ease-in-out);
+}
+
+.transition-smooth {
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ==========================================================================
+   Border Radius - Replace 24+ instances of repeated border-radius
+   ========================================================================== */
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-base { border-radius: var(--radius-base); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+.radius-xl { border-radius: var(--radius-xl); }
+.radius-full { border-radius: var(--radius-full); }
+
+/* Legacy support for existing 15px, 10px patterns */
+.radius-15 { border-radius: 15px; }
+.radius-10 { border-radius: 10px; }
+.radius-12 { border-radius: 12px; }
+.radius-5 { border-radius: 5px; }
+
+/* ==========================================================================
+   Padding - Replace 11+ instances of padding: 2rem, etc.
+   ========================================================================== */
+
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+.p-2xl { padding: var(--space-2xl); }
+.p-3xl { padding: var(--space-3xl); }
+
+/* Legacy support for existing patterns */
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-2-5 { padding: 2.5rem; }
+.p-1-5 { padding: 1.5rem; }
+.p-20px { padding: 20px; }
+
+/* ==========================================================================
+   Matrix Theme Backgrounds - Common background patterns
+   ========================================================================== */
+
+.bg-matrix-dark { background: var(--matrix-dark); }
+.bg-matrix-darker { background: var(--matrix-darker); }
+.bg-matrix-transparent { background: var(--bg-transparent); }
+.bg-overlay { background: var(--bg-overlay); }
+
+/* Common gradient patterns */
+.bg-matrix-gradient-main {
+    background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
+}
+
+.bg-matrix-gradient-glow {
+    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+}
+
+.bg-matrix-gradient-button {
+    background: linear-gradient(135deg, var(--matrix-green) 0%, #003300 100%);
+}
+
+/* ==========================================================================
+   Borders - Replace 20+ instances of border: 2px solid #00FF00
+   ========================================================================== */
+
+.border-matrix { border: 2px solid var(--matrix-green); }
+.border-matrix-thin { border: 1px solid var(--matrix-green); }
+.border-matrix-fade { border: 1px solid var(--border-primary); }
+
+/* Border utilities */
+.border-top-matrix { border-top: 2px solid var(--matrix-green); }
+.border-bottom-matrix { border-bottom: 2px solid var(--matrix-green); }
+.border-left-matrix { border-left: 2px solid var(--matrix-green); }
+.border-right-matrix { border-right: 2px solid var(--matrix-green); }
+
+/* ==========================================================================
+   Glass Effects - Glassmorphism patterns
+   ========================================================================== */
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.glass-card-strong {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur) var(--glass-saturate);
+    -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturate);
+}
+
+/* ==========================================================================
+   Text Colors - Matrix theme text utilities
+   ========================================================================== */
+
+.text-matrix { color: var(--matrix-green); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+/* ==========================================================================
+   Shadows and Glow Effects
+   ========================================================================== */
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-glow { box-shadow: var(--shadow-glow); }
+.shadow-inner { box-shadow: var(--shadow-inner); }
+
+.glow-matrix { box-shadow: var(--matrix-glow); }
+.glow-matrix-intense { box-shadow: var(--matrix-glow-intense); }
+
+/* ==========================================================================
+   Hover Effects - Common hover patterns
+   ========================================================================== */
+
+.hover-lift {
+    transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+}
+
+.hover-glow {
+    transition: box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.hover-glow:hover {
+    box-shadow: var(--matrix-glow);
+}
+
+.hover-scale {
+    transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Layout Utilities
+   ========================================================================== */
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+    gap: var(--space-lg);
+}
+
+/* ==========================================================================
+   Position Utilities
+   ========================================================================== */
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+.z-10 { z-index: var(--z-10); }
+.z-20 { z-index: var(--z-20); }
+.z-30 { z-index: var(--z-30); }
+.z-50 { z-index: var(--z-50); }
+
+/* ==========================================================================
+   Responsive Utilities - Hide/Show at different breakpoints
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 768px) {
+    .hide-desktop { display: none !important; }
+    .show-desktop { display: block !important; }
+}
+
+@media (max-width: 480px) {
+    .hide-small { display: none !important; }
+}
+
+/* ==========================================================================
+   Animation Utilities - Common animation patterns
+   ========================================================================== */
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn var(--duration-slow) var(--ease-in-out) forwards;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp var(--duration-slow) var(--ease-in-out) forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Matrix-specific Utilities
+   ========================================================================== */
+
+.matrix-text {
+    font-family: var(--font-primary);
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.matrix-border-glow {
+    border: 2px solid var(--matrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.matrix-pulse {
+    animation: matrixPulse 2s ease-in-out infinite;
+}
+
+@keyframes matrixPulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--matrix-green);
+    }
+    50% {
+        opacity: 0.7;
+        text-shadow: 0 0 20px var(--matrix-green);
+    }
+}
