@@ -21,10 +21,14 @@
    ========================================================================== */
 :root {
     --neon-green: #00ff00;
+    --matrix-green: #00FF00;
+    --matrix-cyan: #00FFFF;
     --neon-blue: #00ffff;
     --neon-pink: #ff00ff;
     --dark-bg: #000000;
     --card-bg: rgba(0, 255, 0, 0.05);
+    --matrix-card-bg: rgba(0, 20, 0, 0.6);
+    --matrix-card-border: rgba(0, 255, 0, 0.3);
     --gradient-primary: linear-gradient(145deg, rgba(0, 255, 0, 0.05), rgba(0, 40, 0, 0.2));
     --gradient-hover: linear-gradient(145deg, rgba(0, 255, 0, 0.1), rgba(0, 40, 0, 0.3));
     --matrix-glow: 0 0 20px rgba(0, 255, 0, 0.8);
@@ -549,4 +553,304 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* ==========================================================================
+   16. MATRIX PROJECTS SHOWCASE - RESTORED
+   Epic Matrix-themed project showcase with glassmorphism
+   ========================================================================== */
+
+/* Matrix Project Grid */
+.matrix-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Matrix Project Tabs */
+.matrix-project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.matrix-tab-button {
+    background: var(--matrix-card-bg);
+    border: 2px solid var(--matrix-card-border);
+    color: var(--matrix-green);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    opacity: 1;
+    transform: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.matrix-tab-button.active {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: var(--matrix-glow);
+}
+
+/* Matrix Project Cards with Glassmorphism */
+.matrix-project-card {
+    background: var(--matrix-card-bg);
+    border: 2px solid var(--matrix-card-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transform: none;
+    cursor: pointer;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Matrix Card Hover Effects */
+.matrix-project-card:hover {
+    border-color: var(--matrix-green);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 0, 0.3),
+            inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 40px rgba(0, 255, 0, 0.5),
+            inset 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+}
+
+/* Scanline effect for cards */
+.matrix-project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.03) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 3px
+    );
+    pointer-events: none;
+    animation: scanlines 8s linear infinite;
+    z-index: 1;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Matrix Card Content */
+.matrix-project-header {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 1rem;
+}
+
+.matrix-project-title {
+    color: var(--matrix-green);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    text-shadow: var(--matrix-glow);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.matrix-project-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.matrix-project-content {
+    position: relative;
+    z-index: 5;
+    flex-grow: 1;
+}
+
+.matrix-project-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.matrix-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.matrix-tag {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.matrix-project-language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.language-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.language-name {
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.language-percent {
+    color: rgba(0, 255, 0, 0.6);
+    margin-left: auto;
+}
+
+.matrix-project-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    padding-top: 1rem;
+}
+
+/* Neo Matrix Button Styles */
+.neo-matrix-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--matrix-green);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-family: var(--font-primary);
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow:
+        0 0 10px rgba(0, 255, 0, 0.2),
+        inset 0 0 15px rgba(0, 255, 0, 0.1);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 140px;
+    cursor: pointer;
+}
+
+.neo-matrix-btn:hover {
+    color: #000;
+    background: var(--matrix-green);
+    border-color: transparent;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.2);
+    text-shadow: none;
+    transform: translateY(-2px);
+}
+
+.neo-matrix-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 0 10px rgba(0, 255, 0, 0.4),
+        inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.neo-matrix-btn i {
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.neo-matrix-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Matrix Responsive Design */
+@media (max-width: 768px) {
+    .matrix-project-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .matrix-project-card {
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .matrix-project-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .matrix-project-description {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .matrix-project-tabs {
+        gap: 0.5rem;
+    }
+
+    .matrix-tab-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .neo-matrix-btn {
+        min-width: auto;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
 }
