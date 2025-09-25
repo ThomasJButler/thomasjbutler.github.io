@@ -1,0 +1,751 @@
+/* Galleries Section
+   ========================================================================== */
+#galleries {
+    padding: 80px 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for galleries - only show after page load */
+[data-theme="matrix"] #galleries.matrix-loaded::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: fadeIn 1s ease-in-out;
+}
+
+[data-theme="matrix"] #galleries {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(0, 255, 0, 0.05);
+}
+
+.galleries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.gallery-card {
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid #00FF00;
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 15px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card.revealed:hover::before {
+    background: linear-gradient(45deg, #00FF00, #FF00FF);
+    opacity: 1;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
+}
+
+.gallery-icon {
+    font-size: 3rem;
+    color: var(--matrix-green);
+    margin-bottom: 1.5rem;
+}
+
+.gallery-icon i {
+    transition: transform 0.6s ease;
+    display: inline-block;
+}
+
+.gallery-card h3 {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.gallery-card p {
+    color: #FF00FF;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.gallery-link {
+    display: inline-block;
+    background: #00FF00;
+    color: #000;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-link:hover {
+    background: #FF00FF;
+    color: #000;
+    box-shadow: 0 0 20px #FF00FF;
+}
+
+/* Latest Updates Section Homepage */ 
+#latest-updates {
+    padding: 4rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for latest updates */
+[data-theme="matrix"] #latest-updates::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, transparent 30%),
+        radial-gradient(circle at 70% 30%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: matrixPulse 15s ease-in-out infinite;
+}
+
+[data-theme="matrix"] #latest-updates {
+    border-top: 1px solid rgba(0, 255, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.12);
+}
+ 
+ .section-title {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+ }
+ 
+ .updates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+ }
+ 
+ .update-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+ }
+ 
+ .update-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.4);
+ }
+ 
+ .update-card h3 {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+ }
+ 
+ .update-card p {
+    color: #FF00FF;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.6;
+ }
+ 
+ .card-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 1rem 0;
+ }
+ 
+ .card-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+ }
+ 
+ .update-card:hover .card-image img {
+    transform: scale(1.05);
+ }
+ 
+ .card-action {
+    margin-top: auto;
+    text-align: center;
+ }
+
+ /* Responsive Styles */
+ @media (max-width: 1024px) {
+    .updates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 0 1.5rem;
+    }
+    
+    .update-card {
+        padding: 1.5rem;
+    }
+ }
+
+ /* Animation Keyframes */
+ @keyframes matrixRain {
+    0% { top: -100%; }
+    100% { top: 200%; }
+ }
+
+/* Introduction Section
+   ========================================================================== */
+   #introduction {
+    padding: var(--space-3xl) 0;
+    text-align: center;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for introduction */
+[data-theme="matrix"] #introduction::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+[data-theme="matrix"] #introduction {
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.05);
+}
+
+.introduction-img {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.introduction-img img {
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--matrix-green);
+    max-width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.introduction-img img:hover {
+    transform: scale(1.05);
+}
+
+/* Introduction Skills Grid Section - Three Columns */
+#introduction-expertise {
+    padding: var(--space-4xl) 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for expertise section */
+[data-theme="matrix"] #introduction-expertise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 40%, rgba(0, 255, 0, 0.02) 50%, transparent 60%),
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: matrixSweep 20s linear infinite;
+}
+
+[data-theme="matrix"] #introduction-expertise {
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+}
+
+/* Grid container */
+.introduction-expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns on desktop for 6 cards (3x2 layout) */
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.introduction-expertise-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+/* Title styling */
+.introduction-expertise-card h3 {
+    font-family: var(--font-primary);
+    color: var(--matrix-green);
+    font-size: 1.8em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.introduction-h2 {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0
+}
+
+.introduction-heading {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0
+}
+
+/* Description area */
+.introduction-expertise-description {
+    color: #88FF88;
+    font-size: 0.95em;
+    text-align: center;
+    line-height: 1.6;
+    margin: 1rem 0;
+    flex-grow: 1;
+}
+
+/* Tags container */
+.introduction-expertise-tags {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Details section for progress bar and level */
+.introduction-expertise-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* Progress bar styling */
+.introduction-expertise-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.introduction-expertise-progress {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.6), rgba(0, 255, 0, 0.8));
+    border-radius: 10px;
+    transition: width 1s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.introduction-expertise-tags span {
+    text-align: center;
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    padding: 0.5rem;
+    font-size: 0.85em;
+    color: var(--matrix-green);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Skill level indicator */
+.introduction-expertise-level {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--font-primary);
+    color: var(--matrix-green);
+    font-size: 0.9em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    background: rgba(0, 20, 0, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Base card transitions */
+.introduction-expertise-card {
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Advanced hover effects for cards */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.15),
+        0 0 50px rgba(0, 255, 0, 0.1),
+        0 0 70px rgba(0, 255, 0, 0.05);
+}
+
+.introduction-expertise-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+/* Pulsing glow effect - now only on hover */
+.introduction-expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 255, 0, 0.1);
+    z-index: -2;
+}
+
+.introduction-expertise-card:hover::before {
+    opacity: 0.3;
+}
+
+/* Enhanced tag hover effects */
+.introduction-expertise-tags span {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.introduction-expertise-tags span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+}
+
+.introduction-expertise-tags span:hover {
+    background: rgba(0, 40, 0, 0.9);
+    border-color: rgba(0, 255, 0, 0.6);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.introduction-expertise-tags span:hover::before {
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+}
+
+/* Matrix Rain Canvas Styles */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#matrixCanvas {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    opacity: 0.8;
+}
+
+/* Scrolling Text Styles - Desktop */
+.scrolling-text {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: var(--space-md) auto;
+    max-width: 800px;
+    line-height: 1.6;
+    /* Remove any animations */
+    animation: none !important;
+    /* Ensure text is always visible */
+    opacity: 1 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    /* Prevent transform issues */
+    transform: none !important;
+    position: relative !important;
+    /* Ensure smooth rendering */
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Keyframe Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+
+/* Matrix theme animation keyframes */
+@keyframes matrixPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+@keyframes matrixFlow {
+    0% { transform: translateX(-100%) translateY(-50%); }
+    100% { transform: translateX(100%) translateY(50%); }
+}
+
+@keyframes matrixSweep {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(360deg); }
+}
+
+/* Matrix-style scan line effect */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.2),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+
+/* Smooth transitions for all properties */
+.introduction-expertise-card *,
+.introduction-expertise-tags span * {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Additional spacing for tags when there are many */
+.introduction-expertise-tags:has(span:nth-child(n+5)) {
+    padding-top: 1.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .introduction-expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Introduction Page Tablet Styles (769px to 1024px) */
+@media screen and (min-width: 700px) and (max-width: 992px) {
+    /* Header & Navigation */
+    header {
+        padding: 1rem 0;
+    }
+    
+    header .container {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    /* Title adjustments */
+    header h1, .logo {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    header h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    /* Navigation adjustments */
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        margin: 0;
+        width: auto;
+    }
+    
+    nav ul li {
+        padding: 0.4rem 0.8rem;
+        margin: 0.2rem;
+        font-size: 0.85rem;
+    }
+
+    /* Introduction section */
+    #introduction {
+        margin: 3rem;
+    }
+
+    #introduction .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    #introduction h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    #introduction h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    #introduction p {
+        font-size: 0.95rem;
+        font-family: var(--font-primary);
+        line-height: 1.6;
+        text-align: center;
+        width: 85%;
+        margin: 1rem auto;
+        padding: 0;
+    }
+
+    .introduction-img {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem auto;
+        padding: 2rem 2rem;
+        width: 90%;
+    }
+
+    .introduction-img img {
+        max-width: 30%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Version Time Travel button */
+    .version-timetravel {
+        padding: 0.4rem 0.8rem;
+        margin: 0.2rem;
+    }
+    
+    .version-timetravel a {
+        font-size: 0.85rem;
+    }
+}
+

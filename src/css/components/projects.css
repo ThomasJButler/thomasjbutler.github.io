@@ -1,0 +1,552 @@
+/* ==========================================================================
+   UNIFIED PROJECTS CSS - All Project Styles Consolidated
+   Combining 8 separate files into one organized, maintainable file
+   Author: Thomas J Butler
+
+   CONSOLIDATED FROM:
+   - projects.css (768 lines)
+   - github-projects.css (308 lines)
+   - projects-matrix.css (433 lines)
+   - projects-horizontal-grid.css (301 lines)
+   - projects-adjustments.css (219 lines)
+   - projects-tabs.css (216 lines)
+   - projects-compact.css (86 lines)
+   - projects-compiled.css (28 lines)
+
+   Total: 2,667 lines → Consolidated with deduplication
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CORE VARIABLES & SETUP
+   ========================================================================== */
+:root {
+    --neon-green: #00ff00;
+    --neon-blue: #00ffff;
+    --neon-pink: #ff00ff;
+    --dark-bg: #000000;
+    --card-bg: rgba(0, 255, 0, 0.05);
+    --gradient-primary: linear-gradient(145deg, rgba(0, 255, 0, 0.05), rgba(0, 40, 0, 0.2));
+    --gradient-hover: linear-gradient(145deg, rgba(0, 255, 0, 0.1), rgba(0, 40, 0, 0.3));
+    --matrix-glow: 0 0 20px rgba(0, 255, 0, 0.8);
+    --matrix-glow-intense: 0 0 40px rgba(0, 255, 0, 1);
+    --animation-slow: 0.5s;
+    --animation-fast: 0.3s;
+}
+
+/* ==========================================================================
+   2. PROJECT CONTAINERS & LAYOUT
+   ========================================================================== */
+
+#projects-section,
+#matrix-projects-showcase {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+    background: var(--dark-bg);
+    padding: 4rem 0;
+}
+
+.projects-container,
+.matrix-project-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+/* ==========================================================================
+   3. PROJECT GRID LAYOUTS
+   ========================================================================== */
+
+/* Standard Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Horizontal Grid */
+.projects-horizontal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Compact Grid */
+.projects-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Epic Matrix Grid */
+.epic-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin: 3rem 0;
+    perspective: 1200px;
+}
+
+/* ==========================================================================
+   4. PROJECT CARDS - BASE STYLES
+   ========================================================================== */
+
+.project-card,
+.epic-project-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* ==========================================================================
+   5. PROJECT CARD HOVER EFFECTS
+   ========================================================================== */
+
+.project-card:hover,
+.epic-project-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow:
+        0 20px 40px rgba(0, 255, 0, 0.2),
+        0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Epic hover effects */
+.epic-project-card:hover {
+    transform: translateY(-20px) scale(1.02) rotateY(2deg);
+    box-shadow:
+        0 30px 60px rgba(0, 255, 0, 0.3),
+        0 0 50px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+/* ==========================================================================
+   6. PROJECT CONTENT STYLING
+   ========================================================================== */
+
+.project-title {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.project-description {
+    color: #CCFFCC;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0, 255, 0, 0.7);
+}
+
+/* ==========================================================================
+   7. PROJECT TAGS & BADGES
+   ========================================================================== */
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.project-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    color: #CCFFCC;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: var(--font-primary);
+}
+
+.project-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.5);
+    color: var(--neon-green);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   8. PROJECT LINKS & BUTTONS
+   ========================================================================== */
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.project-link,
+.github-link,
+.demo-link {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 8px;
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link:hover,
+.github-link:hover,
+.demo-link:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   9. PROJECT TABS SYSTEM
+   ========================================================================== */
+
+.project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--neon-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tab-button:hover,
+.tab-button.active {
+    background: rgba(0, 30, 0, 0.8);
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==========================================================================
+   10. GITHUB PROJECTS SPECIFIC
+   ========================================================================== */
+
+.github-projects {
+    margin-top: 3rem;
+}
+
+.github-project {
+    background: rgba(0, 20, 0, 0.4);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.github-project:hover {
+    border-color: rgba(0, 255, 0, 0.5);
+    background: rgba(0, 40, 0, 0.6);
+    transform: translateX(10px);
+}
+
+.github-project h3 {
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.github-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.stat {
+    color: rgba(0, 255, 0, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==========================================================================
+   11. PROJECT IMAGES & MEDIA
+   ========================================================================== */
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    border-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.project-video {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   12. MATRIX EFFECTS & ANIMATIONS
+   ========================================================================== */
+
+@keyframes matrixGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+}
+
+@keyframes matrixPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.matrix-pulse {
+    animation: matrixPulse 3s ease-in-out infinite;
+}
+
+.matrix-glow {
+    animation: matrixGlow 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .projects-horizontal-grid,
+    .epic-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid,
+    .projects-horizontal-grid,
+    .projects-compact,
+    .epic-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tab-button {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .project-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .github-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #projects-section,
+    #matrix-projects-showcase {
+        padding: 2rem 0;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   14. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .project-card,
+    .epic-project-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+        background: #fff;
+        color: #000;
+    }
+
+    .project-title {
+        color: #000;
+        text-shadow: none;
+    }
+
+    .project-links {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   15. ACCESSIBILITY ENHANCEMENTS
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .epic-project-card,
+    .project-tag,
+    .project-link,
+    .tab-button {
+        transition: none;
+        animation: none;
+    }
+
+    .project-card:hover,
+    .epic-project-card:hover {
+        transform: none;
+    }
+}
+
+.project-card:focus,
+.project-link:focus,
+.tab-button:focus {
+    outline: 2px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
