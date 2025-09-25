@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Projects Page Layout Adjustments
+   2-column layout with perfect sizing and image modal
+   ========================================================================== */
+
+/* Hidden class for tab filtering */
+.introduction-expertise-card.hidden {
+    display: none !important;
+}
+
+/* Force 2-column layout on desktop */
+#featured-projects .introduction-expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Ensure consistent image sizes */
+#featured-projects .introduction-expertise-icon {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+#featured-projects .introduction-expertise-icon:hover {
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+#featured-projects .introduction-expertise-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+#featured-projects .introduction-expertise-icon:hover img {
+    transform: scale(1.05);
+}
+
+/* Click to expand indicator */
+#featured-projects .introduction-expertise-icon::after {
+    content: '\f00e';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--matrix-green);
+    padding: 5px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#featured-projects .introduction-expertise-icon:hover::after {
+    opacity: 1;
+}
+
+/* Adjust card padding for better fit */
+#featured-projects .introduction-expertise-card {
+    padding: 1.5rem;
+}
+
+#featured-projects .introduction-expertise-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#featured-projects .introduction-expertise-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Remove gaps between sections */
+#featured-projects .introduction-expertise-tags {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+#featured-projects .introduction-expertise-buttons {
+    margin-top: 0.75rem;
+}
+
+/* Mobile: Single column, full width */
+@media (max-width: 768px) {
+    #featured-projects .introduction-expertise-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.25rem;
+    }
+    
+    #featured-projects .introduction-expertise-icon {
+        height: 180px;
+    }
+    
+    #featured-projects .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Large screens: Still 2 columns but wider container */
+@media (min-width: 1440px) {
+    #featured-projects .introduction-expertise-grid {
+        max-width: 1400px;
+    }
+}
+
+/* ==========================================================================
+   Image Modal Styles
+   ========================================================================== */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal.show {
+    opacity: 1;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border: 2px solid var(--matrix-green);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    cursor: default;
+}
+
+.image-modal-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: var(--matrix-green);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.8);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--matrix-green);
+    z-index: 10001;
+    line-height: 1;
+    text-align: center;
+}
+
+.image-modal-close:hover {
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+/* Project title in modal */
+.image-modal-title {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--matrix-green);
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .image-modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .image-modal-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+}
