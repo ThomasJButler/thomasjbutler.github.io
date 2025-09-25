@@ -19,20 +19,30 @@
 @import './components/_contact-form.css';
 
 /* Utilities */
+@import './utilities.css';
 @import './utilities/_spacing.css';
 @import './utilities/_helpers.css';
 @import './utilities/_animations.css';
 
-/* Page-Specific Styles */
-@import './projects.css';
-@import './about.css';
+/* Page-Specific Styles - Reorganized into /pages/ directory */
+@import './pages/homepage.css';
+@import './pages/about.css';
+@import './pages/contact.css';
+@import './pages/services.css';
+@import './pages/skills.css';
+@import './pages/sitemap.css';
+
+/* Project Styles - Consolidated from 8 files */
+@import './components/projects.css';
+
+/* Legacy Imports - Remaining */
 @import './skills-icons.css';
 
 /* Legacy Imports */
 @import './global.css';
 @import './header.css';
 @import './styles.css';
-@import './hover-effects.css';
+/* hover-effects.css content merged into utilities.css */
 @import './typography.css';
 
 /* Contact Modern - Must come after legacy to override */

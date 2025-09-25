@@ -491,8 +491,7 @@ export const ProjectsPage: React.FC = () => {
               }}
             >
               {/* Background overlay for better text readability */}
-              <div className="project-card-overlay" style={{
-                position: 'absolute',
+              <div className="project-card-overlay absolute" style={{
                 top: 0,
                 left: 0,
                 right: 0,
@@ -502,7 +501,7 @@ export const ProjectsPage: React.FC = () => {
                 pointerEvents: 'none'
               }} />
               
-              <div className="matrix-project-header" style={{ position: 'relative', zIndex: 2 }}>
+              <div className="matrix-project-header relative z-20">
                 <h3 className="matrix-project-title">
                   <i className="fas fa-terminal"></i> {project.name}
                 </h3>
@@ -516,7 +515,7 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="matrix-project-content" style={{ position: 'relative', zIndex: 2 }}>
+              <div className="matrix-project-content relative z-20">
                 <p className="matrix-project-description">{project.description}</p>
                 
                 <div className="matrix-project-tags">
@@ -535,7 +534,7 @@ export const ProjectsPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="matrix-project-buttons" style={{ position: 'relative', zIndex: 2 }}>
+              <div className="matrix-project-buttons relative z-20">
                 {project.links.demo && (
                   <a 
                     href={project.links.demo} 

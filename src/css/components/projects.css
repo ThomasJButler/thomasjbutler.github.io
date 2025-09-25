@@ -1,0 +1,856 @@
+/* ==========================================================================
+   UNIFIED PROJECTS CSS - All Project Styles Consolidated
+   Combining 8 separate files into one organized, maintainable file
+   Author: Thomas J Butler
+
+   CONSOLIDATED FROM:
+   - projects.css (768 lines)
+   - github-projects.css (308 lines)
+   - projects-matrix.css (433 lines)
+   - projects-horizontal-grid.css (301 lines)
+   - projects-adjustments.css (219 lines)
+   - projects-tabs.css (216 lines)
+   - projects-compact.css (86 lines)
+   - projects-compiled.css (28 lines)
+
+   Total: 2,667 lines → Consolidated with deduplication
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CORE VARIABLES & SETUP
+   ========================================================================== */
+:root {
+    --neon-green: #00ff00;
+    --matrix-green: #00FF00;
+    --matrix-cyan: #00FFFF;
+    --neon-blue: #00ffff;
+    --neon-pink: #ff00ff;
+    --dark-bg: #000000;
+    --card-bg: rgba(0, 255, 0, 0.05);
+    --matrix-card-bg: rgba(0, 20, 0, 0.6);
+    --matrix-card-border: rgba(0, 255, 0, 0.3);
+    --gradient-primary: linear-gradient(145deg, rgba(0, 255, 0, 0.05), rgba(0, 40, 0, 0.2));
+    --gradient-hover: linear-gradient(145deg, rgba(0, 255, 0, 0.1), rgba(0, 40, 0, 0.3));
+    --matrix-glow: 0 0 20px rgba(0, 255, 0, 0.8);
+    --matrix-glow-intense: 0 0 40px rgba(0, 255, 0, 1);
+    --animation-slow: 0.5s;
+    --animation-fast: 0.3s;
+}
+
+/* ==========================================================================
+   2. PROJECT CONTAINERS & LAYOUT
+   ========================================================================== */
+
+#projects-section,
+#matrix-projects-showcase {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+    background: var(--dark-bg);
+    padding: 4rem 0;
+}
+
+.projects-container,
+.matrix-project-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+/* ==========================================================================
+   3. PROJECT GRID LAYOUTS
+   ========================================================================== */
+
+/* Standard Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Horizontal Grid */
+.projects-horizontal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Compact Grid */
+.projects-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Epic Matrix Grid */
+.epic-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin: 3rem 0;
+    perspective: 1200px;
+}
+
+/* ==========================================================================
+   4. PROJECT CARDS - BASE STYLES
+   ========================================================================== */
+
+.project-card,
+.epic-project-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* ==========================================================================
+   5. PROJECT CARD HOVER EFFECTS
+   ========================================================================== */
+
+.project-card:hover,
+.epic-project-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow:
+        0 20px 40px rgba(0, 255, 0, 0.2),
+        0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Epic hover effects */
+.epic-project-card:hover {
+    transform: translateY(-20px) scale(1.02) rotateY(2deg);
+    box-shadow:
+        0 30px 60px rgba(0, 255, 0, 0.3),
+        0 0 50px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+/* ==========================================================================
+   6. PROJECT CONTENT STYLING
+   ========================================================================== */
+
+.project-title {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.project-description {
+    color: #CCFFCC;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0, 255, 0, 0.7);
+}
+
+/* ==========================================================================
+   7. PROJECT TAGS & BADGES
+   ========================================================================== */
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.project-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    color: #CCFFCC;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: var(--font-primary);
+}
+
+.project-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.5);
+    color: var(--neon-green);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   8. PROJECT LINKS & BUTTONS
+   ========================================================================== */
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.project-link,
+.github-link,
+.demo-link {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 8px;
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link:hover,
+.github-link:hover,
+.demo-link:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   9. PROJECT TABS SYSTEM
+   ========================================================================== */
+
+.project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--neon-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tab-button:hover,
+.tab-button.active {
+    background: rgba(0, 30, 0, 0.8);
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==========================================================================
+   10. GITHUB PROJECTS SPECIFIC
+   ========================================================================== */
+
+.github-projects {
+    margin-top: 3rem;
+}
+
+.github-project {
+    background: rgba(0, 20, 0, 0.4);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.github-project:hover {
+    border-color: rgba(0, 255, 0, 0.5);
+    background: rgba(0, 40, 0, 0.6);
+    transform: translateX(10px);
+}
+
+.github-project h3 {
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.github-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.stat {
+    color: rgba(0, 255, 0, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==========================================================================
+   11. PROJECT IMAGES & MEDIA
+   ========================================================================== */
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    border-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.project-video {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   12. MATRIX EFFECTS & ANIMATIONS
+   ========================================================================== */
+
+@keyframes matrixGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+}
+
+@keyframes matrixPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.matrix-pulse {
+    animation: matrixPulse 3s ease-in-out infinite;
+}
+
+.matrix-glow {
+    animation: matrixGlow 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .projects-horizontal-grid,
+    .epic-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid,
+    .projects-horizontal-grid,
+    .projects-compact,
+    .epic-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tab-button {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .project-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .github-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #projects-section,
+    #matrix-projects-showcase {
+        padding: 2rem 0;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   14. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .project-card,
+    .epic-project-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+        background: #fff;
+        color: #000;
+    }
+
+    .project-title {
+        color: #000;
+        text-shadow: none;
+    }
+
+    .project-links {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   15. ACCESSIBILITY ENHANCEMENTS
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .epic-project-card,
+    .project-tag,
+    .project-link,
+    .tab-button {
+        transition: none;
+        animation: none;
+    }
+
+    .project-card:hover,
+    .epic-project-card:hover {
+        transform: none;
+    }
+}
+
+.project-card:focus,
+.project-link:focus,
+.tab-button:focus {
+    outline: 2px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==========================================================================
+   16. MATRIX PROJECTS SHOWCASE - RESTORED
+   Epic Matrix-themed project showcase with glassmorphism
+   ========================================================================== */
+
+/* Matrix Project Grid */
+.matrix-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* Matrix Project Tabs */
+.matrix-project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.matrix-tab-button {
+    background: var(--matrix-card-bg);
+    border: 2px solid var(--matrix-card-border);
+    color: var(--matrix-green);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    opacity: 1;
+    transform: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.matrix-tab-button.active {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: var(--matrix-glow);
+}
+
+/* Matrix Project Cards with Glassmorphism */
+.matrix-project-card {
+    background: var(--matrix-card-bg);
+    border: 2px solid var(--matrix-card-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transform: none;
+    cursor: pointer;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Matrix Card Hover Effects */
+.matrix-project-card:hover {
+    border-color: var(--matrix-green);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 0, 0.3),
+            inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 40px rgba(0, 255, 0, 0.5),
+            inset 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+}
+
+/* Scanline effect for cards */
+.matrix-project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.03) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 3px
+    );
+    pointer-events: none;
+    animation: scanlines 8s linear infinite;
+    z-index: 1;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Matrix Card Content */
+.matrix-project-header {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 1rem;
+}
+
+.matrix-project-title {
+    color: var(--matrix-green);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    text-shadow: var(--matrix-glow);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.matrix-project-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.matrix-project-content {
+    position: relative;
+    z-index: 5;
+    flex-grow: 1;
+}
+
+.matrix-project-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.matrix-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.matrix-tag {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.matrix-project-language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.language-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.language-name {
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.language-percent {
+    color: rgba(0, 255, 0, 0.6);
+    margin-left: auto;
+}
+
+.matrix-project-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+    padding-top: 1rem;
+}
+
+/* Neo Matrix Button Styles */
+.neo-matrix-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--matrix-green);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-family: var(--font-primary);
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow:
+        0 0 10px rgba(0, 255, 0, 0.2),
+        inset 0 0 15px rgba(0, 255, 0, 0.1);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 140px;
+    cursor: pointer;
+}
+
+.neo-matrix-btn:hover {
+    color: #000;
+    background: var(--matrix-green);
+    border-color: transparent;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.2);
+    text-shadow: none;
+    transform: translateY(-2px);
+}
+
+.neo-matrix-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 0 10px rgba(0, 255, 0, 0.4),
+        inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.neo-matrix-btn i {
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.neo-matrix-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Matrix Responsive Design */
+@media (max-width: 768px) {
+    .matrix-project-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .matrix-project-card {
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .matrix-project-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .matrix-project-description {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .matrix-project-tabs {
+        gap: 0.5rem;
+    }
+
+    .matrix-tab-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .neo-matrix-btn {
+        min-width: auto;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}

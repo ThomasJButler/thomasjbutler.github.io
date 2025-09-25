@@ -32,8 +32,6 @@ import './css/themes.css'; // Theme system
 import './css/main.css';
 import './css/styles.css';
 import './css/global.css';
-import './css/projects.css';
-import './css/projects-matrix.css';
 import './css/blog.css';
 
 export const App: React.FC = () => {

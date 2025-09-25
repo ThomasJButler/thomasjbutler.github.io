@@ -26,4 +26,4 @@
 
 /* Utilities */
 @import './utilities/_animations.css';
-@import './hover-effects.css';
+@import './utilities.css'; /* includes hover effects */

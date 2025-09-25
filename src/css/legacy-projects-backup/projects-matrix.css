@@ -59,7 +59,7 @@
     border: 2px solid var(--card-border);
     color: var(--matrix-green);
     padding: 0.8rem 1.5rem;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -194,7 +194,7 @@
     color: var(--matrix-green);
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-primary);
     letter-spacing: 1px;
     text-shadow: var(--matrix-glow);
 }
@@ -257,7 +257,7 @@
     color: var(--matrix-green);
     text-decoration: none;
     text-align: center;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-primary);
     font-size: 1rem;
     letter-spacing: 1px;
     text-transform: uppercase;

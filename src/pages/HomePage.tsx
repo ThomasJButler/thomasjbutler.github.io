@@ -4,7 +4,7 @@ import { NavigationGuide } from '../components/NavigationGuide';
 import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
-import '../css/hover-effects.css';
+// hover effects now included in utilities.css via main.css
 
 
 export const HomePage: React.FC = () => {
@@ -302,7 +302,7 @@ export const HomePage: React.FC = () => {
               <i className="fas fa-images"></i>
               View Galleries
             </a>
-            <Link to="/blog" className="btn-professional glass-card hover-lift" style={{background: 'linear-gradient(135deg, #00ff00 0%, #003300 100%)'}}>
+            <Link to="/blog" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
               <i className="fas fa-book-open"></i>
               View Blog
             </Link>

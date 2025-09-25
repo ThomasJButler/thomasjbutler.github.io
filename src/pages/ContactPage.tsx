@@ -69,10 +69,10 @@ export const ContactPage: React.FC = () => {
                   href="https://www.google.com/maps/place/York/@53.9585894,-1.1218767,13z" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="info-card"
-                  style={{ textDecoration: 'none', display: 'block' }}
+                  className="info-card block-link"
+                  style={{ textDecoration: 'none' }}
                 >
-                  <i className="fas fa-external-link-alt" style={{ fontSize: '0.8em', marginLeft: '0.5rem' }}></i>
+                  <i className="fas fa-external-link-alt small-icon" style={{ marginLeft: '0.5rem' }}></i>
                   <span className="info-content">York, UK</span>
                 </a>
               </div>

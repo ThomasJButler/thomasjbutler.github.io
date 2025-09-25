@@ -43,7 +43,7 @@
 }
 
 .headerTitle h1 {
-  font-family: 'VT323', 'Courier New', monospace;
+  font-family: var(--font-primary);
   font-size: 2rem;
   color: var(--matrix-green, #00ff00);
   margin: 0;

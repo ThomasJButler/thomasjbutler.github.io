@@ -154,7 +154,7 @@ export const ServicesPage: React.FC = () => {
               
               <button className={styles.serviceButton}>
                 Learn More
-                <i className="fas fa-arrow-right" style={{ marginLeft: '0.5rem' }}></i>
+                <i className="fas fa-arrow-right icon-margin-left"></i>
               </button>
             </div>
           ))}
@@ -165,7 +165,7 @@ export const ServicesPage: React.FC = () => {
           <p>Let's discuss how I can help bring your ideas to life.</p>
           <a href="/contact" className={styles.ctaButton}>
             Get In Touch
-            <i className="fas fa-envelope" style={{ marginLeft: '0.5rem' }}></i>
+            <i className="fas fa-envelope icon-margin-left"></i>
           </a>
         </div>
       </div>

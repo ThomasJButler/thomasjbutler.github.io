@@ -1,0 +1,773 @@
+/* About Page Main Styles */
+:root {
+    --neon-green: #00ff00;
+    --dark-green: rgba(0, 20, 0, 0.8);
+    --light-green: #88ff88;
+    --glow-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    --matrix-bg: rgba(0, 0, 0, 0.95);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --card-bg: rgba(0, 20, 0, 0.7);
+    --border-glow: 1px solid rgba(0, 255, 0, 0.2);
+    --text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    position: relative;
+    background: var(--matrix-bg);
+    padding: 4rem 2rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 48%,
+        rgba(0, 255, 0, 0.1) 49%,
+        rgba(0, 255, 0, 0.1) 51%,
+        transparent 52%);
+    background-size: 10px 10px;
+    opacity: 0.3;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glitch Text Effect */
+.glitch-text {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green);
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 #00ff00;
+    clip: rect(44px, 450px, 56px, 0);
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: 2px 0 #00ffff;
+    clip: rect(44px, 450px, 56px, 0);
+}
+
+/* Achievement Counters */
+.achievement-counters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.counter {
+    background: var(--dark-green);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.counter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,
+        transparent 48%,
+        rgba(0, 255, 0, 0.1) 49%,
+        rgba(0, 255, 0, 0.1) 51%,
+        transparent 52%);
+    background-size: 10px 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.counter:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 20px rgba(0, 255, 0, 0.2),
+        0 0 30px rgba(0, 255, 0, 0.1) inset;
+}
+
+.counter:hover::before {
+    opacity: 1;
+}
+
+.count {
+    font-size: 4rem;
+    font-family: var(--font-primary);
+    color: var(--neon-green);
+    text-shadow: var(--glow-shadow);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.count::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--neon-green);
+    box-shadow: var(--glow-shadow);
+}
+
+.label {
+    color: var(--light-green);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--neon-green);
+    animation: bounce 2s infinite;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--neon-green);
+    border-radius: 15px;
+    margin: 0 auto 1rem;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--neon-green);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    border-radius: 50%;
+    animation: scroll 2s infinite;
+}
+
+/* Animations */
+
+
+@keyframes scroll {
+    0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Timeline Section */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background: var(--neon-green);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    box-shadow: var(--glow-shadow);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.timeline-item.left {
+    left: 0;
+}
+
+.timeline-item.right {
+    left: 50%;
+}
+
+.timeline-content {
+    padding: 20px;
+    background: var(--dark-green);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: var(--glow-shadow);
+}
+
+.left .timeline-content::after {
+    right: -67px;
+}
+
+.right .timeline-content::after {
+    left: -67px;
+}
+
+.timeline-content:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+}
+
+.timeline-content h3 {
+    color: var(--neon-green);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+    color: var(--light-green);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.timeline-content p {
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Story Section */
+.story-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.story-content {
+    background: var(--card-bg);
+    padding: 1.75rem 2rem;
+    border-radius: 15px;
+    border: var(--border-glow);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+    transition: var(--transition-smooth);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 48%,
+        rgba(0, 255, 0, 0.1) 49%,
+        rgba(0, 255, 0, 0.1) 51%,
+        transparent 52%);
+    background-size: 10px 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.story-content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+}
+
+.story-content:hover::before {
+    opacity: 1;
+}
+
+.highlight-text {
+    font-size: 1.2rem;
+    color: var(--neon-green);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    position: relative;
+    padding-left: 2rem;
+}
+
+.story-content p {
+    color: #FF00FF;
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+.story-content p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--neon-green);
+    box-shadow: var(--glow-shadow);
+}
+
+.achievement-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.achievement-list li {
+    padding: 1rem 0 1rem 2rem;
+    position: relative;
+    color: #fff;
+    transition: var(--transition-smooth);
+}
+
+.achievement-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--neon-green);
+    transition: transform 0.3s ease;
+}
+
+.achievement-list li:hover {
+    transform: translateX(10px);
+}
+
+.achievement-list li:hover::before {
+    transform: translateX(5px);
+    text-shadow: var(--glow-shadow);
+}
+
+/* Focus Grid */
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.focus-item {
+    background: var(--dark-green);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    text-align: center;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.focus-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(0, 255, 0, 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.focus-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+}
+
+.focus-item:hover::before {
+    opacity: 1;
+}
+
+.focus-item i {
+    font-size: 3rem;
+    color: var(--neon-green);
+    margin-bottom: 1.5rem;
+    text-shadow: var(--glow-shadow);
+    transition: var(--transition-smooth);
+}
+
+.focus-item:hover i {
+    transform: scale(1.2);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+.focus-item h3 {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.focus-item p {
+    color: var(--light-green);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+
+/* Additional Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none;
+    background-color: var(--neon-green);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--glow-shadow);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+#backToTop:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--glow-shadow);
+}
+
+/* Enhance Hover Effects for Connect Items */
+.connect-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.connect-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Global Section Styles */
+.about-section {
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--matrix-bg);
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.05) 49%, rgba(0, 255, 0, 0.05) 51%, transparent 52%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 100%);
+    background-size: 10px 10px, 100px 100px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 3rem;
+    color: var(--neon-green);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: var(--text-shadow);
+    position: relative;
+    z-index: 1;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--neon-green);
+    box-shadow: var(--glow-shadow);
+}
+
+/* Journey Grid Styling */
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.journey-item {
+    background: var(--card-bg);
+    border: var(--border-glow);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.journey-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+}
+
+.journey-item i {
+    font-size: 3rem;
+    color: var(--neon-green);
+    margin-bottom: 1.5rem;
+    text-shadow: var(--glow-shadow);
+    transition: var(--transition-smooth);
+}
+
+.journey-item:hover i {
+    transform: scale(1.2) rotate(360deg);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+/* Achievement Tags */
+.achievements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.achievement-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--neon-green);
+    transition: var(--transition-smooth);
+}
+
+.achievement-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+/* Expertise Cards */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.expertise-card {
+    background: var(--card-bg);
+    border: var(--border-glow);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+}
+
+.expertise-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.expertise-list li {
+    color: var(--light-green);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    transition: var(--transition-smooth);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.expertise-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--neon-green);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: var(--transition-smooth);
+}
+
+.expertise-list li:hover {
+    padding-left: 2rem;
+    color: var(--neon-green);
+}
+
+.expertise-list li:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* About Me Project Cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: var(--border-glow);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.project-tech span {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--neon-green);
+    transition: var(--transition-smooth);
+}
+
+.project-tech span:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+/* Certifications Grid */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.certification-item {
+    background: var (--card-bg);
+    border: var(--border-glow);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.certification-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+}
+
+.certification-item i {
+    font-size: 3rem;
+    color: var(--neon-green);
+    margin-bottom: 1.5rem;
+    text-shadow: var(--glow-shadow);
+    transition: var(--transition-smooth);
+}
+
+.certification-item:hover i {
+    transform: scale(1.2) rotate(360deg);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+/* Responsive Design */
+
+/* Animation Keyframes */
