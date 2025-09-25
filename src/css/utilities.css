@@ -951,3 +951,174 @@ a:hover {
         text-shadow: 0 0 20px var(--matrix-green);
     }
 }
+
+/* ==========================================================================
+   Missing Utility Classes - High-Impact Pattern Consolidation
+   Identified by CSS analysis agents for maximum line reduction
+   ========================================================================== */
+
+/* Text Glow Utilities - Replace 51+ instances of text-shadow patterns */
+.text-glow-matrix {
+    text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.text-glow-matrix-intense {
+    text-shadow: 0 0 20px var(--matrix-green);
+}
+
+.text-glow-matrix-triple {
+    text-shadow:
+        0 0 10px var(--matrix-green),
+        0 0 20px var(--matrix-green),
+        0 0 30px var(--matrix-green);
+}
+
+/* Margin Bottom Utilities - Replace 53+ instances */
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+/* Gap Utilities - Replace 46+ instances */
+.gap-1 { gap: 1rem; }
+.gap-2 { gap: 2rem; }
+.gap-3 { gap: 3rem; }
+.gap-half { gap: 0.5rem; }
+.gap-quarter { gap: 0.25rem; }
+
+/* Transform Utilities - Replace 42+ instances of hover lift effects */
+.transform-lift-sm {
+    transform: translateY(-2px);
+}
+
+.transform-lift-md {
+    transform: translateY(-5px);
+}
+
+.transform-lift-lg {
+    transform: translateY(-10px);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+}
+
+.hover-lift-md:hover {
+    transform: translateY(-5px);
+}
+
+/* Font Matrix Utility - Replace 45+ instances */
+.font-matrix {
+    font-family: var(--font-primary);
+}
+
+/* Matrix Background Utilities - Replace 21+ instances */
+.bg-matrix-07 {
+    background: rgba(0, 20, 0, 0.7);
+}
+
+.bg-matrix-08 {
+    background: rgba(0, 20, 0, 0.8);
+}
+
+.bg-matrix-09 {
+    background: rgba(0, 20, 0, 0.9);
+}
+
+.bg-matrix-dark {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+/* Flexbox Variations - Expand existing patterns */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-start {
+    display: flex;
+    align-items: flex-start;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Border Matrix Utilities */
+.border-matrix {
+    border: 1px solid var(--matrix-green);
+}
+
+.border-matrix-thin {
+    border: 1px solid var(--matrix-green);
+}
+
+.border-matrix-thick {
+    border: 2px solid var(--matrix-green);
+}
+
+/* Text Color Utilities */
+.text-matrix {
+    color: var(--matrix-green);
+}
+
+.text-matrix-bright {
+    color: var(--matrix-green-bright);
+}
+
+.text-muted-matrix {
+    color: rgba(0, 255, 0, 0.7);
+}
+
+/* Position Utilities */
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+/* Matrix Box Shadow Utilities */
+.shadow-matrix {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.shadow-matrix-md {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.shadow-matrix-lg {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.glow-matrix {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.glow-matrix-intense {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+}

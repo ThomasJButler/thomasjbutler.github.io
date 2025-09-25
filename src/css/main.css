@@ -24,9 +24,18 @@
 @import './utilities/_helpers.css';
 @import './utilities/_animations.css';
 
-/* Page-Specific Styles */
-@import './projects.css';
-@import './about.css';
+/* Page-Specific Styles - Reorganized into /pages/ directory */
+@import './pages/homepage.css';
+@import './pages/about.css';
+@import './pages/contact.css';
+@import './pages/services.css';
+@import './pages/skills.css';
+@import './pages/sitemap.css';
+
+/* Project Styles - Consolidated from 8 files */
+@import './components/projects.css';
+
+/* Legacy Imports - Remaining */
 @import './skills-icons.css';
 
 /* Legacy Imports */

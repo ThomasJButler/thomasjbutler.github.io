@@ -179,7 +179,7 @@ body.keyboard-nav *:focus {
     
     /* Enhanced text contrast */
     body {
-        color: #00FF00;
+        color: var(--matrix-green);
         background: #000000;
     }
     
@@ -202,14 +202,14 @@ body.keyboard-nav *:focus {
     textarea,
     select {
         background: #000;
-        color: #00FF00;
-        border: 2px solid #00FF00;
+        color: var(--matrix-green);
+        border: 2px solid var(--matrix-green);
     }
     
     /* Enhanced button states */
     button,
     .btn {
-        border: 2px solid #00FF00;
+        border: 2px solid var(--matrix-green);
         font-weight: bold;
     }
     
@@ -323,7 +323,7 @@ body.keyboard-nav *:focus {
 
 /* Force high contrast text */
 .high-contrast {
-    color: #00FF00 !important;
+    color: var(--matrix-green) !important;
     background: #000000 !important;
 }
 
