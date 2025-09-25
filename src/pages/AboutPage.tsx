@@ -41,44 +41,6 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      <section id="technical-expertise" className="about-section">
-        <div className="container">
-          <h2 className="section-title">Technical Expertise</h2>
-          <div className="expertise-grid">
-            <div className="expertise-card">
-              <h3>Frontend Development</h3>
-              <ul className="expertise-list">
-                <li>React & Next.js</li>
-                <li>TypeScript</li>
-                <li>Modern CSS (Tailwind, SASS)</li>
-                <li>Performance Optimization</li>
-                <li>Responsive Design</li>
-              </ul>
-            </div>
-            <div className="expertise-card">
-              <h3>Backend Development</h3>
-              <ul className="expertise-list">
-                <li>Node.js & Express</li>
-                <li>Python & Django</li>
-                <li>RESTful APIs</li>
-                <li>Database Design</li>
-                <li>Microservices</li>
-              </ul>
-            </div>
-            <div className="expertise-card">
-              <h3>AI & Machine Learning</h3>
-              <ul className="expertise-list">
-                <li>Natural Language Processing</li>
-                <li>TensorFlow & PyTorch</li>
-                <li>Custom GPT Models</li>
-                <li>Computer Vision</li>
-                <li>Data Analysis</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="continuous-learning" className="about-section">
         <div className="container">
           <h2 className="section-title">Qualifications & Certifications</h2>
