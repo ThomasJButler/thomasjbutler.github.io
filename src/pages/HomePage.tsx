@@ -304,17 +304,17 @@ export const HomePage: React.FC = () => {
 
       <section id="galleries" className="reveal" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <h2 className="section-heading">--| Galleries & Blogs |--</h2>
+          <h2 className="section-heading">--| Showcases |--</h2>
           <div className="galleries-grid">
             <div className="gallery-card">
               <div className="gallery-icon">
-                <i className="fas fa-book-open"></i>
+                <i className="fas fa-graduation-cap"></i>
               </div>
-              <h3>Thought Leadership Blog</h3>
-              <p>20+ articles on AI, development, and human-centered technology.</p>
-              <Link to="/blog" className="gallery-link">
-                Read Blog <i className="fas fa-arrow-right"></i>
-              </Link>
+              <h3>GenAI Bootcamp Portfolio</h3>
+              <p>Comprehensive AI portfolio showcasing practical applications and innovative solutions.</p>
+              <a href="https://aitomatic.io/" target="_blank" rel="noopener noreferrer" className="gallery-link">
+                View Portfolio <i className="fas fa-external-link-alt"></i>
+              </a>
             </div>
             <div className="gallery-card">
               <div className="gallery-icon">
