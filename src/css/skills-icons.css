@@ -8,7 +8,7 @@
     display: inline-block;
     margin-right: 0.75rem;
     font-size: 1.2rem;
-    color: #00FF00;
+    color: var(--matrix-green);
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     vertical-align: middle;
@@ -21,7 +21,7 @@
         0 0 20px rgba(0, 255, 0, 0.8),
         0 0 30px rgba(0, 255, 0, 0.6),
         0 0 40px rgba(0, 255, 0, 0.4);
-    color: #00FF00;
+    color: var(--matrix-green);
 }
 
 /* Align h3 content properly */
@@ -60,7 +60,7 @@
 
 /* Override colors on hover to maintain Matrix theme */
 .skills-list li:hover .skill-icon {
-    color: #00FF00 !important;
+    color: var(--matrix-green) !important;
 }
 
 /* Accessibility - ensure icons don't interfere with screen readers */

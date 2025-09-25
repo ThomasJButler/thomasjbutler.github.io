@@ -59,22 +59,6 @@
     transform: scale(1.05);
 }
 
-@media (min-width: 768px) {
-    #introduction {
-        padding-top: 50px;
-    }
-
-    .introduction-img {
-        flex-direction: row;
-        padding: 130px;
-        scale: 1.5;
-    }
-
-    .introduction-img img {
-        max-width: 200px;
-    }
-}
-
 /* Introduction Skills Grid Section - Three Columns */
 #introduction-expertise {
     padding: var(--space-4xl) 0;
@@ -315,7 +299,6 @@
 }
 
 .introduction-expertise-tags span:hover::before {
-    /* animation: shimmer 1.5s infinite; - Removed for performance */
     transform: translateX(100%);
     transition: transform 0.5s ease;
 }
@@ -373,11 +356,6 @@
     }
 }
 
-@keyframes shimmer {
-    100% {
-        transform: translateX(100%);
-    }
-}
 
 /* Matrix theme animation keyframes */
 @keyframes matrixPulse {
@@ -409,7 +387,6 @@
         rgba(0, 255, 0, 0.2),
         transparent
     );
-    /* animation: scanline 3s linear infinite; - Removed for professional look */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -418,7 +395,6 @@
     opacity: 1;
 }
 
-/* @keyframes scanline removed for professional look */
 
 /* Smooth transitions for all properties */
 .introduction-expertise-card *,
@@ -436,102 +412,6 @@
     .introduction-expertise-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Add overflow control to body/html if needed */
-    body, html {
-        overflow-x: hidden;
-        width: 100%;
-    }
-
-    .introduction-heading {
-        padding: 20px;
-    }
-
-    /* Container styles */
-    .introduction-expertise-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0 1rem;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-    
-    .introduction-expertise-card {
-        min-height: unset;
-        padding: 1rem;
-        width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-    }
-    
-    .introduction-expertise-tags {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Keep two columns */
-        gap: 0.5rem; /* Slightly larger gap */
-        padding: 0.5rem;
-        width: 95%;
-        margin: 0 auto;
-    }
-    
-    .introduction-expertise-tags span {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.6em;
-        white-space: normal; /* Allow text to wrap */
-        min-height: 2.5em; /* Give enough height for two lines */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
-        line-height: 1.2;
-        height: auto; /* Allow height to adjust to content */
-    }
-    
-    .introduction-expertise-description {
-        font-size: 0.8em;
-        margin: 0.3rem auto;
-        line-height: 1.4;
-        text-align: center;
-        width: 95%;
-        padding: 0 0.5rem; 
-    }
-    
-    .introduction-expertise-card h3 {
-        font-size: 1.3em;
-        margin-bottom: 0.5rem;
-        text-align: center;
-        width: 95%;
-    }
-    
-    .introduction-expertise-level {
-        font-size: 0.8em;
-        padding: 0.2rem 0.5rem;
-        top: 0.5rem;
-        right: 0.5rem;
-    }
-    
-    .introduction-expertise-icon {
-        transform: scale(0.8);
-        margin: 0 auto;
-    }
-
-    /* Main content wrapper if you have one */
-    .main-content, 
-    main, 
-    [role="main"] {
-        overflow-x: hidden;
-        width: 100%;
     }
 }
 
@@ -681,32 +561,12 @@
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
-@media (min-width: 768px) {
-    #skills,
-    #learning {
-        padding: 60px 0;
-    }
-
-    #skills h2,
-    #learning h2 {
-        font-size: 3.5em;
-    }
-}
-
 #skills > p,
 #learning > p {
     color: #CCFFCC;
     font-size: 1.1em;
     margin-bottom: 30px;
     text-align: center;
-}
-
-@media (min-width: 768px) {
-    #skills > p,
-    #learning > p {
-        font-size: 1.3em;
-        margin-bottom: 40px;
-    }
 }
 
 /* Skills List Styling
@@ -718,13 +578,6 @@
     list-style-type: none;
     padding: 2rem;
     position: relative;
-}
-
-@media (min-width: 768px) {
-    .skills-list {
-        gap: 30px;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
 }
 
 .skills-list li {
@@ -742,7 +595,6 @@
 
 /* Matrix Rain Effect */
 .skills-list li::before {
-    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(180deg, 
         transparent 0%, 
         rgba(0, 255, 0, 0.3) 45%, 
@@ -864,7 +716,6 @@
     }
 }
 
-
 /* Services Section
    ========================================================================== */
    #services {
@@ -882,7 +733,6 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    /* animation: scanningTop 2s linear infinite; - Removed for professional look */
 }
 
 .services-list {
@@ -922,7 +772,6 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #00FF00, transparent);
-    /* animation: scanning 2s linear infinite; - Removed for professional look */
 }
 
 .services-list li:hover {
@@ -971,13 +820,6 @@
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
 }
 
-/* @keyframes scanning and scanningTop removed for professional look */
-
-@media (min-width: 768px) {
-    .services-list {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-}
 
 @media (prefers-reduced-motion: reduce) {
     .services-list li,
@@ -994,12 +836,6 @@
     margin: 0 auto;
     padding: 20px;
     width: 100%;
-}
-
-@media (min-width: 768px) {
-    .game-terminal {
-        max-width: 800px;
-    }
 }
 
 .terminal-window {
@@ -1158,7 +994,6 @@ body > py-terminal.py-terminal-docked {
 }
 
 .version-container::before {
-    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     background: linear-gradient(45deg, 
         transparent 48%, 
         rgba(0, 255, 0, 0.1) 49%, 
@@ -1206,24 +1041,6 @@ body > py-terminal.py-terminal-docked {
     color: #00FF00;
     font-family: 'VT323', monospace;
     opacity: 0.8;
-}
-
-@media (min-width: 768px) {
-    .version-container {
-        margin: 2rem 0;
-        padding: 2rem;
-    }
-
-    .version-header {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    } 
-
-    .version-title {
-        flex-direction: row;
-        gap: 1rem;
-    }
 }
 
 /* Version Links and Screenshots
@@ -1280,17 +1097,12 @@ body > py-terminal.py-terminal-docked {
 
 /* Animation Keyframes
    ========================================================================== */
-@keyframes matrixBg {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 100%; }
-}
 
 @keyframes matrixRain {
     0% { top: -100%; }
     100% { top: 200%; }
 }
 
-/* @keyframes glitch removed for professional look */
 
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
@@ -1309,7 +1121,6 @@ body > py-terminal.py-terminal-docked {
     }
 }
 
-/* @keyframes typing removed for professional look */
 
 /* View-Specific Styles
    ========================================================================== */
@@ -1319,16 +1130,6 @@ body > py-terminal.py-terminal-docked {
 
 .mobile-view {
     width: 150px;
-}
-
-@media (min-width: 768px) {
-    .desktop-view {
-        width: 600px;
-    }
-
-    .mobile-view {
-        width: 200px;
-    }
 }
 
 .device-label {
@@ -1441,19 +1242,6 @@ body > py-terminal.py-terminal-docked {
 }
 
 /* Responsive layout */
-@media (max-width: 768px) {
-    .changes-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .version-changes {
-        padding: 1rem;
-    }
-    
-    .changes-list li {
-        font-size: 0.9em;
-    }
-}
 
 .timeline-connector {
     background: linear-gradient(to bottom, 
@@ -1470,7 +1258,6 @@ body > py-terminal.py-terminal-docked {
     width: 2px;
     z-index: -1;
 }
-
 
 /* Version TimeTravel Button Styles
    ========================================================================== */
@@ -1528,16 +1315,6 @@ nav ul li.version-timetravel:hover {
 }
 
 /* Desktop-specific styles */
-@media (min-width: 768px) {
-    nav ul li.version-timetravel {
-        display: flex; /* Show in nav on desktop */
-    }
-
-    /* Hide mobile version */
-    .version-timetravel-mobile {
-        display: none;
-    }
-}
 
 /* ==========================================================================
    Media Queries and Responsive Adjustments
@@ -1710,7 +1487,6 @@ nav ul li.version-timetravel:hover {
         text-decoration: none;
     }
 
-
 /* Address Section */
     #address {
     display: flex;
@@ -1757,8 +1533,6 @@ nav ul li.version-timetravel:hover {
         display: flex;
     }
 
-
-    
     /* Grid and Containers */
     .grid-container {
         display: flex;
@@ -2016,82 +1790,6 @@ nav ul li.version-timetravel:hover {
     }
 }
 
-@media (max-width: 768px) {
-    /* Skills and Services */
-    .skills-list,
-    .services-list {
-        grid-template-columns: 1fr;
-    }
-
-    #services h2,
-    #skills h2 {
-        font-size: 2.8em;
-    }
-
-    #services > p,
-    #skills > p {
-        font-size: 1.1em;
-    }
-
-    /* Items */
-    .skill-item,
-    .service-item {
-        width: 100%;
-    }
-
-    /* Mobile Optimized Skills Layout */
-    .skill-section-title {
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
-    }
-
-    .core-expertise-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .core-expertise-card {
-        padding: 1rem;
-        min-height: auto;
-    }
-
-    .expertise-header h4 {
-        font-size: 1.2rem;
-    }
-
-    .expertise-description {
-        font-size: 0.85rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .skill-tags {
-        gap: 0.3rem;
-    }
-
-    .skill-tag {
-        font-size: 0.65rem;
-        padding: 0.15rem 0.5rem;
-    }
-
-    .additional-skills-list {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .additional-skill-item {
-        padding: 0.6rem 0.8rem;
-    }
-
-    .additional-skill-item .skill-title {
-        font-size: 0.9rem;
-    }
-
-    .additional-skill-item .skill-icon {
-        font-size: 1.1rem;
-        margin-right: 0.6rem;
-    }
-}
-
 @media (max-width: 480px) {
     .core-expertise-section,
     .additional-skills-section {
@@ -2228,8 +1926,7 @@ nav ul li.version-timetravel:hover {
     margin-top: auto;
     text-align: center;
  }
- 
- 
+
  /* Responsive Styles */
  @media (max-width: 1024px) {
     .updates-grid {
@@ -2242,43 +1939,12 @@ nav ul li.version-timetravel:hover {
         padding: 1.5rem;
     }
  }
- 
- @media (max-width: 768px) {
-    .updates-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    .update-card {
-        padding: 1rem;
-    }
-    
-    .update-card h3 {
-        font-size: 1.5rem;
-    }
-    
-    .update-card p {
-        font-size: 0.9rem;
-    }
-    
-    .neo-matrix-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-    }
- }
- 
+
  /* Animation Keyframes */
  @keyframes matrixRain {
     0% { top: -100%; }
     100% { top: 200%; }
  }
-
 
 /* Sitemap Specific Styles */
 #sitemap {
@@ -2340,15 +2006,6 @@ nav ul li.version-timetravel:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .sitemap-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .sitemap-section {
-        margin: 10px;
-    }
-}
 
 /* About Page Main Styles */
 :root {
@@ -2388,7 +2045,6 @@ nav ul li.version-timetravel:hover {
         rgba(0, 255, 0, 0.1) 51%,
         transparent 52%);
     background-size: 10px 10px;
-    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
 }
 
@@ -2422,7 +2078,6 @@ nav ul li.version-timetravel:hover {
     width: 100%;
     height: 100%;
     clip: rect(0, 900px, 0, 0);
-    /* animation: glitch 2s infinite linear alternate-reverse; - Removed for professional look */
 }
 
 .glitch-text::before {
@@ -2479,7 +2134,6 @@ nav ul li.version-timetravel:hover {
 
 .counter:hover::before {
     opacity: 1;
-    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .count {
@@ -2544,12 +2198,7 @@ nav ul li.version-timetravel:hover {
 }
 
 /* Animations */
-@keyframes matrixBg {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 100%; }
-}
 
-/* @keyframes glitch removed for professional look */
 
 @keyframes scroll {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -2693,7 +2342,6 @@ nav ul li.version-timetravel:hover {
 
 .story-content:hover::before {
     opacity: 1;
-    /* animation: matrixBg 20s linear infinite; - Removed for performance */
 }
 
 .highlight-text {
@@ -2826,47 +2474,6 @@ nav ul li.version-timetravel:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .timeline::after {
-        left: 31px;
-    }
-
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-
-    .timeline-item.right {
-        left: 0;
-    }
-
-    .left .timeline-content::after,
-    .right .timeline-content::after {
-        left: -45px;
-    }
-
-    .focus-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .story-content {
-        padding: 1.5rem 1.25rem;
-    }
-    
-    .highlight-text {
-        font-size: 1.1rem;
-        padding-left: 1.5rem;
-    }
-    
-    .story-content p {
-        font-size: 0.95rem;
-    }
-
-    .achievement-list li {
-        padding: 0.8rem 0 0.8rem 1.5rem;
-    }
-}
 
 /* Additional Animations */
 @keyframes fadeIn {
@@ -2942,7 +2549,6 @@ html {
         linear-gradient(45deg, transparent 48%, rgba(0, 255, 0, 0.05) 49%, rgba(0, 255, 0, 0.05) 51%, transparent 52%),
         radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 100%);
     background-size: 10px 10px, 100px 100px;
-    /* animation: matrixBg 20s linear infinite; - Removed for performance */
     opacity: 0.3;
     pointer-events: none;
 }
@@ -3172,58 +2778,8 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2.5rem;
-    }
-
-    .timeline::after {
-        left: 31px;
-    }
-
-    .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-    }
-
-    .timeline-item.right {
-        left: 0;
-    }
-
-    .left .timeline-content::after,
-    .right .timeline-content::after {
-        left: -45px;
-    }
-
-    .journey-grid,
-    .expertise-grid,
-    .projects-grid,
-    .certifications-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-section {
-        padding: 4rem 1rem;
-    }
-
-    .story-content {
-        padding: 1.25rem 1rem;
-    }
-    
-    .story-content p {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-    
-    .highlight-text {
-        font-size: 1rem;
-        padding-left: 1rem;
-    }
-}
 
 /* Animation Keyframes */
-/* @keyframes glitch removed for professional look */
 
 /* Contact Section */
 #contact {
@@ -3367,7 +2923,6 @@ html {
 }
 
 .btn-contact-us::before {
-    /* animation: matrixRain 2s linear infinite; - Removed for performance */
     background: linear-gradient(to bottom, 
         transparent, 
         rgba(0, 255, 0, 0.2), 
@@ -3617,31 +3172,6 @@ section#contact {
     box-shadow: 0 0 20px #FF00FF;
 }
 
-@media (max-width: 768px) {
-    .galleries-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .gallery-card {
-        padding: 1.5rem;
-        min-height: auto;
-    }
-    
-    /* Reduce icon size on mobile */
-    .gallery-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .gallery-card h3 {
-        font-size: 1.4rem;
-    }
-    
-    .gallery-card p {
-        font-size: 0.95rem;
-    }
-}
 /* Video Banner Section
    ========================================================================== */
 .video-banner {
@@ -3696,7 +3226,390 @@ section#contact {
 }
 
 /* Mobile optimization */
+
+/* ==========================================================================
+   CONSOLIDATED DESKTOP/TABLET STYLES - MIN-WIDTH 768PX
+   ========================================================================== */
+@media (min-width: 768px) {
+    /* Introduction Section Desktop Styles */
+    #introduction {
+        padding-top: 50px;
+    }
+
+    .introduction-img {
+        flex-direction: row;
+        padding: 130px;
+        scale: 1.5;
+    }
+
+    .introduction-img img {
+        max-width: 200px;
+    }
+
+    /* Skills Section Desktop Styles */
+    #skills,
+    #learning {
+        padding: 60px 0;
+    }
+
+    #skills h2,
+    #learning h2 {
+        font-size: 3.5em;
+    }
+
+    #skills > p,
+    #learning > p {
+        font-size: 1.3em;
+        margin-bottom: 40px;
+    }
+
+    .skills-list {
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Services Section Desktop Styles */
+    .services-list {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    /* Terminal Desktop Styles */
+    .game-terminal {
+        max-width: 800px;
+    }
+
+    /* Version Container Desktop Styles */
+    .version-container {
+        margin: 2rem 0;
+        padding: 2rem;
+    }
+
+    .version-header {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    } 
+
+    .version-title {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .desktop-view {
+        width: 600px;
+    }
+
+    .mobile-view {
+        width: 200px;
+    }
+
+    /* Navigation Desktop Styles */
+    nav ul li.version-timetravel {
+        display: flex; /* Show in nav on desktop */
+    }
+
+    /* Hide mobile version */
+    .version-timetravel-mobile {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   CONSOLIDATED MOBILE STYLES - MAX-WIDTH 768PX
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* Base Mobile Styles */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .main-content, 
+    main, 
+    [role="main"] {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Introduction Section Mobile Styles */
+    .introduction-heading {
+        padding: 20px;
+    }
+
+    .introduction-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    
+    .introduction-expertise-card {
+        min-height: unset;
+        padding: 1rem;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+    
+    .introduction-expertise-tags {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+    
+    .introduction-expertise-tags span {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.6em;
+        white-space: normal;
+        min-height: 2.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        line-height: 1.2;
+        height: auto;
+    }
+    
+    .introduction-expertise-description {
+        font-size: 0.8em;
+        margin: 0.3rem auto;
+        line-height: 1.4;
+        text-align: center;
+        width: 95%;
+        padding: 0 0.5rem; 
+    }
+    
+    .introduction-expertise-card h3 {
+        font-size: 1.3em;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        width: 95%;
+    }
+    
+    .introduction-expertise-level {
+        font-size: 0.8em;
+        padding: 0.2rem 0.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+    
+    .introduction-expertise-icon {
+        transform: scale(0.8);
+        margin: 0 auto;
+    }
+
+    /* Skills and Services Mobile Styles */
+    .skills-list,
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+
+    #services h2,
+    #skills h2 {
+        font-size: 2.8em;
+    }
+
+    #services > p,
+    #skills > p {
+        font-size: 1.1em;
+    }
+
+    .skill-item,
+    .service-item {
+        width: 100%;
+    }
+
+    .skill-section-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .core-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .core-expertise-card {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .expertise-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .expertise-description {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .skill-tags {
+        gap: 0.3rem;
+    }
+
+    .skill-tag {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.5rem;
+    }
+
+    .additional-skills-list {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .additional-skill-item {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .additional-skill-item .skill-title {
+        font-size: 0.9rem;
+    }
+
+    .additional-skill-item .skill-icon {
+        font-size: 1.1rem;
+        margin-right: 0.6rem;
+    }
+
+    /* Version Changes Mobile Styles */
+    .changes-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .version-changes {
+        padding: 1rem;
+    }
+    
+    .changes-list li {
+        font-size: 0.9em;
+    }
+
+    /* Updates Section Mobile Styles */
+    .updates-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .update-card {
+        padding: 1rem;
+    }
+    
+    .update-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .update-card p {
+        font-size: 0.9rem;
+    }
+    
+    .neo-matrix-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    /* Sitemap Mobile Styles */
+    .sitemap-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sitemap-section {
+        margin: 10px;
+    }
+
+    /* Timeline Mobile Styles */
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item.right {
+        left: 0;
+    }
+
+    .left .timeline-content::after,
+    .right .timeline-content::after {
+        left: -45px;
+    }
+
+    .focus-grid,
+    .journey-grid,
+    .expertise-grid,
+    .projects-grid,
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* About Section Mobile Styles */
+    .about-section {
+        padding: 4rem 1rem;
+    }
+
+    .story-content {
+        padding: 1.25rem 1rem;
+    }
+    
+    .story-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .highlight-text {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+
+    .achievement-list li {
+        padding: 0.8rem 0 0.8rem 1.5rem;
+    }
+
+    /* Galleries Mobile Styles */
+    .galleries-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .gallery-card {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+    
+    .gallery-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .gallery-card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .gallery-card p {
+        font-size: 0.95rem;
+    }
+
+    /* Video Banner Mobile Styles */
     .video-banner {
         height: 200px;
         margin-top: 80px;

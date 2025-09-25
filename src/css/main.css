@@ -19,6 +19,7 @@
 @import './components/_contact-form.css';
 
 /* Utilities */
+@import './utilities.css';
 @import './utilities/_spacing.css';
 @import './utilities/_helpers.css';
 @import './utilities/_animations.css';
@@ -32,7 +33,7 @@
 @import './global.css';
 @import './header.css';
 @import './styles.css';
-@import './hover-effects.css';
+/* hover-effects.css content merged into utilities.css */
 @import './typography.css';
 
 /* Contact Modern - Must come after legacy to override */

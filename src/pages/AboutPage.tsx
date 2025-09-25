@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export const AboutPage: React.FC = () => {
   return (
@@ -76,8 +75,14 @@ export const AboutPage: React.FC = () => {
               
               <div className="qualification-card">
                 <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
-                <p className="qualification-date">Starting August 2025</p>
+                <p className="qualification-date">Completed September 2025</p>
                 <p>Mastering Generative AI and advanced machine learning techniques</p>
+                <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6" 
+                target="_blank" 
+                rel="noopener"
+                className="verify-link">
+                Verify Credential →
+                </a>
               </div>
             </div>
             
@@ -109,12 +114,12 @@ export const AboutPage: React.FC = () => {
                   Free Code Camp - Data Analysis With Python
                 </li>
               </ul>
-              <p style={{marginTop: '1.5rem'}}>
+              <p className="p-1-5" style={{marginTop: '1.5rem'}}>
                 <a href="https://www.thomasjbutler.me/#education" 
                    target="_blank" 
                    rel="noopener" 
-                   className="neo-matrix-btn" 
-                   style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}>
+                   className="neo-matrix-btn flex-center"
+                   style={{gap: '0.5rem'}}>
                   <span>View Full Education & Certification Details</span>
                   <i className="fas fa-arrow-right"></i>
                 </a>
