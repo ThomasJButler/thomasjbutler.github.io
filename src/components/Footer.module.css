@@ -47,7 +47,7 @@
 }
 
 .footerSection h3 {
-  font-family: 'VT323', 'Courier New', monospace;
+  font-family: var(--font-primary);
   font-size: 1.1rem;
   color: var(--matrix-green, #00ff00);
   margin: 0 0 1rem 0;

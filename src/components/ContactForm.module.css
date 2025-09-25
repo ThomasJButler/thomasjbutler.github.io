@@ -19,7 +19,7 @@
   color: var(--neon-green, #00ff00);
   text-align: center;
   margin-bottom: 1rem;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   text-shadow: 
     0 0 10px rgba(0, 255, 0, 0.5),
     0 0 20px rgba(0, 255, 0, 0.3);
@@ -51,7 +51,7 @@
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   transition: all 0.3s ease;
   transform-origin: left center;
 }
@@ -92,7 +92,7 @@
   color: #ff0066;
   font-size: 0.85rem;
   margin-top: 0.25rem;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   text-shadow: 0 0 5px rgba(255, 0, 102, 0.5);
 }
 
@@ -105,7 +105,7 @@
   color: var(--neon-green, #00ff00);
   font-size: 1.1rem;
   font-weight: bold;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   cursor: pointer;

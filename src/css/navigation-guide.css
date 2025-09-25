@@ -50,7 +50,7 @@
   text-align: center;
   font-size: clamp(2.5rem, 4vw, 4rem);
   color: #00ff00;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-bottom: 1rem;
@@ -262,7 +262,7 @@
 
 .nav-card-title {
   font-size: 1.5rem;
-  font-family: 'VT323', monospace;
+  font-family: var(--font-primary);
   color: #00ff00;
   text-transform: uppercase;
   letter-spacing: 0.1em;
