@@ -70,8 +70,24 @@ export const SkillsPage: React.FC = () => {
       title: "AI Asset Generation",
       icon: "fas fa-palette",
       tooltip: "Creative AI tools for visual content, image generation, and design automation"
+    },
+    { title: "Agile & Scrum",
+      icon: "fas fa-tasks",
+      tooltip: "Agile methodologies, sprint planning, and team collaboration"
+    },
+    { title: "DevOps Practices",
+      icon: "fas fa-cogs",
+      tooltip: "CI/CD pipelines, infrastructure as code, and automated deployments"
+    },
+    { title: "Jira & Confluence",
+      icon: "fab fa-jira",
+      tooltip: "Project tracking, documentation, and team collaboration"
+    },
+    { title: "Testing & QA",
+      icon: "fas fa-vial",
+      tooltip: "Unit testing, integration testing, and automated test frameworks"
     }
-  ];
+    ];
 
   const toggleTags = (index: number) => {
     setExpandedTags(prev => ({
@@ -128,7 +144,7 @@ export const SkillsPage: React.FC = () => {
 
         {/* Additional Skills - Compact List */}
         <div className="additional-skills-section">
-          <h3 className="skill-section-title">--| Additional Specializations |--</h3>
+          <h3 className="skill-section-title">--| Other Specialisations |--</h3>
           <ul className="additional-skills-list">
             {additionalSkills.map((skill, index) => (
               <li key={index} className="additional-skill-item" data-tooltip={skill.tooltip}>

@@ -71,6 +71,14 @@ export const HomePage: React.FC = () => {
   
   // Add hover effects for buttons and cards
   useEffect(() => {
+    // Add matrix-loaded class to galleries section after delay to prevent visual glitch
+    const galleries = document.getElementById('galleries');
+    if (galleries) {
+      setTimeout(() => {
+        galleries.classList.add('matrix-loaded');
+      }, 2000);
+    }
+
     // Cascade entrance animations on page load
     const animatePageEntrance = () => {
       // Animate main introduction text with subtle cascade effect
@@ -120,9 +128,6 @@ export const HomePage: React.FC = () => {
       // Animate gallery cards with stagger effect
       const galleryCards = document.querySelectorAll('.gallery-card');
       galleryCards.forEach((card, index) => {
-        // Remove inline styles - let CSS classes handle initial state
-        card.classList.add('revealed');
-
         animate(card as HTMLElement, {
           opacity: [0, 1],
           translateY: [50, 0],
@@ -131,6 +136,11 @@ export const HomePage: React.FC = () => {
           delay: 1200 + index * 100,
           easing: 'easeOutQuint'
         });
+
+        // Add revealed class after animation completes and sync with MatrixRain delay
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, 2200 + index * 100); // 2200ms = 2000ms MatrixRain delay + 200ms buffer
       });
       
       // Animate buttons with bounce effect

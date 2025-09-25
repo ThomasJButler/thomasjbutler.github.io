@@ -4,6 +4,28 @@ import { Link } from 'react-router-dom';
 export const AboutPage: React.FC = () => {
   return (
     <>
+      <section id="programming-journey" className="about-section">
+        <div className="container">
+          <h2 className="section-title">My Programming Journey</h2>
+          <div className="journey-grid">
+            <div className="journey-item">
+              <i className="fas fa-lightbulb"></i>
+              <h4>The Beginning</h4>
+              <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-code"></i>
+              <h4>Learning & Growth</h4>
+              <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-robot"></i>
+              <h4>AI Exploration</h4>
+              <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="why-love-programming" className="about-section">
         <div className="container">
           <h2 className="section-title">Why I Love Programming</h2>
@@ -17,26 +39,6 @@ export const AboutPage: React.FC = () => {
             <p>
               Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
             </p>
-          </div>
-          <div className="programming-journey">
-            <h2 className="section-title">My Programming Journey</h2>
-            <div className="journey-grid">
-              <div className="journey-item">
-                <i className="fas fa-lightbulb"></i>
-                <h4>The Beginning</h4>
-                <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
-              </div>
-              <div className="journey-item">
-                <i className="fas fa-code"></i>
-                <h4>Learning & Growth</h4>
-                <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
-              </div>
-              <div className="journey-item">
-                <i className="fas fa-robot"></i>
-                <h4>AI Exploration</h4>
-                <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -118,27 +120,6 @@ export const AboutPage: React.FC = () => {
                 </a>
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="blog-cta" className="about-section">
-        <div className="container">
-          <div style={{textAlign: 'center', padding: '40px 0'}}>
-            <h2 className="section-title">Explore My Thoughts on Tech</h2>
-            <p className="highlight-text" style={{marginBottom: '30px'}}>
-              Dive into my collection of articles on AI, development, and human-centered technology
-            </p>
-            <Link to="/blog" 
-                  className="neo-matrix-btn" 
-                  style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', padding: '15px 30px'}}>
-              <i className="fas fa-book-open"></i>
-              <span>Read My Blog</span>
-              <i className="fas fa-arrow-right"></i>
-            </Link>
-            <p style={{marginTop: '20px', color: 'rgba(0, 255, 0, 0.7)'}}>
-              20+ articles on making technology more human
-            </p>
           </div>
         </div>
       </section>
