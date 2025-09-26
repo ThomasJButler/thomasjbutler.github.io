@@ -114,6 +114,14 @@ class PerformanceOptimizer {
     return { ...this.settings };
   }
 
+  public getMatrixRainEnabled(currentTheme?: string): boolean {
+    // Always enable Matrix rain when Matrix theme is active, regardless of device capabilities
+    if (currentTheme === 'matrix') {
+      return true;
+    }
+    return this.settings.enableMatrixRain;
+  }
+
   public updateSetting<K extends keyof PerformanceSettings>(
     key: K,
     value: PerformanceSettings[K]

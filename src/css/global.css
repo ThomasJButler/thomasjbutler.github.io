@@ -49,8 +49,14 @@ body.low-end-device * {
   transition: opacity 0.2s ease !important;
 }
 
+/* Hide Matrix rain on low-end devices only when NOT in Matrix theme */
 body.low-end-device .matrix-rain {
   display: none !important;
+}
+
+/* Override: Always show Matrix rain when Matrix theme is active */
+[data-theme="matrix"] .matrix-rain {
+  display: block !important;
 }
 
 /* Mobile device optimizations */
