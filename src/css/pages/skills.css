@@ -394,3 +394,92 @@
     }
 }
 
+/* ==========================================================================
+   Skills Page Icon Enhancements - Consolidated from skills-icons.css
+   Matrix-themed icon styling for technical skills
+   ========================================================================== */
+
+/* Skill Icon Styling */
+.skill-icon {
+    display: inline-block;
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    vertical-align: middle;
+}
+
+/* Icon hover effects */
+.skills-list li:hover .skill-icon {
+    transform: scale(1.2) rotate(5deg);
+    text-shadow:
+        0 0 20px rgba(0, 255, 0, 0.8),
+        0 0 30px rgba(0, 255, 0, 0.6),
+        0 0 40px rgba(0, 255, 0, 0.4);
+    color: var(--matrix-green);
+}
+
+/* Align h3 content properly */
+.skills-list li h3 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Pulse animation for icons on hover */
+@keyframes iconPulse {
+    0% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    50% {
+        transform: scale(1.3) rotate(-5deg);
+    }
+    100% {
+        transform: scale(1.2) rotate(5deg);
+    }
+}
+
+.skills-list li:hover .skill-icon {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+/* Special coloring for different skill categories */
+.skill-icon.fa-html5 { color: #E34C26; }
+.skill-icon.fa-css3-alt { color: #1572B6; }
+.skill-icon.fa-js { color: #F7DF1E; }
+.skill-icon.fa-python { color: #3776AB; }
+.skill-icon.fa-git-alt { color: #F05032; }
+.skill-icon.fa-node-js { color: #339933; }
+.skill-icon.fa-microsoft { color: #5E5E5E; }
+
+/* Override colors on hover to maintain Matrix theme */
+.skills-list li:hover .skill-icon {
+    color: var(--matrix-green) !important;
+}
+
+/* Accessibility - ensure icons don't interfere with screen readers */
+.skill-icon[aria-hidden="true"] {
+    speak: none;
+}
+
+/* Mobile responsiveness for skill icons */
+@media (max-width: 768px) {
+    .skill-icon {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    }
+
+    .skills-list li h3 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-icon {
+        font-size: 0.9rem;
+        margin-right: 0.4rem;
+    }
+}
+

@@ -61,32 +61,7 @@
 }
 
 /* Desktop layout - Optimal ratio */
-@media (min-width: 992px) {
-    .contact-grid {
-        grid-template-columns: 1fr 1fr; /* Equal columns */
-        gap: var(--space-2xl);
-        align-items: stretch;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    
-    .contact-info,
-    .contact-form-section {
-        min-height: 700px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .contact-info {
-        justify-content: space-between;
-    }
-    
-    .contact-form-section .contact-form {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-}
+/* Desktop layout moved to responsive.css */
 
 /* Contact Info Section - Refined */
 .contact-info {
@@ -1114,6 +1089,79 @@ p.info-card {
     }
 }
 
+/* Legacy Section Support - from pages/contact.css */
+#contact {
+    margin-top: 3rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+section#contact {
+    border: 1px solid #00FF00;
+    border-top: 1px solid #00FF00;
+    border-bottom: 1px solid #00FF00;
+    border-radius: 15px;
+}
+
+/* Enhanced Form Error Messages - from _contact-form.css */
+.form-error-message {
+    display: block;
+    color: #ff4444;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    border-radius: 4px;
+    font-family: var(--font-primary);
+}
+
+.form-error-message i {
+    margin-right: 0.5rem;
+}
+
+/* Form Hints - from _contact-form.css */
+.form-hint {
+    display: block;
+    color: rgba(0, 255, 0, 0.7);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-primary);
+}
+
+/* General Form Error - from _contact-form.css */
+.form-error {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Screen Reader Only Text - from _contact-form.css */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Print styles */
 @media print {
     .video-banner,
@@ -1123,11 +1171,11 @@ p.info-card {
     #contact-form::before {
         display: none;
     }
-    
+
     .contact-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-info,
     #contact-form {
         box-shadow: none;

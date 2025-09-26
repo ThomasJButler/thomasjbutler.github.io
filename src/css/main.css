@@ -16,7 +16,6 @@
 @import './components/_buttons.css';
 @import './components/_cards.css';
 @import './components/_forms.css';
-@import './components/_contact-form.css';
 
 /* Utilities */
 @import './utilities.css';
@@ -24,10 +23,12 @@
 @import './utilities/_helpers.css';
 @import './utilities/_animations.css';
 
+/* Responsive Styles - Consolidated media queries */
+@import './responsive.css';
+
 /* Page-Specific Styles - Reorganized into /pages/ directory */
 @import './pages/homepage.css';
 @import './pages/about.css';
-@import './pages/contact.css';
 @import './pages/services.css';
 @import './pages/skills.css';
 @import './pages/sitemap.css';
@@ -35,44 +36,9 @@
 /* Project Styles - Consolidated from 8 files */
 @import './components/projects.css';
 
-/* Legacy Imports - Remaining */
-@import './skills-icons.css';
-
-/* Legacy Imports */
+/* Global Styles - Essential functionality */
 @import './global.css';
-@import './header.css';
-@import './styles.css';
-/* hover-effects.css content merged into utilities.css */
-@import './typography.css';
 
-/* Contact Modern - Must come after legacy to override */
+/* Contact Modern - Comprehensive contact styling */
 @import './contact-modern.css';
 
-/* ==========================================================================
-   Print Styles
-   Must come last to override screen styles
-   ========================================================================== */
-
-@media print {
-    /* Hide non-essential elements */
-    nav,
-    footer,
-    .no-print {
-        display: none !important;
-    }
-    
-    /* Optimize for print */
-    body {
-        background: white;
-        color: black;
-    }
-    
-    a {
-        text-decoration: underline;
-    }
-    
-    /* Ensure content fits on page */
-    .container {
-        max-width: 100%;
-    }
-}

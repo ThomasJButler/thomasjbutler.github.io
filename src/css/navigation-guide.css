@@ -12,36 +12,7 @@
   overflow: hidden;
 }
 
-.nav-guide-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      rgba(0, 255, 0, 0.01) 1px,
-      transparent 2px,
-      transparent 100px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      rgba(0, 255, 0, 0.01) 1px,
-      transparent 2px,
-      transparent 100px
-    );
-  pointer-events: none;
-  animation: grid-drift 20s linear infinite;
-}
-
-@keyframes grid-drift {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(100px, 100px); }
-}
+/* Grid background removed as requested */
 
 /* ==========================================================================
    Title Styles
@@ -146,27 +117,9 @@
   pointer-events: none;
 }
 
-.nav-card-scanlines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0, 255, 0, 0.02) 0px,
-      transparent 1px,
-      transparent 2px,
-      rgba(0, 255, 0, 0.02) 3px
-    );
-  animation: scanline-move 8s linear infinite;
-}
+/* Scanlines removed as requested */
 
-@keyframes scanline-move {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(20px); }
-}
+/* Scanline animation removed as requested */
 
 .nav-card-particles {
   position: absolute;
@@ -302,26 +255,13 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: conic-gradient(
-    from 0deg,
-    transparent,
-    var(--card-color, #00ff00),
-    transparent 30%
-  );
   border-radius: 15px;
   opacity: 0;
-  animation: rotate-glow 3s linear infinite;
   z-index: -1;
 }
 
 .nav-card:hover .nav-card-glow {
   opacity: 0.5;
-}
-
-@keyframes rotate-glow {
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .nav-card-border {
@@ -473,9 +413,7 @@
   .nav-card-glow,
   .nav-card-border,
   .nav-card-particles::before,
-  .nav-card-particles::after,
-  .nav-card-scanlines,
-  .nav-guide-section::before {
+  .nav-card-particles::after {
     animation: none !important;
   }
 
