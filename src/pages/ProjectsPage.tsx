@@ -25,54 +25,109 @@ interface Project {
   category: string;
   backgroundImage?: string;
   gradient?: string;
+  status?: 'completed' | 'in-progress' | 'coming-soon';
+  featured?: boolean;
 }
 
 const projects: Project[] = [
+  // AI/ML Projects - Featured showcase from aitomatic.io
   {
-    id: 'python-projects',
-    name: 'Python Projects',
+    id: 'ai-comparison-showcase',
+    name: 'AI Comparison Showcase',
     visibility: 'Public',
-    description: 'Discover how I leverage Python to create mathematical fractals, fibonacci calculations, model prediction and mini python games.',
-    topics: ['Python', 'Algorithms', 'Mathematics', 'Fractals', 'Machine Learning', 'Games'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 100
-    },
-    stats: {
-      stars: 5,
-      forks: 2
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/PythonProjects'
-    },
-    category: 'personal',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214156/pythonprojects_vvszeh.png',
-    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'commercial-portfolio',
-    name: 'Commercial Portfolio v2.0',
-    visibility: 'Public',
-    description: 'Complete site revamp to V2.0 and added section showcasing all commercial work, with Notion integration for dynamic content management.',
-    topics: ['Portfolio', 'Notion API', 'CMS', 'Professional', 'Dynamic', 'Responsive'],
+    description: 'Compare responses from multiple AI models side-by-side in real-time. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity models with performance metrics and beautiful visualizations.',
+    topics: ['AI/ML', 'Next.js', 'TypeScript', 'Multiple AI APIs', 'Performance Metrics', 'Real-time'],
     language: {
       name: 'TypeScript',
       color: '#3178c6',
-      percent: 68
+      percent: 75
     },
     stats: {
-      stars: 12,
-      forks: 3
+      stars: 0,
+      forks: 0
     },
     links: {
-      demo: 'https://thomasjbutler.me',
-      github: 'https://github.com/ThomasJButler/commercial-portfolio-react'
+      demo: 'https://ai-comparison-showcase.vercel.app/',
+      github: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-'
     },
-    category: 'personal',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/commercialv20_rus9qz.png',
+    category: 'ai',
+    status: 'completed',
+    featured: true,
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png',
+    gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+  {
+    id: 'ai-code-generator',
+    name: 'AI Code Generator',
+    visibility: 'Public',
+    description: 'Generate production-ready code with AI assistance. Built with LangChain and React. Choose your language and generate code, unit tests, and documentation.',
+    topics: ['LangChain', 'GPT-4o', 'Python', 'Flask', 'React', 'Code Generation'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 60
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/AICodeGenerator'
+    },
+    category: 'ai',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201680/codegeneratorfrontend_jccy53.png',
+    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+  {
+    id: 'sql-ball',
+    name: 'SQL-Ball',
+    visibility: 'Public',
+    description: 'Football data analytics with natural language queries and AI insights. RAG-powered NL-to-SQL using a custom collated dataset of European football results.',
+    topics: ['Supabase', 'LangChain', 'React', 'OpenAI', 'PostgreSQL', 'RAG', 'Football Analytics'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 65
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/SQL-Ball'
+    },
+    category: 'ai',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053629/generatesql_yclpkb.png',
+    gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+  {
+    id: 'mastering-ai-portfolio',
+    name: 'Mastering AI Course Portfolio',
+    visibility: 'Public',
+    description: 'Interactive AI course portfolio showcasing projects and learning journey. A portfolio of web apps for the CodeCademy Mastering Generative AI & Agents for Developers Bootcamp.',
+    topics: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Anime.js', 'Portfolio', 'Course Projects'],
+    language: {
+      name: 'TypeScript',
+      color: '#3178c6',
+      percent: 80
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      demo: 'https://www.aitomatic.io/',
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+    },
+    category: 'ai',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
+
+  // Web Development Projects
   {
     id: 'portfolio-v3',
     name: 'Portfolio v3.0 - React Migration',
@@ -85,22 +140,71 @@ const projects: Project[] = [
       percent: 45
     },
     stats: {
-      stars: 8,
-      forks: 2
+      stars: 0,
+      forks: 0
     },
     links: {
       demo: '/react.html',
       github: 'https://github.com/ThomasJButler/ThomasJButler'
     },
     category: 'web',
+    status: 'completed',
+    featured: true,
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png',
     gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
+  },
+  {
+    id: 'lfc-news-reddit',
+    name: 'LFC News Reddit App',
+    visibility: 'Public',
+    description: 'A minimal Reddit app created with React, Redux and Reddit API to bring the latest transfer rumours across a variety of different subreddits.',
+    topics: ['React', 'Redux', 'Reddit API', 'Sports', 'News Aggregation', 'Real-time'],
+    language: {
+      name: 'JavaScript',
+      color: '#f1e05a',
+      percent: 80
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App'
+    },
+    category: 'web',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214152/lfcreddit_hgvxyz.png',
+    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(200, 16, 46, 0.8) 100%)'
+  },
+  {
+    id: 'dotnet-react-calendar',
+    name: 'Dotnet React Calendar',
+    visibility: 'Public',
+    description: 'A Calendar app project built with .NET, Fast Endpoints, React.js. Initially started as a code assessment, continued to master .NET backend development.',
+    topics: ['.NET', 'React', 'C#', 'Fast Endpoints', 'API', 'Full Stack'],
+    language: {
+      name: 'C#',
+      color: '#178600',
+      percent: 55
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      demo: 'https://dotnet-react-calendar.vercel.app/',
+      github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
+    },
+    category: 'web',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/dotnetcalculator_hjltgc.png',
+    gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'css-showcase',
     name: 'CSS Showcase',
     visibility: 'Public',
-    description: 'Interactive showcase of advanced CSS techniques, animations, and creative web designs demonstrating modern CSS capabilities.',
+    description: 'An interactive showcase of modern CSS foundations for learning and education purposes. Pure CSS, no frameworks.',
     topics: ['Pure CSS', 'Vanilla JS', ':has()', 'Container Queries', 'Responsive', 'No Framework'],
     language: {
       name: 'CSS',
@@ -108,185 +212,128 @@ const projects: Project[] = [
       percent: 85
     },
     stats: {
-      stars: 23,
-      forks: 7
+      stars: 0,
+      forks: 0
     },
     links: {
       demo: 'https://thomasjbutler.github.io/css-showcase/',
       github: 'https://github.com/ThomasJButler/css-showcase'
     },
     category: 'web',
+    status: 'completed',
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png',
     gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
+
+  // Creative & Games
   {
     id: 'matrix-arcade',
     name: 'The Matrix Arcade',
     visibility: 'Public',
-    description: 'An arcade website built using Vite, Python, and React to showcase playable mini-games created during my learning journey.',
-    topics: ['React', 'Python', 'Vite', 'Canvas API', 'Game Dev'],
+    description: 'A collection of games in the style of \'The Matrix\' movies. An arcade website built using Vite, Python, and React to showcase playable mini-games.',
+    topics: ['React', 'Python', 'Vite', 'Canvas API', 'Game Dev', 'Matrix Theme'],
     language: {
       name: 'JavaScript',
       color: '#f1e05a',
       percent: 72
     },
     stats: {
-      stars: 15,
-      forks: 5
+      stars: 0,
+      forks: 0
     },
     links: {
       demo: 'https://www.tomatic.tech/',
       github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
     },
     category: 'games',
+    status: 'completed',
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png',
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
-    id: 'ai-comparison',
-    name: 'AI Model Comparison Tool',
+    id: 'bigbang-gallery',
+    name: 'Big Bang Gallery',
     visibility: 'Public',
-    description: 'Part of AiTomatic Suite - Compare and evaluate different AI models side-by-side. Features real-time testing, performance metrics, and model recommendations.',
-    topics: ['AI/ML', 'Python', 'APIs', 'Analytics', 'Dashboard'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 60
-    },
-    stats: {
-      stars: 10,
-      forks: 4
-    },
-    links: {
-      demo: 'https://ai-comparison-showcase.vercel.app/',
-      github: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-'
-    },
-    category: 'ml',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png',
-    gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'dotnet-calculator',
-    name: 'Dotnet React Calculator',
-    visibility: 'Public',
-    description: 'Initially started as a code assessment, I continued developing this project to explore and master the ins and outs of .NET backend development and API customization alongside React frontend integration.',
-    topics: ['.NET', 'React', 'C#', 'API', 'Full Stack'],
-    language: {
-      name: 'C#',
-      color: '#178600',
-      percent: 55
-    },
-    stats: {
-      stars: 6,
-      forks: 1
-    },
-    links: {
-      demo: 'https://dotnet-react-calendar.vercel.app/',
-      github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
-    },
-    category: 'web',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/dotnetcalculator_hjltgc.png',
-    gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'landing-page',
-    name: 'Landing Page',
-    visibility: 'Public',
-    description: 'Interactive landing page with Matrix-inspired animations and effects',
-    topics: ['HTML5', 'CSS3', 'JavaScript', 'Animations', 'Matrix Theme'],
+    description: 'A creative image gallery / canvas inspired by the big bang. Creative visual gallery showcasing design work and experiments.',
+    topics: ['Gallery', 'Creative', 'Visual', 'Design', 'Canvas', 'Animation'],
     language: {
       name: 'JavaScript',
       color: '#f1e05a',
       percent: 65
     },
     stats: {
-      stars: 3,
-      forks: 1
+      stars: 0,
+      forks: 0
     },
     links: {
-      demo: 'landingpage.html',
-      github: 'https://github.com/ThomasJButler/landing-page'
+      demo: 'https://thomasjbutler.github.io/bigbang-gallery/',
+      github: 'https://github.com/ThomasJButler/bigbang-gallery'
     },
-    category: 'web',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/landingpage_nxcdeb.png',
-    gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.2) 0%, rgba(0, 20, 0, 0.95) 100%)'
+    category: 'creative',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/bigbang_cqxwzy.png',
+    gradient: 'linear-gradient(135deg, rgba(255, 100, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
+
+  // Python Projects
+  {
+    id: 'python-projects',
+    name: 'Python Projects',
+    visibility: 'Public',
+    description: 'This is a collection of Python hobby projects, from climate visualisations in Project Aetheris to the terminal text adventure of Ctrl-S the World.',
+    topics: ['Python', 'Algorithms', 'Mathematics', 'Fractals', 'Machine Learning', 'Games'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 100
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/PythonProjects'
+    },
+    category: 'personal',
+    status: 'completed',
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214156/pythonprojects_vvszeh.png',
+    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+
+  // Personal Projects
   {
     id: 'version-timetravel',
     name: 'Version TimeTravel',
     visibility: 'Public',
-    description: 'Visual timeline of portfolio evolution and version history',
-    topics: ['Timeline', 'Version Control', 'Interactive', 'History'],
+    description: 'Personal journey documenting the gradual transformation of my portfolio website. Visual timeline of portfolio evolution and version history.',
+    topics: ['Timeline', 'Version Control', 'Interactive', 'History', 'Portfolio Evolution'],
     language: {
       name: 'JavaScript',
       color: '#f1e05a',
       percent: 70
     },
     stats: {
-      stars: 2,
+      stars: 0,
       forks: 0
     },
     links: {
-      demo: 'timetravel.html',
+      demo: 'https://thomasjbutler.github.io/version-timetravel/',
       github: 'https://github.com/ThomasJButler/version-timetravel'
     },
-    category: 'web',
+    category: 'personal',
+    status: 'completed',
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/timetravel_dqpgqu.png',
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'big-bang-gallery',
-    name: 'The Big Bang Gallery',
-    visibility: 'Public',
-    description: 'Creative visual gallery showcasing design work and experiments',
-    topics: ['Gallery', 'Creative', 'Visual', 'Design', 'Showcase'],
-    language: {
-      name: 'CSS',
-      color: '#563d7c',
-      percent: 80
-    },
-    stats: {
-      stars: 4,
-      forks: 2
-    },
-    links: {
-      demo: 'gallery.html',
-      github: 'https://github.com/ThomasJButler/big-bang-gallery'
-    },
-    category: 'personal',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214152/bigbanggallery_s7lkfg.png',
-    gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'premier-league-oracle',
-    name: 'The Premier League Oracle',
-    visibility: 'Public',
-    description: 'Football statistics and prediction system using data analysis',
-    topics: ['Python', 'Data Analysis', 'Machine Learning', 'Sports', 'Predictions'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 85
-    },
-    stats: {
-      stars: 7,
-      forks: 3
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/premier-league-oracle'
-    },
-    category: 'ml',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/plpredictor_w4fqjr.png',
-    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.3) 0%, rgba(0, 40, 0, 0.9) 100%)'
   }
 ];
 
 const categories = [
   { id: 'all', label: 'All Projects' },
+  { id: 'ai', label: 'AI & Machine Learning' },
   { id: 'web', label: 'Web Development' },
-  { id: 'ml', label: 'AI & ML' },
-  { id: 'games', label: 'Games' },
-  { id: 'personal', label: 'Personal' }
+  { id: 'games', label: 'Games & Creative' },
+  { id: 'creative', label: 'Creative Projects' },
+  { id: 'personal', label: 'Personal Projects' }
 ];
 
 export const ProjectsPage: React.FC = () => {
@@ -295,7 +342,7 @@ export const ProjectsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  useMatrixAnimation(containerRef, {});
+  useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
   useCardAnimations();
 
   useEffect(() => {
@@ -502,9 +549,21 @@ export const ProjectsPage: React.FC = () => {
               }} />
               
               <div className="matrix-project-header relative z-20">
-                <h3 className="matrix-project-title">
-                  <i className="fas fa-terminal"></i> {project.name}
-                </h3>
+                <div className="project-title-row">
+                  <h3 className="matrix-project-title">
+                    <i className="fas fa-terminal"></i> {project.name}
+                  </h3>
+                  {project.featured && (
+                    <span className="featured-badge">
+                      <i className="fas fa-star"></i> Featured
+                    </span>
+                  )}
+                  {project.status && project.status !== 'completed' && (
+                    <span className={`status-badge status-${project.status}`}>
+                      {project.status === 'in-progress' ? 'In Progress' : 'Coming Soon'}
+                    </span>
+                  )}
+                </div>
                 <div className="matrix-project-stats">
                   <span className="stat">
                     <i className="fas fa-star"></i> {project.stats.stars}
@@ -512,6 +571,7 @@ export const ProjectsPage: React.FC = () => {
                   <span className="stat">
                     <i className="fas fa-code-branch"></i> {project.stats.forks}
                   </span>
+                  <span className="visibility-badge">{project.visibility}</span>
                 </div>
               </div>
               
