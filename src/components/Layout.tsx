@@ -19,6 +19,7 @@ export const Layout: React.FC = () => {
   // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix theme
   const shouldShowMatrixRain = theme === 'matrix' && performanceOptimizer.getMatrixRainEnabled(theme);
 
+
   useEffect(() => {
     // Simple fade transition for better performance
     if (contentRef.current) {

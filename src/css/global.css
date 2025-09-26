@@ -57,6 +57,16 @@ body.low-end-device .matrix-rain {
 /* Override: Always show Matrix rain when Matrix theme is active */
 [data-theme="matrix"] .matrix-rain {
   display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure Matrix rain is always visible in Matrix theme, regardless of device class */
+[data-theme="matrix"] body.low-end-device .matrix-rain,
+[data-theme="matrix"] body.mobile-device .matrix-rain,
+[data-theme="matrix"] body.disable-backgrounds .matrix-rain {
+  display: block !important;
+  opacity: 1 !important;
 }
 
 /* Mobile device optimizations */

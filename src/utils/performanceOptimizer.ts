@@ -26,18 +26,18 @@ class PerformanceOptimizer {
   private detectOptimalSettings(): PerformanceSettings {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     // Check if mobile device
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
+
     // Check device memory (if available)
     const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory;
     const isLowMemory = deviceMemory && deviceMemory < 4;
-    
+
     // Check hardware concurrency (CPU cores)
     const hardwareConcurrency = navigator.hardwareConcurrency || 2;
     const isLowCPU = hardwareConcurrency < 4;
-    
+
     // Check connection speed
     const connection = (navigator as { connection?: { effectiveType?: string } }).connection;
     const isSlowConnection = connection && (
@@ -45,9 +45,10 @@ class PerformanceOptimizer {
       connection.effectiveType === '2g' ||
       connection.effectiveType === '3g'
     );
-    
+
     // Determine if low-end device
     this.isLowEndDevice = isLowMemory || isLowCPU || isSlowConnection || this.isMobile;
+
     
     // Return optimized settings
     if (prefersReducedMotion) {
@@ -120,6 +121,11 @@ class PerformanceOptimizer {
       return true;
     }
     return this.settings.enableMatrixRain;
+  }
+
+  public forceEnableMatrixRain(): void {
+    // Force enable Matrix rain regardless of performance settings
+    this.settings.enableMatrixRain = true;
   }
 
   public updateSetting<K extends keyof PerformanceSettings>(
