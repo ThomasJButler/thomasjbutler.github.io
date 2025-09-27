@@ -218,7 +218,6 @@ export const NavigationGuide: React.FC = () => {
               <div className="nav-card-background">
                 <div className="nav-card-scanlines"></div>
                 <div className="nav-card-particles"></div>
-                <div className="nav-card-circuit"></div>
               </div>
 
               <div className="nav-card-content">
