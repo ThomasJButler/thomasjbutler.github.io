@@ -567,7 +567,6 @@
     gap: 2rem;
     position: relative;
     transform-style: preserve-3d;
-    min-height: calc(3 * 450px + 4rem);
 }
 
 /* Matrix Project Tabs */
@@ -950,6 +949,7 @@
         font-size: 0.55rem;
         padding: 0.1rem 0.3rem;
     }
+<<<<<<< HEAD
 }
 
 /* ==========================================================================
@@ -1724,4 +1724,6 @@
         border-radius: 6px !important;
         border: 1px solid rgba(0, 255, 0, 0.5) !important;
     }
+=======
+>>>>>>> parent of 421c92a (Implement epic reverse Pokemon card flip system for projects page)
 }

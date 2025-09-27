@@ -72,7 +72,6 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: 'https://ai-code-generator.vercel.app/',
       github: 'https://github.com/ThomasJButler/AICodeGenerator'
     },
     category: 'ai',
@@ -96,7 +95,6 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: 'https://sql-ball.vercel.app/',
       github: 'https://github.com/ThomasJButler/SQL-Ball'
     },
     category: 'ai',
@@ -127,98 +125,6 @@ const projects: Project[] = [
     status: 'completed',
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'git-review-assistant',
-    name: 'Git Review Assistant',
-    visibility: 'Public',
-    description: 'AI-powered code review system with automated PR feedback. Intelligent analysis of code changes with contextual suggestions and quality metrics.',
-    topics: ['LangChain', 'GitHub API', 'FastAPI', 'Code Review', 'AI Analysis', 'Automation'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 70
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/git-review-assistant'
-    },
-    category: 'ai',
-    status: 'in-progress',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201681/gitreview_placeholder.png',
-    gradient: 'linear-gradient(135deg, rgba(255, 69, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'rag-chatbot',
-    name: 'RAG Chatbot',
-    visibility: 'Public',
-    description: 'Document-based Q&A system with semantic search and citations. Advanced retrieval-augmented generation for intelligent document interaction.',
-    topics: ['Pinecone', 'OpenAI', 'LangChain', 'RAG', 'Vector Search', 'Document Analysis'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 80
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/rag-chatbot'
-    },
-    category: 'ai',
-    status: 'in-progress',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201682/ragchatbot_placeholder.png',
-    gradient: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'multi-agent-system',
-    name: 'Multi-Agent System',
-    visibility: 'Public',
-    description: 'Collaborative AI agents for complex task orchestration. Advanced multi-agent workflows with LangGraph for sophisticated problem-solving.',
-    topics: ['LangGraph', 'Multiple LLMs', 'WebSocket', 'Agent Orchestration', 'Workflow', 'Collaboration'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 85
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/multi-agent-system'
-    },
-    category: 'ai',
-    status: 'coming-soon',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201683/multiagent_placeholder.png',
-    gradient: 'linear-gradient(135deg, rgba(30, 144, 255, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'dev-workflow-agent',
-    name: 'Dev Workflow Agent',
-    visibility: 'Public',
-    description: 'Automate development workflows with MCP integration. Intelligent automation for CI/CD, testing, and deployment processes.',
-    topics: ['MCP', 'GitHub Actions', 'Docker', 'CI/CD', 'Automation', 'DevOps'],
-    language: {
-      name: 'TypeScript',
-      color: '#3178c6',
-      percent: 75
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/dev-workflow-agent'
-    },
-    category: 'ai',
-    status: 'coming-soon',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201684/devworkflow_placeholder.png',
-    gradient: 'linear-gradient(135deg, rgba(50, 205, 50, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
   // Web Development Projects
@@ -432,39 +338,20 @@ const categories = [
 
 export const ProjectsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
-  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-
-  const PROJECTS_PER_PAGE = 9; // 3x3 grid
 
   useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
   useCardAnimations();
 
-  // Filter projects by category
   useEffect(() => {
     if (activeCategory === 'all') {
-      setFilteredProjects(projects);
+      setVisibleProjects(projects);
     } else {
-      setFilteredProjects(projects.filter(p => p.category === activeCategory));
+      setVisibleProjects(projects.filter(p => p.category === activeCategory));
     }
-    setCurrentPage(1); // Reset to first page when category changes
   }, [activeCategory]);
-
-  // Apply pagination to filtered projects
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
-    const endIndex = startIndex + PROJECTS_PER_PAGE;
-    setVisibleProjects(filteredProjects.slice(startIndex, endIndex));
-  }, [filteredProjects, currentPage]);
-
-  // Calculate pagination info
-  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
-  const hasNextPage = currentPage < totalPages;
-  const hasPrevPage = currentPage > 1;
 
   useEffect(() => {
     if (gridRef.current) {
@@ -514,9 +401,8 @@ export const ProjectsPage: React.FC = () => {
   
   // Add particle effects to buttons
   useEffect(() => {
-    const handleButtonClick = (e: Event) => {
-      const mouseEvent = e as MouseEvent;
-      createParticleBurst(mouseEvent.clientX, mouseEvent.clientY);
+    const handleButtonClick = (e: MouseEvent) => {
+      createParticleBurst(e.clientX, e.clientY);
     };
     
     const buttons = document.querySelectorAll('.neo-matrix-btn');
@@ -533,7 +419,7 @@ export const ProjectsPage: React.FC = () => {
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
-
+    
     // Animate tab change
     const tabButtons = document.querySelectorAll('.matrix-tab-button');
     animate(tabButtons as NodeListOf<HTMLElement>, {
@@ -543,44 +429,77 @@ export const ProjectsPage: React.FC = () => {
     });
   };
 
-  const handleNextPage = () => {
-    if (hasNextPage) {
-      setCurrentPage(prev => prev + 1);
-      // Smooth scroll to top of projects section
-      containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (hasPrevPage) {
-      setCurrentPage(prev => prev - 1);
-      // Smooth scroll to top of projects section
-      containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-    containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Epic card flip system - like a reverse Pokemon card!
-  const handleCardFlip = (projectId: string) => {
-    setFlippedCards(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(projectId)) {
-        newSet.delete(projectId);
-      } else {
-        newSet.add(projectId);
+  const handleCardHover = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    
+    // Enhanced 3D tilt effect
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -5; // Reduced tilt
+      const rotateY = ((x - centerX) / centerX) * 5;  // Reduced tilt
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateZ(10px)`;
+      
+      // Move overlay based on mouse position
+      const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+      if (overlay) {
+        overlay.style.background = `
+          radial-gradient(
+            circle at ${x}px ${y}px,
+            rgba(0, 255, 0, 0.1) 0%,
+            rgba(0, 0, 0, 0.4) 20%,
+            rgba(0, 20, 0, 0.9) 60%,
+            rgba(0, 20, 0, 0.95) 100%
+          )
+        `;
       }
-      return newSet;
+    };
+    
+    card.addEventListener('mousemove', handleMouseMove);
+    card.dataset.mouseHandler = 'true';
+    
+    // Animate in
+    animate(card, {
+      scale: 1.05,
+      boxShadow: ['0 2px 10px rgba(0, 0, 0, 0.3)', '0 20px 40px rgba(0, 255, 0, 0.4)'],
+      duration: 300,
+      easing: 'easeOutQuad'
     });
+    
+    // Glow effect
+    card.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1)';
   };
 
-  // Mobile touch support for better UX
-  const handleTouchStart = (e: React.TouchEvent, projectId: string) => {
-    e.preventDefault();
-    handleCardFlip(projectId);
+  const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    
+    // Remove mouse move handler
+    if (card.dataset.mouseHandler) {
+      card.style.transform = '';
+      delete card.dataset.mouseHandler;
+    }
+    
+    // Reset overlay
+    const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
+    if (overlay) {
+      overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)';
+    }
+    
+    // Animate out
+    animate(card, {
+      scale: 1,
+      boxShadow: ['0 20px 40px rgba(0, 255, 0, 0.4)', '0 2px 10px rgba(0, 0, 0, 0.3)'],
+      duration: 300,
+      easing: 'easeOutQuad'
+    });
+    
+    card.style.boxShadow = '';
   };
 
   return (
@@ -603,6 +522,7 @@ export const ProjectsPage: React.FC = () => {
         </div>
 
         <div ref={gridRef} className="matrix-project-grid">
+<<<<<<< HEAD
           {visibleProjects.map((project) => {
             const isFlipped = flippedCards.has(project.id);
             return (
@@ -730,118 +650,107 @@ export const ProjectsPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
+=======
+          {visibleProjects.map((project) => (
+            <article
+              key={project.id}
+              className="matrix-project-card"
+              data-category={project.category}
+              onMouseEnter={handleCardHover}
+              onMouseLeave={handleCardLeave}
+              style={{
+                background: project.gradient || 'rgba(0, 20, 0, 0.6)',
+                backgroundImage: project.backgroundImage ? `url(${project.backgroundImage})` : undefined,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundBlendMode: 'overlay'
+              }}
+            >
+              {/* Background overlay for better text readability */}
+              <div className="project-card-overlay absolute" style={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)',
+                zIndex: 1,
+                pointerEvents: 'none'
+              }} />
+              
+              <div className="matrix-project-header relative z-20">
+                <div className="project-title-row">
+                  <h3 className="matrix-project-title">
+                    <i className="fas fa-terminal"></i> {project.name}
+                  </h3>
+                  {project.featured && (
+                    <span className="featured-badge">
+                      <i className="fas fa-star"></i> Featured
+                    </span>
+                  )}
+                  {project.status && project.status !== 'completed' && (
+                    <span className={`status-badge status-${project.status}`}>
+                      {project.status === 'in-progress' ? 'In Progress' : 'Coming Soon'}
+                    </span>
+                  )}
+>>>>>>> parent of 421c92a (Implement epic reverse Pokemon card flip system for projects page)
                 </div>
-              </article>
-            );
-          })}
+                <div className="matrix-project-stats">
+                  <span className="stat">
+                    <i className="fas fa-star"></i> {project.stats.stars}
+                  </span>
+                  <span className="stat">
+                    <i className="fas fa-code-branch"></i> {project.stats.forks}
+                  </span>
+                  <span className="visibility-badge">{project.visibility}</span>
+                </div>
+              </div>
+              
+              <div className="matrix-project-content relative z-20">
+                <p className="matrix-project-description">{project.description}</p>
+                
+                <div className="matrix-project-tags">
+                  {project.topics.map((topic, index) => (
+                    <span key={index} className="matrix-tag">{topic}</span>
+                  ))}
+                </div>
+                
+                <div className="matrix-project-language">
+                  <span 
+                    className="language-dot" 
+                    style={{ backgroundColor: project.language.color }}
+                  ></span>
+                  <span className="language-name">{project.language.name}</span>
+                  <span className="language-percent">{project.language.percent}%</span>
+                </div>
+              </div>
+              
+              <div className="matrix-project-buttons relative z-20">
+                {project.links.demo && (
+                  <a 
+                    href={project.links.demo} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="neo-matrix-btn"
+                  >
+                    <i className="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                )}
+                {project.links.github && (
+                  <a 
+                    href={project.links.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="neo-matrix-btn"
+                  >
+                    <i className="fab fa-github"></i>
+                    View Code
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
-
-        {/* Matrix-themed Pagination Controls */}
-        {totalPages > 1 && (
-          <div className="matrix-pagination" style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '1rem',
-            marginTop: '3rem',
-            padding: '2rem 0'
-          }}>
-            {/* Previous Button */}
-            <button
-              onClick={handlePrevPage}
-              disabled={!hasPrevPage}
-              className="matrix-pagination-btn"
-              style={{
-                background: hasPrevPage ? 'rgba(0, 20, 0, 0.8)' : 'rgba(0, 10, 0, 0.4)',
-                border: `2px solid ${hasPrevPage ? 'rgba(0, 255, 0, 0.6)' : 'rgba(0, 255, 0, 0.2)'}`,
-                color: hasPrevPage ? '#00ff00' : 'rgba(0, 255, 0, 0.4)',
-                padding: '0.8rem 1.2rem',
-                borderRadius: '4px',
-                cursor: hasPrevPage ? 'pointer' : 'not-allowed',
-                fontFamily: 'var(--font-primary)',
-                fontSize: '1rem',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              <i className="fas fa-chevron-left"></i>
-              PREV
-            </button>
-
-            {/* Page Numbers */}
-            <div style={{
-              display: 'flex',
-              gap: '0.5rem',
-              alignItems: 'center'
-            }}>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => handlePageClick(page)}
-                  className="matrix-page-btn"
-                  style={{
-                    background: page === currentPage ? 'rgba(0, 255, 0, 0.2)' : 'rgba(0, 20, 0, 0.6)',
-                    border: `2px solid ${page === currentPage ? '#00ff00' : 'rgba(0, 255, 0, 0.4)'}`,
-                    color: page === currentPage ? '#00ff00' : 'rgba(0, 255, 0, 0.8)',
-                    padding: '0.6rem 1rem',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-primary)',
-                    fontSize: '0.9rem',
-                    fontWeight: 'bold',
-                    minWidth: '40px',
-                    transition: 'all 0.3s ease',
-                    textShadow: page === currentPage ? '0 0 10px rgba(0, 255, 0, 0.8)' : 'none',
-                    boxShadow: page === currentPage ? '0 0 15px rgba(0, 255, 0, 0.4)' : 'none'
-                  }}
-                >
-                  {page}
-                </button>
-              ))}
-            </div>
-
-            {/* Next Button */}
-            <button
-              onClick={handleNextPage}
-              disabled={!hasNextPage}
-              className="matrix-pagination-btn"
-              style={{
-                background: hasNextPage ? 'rgba(0, 20, 0, 0.8)' : 'rgba(0, 10, 0, 0.4)',
-                border: `2px solid ${hasNextPage ? 'rgba(0, 255, 0, 0.6)' : 'rgba(0, 255, 0, 0.2)'}`,
-                color: hasNextPage ? '#00ff00' : 'rgba(0, 255, 0, 0.4)',
-                padding: '0.8rem 1.2rem',
-                borderRadius: '4px',
-                cursor: hasNextPage ? 'pointer' : 'not-allowed',
-                fontFamily: 'var(--font-primary)',
-                fontSize: '1rem',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              NEXT
-              <i className="fas fa-chevron-right"></i>
-            </button>
-
-            {/* Page Info */}
-            <div style={{
-              color: 'rgba(0, 255, 0, 0.7)',
-              fontFamily: 'var(--font-primary)',
-              fontSize: '0.9rem',
-              marginLeft: '1rem',
-              letterSpacing: '1px'
-            }}>
-              PAGE {currentPage} OF {totalPages}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
