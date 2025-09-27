@@ -170,23 +170,7 @@
   }
 }
 
-.nav-card-circuit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 80%;
-  transform: translate(-50%, -50%);
-  background:
-    linear-gradient(90deg, transparent 48%, var(--card-color, rgba(0, 255, 0, 0.1)) 50%, transparent 52%),
-    linear-gradient(0deg, transparent 48%, var(--card-color, rgba(0, 255, 0, 0.1)) 50%, transparent 52%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.nav-card:hover .nav-card-circuit {
-  opacity: 0.3;
-}
+/* nav-card-circuit styles removed - cross effect disabled */
 
 /* ==========================================================================
    Card Content
