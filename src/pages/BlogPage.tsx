@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
-import { 
-  loadAllBlogPosts, 
-  searchBlogPosts, 
-  filterByTag, 
+import {
+  loadAllBlogPosts,
+  searchBlogPosts,
+  filterByTag,
   getAllTags,
-  BlogPost 
+  BlogPost
 } from '../utils/blogLoader';
+import '../css/blog.css';
 import { BlogList } from '../components/BlogList';
 
 export const BlogPage: React.FC = () => {

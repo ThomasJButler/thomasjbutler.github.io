@@ -1,310 +1,690 @@
-/* About Page Styles - V3.0 */
+/* About Page Styles - V3.5 Matrix Enhanced */
 
-/* Qualifications Grid */
-.qualifications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
-    margin: var(--space-xl) 0;
-}
-
-.qualification-card {
-    background: rgba(0, 255, 0, 0.05);
-    border: 2px solid var(--matrix-green);
-    border-radius: 8px;
-    padding: var(--space-lg);
-    transition: all 0.3s var(--ease-out);
-}
-
-.qualification-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
-}
-
-.qualification-card h3 {
-    color: var(--matrix-green);
-    margin-bottom: var(--space-sm);
-    font-size: 1.1rem;
-}
-
-.qualification-date {
-    color: #888;
-    font-size: 0.9rem;
-    margin-bottom: var(--space-sm);
-}
-
-.verify-link {
-    color: var(--matrix-green);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.verify-link:hover {
-    color: #fff;
-}
-
-.certification-badge {
-    max-width: 100px;
-    height: auto;
-    margin-top: var(--space-md);
-}
-
-/* Additional Certifications - Enhanced */
-.additional-certifications {
-    margin-top: var(--space-2xl);
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(0, 40, 0, 0.3), rgba(0, 60, 0, 0.2));
-    border: 2px solid rgba(0, 255, 0, 0.3);
-    border-radius: 12px;
-    padding: var(--space-2xl);
+/* Matrix Qualifications Section */
+.qualifications-section {
     position: relative;
-    overflow: hidden;
+    padding: var(--space-4xl) 0;
+    background: radial-gradient(ellipse at center, rgba(0, 20, 0, 0.2) 0%, transparent 70%);
 }
 
-.additional-certifications::before {
+.qualifications-section::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--matrix-green), transparent, var(--matrix-green));
-    border-radius: 12px;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.02) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(0, 255, 0, 0.02) 3px
+    );
+    pointer-events: none;
+    animation: scanlines 8s linear infinite;
+}
+
+/* Matrix Timeline */
+.matrix-timeline {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--matrix-green) 20%,
+        var(--matrix-green) 80%,
+        transparent 100%
+    );
+    transform: translateX(-50%);
+    animation: dataStream 3s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes dataStream {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; box-shadow: 0 0 20px var(--matrix-green); }
+}
+
+/* Qualification Tiers */
+.qualifications-tier {
+    margin: var(--space-3xl) 0;
+    position: relative;
+    z-index: 2;
+}
+
+.tier-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    color: var(--matrix-green);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: var(--space-2xl);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    position: relative;
+}
+
+.tier-glyph {
+    font-size: 1.2em;
+    margin: 0 var(--space-md);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 10px var(--matrix-green); }
+    50% { text-shadow: 0 0 30px var(--matrix-green), 0 0 40px var(--matrix-cyan); }
+}
+
+/* Primary Tier - Holographic Cards */
+.holographic-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: var(--space-2xl);
+    margin: var(--space-2xl) 0;
+}
+
+.holographic-card {
+    position: relative;
+    background: linear-gradient(135deg,
+        rgba(0, 40, 0, 0.6) 0%,
+        rgba(0, 60, 0, 0.4) 50%,
+        rgba(0, 40, 0, 0.6) 100%
+    );
+    border: 2px solid rgba(0, 255, 0, 0.4);
+    border-radius: 15px;
+    padding: var(--space-xl);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.holographic-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg,
+        var(--matrix-green),
+        var(--matrix-cyan),
+        var(--matrix-green)
+    );
+    border-radius: 15px;
     opacity: 0;
-    z-index: -1;
+    z-index: -2;
     transition: opacity 0.3s ease;
 }
 
-.additional-certifications:hover::before {
-    opacity: 0.2;
+.holographic-card:hover::before {
+    opacity: 0.3;
 }
 
-.additional-certifications:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+.holographic-card:hover {
+    transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+    box-shadow:
+        0 20px 40px rgba(0, 255, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.additional-certifications h3 {
-    margin-bottom: var(--space-xl);
-    font-size: clamp(1.5rem, 1.3rem + 1vw, 1.75rem);
-    color: var(--matrix-green);
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.certification-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    max-width: 700px;
-    margin: 0 auto;
-    display: grid;
-    gap: var(--space-md);
-}
-
-.certification-list li {
-    display: flex;
-    align-items: flex-start;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    padding: var(--space-md);
-    background: rgba(0, 255, 0, 0.03);
-    border-left: 3px solid var(--matrix-green);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.certification-list li::before {
-    content: '';
+.card-glow {
     position: absolute;
-    top: 0;
-    left: -100%;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(0, 255, 0, 0.1) 0%,
+        transparent 70%
+    );
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.holographic-card:hover .card-glow {
+    opacity: 1;
+}
+
+.holographic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.05) 25%,
+        transparent 50%,
+        rgba(255, 0, 255, 0.05) 75%,
+        transparent 100%
+    );
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.holographic-card:hover .holographic-overlay {
+    opacity: 1;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Matrix Badges */
+.matrix-badge {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: var(--space-lg);
+    flex-shrink: 0;
+}
+
+.badge-svg {
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
-    transition: left 0.5s ease;
+    filter: drop-shadow(0 0 10px var(--matrix-green));
 }
 
-.certification-list li:hover::before {
-    left: 100%;
+.badge-shape {
+    fill: none;
+    stroke: var(--matrix-green);
+    stroke-width: 2;
+    animation: badgeRotate 10s linear infinite;
 }
 
-.certification-list li:hover {
-    background: rgba(0, 255, 0, 0.06);
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.15);
+.badge-center {
+    fill: rgba(0, 255, 0, 0.1);
+    stroke: var(--matrix-green);
+    stroke-width: 1;
 }
 
-.certification-list i {
-    color: var(--matrix-green);
-    margin-right: var(--space-md);
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
-    animation: pulse-icon 2s ease-in-out infinite;
-}
-
-@keyframes pulse-icon {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-}
-
-/* Neo Matrix Button */
-.neo-matrix-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
-    background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
-    border: 1px solid var(--matrix-green);
-    border-radius: 6px;
-    color: var(--matrix-green);
-    text-decoration: none;
-    transition: all 0.3s var(--ease-out);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
+.badge-level, .badge-type {
+    fill: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 12px;
     font-weight: bold;
 }
 
-/* Center the View Full Education button */
-.additional-certifications p:last-of-type {
-    text-align: center;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
+@keyframes badgeRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.neo-matrix-btn:hover {
+.badge-pulse, .verification-pulse, .ai-pulse {
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.badge-pulse {
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, transparent 70%);
+}
+
+.verification-pulse {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+}
+
+.ai-pulse {
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+/* Certificate Header */
+.cert-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+}
+
+.cert-details h3 {
+    color: var(--matrix-green);
+    font-size: 1.3rem;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.cert-date {
+    color: rgba(0, 255, 0, 0.7);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.cert-date i {
+    color: var(--matrix-cyan);
+}
+
+.cert-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+}
+
+/* Skill Tags */
+.cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.skill-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--matrix-green);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Matrix Verify Button */
+.matrix-verify-btn {
+    position: relative;
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(45deg,
+        rgba(0, 40, 0, 0.8),
+        rgba(0, 60, 0, 0.6)
+    );
+    border: 2px solid var(--matrix-green);
+    border-radius: 6px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.matrix-verify-btn:hover {
     background: var(--matrix-green);
     color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
-.neo-matrix-btn i {
-    transition: transform 0.3s ease;
+.verify-animation {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
-.neo-matrix-btn:hover i {
-    transform: translateX(4px);
+.matrix-verify-btn:hover .verify-animation {
+    transform: translateX(100%);
 }
 
-/* Content Improvements */
-#qualifications h2 {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-    font-size: var(--font-size-h2);
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-}
-
-#qualifications p {
-    max-width: 800px;
-    margin: 0 auto var(--space-xl);
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: rgba(0, 255, 0, 0.9);
-}
-
-/* Enhanced Qualifications Grid */
-.qualifications-grid {
+/* Secondary Tier - Matrix Grid */
+.certification-matrix-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-2xl) 0;
 }
 
-.qualification-card {
-    background: rgba(0, 20, 0, 0.4);
-    border: 1px solid rgba(0, 255, 0, 0.3);
-    border-radius: 12px;
-    padding: 2rem;
+.matrix-cert-item {
     position: relative;
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 10px;
+    padding: var(--space-lg);
+    text-align: center;
     transition: all 0.3s ease;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
 }
 
-.qualification-card:hover {
-    border-color: rgba(0, 255, 0, 0.6);
-    box-shadow: 0 8px 32px rgba(0, 255, 0, 0.15);
-    transform: translateY(-4px);
+.matrix-cert-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--matrix-green);
+    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
 }
 
-.qualification-card h3 {
-    color: var(--matrix-green, #00ff00);
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+.cert-icon {
+    font-size: 2.5rem;
+    color: var(--matrix-green);
+    margin-bottom: var(--space-md);
+    filter: drop-shadow(0 0 10px var(--matrix-green));
+}
+
+.cert-name {
+    display: block;
+    font-weight: bold;
+    color: var(--matrix-green);
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+}
+
+.cert-detail {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
     line-height: 1.4;
 }
 
-.qualification-card p {
-    color: rgba(0, 255, 0, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+.achievement-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
-/* Badge styling improvements */
-.qualification-card img {
-    max-width: 120px;
-    height: auto;
-    margin: 1rem auto;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 255, 0, 0.2);
+.matrix-cert-item:hover .achievement-glow {
+    opacity: 1;
 }
 
-/* Responsive Design */
+.aws-glow { background: radial-gradient(circle, rgba(255, 153, 0, 0.1) 0%, transparent 70%); }
+.azure-glow { background: radial-gradient(circle, rgba(0, 120, 215, 0.1) 0%, transparent 70%); }
+.cisco-glow { background: radial-gradient(circle, rgba(29, 162, 216, 0.1) 0%, transparent 70%); }
+.hubspot-glow { background: radial-gradient(circle, rgba(255, 122, 89, 0.1) 0%, transparent 70%); }
+.code-glow { background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, transparent 70%); }
+.python-glow { background: radial-gradient(circle, rgba(255, 212, 59, 0.1) 0%, transparent 70%); }
+
+/* Matrix Portal Button */
+.external-portfolio-link {
+    text-align: center;
+    margin-top: var(--space-3xl);
+}
+
+.matrix-portal-btn {
+    position: relative;
+    display: inline-block;
+    padding: var(--space-lg) var(--space-2xl);
+    background: radial-gradient(circle,
+        rgba(0, 40, 0, 0.8) 0%,
+        rgba(0, 20, 0, 0.6) 100%
+    );
+    border: 3px solid var(--matrix-green);
+    border-radius: 50px;
+    color: var(--matrix-green);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.portal-ring {
+    position: absolute;
+    inset: -10px;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--matrix-green), var(--matrix-cyan)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: subtract;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.matrix-portal-btn:hover .portal-ring {
+    opacity: 1;
+    animation: ringPulse 1s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.portal-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.portal-text {
+    font-size: 1.1rem;
+}
+
+.matrix-portal-btn:hover {
+    background: var(--matrix-green);
+    color: #000;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.portal-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.portal-particles::before,
+.portal-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--matrix-cyan);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.matrix-portal-btn:hover .portal-particles::before {
+    animation: particleFloat1 2s ease-in-out infinite;
+}
+
+.matrix-portal-btn:hover .portal-particles::after {
+    animation: particleFloat2 2.5s ease-in-out infinite;
+}
+
+@keyframes particleFloat1 {
+    0% { top: 100%; left: 20%; opacity: 0; }
+    50% { top: 20%; left: 80%; opacity: 1; }
+    100% { top: 0%; left: 90%; opacity: 0; }
+}
+
+@keyframes particleFloat2 {
+    0% { top: 100%; left: 80%; opacity: 0; }
+    50% { top: 20%; left: 20%; opacity: 1; }
+    100% { top: 0%; left: 10%; opacity: 0; }
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+}
+
+/* Responsive Design Enhancements */
 @media (max-width: 768px) {
-    .qualifications-grid {
+    .qualifications-section {
+        padding: var(--space-2xl) 0;
+    }
+
+    .matrix-timeline {
+        padding: 0 var(--space-md);
+    }
+
+    .timeline-line {
+        display: none; /* Hide timeline on mobile */
+    }
+
+    .holographic-cards-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 1.5rem 0;
-        padding: 0 1rem;
+        gap: var(--space-lg);
     }
-    
-    .qualification-card {
-        display: flex;
-        padding: var(--space-sm);
+
+    .holographic-card {
+        padding: var(--space-lg);
+    }
+
+    .holographic-card:hover {
+        transform: translateY(-5px) rotateX(1deg);
+    }
+
+    .cert-header {
         flex-direction: column;
-        flex-wrap: wrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        min-height: auto;
+        text-align: center;
     }
-    
-    .qualification-card h3 {
-        font-size: 1rem;
+
+    .matrix-badge {
+        margin: 0 auto var(--space-md) auto;
     }
-    
-    .certification-list li {
+
+    .certification-matrix-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-md);
+    }
+
+    .matrix-cert-item {
+        padding: var(--space-md);
+    }
+
+    .cert-icon {
+        font-size: 2rem;
+    }
+
+    .tier-title {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .tier-glyph {
+        display: none; /* Hide decorative glyphs on mobile */
+    }
+
+    .matrix-portal-btn {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .portal-text {
         font-size: 0.9rem;
     }
-    
-    .neo-matrix-btn {
-        width: 100%;
+}
+
+@media (max-width: 480px) {
+    .holographic-card {
+        border-radius: 10px;
+        padding: var(--space-md);
+    }
+
+    .cert-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .cert-skills {
         justify-content: center;
+    }
+
+    .matrix-verify-btn {
+        padding: var(--space-xs) var(--space-md);
+        font-size: 0.8rem;
+    }
+
+    .matrix-cert-item {
+        padding: var(--space-sm);
+        min-height: 140px;
+    }
+
+    .cert-icon {
+        font-size: 1.8rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .cert-name {
+        font-size: 1rem;
+    }
+
+    .cert-detail {
+        font-size: 0.8rem;
+    }
+}
+
+/* Enhanced Animation Performance */
+.qualifications-section * {
+    will-change: auto;
+}
+
+.holographic-card:hover * {
+    will-change: transform, opacity;
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    .qualifications-section::before,
+    .timeline-line,
+    .tier-glyph,
+    .badge-shape,
+    .badge-pulse,
+    .verification-pulse,
+    .ai-pulse,
+    .verify-animation,
+    .holographic-overlay,
+    .portal-ring,
+    .portal-particles::before,
+    .portal-particles::after {
+        animation: none !important;
+    }
+
+    .holographic-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Focus States for Accessibility */
+.matrix-verify-btn:focus,
+.matrix-portal-btn:focus {
+    outline: 2px solid var(--matrix-cyan);
+    outline-offset: 2px;
+}
+
+.holographic-card:focus-within {
+    outline: 2px solid var(--matrix-cyan);
+    outline-offset: 4px;
+}
+
+/* Print Styles */
+@media print {
+    .qualifications-section {
+        background: none !important;
+        color: #000 !important;
+    }
+
+    .qualifications-section::before {
+        display: none;
+    }
+
+    .holographic-card {
+        background: #f5f5f5 !important;
+        border: 2px solid #333 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+
+    .matrix-badge {
+        filter: none;
+    }
+
+    .badge-svg {
+        filter: none;
     }
 }

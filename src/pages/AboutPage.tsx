@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/about.css';
 
 export const AboutPage: React.FC = () => {
   return (
@@ -42,88 +43,214 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      <section id="continuous-learning" className="about-section">
+      <section id="continuous-learning" className="about-section qualifications-section">
         <div className="container">
           <h2 className="section-title">Qualifications & Certifications</h2>
           <div className="learning-content">
             <p className="highlight-text">
               I believe in staying current with technology trends and continuously expanding my knowledge base.
             </p>
-            
-            <div className="qualifications-grid">
-              <div className="qualification-card">
-                <h3>Estio Level 4 Software Developer Apprenticeship</h3>
-                <p className="qualification-date">Completed 2024</p>
-                <p>Advanced software development training with real-world application</p>
-              </div>
-              
-              <div className="qualification-card">
-                <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
-                <p className="qualification-date">July 2025</p>
-                <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw" 
-                   target="_blank" 
-                   rel="noopener"
-                   className="verify-link">
-                    Verify Credential →
-                </a>
-                <div className="badge-embed">
-                  <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/155335744" 
-                       alt="City & Guilds Certification Badge"
-                       className="certification-badge" />
+
+            {/* Matrix Timeline */}
+            <div className="matrix-timeline">
+              <div className="timeline-line"></div>
+
+              {/* Primary Tier - Major Certifications */}
+              <div className="qualifications-tier primary-tier">
+                <h3 className="tier-title">
+                  <span className="tier-glyph">◉</span>
+                  Primary Qualifications
+                  <span className="tier-glyph">◉</span>
+                </h3>
+
+                <div className="holographic-cards-grid">
+                  <div className="holographic-card primary-card" data-tier="platinum">
+                    <div className="card-glow"></div>
+                    <div className="card-content">
+                      <div className="cert-header">
+                        <div className="matrix-badge primary-badge">
+                          <svg className="badge-svg" viewBox="0 0 100 100">
+                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
+                            <circle cx="50" cy="50" r="20" className="badge-center"/>
+                            <text x="50" y="35" textAnchor="middle" className="badge-level">L4</text>
+                            <text x="50" y="55" textAnchor="middle" className="badge-type">DEV</text>
+                          </svg>
+                          <div className="badge-pulse"></div>
+                        </div>
+                        <div className="cert-details">
+                          <h3>Estio Level 4 Software Developer Apprenticeship</h3>
+                          <p className="cert-date">
+                            <i className="fas fa-calendar-check"></i>
+                            Completed 2024
+                          </p>
+                        </div>
+                      </div>
+                      <p className="cert-description">Advanced software development training with real-world application</p>
+                      <div className="cert-skills">
+                        <span className="skill-tag">Full-Stack Development</span>
+                        <span className="skill-tag">Software Engineering</span>
+                        <span className="skill-tag">Industry Standards</span>
+                      </div>
+                    </div>
+                    <div className="holographic-overlay"></div>
+                  </div>
+
+                  <div className="holographic-card primary-card" data-tier="gold">
+                    <div className="card-glow"></div>
+                    <div className="card-content">
+                      <div className="cert-header">
+                        <div className="matrix-badge verified-badge">
+                          <svg className="badge-svg" viewBox="0 0 100 100">
+                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
+                            <circle cx="50" cy="50" r="20" className="badge-center"/>
+                            <text x="50" y="35" textAnchor="middle" className="badge-level">L2</text>
+                            <text x="50" y="55" textAnchor="middle" className="badge-type">ICT</text>
+                          </svg>
+                          <div className="verification-pulse"></div>
+                        </div>
+                        <div className="cert-details">
+                          <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
+                          <p className="cert-date">
+                            <i className="fas fa-calendar-check"></i>
+                            July 2025
+                          </p>
+                        </div>
+                      </div>
+                      <p className="cert-description">Systems support, troubleshooting, and technical infrastructure management</p>
+                      <div className="verify-section">
+                        <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw"
+                           target="_blank"
+                           rel="noopener"
+                           className="matrix-verify-btn">
+                          <span className="verify-text">VERIFY CREDENTIAL</span>
+                          <div className="verify-animation"></div>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="holographic-overlay"></div>
+                  </div>
+
+                  <div className="holographic-card primary-card" data-tier="gold">
+                    <div className="card-glow"></div>
+                    <div className="card-content">
+                      <div className="cert-header">
+                        <div className="matrix-badge ai-badge">
+                          <svg className="badge-svg" viewBox="0 0 100 100">
+                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
+                            <circle cx="50" cy="50" r="20" className="badge-center"/>
+                            <text x="50" y="35" textAnchor="middle" className="badge-level">AI</text>
+                            <text x="50" y="55" textAnchor="middle" className="badge-type">ML</text>
+                          </svg>
+                          <div className="ai-pulse"></div>
+                        </div>
+                        <div className="cert-details">
+                          <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
+                          <p className="cert-date">
+                            <i className="fas fa-calendar-check"></i>
+                            Completed September 2025
+                          </p>
+                        </div>
+                      </div>
+                      <p className="cert-description">Mastering Generative AI and advanced machine learning techniques</p>
+                      <div className="verify-section">
+                        <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6"
+                           target="_blank"
+                           rel="noopener"
+                           className="matrix-verify-btn">
+                          <span className="verify-text">VERIFY CREDENTIAL</span>
+                          <div className="verify-animation"></div>
+                        </a>
+                      </div>
+                      <div className="cert-skills">
+                        <span className="skill-tag">Machine Learning</span>
+                        <span className="skill-tag">LLM Development</span>
+                        <span className="skill-tag">Generative AI</span>
+                      </div>
+                    </div>
+                    <div className="holographic-overlay"></div>
+                  </div>
                 </div>
               </div>
-              
-              <div className="qualification-card">
-                <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
-                <p className="qualification-date">Completed September 2025</p>
-                <p>Mastering Generative AI and advanced machine learning techniques</p>
-                <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6" 
-                target="_blank" 
-                rel="noopener"
-                className="verify-link">
-                Verify Credential →
+
+              {/* Secondary Tier - Additional Certifications */}
+              <div className="qualifications-tier secondary-tier">
+                <h3 className="tier-title">
+                  <span className="tier-glyph">▣</span>
+                  Professional Certifications
+                  <span className="tier-glyph">▣</span>
+                </h3>
+
+                <div className="certification-matrix-grid">
+                  <div className="matrix-cert-item cloud">
+                    <div className="cert-icon">
+                      <i className="fab fa-aws"></i>
+                    </div>
+                    <span className="cert-name">AWS Qualified</span>
+                    <span className="cert-detail">Cloud Architecture & Serverless Computing</span>
+                    <div className="achievement-glow aws-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item cloud">
+                    <div className="cert-icon">
+                      <i className="fab fa-microsoft"></i>
+                    </div>
+                    <span className="cert-name">Azure Qualified</span>
+                    <span className="cert-detail">Cloud Infrastructure & DevOps</span>
+                    <div className="achievement-glow azure-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item network">
+                    <div className="cert-icon">
+                      <i className="fas fa-network-wired"></i>
+                    </div>
+                    <span className="cert-name">Cisco Qualified</span>
+                    <span className="cert-detail">Network Security & Data Analytics</span>
+                    <div className="achievement-glow cisco-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item cms">
+                    <div className="cert-icon">
+                      <i className="fas fa-hubspot"></i>
+                    </div>
+                    <span className="cert-name">HubSpot Qualified</span>
+                    <span className="cert-detail">CMS Development & Integration</span>
+                    <div className="achievement-glow hubspot-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item dev">
+                    <div className="cert-icon">
+                      <i className="fas fa-code"></i>
+                    </div>
+                    <span className="cert-name">Full Stack Engineer</span>
+                    <span className="cert-detail">CodeCademy Certificate</span>
+                    <div className="achievement-glow code-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item data">
+                    <div className="cert-icon">
+                      <i className="fab fa-python"></i>
+                    </div>
+                    <span className="cert-name">Data Analysis with Python</span>
+                    <span className="cert-detail">Free Code Camp</span>
+                    <div className="achievement-glow python-glow"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* External Link */}
+              <div className="external-portfolio-link">
+                <a href="https://www.thomasjbutler.me/#education"
+                   target="_blank"
+                   rel="noopener"
+                   className="matrix-portal-btn">
+                  <div className="portal-ring"></div>
+                  <div className="portal-content">
+                    <span className="portal-text">ACCESS FULL EDUCATION MATRIX</span>
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
+                  <div className="portal-particles"></div>
                 </a>
               </div>
-            </div>
-            
-            <div className="additional-certifications">
-              <h3>Additional Certifications & Training</h3>
-              <ul className="certification-list">
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  🏆 AWS Qualified - Cloud Architecture & Serverless Computing
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  🏆 Azure Qualified - Cloud Infrastructure & DevOps
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  🏆 Cisco Qualified - Network Security & Data Analytics
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  🏆 HubSpot Qualified - CMS Development & Integration
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  CodeCademy Full Stack Engineer Certificate
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i>
-                  Free Code Camp - Data Analysis With Python
-                </li>
-              </ul>
-              <p className="p-1-5" style={{marginTop: '1.5rem'}}>
-                <a href="https://www.thomasjbutler.me/#education" 
-                   target="_blank" 
-                   rel="noopener" 
-                   className="neo-matrix-btn flex-center"
-                   style={{gap: '0.5rem'}}>
-                  <span>View Full Education & Certification Details</span>
-                  <i className="fas fa-arrow-right"></i>
-                </a>
-              </p>
             </div>
           </div>
         </div>
