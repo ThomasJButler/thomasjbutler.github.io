@@ -190,6 +190,24 @@
   }
 }
 
+/* ========================================================================
+   Desktop Theme Toggle Alignment
+   ======================================================================== */
+
+@media (min-width: 769px) {
+  .nav {
+    align-items: center;
+  }
+
+  /* Ensure theme toggle aligns perfectly with nav items */
+  .nav > :last-child {
+    margin-left: 0.5rem;
+    align-self: center;
+    display: flex;
+    align-items: center;
+  }
+}
+
 /* Matrix rain effect - only on logo hover */
 .headerTitle:hover::before {
   content: '';
