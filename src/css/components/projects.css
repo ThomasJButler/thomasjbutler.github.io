@@ -854,3 +854,99 @@
         font-size: 0.9rem;
     }
 }
+
+/* ==========================================================================
+   PROJECT BADGES & STATUS INDICATORS
+   ========================================================================== */
+
+.project-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    animation: goldGlow 2s ease-in-out infinite alternate;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-in-progress {
+    background: linear-gradient(45deg, rgba(0, 150, 255, 0.2), rgba(0, 150, 255, 0.1));
+    color: #0096FF;
+    border: 1px solid rgba(0, 150, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+    animation: pulseBlue 2s ease-in-out infinite alternate;
+}
+
+.status-coming-soon {
+    background: linear-gradient(45deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1));
+    color: #888;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.2);
+}
+
+.visibility-badge {
+    background: rgba(0, 255, 0, 0.1);
+    color: var(--matrix-green);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    padding: 0.125rem 0.375rem;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Badge Animations */
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3); }
+}
+
+@keyframes pulseBlue {
+    0% { box-shadow: 0 0 10px rgba(0, 150, 255, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 30px rgba(0, 150, 255, 0.3); }
+}
+
+/* Mobile Responsive Badges */
+@media (max-width: 768px) {
+    .project-title-row {
+        gap: 0.25rem;
+    }
+
+    .featured-badge,
+    .status-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .visibility-badge {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.3rem;
+    }
+}

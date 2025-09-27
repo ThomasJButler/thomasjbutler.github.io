@@ -24,14 +24,9 @@ const SitemapPage = lazy(() => import('./pages/SitemapPage').then(m => ({ defaul
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
 
-// Styles - Import order matters!
-import './css/base/_reset.css';
-import './css/base/_variables.css';
-import './css/base/_typography.css';
+// Styles - Optimized import order
 import './css/themes.css'; // Theme system
-import './css/main.css';
-import './css/styles.css';
-import './css/global.css';
+import './css/main.css'; // Main CSS with all organized imports
 import './css/blog.css';
 
 export const App: React.FC = () => {

@@ -8,9 +8,43 @@ import { useCardAnimations } from '../hooks/useCardAnimations';
 
 
 export const HomePage: React.FC = () => {
-  
+
   // Card animations hook
   useCardAnimations();
+
+  // Scroll progress indicator
+  useEffect(() => {
+    // Create scroll indicator element
+    const scrollIndicator = document.createElement('div');
+    scrollIndicator.className = 'scroll-indicator';
+    scrollIndicator.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(scrollIndicator);
+
+    const updateScrollProgress = () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      scrollIndicator.style.transform = `scaleX(${scrollPercent})`;
+    };
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      scrollIndicator.remove();
+    };
+  }, []);
   
   // Scroll animation refs
   const expertiseRef = useScrollReveal();
@@ -81,8 +115,8 @@ export const HomePage: React.FC = () => {
 
     // Cascade entrance animations on page load
     const animatePageEntrance = () => {
-      // Animate main introduction text with subtle cascade effect
-      const introElements = document.querySelectorAll('#introduction h2, .welcome-text');
+      // Animate main introduction text with subtle cascade effect (excluding welcome-text)
+      const introElements = document.querySelectorAll('#introduction h2:not(.welcome-text)');
       introElements.forEach((el, index) => {
         // Remove inline styles - let CSS classes handle initial state
         el.classList.add('animated');
@@ -94,18 +128,6 @@ export const HomePage: React.FC = () => {
           delay: index * 100,
           easing: 'easeOutQuad'
         });
-        
-        // Add glitch effect to welcome text and typing animation
-        if (el.classList.contains('welcome-text')) {
-          el.classList.add('typing-text');
-          setTimeout(() => {
-            el.classList.add('glitch-text');
-            setTimeout(() => {
-              el.classList.remove('glitch-text');
-              el.classList.remove('typing-text');
-            }, 500);
-          }, 2000);
-        }
       });
       
       // Animate introduction images with subtle entrance

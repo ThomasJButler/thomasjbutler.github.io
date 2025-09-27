@@ -220,12 +220,68 @@
     color: rgba(0, 255, 0, 0.9);
 }
 
+/* Enhanced Qualifications Grid */
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.qualification-card {
+    background: rgba(0, 20, 0, 0.4);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.qualification-card:hover {
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 255, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.qualification-card h3 {
+    color: var(--matrix-green, #00ff00);
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    line-height: 1.4;
+}
+
+.qualification-card p {
+    color: rgba(0, 255, 0, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Badge styling improvements */
+.qualification-card img {
+    max-width: 120px;
+    height: auto;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 255, 0, 0.2);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .qualifications-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-sm);
-        margin: var(--space-md) 0;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+        padding: 0 1rem;
     }
     
     .qualification-card {

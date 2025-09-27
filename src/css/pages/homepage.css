@@ -1,7 +1,7 @@
 /* Galleries Section
    ========================================================================== */
 #galleries {
-    padding: 80px 0;
+    padding: 80px 0 3rem;
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -268,7 +268,7 @@
 
 .introduction-img {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     justify-content: center;
     margin-top: 30px;
@@ -278,7 +278,8 @@
 .introduction-img img {
     border-radius: 10px;
     box-shadow: 0 0 15px var(--matrix-green);
-    max-width: 150px;
+    max-width: 280px;
+    height: auto;
     transition: transform 0.3s ease;
 }
 
@@ -573,6 +574,99 @@
     text-rendering: optimizeLegibility;
 }
 
+/* Welcome Text - Static, No Animations */
+.welcome-text {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Section Heading Styles - Matrix Theme */
+.section-heading {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow:
+        0 0 20px rgba(0, 255, 0, 0.8),
+        0 0 40px rgba(0, 255, 0, 0.5),
+        0 0 60px rgba(0, 255, 0, 0.3);
+    font-weight: 300;
+}
+
+.section-heading::before,
+.section-heading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.section-heading::before {
+    left: -80px;
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+.section-heading::after {
+    right: -80px;
+    animation: pulseGlow 2s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.5;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.4);
+    }
+}
+
+/* Responsive section heading */
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        width: 40px;
+    }
+
+    .section-heading::before {
+        left: -50px;
+    }
+
+    .section-heading::after {
+        right: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-heading {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        display: none;
+    }
+}
+
 /* Keyframe Animations */
 @keyframes pulse {
     0%, 100% {
@@ -733,7 +827,7 @@
     }
 
     .introduction-img img {
-        max-width: 30%;
+        max-width: 35%;
         height: auto;
         border-radius: 8px;
     }
@@ -746,6 +840,211 @@
     
     .version-timetravel a {
         font-size: 0.85rem;
+    }
+}
+
+/* Mobile Introduction Images (Phones) */
+@media screen and (max-width: 699px) {
+    .introduction-img {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 1rem;
+    }
+
+    .introduction-img img {
+        max-width: 200px;
+        width: 80%;
+        height: auto;
+    }
+}
+
+/* ========================================================================
+   ENHANCED UX IMPROVEMENTS - BETTER FIRST IMPRESSIONS
+   ======================================================================== */
+
+/* Smooth page entrance animation */
+body {
+    opacity: 0;
+    animation: pageLoad 0.8s ease-out forwards;
+}
+
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced hover states for gallery cards */
+.gallery-card {
+    cursor: pointer;
+    will-change: transform;
+}
+
+.gallery-card:hover {
+    animation: cardGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
+    }
+    100% {
+        box-shadow:
+            0 6px 25px rgba(0, 255, 0, 0.5),
+            0 0 30px rgba(0, 255, 0, 0.2),
+            inset 0 0 20px rgba(0, 255, 0, 0.1);
+    }
+}
+
+/* Interactive focus indicators */
+.gallery-card:focus,
+.gallery-link:focus,
+.neo-matrix-btn:focus {
+    outline: 2px solid var(--matrix-green);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Enhanced loading states */
+.introduction-expertise-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: expertiseCardReveal 0.8s ease-out forwards;
+}
+
+.introduction-expertise-card:nth-child(1) { animation-delay: 0.1s; }
+.introduction-expertise-card:nth-child(2) { animation-delay: 0.2s; }
+.introduction-expertise-card:nth-child(3) { animation-delay: 0.3s; }
+.introduction-expertise-card:nth-child(4) { animation-delay: 0.4s; }
+.introduction-expertise-card:nth-child(5) { animation-delay: 0.5s; }
+.introduction-expertise-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes expertiseCardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Micro-interactions for better feedback */
+.gallery-link,
+.neo-matrix-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-link::before,
+.neo-matrix-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.gallery-link:hover::before,
+.neo-matrix-btn:hover::before {
+    left: 100%;
+}
+
+/* Enhanced image hover effects */
+.introduction-img img {
+    filter: brightness(0.9) contrast(1.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.introduction-img img:hover {
+    filter: brightness(1.1) contrast(1.2) saturate(1.1);
+    box-shadow:
+        0 0 25px rgba(0, 255, 0, 0.4),
+        0 0 50px rgba(0, 255, 0, 0.2);
+}
+
+/* Subtle scroll indicators */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--matrix-green), transparent);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s ease;
+    z-index: 9999;
+}
+
+/* Performance optimizations */
+.introduction-expertise-card,
+.gallery-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body {
+        animation: none;
+        opacity: 1;
+    }
+
+    .introduction-expertise-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .gallery-card {
+        border: 3px solid #00FF00;
+        background: #000000;
+    }
+
+    .section-heading {
+        text-shadow: none;
+        color: #00FF00;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .gallery-card:hover {
+        transform: none;
+        animation: none;
+    }
+
+    .gallery-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    .introduction-img img:hover {
+        transform: none;
+        filter: brightness(0.9) contrast(1.1);
     }
 }
 

@@ -108,7 +108,6 @@ export const Footer: React.FC = () => {
             <li><a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a></li>
             <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/sitemap">Sitemap</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
           </ul>
         </div>
       </div>

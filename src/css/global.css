@@ -49,8 +49,24 @@ body.low-end-device * {
   transition: opacity 0.2s ease !important;
 }
 
+/* Hide Matrix rain on low-end devices only when NOT in Matrix theme */
 body.low-end-device .matrix-rain {
   display: none !important;
+}
+
+/* Override: Always show Matrix rain when Matrix theme is active */
+[data-theme="matrix"] .matrix-rain {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure Matrix rain is always visible in Matrix theme, regardless of device class */
+[data-theme="matrix"] body.low-end-device .matrix-rain,
+[data-theme="matrix"] body.mobile-device .matrix-rain,
+[data-theme="matrix"] body.disable-backgrounds .matrix-rain {
+  display: block !important;
+  opacity: 1 !important;
 }
 
 /* Mobile device optimizations */
@@ -78,88 +94,7 @@ html, body {
     max-width: 100%;
 }
 
-/* CSS Custom Properties - Design System
-   ========================================================================== */
-:root {
-    /* Spacing system from design_system.md */
-    --space-xs: 0.25rem;   /* 4px */
-    --space-sm: 0.5rem;    /* 8px */
-    --space-md: 1rem;      /* 16px */
-    --space-lg: 1.5rem;    /* 24px */
-    --space-xl: 2rem;      /* 32px */
-    --space-2xl: 3rem;     /* 48px */
-    --space-3xl: 4rem;     /* 64px */
-    --space-4xl: 6rem;     /* 96px */
-    
-    /* Typography from design_system.md */
-    --font-primary: 'VT323', monospace;     /* Headers and special text */
-    --font-body: system-ui, -apple-system, sans-serif; /* Body text */
-    --font-code: 'Courier New', monospace;  /* Code blocks */
-    
-    /* Type Scale - Responsive with clamp() */
-    --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-    --font-size-sm: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
-    --font-size-h3: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
-    --font-size-h2: clamp(1.75rem, 1.4rem + 1.8vw, 2.5rem);
-    --font-size-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
-    
-    /* Line Heights */
-    --line-height-tight: 1.2;
-    --line-height-base: 1.6;
-    --line-height-relaxed: 1.8;
-    
-    /* Letter Spacing */
-    --letter-spacing-tight: -0.02em;
-    --letter-spacing-base: 0;
-    --letter-spacing-wide: 0.02em;
-    --letter-spacing-wider: 0.1em;
-    
-    /* Container and grid sizing */
-    --container-max: min(90%, 1200px);
-    --grid-min: clamp(280px, 50vw, 350px);
-    
-    /* Matrix theme colors */
-    --matrix-green: #00FF00;
-    --matrix-magenta: #FF00FF;
-    --matrix-cyan: #00FFFF;
-    --matrix-red: #FF2800;
-    --matrix-dark: rgba(0, 20, 0, 0.8);
-    --matrix-darker: rgba(13, 13, 13, 0.7);
-    --matrix-glow: 0 0 10px var(--matrix-green);
-    --matrix-glow-intense: 0 0 20px var(--matrix-green);
-    
-    /* Responsive breakpoints as CSS variables */
-    --break-mobile: 480px;
-    --break-tablet: 768px;
-    --break-desktop: 1024px;
-    --break-wide: 1200px;
-    
-    
-    /* Text color variations */
-    --text-primary: rgba(0, 255, 0, 0.9);
-    --text-secondary: rgba(0, 255, 0, 0.7);
-    --text-muted: rgba(0, 255, 0, 0.5);
-    
-    /* Background variations */
-    --bg-overlay: rgba(0, 0, 0, 0.8);
-    --bg-transparent: rgba(0, 20, 0, 0.4);
-    
-    /* Border colors */
-    --border-primary: rgba(0, 255, 0, 0.3);
-    --border-secondary: rgba(0, 255, 0, 0.2);
-    
-    /* Animation timing */
-    --duration-fast: 150ms;
-    --duration-base: 300ms;
-    --duration-slow: 500ms;
-    --duration-slower: 1000ms;
-    
-    /* Easing functions */
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+/* CSS variables are imported from base/_variables.css */
 
    /* @font-face {
   font-family: system-ui;
@@ -268,85 +203,7 @@ html, body {
    }
 
    
-   /* Call-to-Action Buttons
-      ========================================================================== */
-   /* Unified button styles for consistency */
-   .cta-button,
-   .btn-contact-us,
-   .neo-matrix-btn,
-   .matrix-btn {
-       align-items: center;
-       background: rgba(0, 255, 0, 0.05);
-       backdrop-filter: blur(8px);
-       -webkit-backdrop-filter: blur(8px);
-       border: 1px solid rgba(0, 255, 0, 0.3);
-       border-radius: var(--radius-base);
-       box-shadow: var(--shadow-sm);
-       color: var(--matrix-green);
-       cursor: pointer;
-       display: inline-flex;
-       font-family: var(--font-primary);
-       font-size: 1.1rem;
-       font-weight: 400;
-       gap: 0.5rem;
-       justify-content: center;
-       letter-spacing: 0.1em;
-       margin-top: var(--space-md);
-       overflow: hidden;
-       padding: 0.9rem 2rem;
-       position: relative;
-       text-decoration: none;
-       text-transform: uppercase;
-       transition: all var(--duration-base) var(--ease-out);
-   }
-   
-   .cta-button::before {
-       content: "\2192";
-       margin-left: 20px;
-       transition: all var(--duration-base) var(--ease-in-out);
-   }
-   
-   /* Matrix-style button glow effect */
-   .cta-button::after {
-       content: '';
-       position: absolute;
-       inset: -50%;
-       background: conic-gradient(
-           from 0deg,
-           transparent,
-           var(--matrix-green),
-           transparent 30%
-       );
-       animation: rotate 3s linear infinite;
-       opacity: 0;
-       transition: opacity 0.3s ease;
-   }
-   
-   @keyframes rotate {
-       100% {
-           transform: rotate(360deg);
-       }
-   }
-   
-   .cta-button:hover,
-   .btn-contact-us:hover,
-   .neo-matrix-btn:hover,
-   .matrix-btn:hover {
-       background: rgba(0, 255, 0, 0.15);
-       color: #fff;
-       border-color: rgba(0, 255, 0, 0.6);
-       box-shadow: var(--shadow-lg);
-       transform: translateY(-3px);
-       text-shadow: var(--matrix-glow);
-   }
-   
-   .cta-button:hover::after {
-       opacity: 0.5;
-   }
-   
-   .cta-button:hover::before {
-       transform: translateX(5px);
-   }
+   /* Button styles are imported from components/_buttons.css */
    
    /* Layout & Container Styles
       ========================================================================== */
@@ -545,242 +402,7 @@ html, body {
        max-width: 80%;
    }
    
-/* Contact Form Styles - GodMode Enhanced
-   ========================================================================== */
-   #contact form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: rgba(0, 20, 0, 0.6);
-    border: 1px solid rgba(0, 255, 0, 0.3);
-    border-radius: 12px;
-    box-shadow: 
-        0 0 30px rgba(0, 255, 0, 0.1),
-        inset 0 0 30px rgba(0, 255, 0, 0.05);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Form glow effect */
-#contact form::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        var(--matrix-green), 
-        transparent, 
-        var(--matrix-cyan), 
-        transparent, 
-        var(--matrix-green)
-    );
-    border-radius: 12px;
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s ease;
-}
-
-#contact form:hover::before {
-    opacity: 0.3;
-}
-
-#contact form:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.2);
-}
-
-#contact form label {
-    color: var(--matrix-green);
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-#contact form input,
-#contact form textarea {
-    width: 100%;
-    background: rgba(0, 10, 0, 0.8);
-    border: 1px solid rgba(0, 255, 0, 0.3);
-    border-radius: 6px;
-    color: var(--matrix-green);
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    padding: 0.875rem 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#contact form input:focus,
-#contact form textarea:focus {
-    background: rgba(0, 20, 0, 0.9);
-    border-color: var(--matrix-green);
-    box-shadow: 
-        0 0 0 2px rgba(0, 255, 0, 0.1),
-        0 0 20px rgba(0, 255, 0, 0.2);
-    outline: none;
-    transform: translateY(-1px);
-}
-
-#contact form textarea {
-    min-height: 120px;
-    max-height: 300px;
-    resize: vertical;
-}
-
-/* Placeholder styling */
-#contact form input::placeholder,
-#contact form textarea::placeholder {
-    color: rgba(0, 255, 0, 0.4);
-    font-style: italic;
-}
-
-
-/* Modern Contact Button - btn-contact-us */
-.btn-contact-us {
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 0, 0.2) 100%);
-    border: 2px solid rgba(0, 255, 0, 0.4);
-    border-radius: 12px;
-    box-shadow: 
-        0 4px 20px rgba(0, 255, 0, 0.2),
-        inset 0 0 20px rgba(0, 255, 0, 0.05);
-    color: var(--matrix-green);
-    cursor: pointer;
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    margin: 1.5rem auto 0;
-    overflow: hidden;
-    padding: 0.75rem 1.75rem;
-    position: relative;
-    text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-}
-
-/* Animated gradient background */
-.btn-contact-us::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0, 255, 0, 0.3),
-        rgba(0, 255, 255, 0.3),
-        transparent
-    );
-    transition: left 0.6s ease;
-}
-
-/* Icon styling */
-.btn-contact-us i {
-    font-size: 1.1rem;
-    transition: transform 0.3s ease;
-}
-
-/* Hover state */
-.btn-contact-us:hover {
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.2) 0%, rgba(0, 255, 0, 0.3) 100%);
-    border-color: var(--matrix-green);
-    box-shadow: 
-        0 6px 30px rgba(0, 255, 0, 0.4),
-        inset 0 0 30px rgba(0, 255, 0, 0.1),
-        0 0 50px rgba(0, 255, 0, 0.2);
-    color: #FFFFFF;
-    text-shadow: 0 0 10px var(--matrix-green);
-    transform: translateY(-3px) scale(1.02);
-}
-
-.btn-contact-us:hover::before {
-    left: 100%;
-}
-
-.btn-contact-us:hover i {
-    transform: translateX(5px);
-}
-
-/* Active/Click state */
-.btn-contact-us:active {
-    transform: translateY(-1px) scale(1);
-    box-shadow: 
-        0 2px 10px rgba(0, 255, 0, 0.3),
-        inset 0 0 20px rgba(0, 255, 0, 0.2);
-}
-
-/* Loading state */
-.btn-contact-us.loading {
-    cursor: wait;
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.btn-contact-us.loading i {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Success state */
-.btn-contact-us.success {
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.3) 0%, rgba(0, 255, 0, 0.4) 100%);
-    border-color: var(--matrix-green);
-    color: #FFFFFF;
-}
-
-.btn-contact-us.success i::before {
-    content: '\f00c'; /* Checkmark icon */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #contact form {
-        padding: 1.5rem;
-        margin: 1rem auto;
-    }
-    
-    .btn-contact-us {
-        font-size: 1rem;
-        padding: 0.7rem 1.5rem;
-        width: 100%;
-        max-width: 250px;
-    }
-    
-    #contact form input,
-    #contact form textarea {
-        font-size: 1rem;
-        padding: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    #contact form {
-        padding: 1rem;
-    }
-    
-    .btn-contact-us {
-        font-size: 0.95rem;
-        padding: 0.65rem 1.25rem;
-    }
-}
+/* Form styles are imported from components/_forms.css */
    
    /* Scrollbar Styling
       ========================================================================== */
@@ -945,22 +567,7 @@ footer ul li a i {
 
 /* Matrix-Themed UI Elements
    ========================================================================== */
-.matrix-btn {
-    background: transparent;
-    border: 1px solid var(--matrix-green);
-    color: var(--matrix-green);
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-}
-
-.matrix-btn:hover {
-    background: var(--matrix-green);
-    box-shadow: 0 0 15px var(--matrix-green);
-    color: #0d0d0d;
-}
+/* Matrix button styles are imported from components/_buttons.css */
 
 .matrix-icon {
     color: var(--matrix-green);
@@ -1646,93 +1253,4 @@ button:active,
     width: 100%;  
 } 
 
-.introduction-expertise-buttons a.neo-matrix-btn {
-    width: 100%;  /* Make button full width */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 0;    /* Remove margin to fit full width */
-    padding: 12px 20px;  /* Slightly larger padding */
-    background: rgba(0, 20, 0, 0.7);
-    border: 1px solid rgba(0, 255, 0, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.15);
-    color: var(--matrix-green);
-    cursor: pointer;
-    font-family: system-ui;
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: 1px;
-    overflow: hidden;
-    position: relative;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    align-self: center;
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn i {
-    margin-left: auto;  /* Push icon to the right */
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn .btn-text {
-    flex: 1;  /* Allow text to take remaining space */
-    text-align: center;  /* Center the text */
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn::before {
-    background: linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(0, 255, 0, 0.2) 50%, 
-        transparent 100%);
-    content: '';
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.3s ease;
-    width: 100%;
-    z-index: -1;
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn::after {
-    background-image: 
-        radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
-        radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
-    background-position: 0 0, 0 0, -5px -5px, -5px -5px;
-    background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
-    border-radius: 8px;
-    bottom: 0;
-    content: '';
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: scale(1.1);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn:hover {
-    background: rgba(0, 30, 0, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
-    transform: translateY(-2px);
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn:hover::before {
-    opacity: 1;
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn:hover::after {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.introduction-expertise-buttons a.neo-matrix-btn:hover {
-    color: #FFFFFF;
-    text-shadow: 0 0 8px var(--matrix-green), 0 0 12px var(--matrix-green);
-}
+/* Neo-matrix button styles are imported from components/_buttons.css */
