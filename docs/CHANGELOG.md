@@ -6,13 +6,51 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Planned
-- Complete page migrations to React
+### Planned for v3.6
 - WebGL Matrix rain effect enhancement
-- Theme system (Dark/Light/Matrix modes)
-- Progressive Web App features
-- Code splitting and lazy loading
+- Advanced theme system (Dark/Light/Matrix modes with persistence)
 - Virtual scrolling for long lists
+- Real-time GitHub API integration
+- Performance monitoring dashboard
+- Advanced particle systems with WebGL
+
+## [3.5.1] - 2025-09-27
+
+### Completed
+- **Full React Migration**: Successfully completed migration from hybrid to 100% React architecture
+  - All static HTML pages converted to React components
+  - Legacy redirects in place for seamless transition
+  - Complete removal of static HTML navigation dependencies
+
+- **Comprehensive Testing Suite**: Added extensive test coverage
+  - Unit tests for all components
+  - Integration tests for user flows
+  - Accessibility testing with Jest-Axe
+  - Performance testing and monitoring
+
+- **Enhanced Theme System**: Implemented complete theme management
+  - ThemeContext for global state management
+  - CSS variables for dynamic theme switching
+  - localStorage persistence for user preferences
+  - Support for Matrix/Dark/Light theme modes
+
+- **Advanced Animation System**: Unified animation architecture
+  - Custom hooks for reusable animation logic
+  - Anime.js v4 integration with TypeScript
+  - Performance-optimized with RequestAnimationFrame
+  - Accessibility support with prefers-reduced-motion
+
+- **Progressive Web App Features**: Full PWA implementation
+  - Service worker for offline functionality
+  - Performance optimization and caching
+  - Responsive design across all devices
+  - Lazy loading and code splitting implemented
+
+### Documentation
+- **Updated CLAUDE.md**: Reflects current v3.5 React architecture
+- **Enhanced Component Docs**: Complete component inventory and usage
+- **Animation System Guide**: Comprehensive animation documentation
+- **Design System Update**: Current patterns and best practices
 
 ## [3.5.0] - 2025-08-31
 
