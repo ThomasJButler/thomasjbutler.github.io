@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { NavigationGuide } from '../components/NavigationGuide';
-import { BackToTop } from '../components/BackToTop';
 import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
@@ -375,9 +374,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Dynamic Back to Top Button */}
-      <BackToTop threshold={300} showText={true} enableScanLine={true} />
     </>
   );
 };
