@@ -78,6 +78,7 @@
 .nav {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .navList {
@@ -240,6 +241,10 @@
 
   .tagline {
     display: none;
+  }
+
+  .nav {
+    gap: 1rem;
   }
 
   .menuToggle {

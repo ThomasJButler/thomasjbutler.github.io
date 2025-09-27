@@ -618,10 +618,13 @@ export const ProjectsPage: React.FC = () => {
                   <div
                     className="matrix-flip-card-front"
                     style={{
-                      backgroundImage: `url('src/images/MyAmazingPhoto.png')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat'
+                      backgroundImage: project.backgroundImage
+                        ? `linear-gradient(135deg, rgba(0, 40, 0, 0.3), rgba(0, 20, 0, 0.6)), url('${project.backgroundImage}')`
+                        : `linear-gradient(135deg, rgba(0, 40, 0, 0.3), rgba(0, 20, 0, 0.6)), url('src/images/MyAmazingPhoto.png')`,
+                      backgroundSize: 'cover, cover',
+                      backgroundPosition: 'center, center',
+                      backgroundRepeat: 'no-repeat, no-repeat',
+                      backgroundBlendMode: 'multiply'
                     }}
                   >
                     {/* Top overlay with title and badges */}

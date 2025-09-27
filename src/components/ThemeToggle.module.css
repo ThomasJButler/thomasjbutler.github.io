@@ -89,13 +89,26 @@
   .themeToggle {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
+    min-width: auto;
+    margin-left: auto;
   }
-  
+
   .themeLabel {
     display: none;
   }
-  
+
   .themeToggle i {
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .themeToggle {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .themeToggle i {
+    font-size: 1rem;
   }
 }

@@ -1,7 +1,7 @@
 /* Galleries Section
    ========================================================================== */
 #galleries {
-    padding: 80px 0;
+    padding: 80px 0 3rem;
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -278,7 +278,8 @@
 .introduction-img img {
     border-radius: 10px;
     box-shadow: 0 0 15px var(--matrix-green);
-    max-width: 150px;
+    max-width: 280px;
+    height: auto;
     transition: transform 0.3s ease;
 }
 
@@ -573,6 +574,99 @@
     text-rendering: optimizeLegibility;
 }
 
+/* Welcome Text - Static, No Animations */
+.welcome-text {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Section Heading Styles - Matrix Theme */
+.section-heading {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow:
+        0 0 20px rgba(0, 255, 0, 0.8),
+        0 0 40px rgba(0, 255, 0, 0.5),
+        0 0 60px rgba(0, 255, 0, 0.3);
+    font-weight: 300;
+}
+
+.section-heading::before,
+.section-heading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+.section-heading::before {
+    left: -80px;
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+.section-heading::after {
+    right: -80px;
+    animation: pulseGlow 2s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.5;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.4);
+    }
+}
+
+/* Responsive section heading */
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        width: 40px;
+    }
+
+    .section-heading::before {
+        left: -50px;
+    }
+
+    .section-heading::after {
+        right: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-heading {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        display: none;
+    }
+}
+
 /* Keyframe Animations */
 @keyframes pulse {
     0%, 100% {
@@ -733,7 +827,7 @@
     }
 
     .introduction-img img {
-        max-width: 30%;
+        max-width: 35%;
         height: auto;
         border-radius: 8px;
     }
@@ -746,6 +840,23 @@
     
     .version-timetravel a {
         font-size: 0.85rem;
+    }
+}
+
+/* Mobile Introduction Images (Phones) */
+@media screen and (max-width: 699px) {
+    .introduction-img {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 1rem;
+    }
+
+    .introduction-img img {
+        max-width: 200px;
+        width: 80%;
+        height: auto;
     }
 }
 
