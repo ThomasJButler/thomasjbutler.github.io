@@ -60,23 +60,19 @@
     align-items: stretch;
 }
 
-/* Desktop layout - Full width optimized */
+/* Desktop layout - Side by side optimized */
 @media (min-width: 992px) {
     .contact-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
+        grid-template-columns: 45fr 55fr;
+        gap: var(--space-md);
         align-items: stretch;
-    }
-
-    .contact-form-section {
-        order: -1;
     }
 }
 
-/* Contact Info Section - Ultra Compact */
+/* Contact Info Section - Ultra Compact with 2x2 Grid */
 .contact-info {
-    padding: var(--space-md);
-    border-radius: 12px;
+    padding: var(--space-xs);
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(
@@ -91,9 +87,34 @@
     backface-visibility: hidden;
     contain: layout style paint;
     text-align: center;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
+}
+
+/* 2x2 Grid for Info Sections on Desktop */
+@media (min-width: 768px) {
+    .contact-info {
+        display: grid;
+        grid-template-areas:
+            "header header"
+            "location contact"
+            "availability coffee";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr 1fr;
+        gap: var(--space-xs);
+        align-items: stretch;
+    }
+
+    .contact-info h2 {
+        grid-area: header;
+        margin-bottom: var(--space-xs);
+    }
+
+    .info-section:nth-child(2) { grid-area: location; }
+    .info-section:nth-child(3) { grid-area: contact; }
+    .info-section:nth-child(4) { grid-area: availability; }
+    .coffee-section { grid-area: coffee; }
 }
 
 .contact-info:hover {
@@ -154,6 +175,16 @@
 
 .info-section:last-child {
     margin-bottom: 0;
+}
+
+/* Adjust spacing for grid layout */
+@media (min-width: 768px) {
+    .info-section {
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 }
 
 .info-section h3 {
@@ -428,7 +459,7 @@ p.info-card {
     );
     border: 1px solid rgba(0, 255, 0, 0.1);
     border-radius: 12px;
-    padding: var(--space-md);
+    padding: var(--space-xs);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
@@ -1001,7 +1032,7 @@ p.info-card {
     }
 
     .contact-grid {
-        gap: var(--space-lg);
+        gap: var(--space-xs);
         max-width: 100%;
         display: flex;
         flex-direction: column-reverse;
@@ -1009,8 +1040,12 @@ p.info-card {
 
     .contact-info,
     .contact-form-section {
-        padding: var(--space-lg) var(--space-md);
+        padding: var(--space-sm) var(--space-md);
         border-radius: 12px;
+    }
+
+    .contact-form-section {
+        padding-top: var(--space-xs);
     }
 
     .contact-info h2,

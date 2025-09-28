@@ -94,11 +94,9 @@ export const ContactPage: React.FC = () => {
 
               <div className="info-section">
                 <h3><i className="fas fa-calendar-check"></i> Availability</h3>
-                <ul className="availability-list">
-                  <li><i className="fas fa-check-circle"></i> Resume is available upon request</li>
-                  <li><i className="fas fa-check-circle"></i> Available for full time work</li>
-                  <li><i className="fas fa-check-circle"></i> Available for freelance work</li>
-                </ul>
+                <div className="availability-summary">
+                  <i className="fas fa-check-circle"></i> Available for full-time, freelance work • Resume upon request
+                </div>
               </div>
 
               <div className="info-section coffee-section">
