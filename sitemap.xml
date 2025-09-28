@@ -1,51 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Main React Application -->
     <url>
-        <loc>https://thomasjbutler.co.uk/</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
+
+    <!-- Main Pages -->
     <url>
-        <loc>https://thomasjbutler.co.uk/about.html</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/about</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/projects.html</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/skills</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/projects</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/contact.html</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/services</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/services.html</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/contact</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/skills.html</loc>
-        <lastmod>2025-07-21</lastmod>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/sitemap</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Blog Section -->
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Individual Blog Posts -->
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/ai-that-codes-like-you</loc>
+        <lastmod>2025-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/sitemap.html</loc>
-        <lastmod>2025-07-21</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/building-bridges-not-replacements</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://thomasjbutler.co.uk/index-react.html</loc>
-        <lastmod>2025-07-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/context-as-the-new-oil</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/context-engineering-101</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/context-loss-productivity-killer</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/dehumanization-of-development</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/democratizing-ai-development</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/evolution-of-ai-assistance</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/from-prompts-to-context-systems</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/git-for-ai-memory</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/losing-craftsmanship-to-automation</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/making-ai-more-human</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/manifesto-human-first-tech</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/solving-ai-amnesia</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/tech-burnout-crisis</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/tech-that-adapts-to-humans</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/the-copy-paste-culture</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/the-empathy-gap-in-ai</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/the-personalization-revolution</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://thomasjbutler.github.io/ThomasJButler/blog/why-ai-feels-robotic</loc>
+        <lastmod>2025-09-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 </urlset>

@@ -1091,10 +1091,9 @@ p.info-card {
 
 /* Legacy Section Support - from pages/contact.css */
 #contact {
-    margin-top: 3rem;
-    padding: 3rem 1rem;
+    padding: 1rem;
     text-align: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     background: #000000;
     position: relative;

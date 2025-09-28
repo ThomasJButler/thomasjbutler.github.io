@@ -5,13 +5,7 @@ import { useSEO } from '../hooks/useSEO';
 interface SiteLink {
   name: string;
   path: string;
-  description: string;
   external?: boolean;
-}
-
-interface SiteSection {
-  title: string;
-  links: SiteLink[];
 }
 
 const SitemapPageComponent: React.FC = () => {
@@ -35,36 +29,21 @@ const SitemapPageComponent: React.FC = () => {
     }
   });
 
-  // Memoize site structure to prevent unnecessary re-renders
-  const siteStructure: SiteSection[] = useMemo(() => [
-    {
-      title: 'Main Pages',
-      links: [
-        { name: 'Home', path: '/', description: 'Portfolio homepage with featured projects' },
-        { name: 'About Me', path: '/about', description: 'Learn about my journey and expertise' },
-        { name: 'Skills', path: '/skills', description: 'Technical skills and proficiencies' },
-        { name: 'Projects', path: '/projects', description: 'Complete project portfolio' },
-        { name: 'Services', path: '/services', description: 'Services I offer' },
-        { name: 'Contact', path: '/contact', description: 'Get in touch' }
-      ]
-    },
-    {
-      title: 'Blog',
-      links: [
-        { name: 'All Articles', path: '/blog', description: 'Thought leadership on AI and development' },
-        { name: 'AI & Automation', path: '/blog?tag=ai', description: 'Articles about AI integration' },
-        { name: 'Development', path: '/blog?tag=development', description: 'Development best practices' },
-        { name: 'Human-Centered Tech', path: '/blog?tag=human', description: 'Technology for humans' }
-      ]
-    },
-    {
-      title: 'External Links',
-      links: [
-        { name: 'GitHub', path: 'https://github.com/ThomasJButler', description: 'View my code', external: true },
-        { name: 'LinkedIn', path: 'https://linkedin.com/in/thomasjbutler', description: 'Professional profile', external: true },
-        { name: 'Buy Me a Coffee', path: 'https://buymeacoffee.com/ojrwoqkgmv', description: 'Support my work', external: true }
-      ]
-    }
+  // Site structure for clean minimalist design
+  const mainPages: SiteLink[] = useMemo(() => [
+    { name: 'HOME', path: '/' },
+    { name: 'ABOUT', path: '/about' },
+    { name: 'SKILLS', path: '/skills' },
+    { name: 'PROJECTS', path: '/projects' },
+    { name: 'BLOG', path: '/blog' },
+    { name: 'SERVICES', path: '/services' },
+    { name: 'CONTACT', path: '/contact' }
+  ], []);
+
+  const externalLinks: SiteLink[] = useMemo(() => [
+    { name: 'GITHUB', path: 'https://github.com/ThomasJButler', external: true },
+    { name: 'LINKEDIN', path: 'https://linkedin.com/in/thomasjbutler', external: true },
+    { name: 'BUY ME A COFFEE', path: 'https://buymeacoffee.com/ojrwoqkgmv', external: true }
   ], []);
 
   // Memoize the current date to prevent unnecessary re-renders
@@ -74,94 +53,63 @@ const SitemapPageComponent: React.FC = () => {
     day: 'numeric'
   }), []);
 
-  // Helper function for rendering links with proper accessibility
+  // Helper function for rendering links
   const renderLink = (link: SiteLink, index: number) => {
-    const commonProps = {
-      key: index,
-      className: `sitemap-link ${link.external ? 'external' : ''}`,
-      'aria-describedby': `link-desc-${index}`
-    };
-
     if (link.external) {
       return (
-        <a 
-          {...commonProps}
-          href={link.path} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          aria-label={`${link.name} (opens in new tab)`}
-        >
-          <span className="link-name">{link.name}</span>
-          <i className="fas fa-external-link-alt" aria-hidden="true"></i>
-          <span 
-            id={`link-desc-${index}`} 
-            className="link-description"
+        <li key={index}>
+          <a
+            href={link.path}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${link.name} (opens in new tab)`}
           >
-            {link.description}
-          </span>
-        </a>
+            {link.name}
+          </a>
+        </li>
       );
     }
 
     return (
-      <Link 
-        {...commonProps}
-        to={link.path}
-        aria-label={link.name}
-      >
-        <span className="link-name">{link.name}</span>
-        <span 
-          id={`link-desc-${index}`} 
-          className="link-description"
-        >
-          {link.description}
-        </span>
-      </Link>
+      <li key={index}>
+        <Link to={link.path}>
+          {link.name}
+        </Link>
+      </li>
     );
   };
 
   return (
-    <section id="sitemap" className="sitemap-section">
+    <section id="sitemap" className="sitemap-container">
       <div className="container">
         <header>
-          <h1 className="page-title">Site Map</h1>
-          <p className="page-subtitle">Complete navigation structure of thomasjbutler.me</p>
+          <h1 className="page-title">SITE MAP</h1>
         </header>
 
-        <nav className="sitemap-grid" role="navigation" aria-label="Site navigation">
-          {siteStructure.map((section, sectionIndex) => (
-            <section 
-              key={sectionIndex} 
-              className="sitemap-section"
-              aria-labelledby={`section-${sectionIndex}`}
-            >
-              <h2 
-                id={`section-${sectionIndex}`}
-                className="section-title"
-              >
-                {section.title}
-              </h2>
-              <ul className="sitemap-links" role="list">
-                {section.links.map((link, linkIndex) => {
-                  const globalIndex = sectionIndex * 100 + linkIndex;
-                  return (
-                    <li key={linkIndex} role="listitem">
-                      {renderLink(link, globalIndex)}
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          ))}
-        </nav>
+        <div className="sitemap-content">
+          <div className="sitemap-column">
+            <h2>MAIN PAGES</h2>
+            <ul>
+              {mainPages.map((link, index) => renderLink(link, index))}
+            </ul>
+          </div>
 
-        <footer className="sitemap-footer" role="contentinfo">
-          <p>
-            <time dateTime={new Date().toISOString()}>
-              Last updated: {lastUpdated}
-            </time>
-          </p>
-          <p>© {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
+          <div className="sitemap-column">
+            <h2>EXTERNAL</h2>
+            <ul>
+              {externalLinks.map((link, index) => renderLink(link, index + 100))}
+            </ul>
+          </div>
+        </div>
+
+        <footer className="sitemap-footer">
+          <div className="footer-nav">
+            <span>MOBILE</span>
+            <span>•</span>
+            <span>MAIN PAGES</span>
+            <span>•</span>
+            <span>EXTERNAL LINKS</span>
+          </div>
         </footer>
       </div>
     </section>
