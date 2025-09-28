@@ -741,59 +741,73 @@
     padding-top: 1rem;
 }
 
-/* Neo Matrix Button Styles */
-.neo-matrix-btn {
-    padding: 0.8rem 1.5rem;
-    border: 2px solid var(--matrix-green);
-    border-radius: 4px;
+/* Neo Matrix Button Styles - Project Specific with Higher Specificity */
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn {
+    padding: 0.8rem 1.5rem !important;
+    border: 2px solid var(--matrix-green) !important;
+    border-radius: 4px !important;
     color: var(--matrix-green) !important;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-family: var(--font-primary);
-    position: relative;
-    overflow: hidden;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-weight: bold !important;
+    font-family: var(--font-primary) !important;
+    position: relative !important;
+    overflow: visible !important;
     background: rgba(0, 0, 0, 0.8) !important;
     box-shadow:
         0 0 10px rgba(0, 255, 0, 0.2),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    min-width: 140px;
-    cursor: pointer;
-    z-index: 10;
+        inset 0 0 15px rgba(0, 255, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    min-width: 140px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
 }
 
-.neo-matrix-btn:hover {
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn:hover {
     color: #000 !important;
     background: var(--matrix-green) !important;
-    border-color: transparent;
+    border-color: transparent !important;
     box-shadow:
         0 0 20px rgba(0, 255, 0, 0.4),
-        inset 0 0 20px rgba(0, 255, 0, 0.2);
-    text-shadow: none;
-    transform: translateY(-2px);
-    z-index: 15;
+        inset 0 0 20px rgba(0, 255, 0, 0.2) !important;
+    text-shadow: none !important;
+    transform: translateY(-2px) !important;
+    z-index: 15 !important;
+    animation: none !important;
 }
 
-.neo-matrix-btn:active {
-    transform: translateY(1px);
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn:active {
+    transform: translateY(1px) !important;
     box-shadow:
         0 0 10px rgba(0, 255, 0, 0.4),
-        inset 0 0 10px rgba(0, 255, 0, 0.2);
+        inset 0 0 10px rgba(0, 255, 0, 0.2) !important;
 }
 
-.neo-matrix-btn i {
-    font-size: 0.9em;
-    transition: transform 0.3s ease;
+/* Override conflicting pseudo-elements from utilities.css */
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn::before,
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn::after {
+    content: none !important;
+    display: none !important;
 }
 
-.neo-matrix-btn:hover i {
-    transform: translateX(4px);
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn i {
+    font-size: 0.9em !important;
+    transition: transform 0.3s ease !important;
+    color: inherit !important;
+}
+
+.matrix-project-card .matrix-project-buttons .neo-matrix-btn:hover i {
+    transform: translateX(4px) !important;
+    color: inherit !important;
 }
 
 /* Matrix Responsive Design */
@@ -827,10 +841,10 @@
         font-size: 0.9rem;
     }
 
-    .neo-matrix-btn {
-        min-width: auto;
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+    .matrix-project-card .matrix-project-buttons .neo-matrix-btn {
+        min-width: auto !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.9rem !important;
     }
 }
 

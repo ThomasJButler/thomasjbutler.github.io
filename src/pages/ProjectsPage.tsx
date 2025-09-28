@@ -401,15 +401,16 @@ export const ProjectsPage: React.FC = () => {
   
   // Add particle effects to buttons
   useEffect(() => {
-    const handleButtonClick = (e: MouseEvent) => {
-      createParticleBurst(e.clientX, e.clientY);
+    const handleButtonClick = (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      createParticleBurst(mouseEvent.clientX, mouseEvent.clientY);
     };
-    
-    const buttons = document.querySelectorAll('.neo-matrix-btn');
+
+    const buttons = document.querySelectorAll('.neo-matrix-btn') as NodeListOf<HTMLElement>;
     buttons.forEach(btn => {
       btn.addEventListener('click', handleButtonClick);
     });
-    
+
     return () => {
       buttons.forEach(btn => {
         btn.removeEventListener('click', handleButtonClick);
@@ -531,14 +532,14 @@ export const ProjectsPage: React.FC = () => {
               onMouseLeave={handleCardLeave}
               style={{
                 background: project.gradient || 'rgba(0, 20, 0, 0.6)',
-                backgroundImage: project.backgroundImage ? `url(${project.backgroundImage})` : undefined,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundBlendMode: 'overlay'
               }}
             >
               {/* Background overlay for better text readability */}
-              <div className="project-card-overlay absolute" style={{
+              <div className="project-card-overlay" style={{
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
@@ -592,9 +593,8 @@ export const ProjectsPage: React.FC = () => {
                   <span className="language-name">{project.language.name}</span>
                   <span className="language-percent">{project.language.percent}%</span>
                 </div>
-              </div>
-              
-              <div className="matrix-project-buttons relative z-20">
+
+                <div className="matrix-project-buttons">
                 {project.links.demo && (
                   <a 
                     href={project.links.demo} 
@@ -617,6 +617,7 @@ export const ProjectsPage: React.FC = () => {
                     View Code
                   </a>
                 )}
+              </div>
               </div>
             </article>
           ))}
