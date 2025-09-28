@@ -339,8 +339,18 @@ const categories = [
 export const ProjectsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
+  const [currentPage, setCurrentPage] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  // Pagination configuration
+  const projectsPerPage = 6;
+  const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
+
+  // Calculate projects for current page
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const currentProjects = visibleProjects.slice(startIndex, endIndex);
 
   useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
   useCardAnimations();
@@ -351,6 +361,8 @@ export const ProjectsPage: React.FC = () => {
     } else {
       setVisibleProjects(projects.filter(p => p.category === activeCategory));
     }
+    // Reset to first page when category changes
+    setCurrentPage(1);
   }, [activeCategory]);
 
   useEffect(() => {
@@ -364,7 +376,7 @@ export const ProjectsPage: React.FC = () => {
         easing: 'easeOutQuad'
       });
     }
-  }, [visibleProjects]);
+  }, [currentProjects]);
   
   // Create particle burst effect - refined for better performance
   const createParticleBurst = (x: number, y: number) => {
@@ -416,7 +428,28 @@ export const ProjectsPage: React.FC = () => {
         btn.removeEventListener('click', handleButtonClick);
       });
     };
-  }, [visibleProjects]);
+  }, [currentProjects]);
+
+  // Pagination handlers
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      // Scroll to top of projects section
+      containerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -523,7 +556,7 @@ export const ProjectsPage: React.FC = () => {
         </div>
 
         <div ref={gridRef} className="matrix-project-grid">
-          {visibleProjects.map((project) => (
+          {currentProjects.map((project) => (
             <article
               key={project.id}
               className="matrix-project-card"
@@ -622,6 +655,48 @@ export const ProjectsPage: React.FC = () => {
             </article>
           ))}
         </div>
+
+        {/* Pagination Component */}
+        {totalPages > 1 && (
+          <div className="matrix-pagination">
+            <button
+              className={`matrix-pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+            >
+              <i className="fas fa-chevron-left"></i>
+              Prev
+            </button>
+
+            <div className="matrix-pagination-numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  className={`matrix-pagination-number ${currentPage === page ? 'active' : ''}`}
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+
+            <button
+              className={`matrix-pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        )}
+
+        {/* Pagination Info */}
+        {totalPages > 1 && (
+          <div className="matrix-pagination-info">
+            Showing {startIndex + 1}-{Math.min(endIndex, visibleProjects.length)} of {visibleProjects.length} projects
+          </div>
+        )}
       </div>
     </div>
   );
