@@ -169,6 +169,40 @@ export const AboutPage: React.FC = () => {
                     </div>
                     <div className="holographic-overlay"></div>
                   </div>
+
+                  <div className="holographic-card primary-card" data-tier="gold">
+                    <div className="card-glow"></div>
+                    <div className="card-content">
+                      <div className="cert-header">
+                        <div className="matrix-badge cisco-badge">
+                          <svg className="badge-svg" viewBox="0 0 100 100">
+                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
+                            <circle cx="50" cy="50" r="20" className="badge-center"/>
+                            <text x="50" y="35" textAnchor="middle" className="badge-level">DS</text>
+                            <text x="50" y="55" textAnchor="middle" className="badge-type">CIS</text>
+                          </svg>
+                          <div className="cisco-pulse"></div>
+                        </div>
+                        <div className="cert-details">
+                          <h3>Cisco Introduction to Data Science</h3>
+                          <p className="cert-date">
+                            <i className="fas fa-calendar-check"></i>
+                            Issued April 2023
+                          </p>
+                        </div>
+                      </div>
+                      <p className="cert-description">Comprehensive understanding of data analytics, data engineering, and AI/ML related job functions</p>
+                      <div className="cert-skills">
+                        <span className="skill-tag">Data Science</span>
+                        <span className="skill-tag">Data Analysis</span>
+                        <span className="skill-tag">Threat Analysis</span>
+                        <span className="skill-tag">Cyber Threat Intelligence</span>
+                        <span className="skill-tag">Cybersecurity Careers</span>
+                        <span className="skill-tag">Artificial Intelligence</span>
+                      </div>
+                    </div>
+                    <div className="holographic-overlay"></div>
+                  </div>
                 </div>
               </div>
 
