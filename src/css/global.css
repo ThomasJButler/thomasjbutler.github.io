@@ -237,12 +237,12 @@ html, body {
    
    /* Special padding for introduction sections */
    #introduction {
-       padding: var(--space-3xl) var(--space-lg);
+       padding: var(--space-lg) var(--space-lg);
    }
    
    @media (max-width: 768px) {
        #introduction {
-           padding: var(--space-2xl) var(--space-md);
+           padding: var(--space-lg) var(--space-md);
        }
    }
    

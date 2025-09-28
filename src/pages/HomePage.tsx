@@ -334,7 +334,7 @@ export const HomePage: React.FC = () => {
 
       <NavigationGuide />
 
-      <section id="galleries" className="reveal" ref={galleriesRef as React.RefObject<HTMLElement>}>
+      <section id="galleries" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
           <h2 className="section-heading">--| Showcases |--</h2>
           <div className="galleries-grid">

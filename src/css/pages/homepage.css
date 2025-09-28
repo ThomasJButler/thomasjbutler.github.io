@@ -238,7 +238,7 @@
 /* Introduction Section
    ========================================================================== */
    #introduction {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-lg) 0;
     text-align: center;
     background: #000000;
     position: relative;
