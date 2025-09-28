@@ -124,6 +124,31 @@
    Mobile Menu Toggle - Clean Hamburger
    ======================================================================== */
 
+/* Desktop Navigation - Ensure visibility */
+@media (min-width: 769px) {
+  .navList {
+    display: flex !important;
+    position: static !important;
+    background: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    gap: 2rem !important;
+    border: none !important;
+  }
+
+  .menuToggle {
+    display: none !important;
+  }
+
+  .navLink {
+    color: rgba(0, 255, 0, 0.8) !important;
+    font-weight: 500 !important;
+  }
+}
+
 .menuToggle {
   display: none;
   flex-direction: column;
