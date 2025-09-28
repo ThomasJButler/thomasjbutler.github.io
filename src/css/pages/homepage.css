@@ -1,7 +1,7 @@
 /* Galleries Section
    ========================================================================== */
 #galleries {
-    padding: 80px 0 3rem;
+    padding: 3rem 0 3rem;
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -589,6 +589,7 @@
     font-family: var(--font-primary);
     font-size: 2.5rem;
     text-align: center;
+    margin-top: 0;
     margin-bottom: 3rem;
     text-transform: uppercase;
     letter-spacing: 3px;
