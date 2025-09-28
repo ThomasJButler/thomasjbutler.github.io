@@ -643,30 +643,7 @@
     }
 }
 
-/* Scanline effect for cards */
-.matrix-project-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 255, 0, 0.03) 0px,
-        transparent 1px,
-        transparent 2px,
-        rgba(0, 255, 0, 0.03) 3px
-    );
-    pointer-events: none;
-    animation: scanlines 8s linear infinite;
-    z-index: 1;
-}
 
-@keyframes scanlines {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-}
 
 /* Matrix Card Content */
 .matrix-project-header {
@@ -760,7 +737,7 @@
     margin-top: auto;
     flex-wrap: wrap;
     position: relative;
-    z-index: 5;
+    z-index: 10 !important;
     padding-top: 1rem;
 }
 
@@ -769,7 +746,7 @@
     padding: 0.8rem 1.5rem;
     border: 2px solid var(--matrix-green);
     border-radius: 4px;
-    color: var(--matrix-green);
+    color: var(--matrix-green) !important;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -777,7 +754,7 @@
     font-family: var(--font-primary);
     position: relative;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8) !important;
     box-shadow:
         0 0 10px rgba(0, 255, 0, 0.2),
         inset 0 0 15px rgba(0, 255, 0, 0.1);
@@ -788,17 +765,19 @@
     gap: 0.5rem;
     min-width: 140px;
     cursor: pointer;
+    z-index: 10;
 }
 
 .neo-matrix-btn:hover {
-    color: #000;
-    background: var(--matrix-green);
+    color: #000 !important;
+    background: var(--matrix-green) !important;
     border-color: transparent;
     box-shadow:
         0 0 20px rgba(0, 255, 0, 0.4),
         inset 0 0 20px rgba(0, 255, 0, 0.2);
     text-shadow: none;
     transform: translateY(-2px);
+    z-index: 15;
 }
 
 .neo-matrix-btn:active {
