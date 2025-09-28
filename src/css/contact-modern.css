@@ -11,10 +11,10 @@
     backface-visibility: hidden;
 }
 
-/* Contact Grid Layout - Optimized */
+/* Contact Grid Layout - Ultra Compact */
 .contact-container {
-    max-width: 1400px;
-    padding: var(--space-2xl) var(--space-xl);
+    max-width: 900px;
+    padding: var(--space-md) var(--space-sm);
     margin: 0 auto;
 }
 
@@ -56,17 +56,27 @@
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-3xl);
+    gap: var(--space-lg);
     align-items: stretch;
 }
 
-/* Desktop layout - Optimal ratio */
-/* Desktop layout moved to responsive.css */
+/* Desktop layout - Full width optimized */
+@media (min-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        align-items: stretch;
+    }
 
-/* Contact Info Section - Refined */
+    .contact-form-section {
+        order: -1;
+    }
+}
+
+/* Contact Info Section - Ultra Compact */
 .contact-info {
-    padding: var(--space-2xl);
-    border-radius: 24px;
+    padding: var(--space-md);
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(
@@ -81,7 +91,7 @@
     backface-visibility: hidden;
     contain: layout style paint;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
 }
@@ -129,16 +139,17 @@
 
 .contact-info h2 {
     color: var(--matrix-green);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
     text-align: center;
-    text-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     letter-spacing: 0.02em;
     font-weight: 300;
+    font-size: 1.25rem;
 }
 
-/* Info Sections - Clean */
+/* Info Sections - Ultra Compact */
 .info-section {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 .info-section:last-child {
@@ -147,11 +158,11 @@
 
 .info-section h3 {
     color: rgba(0, 255, 0, 0.9);
-    margin-bottom: var(--space-md);
-    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -172,15 +183,15 @@
 .info-card {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md);
+    gap: var(--space-sm);
+    padding: var(--space-sm);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.02),
         rgba(0, 255, 0, 0.01)
     );
     border: 1px solid rgba(0, 255, 0, 0.08);
-    border-radius: 8px;
+    border-radius: 6px;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
@@ -229,7 +240,7 @@
 
 .info-content {
     flex: 1;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
 }
 
 /* Location card */
@@ -239,32 +250,30 @@ p.info-card {
     text-align: center;
 }
 
-/* Availability List - Clean */
+/* Availability List - Compact Single Line */
 .availability-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
 }
 
-.availability-list li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md);
+.availability-summary {
+    padding: var(--space-sm);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.02),
         rgba(0, 255, 0, 0.01)
     );
     border: 1px solid rgba(0, 255, 0, 0.08);
-    border-radius: 8px;
-    transition: background 200ms ease, border-color 200ms ease;
+    border-radius: 6px;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    transform: translate3d(0, 0, 0);
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.availability-list li {
+    display: none;
 }
 
 .availability-list li:hover {
@@ -282,24 +291,24 @@ p.info-card {
     min-width: 24px;
 }
 
-/* Coffee Section - Premium */
+/* Coffee Section - Compact */
 .coffee-section {
     text-align: center;
-    padding-top: var(--space-xl);
+    padding-top: var(--space-sm);
     margin-top: auto;
     border-top: 1px solid rgba(0, 255, 0, 0.08);
 }
 
 .coffee-section h3 {
     color: var(--matrix-green);
-    margin-bottom: var(--space-sm);
-    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+    font-size: 1rem;
 }
 
 .support-text {
     color: rgba(255, 255, 255, 0.6);
-    margin-bottom: var(--space-lg);
-    font-size: 0.9rem;
+    margin-bottom: var(--space-sm);
+    font-size: 0.75rem;
     text-align: center;
 }
 
@@ -307,24 +316,24 @@ p.info-card {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-2xl);
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-lg);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.12),
         rgba(0, 255, 0, 0.06)
     );
-    border: 1.5px solid rgba(0, 255, 0, 0.4);
-    border-radius: 100px;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 20px;
     color: var(--matrix-green);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     letter-spacing: 0.02em;
     transition: box-shadow 300ms ease, border-color 300ms ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transform: translate3d(0, 0, 0);
     will-change: box-shadow;
 }
@@ -405,7 +414,7 @@ p.info-card {
     }
 }
 
-/* Form Section - Premium Design */
+/* Form Section - Ultra Compact */
 .contact-form-wrapper,
 .contact-form-section {
     display: flex;
@@ -418,9 +427,9 @@ p.info-card {
         rgba(0, 25, 0, 0.95)
     );
     border: 1px solid rgba(0, 255, 0, 0.1);
-    border-radius: 24px;
-    padding: var(--space-2xl);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: var(--space-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -455,12 +464,12 @@ p.info-card {
 .contact-form-wrapper h2,
 .contact-form-section h2 {
     color: var(--matrix-green);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
     text-align: center;
-    text-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     letter-spacing: 0.02em;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 1.25rem;
 }
 
 /* Form Container - Refined */
@@ -532,10 +541,10 @@ p.info-card {
     box-shadow: 0 0 20px var(--matrix-green);
 }
 
-/* Form Groups - Enhanced */
+/* Form Groups - Ultra Compact */
 .form-group {
     position: relative;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
 }
 
 .form-group:last-of-type {
@@ -554,38 +563,38 @@ p.info-card {
     will-change: color, transform;
 }
 
-/* Form Inputs - Premium Style */
+/* Form Inputs - Ultra Compact */
 .form-group input,
 .form-group textarea,
 .form-input {
     width: 100%;
-    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 1rem 0.5rem 0.25rem 0.5rem;
     background: rgba(0, 255, 0, 0.01);
     border: none;
-    border-bottom: 1.5px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-family: inherit;
     transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
     outline: none;
-    min-height: 48px;
+    min-height: 36px;
     transform: translate3d(0, 0, 0);
 }
 
 .form-group textarea {
-    min-height: 90px;
+    min-height: 60px;
     resize: vertical;
-    padding-top: var(--space-sm);
+    padding-top: var(--space-xs);
 }
 
-/* Floating Labels - Refined */
+/* Floating Labels - Ultra Compact */
 .form-group label {
     position: absolute;
     left: 0.5rem;
-    top: 1.25rem;
+    top: 1rem;
     color: rgba(0, 255, 0, 0.4);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     pointer-events: none;
     transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
     font-weight: 400;
@@ -593,7 +602,7 @@ p.info-card {
 }
 
 .form-group textarea + label {
-    top: var(--space-md);
+    top: var(--space-sm);
 }
 
 /* Active/Filled state */
@@ -603,9 +612,9 @@ p.info-card {
 .form-group textarea:not(:placeholder-shown) ~ label,
 .form-input:focus ~ label,
 .form-input:not(:placeholder-shown) ~ label {
-    top: -0.5rem;
+    top: -0.25rem;
     left: 0;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: var(--matrix-green);
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -701,30 +710,30 @@ p.info-card {
     transform: translateY(0);
 }
 
-/* Submit Button - Premium Design */
+/* Submit Button - Ultra Compact */
 .btn-submit-modern,
 .submit-btn {
     position: relative;
     width: 100%;
-    margin-top: var(--space-2xl);
-    padding: var(--space-lg);
+    margin-top: var(--space-md);
+    padding: var(--space-sm);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.1),
         rgba(0, 255, 0, 0.05)
     );
-    border: 1.5px solid rgba(0, 255, 0, 0.4);
-    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 6px;
     color: var(--matrix-green);
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     cursor: pointer;
     overflow: hidden;
     transition: box-shadow 300ms ease, border-color 300ms ease, background 300ms ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    min-height: 56px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    min-height: 40px;
     transform: translate3d(0, 0, 0);
     will-change: box-shadow;
 }
@@ -907,14 +916,21 @@ p.info-card {
     font-size: 1rem;
 }
 
-/* Video Banner */
+/* Video Banner - Ultra Compact */
 .video-banner {
     position: relative;
     width: 100%;
-    height: 350px;
+    height: 250px;
     overflow: hidden;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     margin-top: 0;
+}
+
+.banner-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Matrix theme enhancements for video banner */
@@ -981,70 +997,131 @@ p.info-card {
 
 @media (max-width: 767px) {
     .contact-container {
-        padding: var(--space-lg) var(--space-md);
+        padding: var(--space-md) var(--space-sm);
     }
-    
+
     .contact-grid {
-        gap: var(--space-xl);
+        gap: var(--space-lg);
         max-width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
     }
-    
+
     .contact-info,
-    #contact-form {
-        padding: var(--space-xl) var(--space-lg);
+    .contact-form-section {
+        padding: var(--space-lg) var(--space-md);
         border-radius: 12px;
     }
-    
+
     .contact-info h2,
-    .contact-form-wrapper h2 {
-        font-size: 1.5rem;
+    .contact-form-wrapper h2,
+    .contact-form-section h2 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-md);
     }
-    
+
     .coffee-button-premium {
-        padding: var(--space-sm) var(--space-lg);
-        font-size: 0.9rem;
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.85rem;
     }
-    
+
     .info-card,
     .availability-list li {
-        padding: var(--space-sm) var(--space-md);
-        font-size: 0.9rem;
+        padding: var(--space-sm);
+        font-size: 0.85rem;
     }
-    
+
     .form-group {
-        margin-bottom: var(--space-xl);
+        margin-bottom: var(--space-md);
     }
-    
+
     .form-group input,
     .form-group textarea {
-        font-size: 1rem;
-        padding: var(--space-md) var(--space-xs) var(--space-md) var(--space-xl);
-        min-height: 48px;
-    }
-    
-    .form-group textarea {
-        min-height: 120px;
-    }
-    
-    .btn-submit-modern {
-        padding: var(--space-md);
         font-size: 0.95rem;
-        min-height: 48px;
+        padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+        min-height: 44px;
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+    }
+
+    .btn-submit-modern,
+    .submit-btn {
+        padding: var(--space-sm);
+        font-size: 0.9rem;
+        min-height: 44px;
+        margin-top: var(--space-lg);
+    }
+
+    .video-banner {
+        height: 120px;
     }
 }
 
 @media (max-width: 480px) {
     .contact-container {
-        padding: var(--space-md) var(--space-sm);
+        padding: var(--space-xs) var(--space-xs);
     }
-    
+
     .contact-info,
-    #contact-form {
-        padding: var(--space-lg) var(--space-md);
+    .contact-form-section {
+        padding: var(--space-sm);
+        padding-top: 0;
     }
-    
+
+    .contact-info h2,
+    .contact-form-section h2 {
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+    }
+
     .video-banner {
-        height: 150px;
+        height: 100px;
+    }
+
+    .info-section {
+        margin-bottom: var(--space-sm);
+    }
+
+    .coffee-section {
+        padding-top: var(--space-xs);
+    }
+
+    .form-group {
+        margin-bottom: var(--space-xs);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.8rem;
+        padding: 0.75rem 0.5rem 0.25rem 0.5rem;
+        min-height: 32px;
+    }
+
+    .form-group textarea {
+        min-height: 50px;
+    }
+
+    .btn-submit-modern,
+    .submit-btn {
+        padding: var(--space-xs);
+        font-size: 0.75rem;
+        min-height: 36px;
+        margin-top: var(--space-sm);
+    }
+
+    .form-group label {
+        top: 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label,
+    .form-group textarea:focus ~ label,
+    .form-group textarea:not(:placeholder-shown) ~ label {
+        top: -0.125rem;
+        font-size: 0.6rem;
     }
 }
 
