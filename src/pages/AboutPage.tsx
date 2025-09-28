@@ -192,6 +192,15 @@ export const AboutPage: React.FC = () => {
                         </div>
                       </div>
                       <p className="cert-description">Comprehensive understanding of data analytics, data engineering, and AI/ML related job functions</p>
+                      <div className="verify-section">
+                        <a href="https://www.credly.com/badges/4167931a-2128-4e5a-b6a8-c2c0493325f6/linked_in_profile"
+                           target="_blank"
+                           rel="noopener"
+                           className="matrix-verify-btn">
+                          <span className="verify-text">VERIFY CREDENTIAL</span>
+                          <div className="verify-animation"></div>
+                        </a>
+                      </div>
                       <div className="cert-skills">
                         <span className="skill-tag">Data Science</span>
                         <span className="skill-tag">Data Analysis</span>
