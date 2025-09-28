@@ -4,15 +4,15 @@
 
 /* Main Container */
 .sitemap-container {
-    padding: 6rem 2rem 4rem;
+    padding: 6rem 2rem 2rem;
     background: var(--bg-primary);
-    min-height: 100vh;
     color: var(--text-primary);
 }
 
 .sitemap-container .container {
     max-width: 900px;
     margin: 0 auto;
+    display: contents;
 }
 
 /* Header */
@@ -25,10 +25,13 @@
     font-size: 2.5rem;
     font-weight: 300;
     color: var(--text-primary);
-    margin: 0;
+    margin: 0 auto;
     letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
+    text-align: center;
+    display: block;
+    width: 100%;
 }
 
 .page-title::after {
@@ -46,17 +49,34 @@
 .sitemap-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    gap: 6rem;
+    margin-bottom: 2rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sitemap-column h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.sitemap-column h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-color);
 }
 
 /* Clean List Styling */
@@ -67,88 +87,121 @@
 }
 
 .sitemap-column li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     position: relative;
-    padding-left: 1rem;
+    padding-left: 1.5rem;
+    line-height: 1.6;
 }
 
 .sitemap-column li::before {
     content: '•';
     position: absolute;
     left: 0;
-    color: var(--text-secondary);
+    top: 0.1rem;
+    color: var(--accent-color);
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .sitemap-column a {
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.sitemap-column a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
 }
 
 .sitemap-column a:hover {
     color: var(--accent-color);
+    transform: translateX(3px);
 }
 
-/* Footer Navigation */
-.sitemap-footer {
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
+.sitemap-column a:hover::after {
+    width: 100%;
+}
+
+/* Last Updated Section */
+.sitemap-last-updated {
     text-align: center;
+    margin-bottom: 0;
+    padding: 1rem;
 }
 
-.footer-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+.sitemap-last-updated p {
+    margin: 0;
     font-size: 0.9rem;
     color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-nav span:not(:last-child):not(:nth-child(even)) {
-    color: var(--text-secondary);
+    font-style: italic;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .sitemap-container {
-        padding: 3rem 1rem;
+        padding: 4rem 1rem 1rem;
     }
 
     .sitemap-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3rem;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .page-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        letter-spacing: 2px;
     }
 
-    .footer-nav {
-        flex-direction: column;
-        gap: 0.5rem;
+    .sitemap-column h2 {
+        font-size: 1.2rem;
     }
 
-    .footer-nav span:nth-child(even) {
-        display: none;
+    .sitemap-last-updated {
+        margin-bottom: 0;
     }
 }
 
 @media (max-width: 480px) {
     .sitemap-container {
-        padding: 2rem 1rem;
+        padding: 3rem 1rem 1rem;
+    }
+
+    .sitemap-content {
+        padding: 1.5rem;
+        gap: 2rem;
+        margin-bottom: 1rem;
     }
 
     .page-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        letter-spacing: 1.5px;
     }
 
     .sitemap-column h2 {
         font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .sitemap-column a {
+        font-size: 0.95rem;
+    }
+
+    .sitemap-last-updated {
+        margin-bottom: 0;
     }
 }
 

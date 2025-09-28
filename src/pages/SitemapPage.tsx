@@ -102,15 +102,9 @@ const SitemapPageComponent: React.FC = () => {
           </div>
         </div>
 
-        <footer className="sitemap-footer">
-          <div className="footer-nav">
-            <span>MOBILE</span>
-            <span>•</span>
-            <span>MAIN PAGES</span>
-            <span>•</span>
-            <span>EXTERNAL LINKS</span>
-          </div>
-        </footer>
+        <div className="sitemap-last-updated">
+          <p>Last updated: {lastUpdated}</p>
+        </div>
       </div>
     </section>
   );
