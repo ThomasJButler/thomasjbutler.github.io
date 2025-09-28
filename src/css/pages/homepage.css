@@ -665,6 +665,11 @@
     .section-heading::after {
         display: none;
     }
+
+    #galleries {
+        padding: 0;
+        padding-bottom: 1rem;
+    }
 }
 
 /* Keyframe Animations */

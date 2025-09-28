@@ -1109,6 +1109,13 @@ section#contact {
     border-radius: 15px;
 }
 
+@media screen and (max-width: 480px) {
+#contact {
+    padding: 1rem 1rem;
+    max-width: 390px;
+}   
+}
+
 /* Enhanced Form Error Messages - from _contact-form.css */
 .form-error-message {
     display: block;

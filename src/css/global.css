@@ -868,7 +868,6 @@ body.loaded {
     justify-content: center;
     gap: 1rem;
     margin: 2rem auto 2rem;
-    padding: 1rem;
     max-width: 600px;
     flex-wrap: wrap;
 }
