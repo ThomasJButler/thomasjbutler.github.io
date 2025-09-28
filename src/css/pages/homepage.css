@@ -271,8 +271,7 @@
     flex-direction: row;
     gap: 20px;
     justify-content: center;
-    margin-top: 30px;
-    padding: 20px;
+    padding: 40px;
 }
 
 .introduction-img img {
@@ -855,7 +854,7 @@
         align-items: center;
         gap: 1rem;
         margin: 1.5rem auto;
-        padding: 1rem;
+        padding: 2rem;
     }
 
     .introduction-img img {
