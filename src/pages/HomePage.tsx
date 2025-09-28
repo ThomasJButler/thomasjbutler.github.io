@@ -320,10 +320,10 @@ export const HomePage: React.FC = () => {
             <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern" />
           </div>
           <div className="galleries-mobile">
-            <a href="#galleries" className="btn-professional glass-card hover-lift">
+            <Link to="/projects" className="btn-professional glass-card hover-lift">
               <i className="fas fa-images"></i>
-              View Galleries
-            </a>
+              View Projects
+            </Link>
             <Link to="/blog" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
               <i className="fas fa-book-open"></i>
               View Blog
