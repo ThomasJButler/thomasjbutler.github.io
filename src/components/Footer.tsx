@@ -58,12 +58,12 @@ export const Footer: React.FC = () => {
   return (
     <footer ref={footerRef} className={styles.siteFooter}>
       <div className={styles.footerContent}>
-        <div className={styles.footerSection}>
+        <div className={styles.socialSection}>
           <h3>Connect With Me</h3>
           <div ref={socialLinksRef} className={styles.socialLinks}>
-            <a 
-              href="https://github.com/ThomasJButler" 
-              target="_blank" 
+            <a
+              href="https://github.com/ThomasJButler"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
               onMouseEnter={handleSocialHover}
@@ -71,9 +71,9 @@ export const Footer: React.FC = () => {
             >
               <i className="fab fa-github"></i>
             </a>
-            <a 
-              href="https://www.linkedin.com/in/thomasbutleruk/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/thomasbutleruk/"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
               onMouseEnter={handleSocialHover}
@@ -81,9 +81,9 @@ export const Footer: React.FC = () => {
             >
               <i className="fab fa-linkedin"></i>
             </a>
-            <a 
-              href="https://codepen.io/thomasbutler" 
-              target="_blank" 
+            <a
+              href="https://codepen.io/thomasbutler"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="CodePen"
               onMouseEnter={handleSocialHover}
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
             >
               <i className="fab fa-codepen"></i>
             </a>
-            <a 
+            <a
               href="mailto:dev@thomasjbutler.me"
               aria-label="Email"
               onMouseEnter={handleSocialHover}
@@ -102,23 +102,22 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.footerSection}>
+        <div className={styles.linksSection}>
           <h3>Quick Links</h3>
-          <ul className={styles.footerLinks}>
-            <li><a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/sitemap">Sitemap</Link></li>
-          </ul>
+          <div className={styles.footerLinks}>
+            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a>
+            <Link to="/contact">Contact</Link>
+            <Link to="/sitemap">Sitemap</Link>
+          </div>
+        </div>
+
+        <div className={styles.infoSection}>
+          <p>&copy; {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
+          <p className={styles.location}>
+            <i className="fas fa-map-marker-alt"></i> UK | Making technology more human
+          </p>
         </div>
       </div>
-
-      <div className={styles.footerBottom}>
-        <p>&copy; {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
-        <p className={styles.location}>
-          <i className="fas fa-map-marker-alt"></i> UK | Making technology more human
-        </p>
-      </div>
-
     </footer>
   );
 };

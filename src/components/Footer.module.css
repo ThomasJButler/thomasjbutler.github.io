@@ -5,8 +5,8 @@
 .siteFooter {
   background: rgba(0, 0, 0, 0.95);
   border-top: 1px solid var(--matrix-green, #00ff00);
-  padding: 2rem 0 1.5rem;
-  margin-top: 3rem;
+  padding: 0.5rem 0;
+  margin-top: 1.5rem;
   position: relative;
   opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
@@ -33,41 +33,42 @@
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 3rem;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.footerSection {
-  min-width: 0; /* Prevent overflow */
-  flex: 1;
+.socialSection,
+.linksSection {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.footerSection h3 {
+.socialSection h3,
+.linksSection h3 {
   font-family: var(--font-primary);
-  font-size: 1.1rem;
+  font-size: 0.7rem;
   color: var(--matrix-green, #00ff00);
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-  position: relative;
-  padding-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
 }
 
-/* Subtle underline */
-.footerSection h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 30px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--matrix-green, #00ff00), transparent);
+.infoSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.infoSection p {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: rgba(0, 255, 0, 0.6);
+  margin: 0;
+  letter-spacing: 0.04em;
 }
 
 /* ========================================================================
@@ -75,28 +76,18 @@
    ======================================================================== */
 
 .footerLinks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  flex-wrap: wrap;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.footerLinks li {
-  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .footerLinks a {
   color: rgba(0, 255, 0, 0.8);
   text-decoration: none;
   font-family: 'Courier New', monospace;
-  font-size: 0.875rem;
-  padding: 0.75rem 1rem;
-  display: flex;
+  font-size: 0.65rem;
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -104,7 +95,7 @@
   transition: all 0.3s ease;
   background: rgba(0, 20, 0, 0.3);
   border: 1px solid rgba(0, 255, 0, 0.3);
-  border-radius: 8px;
+  border-radius: 2px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
@@ -113,11 +104,7 @@
 }
 
 .footerLinks a::before {
-  content: '⯈';
-  font-size: 0.75rem;
-  opacity: 0;
-  transform: translateX(-5px);
-  transition: all 0.3s ease;
+  display: none;
 }
 
 .footerLinks a:hover {
@@ -131,10 +118,6 @@
   transform: translateY(-2px);
 }
 
-.footerLinks a:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
 
 /* ========================================================================
    Social Links - Clean Icons with Text
@@ -142,8 +125,7 @@
 
 .socialLinks {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
   align-items: center;
 }
 
@@ -192,13 +174,13 @@
 /* Social icons without text */
 .socialLinks a {
   color: rgba(0, 255, 0, 0.7);
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .socialLinks a:hover {
@@ -209,54 +191,24 @@
 
 
 /* ========================================================================
-   Footer Bottom - Copyright & Location
+   Location Badge
    ======================================================================== */
-
-.footerBottom {
-  max-width: 1280px;
-  margin: 2rem auto 0;
-  padding: 1.5rem 2rem 0;
-  border-top: 1px solid rgba(0, 255, 0, 0.1);
-  text-align: center;
-}
-
-.copyright {
-  font-family: 'Courier New', monospace;
-  font-size: 0.875rem;
-  color: rgba(0, 255, 0, 0.5);
-  margin: 0;
-  letter-spacing: 0.05em;
-}
-
-.copyright a {
-  color: rgba(0, 255, 0, 0.7);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.copyright a:hover {
-  color: var(--matrix-green, #00ff00);
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
 
 .location {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid rgba(0, 255, 0, 0.2);
-  border-radius: 20px;
+  gap: 0.4rem;
+  margin: 0;
   color: rgba(0, 255, 0, 0.6);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-family: 'Courier New', monospace;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   transition: all 0.3s ease;
 }
 
 .location:hover {
-  border-color: rgba(0, 255, 0, 0.4);
-  background: rgba(0, 255, 0, 0.03);
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
 
@@ -296,48 +248,56 @@
    Mobile Responsive Design
    ======================================================================== */
 
+@media (max-width: 1024px) {
+  .footerContent {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .infoSection {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .siteFooter {
-    padding: 1.5rem 0 1rem;
-    margin-top: 2rem;
+    padding: 0.75rem 0;
+    margin-top: 1rem;
   }
 
   .footerContent {
     flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
     padding: 0 1rem;
   }
 
-  .footerSection {
-    width: 100%;
+  .socialSection,
+  .linksSection {
+    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
     text-align: center;
   }
 
-  .footerSection h3 {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .footerSection h3::after {
-    left: 50%;
-    transform: translateX(-50%);
+  .socialSection h3,
+  .linksSection h3 {
+    font-size: 0.7rem;
   }
 
   .footerLinks {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    max-width: 280px;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   .footerLinks a {
-    font-size: 0.8rem;
-    padding: 0.6rem 0.8rem;
-    font-weight: 600;
-  }
-
-  .footerLinks a::before {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.6rem;
+    flex: 1;
   }
 
   .socialLinks {
@@ -345,19 +305,18 @@
     gap: 1rem;
   }
 
-  .footerBottom {
-    margin-top: 1.5rem;
-    padding: 1rem 1rem 0;
+  .infoSection {
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
   }
 
-  .footerBottom p {
-    font-size: 0.75rem;
-    margin: 0.25rem 0;
+  .infoSection p {
+    font-size: 0.6rem;
   }
 
   .location {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -370,13 +329,10 @@
   border-top: 1px solid #303030;
 }
 
-[data-theme="dark"] .footerSection h3 {
+[data-theme="dark"] .socialSection h3,
+[data-theme="dark"] .linksSection h3 {
   color: #ffffff;
   text-shadow: none;
-}
-
-[data-theme="dark"] .footerSection h3::after {
-  background: linear-gradient(90deg, #606060, transparent);
 }
 
 [data-theme="dark"] .footerLinks a {
@@ -409,63 +365,48 @@
   transform: translateY(-2px);
 }
 
-[data-theme="dark"] .footerBottom {
-  border-top: 1px solid #303030;
+[data-theme="dark"] .infoSection p {
   color: #999999;
 }
 
 [data-theme="dark"] .location {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #404040;
-  color: #cccccc;
+  color: #999999;
 }
 
 @media (max-width: 480px) {
   .siteFooter {
-    padding: 1rem 0 0.8rem;
+    padding: 0.5rem 0;
   }
 
   .footerContent {
     padding: 0 0.8rem;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  .footerSection h3 {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .footerLinks {
-    max-width: 260px;
-    gap: 0.6rem;
+  .socialSection h3,
+  .linksSection h3 {
+    font-size: 0.65rem;
   }
 
   .footerLinks a {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.6rem;
-    letter-spacing: 0.3px;
-  }
-
-  .socialLink span {
-    display: none;
+    font-size: 0.55rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .socialLinks {
-    gap: 1.5rem;
+    gap: 0.8rem;
   }
 
-  .footerBottom {
-    margin-top: 1rem;
-    padding: 0.8rem 0.8rem 0;
+  .socialLinks a {
+    font-size: 0.75rem;
   }
 
-  .copyright {
-    font-size: 0.7rem;
+  .infoSection p {
+    font-size: 0.55rem;
   }
 
   .location {
-    font-size: 0.65rem;
-    padding: 0.15rem 0.4rem;
+    font-size: 0.55rem;
   }
 }
 
