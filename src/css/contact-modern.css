@@ -11,11 +11,12 @@
     backface-visibility: hidden;
 }
 
-/* Contact Grid Layout - Ultra Compact */
+/* Contact Grid Layout - Full Screen */
 .contact-container {
-    max-width: 900px;
-    padding: var(--space-md) var(--space-sm);
-    margin: 0 auto;
+    width: 100%;
+    padding: var(--space-sm) var(--space-lg);
+    margin: 0;
+    max-width: none;
 }
 
 /* Contact main section styling */
@@ -56,7 +57,7 @@
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
     align-items: stretch;
 }
 
@@ -64,15 +65,15 @@
 @media (min-width: 992px) {
     .contact-grid {
         grid-template-columns: 45fr 55fr;
-        gap: var(--space-md);
+        gap: var(--space-sm);
         align-items: stretch;
     }
 }
 
-/* Contact Info Section - Ultra Compact with 2x2 Grid */
+/* Contact Info Section - Ultra Compact */
 .contact-info {
     padding: var(--space-xs);
-    border-radius: 8px;
+    border-radius: 6px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(
@@ -92,29 +93,17 @@
     flex-direction: column;
 }
 
-/* 2x2 Grid for Info Sections on Desktop */
+/* Simple single column layout for desktop */
 @media (min-width: 768px) {
     .contact-info {
-        display: grid;
-        grid-template-areas:
-            "header header"
-            "location contact"
-            "availability coffee";
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         gap: var(--space-xs);
-        align-items: stretch;
     }
 
     .contact-info h2 {
-        grid-area: header;
         margin-bottom: var(--space-xs);
     }
-
-    .info-section:nth-child(2) { grid-area: location; }
-    .info-section:nth-child(3) { grid-area: contact; }
-    .info-section:nth-child(4) { grid-area: availability; }
-    .coffee-section { grid-area: coffee; }
 }
 
 .contact-info:hover {
@@ -160,27 +149,31 @@
 
 .contact-info h2 {
     color: var(--matrix-green);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
     text-align: center;
     text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     letter-spacing: 0.02em;
     font-weight: 300;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 /* Info Sections - Ultra Compact */
 .info-section {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
+    padding: var(--space-xs);
+    border-radius: 4px;
+    background: rgba(0, 255, 0, 0.01);
+    border: 1px solid rgba(0, 255, 0, 0.05);
 }
 
 .info-section:last-child {
     margin-bottom: 0;
 }
 
-/* Adjust spacing for grid layout */
+/* Adjust spacing for desktop */
 @media (min-width: 768px) {
     .info-section {
-        margin-bottom: 0;
+        margin-bottom: var(--space-xs);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -495,12 +488,12 @@ p.info-card {
 .contact-form-wrapper h2,
 .contact-form-section h2 {
     color: var(--matrix-green);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
     text-align: center;
     text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     letter-spacing: 0.02em;
     font-weight: 300;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 /* Form Container - Refined */
@@ -575,11 +568,11 @@ p.info-card {
 /* Form Groups - Ultra Compact */
 .form-group {
     position: relative;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
 }
 
 .form-group:last-of-type {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
 }
 
 /* Form Icons */
@@ -599,22 +592,22 @@ p.info-card {
 .form-group textarea,
 .form-input {
     width: 100%;
-    padding: 1rem 0.5rem 0.25rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
     background: rgba(0, 255, 0, 0.01);
     border: none;
     border-bottom: 1px solid rgba(0, 255, 0, 0.15);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-family: inherit;
     transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
     outline: none;
-    min-height: 36px;
+    min-height: 28px;
     transform: translate3d(0, 0, 0);
 }
 
 .form-group textarea {
-    min-height: 60px;
+    min-height: 40px;
     resize: vertical;
     padding-top: var(--space-xs);
 }
@@ -623,9 +616,9 @@ p.info-card {
 .form-group label {
     position: absolute;
     left: 0.5rem;
-    top: 1rem;
+    top: 0.5rem;
     color: rgba(0, 255, 0, 0.4);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     pointer-events: none;
     transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
     font-weight: 400;
@@ -633,7 +626,7 @@ p.info-card {
 }
 
 .form-group textarea + label {
-    top: var(--space-sm);
+    top: 0.5rem;
 }
 
 /* Active/Filled state */
@@ -643,9 +636,9 @@ p.info-card {
 .form-group textarea:not(:placeholder-shown) ~ label,
 .form-input:focus ~ label,
 .form-input:not(:placeholder-shown) ~ label {
-    top: -0.25rem;
+    top: -0.5rem;
     left: 0;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: var(--matrix-green);
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -746,17 +739,17 @@ p.info-card {
 .submit-btn {
     position: relative;
     width: 100%;
-    margin-top: var(--space-md);
-    padding: var(--space-sm);
+    margin-top: var(--space-xs);
+    padding: var(--space-xs);
     background: linear-gradient(
         135deg,
         rgba(0, 255, 0, 0.1),
         rgba(0, 255, 0, 0.05)
     );
     border: 1px solid rgba(0, 255, 0, 0.4);
-    border-radius: 6px;
+    border-radius: 4px;
     color: var(--matrix-green);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -764,7 +757,7 @@ p.info-card {
     overflow: hidden;
     transition: box-shadow 300ms ease, border-color 300ms ease, background 300ms ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    min-height: 40px;
+    min-height: 32px;
     transform: translate3d(0, 0, 0);
     will-change: box-shadow;
 }
@@ -951,9 +944,9 @@ p.info-card {
 .video-banner {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 120px;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     margin-top: 0;
 }
 
