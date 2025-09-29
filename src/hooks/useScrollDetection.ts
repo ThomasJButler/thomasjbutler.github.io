@@ -40,7 +40,7 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     hideThreshold: 200,
     backToTopThreshold: 300,
     throttleMs: 16,
-    enableBackToTop: true,
+    enableBackToTop: false,  // Don't create DOM elements by default
     ...options
   }), [options]);
 

@@ -20,8 +20,8 @@ export const Layout: React.FC = () => {
   const pageRef = usePageTransition();
   const { theme } = useTheme();
 
-  // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix theme
-  const shouldShowMatrixRain = theme === 'matrix' && performanceOptimizer.getMatrixRainEnabled(theme);
+  // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix and Neo themes
+  const shouldShowMatrixRain = (theme === 'matrix' || theme === 'neo') && performanceOptimizer.getMatrixRainEnabled(theme);
 
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export const Layout: React.FC = () => {
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
       {/* Theme-specific backgrounds */}
       {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain theme="matrix" />}
-      {theme === 'neo' && <MatrixRain theme="neo" />}
+      {theme === 'neo' && shouldShowMatrixRain && <MatrixRain theme="neo" />}
       {theme === 'dark' && <ParticleBackground />}
 
       {/* Header */}

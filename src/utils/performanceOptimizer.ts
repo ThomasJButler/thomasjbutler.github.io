@@ -116,8 +116,8 @@ class PerformanceOptimizer {
   }
 
   public getMatrixRainEnabled(currentTheme?: string): boolean {
-    // Always enable Matrix rain when Matrix theme is active, regardless of device capabilities
-    if (currentTheme === 'matrix') {
+    // Always enable Matrix rain when Matrix or Neo theme is active, regardless of device capabilities
+    if (currentTheme === 'matrix' || currentTheme === 'neo') {
       return true;
     }
     return this.settings.enableMatrixRain;
