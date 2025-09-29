@@ -73,7 +73,7 @@
 /* Contact Info Section - Ultra Compact */
 .contact-info {
     padding: var(--space-xs);
-    border-radius: 6px;
+    border-radius: var(--radius-lg);
     position: relative;
     overflow: hidden;
     background: linear-gradient(
@@ -98,14 +98,15 @@
     .contact-info {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto auto;
-        gap: 0;
+        grid-template-rows: auto auto auto;
+        gap: 0.5rem;
         align-items: start;
+        justify-items: stretch;
     }
 
     /* Get in Touch heading spans both columns */
     .contact-info h2 {
-        margin-bottom: var(--space-xs);
+        margin-bottom: 0;
         grid-column: 1 / -1;
         grid-row: 1;
     }
@@ -114,24 +115,28 @@
     .contact-info .info-section:nth-child(2) {
         grid-column: 1;
         grid-row: 2;
+        height: 100%;
     }
 
     /* Contact Details section - top right (2nd row, 2nd column) */
     .contact-info .info-section:nth-child(3) {
         grid-column: 2;
         grid-row: 2;
+        height: 100%;
     }
 
-    /* Availability section - third row spanning both columns */
+    /* Availability section - bottom left (3rd row, 1st column) */
     .contact-info .info-section:nth-child(4) {
-        grid-column: 1 / -1;
+        grid-column: 1;
         grid-row: 3;
+        height: 100%;
     }
 
-    /* Support My Work section - fourth row spanning both columns */
+    /* Support My Work section - bottom right (3rd row, 2nd column) */
     .contact-info .info-section:nth-child(5) {
-        grid-column: 1 / -1;
-        grid-row: 4;
+        grid-column: 2;
+        grid-row: 3;
+        height: 100%;
     }
 }
 
@@ -189,13 +194,20 @@
 /* Info Sections - Ultra Compact with Gradient Hover */
 .info-section {
     margin-bottom: 0;
-    padding: var(--space-xs);
-    border-radius: 4px;
-    background: rgba(0, 255, 0, 0.01);
-    border: 1px solid rgba(0, 255, 0, 0.05);
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(0, 20, 0, 0.4), rgba(0, 10, 0, 0.6));
+    border: 1px solid rgba(0, 255, 0, 0.15);
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
 }
 
 .info-section::before {
@@ -205,11 +217,30 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    border-radius: 4px;
+    border-radius: 8px;
     background: linear-gradient(45deg, #00FF00, #FF00FF);
     opacity: 0;
     z-index: -1;
     transition: opacity 0.3s ease;
+}
+
+/* Subtle pulse animation */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(0, 255, 0, 0.15),
+            0 0 20px rgba(0, 255, 0, 0.1);
+    }
+}
+
+.info-section {
+    animation: subtlePulse 4s ease-in-out infinite;
 }
 
 .info-section:hover::before {
@@ -217,8 +248,13 @@
 }
 
 .info-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 8px 25px rgba(0, 255, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.4);
+    background: linear-gradient(145deg, rgba(0, 30, 0, 0.6), rgba(0, 15, 0, 0.8));
 }
 
 .info-section:last-child {
@@ -238,18 +274,33 @@
 .info-section h3 {
     color: rgba(0, 255, 0, 0.9);
     margin-bottom: var(--space-sm);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .info-section h3 i {
-    font-size: 1rem;
-    opacity: 0.7;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
+}
+
+.info-section:hover h3 {
+    color: #00ff00;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+}
+
+.info-section:hover h3 i {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.8));
 }
 
 /* Contact Cards - Enhanced */
@@ -1135,6 +1186,7 @@ p.info-card {
 
     .contact-info {
         padding: var(--space-sm);
+        border-radius: var(--radius-lg);
     }
 
     .contact-form-section {
