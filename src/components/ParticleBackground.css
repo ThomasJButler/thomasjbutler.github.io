@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Particle Background for Dark Theme
+   ========================================================================== */
+
+.particle-background {
+  background: transparent;
+  filter: contrast(1.1) brightness(1.2);
+}
+
+/* Add glow effect on hover areas */
+.particle-background.interactive {
+  filter: contrast(1.2) brightness(1.3);
+}

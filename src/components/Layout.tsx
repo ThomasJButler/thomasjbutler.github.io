@@ -4,6 +4,7 @@ import { animate } from 'animejs';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
+import { ParticleBackground } from './ParticleBackground';
 import { BackToTop } from './BackToTop';
 import { CRTEffect } from './CRTEffect';
 import { TerminalMode } from './TerminalMode';
@@ -42,8 +43,10 @@ export const Layout: React.FC = () => {
   // Wrap in CRT effect for Matrix theme
   const content = (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
-      {/* Matrix Rain Background - Show when Matrix theme is active (overrides performance restrictions) */}
-      {shouldShowMatrixRain && <MatrixRain />}
+      {/* Theme-specific backgrounds */}
+      {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain theme="matrix" />}
+      {theme === 'neo' && <MatrixRain theme="neo" />}
+      {theme === 'dark' && <ParticleBackground />}
 
       {/* Header */}
       <Header />

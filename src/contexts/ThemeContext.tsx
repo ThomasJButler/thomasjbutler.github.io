@@ -44,14 +44,22 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     switch (theme) {
       case 'dark':
         root.style.setProperty('--bg-primary', '#000000');
-        root.style.setProperty('--bg-secondary', '#0f0f0f');
+        root.style.setProperty('--bg-secondary', '#0a0a0a');
         root.style.setProperty('--text-primary', '#ffffff');
-        root.style.setProperty('--text-secondary', '#cccccc');
-        root.style.setProperty('--accent-color', '#40a040');
-        root.style.setProperty('--matrix-green', '#40a040');
-        root.style.setProperty('--border-color', '#404040');
-        root.style.setProperty('--card-bg', 'rgba(15, 15, 15, 0.95)');
-        root.style.setProperty('--shadow-color', 'rgba(0, 0, 0, 0.3)');
+        root.style.setProperty('--text-secondary', '#b8b8b8');
+        root.style.setProperty('--text-base', '#CCCCCC'); // Keep readable body text
+        root.style.setProperty('--accent-color', '#4A9EFF'); // Blue accent for dark theme
+        root.style.setProperty('--matrix-green', '#4A9EFF'); // Blue instead of green
+        root.style.setProperty('--matrix-yellow', '#FFD700');
+        root.style.setProperty('--matrix-cyan', '#00D4FF');
+        root.style.setProperty('--matrix-red', '#FF5555');
+        root.style.setProperty('--matrix-gold', '#FFD700');
+        root.style.setProperty('--border-color', 'rgba(74, 158, 255, 0.3)');
+        root.style.setProperty('--card-bg', 'rgba(10, 10, 10, 0.95)');
+        root.style.setProperty('--shadow-color', 'rgba(74, 158, 255, 0.2)');
+        root.style.setProperty('--phosphor-glow', '0 0 2px #4A9EFF, 0 0 8px rgba(74, 158, 255, 0.4)');
+        root.style.setProperty('--matrix-glow', '0 0 10px #4A9EFF');
+        root.style.setProperty('--matrix-glow-intense', '0 0 20px #4A9EFF');
         break;
 
       case 'neo':
@@ -59,10 +67,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         root.style.setProperty('--bg-secondary', '#0a0a0a');
         root.style.setProperty('--text-primary', '#FFD700'); // Gold
         root.style.setProperty('--text-secondary', 'rgba(255, 215, 0, 0.8)');
+        root.style.setProperty('--text-base', '#E6E6E6'); // Light grey for readability
         root.style.setProperty('--accent-color', '#FFD700');
         root.style.setProperty('--matrix-green', '#FFD700'); // Gold instead of green
         root.style.setProperty('--matrix-yellow', '#FFFFFF'); // White for special elements
+        root.style.setProperty('--matrix-cyan', '#FFEA00');
         root.style.setProperty('--matrix-red', '#FF6B6B'); // Softer red
+        root.style.setProperty('--matrix-gold', '#FFD700');
         root.style.setProperty('--border-color', 'rgba(255, 215, 0, 0.3)');
         root.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.95)');
         root.style.setProperty('--shadow-color', 'rgba(255, 215, 0, 0.3)');
@@ -75,13 +86,21 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       default:
         root.style.setProperty('--bg-primary', '#000000');
         root.style.setProperty('--bg-secondary', '#0a0a0a');
-        root.style.setProperty('--text-primary', '#00ff00');
-        root.style.setProperty('--text-secondary', 'rgba(0, 255, 0, 0.8)');
+        root.style.setProperty('--text-primary', 'rgba(0, 255, 0, 0.92)');
+        root.style.setProperty('--text-secondary', 'rgba(0, 255, 0, 0.7)');
+        root.style.setProperty('--text-base', '#CCCCCC'); // Ensure readable body text
         root.style.setProperty('--accent-color', '#00ff00');
         root.style.setProperty('--matrix-green', '#00ff00');
+        root.style.setProperty('--matrix-yellow', '#FFEA00');
+        root.style.setProperty('--matrix-cyan', '#00FFFF');
+        root.style.setProperty('--matrix-red', '#FF0000');
+        root.style.setProperty('--matrix-gold', '#FFD700');
         root.style.setProperty('--border-color', 'rgba(0, 255, 0, 0.3)');
         root.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.9)');
         root.style.setProperty('--shadow-color', 'rgba(0, 255, 0, 0.2)');
+        root.style.setProperty('--phosphor-glow', '0 0 2px #00ff00, 0 0 8px rgba(0, 255, 0, 0.4)');
+        root.style.setProperty('--matrix-glow', '0 0 10px #00ff00');
+        root.style.setProperty('--matrix-glow-intense', '0 0 20px #00ff00');
         break;
     }
   }, [theme]);

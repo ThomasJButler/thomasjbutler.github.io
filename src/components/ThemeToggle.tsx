@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import styles from './ThemeToggle.module.css';
 
 export const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const [, forceUpdate] = useState({});
+
+  // Force re-render when theme changes
+  useEffect(() => {
+    forceUpdate({});
+  }, [theme]);
 
   const getThemeIcon = () => {
     switch (theme) {
@@ -31,6 +37,7 @@ export const ThemeToggle: React.FC = () => {
 
   return (
     <button
+      key={theme} // Force re-render on theme change
       className={styles.themeToggle}
       onClick={toggleTheme}
       aria-label={`Switch theme. Current: ${getThemeLabel()}`}
