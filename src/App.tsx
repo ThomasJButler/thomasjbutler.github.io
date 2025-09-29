@@ -27,6 +27,7 @@ const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ def
 // Styles - Optimized import order
 import './css/themes.css'; // Theme system
 import './css/main.css'; // Main CSS with all organized imports
+import './css/matrix-effects.css'; // Matrix visual effects and animations
 import './css/blog.css';
 
 export const App: React.FC = () => {

@@ -4,8 +4,18 @@ import { animate } from 'animejs';
 export const MatrixRain: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
-  const dropsRef = useRef<Array<{ y: number; speed: number; chars: string[]; color?: string; brightness?: number; glitchRate?: number }>>([]);
+  const dropsRef = useRef<Array<{
+    y: number;
+    speed: number;
+    chars: string[];
+    color?: string;
+    brightness?: number;
+    glitchRate?: number;
+    layer?: 'foreground' | 'background';
+    isGlitch?: boolean;
+  }>>([]);
   const [isVisible, setIsVisible] = React.useState(false);
+  const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   useEffect(() => {
     // Add a 2-second delay before showing the matrix rain effect
@@ -13,8 +23,15 @@ export const MatrixRain: React.FC = () => {
       setIsVisible(true);
     }, 2000);
 
+    // Track mouse movement for interactive effects
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
     return () => {
       clearTimeout(delayTimer);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -33,22 +50,34 @@ export const MatrixRain: React.FC = () => {
     };
     updateCanvasSize();
 
-    // Matrix characters - enhanced with more symbols for visual interest
-    const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}[]()/*-+=@#$%^&';
+    // Matrix characters - enhanced with binary and Japanese
+    const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
+    const binaryChars = '01';
     const fontSize = 14; // Smaller for more columns
     const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
 
-    // Initialize drops with enhanced variations for depth
-    dropsRef.current = Array(columns).fill(null).map(() => ({
-      y: Math.random() * canvas.height - canvas.height, // Start at various heights
-      speed: Math.random() * 1.5 + 0.8, // Varied speeds for depth perception
-      chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() => 
-        matrixChars[Math.floor(Math.random() * matrixChars.length)]
-      ),
-      color: Math.random() < 0.85 ? '#0F0' : (Math.random() < 0.7 ? '#00FF00' : (Math.random() < 0.5 ? '#00FFFF' : '#39FF14')),
-      brightness: Math.random() * 0.5 + 0.5, // Varying brightness for depth
-      glitchRate: Math.random() * 0.02 // Random glitch frequency per column
-    }));
+    // Initialize drops with layers and color system
+    dropsRef.current = Array(columns).fill(null).map((_, index) => {
+      const isBackground = Math.random() < 0.4;
+      const isBinary = Math.random() < 0.2; // 20% binary streams
+      const chars = isBinary ? binaryChars : matrixChars;
+
+      return {
+        y: Math.random() * canvas.height - canvas.height,
+        speed: isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8,
+        chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() =>
+          chars[Math.floor(Math.random() * chars.length)]
+        ),
+        color: Math.random() < 0.02 ? '#FF0000' : // 2% red glitch
+               Math.random() < 0.05 ? '#FFEA00' : // 5% yellow machine
+               Math.random() < 0.1 ? '#00FFFF' : // 10% cyan
+               '#00FF00', // 83% green
+        brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
+        glitchRate: Math.random() * 0.02,
+        layer: isBackground ? 'background' : 'foreground',
+        isGlitch: false
+      };
+    });
 
     // Initialize drop animation
     const animateDrop = (dropIndex: number) => {
@@ -66,36 +95,37 @@ export const MatrixRain: React.FC = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set text properties with bold for better visibility
-      ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
+      ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // Draw and update characters
+      // Draw and update characters with depth layers
       dropsRef.current.forEach((drop, x) => {
         // Update drop position
         drop.y += drop.speed;
-        
+
         // Reset when drop goes off screen
         if (drop.y > canvas.height && Math.random() > 0.97) {
+          const isBackground = drop.layer === 'background';
+          const isBinary = Math.random() < 0.2;
+          const chars = isBinary ? binaryChars : matrixChars;
+
           drop.y = -drop.chars.length * fontSize - Math.random() * 200;
-          drop.speed = Math.random() * 1.5 + 0.8;
-          drop.brightness = Math.random() * 0.5 + 0.5;
+          drop.speed = isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8;
+          drop.brightness = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5;
           drop.glitchRate = Math.random() * 0.02;
+          drop.isGlitch = false;
+
           // Randomize characters on reset
-          drop.chars = drop.chars.map(() => 
-            matrixChars[Math.floor(Math.random() * matrixChars.length)]
+          drop.chars = drop.chars.map(() =>
+            chars[Math.floor(Math.random() * chars.length)]
           );
-          // Color variation
-          const colorChoice = Math.random();
-          if (colorChoice < 0.1) {
-            drop.color = '#00FFFF'; // Cyan
-          } else if (colorChoice < 0.15) {
-            drop.color = '#39FF14'; // Neon green
-          } else if (colorChoice < 0.18) {
-            drop.color = '#00FF00'; // Bright green
-          } else {
-            drop.color = '#0F0'; // Classic matrix green
-          }
+
+          // Apply color system
+          drop.color = Math.random() < 0.02 ? '#FF0000' : // Red glitch
+                      Math.random() < 0.05 ? '#FFEA00' : // Yellow machine
+                      Math.random() < 0.1 ? '#00FFFF' : // Cyan
+                      '#00FF00'; // Green
         }
         
         drop.chars.forEach((char, i) => {
@@ -118,7 +148,7 @@ export const MatrixRain: React.FC = () => {
               ctx.shadowBlur = 25;
               ctx.shadowColor = color;
               ctx.fillStyle = '#ffffff';
-              ctx.font = `bold ${fontSize * 1.2}px 'Courier New', monospace`;
+              ctx.font = `bold ${fontSize * 1.2}px 'Share Tech Mono', monospace`;
             } 
             // Sub-leading characters with strong glow
             else if (i >= drop.chars.length - 3) {
@@ -149,7 +179,7 @@ export const MatrixRain: React.FC = () => {
             
             // Reset font for next character
             if (i === drop.chars.length - 1) {
-              ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
+              ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
             }
           }
         });

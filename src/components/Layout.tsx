@@ -5,6 +5,9 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
 import { BackToTop } from './BackToTop';
+import { CRTEffect } from './CRTEffect';
+import { TerminalMode } from './TerminalMode';
+import { MatrixEasterEggs } from './MatrixEasterEggs';
 import { usePageTransition } from '../hooks/useMatrixAnimation';
 import { useTheme } from '../contexts/ThemeContext';
 import { performanceOptimizer } from '../utils/performanceOptimizer';
@@ -36,28 +39,51 @@ export const Layout: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location]);
 
-  return (
+  // Wrap in CRT effect for Matrix theme
+  const content = (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
       {/* Matrix Rain Background - Show when Matrix theme is active (overrides performance restrictions) */}
       {shouldShowMatrixRain && <MatrixRain />}
-      
+
       {/* Header */}
       <Header />
-      
+
       {/* Main Content */}
       <main ref={contentRef} className={styles.mainContent}>
         <Outlet />
       </main>
-      
+
       {/* Footer */}
       <Footer />
-      
+
       {/* Back to Top Button */}
-      <BackToTop 
+      <BackToTop
         threshold={300}
         showText={true}
         enableScanLine={true}
       />
+
+      {/* Terminal Mode */}
+      <TerminalMode />
+
+      {/* Easter Eggs */}
+      <MatrixEasterEggs />
     </div>
   );
+
+  // Apply CRT effect only in Matrix theme
+  if (theme === 'matrix') {
+    return (
+      <CRTEffect
+        intensity="subtle"
+        scanlines={true}
+        flicker={false}
+        curve={false}
+      >
+        {content}
+      </CRTEffect>
+    );
+  }
+
+  return content;
 };

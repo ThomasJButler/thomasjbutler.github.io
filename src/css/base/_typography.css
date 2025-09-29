@@ -60,15 +60,20 @@ body {
    Headings - Matrix Terminal Style with Enhanced Features
    ========================================================================== */
 
+/* All headings base */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 600;
     line-height: var(--line-height-tight);
-    color: var(--matrix-green);
-    text-shadow: var(--matrix-glow);
     margin-top: 0;
     margin-bottom: 1rem;
     letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Major headings (H1-H3) - Digital world green with phosphor glow */
+h1, h2, h3 {
+    color: var(--matrix-green);
+    text-shadow: var(--phosphor-glow);
 }
 
 h1 {
@@ -97,22 +102,25 @@ h3 {
     margin-top: 1.5rem;
 }
 
+/* Subheadings (H4-H6) - Use text-primary for subtle green */
+h4, h5, h6 {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    text-shadow: var(--matrix-glow-soft);
+}
+
 h4 {
     font-size: var(--font-size-lg);
     margin-bottom: 0.875rem;
     margin-top: 1.25rem;
-    font-family: var(--font-body);
     font-weight: 600;
-    color: var(--matrix-cyan);
 }
 
 h5 {
     font-size: var(--font-size-md);
     margin-bottom: 0.75rem;
     margin-top: 1rem;
-    font-family: var(--font-body);
     font-weight: 500;
-    color: var(--matrix-cyan);
 }
 
 h6 {
@@ -121,9 +129,7 @@ h6 {
     letter-spacing: var(--letter-spacing-wider);
     margin-bottom: 0.5rem;
     margin-top: 0.75rem;
-    font-family: var(--font-body);
     font-weight: 500;
-    color: var(--matrix-cyan);
 }
 
 /* ==========================================================================
@@ -134,7 +140,7 @@ p {
     font-size: var(--font-size-base);
     line-height: 1.8;
     letter-spacing: 0.02em;
-    color: var(--text-readable);
+    color: var(--text-base);  /* Using CCCCCC for maximum readability */
     margin-bottom: 1.5rem;
     max-width: var(--content-width);
     font-family: var(--font-body);
@@ -196,13 +202,13 @@ a {
 }
 
 a:hover {
-    color: var(--matrix-cyan);
-    text-shadow: var(--matrix-glow);
-    text-decoration-color: var(--matrix-cyan);
+    color: var(--matrix-yellow);  /* Yellow for machine/spirit connection */
+    text-shadow: var(--yellow-glow);
+    text-decoration-color: var(--matrix-yellow);
 }
 
 a:active {
-    color: var(--matrix-cyan);
+    color: var(--matrix-green-bright);
     transform: translateY(1px);
 }
 
@@ -226,7 +232,7 @@ ol {
 
 ul li, ol li {
     margin-bottom: 0.5rem;
-    color: rgba(0, 255, 0, 0.9);
+    color: var(--text-base);  /* Readable grey for list items */
     line-height: var(--line-height-normal);
 }
 

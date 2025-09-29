@@ -8,25 +8,47 @@
        Colors - Matrix Theme (from design_system.md)
        ========================================================================== */
     
-    /* Primary Colors */
-    --matrix-green: #00FF00;                  /* Primary brand color */
-    --matrix-green-bright: #44ff44;          /* Bright variant for hover states */
-    --matrix-dark: rgba(0, 20, 0, 0.8);      /* Dark backgrounds */
-    --matrix-darker: #000000;                /* Section backgrounds - solid black to block matrix */
-    
-    /* Accent Colors */
-    --matrix-cyan: #00FFFF;                   /* Highlights and accents */
-    --matrix-magenta: #FF00FF;                /* Special emphasis */
-    --matrix-red: #FF2800;                    /* Warnings/alerts */
-    
-    /* Utility Colors */
-    --text-primary: rgba(0, 255, 0, 0.9);
-    --text-secondary: rgba(0, 255, 0, 0.7);
-    --text-muted: rgba(0, 255, 0, 0.5);
-    --text-readable: #d1d1d1;                /* Clean grey for body text */
-    --border-primary: rgba(0, 255, 0, 0.3);
+    /* ==========================================================================
+       PRIMARY MATRIX COLOR PALETTE - Based on Film Color Theory
+       ========================================================================== */
+
+    /* Core Matrix Colors */
+    --matrix-green: #00FF00;                  /* Pure neon - digital world accent */
+    --matrix-green-muted: #1B4D3E;            /* Desaturated - backgrounds, depth */
+    --matrix-green-soft: rgba(0, 255, 0, 0.92); /* Text accents with slight transparency */
+    --matrix-green-bright: #44ff44;           /* Bright variant for hover states */
+    --matrix-dark: #000000;                   /* The void/base - absolute black */
+    --matrix-darker: #000000;                 /* Section backgrounds */
+
+    /* Symbolic Colors */
+    --matrix-blue: #0A1E3F;                   /* Real world/transitions */
+    --matrix-yellow: #FFEA00;                 /* Machines/spirit/CTAs */
+    --matrix-red: #FF0000;                    /* Danger/corruption/system failure */
+    --matrix-white: #FFFFFF;                  /* Purity/transitions/special UI */
+    --matrix-gold: #FFD700;                   /* Neo/enlightenment (advanced mode) */
+    --matrix-cyan: #00FFFF;                   /* Digital highlights and accents */
+
+    /* Text Hierarchy for Readability */
+    --text-base: #CCCCCC;                     /* Main readable body text */
+    --text-primary: rgba(0, 255, 0, 0.92);    /* Green accent text */
+    --text-secondary: rgba(0, 255, 0, 0.7);   /* Secondary green text */
+    --text-muted: rgba(204, 204, 204, 0.7);   /* Muted grey text */
+    --text-readable: #CCCCCC;                 /* Alias for text-base */
+    --text-danger: #FF4444;                   /* Error states */
+    --text-warning: #FFEA00;                  /* Warning states */
+
+    /* Backgrounds with Depth */
     --bg-overlay: rgba(0, 0, 0, 0.8);
     --bg-transparent: rgba(0, 20, 0, 0.4);
+    --bg-matrix-overlay: rgba(0, 255, 0, 0.03);
+    --bg-section-digital: linear-gradient(180deg, #000000 0%, #0A1F0A 100%);
+    --bg-section-real: linear-gradient(180deg, #000000 0%, #0A1E3F 100%);
+    --bg-terminal: rgba(0, 0, 0, 0.95);
+
+    /* Borders */
+    --border-primary: rgba(0, 255, 0, 0.3);
+    --border-accent: var(--matrix-yellow);
+    --border-danger: var(--matrix-red);
     
     /* ==========================================================================
        Typography (from design_system.md)
@@ -98,6 +120,11 @@
     /* Glow Effects */
     --matrix-glow: 0 0 10px var(--matrix-green);
     --matrix-glow-intense: 0 0 20px var(--matrix-green);
+    --matrix-glow-soft: 0 0 5px rgba(0, 255, 0, 0.5);
+    --phosphor-glow: 0 0 2px var(--matrix-green), 0 0 8px rgba(0, 255, 0, 0.4);
+    --yellow-glow: 0 0 15px var(--matrix-yellow);
+    --red-glow: 0 0 15px var(--matrix-red);
+    --neo-glow: 0 0 30px var(--matrix-gold);
     
     /* Shadow System - Professional depth with Matrix tint */
     --shadow-sm: 0 2px 4px rgba(0, 255, 0, 0.1);

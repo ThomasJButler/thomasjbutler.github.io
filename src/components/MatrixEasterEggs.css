@@ -1,0 +1,416 @@
+/* ==========================================================================
+   Matrix Easter Eggs Styles
+   ========================================================================== */
+
+/* Konami Mode */
+.konami-activated {
+  animation: konami-flash 0.5s ease-in-out;
+}
+
+@keyframes konami-flash {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(2) saturate(3) hue-rotate(120deg);
+  }
+}
+
+.konami-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-family: var(--font-primary);
+  color: var(--matrix-gold);
+  text-shadow:
+    0 0 20px var(--matrix-gold),
+    0 0 40px var(--matrix-gold),
+    0 0 60px var(--matrix-gold);
+  z-index: 100000;
+  pointer-events: none;
+  letter-spacing: 0.2em;
+}
+
+/* Konami Progress Indicator */
+.konami-progress {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 10000;
+  opacity: 0.3;
+}
+
+.konami-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 255, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.konami-dot.active {
+  background: var(--matrix-green);
+  box-shadow: 0 0 10px var(--matrix-green);
+}
+
+/* Ultra Matrix Mode */
+.ultra-matrix-mode {
+  animation: ultra-matrix 5s ease-in-out;
+}
+
+@keyframes ultra-matrix {
+  0%, 100% {
+    filter: brightness(1) saturate(1) contrast(1);
+  }
+  25% {
+    filter: brightness(0.8) saturate(2) contrast(1.5) hue-rotate(10deg);
+  }
+  50% {
+    filter: brightness(1.2) saturate(3) contrast(1.2) hue-rotate(-10deg);
+  }
+  75% {
+    filter: brightness(0.9) saturate(2.5) contrast(1.3) hue-rotate(5deg);
+  }
+}
+
+.matrix-rain-intense {
+  filter: brightness(1.5) saturate(2);
+  opacity: 1 !important;
+}
+
+.matrix-message {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  font-family: var(--font-code);
+  color: var(--matrix-green);
+  text-shadow: var(--matrix-glow-intense);
+  z-index: 100000;
+  letter-spacing: 0.3em;
+  animation: matrix-text-glitch 0.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes matrix-text-glitch {
+  0%, 100% {
+    text-shadow:
+      0 0 20px var(--matrix-green),
+      2px 2px 0 var(--matrix-red),
+      -2px -2px 0 var(--matrix-cyan);
+  }
+  50% {
+    text-shadow:
+      0 0 20px var(--matrix-green),
+      -2px 2px 0 var(--matrix-red),
+      2px -2px 0 var(--matrix-cyan);
+  }
+}
+
+/* White Rabbit */
+.white-rabbit {
+  position: fixed;
+  font-size: 2rem;
+  z-index: 100000;
+  filter: drop-shadow(0 0 20px white);
+  pointer-events: none;
+  animation: rabbit-hop 0.5s ease-in-out infinite;
+}
+
+@keyframes rabbit-hop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Matrix Secret */
+.matrix-secret {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+.secret-content {
+  text-align: center;
+  color: var(--matrix-green);
+  font-family: var(--font-primary);
+}
+
+.secret-content h2 {
+  font-size: 3rem;
+  text-shadow: var(--matrix-glow-intense);
+  margin-bottom: 2rem;
+  animation: secret-pulse 2s ease-in-out infinite;
+}
+
+@keyframes secret-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.secret-content p {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  opacity: 0.8;
+  color: var(--matrix-cyan);
+}
+
+/* Pill Choice Modal */
+.pill-choice-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  animation: modal-fade-in 0.5s ease-out;
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pill-choice-content {
+  text-align: center;
+  max-width: 600px;
+  padding: 3rem;
+}
+
+.pill-choice-content h2 {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  color: var(--matrix-white);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.pill-choice-content p {
+  font-size: 1.2rem;
+  color: var(--text-base);
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.pill-options {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.pill-button {
+  background: transparent;
+  border: 2px solid;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 150px;
+  font-family: var(--font-primary);
+}
+
+.red-pill {
+  border-color: var(--matrix-red);
+  color: var(--matrix-red);
+}
+
+.red-pill:hover {
+  background: var(--matrix-red);
+  color: var(--matrix-white);
+  box-shadow: 0 0 30px var(--matrix-red);
+  transform: scale(1.1);
+}
+
+.blue-pill {
+  border-color: var(--matrix-cyan);
+  color: var(--matrix-cyan);
+}
+
+.blue-pill:hover {
+  background: var(--matrix-cyan);
+  color: var(--matrix-dark);
+  box-shadow: 0 0 30px var(--matrix-cyan);
+  transform: scale(1.1);
+}
+
+.pill-icon {
+  font-size: 2rem;
+}
+
+.pill-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Blue Pill Message */
+.blue-pill-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--matrix-cyan);
+  font-family: var(--font-body);
+  z-index: 100000;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--matrix-cyan);
+  border-radius: 8px;
+}
+
+/* Reality Glitch */
+.reality-glitch {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 24%,
+    rgba(255, 0, 0, 0.05) 25%,
+    rgba(255, 0, 0, 0.05) 26%,
+    transparent 27%,
+    transparent 74%,
+    rgba(0, 255, 0, 0.05) 75%,
+    rgba(0, 255, 0, 0.05) 76%,
+    transparent 77%
+  );
+  background-size: 50px 50px;
+  z-index: 99999;
+  pointer-events: none;
+  animation: glitch-move 0.5s linear infinite;
+}
+
+@keyframes glitch-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* Matrix Reveal */
+.matrix-reveal {
+  position: relative;
+  overflow: visible !important;
+}
+
+.matrix-reveal::after {
+  content: attr(data-matrix) '01001101';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 255, 0, 0.3);
+  font-size: 0.7em;
+  font-family: var(--font-code);
+  pointer-events: none;
+  animation: reveal-flicker 2s ease-in-out infinite;
+}
+
+@keyframes reveal-flicker {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Hidden Trigger Zones */
+.hidden-trigger-zone {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  cursor: default;
+}
+
+.zone-top-left {
+  top: 0;
+  left: 0;
+}
+
+.zone-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+/* Red Pill Taken Effects */
+.red-pill-taken {
+  animation: red-pill-vision 10s ease-in-out;
+}
+
+@keyframes red-pill-vision {
+  0% {
+    filter: brightness(1) saturate(1);
+  }
+  20% {
+    filter: brightness(0.5) saturate(0) contrast(2);
+  }
+  40% {
+    filter: brightness(1.5) saturate(3) hue-rotate(120deg);
+  }
+  60% {
+    filter: brightness(0.8) saturate(2) contrast(1.5);
+  }
+  100% {
+    filter: brightness(1) saturate(1.2) contrast(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pill-options {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .konami-message,
+  .matrix-message {
+    font-size: 2rem;
+  }
+
+  .pill-choice-content {
+    padding: 2rem 1rem;
+  }
+}

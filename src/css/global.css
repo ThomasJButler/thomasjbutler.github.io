@@ -733,7 +733,7 @@ body.loaded {
 /* Text Colors */
 .text-green { color: var(--matrix-green); }
 .text-cyan { color: var(--matrix-cyan); }
-.text-magenta { color: var(--matrix-magenta); }
+.text-magenta { color: var(--matrix-cyan); } /* Using cyan instead of undefined magenta */
 .text-red { color: var(--matrix-red); }
 .text-primary { color: var(--text-primary); }
 .text-secondary { color: var(--text-secondary); }

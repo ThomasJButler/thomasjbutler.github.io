@@ -32,7 +32,7 @@ const navigationCards: NavigationCard[] = [
     description: "Browse my latest work and see innovation in action",
     path: "/projects",
     icon: "fas fa-briefcase",
-    color: "#ff00ff"
+    color: "#00ff00"  // Changed from magenta to Matrix green
   },
   {
     title: "Services",

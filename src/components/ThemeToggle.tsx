@@ -6,11 +6,27 @@ export const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   const getThemeIcon = () => {
-    return theme === 'dark' ? 'fas fa-moon' : 'fas fa-code';
+    switch (theme) {
+      case 'dark':
+        return 'fas fa-moon';
+      case 'neo':
+        return 'fas fa-star';
+      case 'matrix':
+      default:
+        return 'fas fa-code';
+    }
   };
 
   const getThemeLabel = () => {
-    return theme === 'dark' ? 'Dark Mode' : 'Matrix Mode';
+    switch (theme) {
+      case 'dark':
+        return 'Dark Mode';
+      case 'neo':
+        return 'Neo Mode';
+      case 'matrix':
+      default:
+        return 'Matrix Mode';
+    }
   };
 
   return (

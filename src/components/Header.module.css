@@ -205,11 +205,11 @@
   }
   20% { 
     transform: translateX(-1px);
-    text-shadow: 2px 0 var(--matrix-cyan, #00ffff), -2px 0 var(--matrix-magenta, #ff00ff);
+    text-shadow: 2px 0 var(--matrix-cyan, #00ffff), -2px 0 var(--matrix-red, #ff0000);
   }
   40% { 
     transform: translateX(1px);
-    text-shadow: -2px 0 var(--matrix-cyan, #00ffff), 2px 0 var(--matrix-magenta, #ff00ff);
+    text-shadow: -2px 0 var(--matrix-cyan, #00ffff), 2px 0 var(--matrix-red, #ff0000);
   }
   60% { 
     transform: translateX(0);
