@@ -350,7 +350,7 @@
     color: rgba(0, 255, 0, 0.85);
     margin-bottom: 1.25rem;
     line-height: 1.8;
-    font-family: 'Source Code Pro', 'Courier New', Courier, monospace;
+    font-family: var(--font-body);
     font-size: 1.05rem;
     font-weight: 400;
 }

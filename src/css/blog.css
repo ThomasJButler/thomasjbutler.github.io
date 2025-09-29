@@ -53,7 +53,7 @@ button:focus-visible {
 .matrix-spinner {
   text-align: center;
   color: var(--matrix-green);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
 }
 
 /* Blog Reader Loading & Error States */
@@ -120,7 +120,7 @@ button:focus-visible {
   text-shadow: 0 0 10px var(--matrix-green);
   display: block;
   margin-bottom: 10px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
 }
 
 .blog-title .subtitle {
@@ -233,7 +233,7 @@ button:focus-visible {
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   margin: 0;
 }
 
@@ -250,7 +250,7 @@ button:focus-visible {
   border: 1px solid #44475a;
   padding: 10px 36px 10px 14px;
   border-radius: 6px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   font-size: 0.95rem;
   cursor: pointer;
   min-width: 220px;
@@ -569,7 +569,7 @@ button:focus-visible {
 
 .font-size-label {
   color: var(--matrix-green);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   min-width: 50px;
   text-align: center;
 }
@@ -871,7 +871,7 @@ button:focus-visible {
   padding: 3px 8px;
   font-size: 0.9em;
   border-radius: 4px;
-  font-family: 'Fira Code', 'Courier New', monospace;
+  font-family: var(--font-code);
   border: 1px solid #6272a4;
   white-space: nowrap;
 }
@@ -887,7 +887,7 @@ button:focus-visible {
   padding: 20px 24px;
   overflow-x: auto;
   margin: 32px 0;
-  font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+  font-family: var(--font-code);
   font-size: 15px;
   font-weight: 400;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(0, 255, 0, 0.1);
@@ -1144,7 +1144,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   font-size: 0.95rem;
   box-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.4),
@@ -1225,7 +1225,7 @@ button:focus-visible {
 .progress-indicator {
   color: var(--matrix-green);
   font-size: 0.9rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
 }
 
 /* Loading & Error States */
@@ -1388,7 +1388,7 @@ button:focus-visible {
   border: 1px solid var(--matrix-green);
   border-radius: 8px;
   color: var(--matrix-green);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   font-size: 0.9rem;
   margin: 1rem 0;
   cursor: pointer;
@@ -1423,7 +1423,7 @@ button:focus-visible {
   border: 1px solid var(--matrix-green);
   border-radius: 8px;
   color: var(--matrix-green);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   font-size: 0.9rem;
   cursor: pointer;
   -webkit-appearance: none;

@@ -218,7 +218,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 8px;
-    background: linear-gradient(45deg, #00FF00, #FF00FF);
+    background: linear-gradient(45deg, #00FF00, var(--matrix-cyan));
     opacity: 0;
     z-index: -1;
     transition: opacity 0.3s ease;

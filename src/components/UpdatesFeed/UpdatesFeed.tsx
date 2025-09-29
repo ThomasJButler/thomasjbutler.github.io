@@ -39,7 +39,7 @@ const typeEmojis: Record<string, string> = {
 const moodColors: Record<string, string> = {
   celebrating: '#00FF00',
   reflecting: '#00FFFF',
-  building: '#FF00FF',
+  building: '#00FFFF',
   conquering: '#FFFF00'
 };
 

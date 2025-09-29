@@ -64,7 +64,7 @@
 }
 
 .infoSection p {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-body);
   font-size: 0.65rem;
   color: rgba(0, 255, 0, 0.6);
   margin: 0;
@@ -84,7 +84,7 @@
 .footerLinks a {
   color: rgba(0, 255, 0, 0.8);
   text-decoration: none;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-body);
   font-size: 0.65rem;
   padding: 0.35rem 0.75rem;
   display: inline-flex;
@@ -136,7 +136,7 @@
   gap: 0.5rem;
   color: rgba(0, 255, 0, 0.7);
   text-decoration: none;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-body);
   font-size: 0.875rem;
   transition: all 0.3s ease;
   position: relative;
@@ -202,7 +202,7 @@
   margin: 0;
   color: rgba(0, 255, 0, 0.6);
   font-size: 0.65rem;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-body);
   letter-spacing: 0.04em;
   transition: all 0.3s ease;
 }

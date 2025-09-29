@@ -124,7 +124,7 @@
     background-color: rgba(0, 0, 0, 0.9);
     border: 2px solid #00FF00;
     border-radius: 5px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-code);
     height: 500px;
     padding: 20px;
     position: relative;
@@ -149,7 +149,7 @@
     background: transparent;
     border: none;
     color: var(--matrix-green);
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-code);
     font-size: 16px;
     outline: none;
     padding: 5px;

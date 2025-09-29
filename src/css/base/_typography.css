@@ -62,7 +62,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
-    font-weight: 400;
+    font-weight: 600;
     line-height: var(--line-height-tight);
     color: var(--matrix-green);
     text-shadow: var(--matrix-glow);
@@ -76,6 +76,7 @@ h1 {
     text-align: center;
     letter-spacing: var(--letter-spacing-wider);
     margin-bottom: 1.5rem;
+    font-weight: 800;
 }
 
 h2 {
@@ -84,13 +85,14 @@ h2 {
     letter-spacing: var(--letter-spacing-wide);
     margin-bottom: 1.25rem;
     margin-top: 2rem;
+    font-weight: 700;
 }
 
 h3 {
     font-size: var(--font-size-xl);
     letter-spacing: var(--letter-spacing-normal);
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
+    font-family: var(--font-primary);
+    font-weight: 600;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
 }
@@ -99,12 +101,18 @@ h4 {
     font-size: var(--font-size-lg);
     margin-bottom: 0.875rem;
     margin-top: 1.25rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--matrix-cyan);
 }
 
 h5 {
     font-size: var(--font-size-md);
     margin-bottom: 0.75rem;
     margin-top: 1rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--matrix-cyan);
 }
 
 h6 {
@@ -113,6 +121,9 @@ h6 {
     letter-spacing: var(--letter-spacing-wider);
     margin-bottom: 0.5rem;
     margin-top: 0.75rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--matrix-cyan);
 }
 
 /* ==========================================================================
@@ -123,11 +134,11 @@ p {
     font-size: var(--font-size-base);
     line-height: 1.8;
     letter-spacing: 0.02em;
-    color: #FF00FF;
+    color: var(--text-readable);
     margin-bottom: 1.5rem;
     max-width: var(--content-width);
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-weight: 400;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     text-rendering: optimizeLegibility;
     /* Remove conflicting flex styles */
@@ -232,7 +243,7 @@ code,
 kbd,
 samp,
 pre {
-    font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+    font-family: var(--font-code);
 }
 
 code {

@@ -26,7 +26,7 @@
 }
 
 .typewriter {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-code);
   overflow: hidden;
   white-space: nowrap;
   margin: 0 auto;

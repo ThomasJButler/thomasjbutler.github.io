@@ -199,7 +199,7 @@ html, body {
    }
    
    a:hover {
-       color: #FF00FF;
+       color: var(--matrix-cyan);
    }
 
    
@@ -420,7 +420,7 @@ html, body {
    }
    
    /*::-webkit-scrollbar-thumb:hover {
-       background: #FF00FF;
+       background: var(--matrix-cyan);
    }*/
    
    /* Selection Styling
@@ -576,8 +576,8 @@ footer ul li a i {
 }
 
 .matrix-icon:hover {
-    color: #FF00FF;
-    text-shadow: 0 0 10px #FF00FF;
+    color: var(--matrix-cyan);
+    text-shadow: 0 0 10px var(--matrix-cyan);
 }
 
 /* Additional Animation Effects

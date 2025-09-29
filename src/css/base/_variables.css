@@ -23,6 +23,7 @@
     --text-primary: rgba(0, 255, 0, 0.9);
     --text-secondary: rgba(0, 255, 0, 0.7);
     --text-muted: rgba(0, 255, 0, 0.5);
+    --text-readable: #d1d1d1;                /* Clean grey for body text */
     --border-primary: rgba(0, 255, 0, 0.3);
     --bg-overlay: rgba(0, 0, 0, 0.8);
     --bg-transparent: rgba(0, 20, 0, 0.4);
@@ -32,9 +33,9 @@
        ========================================================================== */
     
     /* Font Stack */
-    --font-primary: 'VT323', monospace;              /* Headers and special text */
-    --font-body: system-ui, -apple-system, sans-serif; /* Body text */
-    --font-code: 'Courier New', monospace;           /* Code blocks */
+    --font-primary: 'Orbitron', sans-serif;          /* Headers and special text */
+    --font-body: 'Exo 2', sans-serif;                /* Body text */
+    --font-code: 'Share Tech Mono', monospace;       /* Code blocks */
     
     /* Type Scale - Responsive with clamp() */
     --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);

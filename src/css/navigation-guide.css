@@ -53,7 +53,7 @@
 .nav-guide-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: #ff00ff;
+  color: var(--matrix-cyan);
   margin-bottom: 4rem;
   font-style: italic;
 }
@@ -209,7 +209,7 @@
 
 .nav-card-description {
   font-size: 1rem;
-  color: #ff00ff;
+  color: var(--text-readable);
   line-height: 1.6;
   margin: 0;
   flex-grow: 1;
