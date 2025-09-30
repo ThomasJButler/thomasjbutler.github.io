@@ -26,12 +26,12 @@
   --line-height-relaxed: 1.75;
   --line-height-loose: 2;
 
-  /* Letter Spacing */
+  /* Letter Spacing - Enhanced for Matrix Terminal Aesthetic */
   --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
+  --letter-spacing-normal: 0.02em; /* Increased from 0 for monospace */
+  --letter-spacing-wide: 0.08em; /* Increased from 0.025em for terminal look */
+  --letter-spacing-wider: 0.15em; /* Increased from 0.05em for headings */
+  --letter-spacing-widest: 0.2em; /* Increased from 0.1em for strong emphasis */
 
   /* Maximum Content Width for Readability */
   --content-width: 65ch;
@@ -46,8 +46,8 @@
 body {
     font-family: var(--font-body);
     font-size: var(--font-size-base);
-    line-height: var(--line-height-relaxed);
-    font-weight: 300;
+    line-height: 1.8; /* Increased from 1.75 - monospace needs more breathing room */
+    font-weight: 400; /* Increased from 300 for better readability */
     color: var(--text-primary);
     letter-spacing: var(--letter-spacing-normal);
     text-rendering: optimizeLegibility;
@@ -60,14 +60,15 @@ body {
    Headings - Matrix Terminal Style with Enhanced Features
    ========================================================================== */
 
-/* All headings base */
+/* All headings base - Matrix Terminal Style */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 600;
-    line-height: var(--line-height-tight);
+    line-height: 1.2; /* Tighter for headings */
     margin-top: 0;
     margin-bottom: 1rem;
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(--letter-spacing-wider); /* Wider spacing for terminal aesthetic */
+    text-transform: uppercase; /* Terminal/computer aesthetic */
 }
 
 /* Major headings (H1-H3) - White/Cyan for readability */
@@ -79,25 +80,25 @@ h1, h2, h3 {
 h1 {
     font-size: var(--font-size-4xl);
     text-align: center;
-    letter-spacing: var(--letter-spacing-wider);
+    letter-spacing: var(--letter-spacing-widest); /* Very wide for main titles */
     margin-bottom: 1.5rem;
-    font-weight: 800;
+    font-weight: 700; /* Bold for hierarchy */
 }
 
 h2 {
     font-size: var(--font-size-2xl);
     text-align: center;
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(--letter-spacing-wider); /* Wide for section titles */
     margin-bottom: 1.25rem;
     margin-top: 2rem;
-    font-weight: 700;
+    font-weight: 600; /* Semi-bold for hierarchy */
 }
 
 h3 {
     font-size: var(--font-size-xl);
-    letter-spacing: var(--letter-spacing-normal);
+    letter-spacing: var(--letter-spacing-wide); /* Wide for card titles */
     font-family: var(--font-primary);
-    font-weight: 600;
+    font-weight: 500; /* Medium for hierarchy */
     margin-bottom: 1rem;
     margin-top: 1.5rem;
 }

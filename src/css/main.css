@@ -1,5 +1,8 @@
 /* Main CSS Entry Point - All imports must come first before any other CSS */
 
+/* Fonts - Load first for performance */
+@import './fonts.css';
+
 /* Base Styles */
 @import './base/_variables.css';
 @import './base/_reset.css';

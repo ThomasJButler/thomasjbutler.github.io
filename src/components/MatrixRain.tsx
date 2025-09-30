@@ -54,10 +54,10 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     };
     updateCanvasSize();
 
-    // Matrix characters
+    // Matrix characters - Japanese Katakana + binary for authentic look
     const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
     const binaryChars = '01';
-    const fontSize = 14; // Smaller for more columns
+    const fontSize = 16; // Increased from 14 for better visibility with Matrix Code NFI font
     const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
 
     // Initialize drops with layers and color system
@@ -73,9 +73,10 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
           chars[Math.floor(Math.random() * chars.length)]
         ),
         color: Math.random() < 0.02 ? '#FF0000' : // 2% red glitch
-               Math.random() < 0.05 ? '#FFEA00' : // 5% yellow machine
-               Math.random() < 0.1 ? '#00FFFF' : // 10% cyan
-               '#00FF00', // 83% green
+               Math.random() < 0.17 ? '#FFD700' : // 15% gold/yellow (Matrix Oracle color)
+               Math.random() < 0.22 ? '#FFEA00' : // 5% bright yellow
+               Math.random() < 0.32 ? '#00FFFF' : // 10% cyan
+               '#00FF00', // 66% green
         brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
         glitchRate: Math.random() * 0.02,
         layer: isBackground ? 'background' : 'foreground',
@@ -98,8 +99,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Set text properties with bold for better visibility
-      ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
+      // Set text properties with Matrix Code NFI font for authentic look
+      ctx.font = `${fontSize}px 'Matrix Code NFI', monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
@@ -125,10 +126,11 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             chars[Math.floor(Math.random() * chars.length)]
           );
 
-          // Apply color system
+          // Apply color system with gold
           drop.color = Math.random() < 0.02 ? '#FF0000' : // Red glitch
-                       Math.random() < 0.05 ? '#FFEA00' : // Yellow machine
-                       Math.random() < 0.1 ? '#00FFFF' : // Cyan
+                       Math.random() < 0.17 ? '#FFD700' : // Gold/yellow
+                       Math.random() < 0.22 ? '#FFEA00' : // Bright yellow
+                       Math.random() < 0.32 ? '#00FFFF' : // Cyan
                        '#00FF00'; // Green
         }
         
@@ -141,10 +143,13 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             const opacity = (1 - fadePosition * 0.8) * (drop.brightness || 1);
             const color = drop.color || '#0F0';
             
-            // Convert color to RGB values
-            const rgb = color === '#0F0' ? '0, 255, 0' : 
+            // Convert color to RGB values for all colors including gold
+            const rgb = color === '#0F0' ? '0, 255, 0' :
                        color === '#00FF00' ? '0, 255, 0' :
-                       color === '#00FFFF' ? '0, 255, 255' : 
+                       color === '#00FFFF' ? '0, 255, 255' :
+                       color === '#FFD700' ? '255, 215, 0' : // Gold
+                       color === '#FFEA00' ? '255, 234, 0' : // Bright yellow
+                       color === '#FF0000' ? '255, 0, 0' : // Red glitch
                        color === '#39FF14' ? '57, 255, 20' : '0, 255, 0';
             
             // Leading character - bright white with intense glow
@@ -152,7 +157,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
               ctx.shadowBlur = 25;
               ctx.shadowColor = color;
               ctx.fillStyle = '#ffffff';
-              ctx.font = `bold ${fontSize * 1.2}px 'Share Tech Mono', monospace`;
+              ctx.font = `${fontSize * 1.2}px 'Matrix Code NFI', monospace`;
             } 
             // Sub-leading characters with strong glow
             else if (i >= drop.chars.length - 3) {
@@ -183,7 +188,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             
             // Reset font for next character
             if (i === drop.chars.length - 1) {
-              ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
+              ctx.font = `${fontSize}px 'Matrix Code NFI', monospace`;
             }
           }
         });
