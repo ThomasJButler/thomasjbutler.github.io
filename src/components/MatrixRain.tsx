@@ -57,7 +57,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     // Matrix characters - Japanese Katakana + binary for authentic look
     const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
     const binaryChars = '01';
-    const fontSize = 16; // Increased from 14 for better visibility with Share Tech Mono
+    const fontSize = 18; // Slightly bigger for more authentic look
     const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
 
     // Initialize drops with layers and color system
@@ -68,15 +68,15 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
 
       return {
         y: Math.random() * canvas.height - canvas.height,
-        speed: isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8,
+        speed: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6,
         chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() =>
           chars[Math.floor(Math.random() * chars.length)]
         ),
-        color: Math.random() < 0.02 ? '#FF0000' : // 2% red glitch
-               Math.random() < 0.17 ? '#FFD700' : // 15% gold/yellow (Matrix Oracle color)
-               Math.random() < 0.22 ? '#FFEA00' : // 5% bright yellow
-               Math.random() < 0.32 ? '#00FFFF' : // 10% cyan
-               '#00FF00', // 66% green
+        color: Math.random() < 0.01 ? '#FF0000' : // 1% red glitch (anomaly)
+               Math.random() < 0.02 ? '#FFD700' : // 1% gold/yellow (anomaly)
+               Math.random() < 0.03 ? '#FFEA00' : // 1% bright yellow (anomaly)
+               Math.random() < 0.05 ? '#00FFFF' : // 2% cyan (anomaly)
+               '#00FF00', // 95% green (authentic Matrix)
         brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
         glitchRate: Math.random() * 0.02,
         layer: isBackground ? 'background' : 'foreground',
@@ -95,8 +95,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
 
     // Drawing function
     const draw = () => {
-      // Balanced fade effect for better performance
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      // Slower fade effect for longer, more persistent trails
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set text properties with Share Tech Mono for matrix characters
@@ -116,7 +116,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
           const chars = isBinary ? binaryChars : matrixChars;
 
           drop.y = -drop.chars.length * fontSize - Math.random() * 200;
-          drop.speed = isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8;
+          drop.speed = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6;
           drop.brightness = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5;
           drop.glitchRate = Math.random() * 0.02;
           drop.isGlitch = false;
@@ -126,12 +126,12 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             chars[Math.floor(Math.random() * chars.length)]
           );
 
-          // Apply color system with gold
-          drop.color = Math.random() < 0.02 ? '#FF0000' : // Red glitch
-                       Math.random() < 0.17 ? '#FFD700' : // Gold/yellow
-                       Math.random() < 0.22 ? '#FFEA00' : // Bright yellow
-                       Math.random() < 0.32 ? '#00FFFF' : // Cyan
-                       '#00FF00'; // Green
+          // Apply color system with rare anomalies (95% green)
+          drop.color = Math.random() < 0.01 ? '#FF0000' : // 1% red glitch (anomaly)
+                       Math.random() < 0.02 ? '#FFD700' : // 1% gold/yellow (anomaly)
+                       Math.random() < 0.03 ? '#FFEA00' : // 1% bright yellow (anomaly)
+                       Math.random() < 0.05 ? '#00FFFF' : // 2% cyan (anomaly)
+                       '#00FF00'; // 95% green (authentic Matrix)
         }
         
         drop.chars.forEach((char, i) => {
