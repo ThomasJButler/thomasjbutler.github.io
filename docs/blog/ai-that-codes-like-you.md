@@ -174,13 +174,13 @@ The future of AI coding as I see it:
 3. **Project-specific adaptations** (context-aware generation)
 4. **Evolution with your growth** (the AI learns as you level up)
 
-## The Bottom Line
+## Your Style Matters
 
 Code is personal. Style is identity. AI should respect both.
 
 When AI learns to code in your style, something remarkable happens. The friction disappears. The cognitive load drops. The joy returns. You stop being a code editor and become a creator again.
 
-This isn't about making AI more powerful. It's about making AI more personal. About building tools that adapt to us, rather than forcing us to adapt to them. About respecting the craft and the craftsperson.
+This isn't about making AI more powerful. It's about making AI more personal. About building tools that adapt to us, rather than forcing us to adapt to them.
 
 Your style isn't wrong. It's yours. And that matters more than any style guide or linting rule ever could.
 

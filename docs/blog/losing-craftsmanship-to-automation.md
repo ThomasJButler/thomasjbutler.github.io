@@ -125,21 +125,17 @@ I'm building a different culture here:
 
 Small rebellion against the automation empire.
 
-## The Bottom Line
+## Choose Craft
 
-Automation should enhance craft, not replace it.
+Automation should enhance craft, not replace it. AI should be your apprentice, not your master.
 
-AI should be your apprentice, not your master.
+The day we stop caring about craftsmanship is the day we stop being developers and become code operators. I refuse to let that happen.
 
-The day we stop caring about craftsmanship is the day we stop being developers and become code operators.
+The best code doesn't come from the fastest tools. It comes from understanding. From intention. From pride in your work. AI can make us faster, but only craft makes us better.
 
-I refuse to let that happen.
+The future doesn't need operators who can prompt AI to generate code. It needs developers who understand what they're building and why. Who can debug what breaks. Who can innovate beyond what currently exists.
 
-Here's what I know: the best code doesn't come from the fastest tools. It comes from understanding. From intention. From pride in your work. AI can make us faster, but only craft makes us better. Only understanding makes us valuable. Only intention makes our work meaningful.
-
-The future doesn't need operators who can prompt AI to generate code. It needs developers who understand what they're building and why. Who can debug what breaks. Who can innovate beyond what currently exists. Who take pride in their craft.
-
-Choose craft. Choose understanding. Choose to be more than an AI operator. The code you write today shapes the developer you become tomorrow.
+Choose craft. Choose understanding. The code you write today shapes the developer you become tomorrow.
 
 ---
 

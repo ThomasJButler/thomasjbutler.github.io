@@ -162,20 +162,13 @@ But here's the thing: capability without empathy is just another tool. Empathy t
 
 We don't need more capable AI. We need more understanding AI.
 
-## The Bottom Line
+## Understanding Over Intelligence
 
-Intelligence without empathy is insufficient.
-Capability without understanding is incomplete.
-Power without support is problematic.
+Intelligence without empathy is insufficient. Capability without understanding is incomplete. Power without support is problematic.
 
-AI should recognise:
-- When you're struggling (not just what's wrong)
-- When you need support (not just solutions)
-- When you need understanding (not just answers)
+AI should recognise when you're struggling, when you need support not just solutions, when you need understanding not just answers.
 
-We're building AI that doesn't just solve problems. It understands the humans behind them.
-
-Here's what I've learned building empathetic AI: the gap between intelligent response and empathetic response is smaller than you'd think, but the impact is enormous. When AI acknowledges frustration before offering solutions, when it remembers your struggles and adapts its communication, when it shows genuine understanding of human needs, everything changes.
+The gap between intelligent response and empathetic response is smaller than you'd think, but the impact is enormous. When AI acknowledges frustration before offering solutions, when it remembers your struggles and adapts its communication, everything changes.
 
 You stop fighting the tool and start working with a partner. One that might not feel emotions but understands yours. That might not need breaks but knows you do. That might not get frustrated but recognises when you are and responds accordingly.
 

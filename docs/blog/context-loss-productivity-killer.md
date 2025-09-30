@@ -113,15 +113,15 @@ Last week, I needed to refactor our authentication system.
 
 That's 25 minutes saved on one task. Multiply that across a team, across a year.
 
-## The Bottom Line
+## Stop the Waste
 
 Stop accepting the context tax. Start demanding persistence.
 
-Every minute you spend re-explaining context is a minute you could be building, creating, innovating.
+Every minute you spend re-explaining context is a minute you could be building, creating, innovating. Your time is worth more than that. Your sanity definitely is.
 
-Your time is worth more than that. Your sanity definitely is.
+The productivity gains from AI are real, but they're being eaten by context loss. We're working harder to stand still. The solution isn't better AI, it's better memory.
 
-Here's what I know after measuring this rigorously: the productivity gains from AI are real, but they're being eaten by context loss. We're working harder to stand still. The solution isn't better AI, it's better memory. When context persists, everything changes. Not just productivity, but satisfaction. Joy. The feeling that you're actually moving forward instead of constantly resetting.
+When context persists, everything changes. Not just productivity, but satisfaction. Joy. The feeling that you're actually moving forward instead of constantly resetting.
 
 That's not just efficiency. That's sustainability. And in this industry, that's everything.
 

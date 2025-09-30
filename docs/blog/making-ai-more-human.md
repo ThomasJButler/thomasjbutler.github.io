@@ -184,16 +184,13 @@ The goal isn't to make AI perfectly human. It's to make it human enough to be he
 
 We're not trying to replace humans. We're trying to build tools that work with humans the way humans actually work.
 
-## The Bottom Line
+## Understanding, Not Imitation
 
-Making AI more human isn't about making it pretend to be human.
-It's about making it understand humans.
-It's about building tools that fit into our workflow, not the other way around.
+Making AI more human isn't about making it pretend to be human. It's about making it understand humans. Building tools that fit into our workflow, not the other way around.
 
-Because at the end of the day, we're not adapting to machines.
-They should be adapting to us.
+Because we're not adapting to machines. They should be adapting to us.
 
-Here's what I've learned: the uncanny valley exists because we're trying to fake humanity instead of building genuine understanding. When AI truly knows your context, learns your patterns, and adapts to your working style, it doesn't feel robotic anymore. It feels like a tool that gets you. That understands not just what you're building, but how you build and why.
+The uncanny valley exists because we're trying to fake humanity instead of building genuine understanding. When AI truly knows your context, learns your patterns, and adapts to your working style, it doesn't feel robotic anymore. It feels like a tool that gets you. That understands not just what you're building, but how you build and why.
 
 That's not artificial humanity. That's authentic usefulness. And that's what I'm building, one human-centred feature at a time.
 

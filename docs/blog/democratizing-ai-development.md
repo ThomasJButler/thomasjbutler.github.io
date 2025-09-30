@@ -143,25 +143,19 @@ You do need:
 4. **Join communities** (we help each other)
 5. **Share what you learn** (that's how we all rise)
 
-## The Bottom Line
+## AI for Everyone
 
-AI development isn't just for the elite anymore.
-It's not just for the rich.
-It's not just for the educated.
-It's not just for Silicon Valley.
+AI development isn't just for the elite anymore. It's not just for the rich, the educated, or Silicon Valley.
 
-It's for everyone.
-It's for you.
-It's for your community.
-It's for your problems.
+It's for everyone. It's for you. It's for your community. It's for your problems.
 
 Stop waiting for the future. Build it yourself. From wherever you are. With whatever you have.
 
-Here's what I've learned building this movement: democratisation isn't about giving everyone access to the same tools. It's about giving everyone the power to build their own tools. Tools that understand them. Tools that serve their communities. Tools that solve their problems.
+Democratisation isn't about giving everyone access to the same tools. It's about giving everyone the power to build their own tools. Tools that understand them. Tools that serve their communities. Tools that solve their problems.
 
-When a kid in Liverpool can build an AI assistant that helps with dyslexia, or a shop owner on Bold Street can automate their inventory without hiring consultants, or a developer in Manchester can share NHS-compliant patterns with peers, that's not just technology adoption. That's power redistribution. That's real change.
+When a kid in Liverpool can build an AI assistant that helps with dyslexia, or a shop owner on Bold Street can automate their inventory without hiring consultants, or a developer in Manchester can share NHS-compliant patterns with peers, that's not just technology adoption. That's power redistribution.
 
-The means of AI production have been democratised. Now it's up to us to use them wisely. To build locally. To solve real problems. To share what we learn. To prove that the future isn't made in Silicon Valley boardrooms, it's made in communities like yours and mine.
+The means of AI production have been democratised. Now it's up to us to use them wisely. To build locally. To solve real problems. To share what we learn.
 
 Welcome to the democratised future of AI development. Let's build something brilliant.
 

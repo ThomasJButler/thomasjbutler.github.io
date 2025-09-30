@@ -146,21 +146,15 @@ Since implementing context systems:
 - 100% less copy-pasting the same context
 - Actually enjoyable to use
 
-## Your Next Step
+## No More Prompts
 
-Stop optimising prompts. Seriously, stop.
-Start building context.
+Stop optimising prompts. Seriously, stop. Start building context.
 
-The future isn't better prompts.
-It's no prompts.
-Just conversation with something that actually knows you.
+The future isn't better prompts. It's no prompts. Just conversation with something that actually knows you.
 
-Imagine: "Fix that bug from yesterday"
-And it knows exactly what you mean.
+Imagine: "Fix that bug from yesterday" and it knows exactly what you mean. That's what I'm building.
 
-That's what I'm building.
-
-Here's what I've learned: the transition from prompts to context isn't about better AI. It's about better memory. When your AI remembers who you are, what you've built, and how you work, something fundamental shifts. You stop being a prompter and become a developer again. The AI stops being a clever stranger and becomes a tool that truly understands your craft.
+The transition from prompts to context isn't about better AI. It's about better memory. When your AI remembers who you are, what you've built, and how you work, something fundamental shifts. You stop being a prompter and become a developer again.
 
 That's not just efficiency. That's transformation. And it's happening right now, one context system at a time.
 

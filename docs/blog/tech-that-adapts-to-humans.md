@@ -169,17 +169,15 @@ Make them learn yours.
 Stop adapting to bad design.
 Demand design that adapts to you.
 
-## The Bottom Line
+## Adapt Technology, Not Humans
 
 Technology should bend to humans, not break them.
 
-If a tool requires a week of training, it's a bad tool.
-If software requires you to think like a machine, it's bad software.
-If a system forces you to work its way, it's a bad system.
+If a tool requires a week of training, it's a bad tool. If software requires you to think like a machine, it's bad software. If a system forces you to work its way, it's a bad system.
 
 We can do better. We are doing better.
 
-Here's what I know: every time we ask humans to adapt to technology, we're admitting design failure. The best interfaces aren't the ones users learn to tolerate. They're the ones users don't notice because they just work. The ones that adapt so seamlessly to human behaviour that they feel like natural extensions of thought.
+Every time we ask humans to adapt to technology, we're admitting design failure. The best interfaces aren't the ones users learn to tolerate. They're the ones users don't notice because they just work. The ones that adapt so seamlessly to human behaviour that they feel like natural extensions of thought.
 
 That's not just better UX. That's respect for humanity. And that's what I'm building, one adaptive feature at a time.
 

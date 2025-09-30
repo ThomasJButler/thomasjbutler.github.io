@@ -140,22 +140,15 @@ One where humans aren't optimised away.
 One where craft still matters.
 One where technology serves, not enslaves.
 
-## Join Us
+## The Choice
 
-This isn't a corporate initiative.
-It's a grassroots movement.
-Developer by developer.
-Project by project.
-Line by line.
+This isn't a corporate initiative. It's a grassroots movement. Developer by developer. Project by project. Line by line.
 
-The future isn't determined. It's designed.
-And we're the designers.
+The future isn't determined. It's designed. And we're the designers. Time to design something better.
 
-Time to design something better.
+The relationship between humans and technology will define our generation. We can build tools that respect humanity or tools that exploit it. Tools that amplify human potential or tools that replace human purpose.
 
-Here's what I believe: the relationship between humans and technology will define our generation. We can build tools that respect humanity or tools that exploit it. Tools that amplify human potential or tools that replace human purpose. Tools that understand context or tools that demand conformity.
-
-The choice is ours. And I've made mine. I'm building technology that treats developers like humans, not resources. That respects craft, not just output. That values understanding over speed. That believes humans and AI are stronger together than either could be alone.
+The choice is ours. And I've made mine. I'm building technology that treats developers like humans, not resources. That respects craft, not just output. That values understanding over speed.
 
 This is the revolution. Not in the technology. In the philosophy behind it. Human-first. Always.
 

@@ -87,25 +87,19 @@ Not the corporate wellness nonsense:
 - Say no to unrealistic deadlines (politely but firmly)
 - Close the laptop at a reasonable hour (work will be there tomorrow)
 
-## The Bottom Line
+## Choose Sustainability
 
-Technology should reduce burnout, not cause it.
+Technology should reduce burnout, not cause it. If your tools are making you miserable, they're not tools. They're torment.
 
-If your tools are making you miserable, they're not tools. They're torment.
+Stop accepting burnout as "just part of tech". It's not. It's a choice we're making, and we can choose differently.
 
-We need to stop accepting burnout as "just part of tech". It's not. It's a choice we're making, and we can choose differently.
-
-Start small:
-- Close Slack at 5pm today
+Start small today:
+- Close Slack at 5pm
 - Take a proper lunch tomorrow
 - Say no to one unrealistic request this week
 - Remember: You're a human, not a machine
 
-Your mental health is more important than any sprint goal.
-
-Here's what I know: burnout isn't inevitable. It's the result of systems that don't respect human limitations. When we build tools that remember context, we reduce cognitive load. When we set realistic expectations, we reduce stress. When we respect boundaries, we create sustainability.
-
-The answer isn't working harder or faster. It's working smarter and more humanely. Technology should serve that goal, not undermine it. And when it doesn't, we have to be willing to say no.
+Burnout isn't inevitable. It's the result of systems that don't respect human limitations. When we build tools that remember context, we reduce cognitive load. When we set realistic expectations, we reduce stress. When we respect boundaries, we create sustainability.
 
 Your wellbeing matters more than any deadline, any feature, any metric. Take care of yourself. The code will still be there tomorrow.
 

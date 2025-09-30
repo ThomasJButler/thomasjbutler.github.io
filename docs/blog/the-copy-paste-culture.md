@@ -101,18 +101,13 @@ Next time you see a pattern, improve it.
 
 Write code that's yours. Not because it's better (though it might be), but because it's crafted, understood, and intentional.
 
-## The Bottom Line
+## Choose Understanding
 
 In a world of copy-paste, originality is rebellion.
 
-Be a rebel.
-Write your own code.
-Understand what you build.
-Create something unique.
+Be a rebel. Write your own code. Understand what you build. Create something unique.
 
-Your future self (and anyone maintaining your code) will thank you.
-
-Here's what scares me: we're one generation away from developers who can't build from first principles. Who know patterns but not why they work. Who can assemble code but not create it. The copy-paste culture isn't just about efficiency. It's about the slow death of understanding.
+Here's what scares me: we're one generation away from developers who can't build from first principles. Who know patterns but not why they work. Who can assemble code but not create it.
 
 And when the next paradigm shift comes, when the patterns everyone copies become obsolete, who will know how to create new ones? Not the copy-pasters. They'll wait for someone else to solve it first.
 

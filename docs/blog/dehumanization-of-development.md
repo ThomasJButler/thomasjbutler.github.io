@@ -112,27 +112,21 @@ We're already seeing this. Developers who are really just AI prompters. That's n
 
 This is what I'm fighting for. AI as a power tool, not a replacement.
 
-## The Bottom Line
+## Fight for the Craft
 
 We're at a crossroads, and the path we choose now determines the future of our craft.
 
 I refuse to become a prompt engineer. I'm a software developer. I build things. I understand things. I create things.
 
-Yes, I use AI. But I use it like I use any tool, with intention, understanding, and control.
+Yes, I use AI. But I use it like any tool, with intention, understanding, and control. The day I ship code I don't understand is the day I hang up my keyboard.
 
-The day I ship code I don't understand is the day I hang up my keyboard.
+Easier isn't always better. Microwave meals are easier than cooking, but which would you rather eat every day?
 
-And if you're reading this thinking "but AI makes everything easier", you're right. But easier isn't always better. Microwave meals are easier than cooking, but which would you rather eat every day?
+Code is poetry. Don't let it become commodity. Code is craft. Don't let it become factory work. Code is human expression. Don't let it become robotic output.
 
-Code is poetry. Don't let it become commodity.
-Code is craft. Don't let it become factory work.
-Code is human expression. Don't let it become robotic output.
+The best code comes from understanding, not automation. From intention, not convenience. From craft, not speed. AI can make us faster, but only craft makes us better.
 
-Fight for the craft. Fight for the joy. Fight for the humanity in development.
-
-Here's what I believe: the best code comes from understanding, not automation. From intention, not convenience. From craft, not speed. AI can make us faster, but only craft makes us better. Only understanding makes us valuable. Only pride in our work makes it worth doing.
-
-The future needs developers who understand. Who think. Who create. Not operators who prompt and ship without comprehension. That's not a future I want to be part of. And I don't think you do either.
+The future needs developers who understand. Who think. Who create. Not operators who prompt and ship without comprehension.
 
 Choose craft. Choose understanding. Choose humanity. The code you write today shapes the developer you become tomorrow.
 

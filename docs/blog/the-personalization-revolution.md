@@ -145,21 +145,13 @@ If you're tired of:
 
 Join the revolution.
 
-## The Bottom Line
+## One AI Per Person
 
-The future isn't one AI for everyone.
-It's one AI for each of us.
-Unique, personal, adapted.
+The future isn't one AI for everyone. It's one AI for each of us. Unique, personal, adapted.
 
-Your code style isn't wrong.
-Your preferences aren't weird.
-Your patterns aren't bad.
+Your code style isn't wrong. Your preferences aren't weird. Your patterns aren't bad. They're yours. And your AI should respect that.
 
-They're yours.
-
-And your AI should respect that.
-
-Here's what I've learned: personalisation isn't a luxury. It's a necessity. When AI adapts to you instead of forcing you to adapt to it, everything changes. Not just productivity (though that improves dramatically), but satisfaction. Pride. The feeling that you're working with a tool that understands you, not fighting against a system that demands conformity.
+Personalisation isn't a luxury. It's a necessity. When AI adapts to you instead of forcing you to adapt to it, everything changes. Not just productivity (though that improves dramatically), but satisfaction. Pride. The feeling that you're working with a tool that understands you, not fighting against a system that demands conformity.
 
 That's not just better technology. That's technology that respects humanity. And that's the future I'm building, one personalised interaction at a time.
 
