@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { animate } from 'animejs';
 
 interface MatrixRainProps {
-  theme?: 'matrix' | 'neo';
+  theme?: 'matrix';
 }
 
 export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
@@ -54,10 +54,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     };
     updateCanvasSize();
 
-    // Matrix characters - different for each theme
-    const matrixChars = theme === 'neo'
-      ? '॰ॐ卍☯☸♾∞αωΩ॰101॰ﾊﾐﾋｰｳｼﾅ॰' // Sanskrit, infinity symbols for Neo
-      : '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
+    // Matrix characters
+    const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
     const binaryChars = '01';
     const fontSize = 14; // Smaller for more columns
     const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
@@ -70,22 +68,16 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
 
       return {
         y: Math.random() * canvas.height - canvas.height,
-        speed: theme === 'neo'
-          ? (isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.8 + 0.4) // Slower for Neo
-          : (isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8),
+        speed: isBackground ? Math.random() * 0.5 + 0.3 : Math.random() * 1.5 + 0.8,
         chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() =>
           chars[Math.floor(Math.random() * chars.length)]
         ),
-        color: theme === 'neo'
-          ? (Math.random() < 0.05 ? '#FFFFFF' : // 5% white enlightenment
-             Math.random() < 0.15 ? '#FFEA00' : // 15% yellow
-             '#FFD700') // 80% gold
-          : (Math.random() < 0.02 ? '#FF0000' : // 2% red glitch
-             Math.random() < 0.05 ? '#FFEA00' : // 5% yellow machine
-             Math.random() < 0.1 ? '#00FFFF' : // 10% cyan
-             '#00FF00'), // 83% green
+        color: Math.random() < 0.02 ? '#FF0000' : // 2% red glitch
+               Math.random() < 0.05 ? '#FFEA00' : // 5% yellow machine
+               Math.random() < 0.1 ? '#00FFFF' : // 10% cyan
+               '#00FF00', // 83% green
         brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
-        glitchRate: theme === 'neo' ? Math.random() * 0.01 : Math.random() * 0.02, // Less glitch for Neo
+        glitchRate: Math.random() * 0.02,
         layer: isBackground ? 'background' : 'foreground',
         isGlitch: false
       };
@@ -133,15 +125,11 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             chars[Math.floor(Math.random() * chars.length)]
           );
 
-          // Apply color system based on theme
-          drop.color = theme === 'neo'
-            ? (Math.random() < 0.05 ? '#FFFFFF' : // White enlightenment
-               Math.random() < 0.15 ? '#FFEA00' : // Yellow
-               '#FFD700') // Gold
-            : (Math.random() < 0.02 ? '#FF0000' : // Red glitch
-               Math.random() < 0.05 ? '#FFEA00' : // Yellow machine
-               Math.random() < 0.1 ? '#00FFFF' : // Cyan
-               '#00FF00'); // Green
+          // Apply color system
+          drop.color = Math.random() < 0.02 ? '#FF0000' : // Red glitch
+                       Math.random() < 0.05 ? '#FFEA00' : // Yellow machine
+                       Math.random() < 0.1 ? '#00FFFF' : // Cyan
+                       '#00FF00'; // Green
         }
         
         drop.chars.forEach((char, i) => {

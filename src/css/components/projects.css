@@ -742,7 +742,7 @@
 }
 
 /* Neo Matrix Button Styles - Project Specific with Higher Specificity */
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary {
     padding: 0.8rem 1.5rem !important;
     border: 2px solid var(--matrix-green) !important;
     border-radius: 4px !important;
@@ -772,7 +772,7 @@
     animation: none !important;
 }
 
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn:hover {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary:hover {
     color: #000 !important;
     background: var(--matrix-green) !important;
     border-color: transparent !important;
@@ -785,7 +785,7 @@
     animation: none !important;
 }
 
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn:active {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary:active {
     transform: translateY(1px) !important;
     box-shadow:
         0 0 10px rgba(0, 255, 0, 0.4),
@@ -793,19 +793,19 @@
 }
 
 /* Override conflicting pseudo-elements from utilities.css */
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn::before,
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn::after {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary::before,
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary::after {
     content: none !important;
     display: none !important;
 }
 
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn i {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary i {
     font-size: 0.9em !important;
     transition: transform 0.3s ease !important;
     color: inherit !important;
 }
 
-.matrix-project-card .matrix-project-buttons .neo-matrix-btn:hover i {
+.matrix-project-card .matrix-project-buttons .matrix-btn-primary:hover i {
     transform: translateX(4px) !important;
     color: inherit !important;
 }
@@ -841,7 +841,7 @@
         font-size: 0.9rem;
     }
 
-    .matrix-project-card .matrix-project-buttons .neo-matrix-btn {
+    .matrix-project-card .matrix-project-buttons .matrix-btn-primary {
         min-width: auto !important;
         padding: 0.6rem 1rem !important;
         font-size: 0.9rem !important;

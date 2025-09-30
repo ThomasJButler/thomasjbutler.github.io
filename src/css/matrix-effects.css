@@ -318,26 +318,6 @@
 }
 
 /* ==========================================================================
-   Neo Mode Styles
-   ========================================================================== */
-
-[data-theme="neo"] {
-  --accent-color: var(--matrix-gold);
-  --text-primary: var(--matrix-gold);
-  --matrix-glow: var(--neo-glow);
-}
-
-[data-theme="neo"] .phosphor-text {
-  text-shadow: var(--neo-glow);
-  color: var(--matrix-gold);
-}
-
-[data-theme="neo"] a:hover {
-  color: var(--matrix-gold);
-  text-shadow: var(--neo-glow);
-}
-
-/* ==========================================================================
    Button Circuit Trace Animation
    ========================================================================== */
 

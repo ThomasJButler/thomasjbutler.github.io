@@ -9,7 +9,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { Layout } from './components/Layout';
 
 // Components (not lazy loaded as they're used frequently)
-import { GodModeDisplay } from './components/GodModeDisplay';
 import { MatrixSpinner } from './components/MatrixSpinner';
 import { ReactHtmlRedirect } from './components/ReactHtmlRedirect';
 import { BackToTop } from './components/BackToTop';
@@ -130,7 +129,6 @@ export const App: React.FC = () => {
           </Route>
         </Routes>
       </Router>
-      <GodModeDisplay />
     </ThemeProvider>
   );
 };

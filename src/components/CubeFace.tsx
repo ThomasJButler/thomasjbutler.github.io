@@ -36,7 +36,7 @@ export const CubeFace: React.FC<CubeFaceProps> = ({ face, project }) => {
               href={project.links.website} 
               target="_blank" 
               rel="noopener" 
-              className="neo-matrix-btn"
+              className="matrix-btn-primary"
             >
               <span className="btn-text">Website</span>
               <i className="fas fa-external-link-alt"></i>
@@ -47,7 +47,7 @@ export const CubeFace: React.FC<CubeFaceProps> = ({ face, project }) => {
               href={project.links.github} 
               target="_blank" 
               rel="noopener" 
-              className="neo-matrix-btn"
+              className="matrix-btn-primary"
             >
               <span className="btn-text">GitHub</span>
               <i className="fab fa-github"></i>

@@ -124,7 +124,6 @@
     --phosphor-glow: 0 0 2px var(--matrix-green), 0 0 8px rgba(0, 255, 0, 0.4);
     --yellow-glow: 0 0 15px var(--matrix-yellow);
     --red-glow: 0 0 15px var(--matrix-red);
-    --neo-glow: 0 0 30px var(--matrix-gold);
     
     /* Shadow System - Professional depth with Matrix tint */
     --shadow-sm: 0 2px 4px rgba(0, 255, 0, 0.1);

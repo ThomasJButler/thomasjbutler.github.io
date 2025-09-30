@@ -15,8 +15,6 @@ export const ThemeToggle: React.FC = () => {
     switch (theme) {
       case 'dark':
         return 'fas fa-moon';
-      case 'neo':
-        return 'fas fa-star';
       case 'matrix':
       default:
         return 'fas fa-code';
@@ -27,8 +25,6 @@ export const ThemeToggle: React.FC = () => {
     switch (theme) {
       case 'dark':
         return 'Dark Mode';
-      case 'neo':
-        return 'Neo Mode';
       case 'matrix':
       default:
         return 'Matrix Mode';

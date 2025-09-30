@@ -62,7 +62,7 @@ console.log(`Matrix Red (#FF0000) on Background: ${redOnBg.toFixed(2)}:1`);
 console.log(`  ${redOnBg >= 4.5 ? '⚠️ AA' : '❌ FAIL'} for warnings/errors\n`);
 
 const goldOnBg = getContrastRatio(matrixColors.matrixGold, matrixColors.background);
-console.log(`Neo Gold (#FFD700) on Background: ${goldOnBg.toFixed(2)}:1`);
+console.log(`Matrix Gold (#FFD700) on Background: ${goldOnBg.toFixed(2)}:1`);
 console.log(`  ${goldOnBg >= 7 ? '✅ AAA' : goldOnBg >= 4.5 ? '⚠️ AA' : '❌ FAIL'} for normal text\n`);
 
 console.log('\n=== RECOMMENDATIONS ===');

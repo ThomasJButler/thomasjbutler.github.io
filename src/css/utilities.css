@@ -359,7 +359,7 @@ a:not(.btn):not(.button):not(.nav-link):hover {
 button:not(.back-to-top-react),
 .btn-primary,
 .btn-secondary,
-.neo-matrix-btn,
+.matrix-btn-primary,
 .matrix-btn,
 .btn-contact-us,
 .cta-button,
@@ -375,7 +375,7 @@ button:not(.back-to-top-react),
 button:not(.back-to-top-react):hover,
 .btn-primary:hover,
 .btn-secondary:hover,
-.neo-matrix-btn:hover,
+.matrix-btn-primary:hover,
 .matrix-btn:hover,
 .btn-contact-us:hover,
 .cta-button:hover,
@@ -413,7 +413,7 @@ button:not(.back-to-top-react):hover,
   }
 }
 
-.neo-matrix-btn,
+.matrix-btn-primary,
 .matrix-btn,
 .btn,
 button:not(.back-to-top-react) {
@@ -421,7 +421,7 @@ button:not(.back-to-top-react) {
   overflow: hidden;
 }
 
-.neo-matrix-btn::before,
+.matrix-btn-primary::before,
 .matrix-btn::before,
 .btn::before,
 button:not(.back-to-top-react)::before {
@@ -437,7 +437,7 @@ button:not(.back-to-top-react)::before {
   transition: none;
 }
 
-.neo-matrix-btn:active::before,
+.matrix-btn-primary:active::before,
 .matrix-btn:active::before,
 .btn:active::before,
 button:not(.back-to-top-react):active::before {
@@ -447,13 +447,13 @@ button:not(.back-to-top-react):active::before {
 }
 
 /* Magnetic Cursor Effect */
-.neo-matrix-btn,
+.matrix-btn-primary,
 .matrix-btn {
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   will-change: transform;
 }
 
-.neo-matrix-btn:hover,
+.matrix-btn-primary:hover,
 .matrix-btn:hover {
   animation: matrixPulse 0.6s ease-in-out;
   transform: var(--magnetic-transform, translateY(-2px));

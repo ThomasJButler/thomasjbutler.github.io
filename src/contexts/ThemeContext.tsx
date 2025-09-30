@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Theme = 'matrix' | 'dark' | 'neo';
+type Theme = 'matrix' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -28,7 +28,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     // Load saved theme from localStorage
     const savedTheme = localStorage.getItem('portfolio-theme') as Theme;
-    if (savedTheme && ['matrix', 'dark', 'neo'].includes(savedTheme)) {
+    if (savedTheme && ['matrix', 'dark'].includes(savedTheme)) {
       setThemeState(savedTheme);
     }
   }, []);
@@ -62,26 +62,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         root.style.setProperty('--matrix-glow-intense', '0 0 20px #4A9EFF');
         break;
 
-      case 'neo':
-        root.style.setProperty('--bg-primary', '#000000');
-        root.style.setProperty('--bg-secondary', '#0a0a0a');
-        root.style.setProperty('--text-primary', '#FFD700'); // Gold
-        root.style.setProperty('--text-secondary', 'rgba(255, 215, 0, 0.8)');
-        root.style.setProperty('--text-base', '#E6E6E6'); // Light grey for readability
-        root.style.setProperty('--accent-color', '#FFD700');
-        root.style.setProperty('--matrix-green', '#FFD700'); // Gold instead of green
-        root.style.setProperty('--matrix-yellow', '#FFFFFF'); // White for special elements
-        root.style.setProperty('--matrix-cyan', '#FFEA00');
-        root.style.setProperty('--matrix-red', '#FF6B6B'); // Softer red
-        root.style.setProperty('--matrix-gold', '#FFD700');
-        root.style.setProperty('--border-color', 'rgba(255, 215, 0, 0.3)');
-        root.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.95)');
-        root.style.setProperty('--shadow-color', 'rgba(255, 215, 0, 0.3)');
-        root.style.setProperty('--phosphor-glow', '0 0 2px #FFD700, 0 0 10px rgba(255, 215, 0, 0.5)');
-        root.style.setProperty('--matrix-glow', '0 0 15px #FFD700');
-        root.style.setProperty('--matrix-glow-intense', '0 0 30px #FFD700');
-        break;
-
       case 'matrix':
       default:
         root.style.setProperty('--bg-primary', '#000000');
@@ -110,7 +90,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   const toggleTheme = () => {
-    const themes: Theme[] = ['matrix', 'dark', 'neo'];
+    const themes: Theme[] = ['matrix', 'dark'];
     const currentIndex = themes.indexOf(theme);
     const nextIndex = (currentIndex + 1) % themes.length;
     setTheme(themes[nextIndex]);

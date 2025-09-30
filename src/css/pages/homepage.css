@@ -911,7 +911,7 @@ body {
 /* Interactive focus indicators */
 .gallery-card:focus,
 .gallery-link:focus,
-.neo-matrix-btn:focus {
+.matrix-btn-primary:focus {
     outline: 2px solid var(--matrix-green);
     outline-offset: 4px;
     border-radius: 4px;
@@ -944,13 +944,13 @@ body {
 
 /* Micro-interactions for better feedback */
 .gallery-link,
-.neo-matrix-btn {
+.matrix-btn-primary {
     position: relative;
     overflow: hidden;
 }
 
 .gallery-link::before,
-.neo-matrix-btn::before {
+.matrix-btn-primary::before {
     content: '';
     position: absolute;
     top: 0;
@@ -962,7 +962,7 @@ body {
 }
 
 .gallery-link:hover::before,
-.neo-matrix-btn:hover::before {
+.matrix-btn-primary:hover::before {
     left: 100%;
 }
 

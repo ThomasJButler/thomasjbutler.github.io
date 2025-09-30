@@ -9,7 +9,7 @@
 
 .cta-button,
 .btn-contact-us,
-.neo-matrix-btn,
+.matrix-btn-primary,
 .matrix-btn {
     align-items: center;
     background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
@@ -72,7 +72,7 @@
 
 .cta-button:hover,
 .btn-contact-us:hover,
-.neo-matrix-btn:hover,
+.matrix-btn-primary:hover,
 .matrix-btn:hover {
     background: rgba(0, 255, 0, 0.1);
     color: #fff;
@@ -96,8 +96,8 @@
    Neo Matrix Button (Card-specific)
    ========================================================================== */
 
-.introduction-expertise-buttons a.neo-matrix-btn,
-.project-buttons a.neo-matrix-btn {
+.introduction-expertise-buttons a.matrix-btn-primary,
+.project-buttons a.matrix-btn-primary {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -119,20 +119,20 @@
 }
 
 /* Neo Matrix Button Icon */
-.neo-matrix-btn i {
+.matrix-btn-primary i {
     margin-left: auto;
     font-size: 1.2em;
 }
 
 /* Neo Matrix Button Text */
-.neo-matrix-btn .btn-text {
+.matrix-btn-primary .btn-text {
     flex: 1;
     text-align: center;
     color: white;
 }
 
 /* Neo Matrix Button Gradient Overlay */
-.neo-matrix-btn::before {
+.matrix-btn-primary::before {
     background: linear-gradient(180deg, 
         transparent 0%, 
         rgba(0, 255, 0, 0.2) 50%, 
@@ -150,7 +150,7 @@
 }
 
 /* Neo Matrix Button Pattern Overlay */
-.neo-matrix-btn::after {
+.matrix-btn-primary::after {
     background-image: 
         radial-gradient(circle at 30% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
         radial-gradient(circle at 70% 50%, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
@@ -172,17 +172,17 @@
 }
 
 /* Neo Matrix Button Hover */
-.neo-matrix-btn:hover {
+.matrix-btn-primary:hover {
     background: rgba(0, 30, 0, 0.9);
     box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
     transform: translateY(-2px);
 }
 
-.neo-matrix-btn:hover::before {
+.matrix-btn-primary:hover::before {
     opacity: 1;
 }
 
-.neo-matrix-btn:hover::after {
+.matrix-btn-primary:hover::after {
     opacity: 1;
     transform: scale(1);
 }
@@ -193,7 +193,7 @@
 
 .cta-button:active,
 .btn-contact-us:active,
-.neo-matrix-btn:active,
+.matrix-btn-primary:active,
 .matrix-btn:active {
     transform: translateY(0);
     box-shadow: 
@@ -274,7 +274,7 @@
 }
 
 .btn-group.vertical .cta-button,
-.btn-group.vertical .neo-matrix-btn {
+.btn-group.vertical .matrix-btn-primary {
     width: 100%;
 }
 
@@ -283,10 +283,10 @@
    ========================================================================== */
 
 .cta-button:disabled,
-.neo-matrix-btn:disabled,
+.matrix-btn-primary:disabled,
 .matrix-btn:disabled,
 .cta-button.disabled,
-.neo-matrix-btn.disabled,
+.matrix-btn-primary.disabled,
 .matrix-btn.disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -300,7 +300,7 @@
 @media (max-width: 768px) {
     .cta-button,
     .btn-contact-us,
-    .neo-matrix-btn,
+    .matrix-btn-primary,
     .matrix-btn {
         font-size: 1rem;
         padding: 0.625rem 1.25rem;
@@ -312,7 +312,7 @@
     }
     
     .btn-group:not(.vertical) .cta-button,
-    .btn-group:not(.vertical) .neo-matrix-btn {
+    .btn-group:not(.vertical) .matrix-btn-primary {
         width: 100%;
     }
 }
@@ -320,7 +320,7 @@
 @media (max-width: 480px) {
     .cta-button,
     .btn-contact-us,
-    .neo-matrix-btn,
+    .matrix-btn-primary,
     .matrix-btn {
         font-size: 0.875rem;
         padding: 0.5rem 1rem;

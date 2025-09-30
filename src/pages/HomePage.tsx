@@ -132,7 +132,7 @@ export const HomePage: React.FC = () => {
       });
       
       // Animate buttons with bounce effect
-      const buttons = document.querySelectorAll('.btn-professional, .neo-matrix-btn');
+      const buttons = document.querySelectorAll('.btn-professional, .matrix-btn-primary');
       buttons.forEach((btn, index) => {
         // Remove inline styles - let CSS classes handle initial state
         btn.classList.add('animated');
@@ -177,7 +177,7 @@ export const HomePage: React.FC = () => {
     });
     
     // Enhanced button effects with magnetic cursor and ripple
-    const buttons = document.querySelectorAll('.neo-matrix-btn, .btn-professional, .matrix-btn, button');
+    const buttons = document.querySelectorAll('.matrix-btn-primary, .btn-professional, .matrix-btn, button');
     buttons.forEach(button => {
       const btn = button as HTMLElement;
       

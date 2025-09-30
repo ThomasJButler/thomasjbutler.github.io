@@ -6,8 +6,6 @@ import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
 import { ParticleBackground } from './ParticleBackground';
 import { CRTEffect } from './CRTEffect';
-import { TerminalMode } from './TerminalMode';
-import { MatrixEasterEggs } from './MatrixEasterEggs';
 import { usePageTransition } from '../hooks/useMatrixAnimation';
 import { useTheme } from '../contexts/ThemeContext';
 import { performanceOptimizer } from '../utils/performanceOptimizer';
@@ -19,8 +17,8 @@ export const Layout: React.FC = () => {
   const pageRef = usePageTransition();
   const { theme } = useTheme();
 
-  // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix and Neo themes
-  const shouldShowMatrixRain = (theme === 'matrix' || theme === 'neo') && performanceOptimizer.getMatrixRainEnabled(theme);
+  // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix theme
+  const shouldShowMatrixRain = theme === 'matrix' && performanceOptimizer.getMatrixRainEnabled(theme);
 
 
   useEffect(() => {
@@ -43,8 +41,7 @@ export const Layout: React.FC = () => {
   const content = (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
       {/* Theme-specific backgrounds */}
-      {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain theme="matrix" />}
-      {theme === 'neo' && shouldShowMatrixRain && <MatrixRain theme="neo" />}
+      {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain />}
       {theme === 'dark' && <ParticleBackground />}
 
       {/* Header */}
@@ -57,12 +54,6 @@ export const Layout: React.FC = () => {
 
       {/* Footer */}
       <Footer />
-
-      {/* Terminal Mode - Secret activation in Neo theme only */}
-      <TerminalMode theme={theme} />
-
-      {/* Easter Eggs */}
-      <MatrixEasterEggs />
     </div>
   );
 

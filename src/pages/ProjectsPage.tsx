@@ -418,7 +418,7 @@ export const ProjectsPage: React.FC = () => {
       createParticleBurst(mouseEvent.clientX, mouseEvent.clientY);
     };
 
-    const buttons = document.querySelectorAll('.neo-matrix-btn') as NodeListOf<HTMLElement>;
+    const buttons = document.querySelectorAll('.matrix-btn-primary') as NodeListOf<HTMLElement>;
     buttons.forEach(btn => {
       btn.addEventListener('click', handleButtonClick);
     });
@@ -633,7 +633,7 @@ export const ProjectsPage: React.FC = () => {
                     href={project.links.demo} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="neo-matrix-btn"
+                    className="matrix-btn-primary"
                   >
                     <i className="fas fa-external-link-alt"></i>
                     Live Demo
@@ -644,7 +644,7 @@ export const ProjectsPage: React.FC = () => {
                     href={project.links.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="neo-matrix-btn"
+                    className="matrix-btn-primary"
                   >
                     <i className="fab fa-github"></i>
                     View Code

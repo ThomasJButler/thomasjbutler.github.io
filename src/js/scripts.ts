@@ -601,7 +601,7 @@ function initAnimeAnimations(): void {
   });
 
   // Subtle button hover effect - removed particle animation
-  document.querySelectorAll('.cta-button, .neo-matrix-btn, .matrix-btn').forEach(button => {
+  document.querySelectorAll('.cta-button, .matrix-btn-primary, .matrix-btn').forEach(button => {
     button.addEventListener('mouseenter', () => {
       animate(button as HTMLElement, {
         scale: 1.05,

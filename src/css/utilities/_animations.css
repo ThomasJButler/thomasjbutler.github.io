@@ -361,7 +361,7 @@
 }
 
 .btn-professional:not(.animated),
-.neo-matrix-btn:not(.animated) {
+.matrix-btn-primary:not(.animated) {
     opacity: 0;
     transform: scale(0);
 }
