@@ -8,13 +8,18 @@ interface Command {
   timestamp: Date;
 }
 
-export const TerminalMode: React.FC = () => {
+interface TerminalModeProps {
+  theme?: 'matrix' | 'dark' | 'neo';
+}
+
+export const TerminalMode: React.FC<TerminalModeProps> = ({ theme = 'matrix' }) => {
   const [isActive, setIsActive] = useState(false);
   const [commands, setCommands] = useState<Command[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const clickTimesRef = useRef<number[]>([]);
 
   // Terminal commands
   const commandMap: Record<string, () => string | React.ReactNode> = {
@@ -99,18 +104,56 @@ Recent Projects:
     }
   }, [commands]);
 
-  // Keyboard shortcut activation (Ctrl+`)
+  // Secret triple-click activation on header (Neo theme only)
+  useEffect(() => {
+    const handleHeaderClick = () => {
+      // Only allow activation in Neo theme
+      if (theme !== 'neo') return;
+
+      const now = Date.now();
+      const clickTimes = clickTimesRef.current;
+
+      // Add current click time
+      clickTimes.push(now);
+
+      // Keep only clicks within the last 500ms
+      clickTimesRef.current = clickTimes.filter(time => now - time < 500);
+
+      // Check if we have 3 clicks within 500ms
+      if (clickTimesRef.current.length >= 3) {
+        setIsActive(true);
+        clickTimesRef.current = []; // Reset after activation
+      }
+    };
+
+    // Listen for clicks on the header
+    const header = document.querySelector('header');
+    if (header) {
+      header.addEventListener('click', handleHeaderClick);
+    }
+
+    return () => {
+      if (header) {
+        header.removeEventListener('click', handleHeaderClick);
+      }
+    };
+  }, [theme]);
+
+  // Keyboard shortcut activation (Ctrl+`) - Neo theme only
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.key === '`') {
         e.preventDefault();
-        setIsActive(!isActive);
+        // Only allow activation in Neo theme
+        if (theme === 'neo') {
+          setIsActive(!isActive);
+        }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isActive]);
+  }, [isActive, theme]);
 
   // Focus input when terminal opens
   useEffect(() => {
@@ -189,16 +232,9 @@ Recent Projects:
     }, 50);
   };
 
+  // Don't render anything when inactive (secret activation only)
   if (!isActive) {
-    return (
-      <button
-        className="terminal-trigger"
-        onClick={() => setIsActive(true)}
-        title="Open Terminal (Ctrl+`)"
-      >
-        &gt;_
-      </button>
-    );
+    return null;
   }
 
   return (

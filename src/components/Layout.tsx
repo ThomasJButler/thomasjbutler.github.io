@@ -66,8 +66,8 @@ export const Layout: React.FC = () => {
         enableScanLine={true}
       />
 
-      {/* Terminal Mode */}
-      <TerminalMode />
+      {/* Terminal Mode - Secret activation in Neo theme only */}
+      <TerminalMode theme={theme} />
 
       {/* Easter Eggs */}
       <MatrixEasterEggs />
