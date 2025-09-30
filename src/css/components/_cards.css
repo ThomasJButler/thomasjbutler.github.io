@@ -37,7 +37,7 @@
     overflow: hidden;
 }
 
-/* Hover Effects */
+/* Hover Effects with Pulsing Border Glow */
 .introduction-expertise-card:hover,
 .project-card:hover {
     box-shadow:
@@ -48,6 +48,22 @@
     border-color: var(--accent-color);
     background: rgba(0, 20, 0, 0.7);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
+    animation: pulsingBorderGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulsingBorderGlow {
+    0%, 100% {
+        box-shadow:
+            0 8px 25px rgba(0, 255, 0, 0.2),
+            0 0 30px rgba(var(--accent-rgb), 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 8px 25px rgba(0, 255, 0, 0.4),
+            0 0 45px rgba(var(--accent-rgb), 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
 }
 
 /* Card scan line effect on hover */

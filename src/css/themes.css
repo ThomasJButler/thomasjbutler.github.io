@@ -70,10 +70,21 @@
    Theme-Specific Adjustments
    ======================================================================== */
 
-/* Matrix Theme - Subtle Glow Effects */
+/* Matrix Theme - Enhanced Glow Effects */
 [data-theme="matrix"] a:hover {
   color: var(--accent-color);
   text-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle cyan glow */
+}
+
+/* Triple-layer text shadow for headings */
+[data-theme="matrix"] h1,
+[data-theme="matrix"] h2,
+[data-theme="matrix"] .section-title,
+[data-theme="matrix"] .page-heading {
+  text-shadow:
+    0 0 10px rgba(0, 255, 255, 0.5),
+    0 0 20px rgba(0, 255, 255, 0.3),
+    0 0 30px rgba(0, 255, 255, 0.1);
 }
 
 [data-theme="matrix"] button:hover {
