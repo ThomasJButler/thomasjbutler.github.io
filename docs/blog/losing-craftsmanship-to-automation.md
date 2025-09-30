@@ -12,9 +12,9 @@ We've traded mastery for velocity. And I'm watching it happen every day in Liver
 Remember when developers were craftspeople?
 
 ### Understanding Every Line
-I started coding in the 90s. We knew what every line did and why. Not because we were smarter - because we had to. No Stack Overflow, no AI, just you and the compiler having a proper argument.
+I started coding in the 90s. We knew what every line did and why. Not because we were smarter, because we had to. No Stack Overflow, no AI, just you and the compiler.
 
-My first mentor made me write a linked list from scratch. "How else will you understand it?" he said. Seemed daft at the time. Now I get it.
+My first mentor made me write a linked list from scratch. "How else will you understand it?" he said. Seemed excessive at the time. Now I get it.
 
 ### Intentional Design
 Architecture with thought, not templates. Every decision deliberate:
@@ -25,9 +25,9 @@ Architecture with thought, not templates. Every decision deliberate:
 We'd spend Friday afternoons at the pub sketching systems on napkins. Those napkin designs? Still running in production 10 years later.
 
 ### Pride in Work
-We signed our code like artists sign paintings. Comments with our initials. Easter eggs with our names. We owned our work - the good and the bad.
+We signed our code like artists sign paintings. Comments with our initials. Easter eggs with our names. We owned our work, the good and the bad.
 
-I still remember finding "// TB was here - 2003" in some ancient codebase. That was me. Still proud of that recursive function.
+I still remember finding "// TB was here, 2003" in some ancient codebase. That was me. Still proud of that recursive function.
 
 ## The Automation Trap
 
@@ -63,7 +63,7 @@ We've become code factory workers, not craftspeople.
 ## The Real Cost
 
 When craftsmanship dies:
-- **Quality becomes accident**: "It works" ≠ "It's good"
+- **Quality becomes accident**: "It works" doesn't mean "It's good"
 - **Innovation becomes impossible**: Can't innovate what you don't understand
 - **Joy becomes memory**: Remember when coding was fun?
 - **Purpose becomes paycheck**: Clock in, generate code, clock out
@@ -86,7 +86,7 @@ Every line you write teaches you something. Every line you generate teaches you 
 Here's how I'm fighting back:
 
 ### AI as Tool, Not Replacement
-Like a power saw for a carpenter - speeds up the work, doesn't replace the skill.
+Like a power saw for a carpenter. Speeds up the work, doesn't replace the skill.
 
 Use AI to:
 - Handle boilerplate (then customise it)
@@ -114,11 +114,11 @@ Add your touch:
 - Your error handling style
 - Your optimisation approach
 
-Make it yours. Because craftsmanship isn't about perfection - it's about intentionality.
+Make it yours. Because craftsmanship isn't about perfection. It's about intentionality.
 
 ## The Liverpool Way
 
-We're building a different culture here:
+I'm building a different culture here:
 - Code reviews where we explain why, not just what
 - Fridays where we rebuild things from scratch to understand them
 - Mentoring that values understanding over velocity
@@ -135,7 +135,13 @@ The day we stop caring about craftsmanship is the day we stop being developers a
 
 I refuse to let that happen.
 
+Here's what I know: the best code doesn't come from the fastest tools. It comes from understanding. From intention. From pride in your work. AI can make us faster, but only craft makes us better. Only understanding makes us valuable. Only intention makes our work meaningful.
+
+The future doesn't need operators who can prompt AI to generate code. It needs developers who understand what they're building and why. Who can debug what breaks. Who can innovate beyond what currently exists. Who take pride in their craft.
+
+Choose craft. Choose understanding. Choose to be more than an AI operator. The code you write today shapes the developer you become tomorrow.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Fighting to keep the craft in craftsmanship, one line at a time*

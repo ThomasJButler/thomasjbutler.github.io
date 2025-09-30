@@ -4,7 +4,7 @@
 
 Open 10 React projects on GitHub.
 They look identical.
-Same structure. Same patterns. Same soul-less efficiency.
+Same structure. Same patterns. Same soulless efficiency.
 
 We've automated creativity out of coding.
 
@@ -27,12 +27,12 @@ AI trained on millions of repos produces the statistical average.
 Every output a blend of everything.
 Nothing unique, everything familiar.
 
-It's like asking for a meal and getting beige paste - nutritionally complete, utterly forgettable.
+It's like asking for a meal and getting beige paste. Nutritionally complete, utterly forgettable.
 
 ## What We're Losing
 
 ### Individual Style
-Every developer used to have a signature. I could tell who wrote code just by looking at it. Sarah always used guard clauses. Mike loved his ternaries. Dave... well, Dave's code was unmistakable (for better or worse).
+Every developer used to have a signature. I could tell who wrote code just by looking at it. Sarah always used guard clauses. Mike loved his ternaries. Dave's code was unmistakable (for better or worse).
 
 Now? We all write the same AI-averaged code.
 
@@ -40,13 +40,13 @@ Now? We all write the same AI-averaged code.
 Why think when you can copy?
 Why innovate when you can replicate?
 
-I've seen the same solution to the same problem implemented the same way in companies from Liverpool to London. That's not convergent evolution - that's copy-paste culture.
+I've seen the same solution to the same problem implemented the same way in companies from Liverpool to London. That's not convergent evolution. That's copy-paste culture.
 
 ### Deep Understanding
 Copying syntax without grasping concepts.
 Using patterns without knowing why.
 
-We're creating a generation of developers who can build anything but understand nothing. That terrifies me.
+We're creating a generation of developers who can build anything but understand nothing.
 
 ## The Danger
 
@@ -66,7 +66,7 @@ British developers have always had our own style:
 - Dry humour in comments
 - Tea breaks in the code flow
 
-But we're losing it to the global homogenisation. Our code is becoming as generic as a Starbucks in any city.
+But we're losing it to global homogenisation. Our code is becoming as generic as a Starbucks in any city.
 
 ## Breaking Free
 
@@ -76,7 +76,7 @@ Write code that's recognisably yours:
 - Make choices, not defaults
 - Have opinions, not acceptance
 
-My code uses snake_case. Fight me. It's readable, it's clear, and it's mine.
+My code uses snake_case. It's readable, it's clear, and it's mine.
 
 ### Understand Before Using
 Never paste code you don't understand.
@@ -112,7 +112,13 @@ Create something unique.
 
 Your future self (and anyone maintaining your code) will thank you.
 
+Here's what scares me: we're one generation away from developers who can't build from first principles. Who know patterns but not why they work. Who can assemble code but not create it. The copy-paste culture isn't just about efficiency. It's about the slow death of understanding.
+
+And when the next paradigm shift comes, when the patterns everyone copies become obsolete, who will know how to create new ones? Not the copy-pasters. They'll wait for someone else to solve it first.
+
+Don't be that developer. Be the one who understands. Who creates. Who thinks.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
-*Writing original code since before Stack Overflow existed (dark times, those)*
+*Thomas Butler, Liverpool, UK*
+*Writing original code since before Stack Overflow existed*

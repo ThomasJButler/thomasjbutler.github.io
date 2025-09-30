@@ -5,7 +5,7 @@
 Developers are burning out faster than ever.
 The tools meant to help are making it worse.
 
-And I'm seeing it everywhere - from London startups to Manchester agencies. We're all knackered.
+And I'm seeing it everywhere. From London startups to Manchester agencies. We're all exhausted.
 
 ## The Acceleration Trap
 
@@ -15,7 +15,7 @@ Instead, it increased expectations:
 - Build 10x more (with the same team)
 - Never stop, AI doesn't sleep (but we do)
 
-Last week, a PM actually said: "With AI, this should only take an hour, right?" 
+Last week, a PM actually said: "With AI, this should only take an hour, right?"
 It was a week's worth of work. AI or not.
 
 ## The Context Switching Hell
@@ -34,7 +34,7 @@ We're being treated like machines:
 - Always available (Slack at midnight? Really?)
 - Instantly productive (no warm-up time allowed)
 - Emotionally neutral (burnout? That's a you problem)
-- Infinitely scalable (just use AI to do more!)
+- Infinitely scalable (just use AI to do more)
 
 But here's the thing: We're not machines. We're humans. We need tea breaks, we have bad days, we get tired.
 
@@ -53,7 +53,7 @@ We're politely working ourselves into the ground.
 ### Human-Centred Development
 What actually works:
 - **Sustainable pace**: Marathon, not sprint
-- **Deep work blocks**: Actual coding time, imagine that
+- **Deep work blocks**: Actual coding time
 - **Context persistence**: Stop explaining the same things
 - **Meaningful progress**: Quality over quantity
 
@@ -66,7 +66,7 @@ AI should:
 
 ## My Approach
 
-Here's how I'm fighting burnout in my team:
+Here's how I'm fighting burnout:
 
 ### Boundaries
 - No Slack after 6pm
@@ -91,7 +91,7 @@ Not the corporate wellness nonsense:
 
 Technology should reduce burnout, not cause it.
 
-If your tools are making you miserable, they're not tools - they're torment.
+If your tools are making you miserable, they're not tools. They're torment.
 
 We need to stop accepting burnout as "just part of tech". It's not. It's a choice we're making, and we can choose differently.
 
@@ -103,7 +103,13 @@ Start small:
 
 Your mental health is more important than any sprint goal.
 
+Here's what I know: burnout isn't inevitable. It's the result of systems that don't respect human limitations. When we build tools that remember context, we reduce cognitive load. When we set realistic expectations, we reduce stress. When we respect boundaries, we create sustainability.
+
+The answer isn't working harder or faster. It's working smarter and more humanely. Technology should serve that goal, not undermine it. And when it doesn't, we have to be willing to say no.
+
+Your wellbeing matters more than any deadline, any feature, any metric. Take care of yourself. The code will still be there tomorrow.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Fighting the good fight against burnout, one boundary at a time*

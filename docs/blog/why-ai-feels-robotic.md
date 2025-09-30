@@ -104,7 +104,7 @@ Small changes, massive difference in feel.
 
 ## The Fix: Persistent Personality
 
-Not fake personality - consistent character:
+Not fake personality. Consistent character:
 - Same "person" each session
 - Remembers previous interactions
 - Has consistent speech patterns
@@ -124,7 +124,7 @@ Since implementing personality persistence:
 - Less mental adjustment needed
 - Actually enjoyable to work with
 
-It's the difference between working with a robot and working with a... well, still a robot, but one with character.
+It's the difference between working with a robot and working with a robot with character.
 
 ## The Future
 
@@ -134,7 +134,7 @@ We're building AI that:
 - Grows with you
 - Feels less artificial
 
-Not human - that's not the goal.
+Not human. That's not the goal.
 But not robotic either.
 Something in between.
 Something useful.
@@ -149,7 +149,13 @@ It starts feeling like you're working with a quirky colleague who happens to nev
 
 And that's something I can work with.
 
+Here's what I know: the robotic feel isn't about capability. It's about consistency and character. When AI has a persistent personality that matches yours, when it remembers your preferences and adapts its communication style, when it grows with you instead of resetting every session, something fundamental changes.
+
+You stop seeing it as a tool and start seeing it as a partner. Not a human partner, but a reliable one. One that knows you, understands your work style, and communicates in a way that feels natural to you.
+
+That's not about making AI more human. It's about making AI more useful by making it feel less alien. And that makes all the difference.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Teaching robots to be less... robotic*

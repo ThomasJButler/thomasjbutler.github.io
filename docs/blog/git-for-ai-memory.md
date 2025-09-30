@@ -8,7 +8,7 @@ Git revolutionised code by giving us:
 - Rollback (ctrl+z for everything)
 - Collaboration (team knowledge sharing)
 
-What if AI context had the same power? Proper game-changer, that.
+What if AI context had the same power?
 
 ## The Current Disaster
 
@@ -17,13 +17,13 @@ Right now, AI context is like coding before version control. Remember those dark
 - No rollback (AI learned something wrong? Too bad)
 - No branching (scared to try new things)
 - No collaboration (everyone starts from scratch)
-- One mistake = start over (absolute nightmare)
+- One mistake means start over
 
-It's 2025 and we're still doing context management like it's 1995. Mental.
+It's 2025 and we're still doing context management like it's 1995.
 
 ## Introducing Context Versioning
 
-Here's what I'm building in Liverpool:
+Here's what I'm building:
 
 ```bash
 # Commit context state
@@ -39,25 +39,25 @@ t-context checkout "yesterday-before-everything-broke"
 t-context merge "sarah-actually-knows-react-patterns"
 ```
 
-Suddenly, AI memory becomes as robust as our code. Revolutionary.
+Suddenly, AI memory becomes as robust as our code.
 
 ## The Architecture
 
 ### Context Commits
 Every significant learning creates a snapshot:
-- Timestamp (when did this madness happen?)
+- Timestamp (when did this happen?)
 - What changed (new patterns, fixed mistakes)
 - Why it changed (that bug at 3am taught us something)
 - Patterns learned (never doing that again)
 
-Just like git commits, but for AI's brain. Brilliant.
+Just like git commits, but for AI's brain.
 
 ### Context Branches
 Experiment without losing main context:
 - Try new approaches (what if we did it completely different?)
 - Test major changes (let's see if this breaks everything)
 - Preserve working state (keep the good stuff safe)
-- Merge successes back (that actually worked!)
+- Merge successes back (that actually worked)
 
 No more fear of breaking your perfectly tuned AI assistant.
 
@@ -79,7 +79,7 @@ Know exactly what your AI learned and when. Transparency at last.
 - Rollback after AI misunderstands (we've all been there)
 - Keep multiple contexts for different projects
 
-Imagine switching between projects and your AI instantly remembers everything about each one. That's the dream.
+Imagine switching between projects and your AI instantly remembers everything about each one.
 
 ### For Teams
 - Share learned patterns (Dave's regex magic)
@@ -87,7 +87,7 @@ Imagine switching between projects and your AI instantly remembers everything ab
 - Resolve context conflicts (merge the best ideas)
 - Build collective intelligence (team brain)
 
-Your whole team's knowledge, versioned and shareable. Liverpool devs sharing context with London teams. Beautiful.
+Your whole team's knowledge, versioned and shareable. Liverpool devs sharing context with London teams.
 
 ## Real Scenarios
 
@@ -98,7 +98,7 @@ Last Tuesday, 11pm, trying to be clever:
 t-context log
 # Find when it went wrong (Tuesday 11:47pm, knew it)
 t-context checkout "ctx_abc123_before_stackoverflow"
-# Back to good state! Crisis averted.
+# Back to good state. Crisis averted.
 ```
 
 ### Scenario 2: Team Collaboration
@@ -129,11 +129,11 @@ Imagine:
 - Context CI/CD (automated learning validation)
 - Global pattern libraries (humanity's collective coding wisdom)
 
-Not just storing memory - evolving it, sharing it, improving it together.
+Not just storing memory. Evolving it, sharing it, improving it together.
 
 ## Implementation Reality
 
-This isn't sci-fi. I'm building it right now:
+This isn't science fiction. I'm building it right now:
 - Structured context files (YAML, because JSON is painful)
 - Diff algorithms (what changed in AI's understanding)
 - Merge strategies (combine knowledge intelligently)
@@ -143,9 +143,9 @@ The pieces exist. We just need to connect them properly. And add proper British 
 
 ## The Revolution
 
-Git didn't just version files - it changed how we think about code evolution.
+Git didn't just version files. It changed how we think about code evolution.
 
-Context versioning won't just track AI memory - it will revolutionise how we think about AI collaboration.
+Context versioning won't just track AI memory. It will revolutionise how we think about AI collaboration.
 
 Imagine onboarding a new developer:
 ```bash
@@ -166,7 +166,11 @@ Why the hell aren't we versioning our AI context?
 
 It's time to give AI memory the same respect we give our code.
 
+Here's what I know: version control changed software development forever. Not because it made things easier (though it did), but because it made collaboration possible. It made experimentation safe. It made mistakes recoverable. Context versioning will do the same for AI. When we can branch, merge, and share AI understanding like we do code, everything changes.
+
+This isn't about better AI. It's about better memory management. It's about treating intelligence as something we can evolve, not something we reset. And it's about time.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Because AI memory shouldn't be more fragile than my memory after a Friday night*

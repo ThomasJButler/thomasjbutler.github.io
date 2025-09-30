@@ -1,74 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animate } from 'animejs';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
-
-// Custom components for ReactMarkdown
-const markdownComponents = {
-  h1: ({children}: any) => <h1 className="article-h1">{children}</h1>,
-  h2: ({children}: any) => (
-    <h2 className="article-h2 article-h2-underlined">
-      {children}
-      <span className="h2-underline"></span>
-    </h2>
-  ),
-  h3: ({children}: any) => (
-    <h3 className="article-h3 article-h3-accented">
-      {children}
-    </h3>
-  ),
-  h4: ({children}: any) => (
-    <h4 className="article-h4 article-h4-subtle">
-      {children}
-    </h4>
-  ),
-  p: ({children}: any) => <p className="article-paragraph">{children}</p>,
-  ul: ({children}: any) => <ul className="article-list">{children}</ul>,
-  ol: ({children}: any) => <ol className="article-list article-list-ordered">{children}</ol>,
-  li: ({children}: any) => <li className="article-list-item">{children}</li>,
-  blockquote: ({children}: any) => <blockquote className="article-blockquote">{children}</blockquote>,
-  hr: () => (
-    <div className="article-divider">
-      <span className="divider-glow"></span>
-      <span className="divider-line"></span>
-      <span className="divider-center"></span>
-      <span className="divider-line"></span>
-      <span className="divider-glow"></span>
-    </div>
-  ),
-  strong: ({children}: any) => (
-    <strong className="article-strong">{children}</strong>
-  ),
-  em: ({children}: any) => (
-    <em className="article-emphasis">{children}</em>
-  ),
-  code: ({inline, className, children}: any) => {
-    const match = /language-(\w+)/.exec(className || '');
-    const lang = match ? match[1] : '';
-    return inline ? (
-      <code className="inline-code">{children}</code>
-    ) : (
-      <pre className="code-block" data-language={lang}>
-        <code className={className}>{children}</code>
-      </pre>
-    );
-  },
-  a: ({href, children}: any) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="article-link">
-      {children}
-    </a>
-  ),
-  img: ({src, alt}: any) => (
-    <img src={src} alt={alt} className="article-image" loading="lazy" />
-  ),
-  table: ({children}: any) => (
-    <div className="table-wrapper">
-      <table className="article-table">{children}</table>
-    </div>
-  ),
-};
+import '../css/components/markdown-preview-override.css';
 
 export const BlogReader: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -332,16 +267,28 @@ export const BlogReader: React.FC = () => {
             </div>
           </header>
 
-          <div 
+          <div
             className="article-content"
-            style={{ lineHeight: fontSize >= 20 ? '1.8' : '1.6' }}
+            style={{
+              fontSize: `${fontSize}px`,
+              lineHeight: fontSize >= 20 ? '1.8' : '1.7'
+            }}
           >
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-              components={markdownComponents}
-            >
-              {post.content}
-            </ReactMarkdown>
+            <MarkdownPreview
+              source={post.content}
+              style={{
+                background: 'transparent',
+                color: 'inherit',
+                fontSize: 'inherit',
+                lineHeight: 'inherit',
+                padding: 0
+              }}
+              wrapperElement={{
+                'data-color-mode': 'dark'
+              }}
+              skipHtml={false}
+              className="blog-markdown-content"
+            />
           </div>
 
           <footer className="article-footer">

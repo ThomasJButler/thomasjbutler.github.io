@@ -373,15 +373,21 @@
     padding-top: 0;
   }
 
+  /* Show mobile top bar, hide desktop reader header */
+  .mobile-top-bar {
+    display: flex !important; /* Override default display: none */
+  }
+
   .blog-reader .reader-header {
-    position: sticky;
-    padding: 10px 0;
+    display: none !important; /* Hide desktop header on mobile */
   }
 
   .reader-header-content {
-    padding: 0 1rem;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: none !important;
+  }
+
+  .back-button {
+    display: none !important;
   }
 
   .back-button span {
@@ -389,43 +395,81 @@
   }
 
   .back-button i {
-    font-size: 1.2rem;
+    display: none;
   }
 
   .font-controls {
-    display: none; /* Hide desktop font controls on mobile */
+    display: none !important; /* Hide desktop font controls on mobile */
   }
 
   .blog-article {
-    padding: 80px 0 40px; /* More padding top for mobile bar, less at bottom */
+    padding: 120px 0 40px; /* Extra padding top for mobile bar + header */
     margin-top: 0;
   }
 
   .article-container {
-    padding: 1rem;
+    padding: 0 1.25rem; /* Increased from 1rem for better spacing */
     max-width: 100%;
   }
 
+  .article-header {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   .article-title {
-    font-size: 1.8rem;
-    line-height: 1.2;
+    font-size: 1.4rem; /* Further reduced to prevent overflow on mobile */
+    line-height: 1.3;
+    margin-bottom: 24px;
+    padding: 0 0.5rem; /* Increased padding for more safety margin */
+    max-width: 100%;
   }
 
   .article-meta {
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 16px;
+    font-size: 0.9rem;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .article-meta span {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .article-meta i {
     font-size: 0.85rem;
+  }
+
+  .article-tags {
+    justify-content: center;
+    padding: 0;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .article-tag {
+    font-size: 0.85rem;
+    padding: 6px 12px;
   }
 
   .reading-position {
     width: 100%;
-    text-align: left;
+    text-align: center;
     margin-left: 0;
   }
 
   .article-content {
-    font-size: 16px !important;
-    padding: 1.5rem;
+    font-size: 16px !important; /* Prevents iOS zoom */
+    padding: 1rem !important; /* Reduced padding for wider content */
+    line-height: 1.7;
   }
 
   .article-paragraph {
@@ -916,8 +960,37 @@
     font-size: 1.2rem;
   }
 
+  .article-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   .article-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem; /* Reduced from 1.4rem for better fit */
+    line-height: 1.3;
+    padding: 0 0.25rem; /* Added padding for safety margin */
+    margin-bottom: 20px;
+  }
+
+  .article-meta {
+    gap: 12px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  .article-meta span {
+    font-size: 0.85rem;
+  }
+
+  .article-meta i {
+    font-size: 0.8rem;
+  }
+
+  .article-tag {
+    font-size: 0.8rem;
+    padding: 5px 10px;
   }
 
   .article-h1 { font-size: 2rem; }
@@ -1022,7 +1095,40 @@
   }
 
   .article-container {
-    padding: 0 15px;
+    padding: 0 0.75rem; /* Increased from 12px for better spacing */
+  }
+
+  .article-header {
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .article-title {
+    font-size: 1.25rem; /* Reduced from 1.3rem to prevent overflow */
+    line-height: 1.3;
+    margin-bottom: 16px;
+    padding: 0 0.25rem; /* Added padding for safety margin */
+  }
+
+  .article-meta {
+    gap: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+  }
+
+  .article-meta span {
+    font-size: 0.8rem;
+  }
+
+  .article-meta i {
+    font-size: 0.75rem;
+  }
+
+  .article-tag {
+    font-size: 0.75rem;
+    padding: 4px 9px;
   }
 
   .article-content h1 { font-size: 1.6rem; }

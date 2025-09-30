@@ -2,15 +2,15 @@
 
 ## The Robot in the Room
 
-Right, we need to talk about the elephant in the room - or should I say, the robot.
+We need to talk about the elephant in the room. Or should I say, the robot.
 
 Current AI feels like talking to a very smart robot who's swallowed a dictionary but never had a proper conversation:
 - Technically correct (the worst kind of correct)
 - Emotionally vacant (like talking to a tax form)
-- Contextually blind (goldfish memory, this one)
+- Contextually blind (goldfish memory)
 - Relentlessly generic (one size fits nobody)
 
-We've built intelligence without understanding. It's like teaching someone to speak by making them memorise the Oxford Dictionary. Sure, they know all the words, but can they order a pint at the pub? Can they bollocks.
+We've built intelligence without understanding. It's like teaching someone to speak by making them memorise the Oxford Dictionary. Sure, they know all the words, but can they order a pint at the pub? No.
 
 ## The Humanity Gap
 
@@ -19,8 +19,8 @@ We've built intelligence without understanding. It's like teaching someone to sp
 Working with real developers, here's what actually matters:
 - We remember conversations (even after a heavy Friday night)
 - We learn preferences ("no mushrooms" means NO mushrooms)
-- We adapt our communication (formal for clients, casual for mates)
-- We understand context (read the bloody room)
+- We adapt our communication (formal for clients, casual otherwise)
+- We understand context (read the room)
 - We have consistency (same person, different day)
 
 ### What Makes AI Robotic?
@@ -33,7 +33,7 @@ Working with real developers, here's what actually matters:
 
 ## The Uncanny Valley of Code
 
-You know what's worse than obviously robotic code? AI code that's almost-but-not-quite human. It's creepy, like those CGI humans in films that make you uncomfortable:
+You know what's worse than obviously robotic code? AI code that's almost-but-not-quite human. It's creepy:
 
 ```javascript
 // AI's "perfect" but soulless code
@@ -47,10 +47,10 @@ async function retrieveUserInformation(userId) {
   if (!userId) {
     throw new Error('User ID is required');
   }
-  
+
   // Fetch user from database
   const userData = await database.query('SELECT * FROM users WHERE id = ?', [userId]);
-  
+
   // Return the result
   return userData;
 }
@@ -66,10 +66,10 @@ One feels like a textbook. The other feels like a developer who values their tim
 
 ## The Real World Experiment
 
-I've been running an experiment with my team here. We're teaching AI to be more human by being more... well, human with it.
+I've been running an experiment. Teaching AI to be more human by being more human with it.
 
 ### Phase 1: Teaching It Our Language
-Not programming languages - our actual language. The way we talk about code:
+Not programming languages. Our actual language. The way we talk about code:
 - "That function's doing too much" (not "consider refactoring for single responsibility")
 - "This is proper hacky" (not "technical debt has been incurred")
 - "Ship it" (not "the implementation meets acceptance criteria")
@@ -114,10 +114,10 @@ AI tries too hard to be perfect. Humans aren't perfect. We:
 - Make typos (then fix them)
 - Change our minds (refactoring exists for a reason)
 - Have opinions (tabs vs spaces will never die)
-- Get frustrated (hence git commit messages like "fixed the bloody thing")
+- Get frustrated (hence git commit messages like "fixed the thing")
 
 ### The Solution: Controlled Imperfection
-Not bugs - personality:
+Not bugs. Personality:
 - Opinions on code style (strong ones)
 - Preferences that persist (remembers you hate nested ternaries)
 - Contextual awareness (knows when you're debugging vs building)
@@ -125,7 +125,7 @@ Not bugs - personality:
 
 ## Real Human Patterns
 
-After analysing how our team actually works:
+After analysing how we actually work:
 
 ### Morning Patterns
 - First hour: Coffee and email (don't suggest complex tasks)
@@ -133,10 +133,10 @@ After analysing how our team actually works:
 - Third hour: Peak productivity (bring on the challenges)
 
 ### Communication Patterns
-- Short messages = probably busy
-- Long messages = procrastinating
-- No messages = in the zone, don't interrupt
-- Sweary messages = debugging production
+- Short messages mean probably busy
+- Long messages mean procrastinating
+- No messages mean in the zone, don't interrupt
+- Stressed messages mean debugging production
 
 ### Code Patterns
 - Monday code: Over-engineered (fresh and optimistic)
@@ -148,18 +148,18 @@ After analysing how our team actually works:
 
 For AI to feel human, it needs:
 
-✅ **Memory** - Remember our previous conversations
-✅ **Context** - Understand the situation, not just the syntax
-✅ **Personality** - Consistent traits, not random responses
-✅ **Opinions** - Preferences that make sense
-✅ **Adaptation** - Learn from interactions
-✅ **Humour** - Appropriate, not forced
-✅ **Empathy** - Recognise frustration and respond accordingly
-✅ **Localisation** - British English, British culture, British humour
+- **Memory** (remember our previous conversations)
+- **Context** (understand the situation, not just the syntax)
+- **Personality** (consistent traits, not random responses)
+- **Opinions** (preferences that make sense)
+- **Adaptation** (learn from interactions)
+- **Humour** (appropriate, not forced)
+- **Empathy** (recognise frustration and respond accordingly)
+- **Localisation** (British English, British culture, British humour)
 
 ## The Results So Far
 
-Three months into humanising our AI:
+Three months into humanising AI:
 
 **The Good:**
 - Feels like pairing with a junior who's learning fast
@@ -170,14 +170,8 @@ Three months into humanising our AI:
 **The Surprising:**
 - It called out a bad architecture decision (politely)
 - It recognised when I was stuck and suggested a different approach
-- It learned our team's inside jokes
+- It learned inside jokes
 - It stopped suggesting American solutions to British problems
-
-**The Hilarious:**
-- It learned to complain about the weather
-- It started using "proper" as an intensifier
-- It suggested we go to the pub after a particularly bad bug
-- It remembered that Dave hates JavaScript (we all know a Dave)
 
 ## Beyond the Valley
 
@@ -199,7 +193,9 @@ It's about building tools that fit into our workflow, not the other way around.
 Because at the end of the day, we're not adapting to machines.
 They should be adapting to us.
 
-And if my AI can learn to appreciate a good cup of tea and understand why we don't deploy on Fridays, we're heading in the right direction.
+Here's what I've learned: the uncanny valley exists because we're trying to fake humanity instead of building genuine understanding. When AI truly knows your context, learns your patterns, and adapts to your working style, it doesn't feel robotic anymore. It feels like a tool that gets you. That understands not just what you're building, but how you build and why.
+
+That's not artificial humanity. That's authentic usefulness. And that's what I'm building, one human-centred feature at a time.
 
 ---
 

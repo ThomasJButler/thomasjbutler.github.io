@@ -68,7 +68,7 @@ A future where:
 - Craft and creativity flourish alongside automation (both/and, not either/or)
 - Humans and AI collaborate as true partners (equals with different strengths)
 
-This isn't sci-fi. I'm building this right now in Liverpool.
+This isn't science fiction. I'm building this right now in Liverpool.
 
 ## Our Commitment
 
@@ -89,28 +89,28 @@ We will resist technology that:
 ## Our Call to Action
 
 Join us in building:
-- Context systems that actually bloody remember
+- Context systems that actually remember
 - AI that adapts to you (not the other way round)
 - Tools that enhance humanity (not exploit it)
 - Technology with genuine empathy (not fake cheerfulness)
-- A future where humans matter (radical idea, that)
+- A future where humans matter
 
 ## The Revolution Starts Now
 
-Not with massive funding (though that'd be nice).
-Not with corporate backing (they're part of the problem).
+Not with massive funding.
+Not with corporate backing.
 But with developers who care.
 With builders who believe.
 With humans who refuse to be optimised away.
 
-Starting here in Liverpool. Spreading wherever developers still give a damn about craft.
+Starting here in Liverpool. Spreading wherever developers still care about craft.
 
 ## Your Part
 
 **Build with intention**: Every line should have purpose
 **Code with craft**: Take pride in your work
 **Design with empathy**: Remember the humans
-**Ship with pride**: Sign your work (metaphorically)
+**Ship with pride**: Sign your work
 **Share with community**: Knowledge wants to be free
 
 Stop accepting:
@@ -127,7 +127,7 @@ Start demanding:
 
 ## The Liverpool Declaration
 
-From this grey city by the Mersey, where The Beatles changed music and the docks changed commerce, we're changing how humans and AI work together.
+From this city by the Mersey, where The Beatles changed music and the docks changed commerce, we're changing how humans and AI work together.
 
 Not Silicon Valley hype.
 Not London finance pressure.
@@ -143,7 +143,7 @@ One where technology serves, not enslaves.
 ## Join Us
 
 This isn't a corporate initiative.
-It's a grassroots rebellion.
+It's a grassroots movement.
 Developer by developer.
 Project by project.
 Line by line.
@@ -153,9 +153,15 @@ And we're the designers.
 
 Time to design something better.
 
+Here's what I believe: the relationship between humans and technology will define our generation. We can build tools that respect humanity or tools that exploit it. Tools that amplify human potential or tools that replace human purpose. Tools that understand context or tools that demand conformity.
+
+The choice is ours. And I've made mine. I'm building technology that treats developers like humans, not resources. That respects craft, not just output. That values understanding over speed. That believes humans and AI are stronger together than either could be alone.
+
+This is the revolution. Not in the technology. In the philosophy behind it. Human-first. Always.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *The revolution won't be venture-funded. It'll be built by developers who give a damn.*
 
 **Join the revolution. Build human-first technology.**

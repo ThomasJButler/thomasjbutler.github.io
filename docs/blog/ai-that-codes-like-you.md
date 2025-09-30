@@ -2,17 +2,17 @@
 
 ## Your Code is Your Signature
 
-Right, let's talk about something every developer knows but nobody really addresses - we all have our own coding style:
-- How you name variables (snake_case gang, where you at?)
+Every developer knows this, but few talk about it. We all have our own coding style:
+- How you name variables (snake_case or camelCase?)
 - How you structure functions (early returns or nested ifs?)
-- How you handle errors (try/catch everything or let it fail fast?)
-- How you write comments (or don't - we've all been there)
+- How you handle errors (try/catch everything or fail fast?)
+- How you write comments (or don't)
 
-It's your coding DNA. And AI? It completely ignores it, doesn't it?
+It's your coding DNA. And current AI? It completely ignores it.
 
 ## The Generic Code Problem
 
-AI generates "correct" code that looks wrong (and mate, we've all been there):
+AI generates "correct" code that somehow looks wrong:
 ```javascript
 // AI's generic American style
 const fetchUserData = async (userId) => {
@@ -25,7 +25,7 @@ const fetchUserData = async (userId) => {
     }
 };
 
-// Your actual style (the proper way, obviously)
+// Your actual style
 const fetch_user_data = async (user_id) => {
   const response = await fetch(`/api/users/${user_id}`)
   if (!response.ok) throw new Error(`Failed to fetch user ${user_id}`)
@@ -37,59 +37,59 @@ Both work. Only one feels like home.
 
 ## The Reformation Ritual
 
-Right, let me paint you a picture that'll be familiar to any dev worth their salt:
+Here's a pattern that will be familiar:
 1. AI generates code
-2. You spend ages reformatting everything
-3. You rename all the variables (because who uses camelCase when snake_case is right there?)
+2. You spend time reformatting everything
+3. You rename all the variables
 4. You restructure the logic to match how your brain works
 5. You fix the style to not look like a robot wrote it
 
-Honestly, why are we putting up with this? It's like having a brilliant assistant who speaks a different dialect - technically correct, but just... off.
+Why are we accepting this? It's like having a brilliant assistant who speaks a different dialect. Technically correct, but just off.
 
 ## Enter Style DNA
 
 ### Teach Once, Apply Forever
 
-Here's what I've been working on - proper game-changer, this:
+Here's what I've been working on:
 
 ```markdown
 # customcodestyle.md
 
 ## My Style (The Thomas Butler Way)
-- Snake_case for functions (we're not Java devs)
-- No semicolons (ASI works fine, ta)
-- Early returns (none of that nested nonsense)
+- Snake_case for functions
+- No semicolons (ASI works fine)
+- Early returns (avoid nested logic)
 - Minimal try/catch (fail fast, handle at boundaries)
 - Descriptive errors (users deserve to know what went wrong)
 ```
 
 ### Provide Real Examples
 ```javascript
-// My actual code - how we do it up north
+// My actual code
 const process_payment = async (payment_data) => {
   if (!payment_data.amount) return null
-  
+
   const result = await payment_api.charge(payment_data)
   if (!result.success) {
-    throw new Error(`Payment failed: ${result.error} - proper gutted`)
+    throw new Error(`Payment failed: ${result.error}`)
   }
-  
+
   return result.transaction_id
 }
 ```
 
 ### AI Learns YOUR Style
 Now every generation matches:
-- Your naming (snake_case, kebab-case, whatever floats your boat)
-- Your structure (flat is better than nested, fight me)
+- Your naming (snake_case, kebab-case, whatever works for you)
+- Your structure (flat is better than nested)
 - Your patterns (DRY but not obsessively)
-- Your preferences (tabs vs spaces? Let's not go there)
+- Your preferences (tabs vs spaces aside)
 
 ## The Technical Implementation
 
 ### Style Extraction
 ```javascript
-// Analyse existing codebase (note the 's' in analyse - we're British)
+// Analyse existing codebase (note the 's')
 const patterns = {
   naming: detectNamingConvention(codebase),
   structure: detectCodeStructure(codebase),
@@ -100,7 +100,7 @@ const patterns = {
 
 ### Style Injection
 ```javascript
-// Apply to all generations - the magic happens here
+// Apply to all generations
 const generateCode = (request) => {
   const code = ai.generate(request)
   return applyStyle(code, userStyle)
@@ -109,7 +109,7 @@ const generateCode = (request) => {
 
 ### Style Evolution
 ```javascript
-// Learn from corrections - it gets better over time
+// Learn from corrections
 if (userEdited(generatedCode)) {
   updateStyle(findDifferences(generated, edited))
 }
@@ -117,22 +117,20 @@ if (userEdited(generatedCode)) {
 
 ## Real Impact
 
-### Before (The Dark Times)
+### Before
 - Generate: 30 seconds
-- Reformat: 5 minutes (if you're lucky)
-- Swearing at screen: 2 minutes
-- Total: 7:30 minutes of faff
+- Reformat: 5 minutes
+- Total: 5:30 minutes
 
-### After (The Enlightenment)
+### After
 - Generate: 30 seconds
 - Review: 30 seconds
-- Get on with actual work: Priceless
-- Total: 1 minute, sorted
+- Total: 1 minute
 
 ## The Business Case
 
 Look, I've been doing this for years, and here's what matters:
-- **Consistency**: Your entire codebase looks like one person wrote it (because essentially, they did)
+- **Consistency**: Your entire codebase looks like one person wrote it
 - **Speed**: No more reformatting means shipping faster
 - **Sanity**: Less cognitive load switching between AI style and your style
 - **Team Harmony**: Everyone codes their way, git diffs show what matters
@@ -155,12 +153,12 @@ Merge personal preferences into team standards:
 ### Phase 3: AI Integration
 Train your AI assistant on your patterns:
 - Feed it your best code
-- Correct it when it goes American on you
+- Correct it when it deviates
 - Watch it learn and adapt
 
 ## The Revolution Is Personal
 
-This isn't about right or wrong - there's no "correct" way to write code (though if you use tabs over spaces, we need to have a word).
+This isn't about right or wrong. There's no single "correct" way to write code.
 
 It's about:
 - **Ownership**: Your code should feel like yours
@@ -170,26 +168,25 @@ It's about:
 
 ## What's Next
 
-The future of AI coding (as I see it from my desk overlooking the Mersey):
-1. **Personal style profiles** - your coding fingerprint
-2. **Team style consensus** - because we all need to get along
-3. **Project-specific adaptations** - when in Rome and all that
-4. **Evolution with your growth** - the AI learns as you level up
+The future of AI coding as I see it:
+1. **Personal style profiles** (your coding fingerprint)
+2. **Team style consensus** (collaborative standards)
+3. **Project-specific adaptations** (context-aware generation)
+4. **Evolution with your growth** (the AI learns as you level up)
 
 ## The Bottom Line
 
-Code is personal.
-Style is identity.
-AI should respect both.
+Code is personal. Style is identity. AI should respect both.
 
-Stop reformatting.
-Start personalising.
-Make AI code like you.
+When AI learns to code in your style, something remarkable happens. The friction disappears. The cognitive load drops. The joy returns. You stop being a code editor and become a creator again.
 
-Because your style isn't wrong.
-It's yours.
+This isn't about making AI more powerful. It's about making AI more personal. About building tools that adapt to us, rather than forcing us to adapt to them. About respecting the craft and the craftsperson.
 
-And if anyone tells you otherwise, send them my way. We'll have a proper chat about it over a pint at the Baltic Fleet.
+Your style isn't wrong. It's yours. And that matters more than any style guide or linting rule ever could.
+
+The revolution isn't in the technology. It's in recognising that every developer deserves tools that understand them. That learn from them. That grow with them.
+
+That's the future I'm building. One personal style profile at a time.
 
 ---
 

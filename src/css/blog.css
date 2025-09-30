@@ -584,7 +584,7 @@ button:focus-visible {
 }
 
 .article-container {
-  max-width: min(65ch, 100%);
+  max-width: 900px; /* Increased from 65ch for better reading and wider code blocks */
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -600,6 +600,9 @@ button:focus-visible {
   border-bottom: 1px solid rgba(0, 255, 0, 0.2);
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .article-title {
@@ -610,19 +613,40 @@ button:focus-visible {
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   text-align: center;
   width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .article-meta {
   display: flex;
-  gap: 30px;
-  color: rgba(0, 255, 0, 0.7); /* Slightly brighter green for metadata */
+  gap: 20px;
+  color: rgba(0, 255, 0, 0.7);
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.article-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.article-meta i {
+  font-size: 0.9rem;
 }
 
 .article-tags {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .article-tag {
@@ -630,15 +654,23 @@ button:focus-visible {
   background: rgba(0, 255, 0, 0.08);
   border: 1px solid rgba(0, 255, 0, 0.3);
   border-radius: 15px;
-  color: rgba(0, 255, 0, 0.9); /* Brighter green for tags */
+  color: rgba(0, 255, 0, 0.9);
   font-size: 0.9rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.article-tag:hover {
+  background: rgba(0, 255, 0, 0.15);
+  border-color: var(--matrix-green);
+  transform: translateY(-2px);
 }
 
 /* Article Typography - Optimized for Readability */
 .article-content {
   color: rgba(255, 255, 255, 0.95); /* Brighter white for better readability */
-  font-size: 19px; /* Slightly larger for better readability */
-  line-height: 1.9; /* More spacious line height */
+  font-size: 18px; /* Base font size */
+  line-height: 1.8; /* Comfortable line height */
   letter-spacing: 0.02em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   width: 100%; /* Full width of container */
@@ -652,6 +684,7 @@ button:focus-visible {
   box-sizing: border-box;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Custom Markdown Component Styles */
@@ -1176,56 +1209,78 @@ button:focus-visible {
   }
 }
 
-/* Mobile Top Bar - Hidden by default, shown on mobile */
+/* Mobile Top Bar - Hidden on desktop, shown on mobile */
 .mobile-top-bar {
-  display: none;
+  display: none; /* Hidden by default, enabled in responsive.css for mobile */
   position: fixed;
   top: 60px; /* Below main header */
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 255, 0, 0.3);
-  padding: 12px 16px;
+  padding: 12px 20px; /* Increased horizontal padding */
   z-index: 1000;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  gap: 16px; /* Added gap between sections */
 }
 
 .mobile-back {
   color: var(--matrix-green);
   font-size: 1.5rem;
   text-decoration: none;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .mobile-font-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px; /* Increased from 10px for better spacing */
+  background: rgba(0, 255, 0, 0.05);
+  padding: 6px 12px;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
 .mobile-font-controls button {
   background: rgba(0, 255, 0, 0.1);
   border: 1px solid rgba(0, 255, 0, 0.3);
   color: var(--matrix-green);
-  width: 35px;
-  height: 35px;
+  width: 40px; /* Slightly smaller for better fit */
+  height: 40px; /* Slightly smaller for better fit */
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.mobile-font-controls button:active {
+  background: rgba(0, 255, 0, 0.2);
+  transform: scale(0.95);
 }
 
 .mobile-font-controls span {
   color: var(--matrix-green);
   font-size: 0.9rem;
-  min-width: 45px;
+  min-width: 42px; /* Reduced slightly */
   text-align: center;
+  font-family: var(--font-code);
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .progress-indicator {
   color: var(--matrix-green);
   font-size: 0.9rem;
   font-family: var(--font-code);
+  flex-shrink: 0; /* Prevent shrinking */
+  min-width: 45px; /* Ensure consistent width */
+  text-align: right;
 }
 
 /* Loading & Error States */

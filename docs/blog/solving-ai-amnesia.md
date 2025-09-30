@@ -8,7 +8,7 @@ It also forgets your name every morning.
 
 ## The Root Cause
 
-AI amnesia isn't a bug - it's a design choice:
+AI amnesia isn't a bug. It's a design choice:
 - **Stateless by design**: Each session starts fresh
 - **Privacy theatre**: "We don't remember" sounds good
 - **Technical simplicity**: Stateless is easier to scale
@@ -36,7 +36,7 @@ AI: "What styling system?"
 You: *considers new career*
 ```
 
-Sound familiar? This is my actual week, last week.
+Sound familiar? This was my actual week, last week.
 
 ## The Real Cost
 
@@ -44,7 +44,7 @@ Sound familiar? This is my actual week, last week.
 - 10 minutes per session explaining context
 - 5 sessions per day
 - 250 days per year
-- = 208 hours annually explaining the same things
+- 208 hours annually explaining the same things
 
 That's five working weeks. Gone. Every year.
 
@@ -63,10 +63,10 @@ Just when you're in the zone, you have to stop and explain everything again. It'
 ## Why We Built It This Way
 
 The tech industry chose amnesia because:
-1. **It's safer** - No memory, no data breach
-2. **It's simpler** - Stateless scales infinitely
-3. **It's cheaper** - No storage costs
-4. **It's "private"** - Great for marketing
+1. **It's safer** (no memory, no data breach)
+2. **It's simpler** (stateless scales infinitely)
+3. **It's cheaper** (no storage costs)
+4. **It's "private"** (great for marketing)
 
 But we've optimised for the wrong things. We've built a brilliant assistant who starts every day thinking it's their first day on the job.
 
@@ -98,7 +98,7 @@ Start simple, build over time:
 
 ## Implementation Strategy
 
-I've solved this for my team. Here's how:
+I've solved this. Here's how:
 
 ### Step 1: Document Once
 Create a `PROJECT_CONTEXT.md`:
@@ -113,7 +113,7 @@ Create a `PROJECT_CONTEXT.md`:
 - Components in PascalCase
 - Utils in camelCase
 - Constants in UPPER_SNAKE_CASE
-- Tabs, not spaces (fight me)
+- Tabs, not spaces
 ```
 
 ### Step 2: Reference Always
@@ -138,7 +138,7 @@ Imagine AI that:
 - Understands your architecture
 - Learns from corrections
 
-This isn't science fiction. I'm using it today in Liverpool. You can too.
+This isn't science fiction. I'm using it today. You can too.
 
 ## Call to Action
 
@@ -152,7 +152,11 @@ Start small:
 
 Your sanity will thank you.
 
+Here's what I know: the amnesia problem isn't technical. It's philosophical. We've accepted that AI should reset because that's how it's always been. But that's circular reasoning. Just because something is doesn't mean it should be. When we give AI memory, we're not just solving a technical problem. We're fundamentally changing the relationship between developer and tool.
+
+Memory transforms AI from a clever stranger into a reliable partner. And that changes everything.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Teaching AI to remember since it clearly can't do it itself*

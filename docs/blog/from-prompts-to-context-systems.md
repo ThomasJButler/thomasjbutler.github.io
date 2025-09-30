@@ -15,7 +15,7 @@ Prompt engineering is like:
 - Cooking without saving recipes (Groundhog Day in the kitchen)
 - Building without blueprints (cowboy coding at its finest)
 
-Every single time, starting from scratch. It's mental.
+Every single time, starting from scratch.
 
 ## The Evolution
 
@@ -34,10 +34,10 @@ Every single time, starting from scratch. It's mental.
 
 ### Generation 3: Mega Prompts (Current Hell)
 ```
-"You are an expert Python developer with 10 years experience. 
-Write a function that validates email addresses using regex. 
-Follow PEP 8, add type hints, include docstrings, handle edge 
-cases including null values and international domains, write 
+"You are an expert Python developer with 10 years experience.
+Write a function that validates email addresses using regex.
+Follow PEP 8, add type hints, include docstrings, handle edge
+cases including null values and international domains, write
 unit tests using pytest, ensure it's compatible with Python 3.8+..."
 
 # 500 tokens just to get started. Every. Single. Time.
@@ -46,7 +46,7 @@ unit tests using pytest, ensure it's compatible with Python 3.8+..."
 ### Generation 4: Context Systems (The Future)
 ```
 "Validate email"
-# System already knows I'm a Python dev from Liverpool who 
+# System already knows I'm a Python dev from Liverpool who
 # likes snake_case, pytest, and proper error handling
 ```
 
@@ -55,9 +55,9 @@ unit tests using pytest, ensure it's compatible with Python 3.8+..."
 Here's the truth nobody wants to admit:
 
 Prompts are:
-- **Stateless**: Goldfish memory, innit?
+- **Stateless**: Goldfish memory
 - **Repetitive**: Copy-pasting your life story every time
-- **Fragile**: Forget one word and it all goes pete tong
+- **Fragile**: Forget one word and it all breaks
 - **Inefficient**: 90% context, 10% actual request
 
 Context systems are:
@@ -72,7 +72,7 @@ Context systems are:
 ```
 Prompt approach: 500 tokens per request
 Context approach: 50 tokens per request
-90% reduction in waffle
+90% reduction
 
 That's real money saved. And sanity.
 ```
@@ -89,7 +89,7 @@ Prompts: Day 1 forever
 Context: Actually learns and grows
 ```
 
-## Building Context Systems in Liverpool
+## Building Context Systems
 
 Here's what I'm working on:
 
@@ -114,11 +114,11 @@ context:
 ### Level 3: Intelligent Context (The Dream)
 ```yaml
 context:
-  understands: 
+  understands:
     - Your architecture decisions
     - Why you hate that one library
     - When you need encouragement vs efficiency
-  predicts: 
+  predicts:
     - What you'll ask next
     - Where bugs might hide
     - When you need a break
@@ -136,7 +136,7 @@ We're moving from:
 - Repetition to evolution
 - Strangers to partners
 
-It's like the difference between training a new junior dev every day versus working with your trusted mate who knows exactly what you mean when you say "do the usual thing".
+It's like the difference between training a new junior dev every day versus working with your trusted colleague who knows exactly what you mean when you say "do the usual thing".
 
 ## Real World Impact
 
@@ -160,7 +160,11 @@ And it knows exactly what you mean.
 
 That's what I'm building.
 
+Here's what I've learned: the transition from prompts to context isn't about better AI. It's about better memory. When your AI remembers who you are, what you've built, and how you work, something fundamental shifts. You stop being a prompter and become a developer again. The AI stops being a clever stranger and becomes a tool that truly understands your craft.
+
+That's not just efficiency. That's transformation. And it's happening right now, one context system at a time.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Context systems: Because AI should have better memory than a goldfish*

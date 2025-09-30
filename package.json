@@ -3,6 +3,7 @@
     "@types/marked": "^5.0.2",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@uiw/react-markdown-preview": "^5.1.5",
     "animejs": "^4.0.2",
     "aos": "^2.3.4",
     "gsap": "^3.12.5",

@@ -12,20 +12,20 @@ We've built incredibly powerful AI, but given it the memory of a goldfish. It's 
 
 ## The Hidden Cost
 
-Studies show developers spend 23% of their time on context switching. With AI, it's worse - we're constantly re-establishing context that should persist.
+Studies show developers spend 23% of their time on context switching. With AI, it's worse. We're constantly re-establishing context that should persist.
 
-Imagine if Git forgot your entire history every time you closed your terminal. That's what we're doing with AI. Mental, isn't it?
+Imagine if Git forgot your entire history every time you closed your terminal. That's what we're doing with AI.
 
 ## Enter Context Engineering
 
-Context Engineering is the discipline of designing systems that maintain, evolve, and version AI understanding over time. It's not about better prompts - it's about eliminating the need for repetitive prompting altogether.
+Context Engineering is the discipline of designing systems that maintain, evolve, and version AI understanding over time. It's not about better prompts. It's about eliminating the need for repetitive prompting altogether.
 
-Think of it as memory management for AI. And like proper memory management, when you get it right, everything just flows.
+Think of it as memory management for AI. And like proper memory management, when you get it right, everything flows.
 
 ## The Three Pillars
 
 ### 1. Persistent Memory
-Your AI should remember every decision, pattern, and preference across sessions. Not in some vague way - with perfect, queryable recall. Like that colleague who remembers you hate nested ternaries from that one code review three months ago.
+Your AI should remember every decision, pattern, and preference across sessions. Not in some vague way, with perfect, queryable recall. Like that colleague who remembers you hate nested ternaries from that one code review three months ago.
 
 ### 2. Style DNA
 Your coding style is your fingerprint. AI should write code indistinguishable from yours, because it's learned from YOUR examples, not generic training data from Silicon Valley.
@@ -44,7 +44,7 @@ It's the difference between having a brilliant assistant with amnesia versus one
 
 ```bash
 # Without Context Engineering
-"Please create a React component with TypeScript, using functional style with hooks, 
+"Please create a React component with TypeScript, using functional style with hooks,
 CSS modules for styling, following our naming convention of PascalCase for components,
 using British English in comments..."
 # (Every. Single. Time.)
@@ -58,10 +58,10 @@ That's 90% less typing. More time for actual work (or coffee).
 
 ## Real Impact
 
-I've been implementing this with my team, and the results are clear:
+I've been implementing this, and the results are clear:
 
 - **Productivity**: 10x fewer words to get the same result
-- **Consistency**: Every line matches your style (finally!)
+- **Consistency**: Every line matches your style
 - **Evolution**: Gets better over time, not reset to zero
 - **Team Sync**: Shared context across developers
 
@@ -70,10 +70,10 @@ One of my colleagues said it best: "It's like the AI actually works here now, no
 ## The Future is Context-Aware
 
 We're moving from:
-- Prompt Engineering → Context Engineering
-- Stateless AI → Stateful AI
-- Generic responses → Personalised code
-- Repeated explanations → Persistent understanding
+- Prompt Engineering to Context Engineering
+- Stateless AI to Stateful AI
+- Generic responses to Personalised code
+- Repeated explanations to Persistent understanding
 
 This isn't theoretical. I'm building this in Liverpool, and it's transforming how we work.
 
@@ -81,7 +81,7 @@ This isn't theoretical. I'm building this in Liverpool, and it's transforming ho
 
 Stop accepting AI amnesia. Demand context persistence. Build systems that remember.
 
-The revolution isn't in making AI smarter - it's in making it remember. Because honestly, I'm tired of explaining the same things over and over. Aren't you?
+The revolution isn't in making AI smarter. It's in making it remember. Because I'm tired of explaining the same things over and over. Aren't you?
 
 Start small:
 1. Document your conventions once
@@ -95,7 +95,11 @@ Context Engineering is about treating AI like a team member, not a tool. Give it
 
 Your AI should know your project as well as you do. Anything less is accepting mediocrity.
 
+Here's what I've learned: the difference between frustrating and delightful AI isn't in the model's sophistication. It's in the context it maintains. When your AI remembers your preferences, understands your codebase, and evolves with your project, something remarkable happens. The tool becomes a partner.
+
+That's not just better productivity. That's better work. That's the future I'm building, one persistent context at a time.
+
 ---
 
-*Thomas Butler - Liverpool, UK*
+*Thomas Butler, Liverpool, UK*
 *Engineering context so AI remembers what I told it five minutes ago*
