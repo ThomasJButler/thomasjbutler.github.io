@@ -5,6 +5,7 @@
 @import './base/_reset.css';
 @import './base/_typography.css';
 @import './base/_layout.css';
+@import './base/_accessibility.css';
 
 /* Layout Components */
 @import './components/_footer.css';

@@ -58,8 +58,8 @@ nav a.active::after {
 
 /* Hover effects */
 nav a:hover {
-    color: var(--matrix-cyan);
-    text-shadow: 0 0 10px currentColor;
+    color: var(--accent-color);
+    text-shadow: none; /* Removed for readability */
 }
 
 nav a::before {
@@ -69,12 +69,13 @@ nav a::before {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--matrix-green);
-    transition: width var(--duration-base) var(--ease-out);
+    background: var(--accent-color);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
 }
 
 nav a:hover::before {
     width: 100%;
+    box-shadow: 0 0 8px var(--accent-color);
 }
 
 /* ==========================================================================

@@ -40,10 +40,14 @@
 /* Hover Effects */
 .introduction-expertise-card:hover,
 .project-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-    border-color: rgba(0, 255, 0, 0.4);
+    box-shadow:
+        0 8px 25px rgba(0, 255, 0, 0.2),
+        0 0 30px rgba(var(--accent-rgb), 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-8px); /* More dramatic elevation */
+    border-color: var(--accent-color);
     background: rgba(0, 20, 0, 0.7);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
 }
 
 /* Card scan line effect on hover */
@@ -151,10 +155,13 @@
 
 .introduction-expertise-tags span:hover,
 .project-tags span:hover {
-    background: var(--matrix-green);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: var(--accent-color);
+    color: #000;
+    transform: translateY(-3px) scale(1.05); /* More dramatic lift and scale */
+    box-shadow:
+        0 0 15px rgba(var(--accent-rgb), 0.6), /* Enhanced glow */
+        0 4px 10px rgba(0, 0, 0, 0.3); /* Added depth shadow */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================

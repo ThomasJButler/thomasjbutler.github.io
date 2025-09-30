@@ -253,9 +253,239 @@
     --border-color: rgba(255, 255, 255, 0.5);
     --text-secondary: rgba(255, 255, 255, 0.9);
   }
-  
+
   [data-theme="dark"] {
     --border-color: #666666;
     --text-secondary: #e0e0e0;
   }
+}
+
+/* ========================================================================
+   DARK MODE - COMPREHENSIVE GREEN-TO-BLUE OVERRIDES
+   Force ALL green elements to blue - NO GREEN in dark mode
+   ======================================================================== */
+
+/* Navigation - Force Blue */
+[data-theme="dark"] nav a,
+[data-theme="dark"] .nav-link {
+  color: #4A9EFF !important; /* Force blue for navigation links */
+}
+
+[data-theme="dark"] nav a:hover,
+[data-theme="dark"] .nav-link:hover {
+  color: #5AADFF !important;
+  text-shadow: 0 0 8px rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] nav a.active {
+  color: #5AADFF !important;
+  border-bottom-color: #4A9EFF;
+}
+
+[data-theme="dark"] nav a::before {
+  background: #4A9EFF !important; /* Blue underline */
+}
+
+/* Headings & Titles - Force White/Blue */
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .page-heading,
+[data-theme="dark"] .main-heading,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #FFFFFF !important; /* White text for readability */
+}
+
+/* Navigation Cards */
+[data-theme="dark"] .nav-card h3,
+[data-theme="dark"] .gallery-card h3 {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .nav-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Services Page */
+[data-theme="dark"] .service-title,
+[data-theme="dark"] .professional-services-title,
+[data-theme="dark"] .section-heading {
+  color: #FFFFFF !important;
+}
+
+/* Filter Buttons */
+[data-theme="dark"] .filter-button,
+[data-theme="dark"] .filter-btn {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .filter-button:hover,
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .filter-button.active {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Accent Elements */
+[data-theme="dark"] .underline-accent,
+[data-theme="dark"] .accent-line {
+  background: linear-gradient(90deg, transparent, #4A9EFF, transparent) !important;
+}
+
+/* Icons & Symbols */
+[data-theme="dark"] .icon,
+[data-theme="dark"] .gallery-icon,
+[data-theme="dark"] i {
+  color: #4A9EFF !important;
+}
+
+/* Technology Tags */
+[data-theme="dark"] .tech-tag,
+[data-theme="dark"] .tag,
+[data-theme="dark"] .topic,
+[data-theme="dark"] .introduction-expertise-tags span {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .tech-tag:hover,
+[data-theme="dark"] .tag:hover {
+  background: rgba(74, 158, 255, 0.15) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Featured Badges */
+[data-theme="dark"] .featured-badge,
+[data-theme="dark"] .badge {
+  background: rgba(74, 158, 255, 0.2) !important;
+  color: #4A9EFF !important;
+  border-color: #4A9EFF !important;
+}
+
+/* Project Cards */
+[data-theme="dark"] .project-card h3,
+[data-theme="dark"] .skill-card h3,
+[data-theme="dark"] .blog-card h3 {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .skill-card:hover,
+[data-theme="dark"] .blog-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Links & Anchors */
+[data-theme="dark"] a {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] a:hover {
+  color: #5AADFF !important;
+}
+
+/* Progress Bars & Indicators */
+[data-theme="dark"] .progress-bar,
+[data-theme="dark"] .introduction-expertise-progress {
+  background: linear-gradient(90deg, rgba(74, 158, 255, 0.6), rgba(74, 158, 255, 0.8)) !important;
+}
+
+/* Borders & Dividers */
+[data-theme="dark"] .border-glow,
+[data-theme="dark"] .glow-border {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Social Links */
+[data-theme="dark"] .social-link,
+[data-theme="dark"] .footer-social-link {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .social-link:hover,
+[data-theme="dark"] .footer-social-link:hover {
+  color: #5AADFF !important;
+  transform: translateY(-3px);
+}
+
+/* Menu Toggle (Mobile) */
+[data-theme="dark"] .menu-toggle {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .menu-toggle span {
+  background: #4A9EFF !important;
+  box-shadow: 0 0 6px rgba(74, 158, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .menu-toggle:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Skill Level Indicators */
+[data-theme="dark"] .introduction-expertise-level {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Specialization Items */
+[data-theme="dark"] .specialization-item {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .specialization-item:hover {
+  color: #FFFFFF !important;
+  background: rgba(74, 158, 255, 0.1) !important;
+}
+
+/* Showcase Links */
+[data-theme="dark"] .showcase-link,
+[data-theme="dark"] .gallery-link {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .showcase-link:hover,
+[data-theme="dark"] .gallery-link:hover {
+  background: #5AADFF !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Arrow Icons */
+[data-theme="dark"] .arrow-icon {
+  color: #4A9EFF !important;
+}
+
+/* Stats & Numbers */
+[data-theme="dark"] .stat-number,
+[data-theme="dark"] .stats-value {
+  color: #4A9EFF !important;
+}
+
+/* Journey Cards (About Page) */
+[data-theme="dark"] .journey-card {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .journey-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Service Cards */
+[data-theme="dark"] .service-card {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .service-card:hover {
+  border-color: #4A9EFF !important;
+  transform: translateY(-5px);
 }

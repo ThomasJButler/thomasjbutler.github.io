@@ -387,10 +387,14 @@ button:focus-visible {
 
 .blog-card:hover {
   transform: translateY(-8px) scale(1.02);
-  border-color: var(--matrix-green);
-  box-shadow: 0 20px 50px rgba(0, 255, 0, 0.15),
-              0 0 40px rgba(0, 255, 0, 0.1) inset;
+  border-color: var(--accent-color);
+  box-shadow:
+    0 20px 60px rgba(var(--accent-rgb), 0.25), /* Expanded shadow */
+    0 0 50px rgba(var(--accent-rgb), 0.2), /* Enhanced glow */
+    0 0 80px rgba(var(--accent-rgb), 0.15), /* Outer glow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Top highlight */
   background: linear-gradient(135deg, rgba(40, 42, 54, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .featured-badge {
@@ -403,6 +407,19 @@ button:focus-visible {
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: bold;
+  animation: badgePulse 2s ease-in-out infinite; /* Subtle pulse animation */
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.7);
+  }
 }
 
 .blog-card-title {
@@ -445,6 +462,18 @@ button:focus-visible {
   border-radius: 12px;
   font-size: 0.8rem;
   color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.blog-tag:hover {
+  background: var(--accent-color);
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 0 12px rgba(var(--accent-rgb), 0.5),
+    0 3px 8px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-color);
 }
 
 .read-more {

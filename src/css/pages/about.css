@@ -592,7 +592,12 @@ html {
 
 .journey-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
+    box-shadow:
+        0 10px 30px rgba(var(--accent-rgb), 0.3),
+        0 0 40px rgba(var(--accent-rgb), 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Enhanced depth and glow */
+    border-color: var(--accent-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .journey-item i {
