@@ -57,7 +57,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     // Matrix characters - Japanese Katakana + binary for authentic look
     const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
     const binaryChars = '01';
-    const fontSize = 16; // Increased from 14 for better visibility with Matrix Code NFI font
+    const fontSize = 16; // Increased from 14 for better visibility with Share Tech Mono
     const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
 
     // Initialize drops with layers and color system
