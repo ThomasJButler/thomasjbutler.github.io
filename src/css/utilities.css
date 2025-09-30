@@ -190,7 +190,8 @@ h1:hover,
 h2:hover,
 .section-title:hover {
   /* animation: glitch 0.3s infinite; */
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  text-shadow: none; /* Removed for readability */
+  color: var(--accent-color);
 }
 
 /* Glitch text class for animations */
@@ -348,8 +349,8 @@ a:not(.btn):not(.button):not(.nav-link) {
 
 a:not(.btn):not(.button):not(.nav-link):hover {
   background-size: 100% 2px;
-  color: var(--matrix-cyan);
-  text-shadow: 0 0 8px currentColor;
+  color: var(--accent-color);
+  text-shadow: none; /* Removed for readability */
 }
 
 /* Button Hover Effects */
@@ -381,12 +382,10 @@ button:not(.back-to-top-react):hover,
 .cta-button:hover,
 [role="button"]:hover {
   transform: translateY(var(--hover-translate));
-  box-shadow:
-    0 6px 20px rgba(0, 255, 0, 0.3),
-    var(--hover-glow-medium);
-  background-color: rgba(0, 255, 0, 0.1);
-  border-color: var(--matrix-green);
-  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
 }
 
 /* Pulse Animation */
@@ -503,10 +502,8 @@ button:hover::after {
 .service-card:hover,
 .grid-item:hover {
   transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
-  box-shadow:
-    0 8px 25px rgba(0, 255, 0, 0.2),
-    var(--hover-glow-small);
-  border-color: var(--matrix-green);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent-color);
 }
 
 /* Image Hover Effects */
@@ -550,8 +547,8 @@ nav a:hover::before {
 
 .nav-link:hover,
 nav a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px var(--matrix-green);
+  color: var(--text-primary);
+  text-shadow: none;
 }
 
 /* Icon Hover Effects */
@@ -571,8 +568,8 @@ i[class*="fa-"] {
 .far:hover,
 i[class*="fa-"]:hover {
   transform: scale(1.2);
-  color: var(--matrix-cyan);
-  text-shadow: var(--hover-glow-small);
+  color: var(--accent-color);
+  text-shadow: none;
 }
 
 /* Social Links Hover */
@@ -584,8 +581,8 @@ footer a {
 
 .social-link:hover {
   transform: translateY(-3px);
-  color: var(--matrix-cyan);
-  text-shadow: 0 0 15px currentColor;
+  color: var(--accent-color);
+  text-shadow: none;
 }
 
 footer a:hover {
@@ -764,8 +761,8 @@ a:hover {
 
 .skill-item:hover {
   transform: translateY(-3px) scale(1.05);
-  color: #fff;
-  text-shadow: 0 0 10px currentColor;
+  color: var(--accent-color);
+  text-shadow: none;
 }
 
 /* Menu Item Hover */

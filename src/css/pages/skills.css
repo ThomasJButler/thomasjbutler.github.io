@@ -29,7 +29,7 @@
 
 #skills h2, 
 #learning h2 {
-    color: var(--matrix-green);
+    color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: 2.5em;
     margin-bottom: 20px;
@@ -128,7 +128,7 @@
 
 /* Skill Item Content */
 .skills-list li i {
-    color: var(--matrix-green);
+    color: var(--text-primary);
     font-size: 1.5em;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
@@ -141,7 +141,7 @@
 }
 
 .skills-list li h3 {
-    color: var(--matrix-green);
+    color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: 1.8em;
     margin-bottom: 0.5rem;
@@ -202,7 +202,7 @@
 }
 
 .skill-section-title {
-    color: var(--matrix-green);
+    color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: 2rem;
     text-align: center;
@@ -248,12 +248,12 @@
 .expertise-header .skill-icon {
     margin-right: 0.75rem;
     font-size: 1.5rem;
-    color: var(--matrix-green);
+    color: var(--text-primary);
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .expertise-header h4 {
-    color: var(--matrix-green);
+    color: var(--text-primary);
     font-family: var(--font-primary);
     font-size: 1.4rem;
     margin: 0;
@@ -290,14 +290,14 @@
 .skill-tag:hover {
     background: rgba(0, 255, 0, 0.2);
     border-color: rgba(0, 255, 0, 0.5);
-    color: var(--matrix-green);
+    color: var(--text-primary);
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
 .skill-tag-expand {
     background: rgba(0, 255, 0, 0.15) !important;
     border-color: rgba(0, 255, 0, 0.4) !important;
-    color: var(--matrix-green) !important;
+    color: var(--text-primary) !important;
     cursor: pointer;
     font-weight: bold;
 }
@@ -337,7 +337,7 @@
 .additional-skill-item .skill-icon {
     margin-right: 0.75rem;
     font-size: 1.2rem;
-    color: var(--matrix-green);
+    color: var(--text-primary);
     text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
 }
 
@@ -404,7 +404,7 @@
     display: inline-block;
     margin-right: 0.75rem;
     font-size: 1.2rem;
-    color: var(--matrix-green);
+    color: var(--text-primary);
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     vertical-align: middle;
@@ -417,7 +417,7 @@
         0 0 20px rgba(0, 255, 0, 0.8),
         0 0 30px rgba(0, 255, 0, 0.6),
         0 0 40px rgba(0, 255, 0, 0.4);
-    color: var(--matrix-green);
+    color: var(--text-primary);
 }
 
 /* Align h3 content properly */
@@ -456,7 +456,7 @@
 
 /* Override colors on hover to maintain Matrix theme */
 .skills-list li:hover .skill-icon {
-    color: var(--matrix-green) !important;
+    color: var(--text-primary) !important;
 }
 
 /* Accessibility - ensure icons don't interfere with screen readers */

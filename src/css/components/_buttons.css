@@ -12,10 +12,10 @@
 .matrix-btn-primary,
 .matrix-btn {
     align-items: center;
-    background: linear-gradient(135deg, rgba(0, 40, 0, 0.9), rgba(0, 60, 0, 0.9));
-    border: 1px solid var(--matrix-green);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    color: var(--matrix-green);
+    color: var(--text-primary);
     cursor: pointer;
     display: inline-flex;
     font-family: var(--font-primary);
@@ -74,14 +74,14 @@
 .btn-contact-us:hover,
 .matrix-btn-primary:hover,
 .matrix-btn:hover {
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     color: #fff;
-    border-color: var(--matrix-green);
-    box-shadow: 
-        0 0 20px rgba(0, 255, 0, 0.5),
-        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    border-color: var(--accent-color);
+    box-shadow:
+        0 0 15px rgba(var(--accent-rgb), 0.3),
+        inset 0 0 10px rgba(var(--accent-rgb), 0.05);
     transform: translateY(-2px);
-    text-shadow: var(--matrix-glow);
+    text-shadow: none; /* Remove glow for readability */
 }
 
 .cta-button:not(.view-all-projects-btn):hover::after {
@@ -196,9 +196,9 @@
 .matrix-btn-primary:active,
 .matrix-btn:active {
     transform: translateY(0);
-    box-shadow: 
-        0 0 10px rgba(0, 255, 0, 0.3),
-        inset 0 0 10px rgba(0, 255, 0, 0.2);
+    box-shadow:
+        0 0 8px rgba(var(--accent-rgb), 0.2),
+        inset 0 0 8px rgba(var(--accent-rgb), 0.1);
 }
 
 /* ==========================================================================
@@ -207,29 +207,27 @@
 
 /* Primary Button */
 .btn-primary {
-    background: linear-gradient(135deg, 
-        rgba(0, 255, 0, 0.1), 
-        rgba(0, 255, 0, 0.05)
-    );
-    border-color: var(--matrix-green);
-    color: var(--matrix-green);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
 }
 
 .btn-primary:hover {
-    background: var(--matrix-green);
-    color: #000;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: var(--accent-hover);
 }
 
 /* Secondary Button */
 .btn-secondary {
     background: transparent;
-    border-color: var(--border-primary);
+    border-color: var(--border-color);
     color: var(--text-secondary);
 }
 
 .btn-secondary:hover {
-    border-color: var(--matrix-green);
-    color: var(--matrix-green);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
 }
 
 /* Danger Button */

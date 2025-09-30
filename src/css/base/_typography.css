@@ -70,10 +70,10 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: var(--letter-spacing-wide);
 }
 
-/* Major headings (H1-H3) - Digital world green with phosphor glow */
+/* Major headings (H1-H3) - White/Cyan for readability */
 h1, h2, h3 {
-    color: var(--matrix-green);
-    text-shadow: var(--phosphor-glow);
+    color: var(--text-primary); /* Uses white in both themes */
+    text-shadow: none; /* Remove glow for readability */
 }
 
 h1 {
@@ -176,7 +176,7 @@ p.lead {
     font-size: var(--font-size-md);
     line-height: 1.7;
     font-weight: 500;
-    color: var(--matrix-green);
+    color: var(--accent-color); /* Cyan in Matrix, Blue in Dark */
     letter-spacing: 0.03em;
     margin-bottom: 2rem;
 }
@@ -186,7 +186,7 @@ p.lead {
 p.small {
     font-size: var(--font-size-sm);
     line-height: 1.6;
-    color: rgba(0, 255, 0, 0.8);
+    color: var(--text-secondary);
 }
 
 /* ==========================================================================
@@ -194,7 +194,7 @@ p.small {
    ========================================================================== */
 
 a {
-    color: var(--matrix-green);
+    color: var(--accent-color); /* Cyan in Matrix, Blue in Dark */
     text-decoration: underline;
     text-decoration-color: var(--border-primary);
     text-underline-offset: 2px;
@@ -202,9 +202,9 @@ a {
 }
 
 a:hover {
-    color: var(--matrix-yellow);  /* Yellow for machine/spirit connection */
-    text-shadow: var(--yellow-glow);
-    text-decoration-color: var(--matrix-yellow);
+    color: var(--accent-hover);
+    text-shadow: none; /* Remove glow for readability */
+    text-decoration-color: var(--accent-hover);
 }
 
 a:active {
@@ -255,9 +255,9 @@ pre {
 code {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
-    background: rgba(0, 255, 0, 0.1);
-    color: var(--matrix-green);
-    border: 1px solid rgba(0, 255, 0, 0.2);
+    background: var(--code-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
 }
 
@@ -265,8 +265,8 @@ pre {
     margin: 1.5rem 0;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.8);
-    color: var(--matrix-green);
-    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow-x: auto;
     line-height: 1.45;
@@ -286,8 +286,8 @@ pre code {
 blockquote {
     margin: 2rem 0;
     padding: 1rem 1.5rem;
-    border-left: 4px solid var(--matrix-green);
-    background: rgba(0, 255, 0, 0.05);
+    border-left: 4px solid var(--accent-color);
+    background: var(--code-bg);
     font-style: italic;
     color: var(--text-secondary);
     position: relative;
@@ -299,7 +299,7 @@ blockquote::before {
     position: absolute;
     top: -0.5rem;
     left: 0.5rem;
-    color: rgba(0, 255, 0, 0.3);
+    color: var(--border-color);
     font-family: Georgia, serif;
 }
 
@@ -330,13 +330,13 @@ blockquote cite {
     transform: translateX(-50%);
     width: 100px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
 }
 
 .section-description {
     font-size: var(--font-size-md);
     text-align: center;
-    color: rgba(0, 255, 0, 0.8);
+    color: var(--text-secondary);
     max-width: var(--content-width-wide);
     margin: 0 auto 2rem;
     line-height: 1.7;
@@ -459,24 +459,21 @@ footer p {
 }
 
 .text-emphasis {
-    color: var(--matrix-green);
+    color: var(--accent-color);
     font-weight: 500;
-    text-shadow: var(--matrix-glow);
+    text-shadow: none; /* Remove glow for readability */
 }
 
 /* Special Effects */
 .text-gradient {
-    background: linear-gradient(90deg, var(--matrix-green), var(--matrix-cyan));
+    background: linear-gradient(90deg, var(--accent-color), var(--matrix-cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .text-glow {
-    text-shadow:
-        0 0 10px currentColor,
-        0 0 20px currentColor,
-        0 0 30px currentColor;
+    text-shadow: 0 0 8px currentColor; /* Reduced glow */
 }
 
 .glow-text {

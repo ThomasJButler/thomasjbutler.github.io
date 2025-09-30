@@ -2,53 +2,53 @@
    Theme System - Matrix and Dark Modes
    ======================================================================== */
 
-/* Default Matrix Theme */
+/* Default Matrix Theme - White text with cyan accents */
 :root,
 [data-theme="matrix"] {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #050505;
-  --text-primary: #00ff00;
-  --text-secondary: rgba(0, 255, 0, 0.8);
-  --text-tertiary: rgba(0, 255, 0, 0.6);
+  --text-primary: #FFFFFF; /* White text for readability */
+  --text-secondary: #CCCCCC; /* Light grey for secondary text */
+  --text-tertiary: rgba(255, 255, 255, 0.6);
   --text-inverse: #000000;
-  --accent-color: #00ff00;
-  --accent-hover: #00cc00;
-  --matrix-green: #00ff00;
+  --accent-color: #00FFFF; /* Cyan accents */
+  --accent-hover: #00DDDD;
+  --matrix-green: #00ff00; /* Keep green for borders/icons */
   --border-color: rgba(0, 255, 0, 0.3);
   --border-hover: rgba(0, 255, 0, 0.5);
   --card-bg: rgba(0, 0, 0, 0.9);
   --card-hover: rgba(0, 0, 0, 0.95);
   --shadow-color: rgba(0, 255, 0, 0.2);
-  --shadow-glow: rgba(0, 255, 0, 0.5);
+  --shadow-glow: rgba(0, 255, 255, 0.3); /* Cyan glow */
   --overlay-bg: rgba(0, 0, 0, 0.8);
   --code-bg: rgba(0, 255, 0, 0.05);
   --scrollbar-bg: #000000;
   --scrollbar-thumb: #00ff00;
 }
 
-/* Dark Theme (Clean Professional) */
+/* Dark Theme (Clean Professional - Blue & White Only) */
 [data-theme="dark"] {
   --bg-primary: #000000;
   --bg-secondary: #0f0f0f;
   --bg-tertiary: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
+  --text-primary: #FFFFFF; /* Pure white */
+  --text-secondary: #CCCCCC; /* Light grey */
   --text-tertiary: #999999;
   --text-inverse: #000000;
-  --accent-color: #40a040;
-  --accent-hover: #50b050;
-  --matrix-green: #40a040;
-  --border-color: #404040;
-  --border-hover: #606060;
+  --accent-color: #4A9EFF; /* Blue accent - NO GREEN */
+  --accent-hover: #5AADFF;
+  --matrix-green: #4A9EFF; /* Override green with blue */
+  --border-color: rgba(74, 158, 255, 0.3);
+  --border-hover: rgba(74, 158, 255, 0.5);
   --card-bg: rgba(15, 15, 15, 0.95);
   --card-hover: rgba(25, 25, 25, 0.95);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --shadow-glow: rgba(0, 0, 0, 0);
+  --shadow-color: rgba(74, 158, 255, 0.2);
+  --shadow-glow: rgba(74, 158, 255, 0.4); /* Blue glow */
   --overlay-bg: rgba(0, 0, 0, 0.9);
   --code-bg: rgba(255, 255, 255, 0.05);
   --scrollbar-bg: #0f0f0f;
-  --scrollbar-thumb: #505050;
+  --scrollbar-thumb: #4A9EFF; /* Blue scrollbar */
 }
 
 /* ========================================================================
@@ -70,32 +70,40 @@
    Theme-Specific Adjustments
    ======================================================================== */
 
-/* Matrix Theme Glow Effects */
-[data-theme="matrix"] a:hover,
+/* Matrix Theme - Subtle Glow Effects */
+[data-theme="matrix"] a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle cyan glow */
+}
+
 [data-theme="matrix"] button:hover {
-  text-shadow: 0 0 10px var(--matrix-green);
+  text-shadow: none; /* Remove text-shadow on hover to keep text readable */
 }
 
 [data-theme="matrix"] input:focus,
 [data-theme="matrix"] textarea:focus {
-  box-shadow: 0 0 15px var(--shadow-glow);
+  box-shadow: 0 0 10px var(--shadow-glow);
   border-color: var(--accent-color);
 }
 
-/* Dark Theme Clean Look - No Effects */
+/* Dark Theme - Blue Accents, NO Green */
 [data-theme="dark"] a:hover {
-  color: var(--accent-color);
+  color: var(--accent-color); /* Blue */
   text-decoration: underline;
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.3); /* Subtle blue glow */
 }
 
 [data-theme="dark"] button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(74, 158, 255, 0.1); /* Blue tint */
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); /* Blue glow */
 }
 
 [data-theme="dark"] input:focus,
 [data-theme="dark"] textarea:focus {
-  border-color: var(--border-hover);
-  outline: 1px solid var(--border-hover);
+  border-color: var(--accent-color); /* Blue border */
+  outline: 1px solid var(--accent-color);
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); /* Blue glow */
 }
 
 /* ========================================================================
@@ -187,7 +195,7 @@
   box-shadow: 0 0 5px var(--matrix-green);
 }
 
-/* Dark Theme Scrollbar */
+/* Dark Theme Scrollbar - Blue */
 [data-theme="dark"]::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -195,12 +203,13 @@
 }
 
 [data-theme="dark"]::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
+  background: var(--scrollbar-thumb); /* Blue */
   border-radius: 5px;
 }
 
 [data-theme="dark"]::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+  background: #5AADFF; /* Lighter blue on hover */
+  box-shadow: 0 0 5px rgba(74, 158, 255, 0.5);
 }
 
 /* ========================================================================

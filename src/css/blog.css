@@ -95,10 +95,10 @@ button:focus-visible {
 }
 
 .back-link:hover {
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-  color: #00ff00;
-  border-color: #00ff00;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .blog-header {
@@ -125,7 +125,7 @@ button:focus-visible {
 
 .blog-title .subtitle {
   font-size: 1.2rem;
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
   font-weight: 300;
   display: block;
 }
@@ -152,7 +152,7 @@ button:focus-visible {
 .blog-stats .stat-label {
   display: block;
   font-size: 0.9rem;
-  color: rgba(0, 255, 0, 0.6);
+  color: var(--text-secondary);
   margin-top: 5px;
 }
 
@@ -180,7 +180,7 @@ button:focus-visible {
 .blog-search {
   width: 100%;
   padding: 15px 50px 15px 20px;
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(255, 255, 255, 0.02);
   border: 2px solid var(--matrix-green);
   border-radius: 8px;
   color: var(--matrix-green);
@@ -191,7 +191,7 @@ button:focus-visible {
 .blog-search:focus {
   outline: none;
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .search-icon {
@@ -220,14 +220,14 @@ button:focus-visible {
   background: rgba(0, 0, 0, 0.6);
   padding: 12px 20px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 255, 0, 0.2);
+  border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
   max-width: 100%;
   flex-wrap: wrap;
 }
 
 .tags-label {
-  color: rgba(0, 255, 0, 0.9);
+  color: var(--accent-color);
   font-size: 0.95rem;
   display: flex;
   align-items: center;
@@ -317,7 +317,7 @@ button:focus-visible {
 .active-filters {
   text-align: center;
   margin-top: 20px;
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
 }
 
 .clear-filters {
@@ -332,7 +332,7 @@ button:focus-visible {
 }
 
 .clear-filters:hover {
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
@@ -413,7 +413,7 @@ button:focus-visible {
 }
 
 .blog-meta {
-  color: rgba(0, 255, 0, 0.5);
+  color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 15px;
 }
@@ -440,11 +440,11 @@ button:focus-visible {
 
 .blog-tag {
   padding: 4px 10px;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 0.8rem;
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
 }
 
 .read-more {
@@ -458,7 +458,7 @@ button:focus-visible {
 
 .blog-card:hover .read-more {
   gap: 10px;
-  color: #00ff00;
+  color: var(--accent-color);
   text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
 }
 
@@ -515,7 +515,7 @@ button:focus-visible {
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+  border-bottom: 1px solid var(--border-color);
   z-index: 100;
   padding: 15px 0;
 }
@@ -546,10 +546,10 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(255, 255, 255, 0.02);
   padding: 8px 15px;
   border-radius: 25px;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid var(--border-color);
 }
 
 .font-size-btn {
@@ -597,7 +597,7 @@ button:focus-visible {
 .article-header {
   margin-bottom: 50px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+  border-bottom: 1px solid var(--border-color);
   width: 100%;
   text-align: center;
   display: flex;
@@ -621,7 +621,7 @@ button:focus-visible {
 .article-meta {
   display: flex;
   gap: 20px;
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
   margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: center;
@@ -651,17 +651,17 @@ button:focus-visible {
 
 .article-tag {
   padding: 6px 12px;
-  background: rgba(0, 255, 0, 0.08);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
   border-radius: 15px;
-  color: rgba(0, 255, 0, 0.9);
+  color: var(--accent-color);
   font-size: 0.9rem;
   white-space: nowrap;
   transition: all 0.3s ease;
 }
 
 .article-tag:hover {
-  background: rgba(0, 255, 0, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--matrix-green);
   transform: translateY(-2px);
 }
@@ -701,7 +701,7 @@ button:focus-visible {
 .article-h2,
 .article-h3,
 .article-h4 {
-  color: rgba(0, 255, 0, 0.85); /* Softer green for headers */
+  color: var(--accent-color); /* Softer green for headers */
   margin: 30px 0 15px;
   text-shadow: 0 0 3px rgba(0, 255, 0, 0.2); /* Subtle glow */
   font-weight: 600;
@@ -773,7 +773,7 @@ button:focus-visible {
 .article-content h1,
 .article-content h2,
 .article-content h3 {
-  color: rgba(0, 255, 0, 0.85); /* Softer green */
+  color: var(--accent-color); /* Softer green */
   margin: 30px 0 15px;
   text-shadow: 0 0 3px rgba(0, 255, 0, 0.2);
 }
@@ -842,7 +842,7 @@ button:focus-visible {
 
 /* Strong (Bold) Text */
 .article-strong {
-  color: rgba(0, 255, 0, 0.95);
+  color: var(--text-primary);
   font-weight: 700;
   text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
   letter-spacing: 0.03em;
@@ -913,8 +913,8 @@ button:focus-visible {
 .code-block,
 .article-content pre {
   background: rgba(0, 0, 0, 0.95); /* Darker background for contrast */
-  border: 1px solid rgba(0, 255, 0, 0.3); /* Matrix green border */
-  color: #00ff00; /* Matrix green text */
+  border: 1px solid var(--border-color); /* Matrix green border */
+  color: var(--accent-color); /* Matrix green text */
   line-height: 1.6;
   border-radius: 8px;
   padding: 20px 24px;
@@ -977,7 +977,7 @@ button:focus-visible {
 .article-content pre code {
   background: none;
   padding: 0;
-  color: #00ff00; /* Matrix green for better readability */
+  color: var(--accent-color); /* Matrix green for better readability */
   border: none;
   font-size: inherit;
   white-space: pre;
@@ -989,7 +989,7 @@ button:focus-visible {
 /* Matrix Theme Syntax Highlighting */
 .hljs-comment,
 .hljs-quote {
-  color: rgba(0, 255, 0, 0.5); /* Dimmed green for comments */
+  color: var(--text-muted); /* Dimmed green for comments */
   font-style: italic;
 }
 
@@ -1064,8 +1064,8 @@ button:focus-visible {
 
 .article-link:hover,
 .article-content a:hover {
-  color: #00ff00;
-  border-bottom-color: #00ff00;
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
 }
 
@@ -1078,7 +1078,7 @@ button:focus-visible {
 
 .article-blockquote,
 .article-content blockquote {
-  border-left: 4px solid rgba(0, 255, 0, 0.6); /* Green accent border */
+  border-left: 4px solid var(--accent-color); /* Green accent border */
   padding-left: 20px;
   margin: 20px 0;
   font-style: italic;
@@ -1110,15 +1110,15 @@ button:focus-visible {
   color: var(--matrix-green);
   text-decoration: none;
   padding: 10px 20px;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  background: rgba(0, 255, 0, 0.1);
-  border-color: #00ff00;
-  color: #00ff00;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
@@ -1130,7 +1130,7 @@ button:focus-visible {
 }
 
 .share-label {
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
 }
 
 .share-buttons {
@@ -1142,8 +1142,8 @@ button:focus-visible {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   color: var(--matrix-green);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1153,7 +1153,7 @@ button:focus-visible {
 }
 
 .share-btn:hover {
-  background: rgba(0, 255, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--matrix-green);
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
@@ -1219,7 +1219,7 @@ button:focus-visible {
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+  border-bottom: 1px solid var(--border-color);
   padding: 12px 20px; /* Increased horizontal padding */
   z-index: 1000;
   justify-content: space-between;
@@ -1239,15 +1239,15 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 12px; /* Increased from 10px for better spacing */
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(255, 255, 255, 0.02);
   padding: 6px 12px;
   border-radius: 25px;
-  border: 1px solid rgba(0, 255, 0, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .mobile-font-controls button {
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   color: var(--matrix-green);
   width: 40px; /* Slightly smaller for better fit */
   height: 40px; /* Slightly smaller for better fit */
@@ -1261,7 +1261,7 @@ button:focus-visible {
 }
 
 .mobile-font-controls button:active {
-  background: rgba(0, 255, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   transform: scale(0.95);
 }
 
@@ -1337,7 +1337,7 @@ button:focus-visible {
 }
 
 .retry-button:hover {
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
   transform: translateY(-2px);
 }
@@ -1364,7 +1364,7 @@ button:focus-visible {
 .no-results {
   text-align: center;
   padding: 60px 20px;
-  color: rgba(0, 255, 0, 0.6);
+  color: var(--text-secondary);
 }
 
 .no-results i {
@@ -1391,8 +1391,8 @@ button:focus-visible {
 }
 
 .qualification-badge {
-  background: rgba(0, 255, 0, 0.05);
-  border: 2px solid rgba(0, 255, 0, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 25px;
   text-align: center;
@@ -1403,7 +1403,7 @@ button:focus-visible {
   transform: translateY(-5px);
   border-color: var(--matrix-green);
   box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
-  background: rgba(0, 255, 0, 0.08);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .qualification-icon {
@@ -1419,7 +1419,7 @@ button:focus-visible {
 }
 
 .qualification-badge p {
-  color: rgba(0, 255, 0, 0.7);
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -1439,7 +1439,7 @@ button:focus-visible {
   display: none;
   width: 100%;
   padding: 1rem;
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--matrix-green);
   border-radius: 8px;
   color: var(--matrix-green);
@@ -1452,7 +1452,7 @@ button:focus-visible {
 }
 
 .filter-toggle:hover {
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
@@ -1512,21 +1512,21 @@ button:focus-visible {
   width: 100%;
   min-width: 100%;
   border-collapse: collapse;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid var(--border-color);
 }
 
 .article-table th {
-  background: rgba(0, 255, 0, 0.1);
-  color: rgba(0, 255, 0, 0.9);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent-color);
   padding: 10px;
   text-align: left;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid var(--border-color);
 }
 
 .article-table td {
   color: rgba(255, 255, 255, 0.9);
   padding: 10px;
-  border: 1px solid rgba(0, 255, 0, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 /* Article Image Styles */
@@ -1535,7 +1535,7 @@ button:focus-visible {
   height: auto;
   border-radius: 8px;
   margin: 20px 0;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid var(--border-color);
   display: block;
   box-sizing: border-box;
 }
