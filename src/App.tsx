@@ -12,6 +12,7 @@ import { Layout } from './components/Layout';
 import { GodModeDisplay } from './components/GodModeDisplay';
 import { MatrixSpinner } from './components/MatrixSpinner';
 import { ReactHtmlRedirect } from './components/ReactHtmlRedirect';
+import { BackToTop } from './components/BackToTop';
 
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
@@ -66,6 +67,8 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider>
+      {/* Global components outside Router to avoid context issues */}
+      <BackToTop threshold={300} showText={true} enableScanLine={true} />
       <Router basename="/ThomasJButler">
         <ReactHtmlRedirect />
         <Routes>

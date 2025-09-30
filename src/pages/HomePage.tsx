@@ -12,40 +12,6 @@ export const HomePage: React.FC = () => {
   // Card animations hook
   useCardAnimations();
 
-  // Scroll progress indicator
-  useEffect(() => {
-    // Create scroll indicator element
-    const scrollIndicator = document.createElement('div');
-    scrollIndicator.className = 'scroll-indicator';
-    scrollIndicator.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(scrollIndicator);
-
-    const updateScrollProgress = () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      scrollIndicator.style.transform = `scaleX(${scrollPercent})`;
-    };
-
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          updateScrollProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      scrollIndicator.remove();
-    };
-  }, []);
-  
   // Scroll animation refs
   const expertiseRef = useScrollReveal();
   const galleriesRef = useScrollAnimation({

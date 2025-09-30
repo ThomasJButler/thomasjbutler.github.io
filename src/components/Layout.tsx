@@ -5,7 +5,6 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { MatrixRain } from './MatrixRain';
 import { ParticleBackground } from './ParticleBackground';
-import { BackToTop } from './BackToTop';
 import { CRTEffect } from './CRTEffect';
 import { TerminalMode } from './TerminalMode';
 import { MatrixEasterEggs } from './MatrixEasterEggs';
@@ -58,13 +57,6 @@ export const Layout: React.FC = () => {
 
       {/* Footer */}
       <Footer />
-
-      {/* Back to Top Button */}
-      <BackToTop
-        threshold={300}
-        showText={true}
-        enableScanLine={true}
-      />
 
       {/* Terminal Mode - Secret activation in Neo theme only */}
       <TerminalMode theme={theme} />

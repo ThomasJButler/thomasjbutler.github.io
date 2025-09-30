@@ -17,30 +17,48 @@ body {
   padding: 0;
   overflow-x: hidden;
   width: 100%;
+  /* IMPORTANT: No transform on body - breaks position: fixed on children */
+  transform: none !important;
+  will-change: auto !important;
+  /* CRITICAL: position: static allows position: fixed children to work correctly */
+  /* position: relative creates a containing block that breaks position: fixed */
+  position: static !important;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* IMPORTANT: No transform on #root - breaks position: fixed on children */
+  transform: none !important;
+  will-change: auto !important;
 }
 
 /* Prevent horizontal scroll and layout shifts */
 html {
-  overflow-y: scroll;
+  /* Changed from scroll to auto for better cross-browser compatibility */
+  /* scroll forces a scrollbar which can affect scrolling context in Chromium */
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
 /* Use GPU acceleration for smooth animations */
+/* Note: .back-to-top-react removed - transform breaks position: fixed */
 .mainContent,
 header,
 footer,
-.back-to-top,
-.back-to-top-react {
+.back-to-top {
   will-change: transform;
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* CRITICAL: Ensure back-to-top button never gets a transform */
+/* Transform breaks position: fixed and causes button to be positioned incorrectly */
+.back-to-top-react {
+  transform: none !important;
+  will-change: auto !important;
 }
 
 /* Low-end device optimizations */

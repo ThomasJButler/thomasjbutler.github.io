@@ -2,9 +2,11 @@
  * BackToTop Component
  * Matrix-themed back-to-top button for React pages
  * Features smooth animations and accessibility support
+ * Uses React Portal to render outside #root to avoid transform issues
  */
 
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { animate } from 'animejs';
 import { useBackToTop } from '../hooks/useScrollDetection';
 
@@ -36,13 +38,16 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
+          // Cross-browser compatible scroll detection
+          const scrollY = window.pageYOffset ||
+                         document.documentElement.scrollTop ||
+                         document.body.scrollTop ||
+                         window.scrollY ||
+                         0;
           const shouldShow = scrollY > threshold;
-          
-          if (shouldShow !== isVisible) {
-            setIsVisible(shouldShow);
-          }
-          
+
+          // Always update state to ensure proper reactivity
+          setIsVisible(shouldShow);
           ticking = false;
         });
         ticking = true;
@@ -52,15 +57,21 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     // Use passive listener for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('touchmove', handleScroll, { passive: true });
-    
-    // Check initial state
-    handleScroll();
+
+    // Check initial state immediately with cross-browser compatibility
+    const initialScroll = window.pageYOffset ||
+                         document.documentElement.scrollTop ||
+                         document.body.scrollTop ||
+                         window.scrollY ||
+                         0;
+    const initialShow = initialScroll > threshold;
+    setIsVisible(initialShow);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('touchmove', handleScroll);
     };
-  }, [threshold, isVisible]);
+  }, [threshold]);
 
   // Handle button click with animation
   const handleClick = () => {
@@ -97,10 +108,10 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     }
   };
 
-  // Don't render if not visible
-  if (!isVisible) return null;
-
-  return (
+  // ALWAYS render button via portal (even when invisible)
+  // This ensures scroll listener stays active and position: fixed works correctly
+  // Visibility is controlled via CSS (opacity and visibility properties)
+  const button = (
     <button
       className={`back-to-top-react ${className}`}
       onClick={handleClick}
@@ -133,8 +144,9 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         textTransform: 'uppercase',
         opacity: isVisible ? 1 : 0,
         visibility: isVisible ? 'visible' : 'hidden',
-        transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
-        transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        // Note: transform removed - breaks position: fixed!
+        // Use opacity/visibility for show/hide animation instead
+        transition: 'opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.4s',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
         boxShadow: `
@@ -217,6 +229,12 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 
       {/* CSS-in-JS styles for animations */}
       <style dangerouslySetInnerHTML={{ __html: `
+        /* Critical override to ensure position: fixed works */
+        .back-to-top-react {
+          position: fixed !important;
+          top: auto !important;
+        }
+
         @keyframes matrixScan {
           0% { 
             transform: translateX(-100%) rotate(0deg); 
@@ -279,20 +297,14 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 
         @media (max-width: 768px) {
           .back-to-top-react {
-            bottom: 20px !important;
-            right: 20px !important;
-            width: 50px !important;
-            height: 50px !important;
-            font-size: 0.6rem !important;
+            /* Inline styles already handle sizing, no need for !important */
+            font-size: 0.6rem;
           }
         }
 
         @media (max-width: 480px) {
           .back-to-top-react {
-            bottom: 15px !important;
-            right: 15px !important;
-            width: 45px !important;
-            height: 45px !important;
+            /* Inline styles already handle sizing */
           }
         }
 
@@ -334,4 +346,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
       `}} />
     </button>
   );
+
+  // Render button as direct child of body using portal
+  return ReactDOM.createPortal(button, document.body);
 };

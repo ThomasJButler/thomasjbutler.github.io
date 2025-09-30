@@ -353,9 +353,10 @@ a:not(.btn):not(.button):not(.nav-link):hover {
 }
 
 /* Button Hover Effects */
+/* Note: Exclude .back-to-top-react which needs position: fixed */
 .btn,
 .button,
-button,
+button:not(.back-to-top-react),
 .btn-primary,
 .btn-secondary,
 .neo-matrix-btn,
@@ -371,7 +372,7 @@ button,
 
 .btn:hover,
 .button:hover,
-button:hover,
+button:not(.back-to-top-react):hover,
 .btn-primary:hover,
 .btn-secondary:hover,
 .neo-matrix-btn:hover,
@@ -415,7 +416,7 @@ button:hover,
 .neo-matrix-btn,
 .matrix-btn,
 .btn,
-button {
+button:not(.back-to-top-react) {
   position: relative;
   overflow: hidden;
 }
@@ -423,7 +424,7 @@ button {
 .neo-matrix-btn::before,
 .matrix-btn::before,
 .btn::before,
-button::before {
+button:not(.back-to-top-react)::before {
   content: '';
   position: absolute;
   top: var(--ripple-y, 50%);
@@ -439,7 +440,7 @@ button::before {
 .neo-matrix-btn:active::before,
 .matrix-btn:active::before,
 .btn:active::before,
-button:active::before {
+button:not(.back-to-top-react):active::before {
   width: 300px;
   height: 300px;
   animation: ripple 0.6s ease-out;
@@ -706,7 +707,7 @@ tbody tr:hover {
 }
 
 /* Active States */
-button:active,
+button:not(.back-to-top-react):active,
 .btn:active,
 a:active {
   transform: translateY(1px);
