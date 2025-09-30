@@ -13,18 +13,6 @@ nav {
     position: relative;
 }
 
-/* Visual divider before navigation */
-nav::before {
-    content: '|';
-    position: absolute;
-    left: -31px;
-    color: var(--matrix-green);
-    opacity: 0.6;
-    font-size: 2rem;
-    font-weight: 300;
-    animation: pulse 2s infinite;
-}
-
 nav ul {
     display: flex;
     list-style: none;
@@ -432,10 +420,6 @@ nav ul li:active {
 }
 
 @media screen and (max-width: 480px) {
-        /* Hide divider on mobile */
-        nav::before {
-        content: '';
-        }
     nav ul {
         padding: 0.5rem;
         left: 15px;
