@@ -5,10 +5,20 @@
    ========================================================================== */
 
 /* ==========================================================================
+   Google Fonts Import
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600&family=Share+Tech+Mono&display=swap');
+
+/* ==========================================================================
    CSS Custom Properties - Enhanced Typography Scale
    ========================================================================== */
 
 :root {
+  /* Font Families - Original working fonts */
+  --font-primary: 'Orbitron', sans-serif;
+  --font-body: 'Exo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-code: 'Share Tech Mono', 'Courier New', monospace;
+
   /* Typography Scale - Fluid & Responsive */
   --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);

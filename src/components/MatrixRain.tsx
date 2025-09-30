@@ -99,8 +99,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Set text properties with Matrix Code NFI font for authentic look
-      ctx.font = `${fontSize}px 'Matrix Code NFI', monospace`;
+      // Set text properties with Share Tech Mono for matrix characters
+      ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
@@ -157,7 +157,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
               ctx.shadowBlur = 25;
               ctx.shadowColor = color;
               ctx.fillStyle = '#ffffff';
-              ctx.font = `${fontSize * 1.2}px 'Matrix Code NFI', monospace`;
+              ctx.font = `${fontSize * 1.2}px 'Share Tech Mono', monospace`;
             } 
             // Sub-leading characters with strong glow
             else if (i >= drop.chars.length - 3) {
@@ -188,7 +188,7 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
             
             // Reset font for next character
             if (i === drop.chars.length - 1) {
-              ctx.font = `${fontSize}px 'Matrix Code NFI', monospace`;
+              ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
             }
           }
         });

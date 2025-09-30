@@ -50,11 +50,11 @@ section {
     background-color: var(--matrix-darker);
     border-bottom: 1px solid var(--matrix-green);
     border-radius: var(--radius-base);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-2xl); /* Enlarged from --space-md to --space-2xl for bigger matrix dividers (3rem vs 1rem) */
     opacity: 1;
     padding: var(--space-xl) var(--space-md);
     transform: translateY(0);
-    transition: opacity var(--duration-slow) ease, 
+    transition: opacity var(--duration-slow) ease,
                 transform var(--duration-slow) ease;
     /* Glassmorphism effect */
     backdrop-filter: blur(5px);

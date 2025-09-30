@@ -1,611 +1,96 @@
-Dark Theme 
-
-✅ CHANGES SUCCESSFULLY IMPLEMENTED:
-Navigation Cards Grid - All 6 navigation cards are now properly laid out in a 3-column grid with consistent spacing and green borders
-
-Card Descriptions - All cards now have descriptive text:
-
-"About Me" - Clear description added
-"Skills & Tech" - Proper description
-"Projects Portfolio" - Good description
-"Services" - Description added
-"Blog & Insights" - Description added
-"Get in Touch" - Description added
-Visual Consistency - All cards have matching:
-
-Icon colors (gradient blue/cyan)
-Hover effects with arrows
-Border styling
-Typography
-Hero Section - Great improvements with clear subtitle "A Web Developer and Designer from Liverpool, England, UK" and compelling value proposition
-
-Showcases Section - Both cards are properly displayed with buttons
-
-🎯 REMAINING ISSUES & OPPORTUNITIES FOR IMPROVEMENT:
-Critical/Important:
-"GENRAI BOOTCAMP" Typo - In the showcases section, "GENRAI BOOTCAMP PORTFOLIO" appears to have a typo. Should this be "GEN AI BOOTCAMP PORTFOLIO" or "GENAI BOOTCAMP PORTFOLIO"?
-
-Footer Link Colors - The footer links (LinkedIn, GitHub, Email) in "CONNECT WITH ME" section appear to be very dark/hard to see. Consider making them more visible with cyan/blue colors matching your theme.
-
-Nice-to-Have Enhancements:
-Navigation Card Hover Effects - Consider adding slight scale transforms or glow effects on hover to make interactions more engaging:
-
-transform: translateY(-5px);
-box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
-Card Icon Animations - Add subtle animations to icons on hover (rotation, pulse, or scale)
-
-Typography Hierarchy - The navigation section title "--| NAVIGATE YOUR JOURNEY |--" could have more visual weight or animation
-
-Call-to-Action Emphasis - The "CONTACT ME" button in the footer could be more prominent with animations or pulsing effects
-
-Accessibility - Ensure all interactive elements have proper focus states for keyboard navigation
-
-Mobile Responsiveness - Test that the 3-column grid collapses properly on tablet (2 columns) and mobile (1 column) devices
-
-Loading States - Consider adding loading animations for the hero section decorative elements
-
-Overall Assessment: The website has improved dramatically! The main structural issues have been resolved. The primary remaining concern is the "GENRAI" typo. Everything else is polish and optimization. Great work! 🚀
-
-
-
-
-
-Matrix Theme
-
-Perfect! I've now reviewed the entire Matrix mode implementation. Let me provide you with a comprehensive analysis:
-
-🎬 MATRIX MODE - EXCELLENT IMPLEMENTATION! ✅
-What's Working Great:
-Color Scheme Consistency
-
-Bright green (#00FF00) text throughout - perfect Matrix aesthetic
-Cyan/blue accents maintained for CTAs
-Black background provides excellent contrast
-Navigation titles properly converted to green
-Animated Elements
-
-Falling Matrix rain effect visible at top and between sections
-Adds authentic Matrix movie atmosphere
-Good performance (smooth animations)
-Typography
-
-All main headings converted to green
-"NAVIGATE YOUR JOURNEY" title is green
-Section titles properly themed
-Good readability maintained
-Icons & Graphics
-
-Top 3 navigation card icons: green (user, code, briefcase)
-Bottom 3 card icons: yellow/orange/cyan - creates nice variety
-Showcase icons: cyan (graduation cap, time icon)
-Buttons & CTAs
-
-Bright lime green (#00FF00) buttons in showcases - very Matrix-like
-"CONTACT ME" button properly themed
-"View Projects" and "View Blog" buttons with green theme
-Special Effects
-
-Matrix rain dividers between sections
-Subtle glow effects on green elements
-Overall cyberpunk/hacker aesthetic achieved
-🎯 RECOMMENDATIONS FOR IMPROVEMENT:
-1. Icon Color Consistency (Minor)
-Current: Bottom 3 navigation cards have yellow/orange/cyan icons
-Suggestion: Consider making ALL navigation card icons the same green for full consistency, or keep the variety for visual interest (both work!)
-
-2. Enhanced Glow Effects (Nice-to-have)
-/* Add stronger text glow on headings */
-text-shadow: 
-  0 0 10px rgba(0, 255, 0, 0.8),
-  0 0 20px rgba(0, 255, 0, 0.6),
-  0 0 30px rgba(0, 255, 0, 0.4);
-Make the green text "glow" more intensely for that authentic Matrix energy feel
-
-3. Matrix Rain Intensity (Optional)
-Consider adding MORE falling characters in the rain effect
-Increase the density slightly for more immersive atmosphere
-Maybe add occasional "highlighted" green characters that are brighter, add some gold in there too as we removed that from neo mode but gold is important in the matrix.
-4. Button Hover Effects (Enhancement)
-/* On hover, make buttons pulse/glow */
-.matrix-button:hover {
-  box-shadow: 
-    0 0 20px rgba(0, 255, 0, 0.8),
-    0 0 40px rgba(0, 255, 0, 0.5);
-  transform: scale(1.05);
-}
-5. Card Border Glow (Visual Enhancement)
-The green borders on navigation cards could have a subtle pulsing glow effect:
-
-border: 2px solid #00FF00;
-box-shadow: 
-  0 0 10px rgba(0, 255, 0, 0.5),
-  inset 0 0 10px rgba(0, 255, 0, 0.2);
-animation: pulse 2s infinite;
-6. Typing Effect on Hero (Advanced)
-Add a typing/terminal effect to "Hey, I'm Tom." to simulate a command-line interface loading
-
-7. Scanline Effect (Optional Atmosphere)
-Add horizontal scanlines across the entire viewport for a CRT monitor effect:
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 9999;
-}
-8. Matrix Code in Background (Subtle Enhancement)
-Add very faint Matrix characters/code as a fixed background pattern behind content sections
-
-10. Transition Smoothness
-Ensure smooth transition when entering/exiting Matrix mode - fade in/out effects
-
-📊 PRIORITY RANKING:
-Must-Do: None - it's already working great!
-
-Should-Do:
-
-Enhanced glow effects (#2)
-Button hover improvements (#4)
-Nice-to-Have:
-
-Card border glow (#5)
-Matrix rain intensity (#3)
-Icon color consistency decision (#1)
-Advanced/Optional:
-
-Scanline effect (#7)
-Typing effect (#6)
-Background code pattern (#8)
-🌟 OVERALL ASSESSMENT:
-Rating: 9/10 - Your Matrix mode is excellently implemented! The color scheme, animations, and overall aesthetic capture the Matrix movie vibe beautifully. The falling rain effect is a fantastic touch. The suggested improvements are mostly polish and enhancement rather than fixes. Great work! 💚🟢
-
-The mode successfully transforms your professional portfolio into a cyberpunk/hacker aesthetic while maintaining full functionality and readability. Very impressive! 🚀
-
-
-
-Option D: "Matrix Code NFI" (Most Authentic)
-The actual Matrix movie font! You'd need to host or link to it:
-
-@font-face {
-  font-family: 'Matrix Code NFI';
-  src: url('path/to/matrix-font.woff2') format('woff2');
-}
-
-.matrix-mode {
-  font-family: 'Matrix Code NFI', 'Courier New', monospace;
-}
-✅ Most authentic Matrix look
-❌ Requires font file hosting
-❌ May have licensing considerations
-
-2. Font Weight Hierarchy ⭐⭐⭐⭐
-Create better visual hierarchy with font weights:
-
-/* Hero/Main Title */
-h1 {
-  font-family: 'Source Code Pro', monospace;
-  font-weight: 700; /* Bold for "THOMAS J BUTLER" */
-  letter-spacing: 0.15em; /* Wider spacing for impact */
-}
-
-/* Section Titles */
-h2 {
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-/* Card Titles */
-h3 {
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-
-/* Body Text */
-p {
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-/* Subtle Text */
-.description {
-  font-weight: 300;
-  letter-spacing: 0.01em;
-}
-3. Letter Spacing (Tracking) ⭐⭐⭐⭐⭐
-Matrix has that distinctive wide, spaced-out look:
-
-/* Main Name/Logo */
-.logo, h1 {
-  letter-spacing: 0.2em; /* Very wide */
-  text-transform: uppercase;
-}
-
-/* Navigation Items */
-nav a {
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-/* Section Headers */
-h2 {
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Card Titles */
-.card-title {
-  letter-spacing: 0.08em;
-}
-
-/* Body text - subtle */
-p {
-  letter-spacing: 0.02em;
-}
-4. Text Transform & Capitalization ⭐⭐⭐
-Terminal/computer aesthetic uses lots of CAPS:
-
-/* Headings - ALL CAPS */
-h1, h2, h3, .card-title, nav a {
-  text-transform: uppercase;
-}
-
-/* Buttons - ALL CAPS */
-button, .btn {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* Body text - normal case for readability */
-p, .description {
-  text-transform: none;
-}
-5. Line Height ⭐⭐⭐
-Adjust for better readability in monospace:
-
-/* Headings - tighter */
-h1, h2, h3 {
-  line-height: 1.2;
-}
-
-/* Body text - more breathing room */
-p {
-  line-height: 1.8; /* Monospace needs more space */
-}
-
-/* Card descriptions */
-.card-description {
-  line-height: 1.6;
-}
-6. Font Size Adjustments ⭐⭐⭐⭐
-Monospace fonts often need to be larger for readability:
-
-/* Base font size - increase slightly */
-body {
-  font-size: 16px; /* or 17px */
-}
-
-/* Hero name */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-/* Section titles */
-h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-
-/* Navigation */
-nav a {
-  font-size: 0.95rem;
-}
-
-/* Body text - slightly larger */
-p {
-  font-size: 1.05rem;
-}
-7. Terminal/Code-Style Prefixes ⭐⭐⭐⭐⭐
-Add terminal symbols to headings:
-
-/* Add via CSS pseudo-elements */
-h2::before {
-  content: '> ';
-  color: #00FF00;
-  font-weight: 700;
-}
-
-/* Or use different symbols */
-.section-title::before {
-  content: '$ ';
-  opacity: 0.7;
-}
-
-/* Alternative: */
-.matrix-title::before {
-  content: '// ';
-  opacity: 0.6;
-}
-In HTML:
-
-<h2>$ NAVIGATE YOUR JOURNEY</h2>
-<h2>> SHOWCASES</h2>
-<h2>// GET IN TOUCH</h2>
-8. Glitch Effect on Hover ⭐⭐⭐⭐
-Typography animation for Matrix vibe:
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-
-h2:hover, .card-title:hover {
-  animation: glitch 0.3s;
-  text-shadow: 
-    -2px 0 #ff00ff,
-    2px 0 #00ffff;
-}
-9. Blinking Cursor Effect ⭐⭐⭐⭐⭐
-Add terminal cursor after key elements:
-
-.terminal-text::after {
-  content: '▮';
-  animation: blink 1s infinite;
-  color: #00FF00;
-  margin-left: 5px;
-}
-
-@keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-Apply to: "Hey, I'm Tom." or section titles
-
-10. Font Variant Settings ⭐⭐
-Fine-tune OpenType features:
-
-
-
-10. Font Variant Settings ⭐⭐
-Fine-tune OpenType features:
-
-body {
-  font-variant-numeric: tabular-nums; /* Aligns numbers in monospace */
-  font-feature-settings: "liga" 1; /* Enable ligatures for Fira Code */
-}
-11. Text Rendering Optimization ⭐⭐⭐
-Make text crisp and clear:
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-12. Responsive Typography ⭐⭐⭐⭐
-Use fluid typography for all screen sizes:
-
-:root {
-  --font-size-base: clamp(15px, 1vw + 0.5rem, 18px);
-  --font-size-h1: clamp(2rem, 4vw, 4.5rem);
-  --font-size-h2: clamp(1.5rem, 3vw, 3rem);
-  --font-size-h3: clamp(1.2rem, 2vw, 2rem);
-}
-
-body { font-size: var(--font-size-base); }
-h1 { font-size: var(--font-size-h1); }
-h2 { font-size: var(--font-size-h2); }
-h3 { font-size: var(--font-size-h3); }
-🎯 MY TOP RECOMMENDATIONS (Quick Wins)
-Do These First:
-
-✅ Increase letter-spacing on all headings (0.1em - 0.2em)
-✅ Make everything UPPERCASE (headings, nav, buttons)
-✅ Add terminal symbols (>, $, //) to section titles
-✅ Add blinking cursor to "Hey, I'm Tom."
-💚 HOW TO USE YOUR MATRIX CODE NFI FONT (.ttf)
-Perfect! You're absolutely right - this font is ONLY for the Matrix rain effect. Here's exactly how to implement it:
-
-Step 1: Host the Font File
-Place your matrix-code-nfi.ttf file in your project:
-
-your-project/ ├── public/ │ └── fonts/ │ └── matrix-code-nfi.ttf ├── src/ │ └── styles/ │ └── matrix-rain.css
-Step 2: Define the Font Face
-In your CSS file (or <style> tag):
-
-@font-face {
-  font-family: 'Matrix Code NFI';
-  src: url('/fonts/matrix-code-nfi.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Prevents invisible text while loading */
-}
-Adjust the path based on where you put the file:
-
-If in /public/fonts/: url('/fonts/matrix-code-nfi.ttf')
-If in /src/assets/fonts/: url('../assets/fonts/matrix-code-nfi.ttf')
-If in root: url('./matrix-code-nfi.ttf')
-Step 3: Apply ONLY to Matrix Rain Characters
-Assuming you have a Matrix rain effect, apply it like this:
-
-/* Target only the falling Matrix rain characters */
-.matrix-rain-character,
-.matrix-drop,
-.matrix-char {
-  font-family: 'Matrix Code NFI', monospace;
-  font-size: 20px; /* Adjust size as needed */
-  color: #00FF00;
-  text-shadow: 0 0 8px #00FF00;
-}
-Step 4: JavaScript Implementation Example
-If you're generating the rain in JavaScript:
-
-function createMatrixRain() {
-  const canvas = document.getElementById('matrix-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // Set the font to Matrix Code NFI
-  ctx.font = '20px "Matrix Code NFI", monospace';
-  ctx.fillStyle = '#00FF00';
-  ctx.shadowColor = '#00FF00';
-  ctx.shadowBlur = 10;
-  
-  // Matrix characters (Katakana + numbers + symbols)
-  const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789';
-  
-  // Draw falling characters
-  chars.split('').forEach((char, i) => {
-    ctx.fillText(char, x, y);
-  });
-}
-Step 5: HTML Canvas Alternative
-If using HTML elements instead of canvas:
-
-<!-- Matrix Rain Container -->
-<div class="matrix-rain-container">
-  <div class="matrix-column">
-    <span class="matrix-char">ｱ</span>
-    <span class="matrix-char">ｲ</span>
-    <span class="matrix-char">ｳ</span>
-    <!-- More characters... -->
-  </div>
-</div>
-.matrix-char {
-  font-family: 'Matrix Code NFI', 'Courier New', monospace;
-  color: #00FF00;
-  font-size: 18px;
-  text-shadow: 0 0 8px #00FF00;
-  display: block;
-  line-height: 1.2;
-}
-Step 6: Fallback for Font Loading
-Add a fallback while the font loads:
-
-@font-face {
-  font-family: 'Matrix Code NFI';
-  src: url('/fonts/matrix-code-nfi.ttf') format('truetype');
-  font-display: swap; /* Shows fallback font first */
-}
-
-.matrix-char {
-  font-family: 'Matrix Code NFI', 'MS Gothic', 'Meiryo', monospace;
-  /* MS Gothic and Meiryo have Japanese characters as fallback */
-}
-Step 7: Preload for Better Performance
-Add this to your HTML <head>:
-
-<link rel="preload" 
-      href="/fonts/matrix-code-nfi.ttf" 
-      as="font" 
-      type="font/ttf" 
-      crossorigin="anonymous">
-Complete Example: Matrix Rain with Font
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    @font-face {
-      font-family: 'Matrix Code NFI';
-      src: url('/fonts/matrix-code-nfi.ttf') format('truetype');
-      font-display: swap;
-    }
-
-    .matrix-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-      background: #000;
-    }
-
-    .matrix-column {
-      position: absolute;
-      top: -100%;
-      animation: fall linear infinite;
-    }
-
-    .matrix-char {
-      font-family: 'Matrix Code NFI', monospace;
-      color: #00FF00;
-      font-size: 20px;
-      text-shadow: 0 0 8px #00FF00;
-      display: block;
-      line-height: 1.2;
-      opacity: 0.8;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="matrix-background" id="matrix-rain"></div>
-
-  <script>
-    function createMatrixRain() {
-      const container = document.getElementById('matrix-rain');
-      const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ01';
-      
-      for (let i = 0; i < 50; i++) {
-        const column = document.createElement('div');
-        column.className = 'matrix-column';
-        column.style.left = Math.random() * 100 + '%';
-        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        column.style.animationDelay = Math.random() * 2 + 's';
-        
-        for (let j = 0; j < 20; j++) {
-          const char = document.createElement('span');
-          char.className = 'matrix-char';
-          char.textContent = chars[Math.floor(Math.random() * chars.length)];
-          char.style.opacity = Math.random() * 0.5 + 0.5;
-          column.appendChild(char);
-        }
-        
-        container.appendChild(column);
-      }
-    }
-    
-    createMatrixRain();
-  </script>
-</body>
-</html>
-🎯 IMPORTANT NOTES:
-ONLY use Matrix Code NFI for the rain effect ✅ (as you correctly identified!)
-Use other set styles for all readable text (navigation, body, headings)
-Matrix Code NFI characters are Katakana - they look cool but aren't readable
-Test font loading - make sure the path is correct
-Compress the font if it's large (use tools like Font Squirrel)
-📊 FINAL TYPOGRAPHY STACK RECOMMENDATION:
-/* For Matrix Rain ONLY */
-.matrix-rain {
-  font-family: 'Matrix Code NFI', monospace;
-}
-
-/* For ALL readable content */
-body {
-  font-family: 'Source Code Pro', 'Courier New', monospace;
-}
-
-/* Fallback chain */
-.matrix-mode {
-  font-family: 'Orbitron', 'Exo2', 'Courier New', Courier, monospace;
-}
-Would you like me to help you implement any of these typography improvements? Or do you need help troubleshooting the font file loading? 💚✨
+## SECTION 2: Enhanced Visual Effects & Glow (25 min)
+
+### 2.1 Enhanced Glow Effects
+- Triple-layer text shadow for headings
+- Pulsing border glow on navigation cards
+- Stronger glow on section titles
+
+### 2.2 Button Hover Enhancements  
+- Scale transform (1.05) on hover
+- Double box-shadow pulse
+- Breathing effect animation (2s infinite)
+
+### 2.3 Card Hover Effects
+- Navigation cards: translateY(-5px) + glow
+- Showcase cards: Enhanced elevation with cyan glow
+- Icon animations: rotation/pulse/scale
+
+### 2.4 Terminal Symbols
+- Add > prefix to section titles
+- Add $ to navigation section
+- Add // to footer section
+
+**Files**: themes.css, _navigation.css, _buttons.css, _cards.css, homepage.css
+
+---
+
+## SECTION 3: Advanced Matrix Effects & Interactivity (30 min)
+
+### 3.1 Scanline Effect (Optional)
+- Horizontal scanlines across viewport
+- body::after with repeating-linear-gradient
+- Toggleable or subtle (low opacity)
+
+### 3.2 Blinking Cursor Effect
+- Add terminal cursor to "Hey, I'm Tom."
+- 1s blink animation with ▮ character
+
+### 3.3 Typing Effect (Advanced)
+- Typing animation to hero text
+- Command-line loading simulation
+
+### 3.4 Icon Color Consistency
+- Decision: Keep variety OR make all green
+- Current: yellow/orange/cyan variety
+
+### 3.5 Footer Link Visibility
+- Make footer links more visible
+- Apply cyan/blue colors matching theme
+- Add hover glow effects
+
+### 3.6 Fix "GENRAI BOOTCAMP" Typo
+- Correct to "GEN AI BOOTCAMP PORTFOLIO"
+
+**Files**: matrix-effects.css, HomePage.tsx, Footer.tsx, _footer.css
+
+---
+
+## SECTION 4: Polish, Accessibility & Testing (20 min)
+
+### 4.1 Accessibility
+- Verify all interactive elements have focus states
+- Add ARIA labels for Matrix effects
+- Test keyboard navigation
+- Screen reader compatibility
+
+### 4.2 Responsive Testing
+- 3-column → 2-column (tablet)
+- 2-column → 1-column (mobile)
+- Matrix rain performance on mobile
+- Font sizes for small screens
+
+### 4.3 Loading States
+- Hero section loading animations
+- Matrix rain fade-in (already done)
+- Skeleton loaders if needed
+
+### 4.4 Performance Optimization
+- 60fps Matrix rain
+- Optimize glow effects (transform vs box-shadow)
+- Font loading performance
+- Smooth theme transitions
+
+### 4.5 Visual Consistency
+- Standardize glow intensity
+- Consistent timing functions
+- Color consistency both themes
+- Clean up duplicate CSS
+
+### 4.6 Build & Deploy
+- npm run build
+- Test production build
+- Verify font loading
+- Comprehensive commit
+
+**Files**: _accessibility.css, responsive.css, various cleanup
+```
