@@ -8,6 +8,7 @@ import { useCardAnimations } from '../hooks/useCardAnimations';
 
 
 export const HomePage: React.FC = () => {
+  const [imagesLoaded, setImagesLoaded] = React.useState(false);
 
   // Card animations hook
   useCardAnimations();
@@ -81,6 +82,18 @@ export const HomePage: React.FC = () => {
 
     // Cascade entrance animations on page load
     const animatePageEntrance = () => {
+      // Animate welcome text first with special effect
+      const welcomeText = document.querySelector('.welcome-text');
+      if (welcomeText) {
+        animate(welcomeText as HTMLElement, {
+          opacity: [0, 1],
+          scale: [0.95, 1],
+          duration: 800,
+          delay: 100,
+          easing: 'easeOutQuad'
+        });
+      }
+
       // Animate main introduction text with subtle cascade effect (excluding welcome-text)
       const introElements = document.querySelectorAll('#introduction h2:not(.welcome-text)');
       introElements.forEach((el, index) => {
@@ -91,25 +104,39 @@ export const HomePage: React.FC = () => {
           opacity: [0, 1],
           translateY: [20, 0],
           duration: 600,
-          delay: index * 100,
+          delay: 300 + index * 100,
           easing: 'easeOutQuad'
         });
       });
       
-      // Animate introduction images with subtle entrance
+      // Animate introduction images with subtle entrance (only when loaded)
       const introImages = document.querySelectorAll('.introduction-img img');
       introImages.forEach((img, index) => {
         // Remove inline styles - let CSS classes handle initial state
         img.classList.add('animated');
 
-        animate(img as HTMLElement, {
-          opacity: [0, 1],
-          scale: [0.9, 1],
-          translateY: [20, 0],
-          duration: 700,
-          delay: 400 + index * 150,
-          easing: 'easeOutQuad'
-        });
+        // Wait for image to load before animating
+        if ((img as HTMLImageElement).complete) {
+          animate(img as HTMLElement, {
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            translateY: [20, 0],
+            duration: 700,
+            delay: 400 + index * 150,
+            easing: 'easeOutQuad'
+          });
+        } else {
+          (img as HTMLImageElement).addEventListener('load', () => {
+            animate(img as HTMLElement, {
+              opacity: [0, 1],
+              scale: [0.9, 1],
+              translateY: [20, 0],
+              duration: 700,
+              delay: index * 150,
+              easing: 'easeOutQuad'
+            });
+          });
+        }
       });
       
       

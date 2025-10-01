@@ -10,6 +10,7 @@ import {
 } from '../utils/blogLoader';
 import '../css/blog.css';
 import { BlogList } from '../components/BlogList';
+import { BlogCardSkeleton } from '../components/SkeletonLoader';
 
 export const BlogPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -98,9 +99,18 @@ export const BlogPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="blog-loading">
-        <div className="matrix-spinner">
-          <span>Loading blog posts...</span>
+      <div className="blog-page">
+        <div className="blog-container">
+          <div className="blog-header">
+            <h1 className="blog-title">
+              <span className="typing-effect">Loading Blog</span>
+            </h1>
+          </div>
+          <div className="blog-grid">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <BlogCardSkeleton key={index} />
+            ))}
+          </div>
         </div>
       </div>
     );
