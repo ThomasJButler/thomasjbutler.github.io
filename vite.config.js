@@ -6,8 +6,7 @@ import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from '
 
 export default defineConfig({
   root: '.',
-  // Conditional base path: '/' for dev, '/ThomasJButler/' for production
-  base: process.env.NODE_ENV === 'production' ? '/ThomasJButler/' : '/',
+  base: '/ThomasJButler/',
   build: {
     outDir: 'dist',
     rollupOptions: {
