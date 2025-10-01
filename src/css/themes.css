@@ -536,16 +536,43 @@
   transform: translateY(-5px);
 }
 
+/* Gallery Cards (Homepage) */
+[data-theme="dark"] .gallery-card {
+  background: rgba(15, 15, 30, 0.9) !important;
+  border: 2px solid #4A9EFF !important;
+}
+
+[data-theme="dark"] .gallery-card:hover {
+  border-color: #5AADFF !important;
+  box-shadow: var(--glow-box-intense) !important;
+}
+
+[data-theme="dark"] .gallery-card.revealed:hover::before {
+  background: linear-gradient(45deg, #4A9EFF, #5AADFF) !important;
+}
+
+[data-theme="dark"] .gallery-link {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .gallery-link:hover {
+  background: #5AADFF !important;
+  color: #FFFFFF !important;
+  box-shadow: var(--glow-box-intense) !important;
+}
+
 /* Contact Form Buttons */
 [data-theme="dark"] .btn-contact-us {
-  background: rgba(0, 255, 0, 0.2) !important;
+  background: rgba(74, 158, 255, 0.2) !important;
   color: #FFFFFF !important;
-  border: 2px solid #00FF00 !important;
+  border: 2px solid #4A9EFF !important;
 }
 
 [data-theme="dark"] .btn-contact-us:hover {
-  background: #00FF00 !important;
+  background: #4A9EFF !important;
   color: #000000 !important;
+  box-shadow: var(--glow-box-intense) !important;
 }
 
 /* Contact Info Sections */

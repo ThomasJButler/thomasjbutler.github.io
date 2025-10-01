@@ -41,7 +41,7 @@
 .introduction-expertise-card:hover,
 .project-card:hover {
     box-shadow:
-        0 8px 25px rgba(0, 255, 0, 0.2),
+        0 8px 25px var(--glow-color-subtle),
         0 0 30px rgba(var(--accent-rgb), 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transform: translateY(-8px); /* More dramatic elevation */
@@ -54,13 +54,13 @@
 @keyframes pulsingBorderGlow {
     0%, 100% {
         box-shadow:
-            0 8px 25px rgba(0, 255, 0, 0.2),
+            0 8px 25px var(--glow-color-subtle),
             0 0 30px rgba(var(--accent-rgb), 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     50% {
         box-shadow:
-            0 8px 25px rgba(0, 255, 0, 0.4),
+            0 8px 25px var(--glow-color-primary),
             0 0 45px rgba(var(--accent-rgb), 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
@@ -160,7 +160,7 @@
 
 .introduction-expertise-tags span,
 .project-tags span {
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(var(--accent-rgb), 0.1);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-full);
     color: var(--text-secondary);
@@ -189,7 +189,7 @@
 }
 
 .introduction-expertise-bar {
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(var(--accent-rgb), 0.1);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-full);
     height: 8px;
