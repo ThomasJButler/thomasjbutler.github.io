@@ -132,7 +132,7 @@
 .gallery-link {
     display: inline-block;
     background: #00FF00;
-    color: #000;
+    color: #000 !important; /* Force black text for contrast on green button */
     padding: 0.8rem 2rem;
     border-radius: 5px;
     font-family: var(--font-primary);
@@ -146,7 +146,7 @@
 
 .gallery-link:hover {
     background: var(--matrix-cyan);
-    color: #000;
+    color: #000 !important; /* Force black text on hover for contrast */
     box-shadow: 0 0 20px var(--matrix-cyan);
 }
 
