@@ -785,12 +785,43 @@ body.loaded {
     animation: pulse 2s var(--ease-in-out) infinite;
 }
 
+/* Section 4.5: Standardized Glow Utility Classes */
+.glow-subtle {
+    box-shadow: var(--glow-box-subtle) !important;
+}
+
+.glow-standard,
 .glow {
-    box-shadow: var(--matrix-glow);
+    box-shadow: var(--glow-box-standard) !important;
+}
+
+.glow-medium {
+    box-shadow: var(--glow-box-medium) !important;
 }
 
 .glow-intense {
-    box-shadow: var(--matrix-glow-intense);
+    box-shadow: var(--glow-box-intense) !important;
+}
+
+.glow-extreme {
+    box-shadow: var(--glow-box-extreme) !important;
+}
+
+/* Text Glow Utilities */
+.text-glow-subtle {
+    text-shadow: var(--glow-text-subtle) !important;
+}
+
+.text-glow-standard {
+    text-shadow: var(--glow-text-standard) !important;
+}
+
+.text-glow-intense {
+    text-shadow: var(--glow-text-intense) !important;
+}
+
+.text-glow-triple {
+    text-shadow: var(--glow-triple-layer) !important;
 }
 
 /* ==========================================================================

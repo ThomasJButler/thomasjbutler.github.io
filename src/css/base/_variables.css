@@ -116,22 +116,58 @@
     /* ==========================================================================
        Visual Effects (from design_system.md)
        ========================================================================== */
-    
-    /* Glow Effects */
-    --matrix-glow: 0 0 10px var(--matrix-green);
-    --matrix-glow-intense: 0 0 20px var(--matrix-green);
-    --matrix-glow-soft: 0 0 5px rgba(0, 255, 0, 0.5);
+
+    /* Theme-Aware Glow Colors (Section 4.5) */
+    --glow-color-primary: rgba(0, 255, 0, 0.3);     /* Matrix green, overridden in themes */
+    --glow-color-accent: rgba(0, 255, 255, 0.3);    /* Cyan accent, overridden in themes */
+    --glow-color-subtle: rgba(0, 255, 0, 0.2);      /* Subtle green, overridden in themes */
+    --glow-color-intense: rgba(0, 255, 0, 0.5);     /* Intense green, overridden in themes */
+
+    /* Standardized Glow Intensity Scale (Section 4.5) */
+    --glow-subtle: 0 0 5px;                         /* Minimal glow for small elements */
+    --glow-standard: 0 0 10px;                      /* Default glow for most elements */
+    --glow-medium: 0 0 15px;                        /* Medium glow for emphasis */
+    --glow-intense: 0 0 20px;                       /* Intense glow for primary actions */
+    --glow-extreme: 0 0 30px;                       /* Maximum glow for special effects */
+
+    /* Combined Glow Effects (using intensity + color) */
+    --glow-box-subtle: var(--glow-subtle) var(--glow-color-subtle);
+    --glow-box-standard: var(--glow-standard) var(--glow-color-primary);
+    --glow-box-medium: var(--glow-medium) var(--glow-color-primary);
+    --glow-box-intense: var(--glow-intense) var(--glow-color-intense);
+    --glow-box-extreme: var(--glow-extreme) var(--glow-color-intense);
+
+    /* Text Shadow Glow Scale (Section 4.5) */
+    --glow-text-subtle: var(--glow-subtle) var(--glow-color-subtle);
+    --glow-text-standard: var(--glow-standard) var(--glow-color-primary);
+    --glow-text-intense: var(--glow-intense) var(--glow-color-accent);
+
+    /* Multi-Layer Glow Effects (for headings and special elements) */
+    --glow-triple-layer:
+        var(--glow-standard) var(--glow-color-intense),
+        var(--glow-intense) var(--glow-color-primary),
+        var(--glow-extreme) var(--glow-color-subtle);
+
+    /* Legacy Glow Effects (backward compatibility) */
+    --matrix-glow: var(--glow-box-standard);
+    --matrix-glow-intense: var(--glow-box-intense);
+    --matrix-glow-soft: var(--glow-box-subtle);
     --phosphor-glow: 0 0 2px var(--matrix-green), 0 0 8px rgba(0, 255, 0, 0.4);
-    --yellow-glow: 0 0 15px var(--matrix-yellow);
-    --red-glow: 0 0 15px var(--matrix-red);
-    
+    --yellow-glow: var(--glow-medium) var(--matrix-yellow);
+    --red-glow: var(--glow-medium) var(--matrix-red);
+
     /* Shadow System - Professional depth with Matrix tint */
     --shadow-sm: 0 2px 4px rgba(0, 255, 0, 0.1);
     --shadow-md: 0 4px 8px rgba(0, 255, 0, 0.15);
     --shadow-lg: 0 8px 16px rgba(0, 255, 0, 0.2);
     --shadow-xl: 0 12px 24px rgba(0, 255, 0, 0.25);
-    --shadow-glow: 0 0 30px rgba(0, 255, 0, 0.3);
+    --shadow-glow: var(--glow-box-extreme);
     --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    /* Mobile Glow Overrides (Section 4.4 Performance) */
+    --glow-mobile-subtle: 0 0 5px;                  /* Mobile: subtle effects only */
+    --glow-mobile-standard: 0 0 8px;                /* Mobile: reduced standard */
+    --glow-mobile-maximum: 0 0 10px;                /* Mobile: maximum allowed */
     
     /* Glassmorphism Effects */
     --glass-bg: rgba(0, 20, 0, 0.6);

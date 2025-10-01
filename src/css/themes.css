@@ -25,6 +25,13 @@
   --code-bg: rgba(0, 255, 0, 0.05);
   --scrollbar-bg: #000000;
   --scrollbar-thumb: #00ff00;
+
+  /* Section 4.5: Theme-Specific Glow Colors */
+  --glow-color-primary: rgba(0, 255, 0, 0.3);     /* Matrix green primary */
+  --glow-color-accent: rgba(0, 255, 255, 0.3);    /* Cyan accent glow */
+  --glow-color-subtle: rgba(0, 255, 0, 0.2);      /* Subtle green */
+  --glow-color-intense: rgba(0, 255, 255, 0.5);   /* Intense cyan */
+  --accent-rgb: 0, 255, 255;                       /* Cyan RGB for dynamic glows */
 }
 
 /* Dark Theme (Clean Professional - Blue & White Only) */
@@ -49,6 +56,13 @@
   --code-bg: rgba(255, 255, 255, 0.05);
   --scrollbar-bg: #0f0f0f;
   --scrollbar-thumb: #4A9EFF; /* Blue scrollbar */
+
+  /* Section 4.5: Theme-Specific Glow Colors - Blue Theme */
+  --glow-color-primary: rgba(74, 158, 255, 0.3);  /* Blue primary */
+  --glow-color-accent: rgba(90, 173, 255, 0.3);   /* Lighter blue accent */
+  --glow-color-subtle: rgba(74, 158, 255, 0.2);   /* Subtle blue */
+  --glow-color-intense: rgba(74, 158, 255, 0.5);  /* Intense blue */
+  --accent-rgb: 74, 158, 255;                      /* Blue RGB for dynamic glows */
 }
 
 /* ========================================================================
@@ -79,9 +93,9 @@
    ======================================================================== */
 
 * {
-  transition: background-color 0.3s ease,
-              color 0.3s ease,
-              border-color 0.3s ease;
+  transition: background-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
 }
 
 /* Prevent transition on initial load */
@@ -96,7 +110,7 @@
 /* Matrix Theme - Enhanced Glow Effects */
 [data-theme="matrix"] a:hover {
   color: var(--accent-color);
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle cyan glow */
+  text-shadow: var(--glow-text-subtle); /* Subtle cyan glow */
 }
 
 /* Triple-layer text shadow for headings */
@@ -104,10 +118,7 @@
 [data-theme="matrix"] h2,
 [data-theme="matrix"] .section-title,
 [data-theme="matrix"] .page-heading {
-  text-shadow:
-    0 0 10px rgba(0, 255, 255, 0.5),
-    0 0 20px rgba(0, 255, 255, 0.3),
-    0 0 30px rgba(0, 255, 255, 0.1);
+  text-shadow: var(--glow-triple-layer);
 }
 
 [data-theme="matrix"] button:hover {
@@ -116,7 +127,7 @@
 
 [data-theme="matrix"] input:focus,
 [data-theme="matrix"] textarea:focus {
-  box-shadow: 0 0 10px var(--shadow-glow);
+  box-shadow: var(--glow-box-standard);
   border-color: var(--accent-color);
 }
 
@@ -124,20 +135,20 @@
 [data-theme="dark"] a:hover {
   color: var(--accent-color); /* Blue */
   text-decoration: underline;
-  text-shadow: 0 0 5px rgba(74, 158, 255, 0.3); /* Subtle blue glow */
+  text-shadow: var(--glow-text-subtle); /* Subtle blue glow */
 }
 
 [data-theme="dark"] button:hover {
   background: rgba(74, 158, 255, 0.1); /* Blue tint */
   border-color: var(--accent-color);
-  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); /* Blue glow */
+  box-shadow: var(--glow-box-standard); /* Blue glow */
 }
 
 [data-theme="dark"] input:focus,
 [data-theme="dark"] textarea:focus {
   border-color: var(--accent-color); /* Blue border */
   outline: 1px solid var(--accent-color);
-  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); /* Blue glow */
+  box-shadow: var(--glow-box-standard); /* Blue glow */
 }
 
 /* ========================================================================
@@ -155,7 +166,7 @@
 [data-theme="dark"] .project-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px var(--shadow-color);
+  box-shadow: var(--shadow-md);
 }
 
 /* Buttons */
@@ -226,7 +237,7 @@
 
 [data-theme="matrix"]::-webkit-scrollbar-thumb:hover {
   background: var(--accent-hover);
-  box-shadow: 0 0 5px var(--matrix-green);
+  box-shadow: var(--glow-box-subtle);
 }
 
 /* Dark Theme Scrollbar - Blue */
@@ -243,7 +254,7 @@
 
 [data-theme="dark"]::-webkit-scrollbar-thumb:hover {
   background: #5AADFF; /* Lighter blue on hover */
-  box-shadow: 0 0 5px rgba(74, 158, 255, 0.5);
+  box-shadow: var(--glow-box-subtle);
 }
 
 /* ========================================================================
@@ -308,7 +319,7 @@
 [data-theme="dark"] nav a:hover,
 [data-theme="dark"] .nav-link:hover {
   color: #5AADFF !important;
-  text-shadow: 0 0 8px rgba(74, 158, 255, 0.5);
+  text-shadow: var(--glow-standard) var(--glow-color-intense);
 }
 
 [data-theme="dark"] nav a.active {
@@ -339,7 +350,7 @@
 
 [data-theme="dark"] .nav-card:hover {
   border-color: #4A9EFF !important;
-  box-shadow: 0 0 20px rgba(74, 158, 255, 0.3) !important;
+  box-shadow: var(--glow-box-intense) !important;
 }
 
 /* Services Page */
@@ -412,7 +423,7 @@
 [data-theme="dark"] .skill-card:hover,
 [data-theme="dark"] .blog-card:hover {
   border-color: #4A9EFF !important;
-  box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2) !important;
+  box-shadow: 0 8px 25px var(--glow-color-subtle) !important;
 }
 
 /* Links & Anchors */
@@ -434,7 +445,7 @@
 [data-theme="dark"] .border-glow,
 [data-theme="dark"] .glow-border {
   border-color: #4A9EFF !important;
-  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+  box-shadow: var(--glow-box-standard) !important;
 }
 
 /* Social Links */
@@ -456,12 +467,12 @@
 
 [data-theme="dark"] .menu-toggle span {
   background: #4A9EFF !important;
-  box-shadow: 0 0 6px rgba(74, 158, 255, 0.6) !important;
+  box-shadow: 0 0 6px var(--glow-color-intense) !important;
 }
 
 [data-theme="dark"] .menu-toggle:hover {
   border-color: #4A9EFF !important;
-  box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
+  box-shadow: var(--glow-box-medium) !important;
 }
 
 /* Skill Level Indicators */
@@ -491,7 +502,7 @@
 [data-theme="dark"] .gallery-link:hover {
   background: #5AADFF !important;
   color: #FFFFFF !important;
-  box-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
+  box-shadow: var(--glow-box-intense) !important;
 }
 
 /* Arrow Icons */
@@ -512,7 +523,7 @@
 
 [data-theme="dark"] .journey-card:hover {
   border-color: #4A9EFF !important;
-  box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2) !important;
+  box-shadow: 0 10px 30px var(--glow-color-subtle) !important;
 }
 
 /* Service Cards */
@@ -562,15 +573,15 @@
   background: rgba(0, 20, 20, 0.9) !important;
   color: #FFFFFF !important;
   border: 2px solid var(--matrix-cyan) !important;
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
+  text-shadow: var(--glow-text-subtle) !important;
 }
 
 [data-theme="matrix"] .gallery-link:hover {
   background: rgba(0, 255, 255, 0.2) !important;
   color: #FFFFFF !important;
   border-color: var(--matrix-cyan) !important;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6) !important;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+  box-shadow: var(--glow-intense) rgba(0, 255, 255, 0.6) !important;
+  text-shadow: var(--glow-standard) rgba(255, 255, 255, 0.8) !important;
 }
 
 /* Contact Form Buttons */
@@ -583,7 +594,7 @@
 [data-theme="matrix"] .btn-contact-us:hover {
   background: var(--matrix-green) !important;
   color: #000000 !important;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.6) !important;
+  box-shadow: var(--glow-intense) rgba(0, 255, 0, 0.6) !important;
 }
 
 /* Contact Info Sections */
@@ -596,10 +607,10 @@
 [data-theme="matrix"] .info-card,
 [data-theme="matrix"] .info-section p {
   color: #FFFFFF !important;
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3) !important;
+  text-shadow: var(--glow-text-subtle) !important;
 }
 
 [data-theme="matrix"] .info-section:hover h3 {
   color: var(--matrix-cyan) !important;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
+  text-shadow: var(--glow-medium) rgba(0, 255, 255, 0.6) !important;
 }

@@ -242,7 +242,7 @@
   .journey-card:hover,
   .skill-card:hover,
   [class*="-card"]:hover {
-    box-shadow: 0 0 10px var(--accent-color, rgba(0, 255, 0, 0.3)) !important;
+    box-shadow: var(--glow-mobile-maximum) var(--glow-color-primary) !important;
   }
 
   /* Simplify text-shadow glows on mobile */
@@ -250,7 +250,7 @@
   .section-heading,
   [class*="heading"],
   [class*="title"] {
-    text-shadow: 0 0 5px var(--accent-color, rgba(0, 255, 0, 0.3)) !important;
+    text-shadow: var(--glow-mobile-subtle) var(--glow-color-primary) !important;
   }
 
   /* Reduce button glow effects on mobile */
@@ -259,13 +259,13 @@
   .cta-button:hover,
   .matrix-btn:hover,
   .gallery-link:hover {
-    box-shadow: 0 0 8px var(--accent-color, rgba(0, 255, 0, 0.3)) !important;
+    box-shadow: var(--glow-mobile-standard) var(--glow-color-primary) !important;
   }
 
   /* Simplify image hover glows */
   .introduction-img img:hover,
   img:hover {
-    box-shadow: 0 0 15px var(--accent-color, rgba(0, 255, 0, 0.3)) !important;
+    box-shadow: var(--glow-mobile-maximum) var(--glow-color-accent) !important;
   }
 
   /* Disable 3D transforms on mobile for performance */
@@ -294,7 +294,7 @@
   button:hover,
   a:hover,
   [class*="card"]:hover {
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.2) !important;
+    box-shadow: var(--glow-mobile-subtle) var(--glow-color-subtle) !important;
   }
 
   /* Simplify card hover to just translate */

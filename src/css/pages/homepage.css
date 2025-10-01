@@ -59,7 +59,7 @@
     border-radius: 15px;
     padding: 2.5rem;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all var(--duration-base) var(--ease-out);
     position: relative;
     overflow: hidden;
 }
@@ -74,7 +74,7 @@
     border-radius: 15px;
     opacity: 0;
     z-index: -1;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-base) var(--ease-out);
 }
 
 .gallery-card.revealed:hover::before {
@@ -85,8 +85,8 @@
 .gallery-card:hover {
     transform: translateY(-10px);
     box-shadow:
-        0 6px 15px rgba(0, 255, 0, 0.3),
-        0 0 25px rgba(0, 255, 255, 0.2);
+        0 6px 15px var(--glow-color-primary),
+        var(--glow-box-medium);
 }
 
 .gallery-icon {
@@ -96,13 +96,13 @@
 }
 
 .gallery-icon i {
-    transition: transform 0.6s ease;
+    transition: transform 0.6s var(--ease-out);
     display: inline-block;
 }
 
 /* Icon animations on card hover */
 .gallery-card:hover .gallery-icon i {
-    animation: iconPulseRotate 1s ease-in-out infinite;
+    animation: iconPulseRotate 1s var(--ease-in-out) infinite;
 }
 
 @keyframes iconPulseRotate {
@@ -139,7 +139,7 @@
     font-size: 1.2rem;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all var(--duration-base) var(--ease-out);
     position: relative;
     overflow: hidden;
 }
@@ -147,7 +147,7 @@
 .gallery-link:hover {
     background: var(--matrix-cyan);
     color: #000 !important; /* Force black text on hover for contrast */
-    box-shadow: 0 0 20px var(--matrix-cyan);
+    box-shadow: var(--glow-box-intense);
 }
 
 /* Latest Updates Section Homepage */ 
@@ -221,12 +221,12 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.4s var(--ease-in-out);
  }
  
  .update-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+    box-shadow: var(--glow-box-extreme);
     border-color: rgba(0, 255, 0, 0.4);
  }
  
@@ -255,7 +255,7 @@
  .card-image img {
     width: 100%;
     height: auto;
-    transition: transform 0.5s ease;
+    transition: transform var(--duration-slow) var(--ease-out);
  }
  
  .update-card:hover .card-image img {
@@ -327,10 +327,10 @@
 
 .introduction-img img {
     border-radius: 10px;
-    box-shadow: 0 0 15px var(--accent-color);
+    box-shadow: var(--glow-box-medium);
     max-width: 280px;
     height: auto;
-    transition: transform 0.3s ease, opacity 0.7s ease, filter 0.7s ease;
+    transition: transform var(--duration-base) var(--ease-out), opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out);
     opacity: 0;
     filter: blur(10px);
 }
@@ -468,8 +468,8 @@
     height: 100%;
     background: linear-gradient(90deg, rgba(0, 255, 0, 0.6), rgba(0, 255, 0, 0.8));
     border-radius: 10px;
-    transition: width 1s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    transition: width 1s var(--ease-out);
+    box-shadow: var(--glow-box-standard);
 }
 
 .introduction-expertise-tags span {
@@ -480,7 +480,7 @@
     padding: 0.5rem;
     font-size: 0.85em;
     color: var(--accent-color);
-    transition: all 0.3s ease;
+    transition: all var(--duration-base) var(--ease-out);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -502,7 +502,7 @@
 
 /* Base card transitions */
 .introduction-expertise-card {
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s var(--ease-in-out);
     position: relative;
     overflow: hidden;
 }
@@ -517,10 +517,10 @@
     height: 100%;
     border-radius: 15px;
     opacity: 0;
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s var(--ease-in-out);
     z-index: -1;
-    box-shadow: 
-        0 0 30px rgba(0, 255, 0, 0.15),
+    box-shadow:
+        var(--glow-extreme) rgba(0, 255, 0, 0.15),
         0 0 50px rgba(0, 255, 0, 0.1),
         0 0 70px rgba(0, 255, 0, 0.05);
 }
@@ -555,7 +555,7 @@
 
 /* Enhanced tag hover effects */
 .introduction-expertise-tags span {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s var(--ease-in-out);
     position: relative;
     overflow: hidden;
 }
@@ -580,12 +580,12 @@
     background: rgba(0, 40, 0, 0.9);
     border-color: rgba(0, 255, 0, 0.6);
     transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    box-shadow: var(--glow-box-medium);
 }
 
 .introduction-expertise-tags span:hover::before {
     transform: translateX(100%);
-    transition: transform 0.5s ease;
+    transition: transform var(--duration-slow) var(--ease-out);
 }
 
 /* Matrix Rain Canvas Styles */
@@ -668,22 +668,22 @@
 
 .section-heading::before {
     left: -80px;
-    animation: pulseGlow 2s ease-in-out infinite alternate;
+    animation: pulseGlow 2s var(--ease-in-out) infinite alternate;
 }
 
 .section-heading::after {
     right: -80px;
-    animation: pulseGlow 2s ease-in-out infinite alternate-reverse;
+    animation: pulseGlow 2s var(--ease-in-out) infinite alternate-reverse;
 }
 
 @keyframes pulseGlow {
     0% {
         opacity: 0.5;
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        box-shadow: var(--glow-box-standard);
     }
     100% {
         opacity: 1;
-        box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.4);
+        box-shadow: var(--glow-box-intense), var(--glow-box-extreme);
     }
 }
 
@@ -947,18 +947,18 @@ body {
 }
 
 .gallery-card:hover {
-    animation: cardGlow 2s ease-in-out infinite alternate;
+    animation: cardGlow 2s var(--ease-in-out) infinite alternate;
 }
 
 @keyframes cardGlow {
     0% {
-        box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 6px 15px var(--glow-color-primary);
     }
     100% {
         box-shadow:
-            0 6px 25px rgba(0, 255, 0, 0.5),
-            0 0 30px rgba(0, 255, 0, 0.2),
-            inset 0 0 20px rgba(0, 255, 0, 0.1);
+            0 6px 25px var(--glow-color-intense),
+            var(--glow-box-extreme),
+            inset var(--glow-intense) rgba(0, 255, 0, 0.1);
     }
 }
 
@@ -975,7 +975,7 @@ body {
 .introduction-expertise-card {
     opacity: 0;
     transform: translateY(30px);
-    animation: expertiseCardReveal 0.8s ease-out forwards;
+    animation: expertiseCardReveal 0.8s var(--ease-out) forwards;
 }
 
 .introduction-expertise-card:nth-child(1) { animation-delay: 0.1s; }
@@ -1012,7 +1012,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
-    transition: left 0.5s ease;
+    transition: left var(--duration-slow) var(--ease-out);
 }
 
 .gallery-link:hover::before,
@@ -1023,14 +1023,14 @@ body {
 /* Enhanced image hover effects */
 .introduction-img img {
     filter: brightness(0.9) contrast(1.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s var(--ease-in-out);
 }
 
 .introduction-img img:hover {
     filter: brightness(1.1) contrast(1.2) saturate(1.1);
     box-shadow:
-        0 0 25px rgba(0, 255, 0, 0.4),
-        0 0 50px rgba(0, 255, 0, 0.2);
+        var(--glow-medium) var(--glow-color-intense),
+        0 0 50px var(--glow-color-subtle);
 }
 
 /* Subtle scroll indicators */
