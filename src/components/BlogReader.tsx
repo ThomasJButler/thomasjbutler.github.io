@@ -274,22 +274,23 @@ export const BlogReader: React.FC = () => {
               lineHeight: fontSize >= 20 ? '1.8' : '1.7'
             }}
           >
-            <ReactMarkdown
-              className="blog-markdown-content"
-              components={{
-                // Custom renderers for better styling
-                h1: ({node, ...props}) => <h1 style={{marginTop: '2em', marginBottom: '1em'}} {...props} />,
-                h2: ({node, ...props}) => <h2 style={{marginTop: '1.5em', marginBottom: '0.75em'}} {...props} />,
-                h3: ({node, ...props}) => <h3 style={{marginTop: '1.25em', marginBottom: '0.5em'}} {...props} />,
-                p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: 'inherit'}} {...props} />,
-                code: ({node, inline, ...props}) =>
-                  inline
-                    ? <code style={{background: 'rgba(0,255,0,0.1)', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />
-                    : <code style={{display: 'block', background: 'rgba(0,20,0,0.5)', padding: '1em', borderRadius: '8px', overflow: 'auto'}} {...props} />,
-              }}
-            >
-              {post.content}
-            </ReactMarkdown>
+            <div className="blog-markdown-content">
+              <ReactMarkdown
+                components={{
+                  // Custom renderers for better styling
+                  h1: ({node, ...props}) => <h1 style={{marginTop: '2em', marginBottom: '1em'}} {...props} />,
+                  h2: ({node, ...props}) => <h2 style={{marginTop: '1.5em', marginBottom: '0.75em'}} {...props} />,
+                  h3: ({node, ...props}) => <h3 style={{marginTop: '1.25em', marginBottom: '0.5em'}} {...props} />,
+                  p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: 'inherit'}} {...props} />,
+                  code: ({node, inline, ...props}) =>
+                    inline
+                      ? <code style={{background: 'rgba(0,255,0,0.1)', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />
+                      : <code style={{display: 'block', background: 'rgba(0,20,0,0.5)', padding: '1em', borderRadius: '8px', overflow: 'auto'}} {...props} />,
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
+            </div>
           </div>
 
           <footer className="article-footer">
