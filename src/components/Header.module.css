@@ -79,6 +79,7 @@
   display: flex;
   align-items: center;
   gap: 2.5rem; /* Increased for better spacing after header name */
+  margin-left: 1rem; /* Shift right to accommodate // symbols */
 }
 
 .navList {

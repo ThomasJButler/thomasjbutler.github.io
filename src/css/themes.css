@@ -490,6 +490,7 @@
 [data-theme="dark"] .showcase-link:hover,
 [data-theme="dark"] .gallery-link:hover {
   background: #5AADFF !important;
+  color: #FFFFFF !important;
   box-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
 }
 
@@ -522,4 +523,83 @@
 [data-theme="dark"] .service-card:hover {
   border-color: #4A9EFF !important;
   transform: translateY(-5px);
+}
+
+/* Contact Form Buttons */
+[data-theme="dark"] .btn-contact-us {
+  background: rgba(0, 255, 0, 0.2) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #00FF00 !important;
+}
+
+[data-theme="dark"] .btn-contact-us:hover {
+  background: #00FF00 !important;
+  color: #000000 !important;
+}
+
+/* Contact Info Sections */
+[data-theme="dark"] .info-section {
+  background: rgba(20, 20, 40, 0.8) !important;
+  border-color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .info-section h3,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .info-section p {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .info-section:hover h3 {
+  color: #4A9EFF !important;
+}
+
+/* ==========================================================================
+   Matrix Theme Overrides
+   ========================================================================== */
+
+/* Gallery & Showcase Links */
+[data-theme="matrix"] .gallery-link {
+  background: rgba(0, 20, 20, 0.9) !important;
+  color: #FFFFFF !important;
+  border: 2px solid var(--matrix-cyan) !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
+}
+
+[data-theme="matrix"] .gallery-link:hover {
+  background: rgba(0, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  border-color: var(--matrix-cyan) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Contact Form Buttons */
+[data-theme="matrix"] .btn-contact-us {
+  background: rgba(0, 255, 0, 0.2) !important;
+  color: #FFFFFF !important;
+  border: 2px solid var(--matrix-green) !important;
+}
+
+[data-theme="matrix"] .btn-contact-us:hover {
+  background: var(--matrix-green) !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.6) !important;
+}
+
+/* Contact Info Sections */
+[data-theme="matrix"] .info-section {
+  background: rgba(0, 20, 0, 0.8) !important;
+  border-color: var(--matrix-cyan) !important;
+}
+
+[data-theme="matrix"] .info-section h3,
+[data-theme="matrix"] .info-card,
+[data-theme="matrix"] .info-section p {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3) !important;
+}
+
+[data-theme="matrix"] .info-section:hover h3 {
+  color: var(--matrix-cyan) !important;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6) !important;
 }
