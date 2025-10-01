@@ -78,7 +78,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem; /* Increased from 1.5rem for better spacing after header name */
 }
 
 .navList {
