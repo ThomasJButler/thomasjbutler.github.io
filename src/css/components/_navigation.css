@@ -32,22 +32,12 @@ nav li {
 nav a {
     color: var(--matrix-green);
     text-decoration: none;
-    font-size: 0.75rem; /* Reduced from 0.9rem */
+    font-size: 0.9rem; /* Restored to original - Header uses CSS modules */
     font-weight: 400;
     letter-spacing: 0.05em;
     transition: all var(--duration-base) var(--ease-out);
     position: relative;
     padding: 0.25rem 0;
-}
-
-/* Terminal // prefix for nav links - using pseudo-element */
-nav li::before {
-    content: '//';
-    color: var(--matrix-green);
-    font-family: monospace;
-    margin-right: 0.5rem;
-    opacity: 0.7;
-    font-size: 0.75rem;
 }
 
 /* Active page indicator */
