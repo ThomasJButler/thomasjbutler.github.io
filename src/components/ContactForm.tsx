@@ -124,7 +124,7 @@ export const ContactForm: React.FC = () => {
         My resume is available upon request. Please mention in your message if you'd like to receive a copy.
       </p>
       
-      <form ref={formRef} onSubmit={handleSubmit} className={styles.contactForm}>
+      <form ref={formRef} onSubmit={handleSubmit} className={styles.contactForm} noValidate>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>NAME:</label>
           <input
@@ -138,8 +138,16 @@ export const ContactForm: React.FC = () => {
             onBlur={handleInputBlur}
             className={styles.input}
             disabled={isSubmitting}
+            required
+            aria-required="true"
+            aria-invalid={errors.name ? 'true' : 'false'}
+            aria-describedby={errors.name ? 'name-error' : undefined}
           />
-          {errors.name && <span className={`${styles.error} error-message`}>{errors.name}</span>}
+          {errors.name && (
+            <span id="name-error" className={`${styles.error} error-message`} role="alert">
+              {errors.name}
+            </span>
+          )}
         </div>
         
         <div className={styles.formGroup}>
@@ -155,8 +163,16 @@ export const ContactForm: React.FC = () => {
             onBlur={handleInputBlur}
             className={styles.input}
             disabled={isSubmitting}
+            required
+            aria-required="true"
+            aria-invalid={errors.email ? 'true' : 'false'}
+            aria-describedby={errors.email ? 'email-error' : undefined}
           />
-          {errors.email && <span className={`${styles.error} error-message`}>{errors.email}</span>}
+          {errors.email && (
+            <span id="email-error" className={`${styles.error} error-message`} role="alert">
+              {errors.email}
+            </span>
+          )}
         </div>
         
         <div className={styles.formGroup}>
@@ -172,14 +188,24 @@ export const ContactForm: React.FC = () => {
             className={styles.textarea}
             rows={6}
             disabled={isSubmitting}
+            required
+            aria-required="true"
+            aria-invalid={errors.message ? 'true' : 'false'}
+            aria-describedby={errors.message ? 'message-error' : undefined}
           />
-          {errors.message && <span className={`${styles.error} error-message`}>{errors.message}</span>}
+          {errors.message && (
+            <span id="message-error" className={`${styles.error} error-message`} role="alert">
+              {errors.message}
+            </span>
+          )}
         </div>
         
         <button
           type="submit"
           className={`${styles.submitButton} submit-button`}
           disabled={isSubmitting}
+          aria-busy={isSubmitting}
+          aria-live="polite"
         >
           {isSubmitting ? (
             <>
@@ -193,8 +219,8 @@ export const ContactForm: React.FC = () => {
         </button>
         
         {submitSuccess && (
-          <div className={styles.successMessage}>
-            <i className="fas fa-check-circle"></i>
+          <div className={styles.successMessage} role="status" aria-live="polite">
+            <i className="fas fa-check-circle" aria-hidden="true"></i>
             Message sent successfully! I'll get back to you soon.
           </div>
         )}

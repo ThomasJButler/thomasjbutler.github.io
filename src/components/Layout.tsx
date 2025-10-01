@@ -40,6 +40,11 @@ export const Layout: React.FC = () => {
   // Wrap in CRT effect for Matrix theme
   const content = (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
+      {/* Skip to main content link for accessibility */}
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
+
       {/* Theme-specific backgrounds */}
       {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain />}
       {theme === 'dark' && <ParticleBackground />}
@@ -48,7 +53,7 @@ export const Layout: React.FC = () => {
       <Header />
 
       {/* Main Content */}
-      <main ref={contentRef} className={styles.mainContent}>
+      <main id="main-content" ref={contentRef} className={styles.mainContent} role="main">
         <Outlet />
       </main>
 

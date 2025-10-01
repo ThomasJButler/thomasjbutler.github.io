@@ -263,6 +263,9 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     <canvas
       ref={canvasRef}
       className="matrix-rain"
+      role="presentation"
+      aria-hidden="true"
+      aria-label="Decorative Matrix code rain animation background"
       style={{
         position: 'fixed',
         top: 0,

@@ -119,19 +119,24 @@ export const Header: React.FC = () => {
           <h1>Thomas J Butler</h1>
         </Link>
         
-        <nav className={styles.nav}>
-          <button 
+        <nav className={styles.nav} role="navigation" aria-label="Main navigation">
+          <button
             className={`${styles.menuToggle} ${isMenuOpen ? styles.open : ''}`}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
+            aria-controls="main-navigation"
             onClick={toggleMenu}
           >
             <span></span>
             <span></span>
             <span></span>
           </button>
-          
-          <ul ref={navRef} className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}>
+
+          <ul
+            id="main-navigation"
+            ref={navRef}
+            className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}
+          >
             {navigation.map((item) => (
               <li 
                 key={item.href}
@@ -149,14 +154,15 @@ export const Header: React.FC = () => {
                     {item.icon && <i className={`${styles.navIcon} ${item.icon}`}></i>}
                   </a>
                 ) : (
-                  <Link 
+                  <Link
                     to={item.href}
                     className={`${styles.navLink} ${location.pathname === item.href ? styles.active : ''}`}
+                    aria-current={location.pathname === item.href ? 'page' : undefined}
                     onMouseEnter={handleNavHover}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
-                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`}></i>}
+                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`} aria-hidden="true"></i>}
                   </Link>
                 )}
               </li>
