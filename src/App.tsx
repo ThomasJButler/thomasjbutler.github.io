@@ -68,7 +68,7 @@ export const App: React.FC = () => {
     <ThemeProvider>
       {/* Global components outside Router to avoid context issues */}
       <BackToTop threshold={300} showText={true} enableScanLine={true} />
-      <Router basename="/ThomasJButler">
+      <Router basename={import.meta.env.BASE_URL}>
         <ReactHtmlRedirect />
         <Routes>
           <Route path="/" element={<Layout />}>
