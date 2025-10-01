@@ -91,6 +91,8 @@
 
 .navItem {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 /* Terminal // prefix for nav items */
@@ -101,6 +103,7 @@
   margin-right: 0.5rem;
   opacity: 0.7;
   font-size: 0.75rem;
+  display: inline-block;
 }
 
 .navLink {
