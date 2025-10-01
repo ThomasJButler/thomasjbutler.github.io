@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animate } from 'animejs';
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import ReactMarkdown from 'react-markdown';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
 import '../css/components/markdown-preview-override.css';
 
@@ -274,21 +274,22 @@ export const BlogReader: React.FC = () => {
               lineHeight: fontSize >= 20 ? '1.8' : '1.7'
             }}
           >
-            <MarkdownPreview
-              source={post.content}
-              style={{
-                background: 'transparent',
-                color: 'inherit',
-                fontSize: 'inherit',
-                lineHeight: 'inherit',
-                padding: 0
-              }}
-              wrapperElement={{
-                'data-color-mode': 'dark'
-              }}
-              skipHtml={false}
+            <ReactMarkdown
               className="blog-markdown-content"
-            />
+              components={{
+                // Custom renderers for better styling
+                h1: ({node, ...props}) => <h1 style={{marginTop: '2em', marginBottom: '1em'}} {...props} />,
+                h2: ({node, ...props}) => <h2 style={{marginTop: '1.5em', marginBottom: '0.75em'}} {...props} />,
+                h3: ({node, ...props}) => <h3 style={{marginTop: '1.25em', marginBottom: '0.5em'}} {...props} />,
+                p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: 'inherit'}} {...props} />,
+                code: ({node, inline, ...props}) =>
+                  inline
+                    ? <code style={{background: 'rgba(0,255,0,0.1)', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />
+                    : <code style={{display: 'block', background: 'rgba(0,20,0,0.5)', padding: '1em', borderRadius: '8px', overflow: 'auto'}} {...props} />,
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
           </div>
 
           <footer className="article-footer">

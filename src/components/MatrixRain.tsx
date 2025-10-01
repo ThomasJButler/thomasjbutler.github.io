@@ -58,7 +58,11 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
     const binaryChars = '01';
     const fontSize = 18; // Slightly bigger for more authentic look
-    const columns = Math.floor(canvas.width / fontSize) + 1; // Extra column for edge coverage
+
+    // Detect mobile device for performance optimization
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const performanceMultiplier = isMobile ? 0.6 : 1; // 40% fewer columns on mobile
+    const columns = Math.floor((canvas.width / fontSize) * performanceMultiplier) + 1; // Extra column for edge coverage
 
     // Initialize drops with layers and color system
     dropsRef.current = Array(columns).fill(null).map((_, index) => {
@@ -95,8 +99,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
 
     // Drawing function
     const draw = () => {
-      // Slower fade effect for longer, more persistent trails
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+      // Faster fade on mobile for better performance, slower on desktop for persistent trails
+      ctx.fillStyle = isMobile ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Set text properties with Share Tech Mono for matrix characters
