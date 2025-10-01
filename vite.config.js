@@ -119,7 +119,7 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    open: true,
+    open: '/ThomasJButler/react.html', // Open directly to correct URL to avoid base path warning
     watch: {
       usePolling: true
     }
