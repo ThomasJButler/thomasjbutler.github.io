@@ -1,3 +1,21 @@
+/* Terminal Blinking Cursor
+   ========================================================================== */
+.cursor-blink {
+    display: inline-block;
+    margin-left: 0.1em;
+    animation: cursorBlink 1s step-end infinite;
+    color: var(--accent-color);
+}
+
+@keyframes cursorBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
 /* Galleries Section
    ========================================================================== */
 #galleries {

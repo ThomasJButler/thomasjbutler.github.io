@@ -275,7 +275,7 @@ export const HomePage: React.FC = () => {
     <>
       <section id="introduction">
         <div className="container">
-          <h2 className="welcome-text">Hey, I'm Tom.</h2>
+          <h2 className="welcome-text">Hey, I'm Tom<span className="cursor-blink">▮</span></h2>
           <br />
           <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
           <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
@@ -330,7 +330,7 @@ export const HomePage: React.FC = () => {
 
       <section id="contact">
         <div className="container">
-          <h2>--| Get in Touch |--</h2>
+          <h2 className="section-heading">--| Get in Touch |--</h2>
           <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
           <div className="contact-button-container">
             <Link to="/contact" className="btn-contact-us">

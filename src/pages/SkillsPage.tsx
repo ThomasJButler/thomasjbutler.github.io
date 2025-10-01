@@ -122,7 +122,7 @@ export const SkillsPage: React.FC = () => {
   return (
     <section id="skills">
       <div className="container">
-        <h2>My Skills & Expertise</h2>
+        <h2 className="section-title">My Skills & Expertise</h2>
         <p>A comprehensive overview of my technical expertise and proficiencies</p>
 
         {/* Core Expertise - Main Grid */}
