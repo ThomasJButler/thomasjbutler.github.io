@@ -1,5 +1,7 @@
 # From Prompts to Context Systems: The Next Evolution
 
+**Published:** 26/06/2025
+
 ## The Prompt Engineering Era
 
 2023: "Master prompt engineering!"

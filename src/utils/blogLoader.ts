@@ -26,13 +26,6 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     featured: false,
     publishDate: '2024-11-28'
   },
-  'context-as-the-new-oil': {
-    title: 'Context as the New Oil',
-    excerpt: 'Why context is becoming the most valuable resource in AI development',
-    tags: ['AI', 'Context Management'],
-    featured: true,
-    publishDate: '2025-07-22'
-  },
   'context-engineering-101': {
     title: 'Context Engineering 101',
     excerpt: 'A comprehensive guide to managing context in AI systems',
@@ -47,40 +40,12 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     featured: false,
     publishDate: '2025-01-08'
   },
-  'dehumanization-of-development': {
-    title: 'The Dehumanisation of Development',
-    excerpt: 'Addressing the loss of human touch in modern software development',
-    tags: ['Tech Philosophy', 'Development Culture'],
-    featured: false,
-    publishDate: '2024-10-23'
-  },
-  'democratizing-ai-development': {
-    title: 'Democratising AI Development',
-    excerpt: 'Making AI accessible to developers of all skill levels',
-    tags: ['AI', 'Accessibility', 'Education'],
-    featured: true,
-    publishDate: '2025-06-30'
-  },
-  'evolution-of-ai-assistance': {
-    title: 'The Evolution of AI Assistance',
-    excerpt: 'From simple autocomplete to intelligent coding partners',
-    tags: ['AI', 'History', 'Future Tech'],
-    featured: false,
-    publishDate: '2025-02-19'
-  },
   'from-prompts-to-context-systems': {
     title: 'From Prompts to Context Systems',
     excerpt: 'The paradigm shift in AI interaction models',
     tags: ['AI', 'System Design'],
     featured: false,
     publishDate: '2025-04-25'
-  },
-  'git-for-ai-memory': {
-    title: 'Git for AI Memory',
-    excerpt: 'Version control concepts applied to AI context management',
-    tags: ['AI', 'Git', 'Innovation'],
-    featured: false,
-    publishDate: '2024-12-15'
   },
   'losing-craftsmanship-to-automation': {
     title: 'Losing Craftsmanship to Automation',
@@ -103,13 +68,6 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     featured: true,
     publishDate: '2025-07-10'
   },
-  'solving-ai-amnesia': {
-    title: 'Solving AI Amnesia',
-    excerpt: 'Addressing the memory problem in current AI systems',
-    tags: ['AI', 'Problem Solving'],
-    featured: false,
-    publishDate: '2025-05-18'
-  },
   'tech-burnout-crisis': {
     title: 'The Tech Burnout Crisis',
     excerpt: 'Understanding and addressing developer burnout in the AI age',
@@ -117,40 +75,12 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     featured: false,
     publishDate: '2024-10-08'
   },
-  'tech-that-adapts-to-humans': {
-    title: 'Tech That Adapts to Humans',
-    excerpt: 'Building adaptive systems that understand individual needs',
-    tags: ['Adaptive Tech', 'UX'],
-    featured: false,
-    publishDate: '2025-06-12'
-  },
-  'the-copy-paste-culture': {
-    title: 'The Copy-Paste Culture',
-    excerpt: 'How AI is changing the way we write and think about code',
-    tags: ['Development Culture', 'AI Impact'],
-    featured: false,
-    publishDate: '2024-12-28'
-  },
-  'the-empathy-gap-in-ai': {
-    title: 'The Empathy Gap in AI',
-    excerpt: 'Why AI lacks emotional intelligence and how to fix it',
-    tags: ['AI', 'Emotional Intelligence'],
-    featured: false,
-    publishDate: '2025-01-24'
-  },
   'the-personalization-revolution': {
     title: 'The Personalisation Revolution',
     excerpt: 'How personalised AI will transform development',
     tags: ['AI', 'Personalisation', 'Future Tech'],
     featured: false,
     publishDate: '2025-08-20'
-  },
-  'why-ai-feels-robotic': {
-    title: 'Why AI Feels Robotic',
-    excerpt: 'Understanding the uncanny valley of AI interactions',
-    tags: ['AI', 'UX', 'Psychology'],
-    featured: false,
-    publishDate: '2025-03-28'
   }
 };
 

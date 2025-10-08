@@ -1,5 +1,7 @@
 # The Context Loss Crisis: AI's Hidden Productivity Killer
 
+**Published:** 18/03/2025
+
 ## The Invisible Time Thief
 
 We measure AI productivity in seconds per task.

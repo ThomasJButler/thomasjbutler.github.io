@@ -1,5 +1,7 @@
 # Making AI More Human
 
+**Published:** 12/09/2025
+
 ## The Robot in the Room
 
 We need to talk about the elephant in the room. Or should I say, the robot.

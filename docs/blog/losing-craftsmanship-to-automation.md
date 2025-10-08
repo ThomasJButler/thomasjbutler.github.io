@@ -1,5 +1,7 @@
 # The Silent AI Crisis (and How We Can Fix It!)
 
+**Published:** 14/05/2025
+
 ## The Master and The Machine
 
 A master carpenter knows every tool in their workshop intimately.

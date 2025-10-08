@@ -1,5 +1,7 @@
 # AI That Codes Like You
 
+**Published:** 23/01/2025
+
 ## Your Code is Your Signature
 
 It's your coding DNA. And current AI? It completely ignores it.

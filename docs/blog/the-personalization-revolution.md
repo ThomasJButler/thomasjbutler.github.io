@@ -1,5 +1,7 @@
 # The Personalisation Revolution
 
+**Published:** 15/10/2025
+
 ## The Age of Generic AI Is Ending
 
 Every AI interaction feels the same:
