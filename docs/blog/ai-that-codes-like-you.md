@@ -1,121 +1,83 @@
-# AI That Codes Like You: The Personalisation Revolution
+# AI That Codes Like You
 
 ## Your Code is Your Signature
 
-Every developer knows this, but few talk about it. We all have our own coding style:
-- How you name variables (snake_case or camelCase?)
-- How you structure functions (early returns or nested ifs?)
-- How you handle errors (try/catch everything or fail fast?)
-- How you write comments (or don't)
-
 It's your coding DNA. And current AI? It completely ignores it.
 
-## The Generic Code Problem
+AI generates "correct" code that somehow looks wrong.
 
-AI generates "correct" code that somehow looks wrong:
-```javascript
-// AI's generic American style
-const fetchUserData = async (userId) => {
-    try {
-        const response = await fetch(`/api/users/${userId}`);
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        throw error;
-    }
-};
+Every developer knows this, but few talk about it. We all have our own coding style, e.g;
+- How you name variables.
+- How you structure functions.
+- How you handle errors.
+- How you write comments.
 
-// Your actual style
-const fetch_user_data = async (user_id) => {
-  const response = await fetch(`/api/users/${user_id}`)
-  if (!response.ok) throw new Error(`Failed to fetch user ${user_id}`)
-  return response.json()
-}
-```
+## The AI Reformation Ritual
 
-Both work. Only one feels like home.
-
-## The Reformation Ritual
-
-Here's a pattern that will be familiar:
+This pattern is becoming more common with AI powered IDEs:
 1. AI generates code
 2. You spend time reformatting everything
 3. You rename all the variables
 4. You restructure the logic to match how your brain works
 5. You fix the style to not look like a robot wrote it
 
-Why are we accepting this? It's like having a brilliant assistant who speaks a different dialect. Technically correct, but just off.
+Why are we accepting this?
 
-## Enter Style DNA
+It's like having a brilliant assistant who speaks a different dialect. Technically correct, but it's in not your own style.
 
-### Teach Once, Apply Forever
+## Enter Style DNA - Teach Once, Apply Forever
 
-Here's what I've been working on:
-
-```markdown
-# customcodestyle.md
-
-## My Style (The Thomas Butler Way)
-- Snake_case for functions
-- No semicolons (ASI works fine)
-- Early returns (avoid nested logic)
-- Minimal try/catch (fail fast, handle at boundaries)
-- Descriptive errors (users deserve to know what went wrong)
-```
+A way to describe your personal coding style once and have AI not just remember it, but stick to it.
 
 ### Provide Real Examples
-```javascript
-// My actual code
-const process_payment = async (payment_data) => {
-  if (!payment_data.amount) return null
 
-  const result = await payment_api.charge(payment_data)
-  if (!result.success) {
-    throw new Error(`Payment failed: ${result.error}`)
-  }
+You show it what your actual code looks like.. how you structure logic, name things, handle errors.
 
-  return result.transaction_id
-}
+Here's my personal Python style:
+
+```python
+from typing import Optional, Dict
+
+class user_manager:
+    def __init__(self):
+        # store users in memory for now
+        # class name is lowercase (could use pascalcase if i ever change my mind)
+        self._users: Dict[int, str] = {}  # private member via underscore prefix
+
+    def add_user(self, user_id: int, name: str) -> None:
+        # adds or replaces a user name, simple as that
+        self._users[user_id] = name
+
+    def get_user(self, user_id: int) -> Optional[str]:
+        # return the user name if found, none otherwise
+        return self._users.get(user_id)
+
+    def greet_user(self, user_id: int) -> str:
+        # early check if the user doesn't exist
+        name = self.get_user(user_id)
+        if not name:
+            return f"user {user_id} not found"
+        # short and clear: greet politely
+        return f"hello, {name}"  # type hints on public methods
 ```
 
-### AI Learns YOUR Style
+### AI Will Learn YOUR Style
+
 Now every generation matches:
 - Your naming (snake_case, kebab-case, whatever works for you)
 - Your structure (flat is better than nested)
 - Your patterns (DRY but not obsessively)
 - Your preferences (tabs vs spaces aside)
 
-## The Technical Implementation
+## Technical Implementation
 
-### Style Extraction
-```javascript
-// Analyse existing codebase (note the 's')
-const patterns = {
-  naming: detectNamingConvention(codebase),
-  structure: detectCodeStructure(codebase),
-  formatting: detectFormatting(codebase),
-  patterns: detectCommonPatterns(codebase)
-}
-```
+**Style Extraction** - Analyse your existing codebase to detect patterns in naming, structure, formatting, and recurring logic.
 
-### Style Injection
-```javascript
-// Apply to all generations
-const generateCode = (request) => {
-  const code = ai.generate(request)
-  return applyStyle(code, userStyle)
-}
-```
+**Style Injection** - Every new generation applies those learned preferences automatically.
 
-### Style Evolution
-```javascript
-// Learn from corrections
-if (userEdited(generatedCode)) {
-  updateStyle(findDifferences(generated, edited))
-}
-```
+**Style Evolution** - When you edit the AI's output, it notices the differences and learns from them, continuously refining your profile.
 
-## Real Impact
+The impact? It has improved my efficiency using AI tools by 200% (on average).
 
 ### Before
 - Generate: 30 seconds
@@ -127,66 +89,57 @@ if (userEdited(generatedCode)) {
 - Review: 30 seconds
 - Total: 1 minute
 
-## The Business Case
+## High Level Impact
 
-Look, I've been doing this for years, and here's what matters:
-- **Consistency**: Your entire codebase looks like one person wrote it
-- **Speed**: No more reformatting means shipping faster
-- **Sanity**: Less cognitive load switching between AI style and your style
-- **Team Harmony**: Everyone codes their way, git diffs show what matters
+- **Consistency**: Your entire codebase looks like one person wrote it.
+- **Speed**: No more reformatting means shipping faster.
+- **Sanity**: Less cognitive load switching between AI style and your style.
+- **Team Harmony**: Everyone codes their way, git diffs show what matters.
 
 ## Implementation Strategy
 
-### Phase 1: Personal Profiles
-Start with individual developer profiles. I've got mine set up:
+### Phase 1 - Personal Profiles
 - Functions: snake_case
 - Variables: descriptive_names_over_brevity
-- Comments: Only when the why isn't obvious
-- Testing: Jest with proper British spelling in describe blocks
+- Comments: Only when the why isn't obvious, UK English
+- Testing: Jest
 
-### Phase 2: Team Standards
-Merge personal preferences into team standards:
+### Phase 2 - Team Standards
 - Agree on the non-negotiables
 - Allow flexibility where it doesn't matter
-- Stop having those pointless style arguments in PRs
 
 ### Phase 3: AI Integration
-Train your AI assistant on your patterns:
 - Feed it your best code
-- Correct it when it deviates
+- Correct it to your style when it deviates
 - Watch it learn and adapt
 
 ## The Revolution Is Personal
 
-This isn't about right or wrong. There's no single "correct" way to write code.
+This isn't about right or wrong.
 
-It's about:
+There's no single "correct" way to write code.
+
+**Your Style Matters.** Code is personal. Style is identity. AI should respect both!
+
+The revolution isn't in the technology. It's in recognising that every developer deserves tools that understand them. That learn from them. That grow with them.
+
+It's all about:
 - **Ownership**: Your code should feel like yours
 - **Efficiency**: Stop wasting time on reformatting
 - **Joy**: Actually enjoying the code you work with
 - **Pride**: Being proud of every line, even the AI-generated ones
 
-## What's Next
+When AI learns to code in your style, something remarkable happens.
 
-The future of AI coding as I see it:
-1. **Personal style profiles** (your coding fingerprint)
-2. **Team style consensus** (collaborative standards)
-3. **Project-specific adaptations** (context-aware generation)
-4. **Evolution with your growth** (the AI learns as you level up)
+The friction disappears. The cognitive load drops. The joy returns.
 
-## Your Style Matters
+You stop being a code editor and become a creator again.
 
-Code is personal. Style is identity. AI should respect both.
+This isn't about making AI more powerful. It's about making AI more personal.
 
-When AI learns to code in your style, something remarkable happens. The friction disappears. The cognitive load drops. The joy returns. You stop being a code editor and become a creator again.
+About building tools that adapt to us, rather than forcing us to adapt to them.
 
-This isn't about making AI more powerful. It's about making AI more personal. About building tools that adapt to us, rather than forcing us to adapt to them.
-
-Your style isn't wrong. It's yours. And that matters more than any style guide or linting rule ever could.
-
-The revolution isn't in the technology. It's in recognising that every developer deserves tools that understand them. That learn from them. That grow with them.
-
-That's the future I'm building. One personal style profile at a time.
+**Your style isn't wrong. It's yours.**
 
 ---
 
