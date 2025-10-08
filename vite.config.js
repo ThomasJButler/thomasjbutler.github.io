@@ -37,20 +37,20 @@ export default defineConfig({
     {
       name: 'serve-blog-files',
       configureServer(server) {
-        // Serve markdown files - handle both /docs/blog and /ThomasJButler/docs/blog paths
+        // Serve markdown files - handle both /src/content/blog and /ThomasJButler/src/content/blog paths
         server.middlewares.use((req, res, next) => {
           // Check if this is a request for a blog markdown file
           const url = req.url;
           let blogPath = null;
-          
-          if (url.startsWith('/docs/blog/')) {
-            blogPath = url.replace('/docs/blog/', '');
-          } else if (url.startsWith('/ThomasJButler/docs/blog/')) {
-            blogPath = url.replace('/ThomasJButler/docs/blog/', '');
+
+          if (url.startsWith('/src/content/blog/')) {
+            blogPath = url.replace('/src/content/blog/', '');
+          } else if (url.startsWith('/ThomasJButler/src/content/blog/')) {
+            blogPath = url.replace('/ThomasJButler/src/content/blog/', '');
           }
-          
+
           if (blogPath && blogPath.endsWith('.md')) {
-            const filePath = resolve(__dirname, 'docs/blog', blogPath);
+            const filePath = resolve(__dirname, 'src/content/blog', blogPath);
             
             if (existsSync(filePath)) {
               try {
@@ -93,12 +93,12 @@ export default defineConfig({
     {
       name: 'copy-blog-files',
       writeBundle() {
-        const blogSrcDir = resolve(__dirname, 'docs/blog');
-        const blogDestDir = resolve(__dirname, 'dist/docs/blog');
-        
+        const blogSrcDir = resolve(__dirname, 'src/content/blog');
+        const blogDestDir = resolve(__dirname, 'dist/src/content/blog');
+
         // Ensure destination directory exists
-        if (!existsSync(resolve(__dirname, 'dist/docs'))) {
-          mkdirSync(resolve(__dirname, 'dist/docs'), { recursive: true });
+        if (!existsSync(resolve(__dirname, 'dist/src'))) {
+          mkdirSync(resolve(__dirname, 'dist/src/content'), { recursive: true });
         }
         if (!existsSync(blogDestDir)) {
           mkdirSync(blogDestDir, { recursive: true });

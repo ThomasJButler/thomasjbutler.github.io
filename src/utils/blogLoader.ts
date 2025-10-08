@@ -118,7 +118,7 @@ function getBasePath(): string {
 export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const basePath = getBasePath();
-    const url = `${basePath}/docs/blog/${slug}.md`;
+    const url = `${basePath}/src/content/blog/${slug}.md`;
     
     
     const response = await fetch(url);
