@@ -267,3 +267,135 @@ Extra Small (480px):
 
 *Last Updated: October 1, 2025*
 *Version: 3.5.1 → 3.5.2 (in progress)*
+
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮ │
+│ │ Section 4.6: Production Build & GitHub Pages Deployment                                                                   │ │
+│ │                                                                                                                           │ │
+│ │ Final Section - Completes Portfolio v3.5.1 → v3.5.2                                                                       │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 1: Clean Production Build                                                                                           │ │
+│ │                                                                                                                           │ │
+│ │ 1.1 Cleanup                                                                                                               │ │
+│ │ - Kill running dev servers (free up port 3000)                                                                            │ │
+│ │ - Clean dist/ folder: npm run clean                                                                                       │ │
+│ │ - Remove any stale build artifacts                                                                                        │ │
+│ │                                                                                                                           │ │
+│ │ 1.2 Production Build                                                                                                      │ │
+│ │ - Run: npm run build                                                                                                      │ │
+│ │ - Monitor build output for errors/warnings                                                                                │ │
+│ │ - Verify Vite build completes successfully                                                                                │ │
+│ │ - Check custom plugin copies blog .md files to dist/docs/blog/                                                            │ │
+│ │                                                                                                                           │ │
+│ │ 1.3 Bundle Analysis                                                                                                       │ │
+│ │ - Inspect dist/ folder structure                                                                                          │ │
+│ │ - Check bundle sizes (expect ~500KB total after Section 4.4's 88% reduction)                                              │ │
+│ │ - Verify all assets copied (fonts, images, blog files)                                                                    │ │
+│ │ - Confirm terser minification applied                                                                                     │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 2: Local Production Testing                                                                                         │ │
+│ │                                                                                                                           │ │
+│ │ 2.1 Preview Server                                                                                                        │ │
+│ │ - Run: npm run preview (serves dist/ on localhost)                                                                        │ │
+│ │ - Wait for server to start on port 4173 (Vite default preview port)                                                       │ │
+│ │                                                                                                                           │ │
+│ │ 2.2 Core Functionality Testing                                                                                            │ │
+│ │ - Test all routes: /, /about, /skills, /projects, /blog, /contact, /services                                              │ │
+│ │ - Verify Matrix Rain renders correctly in matrix theme                                                                    │ │
+│ │ - Verify ParticleBackground in dark theme (2x particles, attraction hover)                                                │ │
+│ │ - Test theme switching (matrix → dark → light)                                                                            │ │
+│ │ - Verify blog listing loads                                                                                               │ │
+│ │ - Test blog reader (pick 1-2 posts, verify markdown renders)                                                              │ │
+│ │ - Check font loading (Google Fonts should load)                                                                           │ │
+│ │                                                                                                                           │ │
+│ │ 2.3 Critical Checks                                                                                                       │ │
+│ │ - Base path /ThomasJButler/ works correctly                                                                               │ │
+│ │ - Images load (check homepage gallery cards)                                                                              │ │
+│ │ - Contact form displays correctly                                                                                         │ │
+│ │ - Navigation works across all pages                                                                                       │ │
+│ │ - Console has no critical errors                                                                                          │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 3: Performance Verification                                                                                         │ │
+│ │                                                                                                                           │ │
+│ │ 3.1 Bundle Size Check                                                                                                     │ │
+│ │ - Verify main bundle < 200KB (after Section 4.4 optimization)                                                             │ │
+│ │ - Verify BlogReader bundle ~120KB (down from 1,027KB)                                                                     │ │
+│ │ - Total bundle should be significantly smaller than v3.5.0                                                                │ │
+│ │                                                                                                                           │ │
+│ │ 3.2 Manual Performance Notes                                                                                              │ │
+│ │ - Matrix Rain: Smooth 60fps (optimized in Section 4.4)                                                                    │ │
+│ │ - ParticleBackground: Smooth with 2x particles                                                                            │ │
+│ │ - Page transitions: Fast with skeleton loaders (Section 4.3)                                                              │ │
+│ │ - No layout shift (Section 4.3)                                                                                           │ │
+│ │                                                                                                                           │ │
+│ │ (Lighthouse audit requires Chrome DevTools - will provide instructions for manual testing)                                │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 4: GitHub Pages Deployment                                                                                          │ │
+│ │                                                                                                                           │ │
+│ │ 4.1 Deploy                                                                                                                │ │
+│ │ - Run: npm run deploy                                                                                                     │ │
+│ │ - This triggers:                                                                                                          │ │
+│ │   a. predeploy: Runs npm run build automatically                                                                          │ │
+│ │   b. gh-pages -d dist: Deploys dist/ to gh-pages branch                                                                   │ │
+│ │ - Wait for gh-pages to complete (usually ~30 seconds)                                                                     │ │
+│ │                                                                                                                           │ │
+│ │ 4.2 Verify Deployment                                                                                                     │ │
+│ │ - Check Git shows gh-pages branch updated                                                                                 │ │
+│ │ - GitHub Actions may trigger (if configured)                                                                              │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 5: Live Site Verification                                                                                           │ │
+│ │                                                                                                                           │ │
+│ │ 5.1 Visit Live Site                                                                                                       │ │
+│ │ - URL: https://thomasjbutler.github.io/ThomasJButler/                                                                     │ │
+│ │ - Wait for GitHub Pages to serve (may take 1-2 minutes)                                                                   │ │
+│ │                                                                                                                           │ │
+│ │ 5.2 Production Testing                                                                                                    │ │
+│ │ - Test homepage loads                                                                                                     │ │
+│ │ - Switch between themes (matrix/dark/light)                                                                               │ │
+│ │ - Verify ParticleBackground works (dark theme)                                                                            │ │
+│ │ - Test blog navigation                                                                                                    │ │
+│ │ - Check 1-2 blog posts load                                                                                               │ │
+│ │ - Verify images load correctly                                                                                            │ │
+│ │ - Test responsive behavior (resize browser)                                                                               │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Phase 6: Documentation & Final Commit                                                                                     │ │
+│ │                                                                                                                           │ │
+│ │ 6.1 Update improvements.txt                                                                                               │ │
+│ │ - Mark Section 4.6 as ✅ 100% Complete                                                                                     │ │
+│ │ - Update overall progress to 100% (6/6 sections)                                                                          │ │
+│ │ - Add deployment details (bundle sizes, live URL)                                                                         │ │
+│ │ - Update "Last Updated" timestamp                                                                                         │ │
+│ │                                                                                                                           │ │
+│ │ 6.2 Final Comprehensive Commit                                                                                            │ │
+│ │ - Commit message documenting:                                                                                             │ │
+│ │   - Section 4.6 completion                                                                                                │ │
+│ │   - Bundle sizes achieved                                                                                                 │ │
+│ │   - Deployment success                                                                                                    │ │
+│ │   - v3.5.1 → v3.5.2 version bump                                                                                          │ │
+│ │   - All Section 4 achievements                                                                                            │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Testing Checklist (from improvements.txt)                                                                                 │ │
+│ │                                                                                                                           │ │
+│ │ - ✅ All pages load correctly                                                                                              │ │
+│ │ - ✅ Matrix rain works in production                                                                                       │ │
+│ │ - ✅ Blog posts load properly                                                                                              │ │
+│ │ - ✅ Images load without issues                                                                                            │ │
+│ │ - ✅ Forms display correctly                                                                                               │ │
+│ │ - ✅ Theme switching works                                                                                                 │ │
+│ │ - ✅ Mobile responsiveness verified                                                                                        │ │
+│ │                                                                                                                           │ │
+│ │ ---                                                                                                                       │ │
+│ │ Expected Outcomes:                                                                                                        │ │
+│ │ - 🎉 Section 4: 100% Complete (6/6 sections)                                                                              │ │
+│ │ - 🚀 Portfolio v3.5.2 deployed to GitHub Pages                                                                            │ │
+│ │ - 📦 Optimized bundle size (~88% reduction on BlogReader)                                                                 │ │
+│ │ - ⚡ 60fps animations with all optimizations                                                                               │ │
+│ │ - 🎨 Epic dark theme with ParticleBackground                                                                              │ │
+│ │ - ✅ WCAG 2.1 AA accessibility compliance 

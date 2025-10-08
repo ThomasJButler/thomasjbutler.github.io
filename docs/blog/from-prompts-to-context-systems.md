@@ -43,7 +43,7 @@ unit tests using pytest, ensure it's compatible with Python 3.8+..."
 # 500 tokens just to get started. Every. Single. Time.
 ```
 
-### Generation 4: Context Systems (The Future)
+### Generation 4: A Context Systems (The Future)
 ```
 "Validate email"
 # System already knows I'm a Python dev from Liverpool who
@@ -58,7 +58,7 @@ Prompts are:
 - **Stateless**: Goldfish memory
 - **Repetitive**: Copy-pasting your life story every time
 - **Fragile**: Forget one word and it all breaks
-- **Inefficient**: 90% context, 10% actual request
+- **Inefficient**: 90% context, 10% actual request, dependent on model power.
 
 Context systems are:
 - **Stateful**: Actually remembers who you are
@@ -93,25 +93,7 @@ Context: Actually learns and grows
 
 Here's what I'm working on:
 
-### Level 1: Static Context (Baby Steps)
-```yaml
-context:
-  developer: "Thomas Butler"
-  location: "Liverpool, UK"
-  style_guide: "Pragmatic > Perfect"
-  tea_preference: "Builder's, two sugars"
-```
-
-### Level 2: Dynamic Context (Getting Clever)
-```yaml
-context:
-  patterns_learned: 47
-  mistakes_avoided: 128
-  inside_jokes: ["PHP is the future", "It works on my machine"]
-  last_coffee: "10 minutes ago"
-```
-
-### Level 3: Intelligent Context (The Dream)
+### Intelligent Context (The Dream)
 ```yaml
 context:
   understands:
@@ -126,6 +108,7 @@ context:
     - That authentication system from last month
     - Your preferred error handling
     - That time the regex actually worked first try
+    - Each conversation, updating the context documents before each commit.
 ```
 
 ## The Paradigm Shift
@@ -138,25 +121,27 @@ We're moving from:
 
 It's like the difference between training a new junior dev every day versus working with your trusted colleague who knows exactly what you mean when you say "do the usual thing".
 
-## Real World Impact
+## My Real World Impact
 
-Since implementing context systems:
-- 80% less typing
-- 90% fewer misunderstandings
+Since implementing a context systems:
+- 60% less typing
+- 60% fewer misunderstandings
 - 100% less copy-pasting the same context
 - Actually enjoyable to use
 
 ## No More Prompts
 
-Stop optimising prompts. Seriously, stop. Start building context.
+Stop optimising prompts. Seriously, stop. 
 
-The future isn't better prompts. It's no prompts. Just conversation with something that actually knows you.
+Start building context!
+
+The future isn't better prompts. It's no prompts. 
+
+Just conversation with something that actually knows you.
 
 Imagine: "Fix that bug from yesterday" and it knows exactly what you mean. That's what I'm building.
 
-The transition from prompts to context isn't about better AI. It's about better memory. When your AI remembers who you are, what you've built, and how you work, something fundamental shifts. You stop being a prompter and become a developer again.
-
-That's not just efficiency. That's transformation. And it's happening right now, one context system at a time.
+When your AI remembers who you are, what you've built, and how you work, something fundamental shifts. You stop being a prompter and become a developer again. Focusing on the creative aspects, and using AI for the non creative tasks. 
 
 ---
 

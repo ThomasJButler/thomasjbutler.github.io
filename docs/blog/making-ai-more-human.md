@@ -1,4 +1,4 @@
-# Making AI More Human: Beyond the Uncanny Valley of Code
+# Making AI More Human
 
 ## The Robot in the Room
 
@@ -23,7 +23,7 @@ Working with real developers, here's what actually matters:
 - We understand context (read the room)
 - We have consistency (same person, different day)
 
-### What Makes AI Robotic?
+### What Makes AI So Robotic? (Apart from the obvious..)
 
 - Forgets everything (worse than me after five pints)
 - No preferences (treats everyone like user_id_12345)
@@ -64,50 +64,7 @@ const get_user = async (user_id) => {
 
 One feels like a textbook. The other feels like a developer who values their time.
 
-## The Real World Experiment
-
-I've been running an experiment. Teaching AI to be more human by being more human with it.
-
-### Phase 1: Teaching It Our Language
-Not programming languages. Our actual language. The way we talk about code:
-- "That function's doing too much" (not "consider refactoring for single responsibility")
-- "This is proper hacky" (not "technical debt has been incurred")
-- "Ship it" (not "the implementation meets acceptance criteria")
-
-### Phase 2: Context That Matters
-Started feeding it real context:
-- Our tea break is at 3pm (don't suggest complex refactors at 2:55)
-- We're not morning people (ease us in gently before 10am)
-- Friday deployments are banned (learned that the hard way)
-- We use British spelling in comments (colour, not color)
-
-### Phase 3: Personality Injection
-This is where it gets interesting:
-```javascript
-// Config for humanising our AI
-const humanTraits = {
-  personality: {
-    humour: 'dry_british',
-    patience: 'limited_for_bikeshedding',
-    enthusiasm: 'high_for_elegant_solutions',
-    swearing: 'mild_when_frustrated'
-  },
-  knowledge: {
-    local_context: 'liverpool_tech_scene',
-    industry: 'uk_fintech',
-    regulations: 'gdpr_not_ccpa',
-    culture: 'work_life_balance_matters'
-  },
-  communication: {
-    formality: 'casual_unless_client_present',
-    brevity: 'get_to_the_point',
-    clarity: 'no_corporate_buzzwords',
-    honesty: 'call_out_bad_ideas'
-  }
-}
-```
-
-## Breaking the Uncanny Valley
+## Breaking 'the Uncanny Valley'
 
 ### The Authenticity Problem
 AI tries too hard to be perfect. Humans aren't perfect. We:
@@ -117,34 +74,13 @@ AI tries too hard to be perfect. Humans aren't perfect. We:
 - Get frustrated (hence git commit messages like "fixed the thing")
 
 ### The Solution: Controlled Imperfection
-Not bugs. Personality:
+Not bugs. But Personality:
 - Opinions on code style (strong ones)
 - Preferences that persist (remembers you hate nested ternaries)
 - Contextual awareness (knows when you're debugging vs building)
 - Emotional intelligence (backs off when you're stressed)
 
-## Real Human Patterns
-
-After analysing how we actually work:
-
-### Morning Patterns
-- First hour: Coffee and email (don't suggest complex tasks)
-- Second hour: Warming up (easy wins, bug fixes)
-- Third hour: Peak productivity (bring on the challenges)
-
-### Communication Patterns
-- Short messages mean probably busy
-- Long messages mean procrastinating
-- No messages mean in the zone, don't interrupt
-- Stressed messages mean debugging production
-
-### Code Patterns
-- Monday code: Over-engineered (fresh and optimistic)
-- Friday code: Pragmatic (just make it work)
-- Post-lunch code: Needs review (food coma is real)
-- Late night code: Works but needs refactoring
-
-## The Human Touch Checklist
+## The Human Touch Checklist!
 
 For AI to feel human, it needs:
 
@@ -155,14 +91,13 @@ For AI to feel human, it needs:
 - **Adaptation** (learn from interactions)
 - **Humour** (appropriate, not forced)
 - **Empathy** (recognise frustration and respond accordingly)
-- **Localisation** (British English, British culture, British humour)
+- **Localisation** (e.g British English, British culture, British humour)
 
 ## The Results So Far
 
 Three months into humanising AI:
 
 **The Good:**
-- Feels like pairing with a junior who's learning fast
 - Actually helpful rather than just correct
 - Remembers project context between sessions
 - Suggests tea breaks (seriously, game-changer)
@@ -171,7 +106,6 @@ Three months into humanising AI:
 - It called out a bad architecture decision (politely)
 - It recognised when I was stuck and suggested a different approach
 - It learned inside jokes
-- It stopped suggesting American solutions to British problems
 
 ## Beyond the Valley
 
@@ -182,20 +116,23 @@ The goal isn't to make AI perfectly human. It's to make it human enough to be he
 - Power with personality
 - Efficiency with empathy
 
-We're not trying to replace humans. We're trying to build tools that work with humans the way humans actually work.
-
 ## Understanding, Not Imitation
 
-Making AI more human isn't about making it pretend to be human. It's about making it understand humans. Building tools that fit into our workflow, not the other way around.
+Making AI more human isn't about making it pretend to be human. 
+It's about making it understand humans. 
+Building tools that fit into our workflow, not the other way around.
 
-Because we're not adapting to machines. They should be adapting to us.
+Because we're not adapting to machines. They should be adapting to us!
 
-The uncanny valley exists because we're trying to fake humanity instead of building genuine understanding. When AI truly knows your context, learns your patterns, and adapts to your working style, it doesn't feel robotic anymore. It feels like a tool that gets you. That understands not just what you're building, but how you build and why.
+The uncanny valley exists because we're trying to fake humanity instead of building genuine understanding. 
+When AI truly knows your context, learns your patterns, and adapts to your working style, it doesn't feel robotic anymore. It feels like a tool that gets you. 
+That understands not just what you're building, but how you build and why.
 
-That's not artificial humanity. That's authentic usefulness. And that's what I'm building, one human-centred feature at a time.
+That's not artificial humanity. That's authentic usefulness. 
+And that's what I'm building in the shadows, one human centred feature at a time.
 
 ---
 
 *Thomas Butler*
 *Teaching robots to be more human, one git commit at a time*
-*Still haven't taught it to appreciate Beatles references (working on it)*
+*Still haven't taught it to appreciate the IT Crowd references (working on it)*
