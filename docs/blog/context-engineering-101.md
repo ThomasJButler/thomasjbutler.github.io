@@ -3,6 +3,7 @@
 ## The Problem Nobody Talks About
 
 Every developer using AI faces the same frustrating ritual:
+
 - "Let me explain my project... again"
 - "No, we use different conventions here"
 - "I literally told you this yesterday"
@@ -25,12 +26,15 @@ Think of it as memory management for AI. And like proper memory management, when
 ## The Three Pillars
 
 ### 1. Persistent Memory
+
 Your AI should remember every decision, pattern, and preference across sessions. Not in some vague way, with perfect, queryable recall. Like that colleague who remembers you hate nested ternaries from that one code review three months ago.
 
 ### 2. Style DNA
-Your coding style is your fingerprint. AI should write code indistinguishable from yours, because it's learned from YOUR examples, not generic training data from Silicon Valley. 
+
+Your coding style is your fingerprint. AI should write code indistinguishable from yours, because it's learned from YOUR examples, not generic training data from Silicon Valley.
 
 ### 3. Evolutionary Learning
+
 As your project grows, your AI's understanding should evolve. New patterns should be recognised, old ones deprecated, all automatically. It's continuous integration for context.
 
 ## Why This Changes Everything
@@ -68,6 +72,7 @@ I've been implementing this, and the results are clear:
 ## The Future is Context-Aware
 
 We're moving from:
+
 - Prompt Engineering to Context Engineering
 - Stateless AI to Stateful AI
 - Generic responses to Personalised code
@@ -80,8 +85,9 @@ Stop accepting AI amnesia. Demand context persistence. Build systems that rememb
 The revolution isn't in making AI smarter. It's in making it remember. Because I'm tired of explaining the same things over and over. Aren't you?
 
 Start small:
+
 1. Document your conventions once
-2. Version your context like code, in .md files with the main project structure. (update these over time!) 
+2. Version your context like code, in .md files with the main project structure. (update these over time!)
 3. Share context across your team as a basepoint for AI conversations to reference first.
 4. Watch productivity soar
 
@@ -89,9 +95,9 @@ Start small:
 
 Context Engineering is about treating AI like a team member, not a tool. Give it the onboarding it needs, the context it requires, and the memory it deserves.
 
-Your AI should know your project as well as you do. Anything less is accepting mediocrity. Or blind luck. You can of course get around this, with the constant file and context sharing we are already doing and have been doing since ChatGPT 3. 
+Your AI should know your project as well as you do. Anything less is accepting mediocrity. Or blind luck. You can of course get around this, with the constant file and context sharing we are already doing and have been doing since ChatGPT 3.
 
-The difference between frustrating and delightful AI isn't in the model's sophistication. 
+The difference between frustrating and delightful AI isn't in the model's sophistication.
 Models have not 'plateaued' as they scale up in power, the benchmarks are just misleading. Newer models have much larger context windows, therefore can handle much more context, and that is where the productivity gains lie.
 
 When your AI remembers your preferences, understands your codebase, and evolves with your project, something remarkable happens. The tool becomes a partner.
