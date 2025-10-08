@@ -12,6 +12,7 @@ The maths doesn't add up.
 I've been tracking this, and the results are shocking:
 
 ### Per Session Context Tax
+
 - Explaining project structure: 3 minutes
 - Describing conventions: 2 minutes
 - Correcting misunderstandings: 4 minutes
@@ -21,6 +22,7 @@ I've been tracking this, and the results are shocking:
 That's 12 minutes before you even start the actual work.
 
 ### Daily Impact
+
 - Average sessions per day: 8
 - Context tax: 8 × 12 = 96 minutes
 - **You lose 1.6 hours daily to context loss**
@@ -28,6 +30,7 @@ That's 12 minutes before you even start the actual work.
 That's a full lunch break plus coffee, gone. Every day.
 
 ### Annual Cost
+
 - Working days: 250
 - Hours lost: 400
 - Developer rate: £80/hour (UK average)
@@ -38,6 +41,7 @@ That's a junior developer's entire salary, wasted on repetition.
 ## The Compound Problem
 
 Context loss isn't just time. It's everything:
+
 - **Cognitive load**: Mental exhaustion from repetition
 - **Error rate**: Inconsistencies from re-explanation
 - **Flow disruption**: Breaking concentration repeatedly
@@ -56,7 +60,10 @@ We've accepted it like we accepted dial-up internet. But we don't have to.
 
 ## The Solution: Context Persistence
 
+See [Context Engineering 101](context-engineering-101.md) for implementation details.
+
 ### Immediate Gains
+
 ```bash
 # Without context persistence
 Time to result: 15 minutes (3 min context + 12 min work)
@@ -70,6 +77,7 @@ Time to result: 12 minutes (0 min context + 12 min work)
 That's not optimisation. That's revolution.
 
 ### Compounding Gains
+
 - Day 1: Save 96 minutes
 - Week 1: Save 8 hours (a full working day)
 - Month 1: Save 32 hours (nearly a working week)
