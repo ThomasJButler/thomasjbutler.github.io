@@ -17,7 +17,7 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     excerpt: 'Building AI systems that understand and replicate individual coding styles',
     tags: ['AI', 'Machine Learning', 'Development'],
     featured: true,
-    publishDate: '2025-08-15'
+    publishDate: '2025-09-20'
   },
   'building-bridges-not-replacements': {
     title: 'Building Bridges, Not Replacements',
@@ -80,7 +80,7 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
     excerpt: 'How personalised AI will transform development',
     tags: ['AI', 'Personalisation', 'Future Tech'],
     featured: false,
-    publishDate: '2025-08-20'
+    publishDate: '2025-10-15'
   }
 };
 
@@ -161,8 +161,9 @@ export async function loadAllBlogPosts(): Promise<BlogPost[]> {
     .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => {
       // Sort by date descending (most recent first)
-      const dateA = new Date(a.publishDate.split('/').reverse().join('-'));
-      const dateB = new Date(b.publishDate.split('/').reverse().join('-'));
+      // Dates are in YYYY-MM-DD format, which works directly with Date constructor
+      const dateA = new Date(a.publishDate);
+      const dateB = new Date(b.publishDate);
       return dateB.getTime() - dateA.getTime();
     });
 }

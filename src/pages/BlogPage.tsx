@@ -17,6 +17,7 @@ export const BlogPage: React.FC = () => {
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
   const [allTags, setAllTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,20 +70,31 @@ export const BlogPage: React.FC = () => {
     }
   }, [loading, matrixAnim]);
 
-  // Filter posts based on search and tag
+  // Filter and sort posts based on search, tag, and sort order
   useEffect(() => {
     let filtered = posts;
-    
+
     if (searchQuery) {
       filtered = searchBlogPosts(filtered, searchQuery);
     }
-    
+
     if (selectedTag) {
       filtered = filterByTag(filtered, selectedTag);
     }
-    
-    setFilteredPosts(filtered);
-  }, [posts, searchQuery, selectedTag]);
+
+    // Sort posts
+    const sorted = [...filtered].sort((a, b) => {
+      if (sortBy === 'date') {
+        const dateA = new Date(a.publishDate);
+        const dateB = new Date(b.publishDate);
+        return dateB.getTime() - dateA.getTime(); // Most recent first
+      } else {
+        return a.title.localeCompare(b.title); // Alphabetical
+      }
+    });
+
+    setFilteredPosts(sorted);
+  }, [posts, searchQuery, selectedTag, sortBy]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -190,9 +202,9 @@ export const BlogPage: React.FC = () => {
                 <i className="fas fa-tags"></i>
                 Filter by topic:
               </label>
-              
+
               {/* Unified dropdown for both desktop and mobile */}
-              <select 
+              <select
                 id="topic-filter"
                 className="tags-select"
                 value={selectedTag || ''}
@@ -202,7 +214,7 @@ export const BlogPage: React.FC = () => {
                   setShowFilters(false);
                 }}
               >
-                <option value="">All Topics ({posts.length})</option>
+                <option value="">All Topics</option>
                 {allTags.map(tag => {
                   const count = posts.filter(post => post.tags.includes(tag)).length;
                   return (
@@ -212,10 +224,10 @@ export const BlogPage: React.FC = () => {
                   );
                 })}
               </select>
-              
+
               {/* Clear selection button if tag is selected */}
               {selectedTag && (
-                <button 
+                <button
                   className="clear-tag-btn"
                   onClick={() => setSelectedTag(null)}
                   aria-label="Clear topic filter"
@@ -223,6 +235,24 @@ export const BlogPage: React.FC = () => {
                   <i className="fas fa-times"></i>
                 </button>
               )}
+            </div>
+
+            {/* Sort dropdown */}
+            <div className="tags-dropdown-wrapper">
+              <label htmlFor="sort-filter" className="tags-label">
+                <i className="fas fa-sort"></i>
+                Sort by:
+              </label>
+
+              <select
+                id="sort-filter"
+                className="tags-select"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as 'date' | 'title')}
+              >
+                <option value="date">Newest First</option>
+                <option value="title">A-Z</option>
+              </select>
             </div>
           </div>
 

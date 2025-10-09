@@ -574,37 +574,6 @@ button:focus-visible {
   text-shadow: 0 0 10px var(--matrix-green);
 }
 
-.font-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.02);
-  padding: 8px 15px;
-  border-radius: 25px;
-  border: 1px solid var(--border-color);
-}
-
-.font-size-btn {
-  background: transparent;
-  border: none;
-  color: var(--matrix-green);
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 5px;
-  transition: all 0.3s ease;
-}
-
-.font-size-btn:hover {
-  transform: scale(1.2);
-  text-shadow: 0 0 10px var(--matrix-green);
-}
-
-.font-size-label {
-  color: var(--matrix-green);
-  font-family: var(--font-code);
-  min-width: 50px;
-  text-align: center;
-}
 
 /* Article Content */
 .blog-article {
@@ -806,7 +775,7 @@ button:focus-visible {
 .article-content h1,
 .article-content h2,
 .article-content h3 {
-  color: var(--accent-color); /* Softer green */
+  color: #00FF00; /* Classic matrix green - consistent across all themes */
   margin: 30px 0 15px;
   text-shadow: 0 0 3px rgba(0, 255, 0, 0.2);
 }
@@ -1253,12 +1222,11 @@ button:focus-visible {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
-  padding: 12px 20px; /* Increased horizontal padding */
+  padding: 12px 20px;
   z-index: 1000;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  gap: 16px; /* Added gap between sections */
 }
 
 .mobile-back {
@@ -1268,44 +1236,6 @@ button:focus-visible {
   flex-shrink: 0; /* Prevent shrinking */
 }
 
-.mobile-font-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* Increased from 10px for better spacing */
-  background: rgba(255, 255, 255, 0.02);
-  padding: 6px 12px;
-  border-radius: 25px;
-  border: 1px solid var(--border-color);
-}
-
-.mobile-font-controls button {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-color);
-  color: var(--matrix-green);
-  width: 40px; /* Slightly smaller for better fit */
-  height: 40px; /* Slightly smaller for better fit */
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0; /* Prevent shrinking */
-}
-
-.mobile-font-controls button:active {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(0.95);
-}
-
-.mobile-font-controls span {
-  color: var(--matrix-green);
-  font-size: 0.9rem;
-  min-width: 42px; /* Reduced slightly */
-  text-align: center;
-  font-family: var(--font-code);
-  flex-shrink: 0; /* Prevent shrinking */
-}
 
 .progress-indicator {
   color: var(--matrix-green);

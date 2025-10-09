@@ -17,10 +17,6 @@ export const BlogReader: React.FC = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [fontSize, setFontSize] = useState(() => {
-    const saved = localStorage.getItem('blogFontSize');
-    return saved ? parseInt(saved) : 18;
-  });
   const [readingProgress, setReadingProgress] = useState(0);
   const [showShareToast, setShowShareToast] = useState(false);
   const [shareMessage, setShareMessage] = useState('');
@@ -93,14 +89,6 @@ export const BlogReader: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-
-  const adjustFontSize = (delta: number) => {
-    const newSize = Math.min(24, Math.max(14, fontSize + delta));
-    setFontSize(newSize);
-    localStorage.setItem('blogFontSize', newSize.toString());
-  };
-
   const shareArticle = async (platform: string) => {
     if (!post) return;
     
@@ -149,12 +137,6 @@ export const BlogReader: React.FC = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (e.key === 'ArrowDown' && e.ctrlKey) {
       window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    } else if (e.key === '+' && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      adjustFontSize(2);
-    } else if (e.key === '-' && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      adjustFontSize(-2);
     }
   };
 
@@ -200,17 +182,7 @@ export const BlogReader: React.FC = () => {
         <Link to="/blog" className="mobile-back">
           <i className="fas fa-arrow-left"></i>
         </Link>
-        
-        <div className="mobile-font-controls">
-          <button onClick={() => adjustFontSize(-2)}>
-            <i className="fas fa-minus"></i>
-          </button>
-          <span>{fontSize}px</span>
-          <button onClick={() => adjustFontSize(2)}>
-            <i className="fas fa-plus"></i>
-          </button>
-        </div>
-        
+
         <div className="progress-indicator">
           {Math.round(readingProgress)}%
         </div>
@@ -223,44 +195,21 @@ export const BlogReader: React.FC = () => {
             <i className="fas fa-arrow-left"></i>
             <span>Back to Blog</span>
           </Link>
-          
-          <div className="reader-controls">
-            <div className="font-controls">
-              <button 
-                onClick={() => adjustFontSize(-2)}
-                className="font-size-btn"
-                title="Decrease font size"
-              >
-                <i className="fas fa-minus"></i>
-              </button>
-              <span className="font-size-label">{fontSize}px</span>
-              <button 
-                onClick={() => adjustFontSize(2)}
-                className="font-size-btn"
-                title="Increase font size"
-              >
-                <i className="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
         </div>
       </header>
 
       {/* Article content */}
       <article ref={articleRef} className="blog-article">
-        <div className="article-container" style={{ fontSize: `${fontSize}px` }}>
+        <div className="article-container">
           <header className="article-header">
             <h1 className="article-title">{post.title}</h1>
-            
+
             <div className="article-meta">
               <span className="read-time">
                 <i className="far fa-clock"></i> {post.readTime} min read
               </span>
               <span className="article-date">
                 <i className="far fa-calendar"></i> {formatDate(post.publishDate)}
-              </span>
-              <span className="reading-position">
-                <i className="fas fa-book-reader"></i> {Math.round(readingProgress)}% read
               </span>
             </div>
 
@@ -273,13 +222,7 @@ export const BlogReader: React.FC = () => {
             </div>
           </header>
 
-          <div
-            className="article-content"
-            style={{
-              fontSize: `${fontSize}px`,
-              lineHeight: fontSize >= 20 ? '1.8' : '1.7'
-            }}
-          >
+          <div className="article-content">
             <div className="blog-markdown-content">
               <ReactMarkdown
                 components={{
