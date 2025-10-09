@@ -1,7 +1,3 @@
-# The Human + AI Partnership
-
-**Published:** 11/02/2025
-
 ## Let's Address the Elephant in the Room
 
 The one Silicon Valley keeps trying to hide behind fancy marketing speak.

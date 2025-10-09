@@ -5,6 +5,12 @@ import ReactMarkdown from 'react-markdown';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
 import '../css/components/markdown-preview-override.css';
 
+// Helper function to format date from YYYY-MM-DD to DD/MM/YYYY
+const formatDate = (dateStr: string): string => {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}/${month}/${year}`;
+};
+
 export const BlogReader: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -251,7 +257,7 @@ export const BlogReader: React.FC = () => {
                 <i className="far fa-clock"></i> {post.readTime} min read
               </span>
               <span className="article-date">
-                <i className="far fa-calendar"></i> {post.publishDate}
+                <i className="far fa-calendar"></i> {formatDate(post.publishDate)}
               </span>
               <span className="reading-position">
                 <i className="fas fa-book-reader"></i> {Math.round(readingProgress)}% read

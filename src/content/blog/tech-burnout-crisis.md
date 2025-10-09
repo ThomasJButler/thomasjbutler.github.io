@@ -1,7 +1,3 @@
-# The Tech Burnout Crisis
-
-**Published:** 19/07/2025
-
 Developers around the world are burning out faster than ever.
 The tools meant to help us, are making it worse.
 

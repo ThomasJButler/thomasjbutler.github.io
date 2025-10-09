@@ -160,9 +160,10 @@ export async function loadAllBlogPosts(): Promise<BlogPost[]> {
   return posts
     .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => {
-      // Featured posts first, then by title
-      if (a.featured !== b.featured) return b.featured ? 1 : -1;
-      return a.title.localeCompare(b.title);
+      // Sort by date descending (most recent first)
+      const dateA = new Date(a.publishDate.split('/').reverse().join('-'));
+      const dateB = new Date(b.publishDate.split('/').reverse().join('-'));
+      return dateB.getTime() - dateA.getTime();
     });
 }
 

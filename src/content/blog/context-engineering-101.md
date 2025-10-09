@@ -1,7 +1,3 @@
-# Context Engineering 101: The Revolution in AI Development
-
-**Published:** 22/04/2025
-
 ## The Problem Nobody Talks About
 
 Every developer using AI faces the same frustrating ritual:

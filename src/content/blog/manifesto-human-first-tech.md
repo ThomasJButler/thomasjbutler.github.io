@@ -1,7 +1,3 @@
-# Human-First Technology
-
-**Published:** 08/08/2025
-
 ## We Stand at a Crossroads
 
 Technology can elevate humanity or erase it. AI can amplify our abilities or atrophy them.

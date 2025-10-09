@@ -32,6 +32,10 @@ button:focus-visible {
   box-sizing: border-box;
 }
 
+.blog-markdown-content {
+    padding-top: 8rem;
+}
+
 .blog-page .container {
   color: var(--text-primary);
   max-width: 1280px;
@@ -111,7 +115,7 @@ button:focus-visible {
 }
 
 .blog-title {
-  margin-bottom: 20px;
+ display: block;
 }
 
 .blog-title .matrix-text {
@@ -119,7 +123,7 @@ button:focus-visible {
   color: var(--matrix-green);
   text-shadow: 0 0 10px var(--matrix-green);
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-family: var(--font-code);
 }
 
@@ -133,8 +137,8 @@ button:focus-visible {
 .blog-stats {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
+  gap: 60px;
+  margin-top: 50px;
 }
 
 .blog-stats .stat {
@@ -493,7 +497,6 @@ button:focus-visible {
 
 /* Blog Reader Styles */
 .blog-reader {
-  padding-top: 60px; /* Account for fixed header */
   min-height: 100vh;
   background: #0a0a0a;
   color: var(--text-primary);
@@ -649,9 +652,9 @@ button:focus-visible {
 
 .article-meta {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -676,6 +679,7 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 10px;
 }
 
 .article-tag {
