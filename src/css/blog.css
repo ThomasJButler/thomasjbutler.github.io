@@ -36,11 +36,13 @@ button:focus-visible {
     padding-top: 8rem;
 }
 
-.blog-page .container {
+.blog-page .container,
+.blog-page .blog-container {
   color: var(--text-primary);
   max-width: 1280px;
   width: 100%;
   padding: 0 20px;
+  margin: 0 auto;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -105,10 +107,20 @@ button:focus-visible {
   border-color: var(--accent-color);
 }
 
+.blog-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .blog-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin: 0 auto 60px auto;
   width: 100%;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,10 +186,10 @@ button:focus-visible {
 }
 
 .search-container {
+  margin-top: 8rem;
   position: relative;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto 30px;
   box-sizing: border-box;
 }
 
@@ -338,6 +350,19 @@ button:focus-visible {
 .clear-filters:hover {
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Blog Grid (Loading Skeleton) */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px auto 0;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Blog List Grid */

@@ -113,7 +113,8 @@ export const BlogPage: React.FC = () => {
     return (
       <div className="blog-page">
         <div className="blog-container">
-          <div className="blog-header">
+          <div className="blog-header-container">
+          <div className="blog-header">          
             <h1 className="blog-title">
               <span className="typing-effect">Loading Blog</span>
             </h1>
@@ -123,6 +124,7 @@ export const BlogPage: React.FC = () => {
               <BlogCardSkeleton key={index} />
             ))}
           </div>
+        </div>
         </div>
       </div>
     );
