@@ -30,7 +30,7 @@ button:focus-visible {
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  /* Remove expensive transition - handled by CSS variables */
 }
 
 .blog-markdown-content {
@@ -395,16 +395,38 @@ button:focus-visible {
   border: 2px solid rgba(68, 71, 90, 0.5);
   border-radius: 16px;
   padding: 30px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.6s ease,
-              border-color 0.6s ease,
-              color 0.6s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(10px);
   overflow: hidden;
+
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(20px) translateZ(0);
+  animation: slideUpFade 0.5s ease forwards;
+  will-change: transform, opacity;
+  contain: layout style paint;
+}
+
+/* Staggered entrance for blog cards */
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.15s; }
+.blog-card:nth-child(3) { animation-delay: 0.2s; }
+.blog-card:nth-child(4) { animation-delay: 0.25s; }
+.blog-card:nth-child(5) { animation-delay: 0.3s; }
+.blog-card:nth-child(6) { animation-delay: 0.35s; }
+.blog-card:nth-child(7) { animation-delay: 0.4s; }
+.blog-card:nth-child(8) { animation-delay: 0.45s; }
+.blog-card:nth-child(9) { animation-delay: 0.5s; }
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
 }
 
 .blog-card::before {
@@ -1541,6 +1563,23 @@ button:focus-visible {
   border: 1px solid var(--border-color);
   display: block;
   box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Accessibility - Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .blog-card:hover {
+    transform: none !important;
+  }
 }
 
 /* ==========================================================================

@@ -11,6 +11,7 @@ export const ServicesPage: React.FC = () => {
     () => window.innerWidth < 768 ? new Set([0]) : new Set()
   );
   const [showAllTech, setShowAllTech] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set());
 
   // Apply card animations
   useCardAnimations();
@@ -87,27 +88,27 @@ export const ServicesPage: React.FC = () => {
   const techStackCategories = [
     {
       category: "Frontend",
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind", "SASS"]
+      technologies: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind", "SASS", "CSS3", "HTML5", "Vue.js", "Webpack", "Vite", "Redux"]
     },
     {
       category: "Backend",
-      technologies: ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB", "Redis"]
+      technologies: ["Node.js", "Express", "Python", "Django", "PHP", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "MySQL", "RESTful APIs", "WebSockets"]
     },
     {
       category: "AI & ML",
-      technologies: ["ChatGPT", "n8n", "TensorFlow", "PyTorch", "NLP"]
+      technologies: ["ChatGPT", "GPT-4", "Claude", "OpenAI API", "LangChain", "Prompt Engineering", "n8n", "Zapier", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "Computer Vision", "RAG", "Vector Databases", "Fine-tuning", "AI Agents"]
     },
     {
-      category: "Mobile",
-      technologies: ["React Native"]
+      category: "Mobile & Mobile Web Apps",
+      technologies: ["React Native", "iOS & Android", "PWA", "Responsive Design", "Mobile-First"]
     },
     {
       category: "APIs",
-      technologies: ["REST APIs", "GraphQL"]
+      technologies: ["REST APIs", "GraphQL", "Apollo", "tRPC", "WebSockets", "API Design", "Swagger/OpenAPI", "Postman", "Rate Limiting", "Authentication"]
     },
     {
       category: "DevOps & Cloud",
-      technologies: ["Docker", "Git", "AWS", "Azure"]
+      technologies: ["Docker", "Git", "AWS", "Azure", "CI/CD", "GitHub Actions", "Vercel", "Netlify"]
     }
   ];
 
@@ -137,6 +138,18 @@ export const ServicesPage: React.FC = () => {
 
   const toggleCard = (index: number) => {
     setExpandedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+
+  const toggleCategory = (index: number) => {
+    setExpandedCategories(prev => {
       const newSet = new Set(prev);
       if (newSet.has(index)) {
         newSet.delete(index);
@@ -212,19 +225,56 @@ export const ServicesPage: React.FC = () => {
           <div className={styles.techStackContent}>
             {techStackCategories.map((category, catIndex) => {
               const isVisible = showAllTech || catIndex === 0;
+              const isCategoryExpanded = expandedCategories.has(catIndex);
+              const visibleTech = category.technologies.slice(0, 7);
+              const hiddenTech = category.technologies.slice(7);
+              const hasMore = hiddenTech.length > 0;
+
               return (
                 <div
                   key={catIndex}
                   className={`${styles.techCategory} ${!isVisible ? styles.hiddenOnMobile : ''}`}
                 >
                   <h4 className={styles.categoryTitle}>{category.category}</h4>
+
+                  {/* First line - always visible */}
                   <div className={styles.techBadges}>
-                    {category.technologies.map((tech, techIndex) => (
+                    {visibleTech.map((tech, techIndex) => (
                       <span key={techIndex} className={styles.techBadge}>
                         [{tech}]
                       </span>
                     ))}
                   </div>
+
+                  {/* Additional badges - collapsible on desktop */}
+                  {hasMore && (
+                    <>
+                      <div className={`${styles.techBadges} ${styles.techBadgesExtra} ${isCategoryExpanded ? styles.expanded : ''}`}>
+                        {hiddenTech.map((tech, techIndex) => (
+                          <span key={techIndex + 7} className={styles.techBadge}>
+                            [{tech}]
+                          </span>
+                        ))}
+                      </div>
+
+                      <button
+                        className={styles.categoryToggle}
+                        onClick={() => toggleCategory(catIndex)}
+                        aria-expanded={isCategoryExpanded}
+                        aria-label={isCategoryExpanded ? `Show less ${category.category} technologies` : `Show ${hiddenTech.length} more ${category.category} technologies`}
+                      >
+                        {isCategoryExpanded ? (
+                          <>
+                            Show Less <i className="fas fa-chevron-up"></i>
+                          </>
+                        ) : (
+                          <>
+                            +{hiddenTech.length} More <i className="fas fa-chevron-down"></i>
+                          </>
+                        )}
+                      </button>
+                    </>
+                  )}
                 </div>
               );
             })}

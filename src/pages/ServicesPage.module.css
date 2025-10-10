@@ -58,11 +58,32 @@
   border-radius: 12px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
-  backdrop-filter: blur(5px);
   overflow: hidden;
   min-height: 400px;
   display: flex;
   flex-direction: column;
+
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(30px) translateZ(0);
+  animation: slideInUp 0.6s ease forwards;
+  will-change: transform, opacity;
+  contain: layout style paint;
+}
+
+/* Staggered entrance delays */
+.serviceCard:nth-child(1) { animation-delay: 0.1s; }
+.serviceCard:nth-child(2) { animation-delay: 0.2s; }
+.serviceCard:nth-child(3) { animation-delay: 0.3s; }
+.serviceCard:nth-child(4) { animation-delay: 0.4s; }
+.serviceCard:nth-child(5) { animation-delay: 0.5s; }
+.serviceCard:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
 }
 
 /* Accessibility: Focus states */
@@ -240,9 +261,14 @@
   .expandButton,
   .ctaButton,
   .techBadge,
+  .techCategory,
+  .categoryToggle,
+  .techBadgesExtra,
   .serviceFeatures li {
     animation: none !important;
     transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .serviceCard:hover {
@@ -252,28 +278,136 @@
   .expandButton:hover {
     transform: none;
   }
+
+  .techBadge:hover {
+    transform: none;
+  }
+
+  .categoryToggle:hover {
+    transform: none;
+  }
+
+  .techBadgesExtra {
+    transition: none !important;
+  }
 }
 
 /* Tech Stack Section */
 .techStackSection {
   margin: 4rem 0;
-  padding: 2rem;
-  background: rgba(0, 20, 0, 0.5);
-  border: 1px solid rgba(0, 255, 0, 0.2);
-  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  background: linear-gradient(145deg, rgba(0, 25, 0, 0.7), rgba(0, 35, 0, 0.5));
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 16px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 0, 0.15),
+    inset 0 0 40px rgba(0, 255, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated border glow effect */
+.techStackSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0, 255, 0, 0.6) 30%,
+    rgba(0, 255, 0, 0.8) 50%,
+    rgba(0, 255, 0, 0.6) 70%,
+    transparent
+  );
+  animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .techStackTitle {
   color: var(--text-primary);
   font-family: var(--font-code);
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  text-shadow:
+    0 0 15px rgba(0, 255, 0, 0.5),
+    0 0 25px rgba(0, 255, 0, 0.3);
   text-align: center;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+.techStackContent {
+  /* Mobile: single column */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop: two-column grid */
+@media (min-width: 768px) {
+  .techStackContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 4rem;
+  }
 }
 
 .techCategory {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(0, 15, 0, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 0, 0.15);
+  transition: all 0.3s ease;
+
+  /* Entry animation */
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  will-change: opacity;
+}
+
+/* Staggered delays for tech categories */
+.techCategory:nth-child(1) { animation-delay: 0.7s; }
+.techCategory:nth-child(2) { animation-delay: 0.75s; }
+.techCategory:nth-child(3) { animation-delay: 0.8s; }
+.techCategory:nth-child(4) { animation-delay: 0.85s; }
+.techCategory:nth-child(5) { animation-delay: 0.9s; }
+.techCategory:nth-child(6) { animation-delay: 0.95s; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.techCategory:hover {
+  background: rgba(0, 20, 0, 0.6);
+  border-color: rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Desktop: reduce bottom margin for grid layout */
+@media (min-width: 768px) {
+  .techCategory {
+    margin-bottom: 0;
+  }
+
+  .techCategory:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .techCategory:last-child {
@@ -317,42 +451,138 @@
   .showMoreTech {
     display: flex;
   }
+
+  /* On mobile, hide per-category toggles and show all badges */
+  .categoryToggle {
+    display: none;
+  }
+
+  .techBadgesExtra {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.65rem;
+  }
 }
 
 .categoryTitle {
   color: var(--matrix-green);
   font-family: var(--font-code);
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.8;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.categoryTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--matrix-green), transparent);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
 }
 
 .techBadges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.65rem;
 }
 
-.techBadge {
-  padding: 0.3rem 0.6rem;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+/* Extra badges - collapsible on desktop */
+.techBadgesExtra {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.techBadgesExtra.expanded {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 0.65rem;
+}
+
+/* Per-category toggle button (desktop only) */
+.categoryToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid rgba(0, 255, 0, 0.25);
   border-radius: 4px;
   color: var(--matrix-green);
   font-family: var(--font-code);
   font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.categoryToggle:hover {
+  background: rgba(0, 255, 0, 0.15);
+  border-color: var(--matrix-green);
+  transform: translateX(3px);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.categoryToggle:focus {
+  outline: 2px solid var(--matrix-green);
+  outline-offset: 2px;
+}
+
+.categoryToggle i {
+  font-size: 0.7rem;
+}
+
+.techBadge {
+  padding: 0.5rem 0.9rem;
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.08), rgba(0, 255, 0, 0.12));
+  border: 1.5px solid rgba(0, 255, 0, 0.35);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 255, 0, 0.1);
+}
+
+/* Shine effect on hover */
+.techBadge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.techBadge:hover::before {
+  left: 100%;
 }
 
 .techBadge:hover {
-  background: rgba(0, 255, 0, 0.2);
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(0, 255, 0, 0.25));
   border-color: var(--matrix-green);
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 4px 15px rgba(0, 255, 0, 0.3),
+    0 0 20px rgba(0, 255, 0, 0.2);
+  color: var(--matrix-green);
 }
 
 /* CTA Section */
@@ -488,4 +718,12 @@
 .serviceCard.expanded .serviceFeatures {
   max-height: 500px;
   opacity: 1;
+}
+
+/* Theme-specific performance optimizations */
+[data-theme="dark"] .serviceCard,
+[data-theme="matrix"] .serviceCard,
+[data-theme="dark"] .techCategory,
+[data-theme="matrix"] .techCategory {
+  contain: layout style paint;
 }
