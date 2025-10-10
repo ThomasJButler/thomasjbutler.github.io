@@ -266,7 +266,7 @@
 
   /* Blog page mobile layout */
   .blog-page {
-    padding: 80px 0 60px;
+    padding: 0 !important;
   }
 
   .blog-page .container {
@@ -333,7 +333,7 @@
   .search-container {
     width: 100%;
     max-width: none;
-    padding: 0 1rem;
+    margin-top: 0 !important;
   }
 
   .blog-search {
