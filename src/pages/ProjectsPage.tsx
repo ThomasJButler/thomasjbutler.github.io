@@ -129,6 +129,31 @@ const projects: Project[] = [
 
   // Web Development Projects
   {
+    id: 'web-agency-showcase',
+    name: 'Web Agency Showcase',
+    visibility: 'Public',
+    description: 'Comprehensive documentation of commercial web development work designed for employers and recruiters. Features 10+ detailed project case studies with step-by-step processes, technical decisions, and outcomes.',
+    topics: ['Case Studies', 'Commercial Work', 'Documentation', 'Portfolio', 'Web Development', 'Professional'],
+    language: {
+      name: 'Documentation',
+      color: '#10B981',
+      percent: 100
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      demo: 'https://tombutler.notion.site/Web-Agency-Showcase-1a11b94bcaea80ffa87ae2fb8994e4de',
+      github: ''
+    },
+    category: 'web',
+    status: 'completed',
+    featured: true,
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png',
+    gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(0, 40, 0, 0.95) 100%)'
+  },
+  {
     id: 'portfolio-v3',
     name: 'Portfolio v3.0 - React Migration',
     visibility: 'Public',
