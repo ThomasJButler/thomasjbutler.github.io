@@ -361,14 +361,52 @@
     }
 }
 
+@media (max-width: 768px) {
+    /* Reduce main section headings for mobile */
+    #skills h2,
+    #learning h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    #skills > p,
+    #learning > p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .skill-section-title {
+        font-size: 1.6rem;
+    }
+
+    /* Single column layout for core expertise */
+    .core-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    /* Additional skills - single column */
+    .additional-skills-list {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}
+
 @media (max-width: 480px) {
-    .core-expertise-section,
-    .additional-skills-section {
-        margin-bottom: 1.5rem;
+    /* Even smaller headings for small mobile */
+    #skills h2,
+    #learning h2 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
     }
 
     .skill-section-title {
         font-size: 1.4rem;
+    }
+
+    .core-expertise-section,
+    .additional-skills-section {
+        margin-bottom: 1.5rem;
     }
 
     .core-expertise-card {
@@ -395,6 +433,18 @@
 
     .additional-skill-item {
         padding: 0.5rem 0.7rem;
+    }
+}
+
+@media (max-width: 320px) {
+    /* Smallest mobile devices */
+    #skills h2,
+    #learning h2 {
+        font-size: 1.3rem;
+    }
+
+    .skill-section-title {
+        font-size: 1.2rem;
     }
 }
 

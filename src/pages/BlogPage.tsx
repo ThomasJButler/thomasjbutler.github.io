@@ -22,9 +22,19 @@ export const BlogPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
-  
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6); // 6 posts per page for mobile
+
   const containerRef = useRef<HTMLDivElement>(null);
   const matrixAnim = useMatrixAnimation();
+
+  // Calculate pagination values
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   // Load blog posts function
   const loadPosts = async () => {
@@ -94,6 +104,7 @@ export const BlogPage: React.FC = () => {
     });
 
     setFilteredPosts(sorted);
+    setCurrentPage(1); // Reset to first page when filters change
   }, [posts, searchQuery, selectedTag, sortBy]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,6 +118,24 @@ export const BlogPage: React.FC = () => {
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedTag(null);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
   };
 
   if (loading) {
@@ -270,13 +299,71 @@ export const BlogPage: React.FC = () => {
           )}
         </section>
 
-        <BlogList posts={filteredPosts} />
+        <BlogList posts={currentPosts} />
 
         {filteredPosts.length === 0 && (
           <div className="no-results">
             <i className="fas fa-search"></i>
             <h3>No articles found</h3>
             <p>Try adjusting your search or filters</p>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {filteredPosts.length > postsPerPage && (
+          <div className="pagination-container">
+            <div className="pagination-info">
+              <span>
+                Page {currentPage} of {totalPages} ({filteredPosts.length} articles)
+              </span>
+            </div>
+
+            <button
+              className="pagination-button"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+              aria-label="Previous page"
+            >
+              <i className="fas fa-chevron-left"></i>
+              <span className="button-text">Previous</span>
+            </button>
+
+            <div className="pagination-numbers">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNumber;
+                if (totalPages <= 5) {
+                  pageNumber = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNumber = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNumber = totalPages - 4 + i;
+                } else {
+                  pageNumber = currentPage - 2 + i;
+                }
+
+                return (
+                  <button
+                    key={pageNumber}
+                    className={`pagination-number ${currentPage === pageNumber ? 'active' : ''}`}
+                    onClick={() => handlePageChange(pageNumber)}
+                    aria-label={`Page ${pageNumber}`}
+                    aria-current={currentPage === pageNumber ? 'page' : undefined}
+                  >
+                    {pageNumber}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              className="pagination-button"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              aria-label="Next page"
+            >
+              <span className="button-text">Next</span>
+              <i className="fas fa-chevron-right"></i>
+            </button>
           </div>
         )}
       </div>

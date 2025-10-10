@@ -776,4 +776,151 @@ html {
 
 /* Responsive Design */
 
+/* Desktop: Show Read Less button at bottom, centered */
+@media (min-width: 769px) {
+  .desktop-read-less {
+    display: block;
+    margin: 2rem auto 0;
+    text-align: center;
+  }
+
+  /* Hide mobile button on desktop */
+  .mobile-read-less {
+    display: none !important;
+  }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  /* Reduce section title size for mobile */
+  .section-title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  /* Reduce glitch text size for mobile */
+  .glitch-text {
+    font-size: 2.2rem;
+  }
+
+  /* Story content - mobile padding */
+  .story-content {
+    padding: 1.5rem 1.5rem;
+  }
+
+  /* Read More button */
+  .read-more-toggle {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .read-more-toggle:hover,
+  .read-more-toggle:active {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .read-more-toggle i {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  /* Expanded content animation */
+  .expanded-content {
+    animation: slideDown 0.3s ease-out;
+    margin-top: 1.5rem;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Button visibility control - default hide both conditional buttons */
+  .mobile-read-less,
+  .desktop-read-less {
+    display: none;
+  }
+
+  /* Mobile: Show Read Less button at top */
+  .mobile-read-less {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Journey grid - ensure single column */
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Holographic cards - better mobile layout */
+  .holographic-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Certification matrix grid */
+  .certification-matrix-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller headings for small mobile */
+  .section-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .glitch-text {
+    font-size: 1.8rem;
+  }
+
+  /* Compact story content */
+  .story-content {
+    padding: 1rem 1rem;
+  }
+
+  .highlight-text {
+    font-size: 1rem;
+  }
+
+  /* Read More button - full width on small screens */
+  .read-more-toggle {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Counter adjustments */
+  .count {
+    font-size: 3rem;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+}
+
 /* Animation Keyframes */

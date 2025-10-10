@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/about.css';
 
 export const AboutPage: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <>
       <section id="programming-journey" className="about-section">
@@ -33,12 +39,53 @@ export const AboutPage: React.FC = () => {
             <p className="highlight-text">
               Programming is not just a profession for me; it's a passion. The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
             </p>
-            <p>
-              From a young age, I was fascinated by technology and how it can be used to create amazing things. This curiosity led me to explore various programming languages and frameworks, and I quickly realized that programming was the perfect outlet for my creativity and problem-solving skills.
-            </p>
-            <p>
-              Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
-            </p>
+
+            {/* Read More button - shows when collapsed */}
+            {!isExpanded && (
+              <button
+                className="read-more-toggle"
+                onClick={toggleReadMore}
+                aria-expanded={isExpanded}
+                aria-label="Show more content"
+              >
+                Read More
+                <i className="fas fa-chevron-down"></i>
+              </button>
+            )}
+
+            {/* Expanded content with conditional Read Less buttons */}
+            {isExpanded && (
+              <div className="expanded-content">
+                {/* Mobile Read Less button (at top) */}
+                <button
+                  className="read-more-toggle mobile-read-less"
+                  onClick={toggleReadMore}
+                  aria-expanded={isExpanded}
+                  aria-label="Show less content"
+                >
+                  Read Less
+                  <i className="fas fa-chevron-up"></i>
+                </button>
+
+                <p>
+                  From a young age, I was fascinated by technology and how it can be used to create amazing things. This curiosity led me to explore various programming languages and frameworks, and I quickly realized that programming was the perfect outlet for my creativity and problem-solving skills.
+                </p>
+                <p>
+                  Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
+                </p>
+
+                {/* Desktop Read Less button (at bottom, centered) */}
+                <button
+                  className="read-more-toggle desktop-read-less"
+                  onClick={toggleReadMore}
+                  aria-expanded={isExpanded}
+                  aria-label="Show less content"
+                >
+                  Read Less
+                  <i className="fas fa-chevron-up"></i>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
