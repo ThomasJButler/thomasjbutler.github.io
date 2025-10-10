@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './ServicesPage.module.css';
@@ -6,59 +6,91 @@ import styles from './ServicesPage.module.css';
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+
   // Apply card animations
   useCardAnimations();
 
   const services = [
     {
-      title: "Website Development",
+      title: "Website & Web Apps",
       icon: "fas fa-code",
-      description: "Responsive, fast-loading websites built with modern technologies.",
-      features: ["React/Next.js", "TypeScript", "Performance Optimized", "SEO Ready"],
+      description: "Responsive, performance-first websites and web apps built with modern stacks.",
+      features: [
+        "React / Next.js · TypeScript · Tailwind / SASS",
+        "Performance optimization · SEO ready",
+        "Accessibility & responsive design"
+      ],
       color: "#00ff00"
     },
     {
-      title: "AI Integration",
-      icon: "fas fa-robot",
-      description: "Practical n8n AI Workflow solutions to automate workflows and enhance business efficiency.",
-      features: ["ChatGPT Integration", "Automation Workflows", "Custom AI Solutions", "Data Processing"],
+      title: "Backend & APIs",
+      icon: "fas fa-server",
+      description: "Robust servers and APIs that scale with your product. Production-ready architecture from day one.",
+      features: [
+        "Node.js / Express · Python / Django · RESTful APIs",
+        "PostgreSQL · MongoDB · Redis · Database optimization",
+        "Microservices · System integration · Authentication & security"
+      ],
       color: "#00cc00"
+    },
+    {
+      title: "AI & Automation",
+      icon: "fas fa-robot",
+      description: "Practical AI features and automation to save time and make data useful.",
+      features: [
+        "ChatGPT integration · n8n automation workflows",
+        "Custom GPT models · NLP · Computer vision",
+        "TensorFlow / PyTorch · Data processing"
+      ],
+      color: "#00ff00"
     },
     {
       title: "Mobile Applications",
       icon: "fas fa-mobile-alt",
-      description: "Custom mobile apps developed for both iOS and Android platforms.",
-      features: ["React Native", "Cross-Platform", "Native Performance", "App Store Ready"],
-      color: "#00ff00"
-    },
-    {
-      title: "Digital Design",
-      icon: "fas fa-palette",
-      description: "Brand identity, logos, and marketing materials designed to professional standards.",
-      features: ["UI/UX Design", "Brand Identity", "Logo Design", "Marketing Materials"],
+      description: "Cross-platform apps with native feel and store readiness.",
+      features: [
+        "React Native · Cross-platform",
+        "Native performance",
+        "App store submission"
+      ],
       color: "#00cc00"
     },
     {
-      title: "Tech Consultation",
-      icon: "fas fa-handshake",
-      description: "Professional advice and training for your technical projects and team.",
-      features: ["Architecture Review", "Team Training", "Tech Stack Selection", "Best Practices"],
+      title: "Design & Brand",
+      icon: "fas fa-palette",
+      description: "Clear, usable interfaces and identity design that scales with your product.",
+      features: [
+        "UI/UX · Brand identity",
+        "Logo design",
+        "Marketing assets"
+      ],
       color: "#00ff00"
     },
     {
-      title: "Custom Projects",
-      icon: "fas fa-cogs",
-      description: "Tailored solutions for unique requirements. Contact me to discuss your specific needs.",
-      features: ["Bespoke Solutions", "API Development", "System Integration", "Automation"],
+      title: "Consultancy & Custom",
+      icon: "fas fa-handshake",
+      description: "Architecture reviews, training and bespoke engineering for special requirements.",
+      features: [
+        "Architecture review · Team training",
+        "API development · Bespoke solutions",
+        "System integration · Support"
+      ],
       color: "#00cc00"
     }
+  ];
+
+  const techStack = [
+    "React", "Next.js", "TypeScript", "Tailwind", "SASS",
+    "Node.js", "Express", "Python", "Django", "PostgreSQL",
+    "n8n", "ChatGPT", "TensorFlow", "PyTorch", "React Native",
+    "REST APIs", "GraphQL", "Docker", "Git", "AWS", "Azure"
   ];
 
   useEffect(() => {
     // Set title text directly without animation to prevent glitching
     if (titleRef.current) {
-      titleRef.current.textContent = 'Professional Services';
+      titleRef.current.textContent = '// WEB, MOBILE, AND AI';
     }
 
     // Stagger service cards animation
@@ -79,90 +111,93 @@ export const ServicesPage: React.FC = () => {
     }
   };
 
+  const toggleCard = (index: number) => {
+    setExpandedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <>
-      <section id="technical-expertise" className="about-section">
-        <div className="container">
-          <h2 className="section-title">Technical Expertise</h2>
-          <div className="expertise-grid">
-            <div className="expertise-card">
-              <h3>Frontend Development</h3>
-              <ul className="expertise-list">
-                <li>React & Next.js</li>
-                <li>TypeScript</li>
-                <li>Modern CSS (Tailwind, SASS)</li>
-                <li>Performance Optimization</li>
-                <li>Responsive Design</li>
-              </ul>
-            </div>
-            <div className="expertise-card">
-              <h3>Backend Development</h3>
-              <ul className="expertise-list">
-                <li>Node.js & Express</li>
-                <li>Python & Django</li>
-                <li>RESTful APIs</li>
-                <li>Database Design</li>
-                <li>Microservices</li>
-              </ul>
-            </div>
-            <div className="expertise-card">
-              <h3>AI & Machine Learning</h3>
-              <ul className="expertise-list">
-                <li>Natural Language Processing</li>
-                <li>TensorFlow & PyTorch</li>
-                <li>Custom GPT Models</li>
-                <li>Computer Vision</li>
-                <li>Data Analysis</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-       <section id="services" className={styles.servicesSection}>
+      <section id="services" className={styles.servicesSection}>
       <div className="container">
         <h2 ref={titleRef} className="section-title"></h2>
         <p className={styles.servicesIntro}>
-          Bespoke digital solutions tailored to your needs. All services include consultation, delivery and support.
+          {'> '}I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
         </p>
-        
+
         <div ref={servicesRef} className={styles.servicesGrid}>
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className={`service-card ${styles.serviceCard}`}
-              onMouseEnter={handleCardHover}
-              style={{ '--card-color': service.color } as React.CSSProperties}
-            >
-              <div className={styles.serviceHeader}>
-                <i 
-                  className={`${service.icon} service-icon ${styles.serviceIcon}`}
-                  aria-hidden="true"
-                ></i>
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
+          {services.map((service, index) => {
+            const isExpanded = expandedCards.has(index);
+            return (
+              <div
+                key={index}
+                className={`service-card ${styles.serviceCard} ${isExpanded ? styles.expanded : ''}`}
+                onMouseEnter={handleCardHover}
+                style={{ '--card-color': service.color } as React.CSSProperties}
+              >
+                <div className={styles.serviceHeader}>
+                  <i
+                    className={`${service.icon} service-icon ${styles.serviceIcon}`}
+                    aria-hidden="true"
+                  ></i>
+                  <h3 className={styles.serviceTitle}>{service.title}</h3>
+                </div>
+
+                <p className={styles.serviceDescription}>{service.description}</p>
+
+                <ul className={`${styles.serviceFeatures} ${isExpanded ? styles.show : ''}`}>
+                  {service.features.map((feature, idx) => (
+                    <li key={idx}>
+                      <span className={styles.featureBullet}>▸</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  className={styles.expandButton}
+                  onClick={() => toggleCard(index)}
+                  aria-expanded={isExpanded}
+                  aria-label={isExpanded ? "Show less" : "Show more"}
+                >
+                  {isExpanded ? (
+                    <>
+                      Show Less <i className="fas fa-chevron-up"></i>
+                    </>
+                  ) : (
+                    <>
+                      View Details <i className="fas fa-chevron-down"></i>
+                    </>
+                  )}
+                </button>
               </div>
-              
-              <p className={styles.serviceDescription}>{service.description}</p>
-              
-              <ul className={styles.serviceFeatures}>
-                {service.features.map((feature, idx) => (
-                  <li key={idx}>
-                    <span className={styles.featureBullet}>▸</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              
-              <button className={styles.serviceButton}>
-                Learn More
-                <i className="fas fa-arrow-right icon-margin-left"></i>
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
+        {/* Tech Stack Badges */}
+        <div className={styles.techStackSection}>
+          <h3 className={styles.techStackTitle}>$ Tech Stack</h3>
+          <div className={styles.techBadges}>
+            {techStack.map((tech, index) => (
+              <span key={index} className={styles.techBadge}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Sticky CTA */}
         <div className={styles.ctaSection}>
-          <h3>Ready to Start Your Project?</h3>
-          <p>Let's discuss how I can help bring your ideas to life.</p>
+          <h3>Ready to start your project?</h3>
+          <p>Let's talk — I'll help bring your ideas to life.</p>
           <a href="/contact" className={styles.ctaButton}>
             Get In Touch
             <i className="fas fa-envelope icon-margin-left"></i>
