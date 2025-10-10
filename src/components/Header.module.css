@@ -310,6 +310,7 @@
   }
 
   .navList {
+    margin-block: 4rem;
     position: fixed;
     left: 0;
     right: 0;
