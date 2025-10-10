@@ -475,6 +475,7 @@
   }
 
   .article-content {
+    margin-block: 5rem;
     font-size: 16px !important; /* Prevents iOS zoom */
     padding: 1.5rem !important; /* Better padding for mobile */
     line-height: 1.7;
@@ -985,9 +986,9 @@
   }
 
   .article-title {
-    font-size: 1.5rem; /* Slightly larger with better wrapping */
+    font-size: 1.5rem !important;  /* Slightly larger with better wrapping */
     line-height: 1.4; /* Better line spacing */
-    padding: 0 0.75rem; /* More padding for readability */
+    padding: 1rem 0.75rem; /* More padding for readability */
     margin-bottom: 20px;
     word-wrap: break-word;
     overflow-wrap: break-word;
