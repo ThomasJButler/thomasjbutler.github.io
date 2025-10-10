@@ -6,7 +6,11 @@ import styles from './ServicesPage.module.css';
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+  // On mobile, expand first card by default for better UX
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(
+    () => window.innerWidth < 768 ? new Set([0]) : new Set()
+  );
+  const [showAllTech, setShowAllTech] = useState(false);
 
   // Apply card animations
   useCardAnimations();
@@ -48,11 +52,11 @@ export const ServicesPage: React.FC = () => {
     {
       title: "Mobile Applications",
       icon: "fas fa-mobile-alt",
-      description: "Cross-platform apps with native feel and store readiness.",
+      description: "Cross-platform apps with native feel and store readiness. Built for iOS and Android.",
       features: [
-        "React Native · Cross-platform",
-        "Native performance",
-        "App store submission"
+        "React Native · iOS & Android · Cross-platform",
+        "Push notifications · Offline functionality · Analytics",
+        "Native performance · App store submission & compliance"
       ],
       color: "#00cc00"
     },
@@ -61,9 +65,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-palette",
       description: "Clear, usable interfaces and identity design that scales with your product.",
       features: [
-        "UI/UX · Brand identity",
-        "Logo design",
-        "Marketing assets"
+        "UI/UX design · Brand identity · Design systems",
+        "Logo design · Component libraries · Responsive mockups",
+        "Marketing assets · Brand guidelines documentation"
       ],
       color: "#00ff00"
     },
@@ -80,17 +84,37 @@ export const ServicesPage: React.FC = () => {
     }
   ];
 
-  const techStack = [
-    "React", "Next.js", "TypeScript", "Tailwind", "SASS",
-    "Node.js", "Express", "Python", "Django", "PostgreSQL",
-    "n8n", "ChatGPT", "TensorFlow", "PyTorch", "React Native",
-    "REST APIs", "GraphQL", "Docker", "Git", "AWS", "Azure"
+  const techStackCategories = [
+    {
+      category: "Frontend",
+      technologies: ["React", "Next.js", "TypeScript", "Tailwind", "SASS"]
+    },
+    {
+      category: "Backend",
+      technologies: ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB", "Redis"]
+    },
+    {
+      category: "AI & ML",
+      technologies: ["ChatGPT", "n8n", "TensorFlow", "PyTorch", "NLP"]
+    },
+    {
+      category: "Mobile",
+      technologies: ["React Native"]
+    },
+    {
+      category: "APIs",
+      technologies: ["REST APIs", "GraphQL"]
+    },
+    {
+      category: "DevOps & Cloud",
+      technologies: ["Docker", "Git", "AWS", "Azure"]
+    }
   ];
 
   useEffect(() => {
     // Set title text directly without animation to prevent glitching
     if (titleRef.current) {
-      titleRef.current.textContent = '// WEB, MOBILE, AND AI';
+      titleRef.current.textContent = 'WEB, MOBILE, AND AI';
     }
 
     // Stagger service cards animation
@@ -129,7 +153,7 @@ export const ServicesPage: React.FC = () => {
       <div className="container">
         <h2 ref={titleRef} className="section-title"></h2>
         <p className={styles.servicesIntro}>
-          {'> '}I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
+          I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
         </p>
 
         <div ref={servicesRef} className={styles.servicesGrid}>
@@ -185,13 +209,42 @@ export const ServicesPage: React.FC = () => {
         {/* Tech Stack Badges */}
         <div className={styles.techStackSection}>
           <h3 className={styles.techStackTitle}>$ Tech Stack</h3>
-          <div className={styles.techBadges}>
-            {techStack.map((tech, index) => (
-              <span key={index} className={styles.techBadge}>
-                {tech}
-              </span>
-            ))}
+          <div className={styles.techStackContent}>
+            {techStackCategories.map((category, catIndex) => {
+              const isVisible = showAllTech || catIndex === 0;
+              return (
+                <div
+                  key={catIndex}
+                  className={`${styles.techCategory} ${!isVisible ? styles.hiddenOnMobile : ''}`}
+                >
+                  <h4 className={styles.categoryTitle}>{category.category}</h4>
+                  <div className={styles.techBadges}>
+                    {category.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className={styles.techBadge}>
+                        [{tech}]
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
+          <button
+            className={styles.showMoreTech}
+            onClick={() => setShowAllTech(!showAllTech)}
+            aria-expanded={showAllTech}
+            aria-label={showAllTech ? "Hide technologies" : "Show all technologies"}
+          >
+            {showAllTech ? (
+              <>
+                Show Less <i className="fas fa-chevron-up"></i>
+              </>
+            ) : (
+              <>
+                Show All Technologies <i className="fas fa-chevron-down"></i>
+              </>
+            )}
+          </button>
         </div>
 
         {/* Sticky CTA */}
