@@ -25,6 +25,7 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    padding-top: calc(50px + var(--space-xl)) !important;
 }
 
 /* Matrix theme enhancements for contact page */
@@ -1291,9 +1292,9 @@ p.info-card {
 
 /* Legacy Section Support - from pages/contact.css */
 #contact {
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     background: #000000;
     position: relative;
@@ -1310,8 +1311,8 @@ section#contact {
 
 @media screen and (max-width: 480px) {
 #contact {
-    padding: 1rem 1rem;
-    max-width: 390px;
+    padding: 2rem;
+    max-width: 300px;
 }   
 }
 
