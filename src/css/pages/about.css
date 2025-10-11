@@ -923,4 +923,317 @@ html {
   }
 }
 
+/* Epic Timeline Button */
+.timeline-cta-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.epic-timeline-button {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.epic-timeline-button:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Glowing background effect */
+.button-glow {
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(
+    135deg,
+    var(--neon-green) 0%,
+    rgba(0, 255, 0, 0.6) 25%,
+    rgba(0, 255, 255, 0.4) 50%,
+    rgba(0, 255, 0, 0.6) 75%,
+    var(--neon-green) 100%
+  );
+  border-radius: 20px;
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.4s ease;
+  animation: buttonGlowRotate 3s linear infinite;
+  z-index: -1;
+}
+
+.epic-timeline-button:hover .button-glow {
+  opacity: 0.8;
+}
+
+@keyframes buttonGlowRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main button container */
+.button-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 20, 0, 0.95) 0%,
+    rgba(0, 40, 0, 0.9) 50%,
+    rgba(0, 20, 0, 0.95) 100%
+  );
+  border: 2px solid var(--neon-green);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 255, 0, 0.2),
+    0 0 0 1px rgba(0, 255, 0, 0.1) inset,
+    0 0 60px rgba(0, 255, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.epic-timeline-button:hover .button-inner {
+  border-color: rgba(0, 255, 0, 0.8);
+  box-shadow:
+    0 12px 48px rgba(0, 255, 0, 0.3),
+    0 0 0 1px rgba(0, 255, 0, 0.2) inset,
+    0 0 80px rgba(0, 255, 0, 0.15);
+}
+
+/* Animated background pattern */
+.button-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 48%,
+    rgba(0, 255, 0, 0.08) 49%,
+    rgba(0, 255, 0, 0.08) 51%,
+    transparent 52%
+  );
+  background-size: 12px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.epic-timeline-button:hover .button-inner::before {
+  opacity: 1;
+  animation: patternSlide 20s linear infinite;
+}
+
+@keyframes patternSlide {
+  0% { background-position: 0 0; }
+  100% { background-position: 240px 240px; }
+}
+
+/* Icon wrapper with timeline symbol */
+.button-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.button-icon-wrapper i {
+  font-size: 2.5rem;
+  color: var(--neon-green);
+  text-shadow:
+    0 0 10px rgba(0, 255, 0, 0.8),
+    0 0 20px rgba(0, 255, 0, 0.6),
+    0 0 30px rgba(0, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.epic-timeline-button:hover .button-icon-wrapper i {
+  transform: scale(1.1) rotate(5deg);
+  text-shadow:
+    0 0 15px rgba(0, 255, 0, 1),
+    0 0 30px rgba(0, 255, 0, 0.8),
+    0 0 45px rgba(0, 255, 0, 0.6);
+}
+
+/* Pulsing icon background */
+.icon-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 0, 0.3) 0%,
+    rgba(0, 255, 0, 0.1) 50%,
+    transparent 70%
+  );
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+}
+
+/* Button text content */
+.button-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.button-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neon-green);
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 10px rgba(0, 255, 0, 0.5),
+    0 0 20px rgba(0, 255, 0, 0.3);
+  transition: all 0.3s ease;
+  line-height: 1.2;
+}
+
+.epic-timeline-button:hover .button-title {
+  text-shadow:
+    0 0 15px rgba(0, 255, 0, 0.8),
+    0 0 30px rgba(0, 255, 0, 0.5);
+  letter-spacing: 2.5px;
+}
+
+.button-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--light-green);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.button-subtitle i {
+  font-size: 0.9rem;
+  color: var(--neon-green);
+}
+
+.epic-timeline-button:hover .button-subtitle {
+  color: rgba(0, 255, 0, 0.9);
+}
+
+/* Arrow indicator */
+.button-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.button-arrow i {
+  font-size: 1.5rem;
+  color: var(--neon-green);
+  transition: all 0.3s ease;
+}
+
+.epic-timeline-button:hover .button-arrow {
+  transform: translateX(8px);
+}
+
+.epic-timeline-button:hover .button-arrow i {
+  animation: arrowBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+/* Mobile responsive design for epic button */
+@media (max-width: 768px) {
+  .timeline-cta-section {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+  }
+
+  .button-inner {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .button-icon-wrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .button-icon-wrapper i {
+    font-size: 2rem;
+  }
+
+  .button-content {
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .button-title {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  .button-subtitle {
+    font-size: 0.9rem;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .button-arrow {
+    display: none; /* Hide arrow on mobile for cleaner look */
+  }
+}
+
+@media (max-width: 480px) {
+  .button-inner {
+    padding: 1.25rem 1rem;
+  }
+
+  .button-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .button-icon-wrapper i {
+    font-size: 1.75rem;
+  }
+
+  .button-title {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .button-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
 /* Animation Keyframes */

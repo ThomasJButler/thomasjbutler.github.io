@@ -688,3 +688,235 @@
         filter: none;
     }
 }
+
+/* ============================================================================
+   UPDATES TIMELINE CTA BUTTON
+   Epic Matrix-themed button for navigating to dev timeline
+   ============================================================================ */
+.updates-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.updates-cta-button {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2.5rem;
+    background: linear-gradient(135deg,
+        rgba(0, 255, 65, 0.1) 0%,
+        rgba(0, 245, 255, 0.1) 100%
+    );
+    border: 2px solid var(--matrix-green);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 255, 65, 0.2);
+}
+
+/* Animated background gradient */
+.updates-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 255, 65, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.updates-cta-button:hover::before {
+    left: 100%;
+}
+
+/* Glowing border effect on hover */
+.updates-cta-button::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg,
+        var(--matrix-green),
+        var(--matrix-cyan),
+        var(--matrix-green)
+    );
+    border-radius: 12px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+    filter: blur(10px);
+}
+
+.updates-cta-button:hover::after {
+    opacity: 0.6;
+}
+
+.updates-cta-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4),
+                0 0 60px rgba(0, 245, 255, 0.3);
+    border-color: var(--matrix-cyan);
+}
+
+.updates-cta-button:active {
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Button Icon */
+.updates-cta-button .button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 65, 0.2);
+    border: 1px solid var(--matrix-green);
+    border-radius: 10px;
+    color: var(--matrix-green);
+    font-size: 1.5rem;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+}
+
+.updates-cta-button:hover .button-icon {
+    background: rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Button Content */
+.button-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.button-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.button-subtext {
+    font-size: 0.875rem;
+    color: var(--matrix-green);
+    font-family: 'Courier New', monospace;
+    opacity: 0.9;
+}
+
+/* Button Arrow */
+.updates-cta-button .button-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--matrix-green);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.updates-cta-button:hover .button-arrow {
+    transform: translateX(8px);
+    color: var(--matrix-cyan);
+    filter: drop-shadow(0 0 10px var(--matrix-cyan));
+}
+
+/* Focus state for accessibility */
+.updates-cta-button:focus {
+    outline: 3px solid var(--matrix-cyan);
+    outline-offset: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .updates-cta-wrapper {
+        margin: 2rem 0 1.5rem;
+    }
+
+    .updates-cta-button {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
+        text-align: center;
+    }
+
+    .updates-cta-button .button-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+    }
+
+    .button-content {
+        align-items: center;
+    }
+
+    .button-text {
+        font-size: 1.125rem;
+        white-space: normal;
+    }
+
+    .button-subtext {
+        font-size: 0.8125rem;
+    }
+
+    .updates-cta-button .button-arrow {
+        transform: rotate(90deg);
+        font-size: 1rem;
+    }
+
+    .updates-cta-button:hover .button-arrow {
+        transform: rotate(90deg) translateY(5px);
+    }
+}
+
+@media (max-width: 480px) {
+    .updates-cta-button {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .button-text {
+        font-size: 1rem;
+    }
+
+    .button-subtext {
+        font-size: 0.75rem;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .updates-cta-button {
+        transition: none;
+    }
+
+    .updates-cta-button::before,
+    .updates-cta-button::after {
+        display: none;
+    }
+
+    .updates-cta-button:hover {
+        transform: none;
+    }
+
+    .updates-cta-button:hover .button-icon {
+        transform: none;
+    }
+
+    .updates-cta-button:hover .button-arrow {
+        transform: translateX(5px);
+    }
+}

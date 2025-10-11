@@ -23,6 +23,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ defaul
 const SitemapPage = lazy(() => import('./pages/SitemapPage').then(m => ({ default: m.SitemapPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
+const UpdatesPage = lazy(() => import('./pages/UpdatesPage').then(m => ({ default: m.default })));
 
 // Styles - Optimized import order
 import './css/themes.css'; // Theme system
@@ -117,7 +118,12 @@ export const App: React.FC = () => {
                 <BlogReader />
               </Suspense>
             } />
-            
+            <Route path="updates" element={
+              <Suspense fallback={<PageLoader />}>
+                <UpdatesPage />
+              </Suspense>
+            } />
+
             {/* Legacy HTML file redirects */}
             <Route path="index.html" element={<Navigate to="/" replace />} />
             <Route path="about.html" element={<Navigate to="/about" replace />} />

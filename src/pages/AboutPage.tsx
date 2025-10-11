@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/about.css';
 
 export const AboutPage: React.FC = () => {
@@ -10,28 +11,7 @@ export const AboutPage: React.FC = () => {
 
   return (
     <>
-      <section id="programming-journey" className="about-section">
-        <div className="container">
-          <h2 className="section-title">My Programming Journey</h2>
-          <div className="journey-grid">
-            <div className="journey-item">
-              <i className="fas fa-lightbulb"></i>
-              <h4>The Beginning</h4>
-              <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-code"></i>
-              <h4>Learning & Growth</h4>
-              <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-robot"></i>
-              <h4>AI Exploration</h4>
-              <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 1: Why I Love Programming - NOW FIRST */}
       <section id="why-love-programming" className="about-section">
         <div className="container">
           <h2 className="section-title">Why I Love Programming</h2>
@@ -90,6 +70,54 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
+      {/* SECTION 2: My Programming Journey - NOW SECOND with Epic Timeline Button at Bottom */}
+      <section id="programming-journey" className="about-section">
+        <div className="container">
+          <h2 className="section-title">My Programming Journey</h2>
+          <div className="journey-grid">
+            <div className="journey-item">
+              <i className="fas fa-lightbulb"></i>
+              <h4>The Beginning</h4>
+              <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-code"></i>
+              <h4>Learning & Growth</h4>
+              <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-robot"></i>
+              <h4>AI Exploration</h4>
+              <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
+            </div>
+          </div>
+
+          {/* EPIC TIMELINE BUTTON - AT BOTTOM OF JOURNEY SECTION */}
+          <div className="timeline-cta-section">
+            <Link to="/updates" className="epic-timeline-button">
+              <div className="button-glow"></div>
+              <div className="button-inner">
+                <div className="button-icon-wrapper">
+                  <i className="fas fa-timeline"></i>
+                  <div className="icon-pulse"></div>
+                </div>
+                <div className="button-content">
+                  <span className="button-title">View My Full Dev Timeline</span>
+                  <span className="button-subtitle">
+                    <i className="fas fa-calendar-alt"></i>
+                    25 Milestones  •  2000 - 2025
+                  </span>
+                </div>
+                <div className="button-arrow">
+                  <i className="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Qualifications & Certifications - NOW THIRD */}
       <section id="continuous-learning" className="about-section qualifications-section">
         <div className="container">
           <h2 className="section-title">Qualifications & Certifications</h2>
