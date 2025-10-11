@@ -563,10 +563,10 @@
 /* Matrix Project Grid */
 .matrix-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 380px)); /* Fixed width cards */
+    gap: 1.5rem;
     position: relative;
-    transform-style: preserve-3d;
+    justify-content: start; /* Align cards to left when < 3 */
 }
 
 /* Matrix Project Tabs */
@@ -603,31 +603,65 @@
     box-shadow: var(--matrix-glow);
 }
 
-/* Matrix Project Cards with Glassmorphism */
+/* Matrix Project Cards with Optimized Performance */
 .matrix-project-card {
-    background: var(--matrix-card-bg);
+    background: rgba(0, 20, 0, 0.85);
     border: 2px solid var(--matrix-card-border);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 0.75rem; /* Reduced from 1rem */
+    padding-bottom: 0.6rem; /* Tighter bottom */
     position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    opacity: 1;
-    transform: none;
+    overflow: hidden; /* Cut off content at bottom cleanly */
     cursor: pointer;
-    min-height: 450px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    height: 340px; /* Reduced from 380px for more compact cards */
+    max-height: 340px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* Matrix Card Hover Effects */
+/* Top-right action buttons */
+.matrix-project-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 50;
+}
+
+.matrix-action-btn {
+    width: 34px; /* Slightly smaller */
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--matrix-green);
+    border-radius: 50%;
+    color: var(--matrix-green);
+    font-size: 0.95rem; /* Slightly smaller icon */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.matrix-action-btn:hover {
+    background: var(--matrix-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* Matrix Card Hover Effects - Simplified for Performance */
 .matrix-project-card:hover {
+    transform: translateY(-5px) scale(1.02);
     border-color: var(--matrix-green);
-    animation: pulseGlow 2s ease-in-out infinite;
+    box-shadow:
+        0 10px 30px rgba(0, 255, 0, 0.3),
+        0 0 20px rgba(0, 255, 0, 0.2),
+        inset 0 0 15px rgba(0, 255, 0, 0.1);
 }
 
 @keyframes pulseGlow {
@@ -649,25 +683,29 @@
 .matrix-project-header {
     position: relative;
     z-index: 5;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .matrix-project-title {
     color: var(--matrix-green);
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.05rem; /* Slightly smaller */
+    margin-bottom: 0.3rem; /* Reduced from 0.4rem */
     font-family: var(--font-primary);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-shadow: var(--matrix-glow);
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.4rem; /* Reduced gap */
+    line-height: 1.25; /* Tighter */
+    padding-right: 75px; /* Space for smaller buttons */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .matrix-project-stats {
     display: flex;
     gap: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: rgba(0, 255, 0, 0.8);
 }
 
@@ -675,32 +713,35 @@
     position: relative;
     z-index: 5;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .matrix-project-description {
     color: rgba(255, 255, 255, 0.95);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.35; /* Even tighter */
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-    background: rgba(0, 0, 0, 0.4);
-    padding: 0.5rem;
-    border-radius: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .matrix-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1rem 0;
+    gap: 0.4rem; /* Tighter gap between tags */
+    margin: 0.4rem 0; /* Reduced further */
 }
 
 .matrix-tag {
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
-    padding: 0.3rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -711,8 +752,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+    margin-top: 0.4rem; /* Further reduced */
+    font-size: 0.8rem;
 }
 
 .language-dot {
@@ -731,84 +772,7 @@
     margin-left: auto;
 }
 
-.matrix-project-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 10 !important;
-    padding-top: 1rem;
-}
-
-/* Neo Matrix Button Styles - Project Specific with Higher Specificity */
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary {
-    padding: 0.8rem 1.5rem !important;
-    border: 2px solid var(--matrix-green) !important;
-    border-radius: 4px !important;
-    color: var(--matrix-green) !important;
-    text-decoration: none !important;
-    text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    font-weight: bold !important;
-    font-family: var(--font-primary) !important;
-    position: relative !important;
-    overflow: visible !important;
-    background: rgba(0, 0, 0, 0.8) !important;
-    box-shadow:
-        0 0 10px rgba(0, 255, 0, 0.2),
-        inset 0 0 15px rgba(0, 255, 0, 0.1) !important;
-    transition: all 0.3s ease !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 0.5rem !important;
-    min-width: 140px !important;
-    cursor: pointer !important;
-    z-index: 10 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    animation: none !important;
-}
-
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary:hover {
-    color: #000 !important;
-    background: var(--matrix-green) !important;
-    border-color: transparent !important;
-    box-shadow:
-        0 0 20px rgba(0, 255, 0, 0.4),
-        inset 0 0 20px rgba(0, 255, 0, 0.2) !important;
-    text-shadow: none !important;
-    transform: translateY(-2px) !important;
-    z-index: 15 !important;
-    animation: none !important;
-}
-
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary:active {
-    transform: translateY(1px) !important;
-    box-shadow:
-        0 0 10px rgba(0, 255, 0, 0.4),
-        inset 0 0 10px rgba(0, 255, 0, 0.2) !important;
-}
-
-/* Override conflicting pseudo-elements from utilities.css */
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary::before,
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary::after {
-    content: none !important;
-    display: none !important;
-}
-
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary i {
-    font-size: 0.9em !important;
-    transition: transform 0.3s ease !important;
-    color: inherit !important;
-}
-
-.matrix-project-card .matrix-project-buttons .matrix-btn-primary:hover i {
-    transform: translateX(4px) !important;
-    color: inherit !important;
-}
+/* Old button styles removed - now using top-right action buttons */
 
 /* Matrix Responsive Design */
 @media (max-width: 768px) {
@@ -818,18 +782,20 @@
     }
 
     .matrix-project-card {
-        min-height: auto;
+        height: 350px; /* Slightly shorter on mobile */
         padding: 1rem;
     }
 
     .matrix-project-title {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.05rem;
+        margin-bottom: 0.4rem;
+        padding-right: 70px; /* Less padding for smaller buttons */
     }
 
     .matrix-project-description {
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        -webkit-line-clamp: 2; /* Only 2 lines on mobile */
     }
 
     .matrix-project-tabs {
@@ -841,10 +807,10 @@
         font-size: 0.9rem;
     }
 
-    .matrix-project-card .matrix-project-buttons .matrix-btn-primary {
-        min-width: auto !important;
-        padding: 0.6rem 1rem !important;
-        font-size: 0.9rem !important;
+    .matrix-action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
     }
 }
 

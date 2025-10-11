@@ -488,78 +488,8 @@ export const ProjectsPage: React.FC = () => {
     });
   };
 
-  const handleCardHover = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    
-    // Enhanced 3D tilt effect
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = ((y - centerY) / centerY) * -5; // Reduced tilt
-      const rotateY = ((x - centerX) / centerX) * 5;  // Reduced tilt
-      
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translateZ(10px)`;
-      
-      // Move overlay based on mouse position
-      const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
-      if (overlay) {
-        overlay.style.background = `
-          radial-gradient(
-            circle at ${x}px ${y}px,
-            rgba(0, 255, 0, 0.1) 0%,
-            rgba(0, 0, 0, 0.4) 20%,
-            rgba(0, 20, 0, 0.9) 60%,
-            rgba(0, 20, 0, 0.95) 100%
-          )
-        `;
-      }
-    };
-    
-    card.addEventListener('mousemove', handleMouseMove);
-    card.dataset.mouseHandler = 'true';
-    
-    // Animate in
-    animate(card, {
-      scale: 1.05,
-      boxShadow: ['0 2px 10px rgba(0, 0, 0, 0.3)', '0 20px 40px rgba(0, 255, 0, 0.4)'],
-      duration: 300,
-      easing: 'easeOutQuad'
-    });
-    
-    // Glow effect
-    card.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1)';
-  };
-
-  const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    
-    // Remove mouse move handler
-    if (card.dataset.mouseHandler) {
-      card.style.transform = '';
-      delete card.dataset.mouseHandler;
-    }
-    
-    // Reset overlay
-    const overlay = card.querySelector('.project-card-overlay') as HTMLElement;
-    if (overlay) {
-      overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)';
-    }
-    
-    // Animate out
-    animate(card, {
-      scale: 1,
-      boxShadow: ['0 20px 40px rgba(0, 255, 0, 0.4)', '0 2px 10px rgba(0, 0, 0, 0.3)'],
-      duration: 300,
-      easing: 'easeOutQuad'
-    });
-    
-    card.style.boxShadow = '';
-  };
+  // Removed handleCardHover and handleCardLeave for performance optimization
+  // Now using CSS-only hover effects for 60fps smooth animations
 
   return (
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
@@ -586,8 +516,6 @@ export const ProjectsPage: React.FC = () => {
               key={project.id}
               className="matrix-project-card"
               data-category={project.category}
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
               style={{
                 background: project.gradient || 'rgba(0, 20, 0, 0.6)',
                 backgroundSize: 'cover',
@@ -607,31 +535,41 @@ export const ProjectsPage: React.FC = () => {
                 pointerEvents: 'none'
               }} />
               
+              {/* Action buttons in top-right corner */}
+              <div className="matrix-project-actions">
+                {project.links.github && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="matrix-action-btn"
+                    title="View Code on GitHub"
+                  >
+                    <i className="fab fa-github"></i>
+                  </a>
+                )}
+                {project.links.demo && (
+                  <a
+                    href={project.links.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="matrix-action-btn"
+                    title="Live Demo"
+                  >
+                    <i className="fas fa-globe"></i>
+                  </a>
+                )}
+              </div>
+
               <div className="matrix-project-header relative z-20">
-                <div className="project-title-row">
-                  <h3 className="matrix-project-title">
-                    <i className="fas fa-terminal"></i> {project.name}
-                  </h3>
-                  {project.featured && (
-                    <span className="featured-badge">
-                      <i className="fas fa-star"></i> Featured
-                    </span>
-                  )}
-                  {project.status && project.status !== 'completed' && (
-                    <span className={`status-badge status-${project.status}`}>
-                      {project.status === 'in-progress' ? 'In Progress' : 'Coming Soon'}
-                    </span>
-                  )}
-                </div>
-                <div className="matrix-project-stats">
-                  <span className="stat">
-                    <i className="fas fa-star"></i> {project.stats.stars}
+                <h3 className="matrix-project-title">
+                  <i className="fas fa-terminal"></i> {project.name}
+                </h3>
+                {project.status && project.status !== 'completed' && (
+                  <span className={`status-badge status-${project.status}`}>
+                    {project.status === 'in-progress' ? 'In Progress' : 'Coming Soon'}
                   </span>
-                  <span className="stat">
-                    <i className="fas fa-code-branch"></i> {project.stats.forks}
-                  </span>
-                  <span className="visibility-badge">{project.visibility}</span>
-                </div>
+                )}
               </div>
               
               <div className="matrix-project-content relative z-20">
@@ -644,38 +582,13 @@ export const ProjectsPage: React.FC = () => {
                 </div>
                 
                 <div className="matrix-project-language">
-                  <span 
-                    className="language-dot" 
+                  <span
+                    className="language-dot"
                     style={{ backgroundColor: project.language.color }}
                   ></span>
                   <span className="language-name">{project.language.name}</span>
                   <span className="language-percent">{project.language.percent}%</span>
                 </div>
-
-                <div className="matrix-project-buttons">
-                {project.links.demo && (
-                  <a 
-                    href={project.links.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="matrix-btn-primary"
-                  >
-                    <i className="fas fa-external-link-alt"></i>
-                    Live Demo
-                  </a>
-                )}
-                {project.links.github && (
-                  <a 
-                    href={project.links.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="matrix-btn-primary"
-                  >
-                    <i className="fab fa-github"></i>
-                    View Code
-                  </a>
-                )}
-              </div>
               </div>
             </article>
           ))}
