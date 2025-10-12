@@ -342,13 +342,19 @@
 
 [data-theme="dark"] .siteFooter {
   background: rgba(0, 0, 0, 0.95);
-  border-top: 1px solid #303030;
+  border-top: 1px solid rgba(74, 158, 255, 0.5); /* Blue border in dark mode */
 }
 
 [data-theme="dark"] .socialSection h3,
 [data-theme="dark"] .linksSection h3 {
   color: #ffffff;
   text-shadow: none;
+}
+
+[data-theme="dark"] .socialSection h3::before,
+[data-theme="dark"] .linksSection h3::before {
+  color: #FFFFFF !important; /* White // symbols */
+  opacity: 0.7;
 }
 
 [data-theme="dark"] .footerLinks a {
