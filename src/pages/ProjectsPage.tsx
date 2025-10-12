@@ -366,6 +366,7 @@ export const ProjectsPage: React.FC = () => {
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
   const [currentPage, setCurrentPage] = useState(1);
   const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
+  const [interactedCards, setInteractedCards] = useState<Set<string>>(new Set()); // Track cards that have been flipped at least once
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -503,6 +504,10 @@ export const ProjectsPage: React.FC = () => {
 
   // Handle magical card flip
   const handleCardFlip = (projectId: string) => {
+    // Mark this card as interacted with
+    setInteractedCards(prev => new Set(prev).add(projectId));
+
+    // Toggle flip state
     setFlippedCards(prev => {
       const newSet = new Set(prev);
       if (newSet.has(projectId)) {
@@ -536,11 +541,12 @@ export const ProjectsPage: React.FC = () => {
         <div ref={gridRef} className="matrix-project-grid">
           {currentProjects.map((project) => {
             const isFlipped = flippedCards.has(project.id);
+            const hasBeenFlipped = interactedCards.has(project.id);
 
             return (
               <article
                 key={project.id}
-                className={`matrix-project-card ${isFlipped ? 'is-flipped' : ''}`}
+                className={`matrix-project-card ${isFlipped ? 'is-flipped' : ''} ${hasBeenFlipped ? 'has-flipped' : ''}`}
                 data-category={project.category}
               >
                 {/* 3D Card Inner Container */}

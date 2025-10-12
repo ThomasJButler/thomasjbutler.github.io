@@ -645,19 +645,20 @@
     }
 }
 
-/* Apply animations when flipped */
+/* Default state - no animation */
+.card-3d-inner {
+    /* No animation on page load */
+}
+
+/* Forward animation: Image → Details (when .is-flipped is added) */
 .matrix-project-card.is-flipped .card-3d-inner {
     animation: cardPullFlipSink 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Apply reverse when unflipping */
-.matrix-project-card:not(.is-flipped) .card-3d-inner {
-    animation: none; /* No animation on initial state */
-}
-
-/* When card was flipped and is now unflipping */
-.matrix-project-card.is-flipped .card-3d-inner {
-    animation-name: cardPullFlipSink;
+/* Reverse animation: Details → Image (when flipping back) */
+/* Only applies to cards that have been flipped before (.has-flipped) and are not currently flipped */
+.matrix-project-card.has-flipped:not(.is-flipped) .card-3d-inner {
+    animation: cardFlipBack 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Flip Button - Top Left */
