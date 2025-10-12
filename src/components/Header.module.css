@@ -361,7 +361,7 @@
 
 [data-theme="dark"] .siteHeader {
   background: rgba(0, 0, 0, 0.95);
-  border-bottom: 1px solid #303030;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.5) !important; /* Blue border */
 }
 
 [data-theme="dark"] .siteHeader.scrolled {
@@ -370,27 +370,32 @@
 }
 
 [data-theme="dark"] .headerTitle h1 {
-  color: #ffffff;
-  text-shadow: none;
+  color: #4A9EFF !important; /* Blue to match nav links */
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
   font-weight: 500;
 }
 
+[data-theme="dark"] .navItem::before {
+  color: #FFFFFF !important; /* White // symbols */
+  opacity: 0.7;
+}
+
 [data-theme="dark"] .navLink {
-  color: #cccccc;
+  color: #4A9EFF; /* Blue nav links */
   font-weight: 400;
 }
 
 [data-theme="dark"] .navLink:hover {
-  color: #ffffff;
-  text-shadow: none;
+  color: #5AADFF; /* Lighter blue on hover */
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
 }
 
 [data-theme="dark"] .navLink.active {
-  color: #40a040;
+  color: #5AADFF; /* Blue active state */
 }
 
 [data-theme="dark"] .navLink::after {
-  background: #40a040;
+  background: #4A9EFF; /* Blue underline */
 }
 
 [data-theme="dark"] .menuToggle span {
