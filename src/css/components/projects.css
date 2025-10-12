@@ -601,7 +601,11 @@
     -webkit-backface-visibility: hidden;
 }
 
-/* Back face rotated 180deg initially */
+/* Front face (image) starts normal, back face (details) rotated 180deg */
+.card-front {
+    transform: rotateY(0deg);
+}
+
 .card-back {
     transform: rotateY(180deg);
 }

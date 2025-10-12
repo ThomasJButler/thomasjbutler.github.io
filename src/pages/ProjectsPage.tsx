@@ -36,7 +36,7 @@ const projects: Project[] = [
     name: 'AI Comparison Showcase',
     visibility: 'Public',
     description: 'Compare responses from multiple AI models side-by-side in real-time. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity models with performance metrics and beautiful visualizations.',
-    topics: ['AI/ML', 'Next.js', 'TypeScript', 'Multiple AI APIs', 'Performance Metrics', 'Real-time'],
+    topics: ['AI/ML', 'Next.js', 'TypeScript', 'Multiple AI APIs', 'Performance Metrics'],
     language: {
       name: 'TypeScript',
       color: '#3178c6',
@@ -537,9 +537,42 @@ export const ProjectsPage: React.FC = () => {
                 {/* 3D Card Inner Container */}
                 <div className="card-3d-inner">
 
-                  {/* FRONT FACE */}
+                  {/* FRONT FACE - Project Image (shows first) */}
+                  <div className="card-face card-front">
+                    <div
+                      className="project-showcase-image"
+                      style={{
+                        backgroundImage: `url(${project.backgroundImage || 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png'})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '16px',
+                        position: 'relative'
+                      }}
+                    >
+                      {/* Gradient overlay for depth */}
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 40, 0, 0.7) 100%)',
+                        borderRadius: '16px'
+                      }} />
+
+                      {/* Project name overlay */}
+                      <div className="project-name-overlay">
+                        {project.name}
+                      </div>
+                    </div>
+                  </div>
+                  {/* End FRONT FACE */}
+
+                  {/* BACK FACE - Project Details */}
                   <div
-                    className="card-face card-front"
+                    className="card-face card-back"
                     style={{
                       background: project.gradient || 'rgba(0, 20, 0, 0.6)',
                       backgroundSize: 'cover',
@@ -585,7 +618,7 @@ export const ProjectsPage: React.FC = () => {
                 )}
               </div>
 
-              <div className="matrix-project-header relative z-20">
+              <div className="matrix-project-header relative z-20" style={{ paddingTop: '3rem' }}>
                 <h3 className="matrix-project-title">
                   <i className="fas fa-terminal"></i> {project.name}
                 </h3>
@@ -612,39 +645,6 @@ export const ProjectsPage: React.FC = () => {
                   ></span>
                   <span className="language-name">{project.language.name}</span>
                   <span className="language-percent">{project.language.percent}%</span>
-                </div>
-              </div>
-            </div>
-            {/* End FRONT FACE */}
-
-            {/* BACK FACE - Project Image */}
-            <div className="card-face card-back">
-              <div
-                className="project-showcase-image"
-                style={{
-                  backgroundImage: `url(${project.backgroundImage || 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png'})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '16px',
-                  position: 'relative'
-                }}
-              >
-                {/* Gradient overlay for depth */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 40, 0, 0.7) 100%)',
-                  borderRadius: '16px'
-                }} />
-
-                {/* Project name overlay */}
-                <div className="project-name-overlay">
-                  {project.name}
                 </div>
               </div>
             </div>
