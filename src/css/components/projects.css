@@ -922,6 +922,10 @@
     flex-wrap: wrap;
     gap: 0.4rem; /* Tighter gap between tags */
     margin: 0.4rem 0; /* Reduced further */
+
+    /* Fixed height for consistent card layout */
+    max-height: 4rem; /* Limits to ~2 rows of tags */
+    overflow: hidden; /* Hides excess tags cleanly */
 }
 
 .matrix-tag {
