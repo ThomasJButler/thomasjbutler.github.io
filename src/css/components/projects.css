@@ -921,7 +921,7 @@
     margin: 0.4rem 0; /* Reduced further */
 
     /* Fixed height for consistent card layout */
-    max-height: 4rem; /* Limits to ~2 rows of tags */
+    max-height: 5rem; /* Limits to ~2 rows of tags */
     overflow: hidden; /* Hides excess tags cleanly */
 }
 
@@ -945,6 +945,7 @@
     margin-top: auto; /* Push to bottom automatically */
     font-size: 0.9rem; /* Increased for better visibility */
     font-family: var(--font-primary); /* Orbitron */
+    margin-block: 1rem;
 }
 
 .language-dot {
