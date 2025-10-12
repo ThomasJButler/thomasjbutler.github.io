@@ -718,6 +718,421 @@
 }
 
 /* ==========================================================================
+   BLOG PAGE - DARK THEME OVERRIDES (NO GREEN ALLOWED)
+   ========================================================================== */
+
+/* Blog Title & Headers */
+[data-theme="dark"] .blog-title .matrix-text,
+[data-theme="dark"] .article-title {
+  color: #FFFFFF !important; /* White for readability */
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important; /* Blue glow */
+}
+
+/* Blog Subtitle - NO GREEN */
+[data-theme="dark"] .blog-title .subtitle,
+[data-theme="dark"] .subtitle {
+  color: rgba(255, 255, 255, 0.7) !important; /* Light gray, not green */
+}
+
+/* Blog Stats */
+[data-theme="dark"] .blog-stats .stat-number {
+  color: #4A9EFF !important; /* Blue stats */
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Blog Stat Labels - NO GREEN */
+[data-theme="dark"] .blog-stats .stat-label,
+[data-theme="dark"] .stat-label {
+  color: rgba(255, 255, 255, 0.6) !important; /* Gray, not green */
+}
+
+/* Search Input & Icon */
+[data-theme="dark"] .blog-search {
+  border-color: rgba(74, 158, 255, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .blog-search::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important; /* Gray placeholder, not green */
+}
+
+[data-theme="dark"] .blog-search:focus {
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.4) !important;
+  border-color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .search-icon {
+  color: #4A9EFF !important;
+}
+
+/* Tags & Filters */
+[data-theme="dark"] .tags-label {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .tags-label i {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .tags-select {
+  background: rgba(20, 20, 40, 0.9) !important;
+  border-color: rgba(74, 158, 255, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .tags-select:hover,
+[data-theme="dark"] .tags-select:focus {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Blog Cards */
+[data-theme="dark"] .blog-card {
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%) !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .blog-card::before {
+  background: linear-gradient(90deg, transparent, #4A9EFF, transparent) !important;
+}
+
+[data-theme="dark"] .blog-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow:
+    0 20px 60px rgba(74, 158, 255, 0.25),
+    0 0 50px rgba(74, 158, 255, 0.2),
+    0 0 80px rgba(74, 158, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%) !important;
+}
+
+[data-theme="dark"] .blog-card-title {
+  color: #FFFFFF !important; /* White titles for readability */
+}
+
+[data-theme="dark"] .featured-badge {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .blog-tag {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .blog-tag:hover {
+  background: #4A9EFF !important;
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 12px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .read-more {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .blog-card:hover .read-more {
+  color: #5AADFF !important;
+  text-shadow: 0 0 8px rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Blog Reader - Progress Bar */
+[data-theme="dark"] .reading-progress-fill {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(74, 158, 255, 0.8) 10%,
+    #4A9EFF 50%,
+    rgba(74, 158, 255, 0.8) 90%,
+    transparent 100%
+  ) !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .progress-glow {
+  background: #4A9EFF !important;
+}
+
+/* Article Elements */
+[data-theme="dark"] .article-tag {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .article-tag:hover {
+  border-color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .article-content h1,
+[data-theme="dark"] .article-content h2,
+[data-theme="dark"] .article-content h3,
+[data-theme="dark"] .article-h1,
+[data-theme="dark"] .article-h2,
+[data-theme="dark"] .article-h3,
+[data-theme="dark"] .article-h4 {
+  color: #4A9EFF !important; /* Blue headings in dark mode */
+  text-shadow: 0 0 3px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .article-h2-underlined .h2-underline {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(74, 158, 255, 0.3) 10%,
+    rgba(74, 158, 255, 0.6) 50%,
+    rgba(74, 158, 255, 0.3) 90%,
+    transparent 100%
+  ) !important;
+  box-shadow: 0 1px 4px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .article-h3-accented::before {
+  background: linear-gradient(180deg,
+    rgba(74, 158, 255, 0.6) 0%,
+    rgba(74, 158, 255, 0.8) 50%,
+    rgba(74, 158, 255, 0.6) 100%
+  ) !important;
+  box-shadow: 0 0 6px rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .article-h4 {
+  border-left-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Article Divider */
+[data-theme="dark"] .article-divider .divider-line {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(74, 158, 255, 0.2) 20%,
+    rgba(74, 158, 255, 0.4) 100%
+  ) !important;
+}
+
+[data-theme="dark"] .article-divider .divider-line:last-of-type {
+  background: linear-gradient(90deg,
+    rgba(74, 158, 255, 0.4) 0%,
+    rgba(74, 158, 255, 0.2) 80%,
+    transparent 100%
+  ) !important;
+}
+
+[data-theme="dark"] .article-divider .divider-center {
+  background: #4A9EFF !important;
+  box-shadow:
+    0 0 10px rgba(74, 158, 255, 0.6),
+    0 0 20px rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .article-divider .divider-center::before {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.8) !important;
+}
+
+/* Article Links */
+[data-theme="dark"] .article-link,
+[data-theme="dark"] .article-content a {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .article-link:hover,
+[data-theme="dark"] .article-content a:hover {
+  color: #5AADFF !important;
+  border-bottom-color: #5AADFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .article-link:focus-visible,
+[data-theme="dark"] .article-content a:focus-visible {
+  outline-color: #4A9EFF !important;
+}
+
+/* Article Blockquote */
+[data-theme="dark"] .article-blockquote,
+[data-theme="dark"] .article-content blockquote {
+  border-left-color: #4A9EFF !important;
+  background: rgba(74, 158, 255, 0.03) !important;
+}
+
+/* Inline Code - Keep Dracula green but with blue accents in dark theme */
+[data-theme="dark"] .inline-code,
+[data-theme="dark"] .article-content p code,
+[data-theme="dark"] .article-content li code {
+  background: rgba(74, 158, 255, 0.1) !important;
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Code Blocks - Blue theme */
+[data-theme="dark"] .code-block,
+[data-theme="dark"] .article-content pre {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(74, 158, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .code-block code,
+[data-theme="dark"] .article-content pre code {
+  color: #5AADFF !important;
+  text-shadow: 0 0 1px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Navigation Links */
+[data-theme="dark"] .back-button {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .back-button:hover {
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .back-link {
+  color: #4A9EFF !important;
+  border-color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .back-link:hover {
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.4) !important;
+  color: #5AADFF !important;
+  border-color: #5AADFF !important;
+}
+
+[data-theme="dark"] .nav-link {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .nav-link:hover {
+  border-color: #4A9EFF !important;
+  color: #5AADFF !important;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.4) !important;
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Share Buttons */
+[data-theme="dark"] .share-btn {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .share-btn:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .share-toast {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .share-toast i {
+  color: #4A9EFF !important;
+}
+
+/* Pagination */
+[data-theme="dark"] .pagination-button {
+  border-color: rgba(74, 158, 255, 0.5) !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .pagination-button:hover:not(:disabled) {
+  background: rgba(74, 158, 255, 0.1) !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .pagination-button:disabled {
+  border-color: rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .pagination-info {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .pagination-number {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .pagination-number:hover {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .pagination-number.active {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Error & Loading States */
+[data-theme="dark"] .blog-reader-error h2,
+[data-theme="dark"] .blog-error h2,
+[data-theme="dark"] .no-results h3 {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .blog-error .error-content i,
+[data-theme="dark"] .no-results i {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .retry-button {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .retry-button:hover {
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .matrix-spinner {
+  color: #4A9EFF !important;
+}
+
+/* Mobile Elements */
+[data-theme="dark"] .mobile-back,
+[data-theme="dark"] .progress-indicator {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .filter-toggle {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .filter-toggle:hover {
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .filter-toggle .active-badge {
+  background: #4A9EFF !important;
+}
+
+/* Clear Filters Button */
+[data-theme="dark"] .clear-filters {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .clear-filters:hover {
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Qualification Badges */
+[data-theme="dark"] .qualification-badge:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .qualification-badge h3 {
+  color: #4A9EFF !important;
+}
+
+/* Focus Indicators */
+[data-theme="dark"] *:focus-visible {
+  outline-color: #4A9EFF !important;
+}
+
+/* ==========================================================================
    Dark Theme - Professional Project Cards
    Clean, minimal aesthetic inspired by GitHub, Linear, and Vercel
    ========================================================================== */
@@ -878,4 +1293,182 @@
   border-color: #4A9EFF !important;
   color: #FFFFFF !important;
   box-shadow: none;
+}
+
+/* ==========================================================================
+   PROJECTS PAGE - DARK THEME OVERRIDES (NO GREEN ALLOWED)
+   ========================================================================== */
+
+/* Project Grid Titles & Headings */
+[data-theme="dark"] .projects-title,
+[data-theme="dark"] .matrix-section-title,
+[data-theme="dark"] .section-title.matrix-style {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Project Card Elements */
+[data-theme="dark"] .project-name,
+[data-theme="dark"] .matrix-project-name {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .project-description,
+[data-theme="dark"] .matrix-project-description {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Language Tags & Tech Tags */
+[data-theme="dark"] .language-tag,
+[data-theme="dark"] .tech-badge,
+[data-theme="dark"] .topic-tag {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .language-tag:hover,
+[data-theme="dark"] .tech-badge:hover,
+[data-theme="dark"] .topic-tag:hover {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Project Links & Buttons */
+[data-theme="dark"] .project-link,
+[data-theme="dark"] .github-link,
+[data-theme="dark"] .demo-link {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .project-link:hover,
+[data-theme="dark"] .github-link:hover,
+[data-theme="dark"] .demo-link:hover {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Status Badges */
+[data-theme="dark"] .status-badge,
+[data-theme="dark"] .project-status {
+  background: rgba(74, 158, 255, 0.15) !important;
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Stars & Stats */
+[data-theme="dark"] .star-count,
+[data-theme="dark"] .project-stars,
+[data-theme="dark"] .fork-count {
+  color: #4A9EFF !important;
+}
+
+/* Filter Tabs */
+[data-theme="dark"] .filter-tab,
+[data-theme="dark"] .category-tab {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .filter-tab:hover,
+[data-theme="dark"] .filter-tab.active,
+[data-theme="dark"] .category-tab:hover,
+[data-theme="dark"] .category-tab.active {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Project Icons */
+[data-theme="dark"] .project-icon,
+[data-theme="dark"] .github-icon {
+  color: #4A9EFF !important;
+}
+
+/* Focus States */
+[data-theme="dark"] .project-card:focus,
+[data-theme="dark"] .matrix-project-card:focus {
+  outline-color: #4A9EFF !important;
+}
+
+/* Project Page Text Elements - WHITE in dark mode */
+[data-theme="dark"] .section-description {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .matrix-pagination-info {
+  color: #FFFFFF !important;
+}
+
+/* Footer Scan Line Animation - Blue */
+[data-theme="dark"] .siteFooter:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #4A9EFF,
+    transparent
+  ) !important;
+}
+
+/* ==========================================================================
+   HEADER & FOOTER - TERMINAL SYMBOLS WHITE IN DARK MODE
+   ========================================================================== */
+
+/* Header Navigation - White // symbols */
+[data-theme="dark"] .navItem::before {
+  color: #FFFFFF !important;
+  opacity: 0.7;
+}
+
+/* Footer Sections - White // symbols */
+[data-theme="dark"] .socialSection h3::before,
+[data-theme="dark"] .linksSection h3::before {
+  color: #FFFFFF !important;
+  opacity: 0.7;
+}
+
+/* Footer Border - Ensure Blue */
+[data-theme="dark"] .siteFooter {
+  border-top-color: rgba(74, 158, 255, 0.5) !important;
+}
+
+/* ==========================================================================
+   PROJECT CARDS - BLUE THEME IN DARK MODE
+   ========================================================================== */
+
+/* Project Card Titles - White with Blue Glow */
+[data-theme="dark"] .project-title,
+[data-theme="dark"] .matrix-project-title {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Section Headings - White with Blue Glow */
+[data-theme="dark"] .section-heading,
+[data-theme="dark"] .projects-heading,
+[data-theme="dark"] .projects-title h2 {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Project Card Borders - Blue */
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .matrix-project-card,
+[data-theme="dark"] .epic-project-card {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Project Card Hover - Blue Glow */
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .matrix-project-card:hover,
+[data-theme="dark"] .epic-project-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow:
+    0 8px 25px rgba(74, 158, 255, 0.3),
+    0 30px 60px rgba(74, 158, 255, 0.3),
+    0 0 50px rgba(74, 158, 255, 0.4),
+    inset 0 0 20px rgba(74, 158, 255, 0.1) !important;
 }
