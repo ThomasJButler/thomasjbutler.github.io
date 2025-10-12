@@ -560,10 +560,10 @@
    Epic Matrix-themed project showcase with glassmorphism
    ========================================================================== */
 
-/* Matrix Project Grid */
+/* Matrix Project Grid - Square Glassmorphism Cards */
 .matrix-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 380px)); /* Fixed width cards */
+    grid-template-columns: repeat(auto-fill, minmax(420px, 420px)); /* Square 420px cards */
     gap: 1.5rem;
     position: relative;
     justify-content: start; /* Align cards to left when < 3 */
@@ -603,21 +603,34 @@
     box-shadow: var(--matrix-glow);
 }
 
-/* Matrix Project Cards with Optimized Performance */
+/* Matrix Project Cards with Glassmorphism */
 .matrix-project-card {
-    background: rgba(0, 20, 0, 0.85);
-    border: 2px solid var(--matrix-card-border);
-    border-radius: 8px;
-    padding: 0.75rem; /* Reduced from 1rem */
-    padding-bottom: 0.6rem; /* Tighter bottom */
+    /* Glassmorphism Effect */
+    background: rgba(0, 30, 0, 0.25); /* More transparent for glass effect */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+    /* Glass borders and shadows */
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 16px; /* Rounder for modern look */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* Square dimensions */
+    width: 420px;
+    height: 420px;
+    padding: 1rem;
+    padding-bottom: 0.75rem;
+
+    /* Layout */
     position: relative;
-    overflow: hidden; /* Cut off content at bottom cleanly */
+    overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    height: 340px; /* Reduced from 380px for more compact cards */
-    max-height: 340px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    transition: all 0.3s ease;
 }
 
 /* Top-right action buttons */
@@ -630,38 +643,70 @@
     z-index: 50;
 }
 
-.matrix-action-btn {
-    width: 34px; /* Slightly smaller */
+/* Project Icon Links - No Underlines, Maximum Specificity */
+.project-icon-link,
+.project-icon-link:link,
+.project-icon-link:visited {
+    width: 34px;
     height: 34px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
     border: 2px solid var(--matrix-green);
     border-radius: 50%;
-    color: var(--matrix-green);
-    font-size: 0.95rem; /* Slightly smaller icon */
-    text-decoration: none;
+    color: var(--matrix-green) !important;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    text-underline-offset: 0 !important;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
-.matrix-action-btn:hover {
-    background: var(--matrix-green);
-    color: #000;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    transform: scale(1.1);
+.project-icon-link:hover,
+.project-icon-link:focus,
+.project-icon-link:active {
+    background: rgba(0, 255, 0, 0.15) !important;
+    color: var(--matrix-green) !important;
+    border-color: var(--matrix-green) !important;
+    text-decoration: none !important;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.5),
+        inset 0 0 10px rgba(0, 255, 0, 0.2);
+    transform: scale(1.15);
 }
 
-/* Matrix Card Hover Effects - Simplified for Performance */
+/* Extra specificity for icon elements */
+.project-icon-link i {
+    text-decoration: none !important;
+}
+
+/* Enhanced Glass Hover Effects - Frosted Glass Look */
 .matrix-project-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    border-color: var(--matrix-green);
+    /* Smooth float effect */
+    transform: translateY(-12px) scale(1.03);
+
+    /* Enhanced glass with more blur */
+    background: rgba(0, 40, 0, 0.4);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+
+    /* Brighter border with gradient glow */
+    border: 1px solid rgba(0, 255, 0, 0.6);
+
+    /* Multi-layered glass shadows for depth */
     box-shadow:
-        0 10px 30px rgba(0, 255, 0, 0.3),
-        0 0 20px rgba(0, 255, 0, 0.2),
-        inset 0 0 15px rgba(0, 255, 0, 0.1);
+        /* Outer glow - primary depth */
+        0 20px 60px rgba(0, 255, 0, 0.25),
+        /* Mid glow - atmospheric */
+        0 10px 40px rgba(0, 255, 0, 0.2),
+        /* Inner reflection - top edge highlight */
+        inset 0 2px 2px rgba(255, 255, 255, 0.15),
+        /* Inner glow - bottom edge */
+        inset 0 -2px 4px rgba(0, 255, 0, 0.1),
+        /* Ambient shadow for realism */
+        0 0 50px rgba(0, 255, 0, 0.15);
 }
 
 @keyframes pulseGlow {
@@ -688,15 +733,15 @@
 
 .matrix-project-title {
     color: var(--matrix-green);
-    font-size: 1.05rem; /* Slightly smaller */
-    margin-bottom: 0.3rem; /* Reduced from 0.4rem */
-    font-family: var(--font-primary);
+    font-size: 1.2rem; /* Increased for better visibility */
+    margin-bottom: 0.3rem;
+    font-family: var(--font-primary); /* Orbitron */
     letter-spacing: 0.5px;
     text-shadow: var(--matrix-glow);
     display: flex;
     align-items: flex-start;
-    gap: 0.4rem; /* Reduced gap */
-    line-height: 1.25; /* Tighter */
+    gap: 0.4rem;
+    line-height: 1.3; /* Better readability */
     padding-right: 75px; /* Space for smaller buttons */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -715,16 +760,18 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Distribute space evenly */
 }
 
 .matrix-project-description {
     color: rgba(255, 255, 255, 0.95);
-    font-size: 0.85rem;
-    line-height: 1.35; /* Even tighter */
-    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 0.95rem; /* Increased for better readability */
+    font-family: var(--font-body); /* Exo 2 */
+    line-height: 1.5; /* Better spacing */
+    margin-bottom: 0.5rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-line-clamp: 4; /* 4 lines for square proportions */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -740,8 +787,9 @@
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
-    padding: 0.25rem 0.65rem;
-    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem; /* Slightly larger padding */
+    font-size: 0.8rem; /* Increased for visibility */
+    font-family: var(--font-primary); /* Orbitron for consistency */
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -752,8 +800,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 0.4rem; /* Further reduced */
-    font-size: 0.8rem;
+    margin-top: auto; /* Push to bottom automatically */
+    font-size: 0.9rem; /* Increased for better visibility */
+    font-family: var(--font-primary); /* Orbitron */
 }
 
 .language-dot {
@@ -774,7 +823,7 @@
 
 /* Old button styles removed - now using top-right action buttons */
 
-/* Matrix Responsive Design */
+/* Glassmorphism Responsive Design */
 @media (max-width: 768px) {
     .matrix-project-grid {
         grid-template-columns: 1fr;
@@ -782,20 +831,21 @@
     }
 
     .matrix-project-card {
-        height: 350px; /* Slightly shorter on mobile */
+        width: 100%;
+        height: 400px; /* Slightly taller on mobile for content */
         padding: 1rem;
     }
 
     .matrix-project-title {
         font-size: 1.05rem;
         margin-bottom: 0.4rem;
-        padding-right: 70px; /* Less padding for smaller buttons */
+        padding-right: 70px;
     }
 
     .matrix-project-description {
         font-size: 0.85rem;
         margin-bottom: 0.5rem;
-        -webkit-line-clamp: 2; /* Only 2 lines on mobile */
+        -webkit-line-clamp: 3; /* 3 lines on mobile */
     }
 
     .matrix-project-tabs {
@@ -807,7 +857,7 @@
         font-size: 0.9rem;
     }
 
-    .matrix-action-btn {
+    .project-icon-link {
         width: 32px;
         height: 32px;
         font-size: 0.9rem;

@@ -542,7 +542,7 @@ export const ProjectsPage: React.FC = () => {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="matrix-action-btn"
+                    className="project-icon-link"
                     title="View Code on GitHub"
                   >
                     <i className="fab fa-github"></i>
@@ -553,7 +553,7 @@ export const ProjectsPage: React.FC = () => {
                     href={project.links.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="matrix-action-btn"
+                    className="project-icon-link"
                     title="Live Demo"
                   >
                     <i className="fas fa-globe"></i>
