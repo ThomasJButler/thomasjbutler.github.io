@@ -567,6 +567,142 @@
     gap: 1.5rem;
     position: relative;
     justify-content: start; /* Align cards to left when < 3 */
+
+    /* 3D perspective for magical flip effect */
+    perspective: 2000px;
+    perspective-origin: center;
+}
+
+/* ==========================================================================
+   3D MAGICAL FLIP ANIMATION - Pull Out → Flip → Sink Back
+   ========================================================================== */
+
+/* Card maintains 3D context */
+.matrix-project-card {
+    transform-style: preserve-3d;
+}
+
+/* 3D Inner container that animates */
+.card-3d-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    transition: transform 0.1s ease;
+}
+
+/* Card faces - front and back */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Back face rotated 180deg initially */
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* THE MAGICAL ANIMATION - Pull Out → Flip → Sink Back */
+@keyframes cardPullFlipSink {
+    0% {
+        transform: translateZ(0) rotateY(0deg) scale(1);
+    }
+    30% {
+        transform: translateZ(250px) rotateY(0deg) scale(1.15);
+        /* Card pulls OUT toward user */
+    }
+    70% {
+        transform: translateZ(250px) rotateY(180deg) scale(1.15);
+        /* Card FLIPS while lifted */
+    }
+    100% {
+        transform: translateZ(0) rotateY(180deg) scale(1);
+        /* Card SINKS back into grid */
+    }
+}
+
+/* Reverse animation for flipping back */
+@keyframes cardFlipBack {
+    0% {
+        transform: translateZ(0) rotateY(180deg) scale(1);
+    }
+    30% {
+        transform: translateZ(250px) rotateY(180deg) scale(1.15);
+    }
+    70% {
+        transform: translateZ(250px) rotateY(0deg) scale(1.15);
+    }
+    100% {
+        transform: translateZ(0) rotateY(0deg) scale(1);
+    }
+}
+
+/* Apply animations when flipped */
+.matrix-project-card.is-flipped .card-3d-inner {
+    animation: cardPullFlipSink 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Apply reverse when unflipping */
+.matrix-project-card:not(.is-flipped) .card-3d-inner {
+    animation: none; /* No animation on initial state */
+}
+
+/* When card was flipped and is now unflipping */
+.matrix-project-card.is-flipped .card-3d-inner {
+    animation-name: cardPullFlipSink;
+}
+
+/* Flip Button */
+.card-flip-trigger {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--matrix-green);
+    border-radius: 50%;
+    color: var(--matrix-green);
+    cursor: pointer;
+    z-index: 200;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.card-flip-trigger:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+}
+
+/* Project showcase image on back */
+.project-showcase-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    position: relative;
+}
+
+.project-name-overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.9), 2px 2px 6px rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    width: 90%;
+    z-index: 10;
 }
 
 /* Matrix Project Tabs */

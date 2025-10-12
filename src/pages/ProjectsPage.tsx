@@ -365,6 +365,7 @@ export const ProjectsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
   const [currentPage, setCurrentPage] = useState(1);
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -491,6 +492,19 @@ export const ProjectsPage: React.FC = () => {
   // Removed handleCardHover and handleCardLeave for performance optimization
   // Now using CSS-only hover effects for 60fps smooth animations
 
+  // Handle magical card flip
+  const handleCardFlip = (projectId: string) => {
+    setFlippedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(projectId)) {
+        newSet.delete(projectId);
+      } else {
+        newSet.add(projectId);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
@@ -511,18 +525,28 @@ export const ProjectsPage: React.FC = () => {
         </div>
 
         <div ref={gridRef} className="matrix-project-grid">
-          {currentProjects.map((project) => (
-            <article
-              key={project.id}
-              className="matrix-project-card"
-              data-category={project.category}
-              style={{
-                background: project.gradient || 'rgba(0, 20, 0, 0.6)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundBlendMode: 'overlay'
-              }}
-            >
+          {currentProjects.map((project) => {
+            const isFlipped = flippedCards.has(project.id);
+
+            return (
+              <article
+                key={project.id}
+                className={`matrix-project-card ${isFlipped ? 'is-flipped' : ''}`}
+                data-category={project.category}
+              >
+                {/* 3D Card Inner Container */}
+                <div className="card-3d-inner">
+
+                  {/* FRONT FACE */}
+                  <div
+                    className="card-face card-front"
+                    style={{
+                      background: project.gradient || 'rgba(0, 20, 0, 0.6)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundBlendMode: 'overlay'
+                    }}
+                  >
               {/* Background overlay for better text readability */}
               <div className="project-card-overlay" style={{
                 position: 'absolute',
@@ -590,8 +614,57 @@ export const ProjectsPage: React.FC = () => {
                   <span className="language-percent">{project.language.percent}%</span>
                 </div>
               </div>
-            </article>
-          ))}
+            </div>
+            {/* End FRONT FACE */}
+
+            {/* BACK FACE - Project Image */}
+            <div className="card-face card-back">
+              <div
+                className="project-showcase-image"
+                style={{
+                  backgroundImage: `url(${project.backgroundImage || 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png'})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '16px',
+                  position: 'relative'
+                }}
+              >
+                {/* Gradient overlay for depth */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 40, 0, 0.7) 100%)',
+                  borderRadius: '16px'
+                }} />
+
+                {/* Project name overlay */}
+                <div className="project-name-overlay">
+                  {project.name}
+                </div>
+              </div>
+            </div>
+            {/* End BACK FACE */}
+
+          </div>
+          {/* End 3D Inner */}
+
+          {/* Flip Button - works on both sides */}
+          <button
+            className="card-flip-trigger"
+            onClick={() => handleCardFlip(project.id)}
+            title="Flip card"
+          >
+            <i className="fas fa-sync-alt"></i>
+          </button>
+
+        </article>
+      );
+    })}
         </div>
 
         {/* Pagination Component */}
