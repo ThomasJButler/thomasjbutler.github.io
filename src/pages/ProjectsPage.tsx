@@ -391,8 +391,15 @@ export const ProjectsPage: React.FC = () => {
     setCurrentPage(1);
   }, [activeCategory]);
 
+  // Track previous projects to only animate on actual project changes, not flip state changes
+  const prevProjectsRef = useRef<Project[]>([]);
+
   useEffect(() => {
-    if (gridRef.current) {
+    // Only animate if the projects actually changed (not just flip state)
+    const projectsChanged = prevProjectsRef.current.length !== currentProjects.length ||
+      prevProjectsRef.current.some((p, i) => p.id !== currentProjects[i]?.id);
+
+    if (gridRef.current && projectsChanged) {
       const children = Array.from(gridRef.current.children) as HTMLElement[];
       animate(children, {
         opacity: [0, 1],
@@ -401,6 +408,8 @@ export const ProjectsPage: React.FC = () => {
         duration: 600,
         easing: 'easeOutQuad'
       });
+
+      prevProjectsRef.current = currentProjects;
     }
   }, [currentProjects]);
   

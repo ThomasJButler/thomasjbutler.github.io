@@ -660,11 +660,12 @@
     animation-name: cardPullFlipSink;
 }
 
-/* Flip Button */
+/* Flip Button - Top Left */
 .card-flip-trigger {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+    position: absolute !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    bottom: auto !important; /* Prevent bottom positioning */
     width: 36px;
     height: 36px;
     display: flex;
