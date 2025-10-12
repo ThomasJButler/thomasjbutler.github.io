@@ -661,25 +661,21 @@
     animation: cardFlipBack 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Flip Button - Top Left */
+/* Flip Button - Inside matrix-project-actions container */
 .card-flip-trigger {
-    position: absolute !important;
-    top: 1rem !important;
-    left: 1rem !important;
-    bottom: auto !important; /* Prevent bottom positioning */
-    width: 36px;
-    height: 36px;
+    width: 34px;  /* Match project-icon-link size */
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);  /* Match project-icon-link */
     border: 2px solid var(--matrix-green);
     border-radius: 50%;
     color: var(--matrix-green);
     cursor: pointer;
-    z-index: 200;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);  /* Match project-icon-link */
+    font-size: 0.95rem;  /* Match project-icon-link */
 }
 
 .card-flip-trigger:hover {

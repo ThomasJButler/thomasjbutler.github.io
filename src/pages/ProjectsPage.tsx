@@ -554,6 +554,17 @@ export const ProjectsPage: React.FC = () => {
 
                   {/* FRONT FACE - Project Image (shows first) */}
                   <div className="card-face card-front">
+                    {/* Action buttons in top-right corner */}
+                    <div className="matrix-project-actions">
+                      <button
+                        className="card-flip-trigger"
+                        onClick={() => handleCardFlip(project.id)}
+                        title="Flip card"
+                      >
+                        <i className="fas fa-sync-alt"></i>
+                      </button>
+                    </div>
+
                     <div
                       className="project-showcase-image"
                       style={{
@@ -609,6 +620,13 @@ export const ProjectsPage: React.FC = () => {
               
               {/* Action buttons in top-right corner */}
               <div className="matrix-project-actions">
+                <button
+                  className="card-flip-trigger"
+                  onClick={() => handleCardFlip(project.id)}
+                  title="Flip card"
+                >
+                  <i className="fas fa-sync-alt"></i>
+                </button>
                 {project.links.github && (
                   <a
                     href={project.links.github}
@@ -667,15 +685,6 @@ export const ProjectsPage: React.FC = () => {
 
           </div>
           {/* End 3D Inner */}
-
-          {/* Flip Button - works on both sides */}
-          <button
-            className="card-flip-trigger"
-            onClick={() => handleCardFlip(project.id)}
-            title="Flip card"
-          >
-            <i className="fas fa-sync-alt"></i>
-          </button>
 
         </article>
       );
