@@ -150,6 +150,70 @@
     box-shadow: var(--glow-box-intense);
 }
 
+/* ==========================================================================
+   SHOWCASE CARDS - THEME OVERRIDES FOR BETTER CONTRAST
+   ========================================================================== */
+
+/* Matrix Mode - Inverted button for better contrast on green cards */
+[data-theme="matrix"] .gallery-link {
+    background: #000000 !important; /* Black background */
+    color: #00FF00 !important; /* Green text */
+    border: 2px solid #00FF00;
+    font-weight: 600;
+}
+
+[data-theme="matrix"] .gallery-link:hover {
+    background: #00FF00 !important; /* Green background on hover */
+    color: #000000 !important; /* Black text on hover */
+    border-color: #00FF00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+                0 0 30px rgba(0, 255, 0, 0.4);
+}
+
+/* Dark Mode - Blue theme for showcase cards */
+[data-theme="dark"] .gallery-card {
+    background: rgba(15, 15, 30, 0.8) !important;
+    border: 2px solid #4A9EFF !important;
+}
+
+[data-theme="dark"] .gallery-card:hover {
+    box-shadow:
+        0 6px 15px rgba(74, 158, 255, 0.3),
+        0 0 30px rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .gallery-card.revealed:hover::before {
+    background: linear-gradient(45deg, #4A9EFF, #5AADFF) !important;
+}
+
+[data-theme="dark"] .gallery-icon {
+    color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .gallery-card h3 {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .gallery-card p {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-theme="dark"] .gallery-link {
+    background: transparent !important;
+    color: #4A9EFF !important;
+    border: 2px solid #4A9EFF;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .gallery-link:hover {
+    background: rgba(74, 158, 255, 0.2) !important;
+    color: #FFFFFF !important;
+    border-color: #5AADFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.5),
+                0 0 30px rgba(74, 158, 255, 0.3);
+}
+
 /* Latest Updates Section Homepage */ 
 #latest-updates {
     padding: 4rem 0;
