@@ -237,21 +237,9 @@
   font-size: 0.8rem;
 }
 
-/* Desktop: Show features by default */
+/* Desktop: Keep expand button functionality - removed auto-expand */
 @media (min-width: 768px) {
-  .serviceFeatures {
-    max-height: none;
-    opacity: 1;
-  }
-
-  .serviceFeatures li {
-    opacity: 1;
-    animation: none;
-  }
-
-  .expandButton {
-    display: none;
-  }
+  /* Features are now collapsible on desktop too */
 }
 
 /* Reduced motion support */
@@ -294,8 +282,8 @@
 
 /* Tech Stack Section */
 .techStackSection {
-  margin: 4rem 0;
-  padding: 3rem 2.5rem;
+  margin: 3rem 0;
+  padding: 2rem 1.5rem;
   background: linear-gradient(145deg, rgba(0, 25, 0, 0.7), rgba(0, 35, 0, 0.5));
   border: 2px solid rgba(0, 255, 0, 0.3);
   border-radius: 16px;
@@ -304,6 +292,14 @@
     inset 0 0 40px rgba(0, 255, 0, 0.05);
   position: relative;
   overflow: hidden;
+}
+
+/* Desktop: More compact spacing */
+@media (min-width: 768px) {
+  .techStackSection {
+    padding: 2rem 2rem;
+    margin: 2rem 0;
+  }
 }
 
 /* Animated border glow effect */
@@ -339,8 +335,8 @@
 .techStackTitle {
   color: var(--text-primary);
   font-family: var(--font-code);
-  font-size: 1.8rem;
-  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   text-shadow:
     0 0 15px rgba(0, 255, 0, 0.5),
     0 0 25px rgba(0, 255, 0, 0.3);
@@ -349,24 +345,32 @@
   font-weight: 600;
 }
 
+/* Desktop: Slightly larger title */
+@media (min-width: 768px) {
+  .techStackTitle {
+    font-size: 1.6rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
 .techStackContent {
   /* Mobile: single column */
   display: flex;
   flex-direction: column;
 }
 
-/* Desktop: two-column grid */
+/* Desktop: two-column grid with reduced gaps */
 @media (min-width: 768px) {
   .techStackContent {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem 4rem;
+    gap: 1.5rem 2.5rem;
   }
 }
 
 .techCategory {
-  margin-bottom: 2.5rem;
-  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
   background: rgba(0, 15, 0, 0.4);
   border-radius: 10px;
   border: 1px solid rgba(0, 255, 0, 0.15);
@@ -377,6 +381,13 @@
   animation: fadeIn 0.5s ease forwards;
   animation-fill-mode: forwards; /* Ensure opacity stays at 1 after animation */
   will-change: opacity;
+}
+
+/* Desktop: Slightly more padding */
+@media (min-width: 768px) {
+  .techCategory {
+    padding: 1.25rem;
+  }
 }
 
 /* Staggered delays for tech categories */
@@ -635,6 +646,10 @@
   color: var(--text-secondary);
   font-size: 1.1rem;
   margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ctaButton {

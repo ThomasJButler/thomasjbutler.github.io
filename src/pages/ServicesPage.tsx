@@ -306,7 +306,7 @@ export const ServicesPage: React.FC = () => {
         {/* Sticky CTA */}
         <div className={styles.ctaSection}>
           <h3>Ready to start your project?</h3>
-          <p>Let's talk — I'll help bring your ideas to life.</p>
+          <p>Let's talk, I'll help bring your ideas to life.</p>
           <a href="/contact" className={styles.ctaButton}>
             Get In Touch
             <i className="fas fa-envelope icon-margin-left"></i>
