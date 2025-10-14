@@ -310,26 +310,66 @@
    Force ALL green elements to blue - NO GREEN in dark mode
    ======================================================================== */
 
-/* Navigation - Force Blue */
+/* Navigation - Clean Blue (Dark Theme) */
 [data-theme="dark"] nav a,
 [data-theme="dark"] .nav-link {
-  color: #4A9EFF !important; /* Force blue for navigation links */
+  color: #4A9EFF !important; /* Blue navigation links */
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] nav a:hover,
-[data-theme="dark"] .nav-link:hover {
-  color: #5AADFF !important;
-  text-shadow: var(--glow-standard) var(--glow-color-intense);
-}
-
+[data-theme="dark"] .nav-link:hover,
 [data-theme="dark"] nav a.active {
-  color: #5AADFF !important;
-  border-bottom-color: #4A9EFF;
+  color: #5AADFF !important; /* Lighter blue on hover/active */
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
-[data-theme="dark"] nav a::before {
-  background: #4A9EFF !important; /* Blue underline */
+/* Remove ::before pseudo-elements, keep ::after for underline */
+[data-theme="dark"] nav a::before,
+[data-theme="dark"] .nav-link::before {
+  display: none !important;
 }
+
+/* Blue underline for dark theme */
+[data-theme="dark"] nav a::after,
+[data-theme="dark"] .nav-link::after {
+  background: #4A9EFF !important;
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.8) !important;
+}
+
+/* Navigation - Clean Green (Matrix Theme) */
+[data-theme="matrix"] nav a,
+[data-theme="matrix"] .nav-link {
+  color: rgba(0, 255, 0, 0.8) !important; /* Green navigation links */
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="matrix"] nav a:hover,
+[data-theme="matrix"] .nav-link:hover,
+[data-theme="matrix"] nav a.active {
+  color: #00ff00 !important; /* Bright green on hover/active */
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Remove ::before pseudo-elements, keep ::after for underline */
+[data-theme="matrix"] nav a::before,
+[data-theme="matrix"] .nav-link::before {
+  display: none !important;
+}
+
+/* Green underline already handled by Header.module.css defaults */
 
 /* Headings & Titles - Force White/Blue */
 [data-theme="dark"] .section-title,

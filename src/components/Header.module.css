@@ -115,18 +115,36 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 0.5rem 0.75rem;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 4px;
+  position: relative;
+}
+
+/* Clean underline animation */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--matrix-green, #00ff00);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
 }
 
 .navLink:hover,
 .navLink.active {
   color: var(--matrix-green, #00ff00);
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  background: rgba(0, 255, 0, 0.05);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  width: 85%;
 }
 
 .navIcon {
@@ -351,7 +369,7 @@
   }
 
   .navLink::after {
-    display: none;
+    display: none; /* Hide underline in mobile menu */
   }
 }
 
@@ -388,14 +406,11 @@
 [data-theme="dark"] .navLink:hover {
   color: #5AADFF; /* Lighter blue on hover */
   text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+  background: none !important; /* Force remove background in dark mode */
 }
 
 [data-theme="dark"] .navLink.active {
   color: #5AADFF; /* Blue active state */
-}
-
-[data-theme="dark"] .navLink::after {
-  background: #4A9EFF; /* Blue underline */
 }
 
 [data-theme="dark"] .menuToggle span {
