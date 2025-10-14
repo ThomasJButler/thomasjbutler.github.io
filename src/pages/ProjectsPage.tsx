@@ -522,7 +522,7 @@ export const ProjectsPage: React.FC = () => {
   return (
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
-        <h2 className="section-title">--| Project Showcase |--</h2>
+        <h2 className="section-title">Project Showcase</h2>
         <p className="section-description">Explore my open source contributions and personal projects</p>
         
         <div className="matrix-project-tabs">

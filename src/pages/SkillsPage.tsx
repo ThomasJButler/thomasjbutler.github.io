@@ -127,7 +127,7 @@ export const SkillsPage: React.FC = () => {
 
         {/* Core Expertise - Main Grid */}
         <div className="core-expertise-section">
-          <h3 className="skill-section-title">--| Core Expertise |--</h3>
+          <h3 className="skill-section-title">Core Expertise</h3>
           <ul className="core-expertise-grid">
             {coreExpertise.map((skill, index) => (
               <li key={index} className="core-expertise-card" data-tooltip={skill.tooltip}>
@@ -144,7 +144,7 @@ export const SkillsPage: React.FC = () => {
 
         {/* Additional Skills - Compact List */}
         <div className="additional-skills-section">
-          <h3 className="skill-section-title">--| Other Specialisations |--</h3>
+          <h3 className="skill-section-title">Other Specialisations</h3>
           <ul className="additional-skills-list">
             {additionalSkills.map((skill, index) => (
               <li key={index} className="additional-skill-item" data-tooltip={skill.tooltip}>

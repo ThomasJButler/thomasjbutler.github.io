@@ -329,7 +329,7 @@ export const HomePage: React.FC = () => {
 
       <section id="galleries" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <h2 className="section-heading">--| Showcases |--</h2>
+          <h2 className="section-heading">Showcases</h2>
           <div className="galleries-grid">
             <div className="gallery-card">
               <div className="gallery-icon">
@@ -357,7 +357,7 @@ export const HomePage: React.FC = () => {
 
       <section id="contact">
         <div className="container">
-          <h2 className="section-heading">--| Get in Touch |--</h2>
+          <h2 className="section-heading">Get in Touch</h2>
           <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
           <div className="contact-button-container">
             <Link to="/contact" className="btn-contact-us">

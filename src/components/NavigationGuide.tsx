@@ -201,7 +201,7 @@ export const NavigationGuide: React.FC = () => {
       className="nav-guide-section"
     >
       <div className="container">
-        <h2 className="nav-guide-title">--| Navigate Your Journey |--</h2>
+        <h2 className="nav-guide-title">Navigate Your Journey</h2>
         <p className="nav-guide-subtitle">
           Choose your path through my digital realm
         </p>
