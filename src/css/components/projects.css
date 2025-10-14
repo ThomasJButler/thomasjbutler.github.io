@@ -883,20 +883,20 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .matrix-project-header {
     position: relative;
     z-index: 5;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem; /* Reduced to save space */
 }
 
 .matrix-project-title {
     color: var(--matrix-green);
-    font-size: 1.2rem; /* Increased for better visibility */
-    margin-bottom: 0.3rem;
+    font-size: 1.1rem; /* Slightly reduced for better fit */
+    margin-bottom: 0.2rem; /* Reduced margin */
     font-family: var(--font-primary); /* Orbitron */
     letter-spacing: 0.5px;
     text-shadow: var(--matrix-glow);
     display: flex;
     align-items: flex-start;
-    gap: 0.4rem;
-    line-height: 1.3; /* Better readability */
+    gap: 0.3rem; /* Tighter gap */
+    line-height: 1.2; /* Tighter line height */
     padding-right: 75px; /* Space for smaller buttons */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -920,13 +920,13 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 .matrix-project-description {
     color: rgba(255, 255, 255, 0.95);
-    font-size: 0.95rem; /* Increased for better readability */
+    font-size: 0.85rem; /* Reduced for better fit */
     font-family: var(--font-body); /* Exo 2 */
-    line-height: 1.5; /* Better spacing */
+    line-height: 1.4; /* Tighter line height */
     margin-bottom: 0.5rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* 4 lines for square proportions */
+    -webkit-line-clamp: 5; /* 5 lines to show more content */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -934,11 +934,11 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .matrix-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem; /* Tighter gap between tags */
-    margin: 0.4rem 0; /* Reduced further */
+    gap: 0.3rem; /* Even tighter gap for more tags */
+    margin: 0.3rem 0; /* Reduced margin */
 
-    /* Fixed height for consistent card layout */
-    max-height: 5rem; /* Limits to ~2 rows of tags */
+    /* Increased height to show more tags */
+    max-height: 6.5rem; /* Allows ~3 rows of tags */
     overflow: hidden; /* Hides excess tags cleanly */
 }
 
@@ -946,8 +946,8 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
-    padding: 0.3rem 0.75rem; /* Slightly larger padding */
-    font-size: 0.8rem; /* Increased for visibility */
+    padding: 0.25rem 0.6rem; /* Smaller padding for more tags */
+    font-size: 0.75rem; /* Reduced for better fit */
     font-family: var(--font-primary); /* Orbitron for consistency */
     border-radius: 20px;
     position: relative;
@@ -960,9 +960,9 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     align-items: center;
     gap: 0.5rem;
     margin-top: auto; /* Push to bottom automatically */
-    font-size: 0.9rem; /* Increased for better visibility */
+    font-size: 0.85rem; /* Reduced for better fit */
     font-family: var(--font-primary); /* Orbitron */
-    margin-block: 1rem;
+    margin-block: 0.5rem; /* Reduced spacing */
 }
 
 .language-dot {

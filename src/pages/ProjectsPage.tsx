@@ -658,7 +658,7 @@ export const ProjectsPage: React.FC = () => {
                 )}
               </div>
 
-              <div className="matrix-project-header relative z-20" style={{ paddingTop: '3rem' }}>
+              <div className="matrix-project-header relative z-20" style={{ paddingTop: '2rem' }}>
                 <h3 className="matrix-project-title">
                   <i className="fas fa-terminal"></i> {project.name}
                 </h3>
