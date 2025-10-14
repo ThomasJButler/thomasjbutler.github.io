@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
 export const SkillsPage: React.FC = () => {
+  // Scroll to top on page mount
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('[DEBUG] SkillsPage mounted');
+  }, []);
+
   const [expandedTags, setExpandedTags] = useState<Record<number, boolean>>({});
 
   // Core Expertise from homepage - consolidated and enhanced
@@ -120,6 +126,7 @@ export const SkillsPage: React.FC = () => {
   };
 
   return (
+    <div className="page-wrapper page-skills">
     <section id="skills">
       <div className="container">
         <h2 className="section-title">My Skills & Expertise</h2>
@@ -156,5 +163,6 @@ export const SkillsPage: React.FC = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };

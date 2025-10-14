@@ -382,6 +382,12 @@ export const ProjectsPage: React.FC = () => {
   useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
   useCardAnimations();
 
+  // Scroll to top on page mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('[DEBUG] ProjectsPage mounted');
+  }, []);
+
   useEffect(() => {
     if (activeCategory === 'all') {
       setVisibleProjects(projects);
@@ -520,6 +526,7 @@ export const ProjectsPage: React.FC = () => {
   };
 
   return (
+    <div className="page-wrapper page-projects">
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
         <h2 className="section-title">Project Showcase</h2>
@@ -733,6 +740,7 @@ export const ProjectsPage: React.FC = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

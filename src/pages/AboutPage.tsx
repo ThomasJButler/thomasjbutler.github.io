@@ -5,12 +5,18 @@ import '../css/about.css';
 export const AboutPage: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // Scroll to top on page mount
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('[DEBUG] AboutPage mounted');
+  }, []);
+
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <>
+    <div className="page-wrapper page-about">
       {/* SECTION 1: Why I Love Programming - NOW FIRST */}
       <section id="why-love-programming" className="about-section">
         <div className="container">
@@ -373,6 +379,6 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };

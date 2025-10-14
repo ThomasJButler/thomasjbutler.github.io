@@ -112,6 +112,12 @@ export const ServicesPage: React.FC = () => {
     }
   ];
 
+  // Scroll to top on page mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('[DEBUG] ServicesPage mounted');
+  }, []);
+
   useEffect(() => {
     // Set title text directly without animation to prevent glitching
     if (titleRef.current) {
@@ -161,7 +167,7 @@ export const ServicesPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="page-wrapper page-services">
       <section id="services" className={styles.servicesSection}>
       <div className="container">
         <h2 ref={titleRef} className="section-title"></h2>
@@ -308,6 +314,6 @@ export const ServicesPage: React.FC = () => {
         </div>
       </div>
     </section>
-    </>
+    </div>
   );
 };

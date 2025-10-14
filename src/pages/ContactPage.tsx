@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import '../css/contact-modern.css';
 
 export const ContactPage: React.FC = () => {
+  // Scroll to top on page mount
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    console.log('[DEBUG] ContactPage mounted');
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,7 +16,7 @@ export const ContactPage: React.FC = () => {
     subject: '',
     message: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -41,7 +47,7 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="page-wrapper page-contact">
       {/* Video Banner Section - EXACT match from HTML */}
       <div className="video-banner">
         <video 
@@ -229,6 +235,6 @@ export const ContactPage: React.FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };

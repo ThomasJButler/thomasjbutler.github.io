@@ -80,6 +80,7 @@ const SitemapPageComponent: React.FC = () => {
   };
 
   return (
+    <div className="page-wrapper page-sitemap">
     <section id="sitemap" className="sitemap-container">
       <div className="container">
         <header>
@@ -107,6 +108,7 @@ const SitemapPageComponent: React.FC = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
