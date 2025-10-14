@@ -563,7 +563,7 @@
 /* Matrix Project Grid - Square Glassmorphism Cards */
 .matrix-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 420px)); /* Square 420px cards */
+    grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
     gap: 1.5rem;
     position: relative;
     justify-content: start; /* Align cards to left when < 3 */
@@ -772,9 +772,9 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
         0 8px 32px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-    /* Square dimensions */
-    width: 420px;
-    height: 420px;
+    /* Square dimensions - optimized for 14-16 inch laptops */
+    width: 390px;
+    height: 390px;
     padding: 1rem;
     padding-bottom: 0.75rem;
 
