@@ -405,3 +405,82 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 }
+
+/* ==========================================================================
+   DARK MODE OVERRIDES - BLUE THEME FOR NAVIGATION GUIDE
+   ========================================================================== */
+
+/* Section Title - White with Blue Glow */
+[data-theme="dark"] .nav-guide-title {
+  color: #FFFFFF !important;
+  text-shadow:
+    0 0 10px rgba(74, 158, 255, 0.8),
+    0 0 20px rgba(74, 158, 255, 0.5),
+    0 0 40px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .nav-guide-subtitle {
+  color: #4A9EFF !important;
+}
+
+/* Navigation Cards - Blue Theme */
+[data-theme="dark"] .nav-card {
+  background:
+    linear-gradient(135deg, rgba(15, 15, 30, 0.8) 0%, rgba(20, 20, 40, 0.6) 50%, rgba(15, 15, 30, 0.8) 100%) !important;
+  border: 2px solid rgba(74, 158, 255, 0.3) !important;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(74, 158, 255, 0.1),
+    inset 0 0 20px rgba(74, 158, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .nav-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(74, 158, 255, 0.3),
+    inset 0 0 30px rgba(74, 158, 255, 0.1) !important;
+}
+
+/* Card Icons - Blue */
+[data-theme="dark"] .nav-card-icon {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Card Titles - White with Blue Glow */
+[data-theme="dark"] .nav-card-title {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Card Descriptions - Light Gray */
+[data-theme="dark"] .nav-card-description {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Card Arrows - Blue */
+[data-theme="dark"] .nav-card-arrow {
+  color: #4A9EFF !important;
+}
+
+/* Card Particles - Blue */
+[data-theme="dark"] .nav-card-particles::before,
+[data-theme="dark"] .nav-card-particles::after {
+  background: #4A9EFF !important;
+  box-shadow: 0 0 10px #4A9EFF !important;
+}
+
+/* Card Border Effect - Blue Gradient */
+[data-theme="dark"] .nav-card-border {
+  background: linear-gradient(135deg, #4A9EFF, transparent, #5AADFF) border-box !important;
+}
+
+/* Ripple Effect - Blue */
+[data-theme="dark"] .nav-card.ripple-effect::after {
+  background: radial-gradient(
+    circle,
+    rgba(74, 158, 255, 0.3) 0%,
+    transparent 70%
+  ) !important;
+}
