@@ -61,10 +61,39 @@ footer,
   will-change: auto !important;
 }
 
-/* Low-end device optimizations */
-body.low-end-device * {
+/* Low-end device optimizations - Selective animation disabling */
+body.low-end-device {
+  /* Disable only heavy animations, keep essential ones */
+}
+
+/* Disable complex background effects */
+body.low-end-device .matrix-rain,
+body.low-end-device .particle-effect,
+body.low-end-device .parallax-bg {
   animation: none !important;
-  transition: opacity 0.2s ease !important;
+  opacity: 0 !important;
+}
+
+/* Keep essential animations but simplify them */
+body.low-end-device * {
+  /* Allow opacity and transform animations for UI elements */
+  animation-duration: 0.3s !important;
+  animation-iteration-count: 1 !important;
+  /* Simplify transitions */
+  transition-duration: 0.2s !important;
+}
+
+/* Critical animations that must always work */
+body.low-end-device .card-3d-inner,
+body.low-end-device .techCategory,
+body.low-end-device .techBadge,
+body.low-end-device [class*="fade"],
+body.low-end-device [class*="slide"] {
+  /* Allow these animations to run normally */
+  animation-duration: inherit !important;
+  animation-name: inherit !important;
+  animation-fill-mode: inherit !important;
+  animation-delay: inherit !important;
 }
 
 /* Hide Matrix rain on low-end devices only when NOT in Matrix theme */

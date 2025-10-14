@@ -1133,169 +1133,6 @@
 }
 
 /* ==========================================================================
-   Dark Theme - Professional Project Cards
-   Clean, minimal aesthetic inspired by GitHub, Linear, and Vercel
-   ========================================================================== */
-
-/* Clean minimal cards with subtle backgrounds */
-[data-theme="dark"] .matrix-project-card {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Subtle professional hover - gentle elevation, no rotation */
-[data-theme="dark"] .matrix-project-card:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(74, 158, 255, 0.4) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
-  transform: translateY(-4px) scale(1.0) !important;
-  animation: none !important;
-}
-
-/* No scanlines in dark theme */
-[data-theme="dark"] .matrix-project-card::after {
-  display: none;
-}
-
-/* Clean white titles for maximum readability */
-[data-theme="dark"] .matrix-project-title {
-  color: #FFFFFF !important;
-  text-shadow: none;
-}
-
-/* Muted description text */
-[data-theme="dark"] .matrix-project-description {
-  color: rgba(255, 255, 255, 0.8) !important;
-  text-shadow: none;
-}
-
-/* Blue accent tags with clean styling */
-[data-theme="dark"] .matrix-tag {
-  background: transparent !important;
-  border: 1px solid rgba(74, 158, 255, 0.3) !important;
-  color: #4A9EFF !important;
-  text-shadow: none;
-}
-
-[data-theme="dark"] .matrix-tag:hover {
-  background: rgba(74, 158, 255, 0.1) !important;
-  border-color: #4A9EFF !important;
-  color: #FFFFFF !important;
-  box-shadow: none;
-}
-
-/* Clean stats display */
-[data-theme="dark"] .matrix-project-stats {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-[data-theme="dark"] .matrix-project-stats .stat {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-/* Language indicator styling */
-[data-theme="dark"] .language-name {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-
-[data-theme="dark"] .language-percent {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* Professional button styling */
-[data-theme="dark"] .matrix-project-card .matrix-btn-primary {
-  background: transparent !important;
-  border: 1px solid rgba(74, 158, 255, 0.5) !important;
-  color: #4A9EFF !important;
-  text-shadow: none;
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .matrix-project-card .matrix-btn-primary:hover {
-  background: #4A9EFF !important;
-  border-color: #4A9EFF !important;
-  color: #000000 !important;
-  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Clean featured badge in dark theme */
-[data-theme="dark"] .featured-badge {
-  background: rgba(74, 158, 255, 0.15) !important;
-  color: #4A9EFF !important;
-  border-color: rgba(74, 158, 255, 0.4) !important;
-  box-shadow: none;
-  animation: none;
-}
-
-/* Status badges */
-[data-theme="dark"] .status-in-progress {
-  background: rgba(74, 158, 255, 0.15) !important;
-  color: #4A9EFF !important;
-  border-color: rgba(74, 158, 255, 0.4) !important;
-  box-shadow: none;
-  animation: none;
-}
-
-/* Visibility badge */
-[data-theme="dark"] .visibility-badge {
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-/* Clean pagination in dark theme */
-[data-theme="dark"] .matrix-pagination-btn {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(74, 158, 255, 0.3) !important;
-  color: #4A9EFF !important;
-}
-
-[data-theme="dark"] .matrix-pagination-btn:hover:not(.disabled) {
-  background: #4A9EFF !important;
-  color: #000000 !important;
-  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3) !important;
-}
-
-[data-theme="dark"] .matrix-pagination-number {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(74, 158, 255, 0.3) !important;
-  color: #4A9EFF !important;
-}
-
-[data-theme="dark"] .matrix-pagination-number:hover {
-  background: rgba(74, 158, 255, 0.1) !important;
-  border-color: #4A9EFF !important;
-  box-shadow: none;
-}
-
-[data-theme="dark"] .matrix-pagination-number.active {
-  background: #4A9EFF !important;
-  color: #000000 !important;
-  border-color: #4A9EFF !important;
-  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
-  animation: none;
-}
-
-/* Tab buttons in dark theme */
-[data-theme="dark"] .matrix-tab-button {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(74, 158, 255, 0.3) !important;
-  color: #4A9EFF !important;
-}
-
-[data-theme="dark"] .matrix-tab-button:hover,
-[data-theme="dark"] .matrix-tab-button.active {
-  background: rgba(74, 158, 255, 0.1) !important;
-  border-color: #4A9EFF !important;
-  color: #FFFFFF !important;
-  box-shadow: none;
-}
-
-/* ==========================================================================
    PROJECTS PAGE - DARK THEME OVERRIDES (NO GREEN ALLOWED)
    ========================================================================== */
 
@@ -1471,4 +1308,258 @@
     0 30px 60px rgba(74, 158, 255, 0.3),
     0 0 50px rgba(74, 158, 255, 0.4),
     inset 0 0 20px rgba(74, 158, 255, 0.1) !important;
+}
+
+/* ==========================================================================
+   TASK 1: ADDITIONAL DARK MODE OVERRIDES - ELIMINATE ALL GREEN
+   Priority: CRITICAL - Force blue theme across all remaining elements
+   ========================================================================== */
+
+/* Hero Section - Force White Text (No Green) */
+[data-theme="dark"] #introduction h1,
+[data-theme="dark"] #introduction h2,
+[data-theme="dark"] #introduction p,
+[data-theme="dark"] .hero-section h1,
+[data-theme="dark"] .hero-section h2,
+[data-theme="dark"] .hero-section p,
+[data-theme="dark"] .welcome-text {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Hero Container */
+[data-theme="dark"] .hero-content,
+[data-theme="dark"] .introduction-container {
+  color: #FFFFFF !important;
+}
+
+/* All Buttons - Force Blue Theme */
+[data-theme="dark"] button,
+[data-theme="dark"] .btn,
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-professional,
+[data-theme="dark"] .matrix-btn,
+[data-theme="dark"] .matrix-btn-primary,
+[data-theme="dark"] .view-button,
+[data-theme="dark"] .cta-button {
+  background: transparent !important;
+  border: 2px solid rgba(74, 158, 255, 0.5) !important;
+  color: #4A9EFF !important;
+  text-shadow: none !important;
+}
+
+[data-theme="dark"] button:hover,
+[data-theme="dark"] .btn:hover,
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .btn-professional:hover,
+[data-theme="dark"] .matrix-btn:hover,
+[data-theme="dark"] .matrix-btn-primary:hover,
+[data-theme="dark"] .view-button:hover,
+[data-theme="dark"] .cta-button:hover {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #4A9EFF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Contact Section - Force Blue */
+[data-theme="dark"] #contact,
+[data-theme="dark"] .contact-section,
+[data-theme="dark"] .get-in-touch {
+  background: rgba(74, 158, 255, 0.02) !important;
+  border-color: rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] #contact h2,
+[data-theme="dark"] .contact-section h2,
+[data-theme="dark"] .get-in-touch h2 {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] #contact p,
+[data-theme="dark"] .contact-section p,
+[data-theme="dark"] .get-in-touch p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Contact Button */
+[data-theme="dark"] .btn-contact-us {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border: 2px solid #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .btn-contact-us:hover {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Skills Page Navigation Cards - Force Blue */
+[data-theme="dark"] .navigation-card,
+[data-theme="dark"] .nav-card,
+[data-theme="dark"] .gallery-card {
+  background: rgba(15, 15, 30, 0.6) !important;
+  border: 2px solid rgba(74, 158, 255, 0.3) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .navigation-card:hover,
+[data-theme="dark"] .nav-card:hover,
+[data-theme="dark"] .gallery-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow: 0 8px 25px rgba(74, 158, 255, 0.4) !important;
+  transform: translateY(-5px);
+}
+
+[data-theme="dark"] .navigation-card h3,
+[data-theme="dark"] .nav-card h3,
+[data-theme="dark"] .gallery-card h3 {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .navigation-card .icon,
+[data-theme="dark"] .nav-card .icon,
+[data-theme="dark"] .gallery-card .gallery-icon,
+[data-theme="dark"] .gallery-icon i {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Gallery Links */
+[data-theme="dark"] .gallery-link,
+[data-theme="dark"] .navigation-link {
+  background: #4A9EFF !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .gallery-link:hover,
+[data-theme="dark"] .navigation-link:hover {
+  background: #5AADFF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Galleries Grid */
+[data-theme="dark"] .galleries-grid .gallery-card {
+  background: rgba(15, 15, 30, 0.9) !important;
+  border-color: #4A9EFF !important;
+}
+
+/* Footer - Ensure Blue */
+[data-theme="dark"] footer,
+[data-theme="dark"] .siteFooter,
+[data-theme="dark"] .footer {
+  border-top-color: rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] footer a,
+[data-theme="dark"] .footer-link,
+[data-theme="dark"] .footer-social-link {
+  color: #4A9EFF !important;
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] footer a:hover,
+[data-theme="dark"] .footer-link:hover,
+[data-theme="dark"] .footer-social-link:hover {
+  color: #5AADFF !important;
+  border-color: #4A9EFF !important;
+  box-shadow: 0 0 10px rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Override Any Remaining Green Text */
+[data-theme="dark"] .text-green,
+[data-theme="dark"] .matrix-green-text,
+[data-theme="dark"] .green-accent {
+  color: #4A9EFF !important;
+}
+
+/* Ensure All Borders Are Blue */
+[data-theme="dark"] .border-green,
+[data-theme="dark"] .matrix-border {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Text Shadows - Remove Green Glow */
+[data-theme="dark"] * {
+  text-shadow: none;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] .section-heading,
+[data-theme="dark"] .section-title {
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Cursor Blink */
+[data-theme="dark"] .cursor-blink {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Introduction Images Container */
+[data-theme="dark"] .introduction-img {
+  border-color: rgba(74, 158, 255, 0.2) !important;
+}
+
+/* Showcases Section */
+[data-theme="dark"] #galleries {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Galleries Mobile Buttons */
+[data-theme="dark"] .galleries-mobile .btn-professional {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .galleries-mobile .btn-professional:hover {
+  background: rgba(74, 158, 255, 0.1) !important;
+  border-color: #5AADFF !important;
+}
+
+/* Navigation Guide */
+[data-theme="dark"] .navigation-guide {
+  border-color: rgba(74, 158, 255, 0.3) !important;
+  background: rgba(15, 15, 30, 0.9) !important;
+}
+
+[data-theme="dark"] .navigation-guide h3 {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.3) !important;
+}
+
+/* Ensure Paragraph Text is White/Gray */
+[data-theme="dark"] p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Section Containers */
+[data-theme="dark"] section {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Section Title Underline - Force Blue */
+[data-theme="dark"] .section-title::after {
+  background: linear-gradient(90deg, transparent, #4A9EFF, transparent) !important;
+}
+
+/* Language Stats - Force Blue in Dark Mode */
+[data-theme="dark"] .language-name {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .language-percent {
+  color: rgba(74, 158, 255, 0.7) !important;
+}
+
+/* FINAL OVERRIDE - Force --matrix-green Variable to Blue */
+[data-theme="dark"] {
+  --matrix-green: #4A9EFF !important;
 }
