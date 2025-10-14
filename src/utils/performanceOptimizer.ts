@@ -32,22 +32,25 @@ class PerformanceOptimizer {
 
     // Check device memory (if available)
     const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory;
-    const isLowMemory = deviceMemory && deviceMemory < 4;
+    const isLowMemory = deviceMemory && deviceMemory < 2; // Changed from 4 to 2GB
 
     // Check hardware concurrency (CPU cores)
     const hardwareConcurrency = navigator.hardwareConcurrency || 2;
-    const isLowCPU = hardwareConcurrency < 4;
+    const isLowCPU = hardwareConcurrency < 2; // Changed from 4 to 2 cores
 
     // Check connection speed
     const connection = (navigator as { connection?: { effectiveType?: string } }).connection;
     const isSlowConnection = connection && (
       connection.effectiveType === 'slow-2g' ||
-      connection.effectiveType === '2g' ||
-      connection.effectiveType === '3g'
+      connection.effectiveType === '2g'
+      // Removed 3g - it's fast enough for animations
     );
 
-    // Determine if low-end device
-    this.isLowEndDevice = isLowMemory || isLowCPU || isSlowConnection || this.isMobile;
+    // Determine if low-end device - More restrictive conditions
+    // Only mark as low-end if multiple conditions are met, not just one
+    this.isLowEndDevice = (isLowMemory && isLowCPU) ||
+                         (isSlowConnection && this.isMobile) ||
+                         (isLowMemory && isSlowConnection);
 
     
     // Return optimized settings
@@ -65,13 +68,13 @@ class PerformanceOptimizer {
     
     if (this.isLowEndDevice) {
       return {
-        enableAnimations: true,
-        enableBackgroundEffects: false,
-        enableTransitions: true,
-        animationDuration: 200,
-        enableMatrixRain: false,
-        enableParticles: false,
-        reducedMotion: false
+        enableAnimations: true, // Keep animations enabled
+        enableBackgroundEffects: false, // Disable heavy effects
+        enableTransitions: true, // Keep transitions
+        animationDuration: 300, // Normal duration for better UX
+        enableMatrixRain: false, // Disable heavy background effects
+        enableParticles: false, // Disable particles
+        reducedMotion: false // Not reduced motion, just optimized
       };
     }
     
