@@ -19,7 +19,7 @@
 /* ==========================================================================
    1. CORE VARIABLES & SETUP
    ========================================================================== */
-:root {
+[data-theme="matrix"] {
     --neon-green: #00ff00;
     --matrix-green: #00FF00;
     --matrix-cyan: #00FFFF;
@@ -659,6 +659,23 @@
 /* Only applies to cards that have been flipped before (.has-flipped) and are not currently flipped */
 .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-inner {
     animation: cardFlipBack 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Ensure card animations work on low-end devices */
+body.low-end-device .matrix-project-card .card-3d-inner {
+    /* Preserve the flip animations */
+    animation-name: inherit !important;
+    animation-duration: 1s !important;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation-fill-mode: forwards !important;
+}
+
+body.low-end-device .matrix-project-card.is-flipped .card-3d-inner {
+    animation-name: cardPullFlipSink !important;
+}
+
+body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-inner {
+    animation-name: cardFlipBack !important;
 }
 
 /* Flip Button - Inside matrix-project-actions container */

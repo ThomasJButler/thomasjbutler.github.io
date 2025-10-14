@@ -449,6 +449,173 @@
 }
 
 /* ==========================================================================
+   TASK 1: DARK MODE OVERRIDES FOR SKILLS PAGE - FORCE BLUE THEME
+   ========================================================================== */
+
+/* Skills Section Background - No Green */
+[data-theme="dark"] #skills,
+[data-theme="dark"] #learning {
+    background: #000000 !important;
+}
+
+[data-theme="dark"] #skills::before,
+[data-theme="dark"] #learning::before {
+    background:
+        linear-gradient(45deg, transparent 49%, rgba(74, 158, 255, 0.05) 50%, transparent 51%),
+        radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.03) 0%, transparent 100%) !important;
+}
+
+/* Skills Headings - White with Blue Glow */
+[data-theme="dark"] #skills h2,
+[data-theme="dark"] #learning h2,
+[data-theme="dark"] .skill-section-title {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] #skills > p,
+[data-theme="dark"] #learning > p {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Core Expertise Cards - Blue Theme */
+[data-theme="dark"] .core-expertise-card {
+    background: rgba(15, 15, 30, 0.6) !important;
+    border: 1px solid rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .core-expertise-card:hover {
+    background: rgba(20, 20, 40, 0.8) !important;
+    border-color: #4A9EFF !important;
+    box-shadow:
+        0 0 20px rgba(74, 158, 255, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .expertise-header .skill-icon {
+    color: #4A9EFF !important;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .expertise-header h4 {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 5px rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .expertise-description {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Skill Tags - Blue Theme */
+[data-theme="dark"] .skill-tag {
+    background: rgba(74, 158, 255, 0.1) !important;
+    border: 1px solid rgba(74, 158, 255, 0.3) !important;
+    color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .skill-tag:hover {
+    background: rgba(74, 158, 255, 0.2) !important;
+    border-color: rgba(74, 158, 255, 0.5) !important;
+    color: #FFFFFF !important;
+    text-shadow: 0 0 5px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .skill-tag-expand {
+    background: rgba(74, 158, 255, 0.15) !important;
+    border-color: rgba(74, 158, 255, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .skill-tag-expand:hover {
+    background: rgba(74, 158, 255, 0.25) !important;
+    border-color: rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Additional Skills - Blue Theme */
+[data-theme="dark"] .additional-skill-item {
+    background: rgba(15, 15, 30, 0.4) !important;
+    border: 1px solid rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .additional-skill-item:hover {
+    background: rgba(20, 20, 40, 0.6) !important;
+    border-color: rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .additional-skill-item .skill-icon {
+    color: #4A9EFF !important;
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .additional-skill-item .skill-title {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Skills List Items - Blue Theme */
+[data-theme="dark"] .skills-list li {
+    background: rgba(15, 15, 30, 0.6) !important;
+    border: 1px solid rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .skills-list li:hover {
+    background: rgba(20, 20, 40, 0.8) !important;
+    box-shadow: 0 10px 20px rgba(74, 158, 255, 0.3),
+                inset 0 0 15px rgba(74, 158, 255, 0.2) !important;
+    border-color: rgba(74, 158, 255, 0.4) !important;
+}
+
+[data-theme="dark"] .skills-list li::before {
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(74, 158, 255, 0.3) 45%,
+        rgba(74, 158, 255, 0.3) 55%,
+        transparent 100%) !important;
+}
+
+[data-theme="dark"] .skills-list li::after {
+    background-image:
+        radial-gradient(circle at 30% 50%, rgba(74, 158, 255, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 70% 50%, rgba(74, 158, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74, 158, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(74, 158, 255, 0.1) 1px, transparent 1px) !important;
+}
+
+[data-theme="dark"] .skills-list li i {
+    color: #4A9EFF !important;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .skills-list li:hover i {
+    text-shadow: 0 0 20px rgba(74, 158, 255, 0.8) !important;
+}
+
+[data-theme="dark"] .skills-list li h3 {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 5px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .skills-list li p {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Skill Icon Colors - Override Brand Colors with Blue in Dark Mode */
+[data-theme="dark"] .skill-icon.fa-html5,
+[data-theme="dark"] .skill-icon.fa-css3-alt,
+[data-theme="dark"] .skill-icon.fa-js,
+[data-theme="dark"] .skill-icon.fa-python,
+[data-theme="dark"] .skill-icon.fa-git-alt,
+[data-theme="dark"] .skill-icon.fa-node-js,
+[data-theme="dark"] .skill-icon.fa-microsoft {
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .skills-list li:hover .skill-icon {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.8) !important;
+}
+
+/* ==========================================================================
    Skills Page Icon Enhancements - Consolidated from skills-icons.css
    Matrix-themed icon styling for technical skills
    ========================================================================== */

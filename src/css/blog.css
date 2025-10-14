@@ -1,5 +1,5 @@
 /* CSS Variables */
-:root {
+[data-theme="matrix"] {
   --text-primary: rgba(255, 255, 255, 0.87);
   --matrix-green: #00ff00;
   --matrix-green-dim: rgba(0, 255, 0, 0.7);

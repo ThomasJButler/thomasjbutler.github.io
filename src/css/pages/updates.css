@@ -7,7 +7,7 @@
 /* ============================================================================
    CSS CUSTOM PROPERTIES
    ============================================================================ */
-:root {
+[data-theme="matrix"] {
   --matrix-green: #00FF41;
   --matrix-green-glow: rgba(0, 255, 65, 0.3);
   --matrix-cyan: #00F5FF;
@@ -655,7 +655,6 @@
    DARK THEME ADJUSTMENTS
    ============================================================================ */
 [data-theme="dark"] .updates-page {
-  --matrix-green: #00CC33;
   --matrix-cyan: #00D9E8;
   --timeline-card-bg: rgba(25, 25, 35, 0.95);
   --timeline-border: rgba(0, 204, 51, 0.25);
@@ -705,7 +704,6 @@
    LIGHT THEME ADJUSTMENTS
    ============================================================================ */
 [data-theme="light"] .updates-page {
-  --matrix-green: #00AA00;
   --matrix-cyan: #008B8B;
   --timeline-card-bg: rgba(255, 255, 255, 0.95);
   --timeline-border: rgba(0, 170, 0, 0.3);
