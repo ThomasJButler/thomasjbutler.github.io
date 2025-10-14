@@ -192,6 +192,36 @@
     font-size: 1rem;
 }
 
+/* Task 3: Contact Section Typography - Centered and Formatted */
+.contact-section p,
+.get-in-touch p,
+#contact p,
+#contact-main p {
+    text-align: center !important;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.contact-container {
+    text-align: center;
+}
+
+/* Ensure contact section paragraphs are properly styled */
+section#contact .container > p,
+.contact-info p,
+.info-section p {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 /* Info Sections - Ultra Compact with Gradient Hover */
 .info-section {
     margin-bottom: 0;

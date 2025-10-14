@@ -344,6 +344,25 @@ blockquote cite {
     background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
 }
 
+/* Section Title Terminal Prefix - Task 2 Fix */
+.section-heading::before,
+.section-title::before,
+.skill-section-title::before,
+.nav-guide-title::before {
+    content: '> ';
+    color: var(--accent-color);
+    font-family: 'Courier New', monospace;
+    margin-right: 0.5rem;
+    text-shadow: inherit;
+}
+
+/* Ensure no unwanted pseudo-elements on section titles */
+.section-heading::after,
+.skill-section-title::after,
+.nav-guide-title::after {
+    content: none !important;
+}
+
 .section-description {
     font-size: var(--font-size-md);
     text-align: center;
