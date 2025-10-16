@@ -56,10 +56,13 @@
   background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
   border: 1px solid var(--matrix-green);
   border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    background 0.4s ease;
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
   overflow: hidden;
-  /*min-height: 400px;*/
   display: flex;
   flex-direction: column;
 
@@ -155,7 +158,10 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition:
+    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease,
+    margin 0.3s ease;
   flex-grow: 1;
 }
 
@@ -166,29 +172,96 @@
   margin-bottom: 1.5rem;
 }
 
+/* Staggered trickle-down effect for cards in a row (desktop only) */
+@media (min-width: 768px) {
+  /* First card in each row - immediate (0ms delay) */
+  .serviceCard:nth-child(3n+1) .serviceFeatures.show {
+    transition-delay: 0ms;
+  }
+
+  /* Second card in each row - 150ms delay */
+  .serviceCard:nth-child(3n+2) .serviceFeatures.show {
+    transition-delay: 150ms;
+  }
+
+  /* Third card in each row - 300ms delay */
+  .serviceCard:nth-child(3n+3) .serviceFeatures.show {
+    transition-delay: 300ms;
+  }
+
+  /* Stagger the feature items within each card as well */
+  .serviceCard:nth-child(3n+1) .featureItem {
+    transition-delay: 0ms;
+  }
+
+  .serviceCard:nth-child(3n+2) .featureItem {
+    transition-delay: 200ms;
+  }
+
+  .serviceCard:nth-child(3n+3) .featureItem {
+    transition-delay: 350ms;
+  }
+}
+
 /* Feature Item Container */
 .featureItem {
   margin-bottom: 0.75rem;
   opacity: 0;
-  animation: fadeInUp 0.3s ease forwards;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .serviceFeatures.show .featureItem {
-  animation: fadeInUp 0.3s ease forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.serviceFeatures.show .featureItem:nth-child(1) { animation-delay: 0.05s; }
-.serviceFeatures.show .featureItem:nth-child(2) { animation-delay: 0.1s; }
-.serviceFeatures.show .featureItem:nth-child(3) { animation-delay: 0.15s; }
+/* Stagger individual feature items within expanded cards */
+.serviceFeatures.show .featureItem:nth-child(1) {
+  transition-delay: 0.1s;
+}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+.serviceFeatures.show .featureItem:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.serviceFeatures.show .featureItem:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* Enhanced animation for desktop with row-based staggering */
+@media (min-width: 768px) {
+  /* First card in row - earlier feature animations */
+  .serviceCard:nth-child(3n+1) .serviceFeatures.show .featureItem:nth-child(1) {
+    transition-delay: 0.15s;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .serviceCard:nth-child(3n+1) .serviceFeatures.show .featureItem:nth-child(2) {
+    transition-delay: 0.25s;
+  }
+  .serviceCard:nth-child(3n+1) .serviceFeatures.show .featureItem:nth-child(3) {
+    transition-delay: 0.35s;
+  }
+
+  /* Second card in row - medium delay feature animations */
+  .serviceCard:nth-child(3n+2) .serviceFeatures.show .featureItem:nth-child(1) {
+    transition-delay: 0.3s;
+  }
+  .serviceCard:nth-child(3n+2) .serviceFeatures.show .featureItem:nth-child(2) {
+    transition-delay: 0.4s;
+  }
+  .serviceCard:nth-child(3n+2) .serviceFeatures.show .featureItem:nth-child(3) {
+    transition-delay: 0.5s;
+  }
+
+  /* Third card in row - latest feature animations */
+  .serviceCard:nth-child(3n+3) .serviceFeatures.show .featureItem:nth-child(1) {
+    transition-delay: 0.45s;
+  }
+  .serviceCard:nth-child(3n+3) .serviceFeatures.show .featureItem:nth-child(2) {
+    transition-delay: 0.55s;
+  }
+  .serviceCard:nth-child(3n+3) .serviceFeatures.show .featureItem:nth-child(3) {
+    transition-delay: 0.65s;
   }
 }
 
@@ -248,7 +321,7 @@
   font-family: var(--font-code);
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,6 +334,11 @@
   background: rgba(0, 255, 0, 0.2);
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
   transform: translateY(-2px);
+}
+
+.expandButton:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
 }
 
 .expandButton:focus {
