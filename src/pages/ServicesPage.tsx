@@ -6,6 +6,7 @@ import '../css/pages/services.css';
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const techStackTitleRef = useRef<HTMLHeadingElement>(null);
   // On mobile, expand first card by default for better UX
   const [expandedCards, setExpandedCards] = useState<Set<number>>(
     () => window.innerWidth < 768 ? new Set([0]) : new Set()
@@ -100,7 +101,7 @@ export const ServicesPage: React.FC = () => {
     },
     {
       category: "Mobile & Mobile Web Apps",
-      technologies: ["React Native", "iOS & Android", "PWA", "Responsive Design", "Mobile-First"]
+      technologies: ["React Native", "iOS & Android", "PWA", "Mobile-First", "Responsive Design"]
     },
     {
       category: "APIs",
@@ -122,6 +123,11 @@ export const ServicesPage: React.FC = () => {
     // Set title text directly without animation to prevent glitching
     if (titleRef.current) {
       titleRef.current.textContent = 'WEB, MOBILE, AND AI';
+    }
+
+    // Set tech stack title
+    if (techStackTitleRef.current) {
+      techStackTitleRef.current.textContent = '$ TECH STACKS';
     }
 
     // Stagger service cards animation
@@ -265,15 +271,17 @@ export const ServicesPage: React.FC = () => {
           <span className="divider-line"></span>
         </div>
 
+        {/* Tech Stack Section Title */}
+        <h2 ref={techStackTitleRef} className="section-title tech-stack-title"></h2>
+
         {/* Tech Stack Badges */}
         <div className="techStackSection">
-          <h3 className="techStackTitle">$ Tech Stack</h3>
           <div className="techStackContent">
             {techStackCategories.map((category, catIndex) => {
               const isVisible = showAllTech || catIndex === 0;
               const isCategoryExpanded = expandedCategories.has(catIndex);
-              const visibleTech = category.technologies.slice(0, 7);
-              const hiddenTech = category.technologies.slice(7);
+              const visibleTech = category.technologies.slice(0, 4);
+              const hiddenTech = category.technologies.slice(4);
               const hasMore = hiddenTech.length > 0;
 
               return (

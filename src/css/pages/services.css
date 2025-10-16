@@ -40,6 +40,39 @@
   text-align: center;
 }
 
+/* Tech Stack Section Title (standalone) */
+.tech-stack-title {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  letter-spacing: 0.1em;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.tech-stack-title::before {
+  content: '>';
+  position: absolute;
+  left: calc(50% - 280px);
+  color: var(--matrix-cyan, #00ffff);
+  font-family: var(--font-code);
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.tech-stack-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
 /* Services Grid */
 .servicesGrid {
   display: grid;
