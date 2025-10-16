@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
-import styles from './ServicesPage.module.css';
+import '../css/pages/services.css';
 
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -22,9 +22,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-code",
       description: "Responsive, performance-first websites and web apps built with modern stacks.",
       features: [
-        "React / Next.js · TypeScript · Tailwind / SASS",
-        "Performance optimization · SEO ready",
-        "Accessibility & responsive design"
+        { main: "React / Next.js", sub: ["TypeScript", "Tailwind", "SASS"] },
+        { main: "Performance optimization", sub: ["SEO ready"] },
+        { main: "Accessibility & responsive design", sub: [] }
       ],
       color: "#00ff00"
     },
@@ -33,9 +33,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-server",
       description: "Robust servers and APIs that scale with your product. Production-ready architecture from day one.",
       features: [
-        "Node.js / Express · Python / Django · RESTful APIs",
-        "PostgreSQL · MongoDB · Redis · Database optimization",
-        "Microservices · System integration · Authentication & security"
+        { main: "Node.js / Express", sub: ["Python / Django", "RESTful APIs"] },
+        { main: "PostgreSQL", sub: ["MongoDB", "Redis", "Database optimization"] },
+        { main: "Microservices", sub: ["System integration", "Authentication & security"] }
       ],
       color: "#00cc00"
     },
@@ -44,9 +44,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-robot",
       description: "Practical AI features and automation to save time and make data useful.",
       features: [
-        "ChatGPT integration · n8n automation workflows",
-        "Custom GPT models · NLP · Computer vision",
-        "TensorFlow / PyTorch · Data processing"
+        { main: "ChatGPT integration", sub: ["n8n automation workflows"] },
+        { main: "Custom GPT models", sub: ["NLP", "Computer vision"] },
+        { main: "TensorFlow / PyTorch", sub: ["Data processing"] }
       ],
       color: "#00ff00"
     },
@@ -55,9 +55,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-mobile-alt",
       description: "Cross-platform apps with native feel and store readiness. Built for iOS and Android.",
       features: [
-        "React Native · iOS & Android · Cross-platform",
-        "Push notifications · Offline functionality · Analytics",
-        "Native performance · App store submission & compliance"
+        { main: "React Native", sub: ["iOS & Android", "Cross-platform"] },
+        { main: "Push notifications", sub: ["Offline functionality", "Analytics"] },
+        { main: "Native performance", sub: ["App store submission & compliance"] }
       ],
       color: "#00cc00"
     },
@@ -66,9 +66,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-palette",
       description: "Clear, usable interfaces and identity design that scales with your product.",
       features: [
-        "UI/UX design · Brand identity · Design systems",
-        "Logo design · Component libraries · Responsive mockups",
-        "Marketing assets · Brand guidelines documentation"
+        { main: "UI/UX design", sub: ["Brand identity", "Design systems"] },
+        { main: "Logo design", sub: ["Component libraries", "Responsive mockups"] },
+        { main: "Marketing assets", sub: ["Brand guidelines documentation"] }
       ],
       color: "#00ff00"
     },
@@ -77,9 +77,9 @@ export const ServicesPage: React.FC = () => {
       icon: "fas fa-handshake",
       description: "Architecture reviews, training and bespoke engineering for special requirements.",
       features: [
-        "Architecture review · Team training",
-        "API development · Bespoke solutions",
-        "System integration · Support"
+        { main: "Architecture review", sub: ["Team training"] },
+        { main: "API development", sub: ["Bespoke solutions"] },
+        { main: "System integration", sub: ["Support"] }
       ],
       color: "#00cc00"
     }
@@ -168,44 +168,53 @@ export const ServicesPage: React.FC = () => {
 
   return (
     <div className="page-wrapper page-services">
-      <section id="services" className={styles.servicesSection}>
+      <section id="services" className="servicesSection">
       <div className="container">
         <h2 ref={titleRef} className="section-title"></h2>
-        <p className={styles.servicesIntro}>
+        <p className="servicesIntro">
           I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
         </p>
 
-        <div ref={servicesRef} className={styles.servicesGrid}>
+        <div ref={servicesRef} className="servicesGrid">
           {services.map((service, index) => {
             const isExpanded = expandedCards.has(index);
             return (
               <div
                 key={index}
-                className={`service-card ${styles.serviceCard} ${isExpanded ? styles.expanded : ''}`}
+                className={`service-card serviceCard ${isExpanded ? 'expanded' : ''}`}
                 onMouseEnter={handleCardHover}
                 style={{ '--card-color': service.color } as React.CSSProperties}
               >
-                <div className={styles.serviceHeader}>
+                <div className="serviceHeader">
                   <i
-                    className={`${service.icon} service-icon ${styles.serviceIcon}`}
+                    className={`${service.icon} service-icon serviceIcon`}
                     aria-hidden="true"
                   ></i>
-                  <h3 className={styles.serviceTitle}>{service.title}</h3>
+                  <h3 className="serviceTitle">{service.title}</h3>
                 </div>
 
-                <p className={styles.serviceDescription}>{service.description}</p>
+                <p className="serviceDescription">{service.description}</p>
 
-                <ul className={`${styles.serviceFeatures} ${isExpanded ? styles.show : ''}`}>
+                <ul className={`serviceFeatures ${isExpanded ? 'show' : ''}`}>
                   {service.features.map((feature, idx) => (
-                    <li key={idx}>
-                      <span className={styles.featureBullet}>▸</span>
-                      {feature}
+                    <li key={idx} className="featureItem">
+                      <div className="featureMain">
+                        <span className="featureBullet">▸</span>
+                        <span>{feature.main}</span>
+                      </div>
+                      {feature.sub.length > 0 && (
+                        <ul className="featureSub">
+                          {feature.sub.map((subItem, subIdx) => (
+                            <li key={subIdx}>{subItem}</li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>
 
                 <button
-                  className={styles.expandButton}
+                  className="expandButton"
                   onClick={() => toggleCard(index)}
                   aria-expanded={isExpanded}
                   aria-label={isExpanded ? "Show less" : "Show more"}
@@ -226,9 +235,9 @@ export const ServicesPage: React.FC = () => {
         </div>
 
         {/* Tech Stack Badges */}
-        <div className={styles.techStackSection}>
-          <h3 className={styles.techStackTitle}>$ Tech Stack</h3>
-          <div className={styles.techStackContent}>
+        <div className="techStackSection">
+          <h3 className="techStackTitle">$ Tech Stack</h3>
+          <div className="techStackContent">
             {techStackCategories.map((category, catIndex) => {
               const isVisible = showAllTech || catIndex === 0;
               const isCategoryExpanded = expandedCategories.has(catIndex);
@@ -239,14 +248,14 @@ export const ServicesPage: React.FC = () => {
               return (
                 <div
                   key={catIndex}
-                  className={`${styles.techCategory} ${!isVisible ? styles.hiddenOnMobile : ''}`}
+                  className={`techCategory ${!isVisible ? 'hiddenOnMobile' : ''}`}
                 >
-                  <h4 className={styles.categoryTitle}>{category.category}</h4>
+                  <h4 className="categoryTitle">{category.category}</h4>
 
                   {/* First line - always visible */}
-                  <div className={styles.techBadges}>
+                  <div className="techBadges">
                     {visibleTech.map((tech, techIndex) => (
-                      <span key={techIndex} className={styles.techBadge}>
+                      <span key={techIndex} className="techBadge">
                         [{tech}]
                       </span>
                     ))}
@@ -255,16 +264,16 @@ export const ServicesPage: React.FC = () => {
                   {/* Additional badges - collapsible on desktop */}
                   {hasMore && (
                     <>
-                      <div className={`${styles.techBadges} ${styles.techBadgesExtra} ${isCategoryExpanded ? styles.expanded : ''}`}>
+                      <div className={`techBadges techBadgesExtra ${isCategoryExpanded ? 'expanded' : ''}`}>
                         {hiddenTech.map((tech, techIndex) => (
-                          <span key={techIndex + 7} className={styles.techBadge}>
+                          <span key={techIndex + 7} className="techBadge">
                             [{tech}]
                           </span>
                         ))}
                       </div>
 
                       <button
-                        className={styles.categoryToggle}
+                        className="categoryToggle"
                         onClick={() => toggleCategory(catIndex)}
                         aria-expanded={isCategoryExpanded}
                         aria-label={isCategoryExpanded ? `Show less ${category.category} technologies` : `Show ${hiddenTech.length} more ${category.category} technologies`}
@@ -286,7 +295,7 @@ export const ServicesPage: React.FC = () => {
             })}
           </div>
           <button
-            className={styles.showMoreTech}
+            className="showMoreTech"
             onClick={() => setShowAllTech(!showAllTech)}
             aria-expanded={showAllTech}
             aria-label={showAllTech ? "Hide technologies" : "Show all technologies"}
@@ -304,10 +313,10 @@ export const ServicesPage: React.FC = () => {
         </div>
 
         {/* Sticky CTA */}
-        <div className={styles.ctaSection}>
+        <div className="ctaSection">
           <h3>Ready to start your project?</h3>
           <p>Let's talk, I'll help bring your ideas to life.</p>
-          <a href="/contact" className={styles.ctaButton}>
+          <a href="/contact" className="ctaButton">
             Get In Touch
             <i className="fas fa-envelope icon-margin-left"></i>
           </a>
