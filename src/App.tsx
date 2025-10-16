@@ -1,6 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { animate } from 'animejs';
 import { initKeyboardNavigation } from './utils/keyboardNavigation';
 import { performanceOptimizer } from './utils/performanceOptimizer';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -9,7 +8,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { Layout } from './components/Layout';
 
 // Components (not lazy loaded as they're used frequently)
-import { MatrixSpinner } from './components/MatrixSpinner';
 import { ReactHtmlRedirect } from './components/ReactHtmlRedirect';
 import { BackToTop } from './components/BackToTop';
 
@@ -60,9 +58,40 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  // Page loading fallback component
+  // Page loading fallback component - minimal/silent for professional feel
   const PageLoader = () => (
-    <MatrixSpinner isLoading={true} size="large" text="Loading page..." />
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(0, 0, 0, 0.3)',
+      backdropFilter: 'blur(2px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 9999,
+      animation: 'fadeIn 0.2s ease-out'
+    }}>
+      <div style={{
+        width: '40px',
+        height: '40px',
+        border: '3px solid rgba(0, 255, 0, 0.2)',
+        borderTop: '3px solid var(--matrix-green, #00ff00)',
+        borderRadius: '50%',
+        animation: 'spin 0.8s linear infinite'
+      }} />
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
+    </div>
   );
 
   return (
