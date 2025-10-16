@@ -145,11 +145,35 @@ export const ServicesPage: React.FC = () => {
   const toggleCard = (index: number) => {
     setExpandedCards(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
+      const isCurrentlyExpanded = newSet.has(index);
+
+      // On desktop (≥768px), handle row-based expansion
+      if (window.innerWidth >= 768) {
+        // Calculate which row this card is in (3 cards per row on desktop)
+        const cardsPerRow = 3;
+        const rowStart = Math.floor(index / cardsPerRow) * cardsPerRow;
+        const rowEnd = rowStart + cardsPerRow;
+
+        if (isCurrentlyExpanded) {
+          // Collapse all cards in this row
+          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
+            newSet.delete(i);
+          }
+        } else {
+          // Expand all cards in this row
+          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
+            newSet.add(i);
+          }
+        }
       } else {
-        newSet.add(index);
+        // Mobile: toggle individual card
+        if (isCurrentlyExpanded) {
+          newSet.delete(index);
+        } else {
+          newSet.add(index);
+        }
       }
+
       return newSet;
     });
   };
