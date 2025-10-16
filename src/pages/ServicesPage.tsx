@@ -258,6 +258,13 @@ export const ServicesPage: React.FC = () => {
           })}
         </div>
 
+        {/* Matrix Divider */}
+        <div className="matrix-divider">
+          <span className="divider-line"></span>
+          <span className="divider-center"></span>
+          <span className="divider-line"></span>
+        </div>
+
         {/* Tech Stack Badges */}
         <div className="techStackSection">
           <h3 className="techStackTitle">$ Tech Stack</h3>
@@ -334,6 +341,13 @@ export const ServicesPage: React.FC = () => {
               </>
             )}
           </button>
+        </div>
+
+        {/* Matrix Divider */}
+        <div className="matrix-divider">
+          <span className="divider-line"></span>
+          <span className="divider-center"></span>
+          <span className="divider-line"></span>
         </div>
 
         {/* Sticky CTA */}
