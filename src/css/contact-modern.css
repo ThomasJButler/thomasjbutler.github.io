@@ -224,6 +224,7 @@ section#contact .container > p,
 
 /* Info Sections - Ultra Compact with Gradient Hover */
 .info-section {
+    font-family: var(--font-primary);
     margin-bottom: 0;
     padding: 0.75rem;
     border-radius: 8px;
@@ -471,6 +472,7 @@ p.info-card {
     margin-bottom: var(--space-sm);
     font-size: 0.75rem;
     text-align: center;
+    font-family: var(--font-primary);
 }
 
 .coffee-button-premium {
