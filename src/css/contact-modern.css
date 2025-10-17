@@ -183,13 +183,13 @@
 }
 
 .contact-info h2 {
-    color: var(--matrix-green);
+    color: #ffffff;
     margin-bottom: var(--space-xs);
     text-align: center;
     text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     letter-spacing: 0.02em;
-    font-weight: 300;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 
 /* Task 3: Contact Section Typography - Centered and Formatted */
@@ -228,7 +228,6 @@ section#contact .container > p,
     margin-bottom: 0;
     padding: 0.75rem;
     border-radius: 8px;
-    background: linear-gradient(145deg, rgba(0, 20, 0, 0.4), rgba(0, 10, 0, 0.6));
     border: 1px solid rgba(0, 255, 0, 0.15);
     position: relative;
     overflow: hidden;

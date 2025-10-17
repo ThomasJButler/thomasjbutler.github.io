@@ -350,7 +350,9 @@ blockquote cite {
 .section-heading::before,
 .section-title::before,
 .skill-section-title::before,
-.nav-guide-title::before {
+.nav-guide-title::before,
+.contact-info h2::before
+ {
     content: '>';
     color: var(--accent-color);
     font-family: 'Courier New', monospace;
