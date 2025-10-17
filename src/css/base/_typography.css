@@ -344,16 +344,19 @@ blockquote cite {
     background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
 }
 
-/* Section Title Terminal Prefix - Task 2 Fix */
+/* Section Title Terminal Prefix */
+.welcome-text::before,
+.section-heading,
 .section-heading::before,
 .section-title::before,
 .skill-section-title::before,
 .nav-guide-title::before {
-    content: '> ';
+    content: '>';
     color: var(--accent-color);
     font-family: 'Courier New', monospace;
     margin-right: 0.5rem;
     text-shadow: inherit;
+    padding-top: 2px;
 }
 
 /* Ensure no unwanted pseudo-elements on section titles */

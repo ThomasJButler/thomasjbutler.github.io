@@ -251,23 +251,6 @@
     margin-bottom: 3rem;
     text-shadow: none;
  }
-
- /* Terminal symbols - > prefix for section titles */
- .section-title::before {
-    content: '> ';
-    color: var(--accent-color);
-    font-family: monospace;
-    margin-right: 0.5rem;
- }
-
- /* $ prefix for navigation/galleries section */
- #galleries .section-heading::before,
- .section-heading::before {
-    content: '$ ';
-    color: var(--matrix-green);
-    font-family: monospace;
-    margin-right: 0.5rem;
- }
  
  .updates-grid {
     display: grid;
@@ -719,22 +702,6 @@
     font-weight: 300;
 }
 
-.section-heading::before,
-.section-heading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-    box-shadow: none;
-}
-
-.section-heading::before {
-    left: -80px;
-    animation: pulseGlow 2s var(--ease-in-out) infinite alternate;
-}
-
 .section-heading::after {
     right: -80px;
     animation: pulseGlow 2s var(--ease-in-out) infinite alternate-reverse;
@@ -762,10 +729,6 @@
     .section-heading::before,
     .section-heading::after {
         width: 40px;
-    }
-
-    .section-heading::before {
-        left: -50px;
     }
 
     .section-heading::after {

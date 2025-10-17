@@ -19,7 +19,7 @@
    ========================================================================== */
 .nav-guide-title {
   text-align: center;
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 4rem);
   color: #00ff00;
   font-family: var(--font-primary);
   text-transform: uppercase;
