@@ -60,27 +60,27 @@
 
 /* Matrix theme specific styles */
 [data-theme="matrix"] .themeToggle {
-  border-color: rgba(0, 255, 0, 0.3);
-  color: #00ff00;
+  border-color: var(--matrix-cyan);
+  color: #ffffff;
 }
 
 [data-theme="matrix"] .themeToggle:hover {
-  background: rgba(0, 255, 0, 0.05);
-  border-color: #00ff00;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--matrix-cyan);
+  color: #ffffff;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 /* Dark theme specific styles - Clean look */
 [data-theme="dark"] .themeToggle {
-  border-color: #404040;
-  color: #ffffff;
+  border-color: rgba(0, 255, 0, 0.3);
+  color: #00ff00;
 }
 
 [data-theme="dark"] .themeToggle:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: #606060;
-  color: #ffffff;
-  text-shadow: none;
-  box-shadow: none;
+  background: rgba(0, 255, 0, 0.05);
+  border-color: #00ff00;
 }
 
 [data-theme="dark"] .themeToggle::before {
