@@ -422,11 +422,11 @@
 }
 
 /* Icons & Symbols */
-[data-theme="dark"] .icon,
-[data-theme="dark"] .gallery-icon,
-[data-theme="dark"] i {
-  color: #4A9EFF !important;
+[data-theme="dark"] .gallery-icon {
+  color: #4A9EFF;
 }
+
+
 
 /* Technology Tags */
 [data-theme="dark"] .tech-tag,
@@ -1374,7 +1374,6 @@
 }
 
 /* All Buttons - Force Blue Theme */
-[data-theme="dark"] button,
 [data-theme="dark"] .btn,
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .btn-professional,
@@ -1388,7 +1387,6 @@
   text-shadow: none !important;
 }
 
-[data-theme="dark"] button:hover,
 [data-theme="dark"] .btn:hover,
 [data-theme="dark"] .btn-primary:hover,
 [data-theme="dark"] .btn-professional:hover,
@@ -1597,6 +1595,30 @@
 
 [data-theme="dark"] .language-percent {
   color: rgba(74, 158, 255, 0.7) !important;
+}
+
+/* ========================================================================
+   THEME TOGGLE BUTTON - Exception to Blue Theme (Force Green)
+   When in dark mode, the button says "MATRIX MODE" and should be green
+   ======================================================================== */
+[data-theme="dark"] .themeToggle {
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  color: #00ff00 !important;
+  text-shadow: none !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .themeToggle:hover {
+  background: rgba(0, 255, 0, 0.05) !important;
+  border: 1px solid #00ff00 !important;
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2) !important;
+}
+
+/* Icon inside theme toggle - force green */
+[data-theme="dark"] .themeToggle i {
+  color: #00ff00 !important;
 }
 
 /* FINAL OVERRIDE - Force --matrix-green Variable to Blue */
