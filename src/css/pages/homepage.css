@@ -683,6 +683,7 @@
     color: var(--text-primary);
     font-family: var(--font-primary);
     opacity: 0;
+    margin-bottom: 0;
     transform: scale(0.95);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
