@@ -734,6 +734,17 @@
     .section-heading::after {
         right: -50px;
     }
+
+    /* Specifically target the expertise paragraph for better mobile display */
+    #introduction .introduction-h2 {
+        font-size: 1.6rem !important;
+        line-height: 1.55 !important;
+        padding: 0 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        letter-spacing: 0.3px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -750,6 +761,14 @@
     #galleries {
         padding: 0;
         padding-bottom: 1rem;
+    }
+
+    /* Adjust expertise paragraph for small mobile screens */
+    #introduction .introduction-h2 {
+        font-size: 1.35rem !important;
+        line-height: 1.5 !important;
+        padding: 0 1.25rem !important;
+        letter-spacing: 0.2px;
     }
 }
 
