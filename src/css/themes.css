@@ -617,18 +617,37 @@
 
 /* Contact Info Sections */
 [data-theme="dark"] .info-section {
-  background: rgba(20, 20, 40, 0.8) !important;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.85), rgba(90, 173, 255, 0.75)) !important;
   border-color: #4A9EFF !important;
 }
 
 [data-theme="dark"] .info-section h3,
 [data-theme="dark"] .info-card,
 [data-theme="dark"] .info-section p {
-  color: #FFFFFF !important;
+  color: #000000 !important;
+  font-weight: 500;
 }
 
-[data-theme="dark"] .info-section:hover h3 {
-  color: #4A9EFF !important;
+[data-theme="dark"] .info-section h3 i,
+[data-theme="dark"] .info-card i {
+  color: #000000 !important;
+}
+
+/* Coffee Button */
+[data-theme="dark"] .coffee-button-premium {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .coffee-button-premium i {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .coffee-button-premium:hover {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .coffee-button-premium:hover i {
+  color: #000000 !important;
 }
 
 /* ==========================================================================
@@ -666,20 +685,39 @@
 
 /* Contact Info Sections */
 [data-theme="matrix"] .info-section {
-  background: rgba(0, 20, 0, 0.8) !important;
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.85), rgba(0, 255, 255, 0.75)) !important;
   border-color: var(--matrix-cyan) !important;
 }
 
 [data-theme="matrix"] .info-section h3,
 [data-theme="matrix"] .info-card,
 [data-theme="matrix"] .info-section p {
-  color: #FFFFFF !important;
-  text-shadow: var(--glow-text-subtle) !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+  font-weight: 500;
 }
 
-[data-theme="matrix"] .info-section:hover h3 {
-  color: var(--matrix-cyan) !important;
-  text-shadow: var(--glow-medium) rgba(0, 255, 255, 0.6) !important;
+[data-theme="matrix"] .info-section h3 i,
+[data-theme="matrix"] .info-card i {
+  color: #000000 !important;
+  filter: none !important;
+}
+
+/* Coffee Button */
+[data-theme="matrix"] .coffee-button-premium {
+  color: #000000 !important;
+}
+
+[data-theme="matrix"] .coffee-button-premium i {
+  color: #000000 !important;
+}
+
+[data-theme="matrix"] .coffee-button-premium:hover {
+  color: #000000 !important;
+}
+
+[data-theme="matrix"] .coffee-button-premium:hover i {
+  color: #000000 !important;
 }
 
 /* ==========================================================================
