@@ -179,18 +179,18 @@
    SHOWCASE CARDS - THEME OVERRIDES FOR BETTER CONTRAST
    ========================================================================== */
 
-/* Matrix Mode - Inverted button for better contrast on green cards */
+/* Matrix Mode - Green button by default, black on hover */
 [data-theme="matrix"] .gallery-link {
-    background: #000000 !important; /* Black background */
-    color: #00FF00 !important; /* Green text */
+    background: #00FF00 !important; /* Green background by default */
+    color: #000000 !important; /* Black text */
     border: 2px solid #00FF00;
     font-weight: 600;
 }
 
 [data-theme="matrix"] .gallery-link:hover {
-    background: #00FF00 !important; /* Green background on hover */
-    color: #000000 !important; /* Black text on hover */
-    border-color: #00FF00;
+    background: #000000 !important; /* Black background on hover */
+    color: #FFFFFF !important; /* White text on hover */
+    border-color: #00FF00; /* Keep green border */
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
                 0 0 30px rgba(0, 255, 0, 0.4);
 }
@@ -225,18 +225,18 @@
 }
 
 [data-theme="dark"] .gallery-link {
-    background: transparent !important;
-    color: #4A9EFF !important;
+    background: #4A9EFF !important; /* Blue background - matches card hover */
+    color: #FFFFFF !important; /* White text */
     border: 2px solid #4A9EFF;
     font-weight: 600;
 }
 
 [data-theme="dark"] .gallery-link:hover {
-    background: rgba(74, 158, 255, 0.2) !important;
-    color: #FFFFFF !important;
-    border-color: #5AADFF;
-    box-shadow: 0 0 20px rgba(74, 158, 255, 0.5),
-                0 0 30px rgba(74, 158, 255, 0.3);
+    background: #000000 !important; /* Black background on hover */
+    color: #FFFFFF !important; /* White text stays white */
+    border-color: #00FFFF; /* Keep cyan border */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                0 0 30px rgba(0, 255, 255, 0.3);
 }
 
 /* ============================================================================
