@@ -65,8 +65,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1130px;
   margin: 0 auto;
+  margin-block: 3rem;
 }
 
 /* ==========================================================================
@@ -77,9 +78,9 @@
   background:
     linear-gradient(135deg, rgba(0, 20, 0, 0.8) 0%, rgba(0, 40, 0, 0.6) 50%, rgba(0, 20, 0, 0.8) 100%);
   border: 2px solid rgba(0, 255, 0, 0.3);
-  border-radius: 15px;
-  padding: 2rem;
-  min-height: 300px;
+  border-radius: 50px;
+  padding: 1rem;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
