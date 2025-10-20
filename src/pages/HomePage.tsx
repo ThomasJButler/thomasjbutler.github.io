@@ -345,7 +345,7 @@ export const HomePage: React.FC = () => {
               <div className="gallery-icon">
                 <i className="fas fa-history"></i>
               </div>
-              <h3>Version TimeTravel</h3>
+              <h3>Version TimeTravel v1.4</h3>
               <p>Interactive timeline documenting the complete evolution and transformation of my portfolio.</p>
               <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" className="gallery-link">
                 Time Travel <i className="fas fa-external-link-alt"></i>
