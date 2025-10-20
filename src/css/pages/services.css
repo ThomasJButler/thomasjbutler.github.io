@@ -885,6 +885,30 @@ body.low-end-device .techCategory {
   outline-offset: 4px;
 }
 
+/* ============================================================================
+   DARK THEME - CTA BUTTON OVERRIDE
+   ============================================================================ */
+
+[data-theme="dark"] .ctaButton {
+    background: #4A9EFF !important; /* Blue background for visibility */
+    color: #FFFFFF !important; /* White text */
+    border: 2px solid #4A9EFF !important;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .ctaButton:hover {
+    background: #000000 !important; /* Black background on hover */
+    color: #FFFFFF !important; /* White text */
+    border-color: #4A9EFF !important; /* Keep blue border */
+    box-shadow: 0 0 30px rgba(74, 158, 255, 0.5) !important;
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .ctaButton:focus {
+    outline: 3px solid #4A9EFF !important; /* Blue focus outline */
+    outline-offset: 4px;
+}
+
 /* Breathing animation for CTA */
 @keyframes breathing {
   0%, 100% {
