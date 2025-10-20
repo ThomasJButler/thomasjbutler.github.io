@@ -194,7 +194,7 @@ export const ContactPage: React.FC = () => {
                   <textarea
                     id="message"
                     name="message"
-                    rows={6}
+                    rows={3}
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     required
