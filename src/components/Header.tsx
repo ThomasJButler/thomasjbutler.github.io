@@ -116,7 +116,12 @@ export const Header: React.FC = () => {
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <Link to="/" className={styles.headerTitle}>
-          <h1>Thomas J Butler</h1>
+          <img
+            src="/ThomasJButler/logo.svg"
+            alt="Thomas J Butler Logo"
+            className={styles.headerLogo}
+          />
+          <h1 className={styles.headerText}>Thomas J Butler</h1>
         </Link>
         
         <nav className={styles.nav} role="navigation" aria-label="Main navigation">

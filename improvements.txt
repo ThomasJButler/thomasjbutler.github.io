@@ -1,3 +1,43 @@
+
+
+To do website - added to repo now and it is in the plan, do last as manual especially for hover effects
+
+
+add images now! When add images, get them all the same size, and in webp format.. try to capture full screen or a feature (not the title of the site, as we have a text overlay any way saying what it is), put the image of the coolest thing of the site! Get the images as small size as possible which will help the page speed.
+
+add why I created this portfolio on homepage
+
+'This is a passion project and I have practiced a lot of web skills creating this, so decided to have two portfolios, a commercial portfolio and a personal passion portfolio to seperate the two, I wanted to showcase personal projects without bloating up my work portfolio which is more experience and commercial focused. As you can see, I went a bit wild! :)' or something like that lol 
+
+
+improve font style for footer text © 2025 Thomas J Butler. All rights reserved.
+
+ UK | Making technology more human
+
+ Maybe reqreite blogs, so they sound much more like me. 
+
+README (update this so its short and amazin, NO EMOJIS, SOUND LIKE ME g), keep snake and GitHub stats, search web and get the coolest readme that is simple and not long, to make my GitHub look better
+
+Have AI check it and see if we can improve the UX of the site. Not design, just animations.
+
+
+——
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Portfolio Improvements - Section 4 Progress Report
 
 ## ✅ COMPLETED SECTIONS
