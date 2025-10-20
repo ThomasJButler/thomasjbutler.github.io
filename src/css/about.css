@@ -315,7 +315,7 @@
 
 .matrix-verify-btn:hover {
     background: var(--matrix-green);
-    color: #000;
+    color: #000 !important; /*override for black text always on hover */
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
     transform: translateY(-2px);
 }
@@ -465,7 +465,7 @@
 
 .matrix-portal-btn:hover {
     background: var(--matrix-green);
-    color: #000;
+    color: #000 !important;
     box-shadow: 0 0 40px rgba(0, 255, 0, 0.6);
     transform: scale(1.05);
 }

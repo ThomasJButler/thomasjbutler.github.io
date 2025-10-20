@@ -1115,6 +1115,22 @@
   box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
 }
 
+/* ========================================================================
+   About Page Buttons - Dark Theme Override
+   ======================================================================== */
+
+[data-theme="dark"] .matrix-verify-btn:hover {
+  background: #4A9EFF !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
+}
+
+[data-theme="dark"] .matrix-portal-btn:hover {
+  background: #4A9EFF !important;
+  color: #000 !important;
+  box-shadow: 0 0 40px rgba(74, 158, 255, 0.6) !important;
+}
+
 /* Inline Code - Keep Dracula green but with blue accents in dark theme */
 [data-theme="dark"] .inline-code,
 [data-theme="dark"] .article-content p code,
