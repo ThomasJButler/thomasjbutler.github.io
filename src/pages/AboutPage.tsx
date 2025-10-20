@@ -22,9 +22,11 @@ export const AboutPage: React.FC = () => {
         <div className="container">
           <h2 className="section-title">Why I Love Programming</h2>
           <div className="story-content">
-            <p className="highlight-text">
-              Programming is not just a profession for me; it's a passion. The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
-            </p>
+            <blockquote className="highlight-text">
+              Programming is not just a profession for me; it's a passion.
+              <br />
+              The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
+            </blockquote>
 
             {/* Read More button - shows when collapsed */}
             {!isExpanded && (
@@ -53,12 +55,19 @@ export const AboutPage: React.FC = () => {
                   <i className="fas fa-chevron-up"></i>
                 </button>
 
-                <p>
-                  From a young age, I was fascinated by technology and how it can be used to create amazing things. This curiosity led me to explore various programming languages and frameworks, and I quickly realized that programming was the perfect outlet for my creativity and problem-solving skills.
-                </p>
-                <p>
-                  Over the years, I have honed my skills and gained experience in different areas of software development. I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
-                </p>
+                <blockquote className="highlight-text">
+                  From a young age, I was fascinated by technology and how it can be used to create amazing things.
+                  <br />
+                  This curiosity led me to explore various programming languages and frameworks, and I quickly realised that programming was the perfect outlet for my creativity and problem-solving skills.
+                </blockquote>
+
+                <blockquote className="highlight-text">
+                  Over the years, I have honed my skills and gained experience in different areas of software development.
+                  <br />
+                  I love the challenge of tackling complex problems and finding innovative solutions.
+                  <br />
+                  Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
+                </blockquote>
 
                 {/* Desktop Read Less button (at bottom, centered) */}
                 <button

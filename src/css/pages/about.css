@@ -335,15 +335,80 @@
     opacity: 1;
 }
 
+
 .highlight-text {
     font-size: 1.2rem;
     color: var(--neon-green);
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
+    margin-bottom: 2rem;
+    line-height: 1.8;
     font-weight: 500;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
     position: relative;
-    padding-left: 2rem;
+    padding: 2rem 2.5rem;
+    padding-left: 3rem;
+    border-left: 6px solid transparent;
+    border-image: linear-gradient(
+        to bottom,
+        var(--neon-green) 0%,
+        rgba(0, 255, 255, 0.8) 100%
+    ) 1;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 20, 0, 0.4) 0%,
+        rgba(0, 30, 0, 0.3) 100%
+    );
+    border-radius: 0 12px 12px 0;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 4px 20px rgba(0, 255, 0, 0.15),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.highlight-text:hover {
+    transform: translateY(-4px) translateX(4px);
+    box-shadow:
+        0 8px 30px rgba(0, 255, 0, 0.25),
+        0 0 40px rgba(0, 255, 255, 0.15),
+        inset 0 1px 0 rgba(0, 255, 0, 0.2);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 25, 0, 0.5) 0%,
+        rgba(0, 35, 0, 0.4) 100%
+    );
+}
+
+/* Decorative Quote Mark */
+.highlight-text::before {
+    content: '"';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(0, 255, 255, 0.3);
+    font-family: Georgia, serif;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    pointer-events: none;
+}
+
+/* Subtle Scanline Effect */
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(0, 255, 0, 0.03) 1px,
+        transparent 2px,
+        transparent 4px
+    );
+    border-radius: 0 12px 12px 0;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .story-content p {
@@ -359,15 +424,9 @@
     margin-bottom: 0;
 }
 
-.highlight-text::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--neon-green);
-    box-shadow: var(--glow-shadow);
+/* Ensure proper spacing for expanded content blockquotes */
+.expanded-content .highlight-text:first-of-type {
+    margin-top: 1rem;
 }
 
 .achievement-list {
@@ -904,6 +963,13 @@ html {
 
   .highlight-text {
     font-size: 1rem;
+    padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  }
+
+  .highlight-text::before {
+    font-size: 3rem;
+    left: 0.75rem;
+    top: 0.75rem;
   }
 
   /* Read More button - full width on small screens */

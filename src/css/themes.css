@@ -1029,6 +1029,92 @@
   background: rgba(74, 158, 255, 0.03) !important;
 }
 
+/* ========================================================================
+   About Page - Why I Love Programming - Dark Theme Blockquotes
+   ======================================================================== */
+
+[data-theme="dark"] .highlight-text {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 5px rgba(74, 158, 255, 0.3) !important;
+  border-left: 6px solid transparent !important;
+  border-image: linear-gradient(
+    to bottom,
+    #4A9EFF 0%,
+    #5AADFF 100%
+  ) 1 !important;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 15, 0.6) 0%,
+    rgba(25, 25, 25, 0.5) 100%
+  ) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow:
+    0 4px 20px rgba(74, 158, 255, 0.2),
+    0 0 40px rgba(74, 158, 255, 0.1),
+    inset 0 1px 0 rgba(74, 158, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .highlight-text:hover {
+  transform: translateY(-4px) translateX(4px) !important;
+  box-shadow:
+    0 8px 30px rgba(74, 158, 255, 0.3),
+    0 0 60px rgba(74, 158, 255, 0.2),
+    inset 0 1px 0 rgba(74, 158, 255, 0.25) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 30, 0.7) 0%,
+    rgba(30, 30, 40, 0.6) 100%
+  ) !important;
+}
+
+/* Decorative Quote Mark - Blue Theme */
+[data-theme="dark"] .highlight-text::before {
+  color: rgba(74, 158, 255, 0.4) !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.6) !important;
+}
+
+/* Subtle Scanline Effect - Blue Tint */
+[data-theme="dark"] .highlight-text::after {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    rgba(74, 158, 255, 0.02) 1px,
+    transparent 2px,
+    transparent 4px
+  ) !important;
+}
+
+/* Story Content Container - Dark Theme */
+[data-theme="dark"] .story-content {
+  background: rgba(15, 15, 15, 0.7) !important;
+  border: 1px solid rgba(74, 158, 255, 0.2) !important;
+  box-shadow: 0 0 30px rgba(74, 158, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .story-content:hover {
+  box-shadow: 0 6px 15px rgba(74, 158, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .story-content::before {
+  background: linear-gradient(45deg,
+    transparent 48%,
+    rgba(74, 158, 255, 0.05) 49%,
+    rgba(74, 158, 255, 0.05) 51%,
+    transparent 52%) !important;
+}
+
+/* Read More Button - Dark Theme */
+[data-theme="dark"] .read-more-toggle {
+  border-color: #4A9EFF !important;
+  color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .read-more-toggle:hover,
+[data-theme="dark"] .read-more-toggle:active {
+  background: rgba(74, 158, 255, 0.15) !important;
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.4) !important;
+}
+
 /* Inline Code - Keep Dracula green but with blue accents in dark theme */
 [data-theme="dark"] .inline-code,
 [data-theme="dark"] .article-content p code,
