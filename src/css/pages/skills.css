@@ -5,6 +5,7 @@
     background: #000000;
     overflow: hidden;
     padding: 40px 0;
+    padding-top: 0;
     position: relative;
     isolation: isolate;
 }

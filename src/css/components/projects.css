@@ -48,7 +48,6 @@
     overflow: hidden;
     perspective: 1000px;
     background: var(--dark-bg);
-    padding: 4rem 0;
 }
 
 .projects-container,
@@ -56,6 +55,7 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 0;
     position: relative;
 }
 

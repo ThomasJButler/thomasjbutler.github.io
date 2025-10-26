@@ -582,8 +582,9 @@ html {
 }
 
 /* Global Section Styles */
-.about-section {
-    padding: 6rem 2rem;
+.about-section { 
+    padding-top: 0;
+    padding-bottom: 2rem;
     position: relative;
     overflow: hidden;
     background: var(--matrix-bg);

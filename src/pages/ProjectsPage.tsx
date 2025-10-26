@@ -72,7 +72,8 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      github: 'https://github.com/ThomasJButler/AICodeGenerator'
+      github: 'https://github.com/ThomasJButler/AICodeGenerator',
+      demo: 'https://ai-code-generator-rouge.vercel.app/'
     },
     category: 'ai',
     status: 'completed',
@@ -95,7 +96,8 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      github: 'https://github.com/ThomasJButler/SQL-Ball'
+      github: 'https://github.com/ThomasJButler/SQL-Ball',
+      demo: 'https://sql-ball.vercel.app/'
     },
     category: 'ai',
     status: 'completed',
@@ -145,7 +147,6 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://tombutler.notion.site/Web-Agency-Showcase-1a11b94bcaea80ffa87ae2fb8994e4de',
-      github: ''
     },
     category: 'web',
     status: 'completed',
@@ -154,8 +155,8 @@ const projects: Project[] = [
     gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
-    id: 'portfolio-v3',
-    name: 'Portfolio v3.0 - React Migration',
+    id: 'portfolio-v3.5',
+    name: 'Portfolio v3.5 - React Migration',
     visibility: 'Public',
     description: 'Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.',
     topics: ['React 19', 'TypeScript', 'Vite 7', 'Anime.js', 'Components', 'Migration'],
@@ -169,8 +170,8 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: '/react.html',
-      github: 'https://github.com/ThomasJButler/ThomasJButler'
+      github: 'https://github.com/ThomasJButler/ThomasJButler',
+      demo: 'https://thomasjbutler.github.io/ThomasJButler/'
     },
     category: 'web',
     status: 'completed',
@@ -194,7 +195,8 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App'
+      github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App',
+      demo:'https://lfc-news-reddit-app.vercel.app/'
     },
     category: 'web',
     status: 'completed',

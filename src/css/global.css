@@ -284,7 +284,8 @@ html, body {
    
    /* Special padding for introduction sections */
    #introduction {
-       padding: var(--space-lg) var(--space-lg);
+       padding-top: 0;
+       padding-bottom: var(--space-md);
    }
    
    @media (max-width: 768px) {
