@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Main application layout wrapper providing theme-aware backgrounds,
+ *              page transitions, and consistent header/footer structure
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
@@ -11,20 +18,26 @@ import { useTheme } from '../contexts/ThemeContext';
 import { performanceOptimizer } from '../utils/performanceOptimizer';
 import styles from './Layout.module.css';
 
+/**
+ * Application layout component with theme-aware backgrounds and page transitions
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const Layout: React.FC = () => {
   const location = useLocation();
   const contentRef = useRef<HTMLDivElement>(null);
   const pageRef = usePageTransition();
   const { theme } = useTheme();
 
-  // Check if Matrix rain should be enabled, overriding performance restrictions for Matrix theme
+  // Matrix rain respects performance optimizer whilst prioritising Matrix theme experience
   const shouldShowMatrixRain = theme === 'matrix' && performanceOptimizer.getMatrixRainEnabled(theme);
 
-
+  /**
+   * @listens location - Triggers page transition and scroll reset on route changes
+   *                     Uses lightweight fade over heavy filters for better performance
+   */
   useEffect(() => {
-    // Simple fade transition for better performance
     if (contentRef.current) {
-      // Quick fade transition without heavy filters
       animate(contentRef.current, {
         opacity: [0.8, 1],
         translateY: [10, 0],
@@ -33,36 +46,28 @@ export const Layout: React.FC = () => {
       });
     }
 
-    // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location]);
 
-  // Wrap in CRT effect for Matrix theme
   const content = (
     <div ref={pageRef as React.RefObject<HTMLDivElement>} className={styles.appLayout}>
-      {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>
 
-      {/* Theme-specific backgrounds */}
       {theme === 'matrix' && shouldShowMatrixRain && <MatrixRain />}
       {theme === 'dark' && <ParticleBackground />}
 
-      {/* Header */}
       <Header />
 
-      {/* Main Content */}
       <main id="main-content" ref={contentRef} className={styles.mainContent} role="main">
         <Outlet />
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
 
-  // Apply CRT effect only in Matrix theme
   if (theme === 'matrix') {
     return (
       <CRTEffect

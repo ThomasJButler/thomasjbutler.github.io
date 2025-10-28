@@ -1,8 +1,8 @@
 /**
- * BackToTop Component
- * Matrix-themed back-to-top button for React pages
- * Features smooth animations and accessibility support
- * Uses React Portal to render outside #root to avoid transform issues
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Matrix-themed back-to-top button using React Portal to bypass
+ *              transform context issues with position: fixed positioning
  */
 
 import React, { useState, useEffect } from 'react';
@@ -11,16 +11,22 @@ import { animate } from 'animejs';
 import { useBackToTop } from '../hooks/useScrollDetection';
 
 interface BackToTopProps {
-  /** Scroll threshold to show button (default: 300) */
   threshold?: number;
-  /** Custom CSS class name */
   className?: string;
-  /** Show terminal-style animation text */
   showText?: boolean;
-  /** Enable Matrix scan line animation */
   enableScanLine?: boolean;
 }
 
+/**
+ * Animated back-to-top button with Matrix theming and accessibility support
+ * @param {Object} props
+ * @param {number} [props.threshold=300] - Scroll distance before button appears
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @param {boolean} [props.showText=true] - Display "TOP" label with terminal cursor
+ * @param {boolean} [props.enableScanLine=true] - Enable animated scan line effect
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BackToTop: React.FC<BackToTopProps> = ({
   threshold = 300,
   className = '',
@@ -29,16 +35,18 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const { scrollToTop } = useBackToTop(threshold);
+  useBackToTop(threshold);
 
-  // Handle scroll visibility
+  /**
+   * @constructs Initialises scroll listener with RAF throttling for performance
+   *             Uses cross-browser compatible scroll detection for Safari support
+   */
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // Cross-browser compatible scroll detection
           const scrollY = window.pageYOffset ||
                          document.documentElement.scrollTop ||
                          document.body.scrollTop ||
@@ -46,7 +54,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
                          0;
           const shouldShow = scrollY > threshold;
 
-          // Always update state to ensure proper reactivity
           setIsVisible(shouldShow);
           ticking = false;
         });
@@ -54,11 +61,9 @@ export const BackToTop: React.FC<BackToTopProps> = ({
       }
     };
 
-    // Use passive listener for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('touchmove', handleScroll, { passive: true });
 
-    // Check initial state immediately with cross-browser compatibility
     const initialScroll = window.pageYOffset ||
                          document.documentElement.scrollTop ||
                          document.body.scrollTop ||
@@ -73,34 +78,29 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     };
   }, [threshold]);
 
-  // Handle button click with animation
   const handleClick = () => {
     if (isAnimating) return;
 
     setIsAnimating(true);
 
-    // Quick pulse animation then instant scroll
     animate('.back-to-top-react', {
       scale: [1, 1.1, 1],
       duration: 150,
       ease: 'outQuad',
       complete: () => {
-        // Instant scroll to top
         window.scrollTo(0, 0);
         setIsAnimating(false);
       }
     });
 
-    // Track interaction for analytics
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'back_to_top_click', {
+    if (typeof window !== 'undefined' && 'gtag' in window) {
+      (window as any).gtag('event', 'back_to_top_click', {
         event_category: 'navigation',
         event_label: 'react_component'
       });
     }
   };
 
-  // Handle keyboard interaction
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -108,9 +108,8 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     }
   };
 
-  // ALWAYS render button via portal (even when invisible)
-  // This ensures scroll listener stays active and position: fixed works correctly
-  // Visibility is controlled via CSS (opacity and visibility properties)
+  // Portal ensures position: fixed works correctly outside transform contexts
+  // Visibility controlled via opacity/visibility rather than display or transform
   const button = (
     <button
       className={`back-to-top-react ${className}`}
@@ -144,8 +143,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         textTransform: 'uppercase',
         opacity: isVisible ? 1 : 0,
         visibility: isVisible ? 'visible' : 'hidden',
-        // Note: transform removed - breaks position: fixed!
-        // Use opacity/visibility for show/hide animation instead
         transition: 'opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.4s',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
@@ -159,7 +156,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         })
       }}
     >
-      {/* Matrix scan line effect */}
       {enableScanLine && (
         <span
           style={{
@@ -175,7 +171,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         />
       )}
 
-      {/* Matrix glow effect */}
       <span
         style={{
           position: 'absolute',
@@ -193,7 +188,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         className="glow-effect"
       />
 
-      {/* Button content */}
       <span
         style={{
           fontSize: '1.2rem',
@@ -227,9 +221,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         </span>
       )}
 
-      {/* CSS-in-JS styles for animations */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* Critical override to ensure position: fixed works */
         .back-to-top-react {
           position: fixed !important;
           top: auto !important;

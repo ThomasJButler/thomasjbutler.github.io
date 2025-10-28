@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Interactive navigation cards with Matrix-themed animations,
+ *              intersection observer triggers, and particle effects
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { animate } from 'animejs';
@@ -57,14 +64,21 @@ const navigationCards: NavigationCard[] = [
   }
 ];
 
+/**
+ * Animated navigation card grid for site exploration
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const NavigationGuide: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<HTMLAnchorElement[]>([]);
 
+  /**
+   * @constructs Sets up intersection observer for entrance animations and hover interactions
+   *             Applies staggered card animations with elastic easing for visual impact
+   */
   useEffect(() => {
-    // Initialize entrance animations
     const animateEntrance = () => {
-      // Animate section title with glitch effect
       const title = sectionRef.current?.querySelector('.nav-guide-title');
       if (title) {
         animate(title as HTMLElement, {
@@ -81,7 +95,6 @@ export const NavigationGuide: React.FC = () => {
         });
       }
 
-      // Animate cards with staggered entrance
       cardsRef.current.forEach((card, index) => {
         if (card) {
           animate(card, {
@@ -97,7 +110,6 @@ export const NavigationGuide: React.FC = () => {
       });
     };
 
-    // Intersection Observer for entrance animation
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -114,7 +126,6 @@ export const NavigationGuide: React.FC = () => {
       observer.observe(sectionRef.current);
     }
 
-    // Card hover animations
     const setupCardAnimations = () => {
       cardsRef.current.forEach((card) => {
         if (card) {
@@ -122,7 +133,6 @@ export const NavigationGuide: React.FC = () => {
           const particles = card.querySelector('.nav-card-particles') as HTMLElement;
 
           card.addEventListener('mouseenter', () => {
-            // Icon pulse animation
             animate(icon, {
               scale: [1, 1.2, 1],
               rotate: [0, 360],
@@ -130,10 +140,8 @@ export const NavigationGuide: React.FC = () => {
               easing: 'easeOutBack'
             });
 
-            // Activate particles
             particles?.classList.add('active');
 
-            // Card lift animation
             animate(card, {
               translateY: [-10],
               scale: [1.05],
@@ -143,10 +151,8 @@ export const NavigationGuide: React.FC = () => {
           });
 
           card.addEventListener('mouseleave', () => {
-            // Deactivate particles
             particles?.classList.remove('active');
 
-            // Return card to normal
             animate(card, {
               translateY: [0],
               scale: [1],
@@ -155,7 +161,6 @@ export const NavigationGuide: React.FC = () => {
             });
           });
 
-          // Click animation with ripple effect
           card.addEventListener('click', (e) => {
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -169,7 +174,6 @@ export const NavigationGuide: React.FC = () => {
               card.classList.remove('ripple-effect');
             }, 600);
 
-            // Pulse animation
             animate(card, {
               scale: [1, 0.95, 1.02, 1],
               duration: 400,
@@ -180,7 +184,6 @@ export const NavigationGuide: React.FC = () => {
       });
     };
 
-    // Setup animations after a short delay
     setTimeout(setupCardAnimations, 1000);
 
     return () => {
@@ -188,7 +191,7 @@ export const NavigationGuide: React.FC = () => {
     };
   }, []);
 
-  const setCardRef = (el: HTMLDivElement | null, index: number) => {
+  const setCardRef = (el: HTMLAnchorElement | null, index: number) => {
     if (el) {
       cardsRef.current[index] = el;
     }
@@ -212,7 +215,7 @@ export const NavigationGuide: React.FC = () => {
               key={index}
               to={card.path}
               className="nav-card"
-              ref={(el) => setCardRef(el as HTMLDivElement, index)}
+              ref={(el) => setCardRef(el, index)}
               style={{ '--card-color': card.color } as React.CSSProperties}
             >
               <div className="nav-card-background">

@@ -1,19 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Footer component with social links, quick navigation, and
+ *              intersection observer-based animation triggers
+ */
+
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Footer.module.css';
 
+/**
+ * Site footer component with animated social links and navigation
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const Footer: React.FC = () => {
-  const location = useLocation();
   const footerRef = useRef<HTMLElement>(null);
   const socialLinksRef = useRef<HTMLDivElement>(null);
-  
-  // Check if we're on a blog page
-  const isBlogPage = location.pathname.startsWith('/blog');
 
+  /**
+   * @constructs Triggers animation when footer scrolls into viewport
+   *             Uses intersection observer to detect visibility at 20% threshold
+   */
   useEffect(() => {
-    // Animate footer on scroll into view
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,8 +45,6 @@ export const Footer: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
-
-
 
   const handleSocialHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     animate(e.currentTarget, {
