@@ -10,16 +10,17 @@ import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
-import aiComparisonShowcaseImg from '../images/aicomparisonshowcase3.png';
-import aiCodeGeneratorImg from '../images/aicodegenerator.png';
-import sqlBallImg from '../images/sqlball.png';
-import logo1Img from '../images/logo1.svg';
-import lfcRedditImg from '../images/lfcreddit2.png';
-import dotnetCalendarImg from '../images/dotnetcalendar.png';
+import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
+import sqlBallImg from '../images/sqlball.webp';
+import logo1Img from '../images/logo.svg';
+import lfcRedditImg from '../images/lfcreddit.webp';
+import dotnetCalendarImg from '../images/dotnetcalendar.webp';
 import cssShowcaseImg from '../images/cssshowcase.webp';
 import bigBangGalleryImg from '../images/bigbanggallery.webp';
 import pythonProjectsImg from '../images/pythonprojects.webp';
-import versionTimeTravelImg from '../images/versiontimetravel3.jpeg';
+import versionTimeTravelImg from '../images/versiontimetravel.webp';
+import newsperspectiveImg from '../images/newsperspective.webp';
+import aiComparisonShowcaseImg from '../images/aicomparisonshowcase.webp';
 
 interface Project {
   id: string;
@@ -45,6 +46,7 @@ interface Project {
   gradient?: string;
   status?: 'completed' | 'in-progress' | 'coming-soon';
   featured?: boolean;
+  hideNameOnFront?: boolean;
 }
 
 const projects: Project[] = [
@@ -70,7 +72,9 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
+    backgroundImage: aiComparisonShowcaseImg,
     featured: true,
+    hideNameOnFront: true,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -94,6 +98,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
+    hideNameOnFront: true,
     backgroundImage: aiCodeGeneratorImg,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -118,6 +123,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
+    hideNameOnFront: true,
     backgroundImage: sqlBallImg,
     gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -142,6 +148,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
+    hideNameOnFront: true,
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -169,6 +176,30 @@ const projects: Project[] = [
     featured: true,
     backgroundImage: logo1Img,
     gradient: 'linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(0, 40, 0, 0.95) 100%)'
+  },
+  {
+    id: 'news-perspective',
+    name: 'News Perspective',
+    visibility: 'Public',
+    description: 'A tool to fetch news headlines and rewrite them in a more positive, factual tone. Built with Azure AI services to reduce doomscrolling and emotional bias caused by alarmist headlines. Fetches headlines, analyses sentiment, rewrites with Azure OpenAI, and indexes in Azure AI Search.',
+    topics: ['Azure OpenAI', 'Azure AI Language', 'Azure AI Search', 'Python', 'NewsAPI', 'Streamlit', 'Sentiment Analysis'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 85
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/NewsPerspective'
+    },
+    category: 'ai',
+    status: 'completed',
+    backgroundImage: newsperspectiveImg,
+    hideNameOnFront: true,
+    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'lfc-news-reddit',
@@ -265,6 +296,7 @@ const projects: Project[] = [
     },
     category: 'games',
     status: 'completed',
+    hideNameOnFront: true,
     backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png',
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
@@ -522,7 +554,7 @@ export const ProjectsPage: React.FC = () => {
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
         <h2 className="section-title">Project Showcase</h2>
-        <p className="section-description">Explore my open source contributions and personal projects</p>
+        <p className="section-description">Explore my open source contributions and personal projects. Flip cards for further details and links.</p>
         
         <div className="matrix-project-tabs">
           {categories.map(cat => (
@@ -588,9 +620,11 @@ export const ProjectsPage: React.FC = () => {
                       }} />
 
                       {/* Project name overlay */}
-                      <div className="project-name-overlay">
-                        {project.name}
-                      </div>
+                      {!project.hideNameOnFront && (
+                        <div className="project-name-overlay">
+                          {project.name}
+                        </div>
+                      )}
                     </div>
                   </div>
                   {/* End FRONT FACE */}
