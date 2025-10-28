@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Site header with responsive navigation, Matrix-themed animations,
+ *              and scroll-aware visibility behaviour
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
@@ -23,6 +30,11 @@ const navigation: NavItem[] = [
   { label: 'CONTACT', href: '/contact', tooltip: 'Get in Touch' }
 ];
 
+/**
+ * Site header component with responsive navigation and theme switching
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,14 +42,13 @@ export const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
 
-  // Use scroll detection hook
-  const { getState } = useHeaderVisibility({
+  useHeaderVisibility({
     headerSelector: 'header',
     hideThreshold: 100,
     showThreshold: 50
   });
 
-  // Handle scroll state updates
+  /** @constructs Initialises scroll listener with RAF throttling for performance */
   useEffect(() => {
     let ticking = false;
     
@@ -56,14 +67,13 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Animate nav items on mount
+  /** @constructs Animates navigation items on initial render */
   useEffect(() => {
     if (navRef.current) {
       matrixAnimations.staggerIn(Array.from(navRef.current.children) as HTMLElement[]);
     }
   }, []);
 
-  // Menu toggle animation
   const toggleMenu = () => {
     const newState = !isMenuOpen;
     setIsMenuOpen(newState);
@@ -95,7 +105,7 @@ export const Header: React.FC = () => {
     }
   };
 
-  // Close menu on escape
+  /** @listens isMenuOpen - Adds/removes escape key handler based on menu state */
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMenuOpen) {
@@ -107,7 +117,6 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
-  // Handle nav item hover
   const handleNavHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     matrixAnimations.pulse(e.currentTarget);
   };
