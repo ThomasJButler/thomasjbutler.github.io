@@ -1,6 +1,14 @@
-# Thomas J Butler
 <div align="center">
- <img width="2680" height="1790" alt="image" src="https://github.com/user-attachments/assets/4289282d-3724-494a-94b1-4e676dfb3588" />
+
+**Full-Stack Web Developer | AI Engineer | York, UK**
+
+[![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
+[![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
+
+
+</div>
+
+<div align="center">
 <pre>
 ███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
 ████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
@@ -9,16 +17,7 @@
 ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
 ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 </pre>
-</div>
-
-<div align="center">
-
-**Full-Stack Web Developer | AI Engineer | York, UK**
-
-[![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-thomasjbutler.me-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
-[![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-thomasjbutler.github.io-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
-
-
+  <img width="2680" height="1790" alt="image" src="https://github.com/user-attachments/assets/4289282d-3724-494a-94b1-4e676dfb3588" />
 </div>
 
 ## About Me
