@@ -7,10 +7,12 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { NavigationGuide } from '../components/NavigationGuide';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
+import aiComparisonLeft from '../images/aicomparisonshowcase.webp';
+import matrixArcade from '../images/matrixarcade.webp';
+import aiComparisonRight from '../images/aicomparisonshowcase2.webp';
 
 /**
  * Home page component with cascading animations and scroll effects
@@ -292,18 +294,18 @@ export const HomePage: React.FC = () => {
           <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
           <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
           <div className="introduction-img">
-            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" alt="AiTomatic Create a Model" />
-            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png" alt="The Matrix Arcade" />
-            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" alt="AiTomatic Usage Pattern" />
+            <img src={aiComparisonRight} alt="AI Comparison Showcase - Performance Metrics" />
+            <img src={matrixArcade} alt="The Matrix Arcade - Interactive Gaming Experience" />
+            <img src={aiComparisonLeft} alt="AI Comparison Showcase - Advanced Features" />
           </div>
           <div className="galleries-mobile">
             <Link to="/projects" className="btn-professional glass-card hover-lift">
               <i className="fas fa-images"></i>
               View Projects
             </Link>
-            <Link to="/blog" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
-              <i className="fas fa-book-open"></i>
-              View Blog
+            <Link to="/skills" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
+              <i className="fas fa-code"></i>
+              View Skills
             </Link>
           </div>
         </div>
@@ -340,8 +342,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      <NavigationGuide />
 
       <section id="galleries" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
