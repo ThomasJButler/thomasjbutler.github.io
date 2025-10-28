@@ -1,9 +1,16 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Development updates feed displaying project milestones with filtering,
+ *              animated entries, and mood-based color coding
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { animate, stagger } from 'animejs';
 import styles from './UpdatesFeed.module.css';
 import updatesData from '../../../updates.json';
 
-interface Update {
+export interface Update {
   id: string;
   date: string;
   type: string;
@@ -28,21 +35,22 @@ interface UpdatesFeedProps {
   showStats?: boolean;
 }
 
-const typeEmojis: Record<string, string> = {
-  feature: '🎉',
-  achievement: '🏆',
-  learning: '📚',
-  milestone: '🚀',
-  thought: '💭'
-};
-
 const moodColors: Record<string, string> = {
   celebrating: '#00FF00',
   reflecting: '#00FFFF',
-  building: '#FF00FF',
+  building: '#00FFFF',
   conquering: '#FFFF00'
 };
 
+/**
+ * Animated feed of development updates and project milestones
+ * @param {Object} props
+ * @param {number} [props.limit=5] - Maximum number of updates to display
+ * @param {boolean} [props.featured=false] - Show only featured updates
+ * @param {boolean} [props.showStats=false] - Display statistics bar
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({ 
   limit = 5, 
   featured = false,
@@ -51,8 +59,10 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
   const feedRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
+  /**
+   * @constructs Triggers staggered entrance animation for feed items on mount
+   */
   useEffect(() => {
-    // Stagger animation for feed items
     animate(itemsRef.current, {
       translateY: [20, 0],
       opacity: [0, 1],
@@ -78,7 +88,6 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
     });
   };
 
-  // Filter and limit updates
   let displayUpdates = updatesData.updates;
   if (featured) {
     displayUpdates = displayUpdates.filter(update => update.featured);
@@ -125,7 +134,7 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
           >
             <div className={styles.updateHeader}>
               <span className={styles.updateType}>
-                {typeEmojis[update.type]} {update.type}
+                {update.type}
               </span>
               <span className={styles.updateDate}>{formatDate(update.date)}</span>
             </div>

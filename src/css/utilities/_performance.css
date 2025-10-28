@@ -221,11 +221,86 @@
         -webkit-backdrop-filter: none;
         background: rgba(0, 20, 0, 0.95);
     }
-    
+
     /* Simplify shadows */
     .shadow-expensive {
         box-shadow: 0 2px 4px rgba(0, 255, 0, 0.2);
     }
+}
+
+/* ==========================================================================
+   Mobile Glow Optimization (Section 4.4)
+   Reduce heavy multi-layer glows on mobile devices
+   ========================================================================== */
+
+@media (max-width: 768px) and (hover: none) {
+  /* Simplify all box-shadow glows to single layer on mobile */
+  .gallery-card:hover,
+  .blog-card:hover,
+  .project-card:hover,
+  .service-card:hover,
+  .journey-card:hover,
+  .skill-card:hover,
+  [class*="-card"]:hover {
+    box-shadow: var(--glow-mobile-maximum) var(--glow-color-primary) !important;
+  }
+
+  /* Simplify text-shadow glows on mobile */
+  h1, h2, h3,
+  .section-heading,
+  [class*="heading"],
+  [class*="title"] {
+    text-shadow: var(--glow-mobile-subtle) var(--glow-color-primary) !important;
+  }
+
+  /* Reduce button glow effects on mobile */
+  button:hover,
+  .btn:hover,
+  .cta-button:hover,
+  .matrix-btn:hover,
+  .gallery-link:hover {
+    box-shadow: var(--glow-mobile-standard) var(--glow-color-primary) !important;
+  }
+
+  /* Simplify image hover glows */
+  .introduction-img img:hover,
+  img:hover {
+    box-shadow: var(--glow-mobile-maximum) var(--glow-color-accent) !important;
+  }
+
+  /* Disable 3D transforms on mobile for performance */
+  *[style*="rotateX"],
+  *[style*="rotateY"],
+  *[style*="rotateZ"],
+  *[style*="rotate3d"] {
+    transform: none !important;
+  }
+
+  /* Faster transitions on touch devices */
+  * {
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* Extra small devices - remove almost all glows */
+@media (max-width: 480px) {
+  /* Remove most glow effects */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Keep minimal glows only on interactive elements */
+  button:hover,
+  a:hover,
+  [class*="card"]:hover {
+    box-shadow: var(--glow-mobile-subtle) var(--glow-color-subtle) !important;
+  }
+
+  /* Simplify card hover to just translate */
+  [class*="card"]:hover {
+    transform: translateY(-2px) !important;
+  }
 }
 
 /* ==========================================================================

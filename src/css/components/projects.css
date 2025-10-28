@@ -1,0 +1,1281 @@
+/* ==========================================================================
+   UNIFIED PROJECTS CSS - All Project Styles Consolidated
+   Combining 8 separate files into one organized, maintainable file
+   Author: Thomas J Butler
+
+   CONSOLIDATED FROM:
+   - projects.css (768 lines)
+   - github-projects.css (308 lines)
+   - projects-matrix.css (433 lines)
+   - projects-horizontal-grid.css (301 lines)
+   - projects-adjustments.css (219 lines)
+   - projects-tabs.css (216 lines)
+   - projects-compact.css (86 lines)
+   - projects-compiled.css (28 lines)
+
+   Total: 2,667 lines → Consolidated with deduplication
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CORE VARIABLES & SETUP
+   ========================================================================== */
+[data-theme="matrix"] {
+    --neon-green: #00ff00;
+    --matrix-green: #00FF00;
+    --matrix-cyan: #00FFFF;
+    --neon-blue: #00ffff;
+    --neon-pink: #ff00ff;
+    --dark-bg: #000000;
+    --card-bg: rgba(0, 255, 0, 0.05);
+    --matrix-card-bg: rgba(0, 20, 0, 0.6);
+    --matrix-card-border: rgba(0, 255, 0, 0.3);
+    --gradient-primary: linear-gradient(145deg, rgba(0, 255, 0, 0.05), rgba(0, 40, 0, 0.2));
+    --gradient-hover: linear-gradient(145deg, rgba(0, 255, 0, 0.1), rgba(0, 40, 0, 0.3));
+    --matrix-glow: 0 0 20px rgba(0, 255, 0, 0.8);
+    --matrix-glow-intense: 0 0 40px rgba(0, 255, 0, 1);
+    --animation-slow: 0.5s;
+    --animation-fast: 0.3s;
+}
+
+/* ==========================================================================
+   2. PROJECT CONTAINERS & LAYOUT
+   ========================================================================== */
+
+#projects-section,
+#matrix-projects-showcase {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+    background: var(--dark-bg);
+}
+
+.projects-container,
+.matrix-project-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-top: 0;
+    position: relative;
+}
+
+/* ==========================================================================
+   3. PROJECT GRID LAYOUTS
+   ========================================================================== */
+
+/* Standard Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Horizontal Grid */
+.projects-horizontal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Compact Grid */
+.projects-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Epic Matrix Grid */
+.epic-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin: 3rem 0;
+    perspective: 1200px;
+}
+
+/* ==========================================================================
+   4. PROJECT CARDS - BASE STYLES
+   ========================================================================== */
+
+.project-card,
+.epic-project-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* ==========================================================================
+   5. PROJECT CARD HOVER EFFECTS
+   ========================================================================== */
+
+.project-card:hover,
+.epic-project-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow:
+        0 20px 40px rgba(0, 255, 0, 0.2),
+        0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Epic hover effects */
+.epic-project-card:hover {
+    transform: translateY(-20px) scale(1.02) rotateY(2deg);
+    box-shadow:
+        0 30px 60px rgba(0, 255, 0, 0.3),
+        0 0 50px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+/* ==========================================================================
+   6. PROJECT CONTENT STYLING
+   ========================================================================== */
+
+.project-title {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.project-description {
+    color: #CCFFCC;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0, 255, 0, 0.7);
+}
+
+/* ==========================================================================
+   7. PROJECT TAGS & BADGES
+   ========================================================================== */
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.project-tag {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    color: #CCFFCC;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: var(--font-primary);
+}
+
+.project-tag:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.5);
+    color: var(--neon-green);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   8. PROJECT LINKS & BUTTONS
+   ========================================================================== */
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.project-link,
+.github-link,
+.demo-link {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 8px;
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link:hover,
+.github-link:hover,
+.demo-link:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   9. PROJECT TABS SYSTEM
+   ========================================================================== */
+
+.project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--neon-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tab-button:hover,
+.tab-button.active {
+    background: rgba(0, 30, 0, 0.8);
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==========================================================================
+   10. GITHUB PROJECTS SPECIFIC
+   ========================================================================== */
+
+.github-projects {
+    margin-top: 3rem;
+}
+
+.github-project {
+    background: rgba(0, 20, 0, 0.4);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.github-project:hover {
+    border-color: rgba(0, 255, 0, 0.5);
+    background: rgba(0, 40, 0, 0.6);
+    transform: translateX(10px);
+}
+
+.github-project h3 {
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.github-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.stat {
+    color: rgba(0, 255, 0, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==========================================================================
+   11. PROJECT IMAGES & MEDIA
+   ========================================================================== */
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    border-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.project-video {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   12. MATRIX EFFECTS & ANIMATIONS
+   ========================================================================== */
+
+@keyframes matrixGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+}
+
+@keyframes matrixPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.matrix-pulse {
+    animation: matrixPulse 3s ease-in-out infinite;
+}
+
+.matrix-glow {
+    animation: matrixGlow 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .projects-horizontal-grid,
+    .epic-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid,
+    .projects-horizontal-grid,
+    .projects-compact,
+    .epic-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tab-button {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .project-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .github-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #projects-section,
+    #matrix-projects-showcase {
+        padding: 2rem 0;
+    }
+
+    .projects-container,
+    .matrix-project-container {
+        padding: 1rem;
+    }
+
+    .project-card,
+    .epic-project-card {
+        padding: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   14. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+    .project-card,
+    .epic-project-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+        background: #fff;
+        color: #000;
+    }
+
+    .project-title {
+        color: #000;
+        text-shadow: none;
+    }
+
+    .project-links {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   15. ACCESSIBILITY ENHANCEMENTS
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .epic-project-card,
+    .project-tag,
+    .project-link,
+    .tab-button {
+        transition: none;
+        animation: none;
+    }
+
+    .project-card:hover,
+    .epic-project-card:hover {
+        transform: none;
+    }
+}
+
+.project-card:focus,
+.project-link:focus,
+.tab-button:focus {
+    outline: 2px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==========================================================================
+   16. MATRIX PROJECTS SHOWCASE - RESTORED
+   Epic Matrix-themed project showcase with glassmorphism
+   ========================================================================== */
+
+/* Matrix Project Grid - Square Glassmorphism Cards */
+.matrix-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
+    gap: 1.5rem;
+    position: relative;
+    justify-content: center; /* Center grid on wider screens */
+
+    /* 3D perspective for magical flip effect */
+    perspective: 2000px;
+    perspective-origin: center;
+}
+
+/* ==========================================================================
+   3D MAGICAL FLIP ANIMATION - Pull Out → Flip → Sink Back
+   ========================================================================== */
+
+/* Card maintains 3D context */
+.matrix-project-card {
+    transform-style: preserve-3d;
+}
+
+/* 3D Inner container that animates */
+.card-3d-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    transition: transform 0.1s ease;
+}
+
+/* Card faces - front and back */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Front face (image) starts normal, back face (details) rotated 180deg */
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* THE MAGICAL ANIMATION - Pull Out → Flip → Sink Back */
+@keyframes cardPullFlipSink {
+    0% {
+        transform: translateZ(0) rotateY(0deg) scale(1);
+    }
+    30% {
+        transform: translateZ(250px) rotateY(0deg) scale(1.15);
+        /* Card pulls OUT toward user */
+    }
+    70% {
+        transform: translateZ(250px) rotateY(180deg) scale(1.15);
+        /* Card FLIPS while lifted */
+    }
+    100% {
+        transform: translateZ(0) rotateY(180deg) scale(1);
+        /* Card SINKS back into grid */
+    }
+}
+
+/* Reverse animation for flipping back */
+@keyframes cardFlipBack {
+    0% {
+        transform: translateZ(0) rotateY(180deg) scale(1);
+    }
+    30% {
+        transform: translateZ(250px) rotateY(180deg) scale(1.15);
+    }
+    70% {
+        transform: translateZ(250px) rotateY(0deg) scale(1.15);
+    }
+    100% {
+        transform: translateZ(0) rotateY(0deg) scale(1);
+    }
+}
+
+/* Default state - no animation */
+.card-3d-inner {
+    /* No animation on page load */
+}
+
+/* Forward animation: Image → Details (when .is-flipped is added) */
+.matrix-project-card.is-flipped .card-3d-inner {
+    animation: cardPullFlipSink 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Reverse animation: Details → Image (when flipping back) */
+/* Only applies to cards that have been flipped before (.has-flipped) and are not currently flipped */
+.matrix-project-card.has-flipped:not(.is-flipped) .card-3d-inner {
+    animation: cardFlipBack 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Ensure card animations work on low-end devices */
+body.low-end-device .matrix-project-card .card-3d-inner {
+    /* Preserve the flip animations */
+    animation-name: inherit !important;
+    animation-duration: 1s !important;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation-fill-mode: forwards !important;
+}
+
+body.low-end-device .matrix-project-card.is-flipped .card-3d-inner {
+    animation-name: cardPullFlipSink !important;
+}
+
+body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-inner {
+    animation-name: cardFlipBack !important;
+}
+
+/* Flip Button - Inside matrix-project-actions container */
+.card-flip-trigger {
+    width: 34px;  /* Match project-icon-link size */
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);  /* Match project-icon-link */
+    border: 2px solid var(--matrix-green);
+    border-radius: 50%;
+    color: var(--matrix-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);  /* Match project-icon-link */
+    font-size: 0.95rem;  /* Match project-icon-link */
+}
+
+.card-flip-trigger:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+}
+
+/* Project showcase image on back */
+.project-showcase-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    position: relative;
+}
+
+.project-name-overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.9), 2px 2px 6px rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    width: 90%;
+    z-index: 10;
+}
+
+/* Matrix Project Tabs */
+.matrix-project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 3rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.matrix-tab-button {
+    background: var(--matrix-card-bg);
+    border: 2px solid var(--matrix-card-border);
+    color: var(--matrix-green);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    opacity: 1;
+    transform: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.matrix-tab-button.active {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: var(--matrix-glow);
+}
+
+/* Matrix Project Cards with Glassmorphism */
+.matrix-project-card {
+    /* Glassmorphism Effect */
+    background: rgba(0, 30, 0, 0.25); /* More transparent for glass effect */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+    /* Glass borders and shadows */
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 16px; /* Rounder for modern look */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* Square dimensions - optimized for 14-16 inch laptops */
+    width: 390px;
+    height: 390px;
+    padding: 1rem;
+    padding-bottom: 0.75rem;
+
+    /* Layout */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    transition: all 0.3s ease;
+}
+
+/* Top-right action buttons */
+.matrix-project-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 50;
+}
+
+/* Project Icon Links - No Underlines, Maximum Specificity */
+.project-icon-link,
+.project-icon-link:link,
+.project-icon-link:visited {
+    width: 34px;
+    height: 34px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--matrix-green);
+    border-radius: 50%;
+    color: var(--matrix-green) !important;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    text-underline-offset: 0 !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.project-icon-link:hover,
+.project-icon-link:focus,
+.project-icon-link:active {
+    background: rgba(0, 255, 0, 0.15) !important;
+    color: var(--matrix-green) !important;
+    border-color: var(--matrix-green) !important;
+    text-decoration: none !important;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.5),
+        inset 0 0 10px rgba(0, 255, 0, 0.2);
+    transform: scale(1.15);
+}
+
+/* Extra specificity for icon elements */
+.project-icon-link i {
+    text-decoration: none !important;
+}
+
+/* Enhanced Glass Hover Effects - Frosted Glass Look */
+.matrix-project-card:hover {
+    /* Smooth float effect */
+    transform: translateY(-12px) scale(1.03);
+
+    /* Enhanced glass with more blur */
+    background: rgba(0, 40, 0, 0.4);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+
+    /* Brighter border with gradient glow */
+    border: 1px solid rgba(0, 255, 0, 0.6);
+
+    /* Multi-layered glass shadows for depth */
+    box-shadow:
+        /* Outer glow - primary depth */
+        0 20px 60px rgba(0, 255, 0, 0.25),
+        /* Mid glow - atmospheric */
+        0 10px 40px rgba(0, 255, 0, 0.2),
+        /* Inner reflection - top edge highlight */
+        inset 0 2px 2px rgba(255, 255, 255, 0.15),
+        /* Inner glow - bottom edge */
+        inset 0 -2px 4px rgba(0, 255, 0, 0.1),
+        /* Ambient shadow for realism */
+        0 0 50px rgba(0, 255, 0, 0.15);
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 0, 0.3),
+            inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 40px rgba(0, 255, 0, 0.5),
+            inset 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+}
+
+
+
+/* Matrix Card Content */
+.matrix-project-header {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 0.5rem; /* Reduced to save space */
+}
+
+.matrix-project-title {
+    color: var(--matrix-green);
+    font-size: 1.1rem; /* Slightly reduced for better fit */
+    margin-bottom: 0.2rem; /* Reduced margin */
+    font-family: var(--font-primary); /* Orbitron */
+    letter-spacing: 0.5px;
+    text-shadow: var(--matrix-glow);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3rem; /* Tighter gap */
+    line-height: 1.2; /* Tighter line height */
+    padding-right: 75px; /* Space for smaller buttons */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.matrix-project-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.matrix-project-content {
+    position: relative;
+    z-index: 5;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space evenly */
+}
+
+.matrix-project-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.85rem; /* Reduced for better fit */
+    font-family: var(--font-body); /* Exo 2 */
+    line-height: 1.4; /* Tighter line height */
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* 5 lines to show more content */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.matrix-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem; /* Even tighter gap for more tags */
+    margin: 0.3rem 0; /* Reduced margin */
+
+    /* Increased height to show more tags */
+    max-height: 6.5rem; /* Allows ~3 rows of tags */
+    overflow: hidden; /* Hides excess tags cleanly */
+}
+
+.matrix-tag {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    padding: 0.25rem 0.6rem; /* Smaller padding for more tags */
+    font-size: 0.75rem; /* Reduced for better fit */
+    font-family: var(--font-primary); /* Orbitron for consistency */
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.matrix-project-language {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto; /* Push to bottom automatically */
+    font-size: 0.85rem; /* Reduced for better fit */
+    font-family: var(--font-primary); /* Orbitron */
+    margin-block: 0.5rem; /* Reduced spacing */
+}
+
+.language-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.language-name {
+    color: rgba(0, 255, 0, 0.8);
+}
+
+.language-percent {
+    color: rgba(0, 255, 0, 0.6);
+    margin-left: auto;
+}
+
+/* Old button styles removed - now using top-right action buttons */
+
+/* Glassmorphism Responsive Design */
+@media (max-width: 768px) {
+    .matrix-project-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .matrix-project-card {
+        width: 100%;
+        height: 400px; /* Slightly taller on mobile for content */
+        padding: 1rem;
+    }
+
+    .matrix-project-title {
+        font-size: 1.05rem;
+        margin-bottom: 0.4rem;
+        padding-right: 70px;
+    }
+
+    .matrix-project-description {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        -webkit-line-clamp: 3; /* 3 lines on mobile */
+    }
+
+    .matrix-project-tabs {
+        gap: 0.5rem;
+    }
+
+    .matrix-tab-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .project-icon-link {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   PROJECT BADGES & STATUS INDICATORS
+   ========================================================================== */
+
+.project-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    animation: goldGlow 2s ease-in-out infinite alternate;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-in-progress {
+    background: linear-gradient(45deg, rgba(0, 150, 255, 0.2), rgba(0, 150, 255, 0.1));
+    color: #0096FF;
+    border: 1px solid rgba(0, 150, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+    animation: pulseBlue 2s ease-in-out infinite alternate;
+}
+
+.status-coming-soon {
+    background: linear-gradient(45deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1));
+    color: #888;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.2);
+}
+
+.visibility-badge {
+    background: rgba(0, 255, 0, 0.1);
+    color: var(--matrix-green);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    padding: 0.125rem 0.375rem;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Badge Animations */
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3); }
+}
+
+@keyframes pulseBlue {
+    0% { box-shadow: 0 0 10px rgba(0, 150, 255, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(0, 150, 255, 0.6), 0 0 30px rgba(0, 150, 255, 0.3); }
+}
+
+/* Mobile Responsive Badges */
+@media (max-width: 768px) {
+    .project-title-row {
+        gap: 0.25rem;
+    }
+
+    .featured-badge,
+    .status-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .visibility-badge {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.3rem;
+    }
+}
+
+/* ==========================================================================
+   MATRIX PAGINATION STYLES
+   ========================================================================== */
+
+.matrix-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.matrix-pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--matrix-green);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.matrix-pagination-btn:hover:not(.disabled) {
+    background: var(--matrix-green);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.matrix-pagination-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: rgba(0, 255, 0, 0.3);
+    color: rgba(0, 255, 0, 0.3);
+}
+
+.matrix-pagination-numbers {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.matrix-pagination-number {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 255, 0, 0.4);
+    border-radius: 50%;
+    color: rgba(0, 255, 0, 0.8);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-pagination-number:hover {
+    border-color: var(--matrix-green);
+    color: var(--matrix-green);
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.matrix-pagination-number.active {
+    background: var(--matrix-green);
+    color: #000;
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.matrix-pagination-info {
+    text-align: center;
+    color: rgba(0, 255, 0, 0.7);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin: 1rem 0 2rem;
+    text-transform: uppercase;
+}
+
+/* Pagination animations */
+@keyframes paginationGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+    }
+}
+
+.matrix-pagination-number.active {
+    animation: paginationGlow 2s ease-in-out infinite;
+}
+
+/* Responsive pagination */
+@media (max-width: 768px) {
+    .matrix-pagination {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .matrix-pagination-numbers {
+        order: -1;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+
+    .matrix-pagination-number {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .matrix-pagination-btn {
+        min-width: 80px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .matrix-pagination-info {
+        font-size: 0.8rem;
+        margin: 0.5rem 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .matrix-pagination-numbers {
+        gap: 0.125rem;
+    }
+
+    .matrix-pagination-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}

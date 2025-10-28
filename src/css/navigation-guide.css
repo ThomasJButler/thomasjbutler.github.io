@@ -1,0 +1,487 @@
+/* ==========================================================================
+   Epic Navigation Guide - Matrix-themed navigation section
+   ========================================================================== */
+
+/* ==========================================================================
+   Section Base Styles
+   ========================================================================== */
+.nav-guide-section {
+  padding: 1rem;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid background removed as requested */
+
+/* ==========================================================================
+   Title Styles
+   ========================================================================== */
+.nav-guide-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  color: #00ff00;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  text-shadow:
+    0 0 10px rgba(0, 255, 0, 0.8),
+    0 0 20px rgba(0, 255, 0, 0.5),
+    0 0 40px rgba(0, 255, 0, 0.3);
+  opacity: 0;
+  position: relative;
+}
+
+.nav-guide-title.glitch-text {
+  animation: glitch 0.5s ease-in-out;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-2px, -1px); }
+  20% { transform: translate(2px, 1px); }
+  30% { transform: translate(-1px, 2px); }
+  40% { transform: translate(1px, -2px); }
+  50% { transform: translate(-2px, 1px); }
+  60% { transform: translate(2px, -1px); }
+  70% { transform: translate(-1px, -2px); }
+  80% { transform: translate(1px, 2px); }
+  90% { transform: translate(-2px, -1px); }
+}
+
+.nav-guide-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--matrix-cyan);
+  margin-bottom: 4rem;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Grid Layout
+   ========================================================================== */
+.nav-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1130px;
+  margin: 0 auto;
+  margin-block: 3rem;
+}
+
+/* ==========================================================================
+   Navigation Cards
+   ========================================================================== */
+.nav-card {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(0, 20, 0, 0.8) 0%, rgba(0, 40, 0, 0.6) 50%, rgba(0, 20, 0, 0.8) 100%);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 50px;
+  padding: 1rem;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 255, 0, 0.1),
+    inset 0 0 20px rgba(0, 255, 0, 0.05);
+}
+
+.nav-card:hover {
+  border-color: var(--card-color, #00ff00);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px var(--card-color, rgba(0, 255, 0, 0.3)),
+    inset 0 0 30px var(--card-color, rgba(0, 255, 0, 0.1));
+}
+
+/* ==========================================================================
+   Card Background Effects
+   ========================================================================== */
+.nav-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Scanlines removed as requested */
+
+/* Scanline animation removed as requested */
+
+.nav-card-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-card-particles.active {
+  opacity: 1;
+}
+
+.nav-card-particles::before,
+.nav-card-particles::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--card-color, #00ff00);
+  border-radius: 50%;
+  animation: particle-float 3s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--card-color, #00ff00);
+}
+
+.nav-card-particles::before {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.nav-card-particles::after {
+  bottom: 30%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* nav-card-circuit styles removed - cross effect disabled */
+
+/* ==========================================================================
+   Card Content
+   ========================================================================== */
+.nav-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.nav-card-icon {
+  font-size: 3rem;
+  color: var(--card-color, #00ff00);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px var(--card-color, rgba(0, 255, 0, 0.5));
+}
+
+.nav-card-icon i {
+  transition: all 0.3s ease;
+}
+
+.nav-card-title {
+  font-size: 1.5rem;
+  font-family: var(--font-primary);
+  color: #00ff00;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.nav-card-description {
+  font-size: 1rem;
+  color: var(--text-readable);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-card-arrow {
+  font-size: 1.5rem;
+  color: var(--card-color, #00ff00);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  transform: translateX(0);
+}
+
+.nav-card:hover .nav-card-arrow {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+/* ==========================================================================
+   Card Effects
+   ========================================================================== */
+.nav-card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 15px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.nav-card:hover .nav-card-glow {
+  opacity: 0.5;
+}
+
+.nav-card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--card-color, #00ff00), transparent, var(--card-color, #00ff00)) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: subtract;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-card:hover .nav-card-border {
+  opacity: 0.6;
+  animation: border-trace 2s ease-in-out infinite;
+}
+
+@keyframes border-trace {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+/* ==========================================================================
+   Ripple Effect
+   ========================================================================== */
+.nav-card.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    var(--card-color, rgba(0, 255, 0, 0.3)) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple-expand 0.6s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .nav-guide-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-guide-section {
+    padding: 4rem 0 3rem;
+  }
+
+  .nav-guide-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .nav-card {
+    padding: 1.5rem;
+    min-height: 250px;
+  }
+
+  .nav-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .nav-card-title {
+    font-size: 1.3rem;
+  }
+
+  .nav-card-description {
+    font-size: 0.9rem;
+  }
+
+  .nav-guide-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-guide-subtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-guide-section {
+    padding: 3rem 0 2rem;
+  }
+
+  .nav-card {
+    padding: 1.2rem;
+    min-height: 220px;
+  }
+
+  .nav-card-icon {
+    font-size: 2rem;
+  }
+
+  .nav-card-title {
+    font-size: 1.2rem;
+  }
+
+  .nav-card-description {
+    font-size: 0.85rem;
+  }
+
+  .nav-guide-title {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Accessibility & Performance
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .nav-card,
+  .nav-card-glow,
+  .nav-card-border,
+  .nav-card-particles::before,
+  .nav-card-particles::after {
+    animation: none !important;
+  }
+
+  .nav-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES - BLUE THEME FOR NAVIGATION GUIDE
+   ========================================================================== */
+
+/* Section Title - White with Blue Glow */
+[data-theme="dark"] .nav-guide-title {
+  color: #FFFFFF !important;
+  text-shadow:
+    0 0 10px rgba(74, 158, 255, 0.8),
+    0 0 20px rgba(74, 158, 255, 0.5),
+    0 0 40px rgba(74, 158, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .nav-guide-subtitle {
+  color: #4A9EFF !important;
+}
+
+/* Navigation Cards - Blue Theme */
+[data-theme="dark"] .nav-card {
+  background:
+    linear-gradient(135deg, rgba(15, 15, 30, 0.8) 0%, rgba(20, 20, 40, 0.6) 50%, rgba(15, 15, 30, 0.8) 100%) !important;
+  border: 2px solid rgba(74, 158, 255, 0.3) !important;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(74, 158, 255, 0.1),
+    inset 0 0 20px rgba(74, 158, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .nav-card:hover {
+  border-color: #4A9EFF !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(74, 158, 255, 0.3),
+    inset 0 0 30px rgba(74, 158, 255, 0.1) !important;
+}
+
+/* Card Icons - Blue */
+[data-theme="dark"] .nav-card-icon {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Card Titles - White with Blue Glow */
+[data-theme="dark"] .nav-card-title {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5) !important;
+}
+
+/* Card Descriptions - Light Gray */
+[data-theme="dark"] .nav-card-description {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Card Arrows - Blue */
+[data-theme="dark"] .nav-card-arrow {
+  color: #4A9EFF !important;
+}
+
+/* Card Particles - Blue */
+[data-theme="dark"] .nav-card-particles::before,
+[data-theme="dark"] .nav-card-particles::after {
+  background: #4A9EFF !important;
+  box-shadow: 0 0 10px #4A9EFF !important;
+}
+
+/* Card Border Effect - Blue Gradient */
+[data-theme="dark"] .nav-card-border {
+  background: linear-gradient(135deg, #4A9EFF, transparent, #5AADFF) border-box !important;
+}
+
+/* Ripple Effect - Blue */
+[data-theme="dark"] .nav-card.ripple-effect::after {
+  background: radial-gradient(
+    circle,
+    rgba(74, 158, 255, 0.3) 0%,
+    transparent 70%
+  ) !important;
+}

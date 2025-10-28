@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Accessibility Styles
+   WCAG 2.1 AA Compliant Focus States and Keyboard Navigation
+   ========================================================================== */
+
+/* ==========================================================================
+   Focus Visible States (Modern Browsers)
+   ========================================================================== */
+
+/* Global focus-visible for all interactive elements */
+*:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: 4px;
+  transition: outline-color 0.2s ease;
+}
+
+/* Remove default outline for non-keyboard focus */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ==========================================================================
+   Navigation Focus States
+   ========================================================================== */
+
+.nav-link:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.2);
+}
+
+/* ==========================================================================
+   Button Focus States
+   ========================================================================== */
+
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.cta-button:focus-visible,
+.matrix-btn-primary:focus-visible,
+.matrix-btn:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 4px rgba(var(--accent-rgb), 0.15),
+    var(--shadow-md);
+}
+
+/* Theme toggle focus */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.2);
+}
+
+/* ==========================================================================
+   Form Input Focus States
+   ========================================================================== */
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-color: var(--accent-color);
+  box-shadow:
+    0 0 0 3px rgba(var(--accent-rgb), 0.15),
+    0 0 10px rgba(var(--accent-rgb), 0.2);
+}
+
+/* Search inputs */
+input[type="search"]:focus-visible,
+input[type="text"]:focus-visible,
+input[type="email"]:focus-visible {
+  outline: 2px solid var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* ==========================================================================
+   Card & Interactive Component Focus
+   ========================================================================== */
+
+.card:focus-visible,
+.project-card:focus-visible,
+.blog-card:focus-visible,
+.skill-card:focus-visible,
+.service-card:focus-visible,
+.journey-card:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 4px rgba(var(--accent-rgb), 0.15),
+    var(--shadow-lg);
+}
+
+/* Navigation cards */
+.nav-card:focus-visible,
+.gallery-card:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   Link Focus States
+   ========================================================================== */
+
+a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Special link types */
+.social-link:focus-visible,
+.footer-link:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Filter & Tag Focus States
+   ========================================================================== */
+
+.filter-button:focus-visible,
+.tag:focus-visible,
+.tech-tag:focus-visible,
+.topic:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(var(--accent-rgb), 0.3);
+}
+
+/* ==========================================================================
+   Skip Navigation
+   ========================================================================== */
+
+.skip-nav,
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--accent-color);
+  color: var(--bg-primary);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 10000;
+  border-radius: 0 0 var(--radius-base) 0;
+  transition: top 0.2s ease;
+}
+
+.skip-nav:focus,
+.skip-to-main:focus {
+  top: 0;
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep focus indicators instant */
+  *:focus-visible {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .btn:focus-visible,
+  button:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   Keyboard Navigation Helpers
+   ========================================================================== */
+
+/* Show outline for keyboard users, hide for mouse users */
+.js-focus-visible *:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Ensure focusable elements are keyboard accessible */
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Screen Reader Only Content
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ==========================================================================
+   Focus Within (Parent Highlight)
+   ========================================================================== */
+
+/* Highlight parent when child has focus */
+.nav-item:focus-within {
+  background: rgba(var(--accent-rgb), 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.form-group:focus-within {
+  border-left: 3px solid var(--accent-color);
+  padding-left: calc(var(--space-md) - 3px);
+  transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   Dark Mode Focus Overrides
+   ========================================================================== */
+
+[data-theme="dark"] *:focus-visible {
+  outline-color: #4A9EFF; /* Force blue in dark mode */
+}
+
+[data-theme="dark"] .btn:focus-visible,
+[data-theme="dark"] button:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(74, 158, 255, 0.2),
+    var(--shadow-md);
+}
+
+/* ==========================================================================
+   Matrix Mode Focus Overrides
+   ========================================================================== */
+
+[data-theme="matrix"] *:focus-visible {
+  outline-color: #00FFFF; /* Cyan for matrix mode */
+}
+
+[data-theme="matrix"] .btn:focus-visible,
+[data-theme="matrix"] button:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(0, 255, 255, 0.2),
+    var(--shadow-md);
+}

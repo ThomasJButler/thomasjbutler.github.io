@@ -13,18 +13,6 @@ nav {
     position: relative;
 }
 
-/* Visual divider before navigation */
-nav::before {
-    content: '|';
-    position: absolute;
-    left: -31px;
-    color: var(--matrix-green);
-    opacity: 0.6;
-    font-size: 2rem;
-    font-weight: 300;
-    animation: pulse 2s infinite;
-}
-
 nav ul {
     display: flex;
     list-style: none;
@@ -44,7 +32,7 @@ nav li {
 nav a {
     color: var(--matrix-green);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* Restored to original - Header uses CSS modules */
     font-weight: 400;
     letter-spacing: 0.05em;
     transition: all var(--duration-base) var(--ease-out);
@@ -70,10 +58,11 @@ nav a.active::after {
 
 /* Hover effects */
 nav a:hover {
-    color: var(--matrix-cyan);
-    text-shadow: 0 0 10px currentColor;
+    color: var(--accent-color);
+    text-shadow: none; /* Removed for readability */
 }
 
+/* Underline hover effect on links */
 nav a::before {
     content: '';
     position: absolute;
@@ -81,12 +70,13 @@ nav a::before {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--matrix-green);
-    transition: width var(--duration-base) var(--ease-out);
+    background: var(--accent-color);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
 }
 
 nav a:hover::before {
     width: 100%;
+    box-shadow: 0 0 8px var(--accent-color);
 }
 
 /* ==========================================================================
@@ -432,10 +422,6 @@ nav ul li:active {
 }
 
 @media screen and (max-width: 480px) {
-        /* Hide divider on mobile */
-        nav::before {
-        content: '';
-        }
     nav ul {
         padding: 0.5rem;
         left: 15px;

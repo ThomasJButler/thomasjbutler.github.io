@@ -1,12 +1,15 @@
 /**
- * Scroll Detection Utility
- * Handles scroll-based header visibility and back-to-top button behavior
- * Compatible with both React and vanilla HTML pages
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Scroll detection utility for managing header visibility and back-to-top button.
+ *              Handles scroll-based UI behaviour with throttled event handling.
+ *              Compatible with both React and vanilla HTML pages.
  */
 
 interface ScrollDetectionOptions {
   headerSelector: string;
   backToTopSelector?: string;
+  enableBackToTop?: boolean;
   showThreshold: number;
   hideThreshold: number;
   backToTopThreshold: number;
@@ -52,7 +55,8 @@ class ScrollDetection {
   }
 
   /**
-   * Initialize scroll detection
+   * Initialises scroll detection and sets up event listeners
+   * @return {void}
    */
   public init(): void {
     if (this.isInitialized) return;
@@ -78,10 +82,12 @@ class ScrollDetection {
       return;
     }
 
-    // Create or find back-to-top button
-    this.backToTopElement = document.querySelector(this.options.backToTopSelector!);
-    if (!this.backToTopElement) {
-      this.createBackToTopButton();
+    // Only create back-to-top button if explicitly enabled
+    if (this.options.enableBackToTop) {
+      this.backToTopElement = document.querySelector(this.options.backToTopSelector!);
+      if (!this.backToTopElement) {
+        this.createBackToTopButton();
+      }
     }
 
     // Set initial state
@@ -208,9 +214,9 @@ class ScrollDetection {
       behavior: 'smooth'
     });
 
-    // Track interaction for analytics (if needed)
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'back_to_top_click', {
+    // Track interaction for analytics (if available)
+    if (typeof window !== 'undefined' && 'gtag' in window) {
+      (window as any).gtag('event', 'back_to_top_click', {
         event_category: 'navigation',
         event_label: 'scroll_utility'
       });
@@ -218,7 +224,8 @@ class ScrollDetection {
   }
 
   /**
-   * Destroy the scroll detection instance
+   * Destroys the scroll detection instance and cleans up event listeners
+   * @return {void}
    */
   public destroy(): void {
     if (!this.isInitialized) return;
@@ -243,21 +250,25 @@ class ScrollDetection {
   }
 
   /**
-   * Update options at runtime
+   * Updates configuration options at runtime
+   * @param {Partial<ScrollDetectionOptions>} newOptions - Options to merge with existing configuration
+   * @return {void}
    */
   public updateOptions(newOptions: Partial<ScrollDetectionOptions>): void {
     this.options = { ...this.options, ...newOptions };
   }
 
   /**
-   * Get current scroll state (useful for debugging)
+   * Returns current scroll state for debugging or programmatic control
+   * @return {ScrollState} Current scroll state object
    */
   public getState(): ScrollState {
     return { ...this.state };
   }
 
   /**
-   * Force update visibility (useful for programmatic control)
+   * Forces immediate visibility update for programmatic control
+   * @return {void}
    */
   public forceUpdate(): void {
     this.updateScrollState();
@@ -266,16 +277,5 @@ class ScrollDetection {
   }
 }
 
-// Create and export a singleton instance
-export const scrollDetection = new ScrollDetection();
-
-// Export the class for custom instances
+// Export only the class - no singleton to prevent auto-initialization
 export { ScrollDetection };
-
-// Auto-initialize on legacy pages (non-React)
-if (typeof window !== 'undefined' && !window.location.pathname.includes('index-react')) {
-  // Delay initialization to ensure all other scripts have loaded
-  setTimeout(() => {
-    scrollDetection.init();
-  }, 100);
-}

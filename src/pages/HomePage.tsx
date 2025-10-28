@@ -1,426 +1,386 @@
-import React, { useEffect, useRef } from 'react';
-import { animate, stagger } from 'animejs';
-import { useScrollAnimation, useHoverAnimation } from '../hooks/useMatrixAnimation';
-import { matrixAnimations } from '../utils/animations/matrixAnimations';
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Home page with animated introduction, navigation cards, project showcases,
+ *              and interactive scroll effects with particle animations
+ */
 
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { animate } from 'animejs';
+import { useCardAnimations } from '../hooks/useCardAnimations';
+import aiComparisonLeft from '../images/aicomparisonshowcase.webp';
+import matrixArcade from '../images/matrixarcade.webp';
+import aiComparisonRight from '../images/aicomparisonshowcase2.webp';
+
+/**
+ * Home page component with cascading animations and scroll effects
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const HomePage: React.FC = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const expertiseRef = useRef<HTMLUListElement>(null);
-  const updatesRef = useRef<HTMLUListElement>(null);
+  useCardAnimations();
 
-  useEffect(() => {
-    // Hero section animation
-    if (heroRef.current) {
-      const heading = heroRef.current.querySelector('h2');
-      const paragraphs = heroRef.current.querySelectorAll('p');
-      const images = heroRef.current.querySelectorAll('.introduction-img img');
-
-      // Typewriter effect for main heading
-      if (heading) {
-        matrixAnimations.typewriter(heading, "Hey, I'm Tom.");
-      }
-
-      // Stagger paragraphs
-      animate(paragraphs, {
-        opacity: [0, 1],
-        translateY: [20, 0],
-        delay: stagger(200, { start: 1000 }),
-        duration: 800,
-        ease: 'outQuad'
-      });
-
-      // Image animations
-      animate(images, {
-        opacity: [0, 1],
-        scale: [0.8, 1],
-        rotateY: [45, 0],
-        delay: stagger(100, { start: 1500 }),
-        duration: 1000,
-        ease: 'outExpo'
-      });
+  const galleriesRef = useScrollAnimation({
+    threshold: 0.3,
+    animationProps: {
+      opacity: [0, 1],
+      scale: [0.9, 1],
+      duration: 1200,
+      ease: 'outElastic'
     }
+  });
 
-    // Expertise cards animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.introduction-expertise-card');
+  /**
+   * @constructs Initialises parallax scrolling and reveal animations with RAF throttling
+   */
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
           
-          animate(cards, {
-            opacity: [0, 1],
-            translateY: [50, 0],
-            scale: [0.9, 1],
-            delay: stagger(100),
-            duration: 800,
-            ease: 'outQuad'
+          // Subtle parallax for introduction images
+          const introImages = document.querySelectorAll('.introduction-img img');
+          introImages.forEach((img, index) => {
+            const speed = 0.05 + index * 0.02; // Much more subtle
+            (img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
           });
+          
+          const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
+          revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
 
-          // Animate progress bars
-          cards.forEach((card, index) => {
-            const progressBar = card.querySelector('.introduction-expertise-progress');
-            if (progressBar) {
-              const width = progressBar.style.width;
-              progressBar.style.width = '0%';
-              
-              animate(progressBar, {
-                width: width,
-                delay: 200 + (index * 100),
-                duration: 1000,
-                ease: 'outExpo'
+            if (isVisible) {
+              el.classList.add('revealed');
+              animate(el as HTMLElement, {
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 600,
+                easing: 'easeOutQuad'
               });
             }
           });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  /**
+   * @constructs Sets up entrance animations, hover effects, and interactive button behaviours
+   *             Includes magnetic cursor effects and particle systems
+   */
+  useEffect(() => {
+    const galleries = document.getElementById('galleries');
+    if (galleries) {
+      setTimeout(() => {
+        galleries.classList.add('matrix-loaded');
+      }, 2000);
+    }
 
-          observer.unobserve(entry.target);
+    const animatePageEntrance = () => {
+      const welcomeText = document.querySelector('.welcome-text');
+      if (welcomeText) {
+        animate(welcomeText as HTMLElement, {
+          opacity: [0, 1],
+          scale: [0.95, 1],
+          duration: 800,
+          delay: 100,
+          easing: 'easeOutQuad'
+        });
+      }
+
+      const introElements = document.querySelectorAll('#introduction h2:not(.welcome-text)');
+      introElements.forEach((el, index) => {
+        el.classList.add('animated');
+
+        animate(el as HTMLElement, {
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 600,
+          delay: 300 + index * 100,
+          easing: 'easeOutQuad'
+        });
+      });
+      
+      const introImages = document.querySelectorAll('.introduction-img img');
+      introImages.forEach((img, index) => {
+        img.classList.add('animated');
+
+        if ((img as HTMLImageElement).complete) {
+          animate(img as HTMLElement, {
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            translateY: [20, 0],
+            duration: 700,
+            delay: 400 + index * 150,
+            easing: 'easeOutQuad'
+          });
+        } else {
+          (img as HTMLImageElement).addEventListener('load', () => {
+            animate(img as HTMLElement, {
+              opacity: [0, 1],
+              scale: [0.9, 1],
+              translateY: [20, 0],
+              duration: 700,
+              delay: index * 150,
+              easing: 'easeOutQuad'
+            });
+          });
         }
       });
-    }, observerOptions);
+      
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      galleryCards.forEach((card, index) => {
+        animate(card as HTMLElement, {
+          opacity: [0, 1],
+          translateY: [50, 0],
+          rotateX: [-15, 0],
+          duration: 1000,
+          delay: 1200 + index * 100,
+          easing: 'easeOutQuint'
+        });
 
-    if (expertiseRef.current) observer.observe(expertiseRef.current);
-    if (updatesRef.current) observer.observe(updatesRef.current);
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, 2200 + index * 100);
+      });
+      
+      const buttons = document.querySelectorAll('.btn-professional, .matrix-btn-primary');
+      buttons.forEach((btn, index) => {
+        btn.classList.add('animated');
 
-    return () => observer.disconnect();
+        animate(btn as HTMLElement, {
+          opacity: [0, 1],
+          scale: [0, 1.1, 1],
+          duration: 600,
+          delay: 1500 + index * 100,
+          easing: 'easeOutBack'
+        });
+      });
+    };
+    
+    animatePageEntrance();
+    
+    const cards = document.querySelectorAll('.gallery-card, .introduction-expertise-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', (e) => {
+        if (e.currentTarget) {
+          animate(e.currentTarget as HTMLElement, {
+            scale: 1.05,
+            translateY: -5,
+            duration: 300,
+            easing: 'easeOutQuad'
+          });
+        }
+      });
+      
+      card.addEventListener('mouseleave', (e) => {
+        if (e.currentTarget) {
+          animate(e.currentTarget as HTMLElement, {
+            scale: 1,
+            translateY: 0,
+            duration: 300,
+            easing: 'easeOutQuad'
+          });
+        }
+      });
+    });
+    
+    const buttons = document.querySelectorAll('.matrix-btn-primary, .btn-professional, .matrix-btn, button');
+    buttons.forEach(button => {
+      const btn = button as HTMLElement;
+      
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        const distance = Math.sqrt(x * x + y * y);
+        const maxDistance = 100;
+        
+        if (distance < maxDistance) {
+          const strength = (1 - distance / maxDistance) * 0.3;
+          const translateX = x * strength;
+          const translateY = y * strength;
+          
+          btn.style.setProperty('--magnetic-transform', `translate(${translateX}px, ${translateY}px)`);
+          btn.style.transform = `translate(${translateX}px, ${translateY}px) scale(1.02)`;
+        }
+      };
+      
+      const handleMouseLeave = () => {
+        btn.style.transform = '';
+        btn.style.removeProperty('--magnetic-transform');
+      };
+      
+      const createParticles = (x: number, y: number) => {
+        const particleCount = 8;
+        let container = document.querySelector('.particle-container');
+        
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'particle-container';
+          document.body.appendChild(container);
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          
+          const angle = (Math.PI * 2 * i) / particleCount;
+          const velocity = 30 + Math.random() * 40;
+          const tx = Math.cos(angle) * velocity;
+          const ty = Math.sin(angle) * velocity;
+          
+          particle.style.left = `${x}px`;
+          particle.style.top = `${y}px`;
+          particle.style.setProperty('--tx', `${tx}px`);
+          particle.style.setProperty('--ty', `${ty}px`);
+          
+          container.appendChild(particle);
+          
+          setTimeout(() => particle.remove(), 1000);
+        }
+        
+        const wave = document.createElement('div');
+        wave.className = 'sound-wave';
+        wave.style.left = `${x - 50}px`;
+        wave.style.top = `${y - 50}px`;
+        container.appendChild(wave);
+        setTimeout(() => wave.remove(), 600);
+      };
+      
+      const handleClick = (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        btn.style.setProperty('--ripple-x', `${x}%`);
+        btn.style.setProperty('--ripple-y', `${y}%`);
+        
+        createParticles(e.clientX, e.clientY);
+        
+        animate(btn, {
+          scale: [1, 0.95, 1.05, 1],
+          duration: 400,
+          easing: 'easeOutElastic(1, .5)'
+        });
+      };
+      
+      btn.addEventListener('mousemove', handleMouseMove);
+      btn.addEventListener('mouseleave', handleMouseLeave);
+      btn.addEventListener('click', handleClick);
+    });
   }, []);
-
-  // Handle card hover
-  const handleCardHover = (e: React.MouseEvent<HTMLLIElement>) => {
-    animate(e.currentTarget, {
-      translateY: -10,
-      boxShadow: '0 20px 40px rgba(0, 255, 0, 0.3)',
-      duration: 300,
-      ease: 'outQuad'
-    });
-  };
-
-  const handleCardLeave = (e: React.MouseEvent<HTMLLIElement>) => {
-    animate(e.currentTarget, {
-      translateY: 0,
-      boxShadow: '0 5px 15px rgba(0, 255, 0, 0.1)',
-      duration: 300,
-      ease: 'outQuad'
-    });
-  };
 
   return (
     <>
-      <section id="introduction" ref={heroRef}>
+      <section id="introduction">
         <div className="container">
-          <h2></h2>
+          <h2 className="welcome-text">Hey, I'm Tom<span className="cursor-blink">▮</span></h2>
           <br />
-          <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
-          <p className="scrolling-text">
-            With a passion for cutting-edge technology and creative problem-solving, 
-            I'm here to help transform your digital visions into reality.
-          </p>
-          <h2 className="introduction-h2">
-            My expertise spans web development, AI integration, and innovative design solutions.
-          </h2>
+          <h2>// A Full Stack AI Engineer from the UK</h2>
+          <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
+          <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
           <div className="introduction-img">
-            <img 
-              src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693667/CreateAiModel_oufvro.png" 
-              alt="AiTomatic Create a Model" 
-            />
-            <img 
-              src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png" 
-              alt="The Matrix Arcade" 
-            />
-            <img 
-              src="https://res.cloudinary.com/depqttzlt/image/upload/v1737693677/Usage_Patterns_iw5j6a.png" 
-              alt="AiTomatic Usage Pattern" 
-            />
+            <img src={aiComparisonRight} alt="AI Comparison Showcase - Performance Metrics" />
+            <img src={matrixArcade} alt="The Matrix Arcade - Interactive Gaming Experience" />
+            <img src={aiComparisonLeft} alt="AI Comparison Showcase - Advanced Features" />
           </div>
           <div className="galleries-mobile">
-            <a href="#galleries" className="galleries-link-mobile">
-              View Galleries
+            <Link to="/projects" className="btn-professional glass-card hover-lift">
               <i className="fas fa-images"></i>
-            </a>
+              View Projects
+            </Link>
+            <Link to="/skills" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
+              <i className="fas fa-code"></i>
+              View Skills
+            </Link>
           </div>
-          <p>Please explore my portfolio to see how I blend technical skill with artistic vision.</p>
         </div>
       </section>
 
-      <section id="introduction-expertise">
+      <section id="portfolio-purpose" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <h2 className="introduction-heading">--| Core Expertise |--</h2>
-          <ul className="introduction-expertise-grid" ref={expertiseRef}>
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-code"></i>
-              </div>
-              <h3>Full-Stack Development</h3>
-              <p className="introduction-expertise-description">
-                Crafting robust web applications with modern technologies and best practices.
+          <div className="purpose-card">
+            <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
+            <div className="purpose-content">
+              <p>
+                This portfolio started out as a hobby project. A space where I could push my web development skills and mess with new technologies without constraint.
               </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '95%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>HTML5/CSS3</span>
-                <span>JavaScript</span>
-                <span>React</span>
-                <span>Node.js</span>
-                <span>C#/.NET</span>
-                <span>Tailwind</span>
-                <span>HubSpot/HUBL</span>
-                <span>WordPress/PHP</span>
-                <span>IOS/Web Apps</span>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-robot"></i>
-              </div>
-              <h3>AI Integration</h3>
-              <p className="introduction-expertise-description">
-                Implementing cutting-edge AI solutions for real-world applications.
+              <p>
+                Over time, I realised that I needed to seperate my business work and personal work. This gives me the creative freedom to work on new ideas, test out new frameworks, and implement test features that aren't always going to be ideal for client requirements.
               </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '90%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>ChatGPT</span>
-                <span>Claude</span>
-                <span>Midjourney</span>
-                <span>GPT Creation</span>
-                <span>Chatbots</span>
-                <span>ML</span>
-                <span>AI LLM Models</span>
-                <span>AI Solutions</span>
-                <span>API</span>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-paint-brush"></i>
-              </div>
-              <h3>UI/UX Design</h3>
-              <p className="introduction-expertise-description">
-                Creating intuitive and engaging user experiences with modern design principles.
+              <p>
+                That's where I can be irresponsible. I can crash things. I can try out that new animation library that everybody's talking about, or rebuild everything from the ground up because I want to demonstrate I can. It's my web playground, and that freedom keeps me on my toes for the commercial work.
               </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '85%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Figma</span>
-                <span>Adobe XD</span>
-                <span>Mobile First</span>
-                <span>Wireframes</span>
-                <span>Galileo</span>
-                <span>Pen & Paper</span>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fab fa-python"></i>
-              </div>
-              <h3>Python Development</h3>
-              <p className="introduction-expertise-description">
-                Building efficient and scalable solutions with Python expertise.
+              <p className="purpose-cta-text">
+                For my commercial portfolio and professional client work:
               </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '92%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Advanced</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>Django</span>
-                <span>Flask</span>
-                <span>Data Analysis</span>
-                <span>PyGame</span>
-                <span>PyScript</span>
-                <span>Anaconda</span>
-                <span>TensorFlow</span>
-                <span>PyTorch</span>
-                <span>MatPlotLib</span>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-database"></i>
-              </div>
-              <h3>Database Management</h3>
-              <p className="introduction-expertise-description">
-                Optimising data structures and managing complex database systems.
-              </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '88%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>MongoDB</span>
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>Oracle</span>
-                <span>Supabase</span>
-                <span>Excel</span>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <i className="fas fa-server"></i>
-              </div>
-              <h3>Cloud Computing</h3>
-              <p className="introduction-expertise-description">
-                Deploying and managing scalable cloud infrastructure solutions.
-              </p>
-              <div className="introduction-expertise-details">
-                <div className="introduction-expertise-bar">
-                  <div className="introduction-expertise-progress" style={{ width: '85%' }}></div>
-                </div>
-                <span className="introduction-expertise-level">Proficient</span>
-              </div>
-              <div className="introduction-expertise-tags">
-                <span>AWS</span>
-                <span>Azure</span>
-                <span>Docker</span>
-                <span>IIS</span>
-                <span>Cisco</span>
-                <span>Bamboo</span>
-              </div>
-            </li>
-          </ul>
+              <a 
+                href="https://thomasjbutler.me" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="purpose-link matrix-btn-primary"
+              >
+                <i className="fas fa-briefcase"></i>
+                View Commercial Portfolio
+                <i className="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="latest-updates" className="reveal">
+      <section id="galleries" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <h2 className="section-title">Latest Updates</h2>
-          <ul className="introduction-expertise-grid" ref={updatesRef}>
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <img 
-                  src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668117/aitomatic_i26sol.png" 
-                  alt="AiTomatic Preview" 
-                />
+          <h2 className="section-heading">Showcases</h2>
+          <div className="galleries-grid">
+            <div className="gallery-card">
+              <div className="gallery-icon">
+                <i className="fas fa-graduation-cap"></i>
               </div>
-              <h3>AiTomatic (Prototype)</h3>
-              <p className="introduction-expertise-description">
-                This is an AI Model Creator platform with next level features. The prototype is built with 
-                Typescript, Python, React. It's showcasing the dashboard elements and model comparison / 
-                creation features. I am currently working on this.
-              </p>
-              <div className="introduction-expertise-buttons">
-                <a 
-                  href="https://aitomatic.co.uk/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="neo-matrix-btn"
-                  onMouseEnter={(e) => matrixAnimations.pulse(e.currentTarget)}
-                >
-                  <span className="btn-text">Enter AiTomatic</span>
-                  <i className="fas fa-chevron-right"></i>
-                </a>
+              <h3>GenAI Bootcamp Portfolio</h3>
+              <p>Comprehensive AI portfolio showcasing practical applications and innovative solutions.</p>
+              <a href="https://aitomatic.io/" target="_blank" rel="noopener noreferrer" className="gallery-link">
+                View Portfolio <i className="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+            <div className="gallery-card">
+              <div className="gallery-icon">
+                <i className="fas fa-history"></i>
               </div>
-            </li>
+              <h3>Version TimeTravel v1.4</h3>
+              <p>Interactive timeline documenting the complete evolution and transformation of my portfolio.</p>
+              <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" className="gallery-link">
+                Time Travel <i className="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <img 
-                  src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668751/matrix-arcade_slxkuw.png" 
-                  alt="Web Projects Preview" 
-                />
-              </div>
-              <h3>The Matrix Arcade</h3>
-              <p className="introduction-expertise-description">
-                This is an arcade website I built using Vite, Python and React to showcase playable mini 
-                games created during my learning journey. I plan to continue to add to this over time and 
-                update the functionality.
-              </p>
-              <div className="introduction-expertise-buttons">
-                <a 
-                  href="https://www.tomatic.tech/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="neo-matrix-btn"
-                  onMouseEnter={(e) => matrixAnimations.pulse(e.currentTarget)}
-                >
-                  <span className="btn-text">Enter The Arcade</span>
-                  <i className="fas fa-chevron-right"></i>
-                </a>
-              </div>
-            </li>
-
-            <li 
-              className="introduction-expertise-card"
-              onMouseEnter={handleCardHover}
-              onMouseLeave={handleCardLeave}
-            >
-              <div className="introduction-expertise-icon">
-                <img 
-                  src="https://res.cloudinary.com/depqttzlt/image/upload/v1737668231/landingpagedesktop_ssozki.png" 
-                  alt="Python Projects Preview" 
-                />
-              </div>
-              <h3>Landing Page</h3>
-              <p className="introduction-expertise-description">
-                A modern, responsive landing page showcasing clean design principles and smooth user experience.
-              </p>
-              <div className="introduction-expertise-buttons">
-                <a 
-                  href="/landingpage" 
-                  className="neo-matrix-btn"
-                  onMouseEnter={(e) => matrixAnimations.pulse(e.currentTarget)}
-                >
-                  <span className="btn-text">View Landing Page</span>
-                  <i className="fas fa-chevron-right"></i>
-                </a>
-              </div>
-            </li>
-          </ul>
+      <section id="contact">
+        <div className="container">
+          <h2 className="section-heading">Get in Touch</h2>
+          <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
+          <div className="contact-button-container">
+            <Link to="/contact" className="btn-contact-us">
+              <i className="fas fa-envelope"></i>
+              Contact Me
+            </Link>
+          </div>
         </div>
       </section>
     </>

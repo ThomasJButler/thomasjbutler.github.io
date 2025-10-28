@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Thomas J Butler | Redirecting...</title>
+    
+    <!-- Immediate redirect to React app blog -->
+    <meta http-equiv="refresh" content="0; url=/ThomasJButler/react.html#blog">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read thought leadership articles by Thomas J Butler on AI, development, and human-centered technology.">
+    <meta name="keywords" content="Thomas J Butler, blog, AI articles, development blog, tech philosophy">
+    <meta name="author" content="Thomas J Butler">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog - Thomas J Butler">
+    <meta property="og:description" content="Thought leadership on AI, development, and human-centered technology">
+    <meta property="og:url" content="https://thomasjbutler.github.io/ThomasJButler/blog.html">
+    
+    <style>
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .redirect-message {
+            padding: 2rem;
+        }
+        .matrix-text {
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        a {
+            color: #00ff00;
+            text-decoration: underline;
+        }
+    </style>
+    
+    <script>
+        // JavaScript redirect to React app blog
+        window.onload = function() {
+            // Check if we're already in the React app
+            if (window.location.pathname.includes('/react.html')) {
+                return;
+            }
+            // Redirect to React app blog route
+            window.location.replace('/ThomasJButler/react.html#blog');
+        };
+    </script>
+</head>
+<body>
+    <div class="redirect-message">
+        <h1 class="matrix-text">Redirecting to Blog...</h1>
+        <p>If you are not redirected automatically, <a href="/ThomasJButler/react.html#blog">click here</a>.</p>
+    </div>
+</body>
+</html>

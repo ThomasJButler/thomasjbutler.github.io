@@ -1,8 +1,16 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Site header with responsive navigation, Matrix-themed animations,
+ *              and scroll-aware visibility behaviour
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import { useHeaderVisibility } from '../hooks/useScrollDetection';
+import { ThemeToggle } from './ThemeToggle';
 import styles from './Header.module.css';
 
 interface NavItem {
@@ -14,7 +22,6 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
-  { label: 'HOME', href: '/' },
   { label: 'ABOUT', href: '/about', tooltip: 'Learn About Me' },
   { label: 'SKILLS', href: '/skills', tooltip: 'Check My Skills' },
   { label: 'PROJECTS', href: '/projects', tooltip: 'View My Projects' },
@@ -22,6 +29,11 @@ const navigation: NavItem[] = [
   { label: 'CONTACT', href: '/contact', tooltip: 'Get in Touch' }
 ];
 
+/**
+ * Site header component with responsive navigation and theme switching
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,14 +41,13 @@ export const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
 
-  // Use scroll detection hook
-  const { getState } = useHeaderVisibility({
+  useHeaderVisibility({
     headerSelector: 'header',
     hideThreshold: 100,
     showThreshold: 50
   });
 
-  // Handle scroll state updates
+  /** @constructs Initialises scroll listener with RAF throttling for performance */
   useEffect(() => {
     let ticking = false;
     
@@ -55,14 +66,13 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Animate nav items on mount
+  /** @constructs Animates navigation items on initial render */
   useEffect(() => {
     if (navRef.current) {
       matrixAnimations.staggerIn(Array.from(navRef.current.children) as HTMLElement[]);
     }
   }, []);
 
-  // Menu toggle animation
   const toggleMenu = () => {
     const newState = !isMenuOpen;
     setIsMenuOpen(newState);
@@ -94,7 +104,7 @@ export const Header: React.FC = () => {
     }
   };
 
-  // Close menu on escape
+  /** @listens isMenuOpen - Adds/removes escape key handler based on menu state */
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMenuOpen) {
@@ -106,7 +116,6 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
-  // Handle nav item hover
   const handleNavHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     matrixAnimations.pulse(e.currentTarget);
   };
@@ -114,57 +123,65 @@ export const Header: React.FC = () => {
   return (
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <div className={styles.headerTitle}>
-          <h1 onMouseEnter={(e) => matrixAnimations.glitchText(e.currentTarget)}>
-            Thomas J Butler
-          </h1>
-          <h3>Full Stack Developer | AI Integration Specialist</h3>
-        </div>
+        <Link to="/" className={styles.headerTitle}>
+          <img
+            src="/ThomasJButler/logo.svg"
+            alt="Thomas J Butler Logo"
+            className={styles.headerLogo}
+          />
+          <h1 className={styles.headerText}>Thomas J Butler</h1>
+        </Link>
         
-        <nav>
-          <button 
-            className={`${styles.menuToggle} ${isMenuOpen ? styles.active : ''}`}
+        <nav className={styles.nav} role="navigation" aria-label="Main navigation">
+          <button
+            className={`${styles.menuToggle} ${isMenuOpen ? styles.open : ''}`}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
+            aria-controls="main-navigation"
             onClick={toggleMenu}
           >
             <span></span>
             <span></span>
             <span></span>
           </button>
-          
-          <ul ref={navRef} className={isMenuOpen ? styles.show : ''}>
+
+          <ul
+            id="main-navigation"
+            ref={navRef}
+            className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}
+          >
             {navigation.map((item) => (
               <li 
                 key={item.href}
-                data-tooltip={item.tooltip}
-                className={location.pathname === item.href ? styles.active : ''}
+                className={styles.navItem}
               >
                 {item.external ? (
                   <a 
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-text={item.label}
+                    className={styles.navLink}
                     onMouseEnter={handleNavHover}
                   >
-                    {item.label} |
-                    {item.icon && <i className={item.icon}></i>}
+                    {item.label}
+                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`}></i>}
                   </a>
                 ) : (
-                  <Link 
+                  <Link
                     to={item.href}
-                    data-text={item.label}
+                    className={`${styles.navLink} ${location.pathname === item.href ? styles.active : ''}`}
+                    aria-current={location.pathname === item.href ? 'page' : undefined}
                     onMouseEnter={handleNavHover}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.label} |
-                    {item.icon && <i className={item.icon}></i>}
+                    {item.label}
+                    {item.icon && <i className={`${styles.navIcon} ${item.icon}`} aria-hidden="true"></i>}
                   </Link>
                 )}
               </li>
             ))}
           </ul>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

@@ -1,0 +1,1688 @@
+/* Terminal Blinking Cursor
+   ========================================================================== */
+.cursor-blink {
+    display: inline-block;
+    margin-left: 0.1em;
+    animation: cursorBlink 1s step-end infinite;
+    color: var(--accent-color);
+}
+
+@keyframes cursorBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Galleries Section
+   ========================================================================== */
+#galleries {
+    padding: 3rem 0 3rem;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for galleries - only show after page load */
+[data-theme="matrix"] #galleries.matrix-loaded::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: fadeIn 1s ease-in-out;
+}
+
+[data-theme="matrix"] #galleries {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 1px 0 rgba(0, 255, 0, 0.05);
+}
+
+.galleries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.gallery-card {
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid #00FF00;
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all var(--duration-base) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 15px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.gallery-card.revealed:hover::before {
+    background: linear-gradient(45deg, #00FF00, var(--matrix-cyan));
+    opacity: 1;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 6px 15px var(--glow-color-primary),
+        var(--glow-box-medium);
+}
+
+.gallery-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.gallery-icon i {
+    transition: transform 0.6s var(--ease-out);
+    display: inline-block;
+}
+
+/* Icon animations on card hover */
+.gallery-card:hover .gallery-icon i {
+    animation: iconPulseRotate 1s var(--ease-in-out) infinite;
+}
+
+.gallery-card:hover .gallery-icon {
+    color: #000000 !important; /* Black icon for better contrast on bright backgrounds */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+    transform: scale(1.05);
+}
+
+@keyframes iconPulseRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+.gallery-card h3 {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.gallery-card:hover h3 {
+    color: #FFFFFF !important; /* Force pure white for maximum contrast */
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px currentColor,
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10; /* Ensure text appears above gradient backgrounds */
+}
+
+.gallery-card p {
+    color: var(--text-readable);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.gallery-card:hover p {
+    color: rgba(255, 255, 255, 0.95) !important; /* Bright white with slight transparency */
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.7),
+        0 0 8px rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 10; /* Ensure text appears above gradient backgrounds */
+}
+
+.gallery-link {
+    display: inline-block;
+    background: #00FF00;
+    color: #000 !important; /* Force black text for contrast on green button */
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--duration-base) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-link:hover {
+    background: var(--matrix-cyan);
+    color: #000 !important; /* Force black text on hover for contrast */
+    box-shadow: var(--glow-box-intense);
+}
+
+/* ==========================================================================
+   SHOWCASE CARDS - THEME OVERRIDES FOR BETTER CONTRAST
+   ========================================================================== */
+
+/* Matrix Mode - Green button by default, black on hover */
+[data-theme="matrix"] .gallery-link {
+    background: #00FF00 !important; /* Green background by default */
+    color: #000000 !important; /* Black text */
+    border: 2px solid #00FF00;
+    font-weight: 600;
+}
+
+[data-theme="matrix"] .gallery-link:hover {
+    background: #000000 !important; /* Black background on hover */
+    color: #FFFFFF !important; /* White text on hover */
+    border-color: #00FF00; /* Keep green border */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
+                0 0 30px rgba(0, 255, 0, 0.4);
+}
+
+/* Dark Mode - Blue theme for showcase cards */
+[data-theme="dark"] .gallery-card {
+    background: rgba(15, 15, 30, 0.8) !important;
+    border: 2px solid #4A9EFF !important;
+}
+
+[data-theme="dark"] .gallery-card:hover {
+    box-shadow:
+        0 6px 15px rgba(74, 158, 255, 0.3),
+        0 0 30px rgba(74, 158, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .gallery-card.revealed:hover::before {
+    background: linear-gradient(45deg, #4A9EFF, #5AADFF) !important;
+}
+
+[data-theme="dark"] .gallery-icon {
+    color: #4A9EFF !important;
+}
+
+[data-theme="dark"] .gallery-card h3 {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .gallery-card p {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-theme="dark"] .gallery-link {
+    background: #4A9EFF !important; /* Blue background - matches card hover */
+    color: #FFFFFF !important; /* White text */
+    border: 2px solid #4A9EFF;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .gallery-link:hover {
+    background: #000000 !important; /* Black background on hover */
+    color: #FFFFFF !important; /* White text stays white */
+    border-color: #00FFFF; /* Keep cyan border */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* ============================================================================
+   THEME-SPECIFIC HOVER ENHANCEMENTS FOR VISIBILITY
+   ============================================================================ */
+
+/* Matrix Theme - Cyan/Green glow for text on hover */
+[data-theme="matrix"] .gallery-card:hover .gallery-icon {
+    color: #000000 !important; /* Black icon on bright background */
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.9)) drop-shadow(0 0 15px rgba(0, 255, 0, 0.7));
+}
+
+[data-theme="matrix"] .gallery-card:hover h3 {
+    color: #FFFFFF !important;
+    text-shadow:
+        0 0 15px rgba(0, 255, 255, 0.8),
+        0 0 25px rgba(0, 255, 0, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="matrix"] .gallery-card:hover p {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* Dark Theme - Blue glow for text on hover */
+[data-theme="dark"] .gallery-card:hover .gallery-icon,
+[data-theme="dark"] .gallery-card:hover .gallery-icon i {
+    color: #FFFFFF !important; /* White icon for dark theme */
+    filter: drop-shadow(0 0 10px rgba(74, 158, 255, 0.9)) drop-shadow(0 0 15px rgba(90, 173, 255, 0.7));
+}
+
+[data-theme="dark"] .gallery-card:hover h3 {
+    color: #FFFFFF !important;
+    text-shadow:
+        0 0 15px rgba(74, 158, 255, 0.8),
+        0 0 25px rgba(90, 173, 255, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="dark"] .gallery-card:hover p {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(74, 158, 255, 0.4) !important;
+}
+
+/* Latest Updates Section Homepage */ 
+#latest-updates {
+    padding: 4rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for latest updates */
+[data-theme="matrix"] #latest-updates::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, transparent 30%),
+        radial-gradient(circle at 70% 30%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: matrixPulse 15s ease-in-out infinite;
+}
+
+[data-theme="matrix"] #latest-updates {
+    border-top: 1px solid rgba(0, 255, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.12);
+}
+ 
+ .section-title {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: none;
+ }
+ 
+ .updates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+ }
+ 
+ .update-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s var(--ease-in-out);
+ }
+ 
+ .update-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--glow-box-extreme);
+    border-color: rgba(0, 255, 0, 0.4);
+ }
+ 
+ .update-card h3 {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+ }
+ 
+ .update-card p {
+    color: var(--text-readable);
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.6;
+ }
+ 
+ .card-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 1rem 0;
+ }
+ 
+ .card-image img {
+    width: 100%;
+    height: auto;
+    transition: transform var(--duration-slow) var(--ease-out);
+ }
+ 
+ .update-card:hover .card-image img {
+    transform: scale(1.05);
+ }
+ 
+ .card-action {
+    margin-top: auto;
+    text-align: center;
+ }
+
+ /* Responsive Styles */
+ @media (max-width: 1024px) {
+    .updates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 0 1.5rem;
+    }
+    
+    .update-card {
+        padding: 1.5rem;
+    }
+ }
+
+ /* Animation Keyframes */
+ @keyframes matrixRain {
+    0% { top: -100%; }
+    100% { top: 200%; }
+ }
+
+/* Portfolio Purpose Section
+   ========================================================================== */
+#portfolio-purpose {
+    padding: 4rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements */
+[data-theme="matrix"] #portfolio-purpose::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, transparent 40%, rgba(0, 255, 0, 0.03) 50%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    animation: matrixPulse 12s ease-in-out infinite;
+}
+
+[data-theme="matrix"] #portfolio-purpose {
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+}
+
+/* Dark theme enhancements */
+[data-theme="dark"] #portfolio-purpose::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, transparent 40%, rgba(74, 158, 255, 0.03) 50%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    animation: matrixPulse 12s ease-in-out infinite;
+}
+
+[data-theme="dark"] #portfolio-purpose {
+    border-top: 1px solid rgba(74, 158, 255, 0.15);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.15);
+}
+
+.purpose-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(0, 20, 0, 0.85);
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(0, 255, 0, 0.1);
+}
+
+/* Animated border effect - adjusted for better text contrast */
+.purpose-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 255, 0, 0.3),
+        rgba(0, 255, 255, 0.3),
+        rgba(0, 255, 0, 0.3),
+        rgba(0, 255, 255, 0.3)
+    );
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.6s ease;
+    background-size: 200% 200%;
+    animation: borderGlow 3s ease infinite;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.purpose-card:hover::before {
+    opacity: 1;
+}
+
+.purpose-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(0, 255, 0, 0.4),
+        0 0 80px rgba(0, 255, 0, 0.2);
+}
+
+/* Scan line effect on hover */
+.purpose-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    transition: top 0.8s ease;
+    pointer-events: none;
+}
+
+.purpose-card:hover::after {
+    top: 100%;
+}
+
+/* Heading styling */
+.purpose-heading {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    color: #00FF00;
+    text-align: center;
+    margin: 0 0 2rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(0, 255, 0, 0.5),
+        0 0 20px rgba(0, 255, 0, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.purpose-card:hover .purpose-heading {
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 1),
+        0 0 15px rgba(0, 255, 0, 0.7),
+        0 0 30px rgba(0, 255, 0, 0.4),
+        0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.purpose-heading::before {
+    color: rgba(0, 255, 0, 0.7);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Content area */
+.purpose-content {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.purpose-content p {
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.purpose-card:hover .purpose-content p {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.purpose-cta-text {
+    font-weight: 600;
+    color: #00FF00 !important;
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+.purpose-card:hover .purpose-cta-text {
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 1),
+        0 0 15px rgba(0, 255, 0, 0.6),
+        0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+/* Button styling */
+.purpose-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #00FF00;
+    color: #000000 !important;
+    padding: 1rem 2.5rem;
+    border-radius: 10px;
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 2px solid #00FF00;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 15px rgba(0, 255, 0, 0.3),
+        inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.purpose-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.purpose-link:hover::before {
+    left: 100%;
+}
+
+.purpose-link:hover {
+    background: #000000;
+    color: #00FF00 !important;
+    border-color: #00FF00;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(0, 255, 0, 0.5),
+        0 0 40px rgba(0, 255, 0, 0.3),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+.purpose-link i:first-child {
+    font-size: 1.2rem;
+}
+
+.purpose-link i:last-child {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.purpose-link:hover i:last-child {
+    transform: translateX(5px);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] .purpose-card {
+    background: rgba(15, 15, 30, 0.85);
+    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] .purpose-card::before {
+    background: linear-gradient(
+        45deg,
+        rgba(74, 158, 255, 0.3),
+        rgba(90, 173, 255, 0.3),
+        rgba(74, 158, 255, 0.3),
+        rgba(90, 173, 255, 0.3)
+    );
+    background-size: 200% 200%;
+}
+
+[data-theme="dark"] .purpose-card:hover {
+    border-color: rgba(74, 158, 255, 0.6);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(74, 158, 255, 0.4),
+        0 0 80px rgba(74, 158, 255, 0.2);
+}
+
+[data-theme="dark"] .purpose-card::after {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(74, 158, 255, 0.1),
+        transparent
+    );
+}
+
+[data-theme="dark"] .purpose-heading {
+    color: #4A9EFF;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(74, 158, 255, 0.5),
+        0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .purpose-card:hover .purpose-heading {
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 1),
+        0 0 15px rgba(74, 158, 255, 0.7),
+        0 0 30px rgba(74, 158, 255, 0.4),
+        0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .purpose-cta-text {
+    color: #4A9EFF !important;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .purpose-card:hover .purpose-cta-text {
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 1),
+        0 0 15px rgba(74, 158, 255, 0.6),
+        0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .purpose-link {
+    background: #4A9EFF;
+    color: #FFFFFF !important;
+    border-color: #4A9EFF;
+    box-shadow: 
+        0 4px 15px rgba(74, 158, 255, 0.3),
+        inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+[data-theme="dark"] .purpose-link:hover {
+    background: #000000;
+    color: #4A9EFF !important;
+    border-color: #00FFFF;
+    box-shadow: 
+        0 8px 25px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #portfolio-purpose {
+        padding: 2.5rem 0;
+    }
+
+    .purpose-card {
+        padding: 1.75rem 1.25rem;
+        margin: 0 1rem;
+    }
+
+    .purpose-heading {
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+        letter-spacing: 1.5px;
+    }
+
+    .purpose-content {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .purpose-content p {
+        margin-bottom: 1rem;
+    }
+
+    .purpose-cta-text {
+        font-size: 1rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .purpose-link {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #portfolio-purpose {
+        padding: 1.5rem 0;
+    }
+
+    .purpose-card {
+        padding: 1.25rem 0.875rem;
+        margin: 0 0.5rem;
+        border-radius: 12px;
+    }
+
+    .purpose-heading {
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+    }
+
+    .purpose-content {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    .purpose-content p {
+        margin-bottom: 0.875rem;
+    }
+
+    .purpose-cta-text {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .purpose-link {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.825rem;
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .purpose-link i:first-child {
+        font-size: 0.95rem;
+    }
+
+    .purpose-link i:last-child {
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility */
+.purpose-link:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .purpose-card,
+    .purpose-card::before,
+    .purpose-card::after,
+    .purpose-link,
+    .purpose-link::before {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Introduction Section
+   ========================================================================== */
+   #introduction {
+    padding: var(--space-lg) 0;
+    text-align: center;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for introduction */
+[data-theme="matrix"] #introduction::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+[data-theme="matrix"] #introduction {
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.05);
+}
+
+.introduction-img {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    padding: 40px;
+}
+
+.introduction-img img {
+    border-radius: 10px;
+    box-shadow: var(--glow-box-medium);
+    max-width: 280px;
+    height: auto;
+    transition: transform var(--duration-base) var(--ease-out), opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out);
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.introduction-img img.animated {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.introduction-img img:hover {
+    transform: scale(1.05);
+}
+
+/* Introduction Skills Grid Section - Three Columns */
+#introduction-expertise {
+    padding: var(--space-4xl) 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Matrix theme enhancements for expertise section */
+[data-theme="matrix"] #introduction-expertise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 40%, rgba(0, 255, 0, 0.02) 50%, transparent 60%),
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 0, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: matrixSweep 20s linear infinite;
+}
+
+[data-theme="matrix"] #introduction-expertise {
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+}
+
+/* Grid container */
+.introduction-expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns on desktop for 6 cards (3x2 layout) */
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.introduction-expertise-card {
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+/* Title styling */
+.introduction-expertise-card h3 {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    font-size: 1.8em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-shadow: none;
+}
+
+.introduction-h2 {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: none;
+}
+
+.introduction-heading {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: none;
+}
+
+/* Description area */
+.introduction-expertise-description {
+    color: #88FF88;
+    font-size: 0.95em;
+    text-align: center;
+    line-height: 1.6;
+    margin: 1rem 0;
+    flex-grow: 1;
+}
+
+/* Tags container */
+.introduction-expertise-tags {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Details section for progress bar and level */
+.introduction-expertise-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* Progress bar styling */
+.introduction-expertise-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.introduction-expertise-progress {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.6), rgba(0, 255, 0, 0.8));
+    border-radius: 10px;
+    transition: width 1s var(--ease-out);
+    box-shadow: var(--glow-box-standard);
+}
+
+.introduction-expertise-tags span {
+    text-align: center;
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0.5rem;
+    font-size: 0.85em;
+    color: var(--accent-color);
+    transition: all var(--duration-base) var(--ease-out);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Skill level indicator */
+.introduction-expertise-level {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--font-primary);
+    color: var(--accent-color);
+    font-size: 0.9em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: rgba(0, 20, 0, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Base card transitions */
+.introduction-expertise-card {
+    transition: all 0.6s var(--ease-in-out);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Advanced hover effects for cards */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    opacity: 0;
+    transition: all 0.6s var(--ease-in-out);
+    z-index: -1;
+    box-shadow:
+        var(--glow-extreme) rgba(0, 255, 0, 0.15),
+        0 0 50px rgba(0, 255, 0, 0.1),
+        0 0 70px rgba(0, 255, 0, 0.05);
+}
+
+.introduction-expertise-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+/* Pulsing glow effect - now only on hover */
+.introduction-expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 255, 0, 0.1);
+    z-index: -2;
+}
+
+.introduction-expertise-card:hover::before {
+    opacity: 0.3;
+}
+
+/* Enhanced tag hover effects */
+.introduction-expertise-tags span {
+    transition: all 0.4s var(--ease-in-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.introduction-expertise-tags span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+}
+
+.introduction-expertise-tags span:hover {
+    background: rgba(0, 40, 0, 0.9);
+    border-color: rgba(0, 255, 0, 0.6);
+    transform: scale(1.02);
+    box-shadow: var(--glow-box-medium);
+}
+
+.introduction-expertise-tags span:hover::before {
+    transform: translateX(100%);
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+/* Matrix Rain Canvas Styles */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#matrixCanvas {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    opacity: 0.8;
+}
+
+/* Scrolling Text Styles - Desktop */
+.scrolling-text {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: var(--space-md) auto;
+    max-width: 800px;
+    line-height: 1.6;
+    /* Remove any animations */
+    animation: none !important;
+    /* Ensure text is always visible */
+    opacity: 1 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    /* Prevent transform issues */
+    transform: none !important;
+    position: relative !important;
+    /* Ensure smooth rendering */
+    will-change: auto !important;
+    backface-visibility: visible !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Welcome Text - Initial Loading State */
+.welcome-text {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    opacity: 0;
+    margin-bottom: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Section Heading Styles - Matrix Theme */
+.section-heading {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow: none;
+    font-weight: 300;
+}
+
+.section-heading::after {
+    right: -80px;
+    animation: pulseGlow 2s var(--ease-in-out) infinite alternate-reverse;
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.5;
+        box-shadow: var(--glow-box-standard);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: var(--glow-box-intense), var(--glow-box-extreme);
+    }
+}
+
+/* Responsive section heading */
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        width: 40px;
+    }
+
+    .section-heading::after {
+        right: -50px;
+    }
+
+    /* Specifically target the expertise paragraph for better mobile display */
+    #introduction .introduction-h2 {
+        font-size: 1.6rem !important;
+        line-height: 1.55 !important;
+        padding: 0 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        letter-spacing: 0.3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-heading {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+        display: none;
+    }
+
+    #galleries {
+        padding: 0;
+        padding-bottom: 1rem;
+    }
+
+    /* Adjust expertise paragraph for small mobile screens */
+    #introduction .introduction-h2 {
+        font-size: 1.35rem !important;
+        line-height: 1.5 !important;
+        padding: 0 1.25rem !important;
+        letter-spacing: 0.2px;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+
+/* Matrix theme animation keyframes */
+@keyframes matrixPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+@keyframes matrixFlow {
+    0% { transform: translateX(-100%) translateY(-50%); }
+    100% { transform: translateX(100%) translateY(50%); }
+}
+
+@keyframes matrixSweep {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(360deg); }
+}
+
+/* Matrix-style scan line effect */
+.introduction-expertise-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.2),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.introduction-expertise-card:hover::after {
+    opacity: 1;
+}
+
+
+/* Smooth transitions for all properties */
+.introduction-expertise-card *,
+.introduction-expertise-tags span * {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Additional spacing for tags when there are many */
+.introduction-expertise-tags:has(span:nth-child(n+5)) {
+    padding-top: 1.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .introduction-expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Introduction Page Tablet Styles (769px to 1024px) */
+@media screen and (min-width: 700px) and (max-width: 992px) {
+    /* Header & Navigation */
+    header {
+        padding: 1rem 0;
+    }
+    
+    header .container {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    /* Title adjustments */
+    header h1, .logo {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    header h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    /* Navigation adjustments */
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        margin: 0;
+        width: auto;
+    }
+    
+    nav ul li {
+        padding: 0.4rem 0.8rem;
+        margin: 0.2rem;
+        font-size: 0.85rem;
+    }
+
+    /* Introduction section */
+    #introduction {
+        margin: 3rem;
+    }
+
+    #introduction .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    #introduction h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    #introduction h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    #introduction p {
+        font-size: 0.95rem;
+        font-family: var(--font-primary);
+        line-height: 1.6;
+        text-align: center;
+        width: 85%;
+        margin: 1rem auto;
+        padding: 0;
+    }
+
+    .introduction-img {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem auto;
+        padding: 2rem 2rem;
+        width: 90%;
+    }
+
+    .introduction-img img {
+        max-width: 35%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Version Time Travel button */
+    .version-timetravel {
+        padding: 0.4rem 0.8rem;
+        margin: 0.2rem;
+    }
+    
+    .version-timetravel a {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile Introduction Images (Phones) */
+@media screen and (max-width: 699px) {
+    .introduction-img {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 2rem;
+    }
+
+    .introduction-img img {
+        max-width: 200px;
+        width: 80%;
+        height: auto;
+    }
+}
+
+/* ========================================================================
+   ENHANCED UX IMPROVEMENTS - BETTER FIRST IMPRESSIONS
+   ======================================================================== */
+
+/* Smooth page entrance animation */
+body {
+    opacity: 0;
+    animation: pageLoad 0.8s ease-out forwards;
+}
+
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced hover states for gallery cards */
+.gallery-card {
+    cursor: pointer;
+    will-change: transform;
+}
+
+.gallery-card:hover {
+    animation: cardGlow 2s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 0 6px 15px var(--glow-color-primary);
+    }
+    100% {
+        box-shadow:
+            0 6px 25px var(--glow-color-intense),
+            var(--glow-box-extreme),
+            inset var(--glow-intense) rgba(0, 255, 0, 0.1);
+    }
+}
+
+/* Interactive focus indicators */
+.gallery-card:focus,
+.gallery-link:focus,
+.matrix-btn-primary:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Enhanced loading states */
+.introduction-expertise-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: expertiseCardReveal 0.8s var(--ease-out) forwards;
+}
+
+.introduction-expertise-card:nth-child(1) { animation-delay: 0.1s; }
+.introduction-expertise-card:nth-child(2) { animation-delay: 0.2s; }
+.introduction-expertise-card:nth-child(3) { animation-delay: 0.3s; }
+.introduction-expertise-card:nth-child(4) { animation-delay: 0.4s; }
+.introduction-expertise-card:nth-child(5) { animation-delay: 0.5s; }
+.introduction-expertise-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes expertiseCardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Micro-interactions for better feedback */
+.gallery-link,
+.matrix-btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-link::before,
+.matrix-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+    transition: left var(--duration-slow) var(--ease-out);
+}
+
+.gallery-link:hover::before,
+.matrix-btn-primary:hover::before {
+    left: 100%;
+}
+
+/* Enhanced image hover effects */
+.introduction-img img {
+    filter: brightness(0.9) contrast(1.1);
+    transition: all 0.4s var(--ease-in-out);
+}
+
+.introduction-img img:hover {
+    filter: brightness(1.1) contrast(1.2) saturate(1.1);
+    box-shadow:
+        var(--glow-medium) var(--glow-color-intense),
+        0 0 50px var(--glow-color-subtle);
+}
+
+/* Subtle scroll indicators */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s ease;
+    z-index: 9999;
+}
+
+/* Performance optimizations */
+.introduction-expertise-card,
+.gallery-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body {
+        animation: none;
+        opacity: 1;
+    }
+
+    .introduction-expertise-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .gallery-card {
+        border: 3px solid #00FF00;
+        background: #000000;
+    }
+
+    .section-heading {
+        text-shadow: none;
+        color: #00FF00;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .gallery-card:hover {
+        transform: none;
+        animation: none;
+    }
+
+    .gallery-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    .introduction-img img:hover {
+        transform: none;
+        filter: brightness(0.9) contrast(1.1);
+    }
+}

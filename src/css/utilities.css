@@ -1,0 +1,1116 @@
+/* ==========================================================================
+   Utility Classes - Common Patterns Extracted from Codebase
+   Uses existing CSS variables from base/_variables.css
+   ========================================================================== */
+
+/* ==========================================================================
+   Transitions - Replace 63+ instances of repeated transition declarations
+   ========================================================================== */
+
+.transition-default {
+    transition: all var(--duration-base) var(--ease-in-out);
+}
+
+.transition-fast {
+    transition: all var(--duration-fast) var(--ease-in-out);
+}
+
+.transition-slow {
+    transition: all var(--duration-slow) var(--ease-in-out);
+}
+
+.transition-smooth {
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* ==========================================================================
+   Border Radius - Replace 24+ instances of repeated border-radius
+   ========================================================================== */
+
+.radius-sm { border-radius: var(--radius-sm); }
+.radius-base { border-radius: var(--radius-base); }
+.radius-md { border-radius: var(--radius-md); }
+.radius-lg { border-radius: var(--radius-lg); }
+.radius-xl { border-radius: var(--radius-xl); }
+.radius-full { border-radius: var(--radius-full); }
+
+/* Legacy support for existing 15px, 10px patterns */
+.radius-15 { border-radius: 15px; }
+.radius-10 { border-radius: 10px; }
+.radius-12 { border-radius: 12px; }
+.radius-5 { border-radius: 5px; }
+
+/* ==========================================================================
+   Padding - Replace 11+ instances of padding: 2rem, etc.
+   ========================================================================== */
+
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+.p-2xl { padding: var(--space-2xl); }
+.p-3xl { padding: var(--space-3xl); }
+
+/* Legacy support for existing patterns */
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-2-5 { padding: 2.5rem; }
+.p-1-5 { padding: 1.5rem; }
+.p-20px { padding: 20px; }
+
+/* ==========================================================================
+   Matrix Theme Backgrounds - Common background patterns
+   ========================================================================== */
+
+.bg-matrix-dark { background: var(--matrix-dark); }
+.bg-matrix-darker { background: var(--matrix-darker); }
+.bg-matrix-transparent { background: var(--bg-transparent); }
+.bg-overlay { background: var(--bg-overlay); }
+
+/* Common gradient patterns */
+.bg-matrix-gradient-main {
+    background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
+}
+
+.bg-matrix-gradient-glow {
+    background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+}
+
+.bg-matrix-gradient-button {
+    background: linear-gradient(135deg, var(--matrix-green) 0%, #003300 100%);
+}
+
+/* ==========================================================================
+   Borders - Replace 20+ instances of border: 2px solid #00FF00
+   ========================================================================== */
+
+.border-matrix { border: 2px solid var(--matrix-green); }
+.border-matrix-thin { border: 1px solid var(--matrix-green); }
+.border-matrix-fade { border: 1px solid var(--border-primary); }
+
+/* Border utilities */
+.border-top-matrix { border-top: 2px solid var(--matrix-green); }
+.border-bottom-matrix { border-bottom: 2px solid var(--matrix-green); }
+.border-left-matrix { border-left: 2px solid var(--matrix-green); }
+.border-right-matrix { border-right: 2px solid var(--matrix-green); }
+
+/* ==========================================================================
+   Glass Effects - Glassmorphism patterns
+   ========================================================================== */
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.glass-card-strong {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur) var(--glass-saturate);
+    -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturate);
+}
+
+/* ==========================================================================
+   Text Colors - Matrix theme text utilities
+   ========================================================================== */
+
+.text-matrix { color: var(--matrix-green); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+/* ==========================================================================
+   Shadows and Glow Effects
+   ========================================================================== */
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-glow { box-shadow: var(--shadow-glow); }
+.shadow-inner { box-shadow: var(--shadow-inner); }
+
+.glow-matrix { box-shadow: var(--matrix-glow); }
+.glow-matrix-intense { box-shadow: var(--matrix-glow-intense); }
+
+/* ==========================================================================
+   HOVER EFFECTS - Comprehensive hover system integrated from hover-effects.css
+   ========================================================================== */
+
+/* Base Hover Variables */
+:root {
+  --hover-duration: 0.3s;
+  --hover-timing: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --hover-scale: 1.02;
+  --hover-translate: -4px;
+  --hover-glow-small: 0 0 15px rgba(0, 255, 0, 0.3);
+  --hover-glow-medium: 0 0 20px rgba(0, 255, 0, 0.4);
+  --hover-glow-large: 0 0 30px rgba(0, 255, 0, 0.5);
+}
+
+/* Universal Hover Transition */
+a,
+button,
+.btn,
+.card,
+.hover-effect,
+[role="button"],
+[data-hover] {
+  transition: all var(--hover-duration) var(--hover-timing);
+}
+
+/* Glitch Effect for Headers */
+@keyframes glitch {
+  0%, 100% {
+    text-shadow:
+      0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  20% {
+    text-shadow:
+      0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  40% {
+    text-shadow:
+      -0.02em 0 0 rgba(255, 0, 0, 0.75),
+      0.02em -0 0 rgba(0, 255, 255, 0.75);
+  }
+  60% {
+    text-shadow:
+      0.02em 0.01em 0 rgba(255, 0, 0, 0.75),
+      -0.02em -0.01em 0 rgba(0, 255, 255, 0.75);
+  }
+}
+
+h1:hover,
+h2:hover,
+.section-title:hover {
+  /* animation: glitch 0.3s infinite; */
+  text-shadow: none; /* Removed for readability */
+  color: var(--accent-color);
+}
+
+/* Glitch text class for animations */
+.glitch-text {
+  position: relative;
+  animation: glitchText 0.5s ease-in-out;
+}
+
+@keyframes glitchText {
+  0%, 100% {
+    text-shadow:
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 255, 0.75),
+      0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  14% {
+    text-shadow:
+      0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 255, 0.75),
+      0.025em 0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  15% {
+    text-shadow:
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+      -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  49% {
+    text-shadow:
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 255, 0.75),
+      -0.05em -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  50% {
+    text-shadow:
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 255, 0.75),
+      0 -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+  99% {
+    text-shadow:
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 255, 0.75),
+      0 -0.05em 0 rgba(255, 255, 0, 0.75);
+  }
+}
+
+/* Typing effect */
+.typing-text {
+  overflow: hidden;
+  border-right: 3px solid var(--matrix-green);
+  white-space: nowrap;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--matrix-green); }
+}
+
+/* Particle Effects */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--matrix-green);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 6px var(--matrix-green);
+  animation: particleFade 1s ease-out forwards;
+}
+
+@keyframes particleFade {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+.particle-burst {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--matrix-green);
+  box-shadow:
+    0 0 10px var(--matrix-green),
+    0 0 20px var(--matrix-green);
+  animation: burstParticle 0.8s ease-out forwards;
+}
+
+@keyframes burstParticle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Visual Sound Feedback */
+.sound-wave {
+  position: absolute;
+  border: 2px solid var(--matrix-green);
+  border-radius: 50%;
+  animation: soundWave 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes soundWave {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+/* Link Hover Effects */
+a:not(.btn):not(.button):not(.nav-link) {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size var(--hover-duration) var(--hover-timing);
+}
+
+a:not(.btn):not(.button):not(.nav-link):hover {
+  background-size: 100% 2px;
+  color: var(--accent-color);
+  text-shadow: none; /* Removed for readability */
+}
+
+/* Button Hover Effects */
+/* Note: Exclude .back-to-top-react which needs position: fixed */
+.btn,
+.button,
+button:not(.back-to-top-react),
+.btn-primary,
+.btn-secondary,
+.matrix-btn-primary,
+.matrix-btn,
+.btn-contact-us,
+.cta-button,
+[role="button"] {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover,
+.button:hover,
+button:not(.back-to-top-react):hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.matrix-btn-primary:hover,
+.matrix-btn:hover,
+.btn-contact-us:hover,
+.cta-button:hover,
+[role="button"]:hover {
+  transform: translateY(var(--hover-translate));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+}
+
+/* Pulse Animation */
+@keyframes matrixPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 5px rgba(0, 255, 0, 0.4);
+  }
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.matrix-btn-primary,
+.matrix-btn,
+.btn,
+button:not(.back-to-top-react) {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-btn-primary::before,
+.matrix-btn::before,
+.btn::before,
+button:not(.back-to-top-react)::before {
+  content: '';
+  position: absolute;
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(0, 255, 0, 0.3) 40%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: none;
+}
+
+.matrix-btn-primary:active::before,
+.matrix-btn:active::before,
+.btn:active::before,
+button:not(.back-to-top-react):active::before {
+  width: 300px;
+  height: 300px;
+  animation: ripple 0.6s ease-out;
+}
+
+/* Magnetic Cursor Effect */
+.matrix-btn-primary,
+.matrix-btn {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+}
+
+.matrix-btn-primary:hover,
+.matrix-btn:hover {
+  animation: matrixPulse 0.6s ease-in-out;
+  transform: var(--magnetic-transform, translateY(-2px));
+}
+
+/* Shine Effect for Buttons */
+.btn::after,
+.button::after,
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s ease;
+}
+
+.btn:hover::after,
+.button:hover::after,
+button:hover::after {
+  left: 100%;
+}
+
+/* Card Hover Effects */
+.card,
+.project-card,
+.github-card,
+.skill-card,
+.service-card,
+.grid-item {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 255, 0, 0.2);
+}
+
+.card:hover,
+.project-card:hover,
+.github-card:hover,
+.skill-card:hover,
+.service-card:hover,
+.grid-item:hover {
+  transform: translateY(var(--hover-translate)) scale(var(--hover-scale));
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent-color);
+}
+
+/* Image Hover Effects */
+img,
+.image-container,
+.project-image {
+  filter: brightness(0.9) contrast(1.1);
+  transform: scale(1);
+}
+
+img:hover,
+.image-container:hover,
+.project-image:hover {
+  filter: brightness(1.1) contrast(1.2);
+  transform: scale(1.05);
+}
+
+/* Navigation Hover Effects */
+.nav-link,
+nav a {
+  position: relative;
+  color: var(--matrix-green);
+}
+
+.nav-link::before,
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--matrix-green);
+  transition: width var(--hover-duration) var(--hover-timing);
+}
+
+.nav-link:hover::before,
+nav a:hover::before {
+  width: 100%;
+}
+
+.nav-link:hover,
+nav a:hover {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+/* Icon Hover Effects */
+.icon,
+.fa,
+.fab,
+.fas,
+.far,
+i[class*="fa-"] {
+  transition: all var(--hover-duration) var(--hover-timing);
+}
+
+.icon:hover,
+.fa:hover,
+.fab:hover,
+.fas:hover,
+.far:hover,
+i[class*="fa-"]:hover {
+  transform: scale(1.2);
+  color: var(--accent-color);
+  text-shadow: none;
+}
+
+/* Social Links Hover */
+.social-link,
+footer a {
+  display: inline-block;
+  transform: translateY(0);
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  color: var(--accent-color);
+  text-shadow: none;
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
+
+/* Input/Form Element Hover */
+input,
+textarea,
+select {
+  border-color: rgba(0, 255, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(0, 255, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--matrix-green);
+  box-shadow: var(--hover-glow-small);
+  outline: none;
+}
+
+/* Tab/Pill Hover Effects */
+.tab,
+.pill,
+.tag,
+.topic {
+  transform: translateY(0);
+  background-color: rgba(0, 255, 0, 0.1);
+  border-color: rgba(0, 255, 0, 0.3);
+}
+
+.tab:hover,
+.pill:hover,
+.tag:hover,
+.topic:hover {
+  transform: translateY(-2px);
+  background-color: rgba(0, 255, 0, 0.2);
+  border-color: var(--matrix-green);
+  box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
+}
+
+/* Table Row Hover */
+tr {
+  transition: background-color var(--hover-duration) var(--hover-timing);
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+/* Dropdown Hover */
+.dropdown-item {
+  transition: all var(--hover-duration) var(--hover-timing);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: var(--matrix-green);
+  padding-left: 1.5rem;
+}
+
+/* Special Hover Classes */
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+.hover-shrink:hover {
+  transform: scale(0.95);
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--hover-glow-large);
+}
+
+.hover-pulse:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+  }
+}
+
+/* Disable Hover on Touch Devices */
+@media (hover: none) {
+  * {
+    transition-duration: 0ms !important;
+  }
+
+  a:hover,
+  button:hover,
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Active States */
+button:not(.back-to-top-react):active,
+.btn:active,
+a:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Focus States for Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--matrix-green);
+  outline-offset: 2px;
+}
+
+/* Custom Cursor on Hover */
+.interactive:hover,
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
+/* Loading State Hover (Disabled) */
+.loading,
+[disabled],
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.loading:hover,
+[disabled]:hover,
+.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Timeline Item Hover */
+.timeline-item {
+  transition: all var(--hover-duration) var(--hover-timing);
+}
+
+.timeline-item:hover {
+  transform: scale(1.02);
+}
+
+.timeline-item:hover .timeline-content {
+  box-shadow: var(--hover-glow-medium);
+  border-color: var(--matrix-green);
+}
+
+/* Skill Item Hover */
+.skill-item {
+  display: inline-block;
+  transition: all var(--hover-duration) var(--hover-timing);
+}
+
+.skill-item:hover {
+  transform: translateY(-3px) scale(1.05);
+  color: var(--accent-color);
+  text-shadow: none;
+}
+
+/* Menu Item Hover */
+.menu-item:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+  border-left: 3px solid var(--matrix-green);
+  padding-left: 1rem;
+}
+
+/* Tooltip Trigger Hover */
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+/* Gallery Image Hover */
+.gallery-item {
+  overflow: hidden;
+}
+
+.gallery-item img {
+  transition: transform 0.5s var(--hover-timing);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Progress Bar Hover */
+.progress-bar:hover {
+  box-shadow: 0 0 15px currentColor;
+}
+
+/* Responsive Hover Adjustments */
+@media (max-width: 768px) {
+  /* Reduce hover effects on mobile */
+  .card:hover,
+  .project-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  button:hover,
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Print Media - Disable Hover */
+@media print {
+  * {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================================================
+   Layout Utilities
+   ========================================================================== */
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+    gap: var(--space-lg);
+}
+
+/* ==========================================================================
+   Position Utilities
+   ========================================================================== */
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+.z-10 { z-index: var(--z-10); }
+.z-20 { z-index: var(--z-20); }
+.z-30 { z-index: var(--z-30); }
+.z-50 { z-index: var(--z-50); }
+
+/* ==========================================================================
+   Responsive Utilities - Hide/Show at different breakpoints
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 768px) {
+    .hide-desktop { display: none !important; }
+    .show-desktop { display: block !important; }
+}
+
+@media (max-width: 480px) {
+    .hide-small { display: none !important; }
+}
+
+/* ==========================================================================
+   Icon and Link Utilities
+   ========================================================================== */
+
+.block-link {
+    display: block;
+}
+
+.small-icon {
+    font-size: 0.8em;
+}
+
+.icon-margin-left {
+    margin-left: 0.5rem;
+}
+
+/* ==========================================================================
+   Animation Utilities - Common animation patterns
+   ========================================================================== */
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn var(--duration-slow) var(--ease-in-out) forwards;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp var(--duration-slow) var(--ease-in-out) forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Matrix-specific Utilities
+   ========================================================================== */
+
+.matrix-text {
+    font-family: var(--font-primary);
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.matrix-border-glow {
+    border: 2px solid var(--matrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.matrix-pulse {
+    animation: matrixPulse 2s ease-in-out infinite;
+}
+
+@keyframes matrixPulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--matrix-green);
+    }
+    50% {
+        opacity: 0.7;
+        text-shadow: 0 0 20px var(--matrix-green);
+    }
+}
+
+/* ==========================================================================
+   Missing Utility Classes - High-Impact Pattern Consolidation
+   Identified by CSS analysis agents for maximum line reduction
+   ========================================================================== */
+
+/* Text Glow Utilities - Replace 51+ instances of text-shadow patterns */
+.text-glow-matrix {
+    text-shadow: 0 0 10px var(--matrix-green);
+}
+
+.text-glow-matrix-intense {
+    text-shadow: 0 0 20px var(--matrix-green);
+}
+
+.text-glow-matrix-triple {
+    text-shadow:
+        0 0 10px var(--matrix-green),
+        0 0 20px var(--matrix-green),
+        0 0 30px var(--matrix-green);
+}
+
+/* Margin Bottom Utilities - Replace 53+ instances */
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+/* Gap Utilities - Replace 46+ instances */
+.gap-1 { gap: 1rem; }
+.gap-2 { gap: 2rem; }
+.gap-3 { gap: 3rem; }
+.gap-half { gap: 0.5rem; }
+.gap-quarter { gap: 0.25rem; }
+
+/* Transform Utilities - Replace 42+ instances of hover lift effects */
+.transform-lift-sm {
+    transform: translateY(-2px);
+}
+
+.transform-lift-md {
+    transform: translateY(-5px);
+}
+
+.transform-lift-lg {
+    transform: translateY(-10px);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+}
+
+.hover-lift-md:hover {
+    transform: translateY(-5px);
+}
+
+/* Font Matrix Utility - Replace 45+ instances */
+.font-matrix {
+    font-family: var(--font-primary);
+}
+
+/* Matrix Background Utilities - Replace 21+ instances */
+.bg-matrix-07 {
+    background: rgba(0, 20, 0, 0.7);
+}
+
+.bg-matrix-08 {
+    background: rgba(0, 20, 0, 0.8);
+}
+
+.bg-matrix-09 {
+    background: rgba(0, 20, 0, 0.9);
+}
+
+.bg-matrix-dark {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+/* Flexbox Variations - Expand existing patterns */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-start {
+    display: flex;
+    align-items: flex-start;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Border Matrix Utilities */
+.border-matrix {
+    border: 1px solid var(--matrix-green);
+}
+
+.border-matrix-thin {
+    border: 1px solid var(--matrix-green);
+}
+
+.border-matrix-thick {
+    border: 2px solid var(--matrix-green);
+}
+
+/* Text Color Utilities */
+.text-matrix {
+    color: var(--matrix-green);
+}
+
+.text-matrix-bright {
+    color: var(--matrix-green-bright);
+}
+
+.text-muted-matrix {
+    color: rgba(0, 255, 0, 0.7);
+}
+
+/* Position Utilities */
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+/* Matrix Box Shadow Utilities */
+.shadow-matrix {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.shadow-matrix-md {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.shadow-matrix-lg {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.glow-matrix {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+}
+
+.glow-matrix-intense {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+}

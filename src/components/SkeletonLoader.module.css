@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Skeleton Loader Styles
+   ========================================================================== */
+
+/* Base skeleton styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Variants */
+.skeleton.text {
+  height: 1em;
+  margin-bottom: 0.5em;
+  border-radius: 2px;
+}
+
+.skeleton.rect {
+  border-radius: 8px;
+}
+
+.skeleton.circle {
+  border-radius: 50%;
+}
+
+.skeleton.card {
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Blog Card Skeleton */
+.blogCardSkeleton {
+  background: rgba(0, 20, 0, 0.3);
+  border: 1px solid rgba(0, 255, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.blogCardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blogCardMeta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Gallery Card Skeleton */
+.galleryCardSkeleton {
+  background: rgba(0, 20, 0, 0.3);
+  border: 1px solid rgba(0, 255, 0, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  min-height: 300px;
+}
+
+/* Image Skeleton */
+.imageSkeleton {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Theme-specific overrides */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(74, 158, 255, 0.05) 0%,
+    rgba(74, 158, 255, 0.1) 50%,
+    rgba(74, 158, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+}
+
+[data-theme="dark"] .blogCardSkeleton,
+[data-theme="dark"] .galleryCardSkeleton {
+  background: rgba(20, 20, 40, 0.3);
+  border-color: rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="matrix"] .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.05) 0%,
+    rgba(0, 255, 255, 0.1) 50%,
+    rgba(0, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+}
+
+[data-theme="matrix"] .blogCardSkeleton,
+[data-theme="matrix"] .galleryCardSkeleton {
+  background: rgba(0, 20, 0, 0.3);
+  border-color: rgba(0, 255, 255, 0.1);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.6;
+  }
+}

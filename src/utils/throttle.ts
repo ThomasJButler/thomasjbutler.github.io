@@ -1,19 +1,25 @@
 /**
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Performance optimisation utilities providing throttle, debounce,
+ *              and RAF-based throttling for event handler rate limiting.
+ */
+
+/**
  * Throttle function to limit the rate at which a function can fire
  * @param func Function to throttle
  * @param limit Time in ms to wait before allowing next execution
  * @returns Throttled function
  */
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
   let inThrottle: boolean = false;
-  let lastResult: ReturnType<T>;
 
-  return function (this: any, ...args: Parameters<T>): void {
+  return function (this: unknown, ...args: Parameters<T>): void {
     if (!inThrottle) {
-      lastResult = func.apply(this, args);
+      func.apply(this, args);
       inThrottle = true;
       
       setTimeout(() => {
@@ -30,14 +36,14 @@ export function throttle<T extends (...args: any[]) => any>(
  * @param immediate Execute on leading edge instead of trailing
  * @returns Debounced function
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number,
   immediate: boolean = false
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout | null = null;
 
-  return function (this: any, ...args: Parameters<T>): void {
+  return function (this: unknown, ...args: Parameters<T>): void {
     const later = () => {
       timeout = null;
       if (!immediate) func.apply(this, args);
@@ -57,13 +63,13 @@ export function debounce<T extends (...args: any[]) => any>(
  * @param func Function to throttle
  * @returns RAF throttled function
  */
-export function rafThrottle<T extends (...args: any[]) => any>(
+export function rafThrottle<T extends (...args: unknown[]) => unknown>(
   func: T
 ): (...args: Parameters<T>) => void {
   let rafId: number | null = null;
   let lastArgs: Parameters<T> | null = null;
 
-  const throttled = function (this: any, ...args: Parameters<T>): void {
+  const throttled = function (this: unknown, ...args: Parameters<T>): void {
     lastArgs = args;
 
     if (rafId === null) {
@@ -77,7 +83,7 @@ export function rafThrottle<T extends (...args: any[]) => any>(
   };
 
   // Add cancel method
-  (throttled as any).cancel = () => {
+  (throttled as ReturnType<typeof rafThrottle> & { cancel: () => void }).cancel = () => {
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;

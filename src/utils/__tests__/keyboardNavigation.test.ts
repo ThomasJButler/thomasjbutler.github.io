@@ -69,7 +69,6 @@ describe('keyboardNavigation', () => {
 
       const cleanup = trapFocus(modal);
       
-      const firstButton = modal.querySelector('.first') as HTMLElement;
       const lastButton = modal.querySelector('.last') as HTMLElement;
       
       // Simulate Tab on last element

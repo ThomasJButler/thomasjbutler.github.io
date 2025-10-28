@@ -1,24 +1,32 @@
 /**
- * BackToTop Component
- * Matrix-themed back-to-top button for React pages
- * Features smooth animations and accessibility support
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Matrix-themed back-to-top button using React Portal to bypass
+ *              transform context issues with position: fixed positioning
  */
 
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { animate } from 'animejs';
 import { useBackToTop } from '../hooks/useScrollDetection';
 
 interface BackToTopProps {
-  /** Scroll threshold to show button (default: 300) */
   threshold?: number;
-  /** Custom CSS class name */
   className?: string;
-  /** Show terminal-style animation text */
   showText?: boolean;
-  /** Enable Matrix scan line animation */
   enableScanLine?: boolean;
 }
 
+/**
+ * Animated back-to-top button with Matrix theming and accessibility support
+ * @param {Object} props
+ * @param {number} [props.threshold=300] - Scroll distance before button appears
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @param {boolean} [props.showText=true] - Display "TOP" label with terminal cursor
+ * @param {boolean} [props.enableScanLine=true] - Enable animated scan line effect
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BackToTop: React.FC<BackToTopProps> = ({
   threshold = 300,
   className = '',
@@ -27,22 +35,26 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const { scrollToTop } = useBackToTop(threshold);
+  useBackToTop(threshold);
 
-  // Handle scroll visibility
+  /**
+   * @constructs Initialises scroll listener with RAF throttling for performance
+   *             Uses cross-browser compatible scroll detection for Safari support
+   */
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
+          const scrollY = window.pageYOffset ||
+                         document.documentElement.scrollTop ||
+                         document.body.scrollTop ||
+                         window.scrollY ||
+                         0;
           const shouldShow = scrollY > threshold;
-          
-          if (shouldShow !== isVisible) {
-            setIsVisible(shouldShow);
-          }
-          
+
+          setIsVisible(shouldShow);
           ticking = false;
         });
         ticking = true;
@@ -50,44 +62,45 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Check initial state
-    handleScroll();
+    window.addEventListener('touchmove', handleScroll, { passive: true });
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [threshold, isVisible]);
+    const initialScroll = window.pageYOffset ||
+                         document.documentElement.scrollTop ||
+                         document.body.scrollTop ||
+                         window.scrollY ||
+                         0;
+    const initialShow = initialScroll > threshold;
+    setIsVisible(initialShow);
 
-  // Handle button click with animation
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+    };
+  }, [threshold]);
+
   const handleClick = () => {
     if (isAnimating) return;
 
     setIsAnimating(true);
 
-    // Pulse animation before scroll
     animate('.back-to-top-react', {
       scale: [1, 1.1, 1],
-      duration: 200,
+      duration: 150,
       ease: 'outQuad',
       complete: () => {
-        scrollToTop(true);
-        
-        // Reset animation state after scroll completes
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 1000);
+        window.scrollTo(0, 0);
+        setIsAnimating(false);
       }
     });
 
-    // Track interaction for analytics
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'back_to_top_click', {
+    if (typeof window !== 'undefined' && 'gtag' in window) {
+      (window as any).gtag('event', 'back_to_top_click', {
         event_category: 'navigation',
         event_label: 'react_component'
       });
     }
   };
 
-  // Handle keyboard interaction
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -95,13 +108,13 @@ export const BackToTop: React.FC<BackToTopProps> = ({
     }
   };
 
-  // Don't render if not visible
-  if (!isVisible) return null;
-
-  return (
+  // Portal ensures position: fixed works correctly outside transform contexts
+  // Visibility controlled via opacity/visibility rather than display or transform
+  const button = (
     <button
       className={`back-to-top-react ${className}`}
       onClick={handleClick}
+      onTouchEnd={handleClick}
       onKeyDown={handleKeyDown}
       aria-label="Scroll back to top"
       title="Back to top"
@@ -110,7 +123,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         position: 'fixed',
         bottom: '30px',
         right: '30px',
-        zIndex: 1000,
+        zIndex: 9999,
         width: '60px',
         height: '60px',
         background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 0, 0.05) 100%)',
@@ -118,6 +131,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         borderRadius: '50%',
         color: 'var(--matrix-green)',
         cursor: isAnimating ? 'wait' : 'pointer',
+        touchAction: 'manipulation',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -129,8 +143,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         textTransform: 'uppercase',
         opacity: isVisible ? 1 : 0,
         visibility: isVisible ? 'visible' : 'hidden',
-        transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
-        transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        transition: 'opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.4s',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
         boxShadow: `
@@ -143,7 +156,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         })
       }}
     >
-      {/* Matrix scan line effect */}
       {enableScanLine && (
         <span
           style={{
@@ -159,7 +171,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         />
       )}
 
-      {/* Matrix glow effect */}
       <span
         style={{
           position: 'absolute',
@@ -177,7 +188,6 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         className="glow-effect"
       />
 
-      {/* Button content */}
       <span
         style={{
           fontSize: '1.2rem',
@@ -211,8 +221,12 @@ export const BackToTop: React.FC<BackToTopProps> = ({
         </span>
       )}
 
-      {/* CSS-in-JS styles for animations */}
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{ __html: `
+        .back-to-top-react {
+          position: fixed !important;
+          top: auto !important;
+        }
+
         @keyframes matrixScan {
           0% { 
             transform: translateX(-100%) rotate(0deg); 
@@ -275,20 +289,14 @@ export const BackToTop: React.FC<BackToTopProps> = ({
 
         @media (max-width: 768px) {
           .back-to-top-react {
-            bottom: 20px !important;
-            right: 20px !important;
-            width: 50px !important;
-            height: 50px !important;
-            font-size: 0.6rem !important;
+            /* Inline styles already handle sizing, no need for !important */
+            font-size: 0.6rem;
           }
         }
 
         @media (max-width: 480px) {
           .back-to-top-react {
-            bottom: 15px !important;
-            right: 15px !important;
-            width: 45px !important;
-            height: 45px !important;
+            /* Inline styles already handle sizing */
           }
         }
 
@@ -327,7 +335,10 @@ export const BackToTop: React.FC<BackToTopProps> = ({
             box-shadow: 0 0 0 3px #00FF00 !important;
           }
         }
-      `}</style>
+      `}} />
     </button>
   );
+
+  // Render button as direct child of body using portal
+  return ReactDOM.createPortal(button, document.body);
 };

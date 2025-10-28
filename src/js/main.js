@@ -9,8 +9,8 @@ import gsap from 'gsap';
 import ScrollMagic from 'scrollmagic';
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 
-// Import scroll detection utility
-import '../utils/scrollDetection.ts';
+// Scroll detection is now handled by React components
+// See src/components/BackToTop.tsx and src/components/Header.tsx
 
 // Initialize ScrollMagic with GSAP
 ScrollMagicPluginGsap(ScrollMagic, gsap);

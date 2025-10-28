@@ -1,0 +1,1260 @@
+/* ==========================================================================
+   CONSOLIDATED RESPONSIVE STYLES
+   Extracted from all CSS files in the src/css directory
+   ========================================================================== */
+
+/* ==========================================================================
+   ACCESSIBILITY - REDUCED MOTION
+   From: themes.css, styles.css, global.css, utilities/_accessibility.css,
+         contact-modern.css, utilities/_performance.css, utilities/_animations.css
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Universal motion reduction */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY - HIGH CONTRAST
+   From: themes.css, utilities/_accessibility.css, contact-modern.css, typography.css
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: rgba(255, 255, 255, 0.5);
+    --text-secondary: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Stronger borders */
+  * {
+    border-width: 2px;
+  }
+
+  /* Typography improvements */
+  body {
+    color: #ffffff;
+    background-color: #000000;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    text-shadow: none;
+  }
+
+  /* Contact form high contrast */
+  .contact-info,
+  #contact-form {
+    border-width: 2px;
+    border-color: var(--matrix-green);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    border-bottom-width: 2px;
+  }
+
+  .btn-submit-modern {
+    border-width: 2px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY - DARK MODE PREFERENCE
+   From: themes.css, utilities/_accessibility.css
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Default to Dark theme for dark mode preference */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    color-scheme: dark;
+  }
+}
+
+/* ==========================================================================
+   TOUCH DEVICES - HOVER ADJUSTMENTS
+   From: utilities.css, contact-modern.css
+   ========================================================================== */
+
+@media (hover: none) {
+  * {
+    transition-duration: 0ms !important;
+  }
+
+  a:hover,
+  button:hover {
+    transform: none !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  /* Touch-friendly targets */
+  .info-card,
+  .availability-list li,
+  .coffee-button-premium,
+  .btn-submit-modern,
+  .form-group input,
+  .form-group textarea {
+    min-height: 44px;
+  }
+}
+
+/* ==========================================================================
+   LARGE DESKTOP (min-width: 1024px)
+   From: utilities/_spacing.css, base/_layout.css
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  /* Spacing utilities */
+  .section-padding-xl {
+    padding: var(--space-4xl) 0;
+  }
+
+  .container-xl {
+    padding-inline: var(--space-4xl);
+  }
+}
+
+/* ==========================================================================
+   DESKTOP (min-width: 992px)
+   From: contact-modern.css
+   ========================================================================== */
+
+@media (min-width: 992px) {
+  .contact-container {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(16, 20, 24, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: 20px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(0, 255, 0, 0.1);
+  }
+}
+
+/* ==========================================================================
+   MEDIUM DESKTOP (min-width: 769px)
+   From: blog.css, global.css, utilities/_helpers.css, utilities/_spacing.css
+   ========================================================================== */
+
+@media (min-width: 769px) {
+  /* Blog tags container always visible on desktop */
+  .tags-container {
+    display: flex !important;
+  }
+
+  .tags-container.collapsed-mobile {
+    display: flex !important;
+  }
+
+  /* Global utilities */
+  .desktop-hide { display: none; }
+  .desktop-show { display: block; }
+
+  /* Helper utilities */
+  .show-desktop-up { display: block !important; }
+
+  /* Spacing utilities */
+  .responsive-padding-lg {
+    padding: var(--space-3xl) var(--space-2xl);
+  }
+
+  .responsive-margin-lg {
+    margin: var(--space-3xl) 0;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Utilities */
+  .hide-desktop { display: none !important; }
+  .show-desktop { display: block !important; }
+
+  /* Spacing responsive */
+  .responsive-padding {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .responsive-margin {
+    margin: var(--space-2xl) 0;
+  }
+}
+
+/* ==========================================================================
+   LARGE SCREENS (max-width: 1200px)
+   From: contact-modern.css, navigation-guide.css
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  /* Contact modern responsive */
+  .contact-container {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  /* Navigation guide */
+  .navigation-guide {
+    padding: var(--space-lg);
+    border-radius: 12px;
+  }
+
+  .guide-header h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP TO TABLET (max-width: 1024px)
+   From: base/_layout.css
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .with-sidebar {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .sidebar {
+    order: -1;
+  }
+}
+
+/* ==========================================================================
+   TABLET LANDSCAPE (max-width: 991px)
+   From: contact-modern.css
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .contact-container {
+    padding: var(--space-xl) var(--space-lg);
+    max-width: 100%;
+  }
+
+  .contact-grid {
+    gap: var(--space-xl);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================================================
+   TABLET PORTRAIT (max-width: 768px)
+   From: Multiple files - most common breakpoint
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Layout adjustments */
+  main {
+    padding-top: 100px;
+  }
+
+  section {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  /* Blog page mobile layout */
+  .blog-page {
+    padding: 0 !important;
+  }
+
+  .blog-page .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  /* Typography responsive */
+  :root {
+    --font-size-base: clamp(0.9375rem, 0.9rem + 0.1875vw, 1rem);
+  }
+
+  .blog-title .matrix-text {
+    font-size: 2rem;
+  }
+
+  .blog-title .subtitle {
+    font-size: 1rem;
+  }
+
+  .blog-stats {
+    gap: 20px;
+  }
+
+  .blog-stats .stat-number {
+    font-size: 1.5rem;
+  }
+
+  /* Code blocks mobile optimization */
+  .code-block,
+  .article-content pre {
+    font-size: 13px;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 24px 0;
+    width: 100%;
+  }
+
+  /* Blog content mobile */
+  .article-content p {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .article-content h2 {
+    font-size: 1.6rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .article-content h3 {
+    font-size: 1.3rem;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Search Bar Mobile Fix */
+  .search-container {
+    width: 100%;
+    max-width: none;
+    margin-top: 0 !important;
+  }
+
+  .blog-search {
+    width: 100%;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Tags Container Mobile */
+  .tags-container {
+    padding: 0 1rem;
+  }
+
+  /* Only hide on mobile when collapsed */
+  .tags-container.collapsed-mobile {
+    display: none !important;
+  }
+
+  .tag-filters {
+    justify-content: center;
+    padding: 0;
+    gap: 8px;
+  }
+
+  .tag-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Blog Grid Mobile */
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  .blog-card {
+    margin: 0;
+  }
+
+  /* Blog Reader Mobile */
+  .blog-reader {
+    padding-top: 0;
+  }
+
+  /* Show mobile top bar, hide desktop reader header */
+  .mobile-top-bar {
+    display: flex !important; /* Override default display: none */
+  }
+
+  .blog-reader .reader-header {
+    display: none !important; /* Hide desktop header on mobile */
+  }
+
+  .reader-header-content {
+    display: none !important;
+  }
+
+  .back-button {
+    display: none !important;
+  }
+
+  .back-button span {
+    display: none;
+  }
+
+  .back-button i {
+    display: none;
+  }
+
+  .font-controls {
+    display: none !important; /* Hide desktop font controls on mobile */
+  }
+
+  .blog-article {
+    padding: 120px 0 40px; /* Extra padding top for mobile bar + header */
+    margin-top: 0;
+  }
+
+  .article-container {
+    padding: 0 1.25rem; /* Increased from 1rem for better spacing */
+    max-width: 100%;
+  }
+
+  .article-header {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .article-title {
+    font-size: 1.8rem; /* Increased for better readability with wrapping */
+    line-height: 1.4; /* Better line spacing for wrapped text */
+    margin-bottom: 24px;
+    padding: 0 1rem; /* More breathing room */
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; /* Ensure wrapping is allowed */
+  }
+
+  .article-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.9rem;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .article-meta span {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .article-meta i {
+    font-size: 0.85rem;
+  }
+
+  .article-tags {
+    justify-content: center;
+    padding: 0;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .article-tag {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .reading-position {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .article-content {
+    margin-block: 5rem;
+    font-size: 16px !important; /* Prevents iOS zoom */
+    padding: 1.5rem !important; /* Better padding for mobile */
+    line-height: 1.7;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .article-paragraph {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .article-paragraph:first-of-type::first-letter {
+    font-size: 2.5rem;
+    margin: 0 0.3rem 0 0;
+  }
+
+  /* Code blocks mobile */
+  .code-block {
+    padding: 16px;
+    font-size: 0.85rem;
+    margin: 20px -1rem;
+    border-radius: 0;
+  }
+
+  /* Share section mobile */
+  .article-footer {
+    padding: 20px 1rem;
+  }
+
+  .share-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .share-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .share-toast {
+    bottom: 30px; /* No bottom bar, so closer to bottom */
+    width: calc(100% - 2rem);
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+  }
+
+  /* Global utilities */
+  .mobile-hide { display: none; }
+  .mobile-show { display: block; }
+
+  /* Video banner */
+  .video-banner {
+    height: 200px;
+    margin: 1rem 0;
+  }
+
+  /* Contact form responsive */
+  #contact form {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  /* Introduction section */
+  #introduction {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  /* Video banner responsive */
+  .video-banner {
+    margin: var(--space-2xl) auto;
+    border-radius: 8px;
+  }
+
+  /* Introduction expertise grid */
+  .introduction-expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  /* About page qualifications */
+  .qualifications-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+  }
+
+  /* Navigation guide */
+  .navigation-guide {
+    padding: var(--space-md);
+    margin: var(--space-md);
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .guide-section h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Contact modern responsive */
+  .contact-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .contact-grid {
+    gap: var(--space-xl);
+    max-width: 100%;
+  }
+
+  .contact-info,
+  #contact-form {
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: 12px;
+  }
+
+  .contact-info h2,
+  .contact-form-wrapper h2 {
+    font-size: 1.5rem;
+  }
+
+  .coffee-button-premium {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 0.9rem;
+  }
+
+  .info-card,
+  .availability-list li {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9rem;
+  }
+
+  .form-group {
+    margin-bottom: var(--space-xl);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 1rem;
+    padding: var(--space-md) var(--space-xs) var(--space-md) var(--space-xl);
+    min-height: 48px;
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+  }
+
+  .btn-submit-modern {
+    padding: var(--space-md);
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+
+  /* Utilities */
+  .card:hover,
+  .project-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .hide-mobile { display: none !important; }
+
+  /* Skills icons responsive */
+  .skill-icon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  /* Helper utilities */
+  .hide-tablet { display: none !important; }
+
+  /* Spacing utilities */
+  .responsive-padding {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .responsive-margin {
+    margin: var(--space-lg) 0;
+  }
+
+  /* Mobile utility classes */
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .filter-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 2rem);
+    margin: 1rem auto;
+  }
+
+  .active-filters {
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .tags-select {
+    display: block;
+  }
+
+  .tags-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .blog-header {
+    display: none !important; /* Force hide on mobile - removes title and stats */
+  }
+
+  .blog-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tags-list {
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 40px 1rem;
+  }
+
+  .blog-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Enhanced Mobile Typography */
+  .article-content {
+    font-size: 16px; /* Prevents iOS zoom */
+    padding: 24px 16px; /* Better mobile padding */
+    line-height: 1.7;
+  }
+
+  /* Blog Controls Mobile Alignment */
+  .blog-controls {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Touch targets - minimum 48px */
+  .blog-controls button,
+  .tag-button,
+  .clear-filters {
+    min-height: 48px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+
+  .article-nav .nav-link {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .reader-header {
+    display: none;
+  }
+
+  .mobile-top-bar {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mobile-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 255, 0, 0.15);
+    border: 2px solid rgba(0, 255, 0, 0.5);
+    border-radius: 50%;
+    color: var(--matrix-green);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-back:active {
+    transform: scale(0.95);
+    background: rgba(0, 255, 0, 0.25);
+  }
+
+  .mobile-font-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 255, 0, 0.05);
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+  }
+
+  .mobile-font-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .mobile-font-controls span {
+    font-size: 0.85rem;
+    min-width: 40px;
+  }
+
+  .progress-indicator {
+    font-weight: 600;
+  }
+
+  .article-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .article-footer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .qualifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Performance optimizations */
+  .cpu-intensive-animation {
+    animation: none;
+  }
+
+  .complex-transform {
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding-top: 100px;
+  }
+}
+
+/* ==========================================================================
+   SMALL TABLET (max-width: 767px)
+   From: utilities.css, contact-modern.css
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none !important; }
+
+  /* Contact modern */
+  .contact-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .contact-grid {
+    gap: var(--space-xl);
+    max-width: 100%;
+  }
+
+  .contact-info,
+  #contact-form {
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: 12px;
+  }
+
+  .contact-info h2,
+  .contact-form-wrapper h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   LARGE MOBILE (max-width: 640px)
+   From: pages/services.css
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .service-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* ==========================================================================
+   MOBILE LANDSCAPE (max-width: 600px)
+   From: base/_layout.css, global.css
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding-inline: var(--space-sm);
+  }
+
+  .grid-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+/* ==========================================================================
+   TABLET TO MOBILE (max-width: 576px)
+   From: pages/homepage.css, pages/about.css
+   ========================================================================== */
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .timeline-item {
+    padding-left: var(--space-lg);
+  }
+}
+
+/* ==========================================================================
+   MOBILE PORTRAIT (max-width: 480px)
+   From: Multiple files - second most common mobile breakpoint
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  /* Typography adjustments */
+  h1 {
+    font-size: var(--font-size-3xl);
+    letter-spacing: normal;
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  /* Blog responsive */
+  .blog-page {
+    padding: 70px 0 50px;
+  }
+
+  .blog-title .matrix-text {
+    font-size: 1.5rem;
+  }
+
+  .blog-stats {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .blog-stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tag-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .article-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .article-title {
+    font-size: 1.5rem !important;  /* Slightly larger with better wrapping */
+    line-height: 1.4; /* Better line spacing */
+    padding: 1rem 0.75rem; /* More padding for readability */
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .article-meta {
+    gap: 12px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  .article-meta span {
+    font-size: 0.85rem;
+  }
+
+  .article-meta i {
+    font-size: 0.8rem;
+  }
+
+  .article-tag {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .article-h1 { font-size: 2rem; }
+  .article-h2 { font-size: 1.6rem; }
+  .article-h3 { font-size: 1.3rem; }
+  .article-h4 { font-size: 1.1rem; }
+
+  .mobile-top-bar {
+    padding: 10px 16px;
+  }
+
+  /* Layout adjustments */
+  section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  #introduction {
+    padding: var(--space-lg) var(--space-sm);
+  }
+  
+  /* Contact form */
+  #contact form {
+    padding: 1rem;
+  }
+
+  .btn-contact-us {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  /* Navigation guide */
+  .navigation-guide {
+    padding: var(--space-sm);
+    margin: var(--space-sm);
+  }
+
+  .guide-item {
+    padding: var(--space-xs);
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  /* Contact modern */
+  .contact-container {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .contact-info,
+  #contact-form {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .video-banner {
+    height: 150px;
+  }
+
+  /* Utilities */
+  .hide-small { display: none !important; }
+
+  /* Skills icons */
+  .skill-icon {
+    font-size: 0.9rem;
+    margin-right: 0.4rem;
+  }
+
+  /* Spacing utilities */
+  .responsive-padding-sm {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .responsive-margin-sm {
+    margin: var(--space-md) 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Additional screen-specific rules */
+  .hero-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+}
+
+/* ==========================================================================
+   SMALL MOBILE (max-width: 320px)
+   From: blog.css
+   ========================================================================== */
+
+@media (max-width: 320px) {
+  .blog-page {
+    padding: 80px 0 60px;
+  }
+
+  .blog-card {
+    padding: 20px;
+  }
+
+  .blog-card-title {
+    font-size: 1.2rem;
+  }
+
+  .article-container {
+    padding: 0 0.75rem; /* Increased from 12px for better spacing */
+  }
+
+  .article-header {
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .article-title {
+    font-size: 1.3rem; /* Balanced size for small screens */
+    line-height: 1.4; /* Better line spacing */
+    margin-bottom: 16px;
+    padding: 0 0.5rem; /* Better padding */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .article-meta {
+    gap: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+  }
+
+  .article-meta span {
+    font-size: 0.8rem;
+  }
+
+  .article-meta i {
+    font-size: 0.75rem;
+  }
+
+  .article-tag {
+    font-size: 0.75rem;
+    padding: 4px 9px;
+  }
+
+  .article-content h1 { font-size: 1.6rem; }
+  .article-content h2 { font-size: 1.3rem; }
+  .article-content h3 { font-size: 1.1rem; }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   From: Multiple files
+   ========================================================================== */
+
+@media print {
+  /* Universal print reset */
+  * {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Typography for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  /* Layout for print */
+  main {
+    padding-top: 0;
+  }
+
+  section {
+    page-break-inside: avoid;
+    padding: 10pt 0;
+  }
+
+  /* Hide non-essential elements */
+  .no-print,
+  nav,
+  footer,
+  .video-banner,
+  .coffee-steam,
+  .form-progress,
+  .contact-info::before,
+  #contact-form::before {
+    display: none !important;
+  }
+
+  /* Contact grid for print */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Print-friendly layout */
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Ensure black text */
+  p, li, td, th {
+    color: #000 !important;
+  }
+
+  /* Print page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Hide interactive elements */
+  button,
+  input[type="submit"],
+  .btn,
+  .interactive {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   LEGACY MEDIA QUERIES (for compatibility)
+   ========================================================================== */
+
+/* These maintain compatibility with existing responsive patterns */
+@media screen and (min-width: 700px) and (max-width: 992px) {
+  /* Tablet landscape specific styles if needed */
+  .tablet-landscape-only {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  /* Tablet portrait specific range */
+  .tablet-portrait-range {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   END OF CONSOLIDATED RESPONSIVE STYLES
+   ========================================================================== */

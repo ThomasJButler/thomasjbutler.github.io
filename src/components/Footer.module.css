@@ -1,225 +1,459 @@
+/* ========================================================================
+   Minimalistic Matrix Footer - Clean, Professional, Cool
+   ======================================================================== */
+
 .siteFooter {
-  background: linear-gradient(
-    to bottom,
-    var(--matrix-dark) 0%,
-    rgba(0, 0, 0, 0.98) 100%
-  );
-  border-top: 2px solid var(--border-primary);
-  padding: var(--space-3xl) var(--space-xl) var(--space-xl);
-  margin-top: var(--space-3xl);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid var(--matrix-green, #00ff00);
+  padding: 1rem 0;
+  margin-top: 1rem;
   position: relative;
-  z-index: var(--z-base);
   opacity: 0;
-  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Matrix scanline effect */
-.siteFooter::before {
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================================
+   Footer Container - Clean Horizontal Layout
+   ======================================================================== */
+
+.footerContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.socialSection,
+.linksSection {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.socialSection h3,
+.linksSection h3 {
+  font-family: var(--font-primary);
+  font-size: 0.65rem;
+  color: var(--matrix-green, #00ff00);
+  margin: 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+}
+
+/* Terminal symbols - // prefix for footer sections */
+.socialSection h3::before,
+.linksSection h3::before {
+  content: '// ';
+  color: var(--matrix-green);
+  opacity: 0.7;
+  font-family: monospace;
+  margin-right: 0.3rem;
+}
+
+.infoSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.infoSection p {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: rgba(0, 255, 0, 0.6);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* ========================================================================
+   Quick Links - Clean List Style
+   ======================================================================== */
+
+.footerLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footerLinks a {
+  color: rgba(0, 255, 0, 0.95); /* Increased opacity for visibility */
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  background: rgba(0, 20, 0, 0.5); /* Slightly more opaque */
+  border: 1px solid rgba(0, 255, 0, 0.5); /* More visible border */
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3); /* Subtle glow */
+}
+
+.footerLinks a::before {
+  display: none;
+}
+
+.footerLinks a:hover {
+  color: var(--matrix-green, #00ff00);
+  background: rgba(0, 40, 0, 0.8); /* More opaque on hover */
+  border-color: var(--matrix-green, #00ff00);
+  box-shadow:
+    0 0 20px rgba(0, 255, 0, 0.5), /* Stronger glow */
+    0 0 30px rgba(0, 255, 0, 0.3), /* Additional outer glow */
+    inset 0 0 15px rgba(0, 255, 0, 0.15); /* Stronger inner glow */
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Brighter text glow */
+  transform: translateY(-3px) scale(1.05); /* Slightly larger lift and scale */
+}
+
+
+/* ========================================================================
+   Social Links - Clean Icons with Text
+   ======================================================================== */
+
+.socialLinks {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(0, 255, 0, 0.7);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.socialLink i {
+  font-size: 1.25rem;
+  width: 20px;
+  text-align: center;
+}
+
+.socialLink span {
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+.socialLink:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.socialLink:hover i {
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Social icons without text */
+.socialLinks a {
+  color: rgba(0, 255, 0, 0.7);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.socialLinks a:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  transform: translateY(-3px) scale(1.1);
+}
+
+
+/* ========================================================================
+   Location Badge
+   ======================================================================== */
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  color: rgba(0, 255, 0, 0.6);
+  font-size: 0.65rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+
+.location:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+
+/* ========================================================================
+   Cool Minimalist Effects
+   ======================================================================== */
+
+/* Subtle matrix rain on footer hover - very subtle */
+.siteFooter:hover::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 255, 0, 0.03) 2px,
-    rgba(0, 255, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.footerContent {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
-}
-
-.footerSection h3 {
-  color: var(--matrix-green);
-  margin-bottom: var(--space-lg);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-h3);
-  text-shadow: var(--matrix-glow);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: var(--space-sm);
-}
-
-/* Underline effect for section headers */
-.footerSection h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
   height: 2px;
   background: linear-gradient(
     90deg,
-    var(--matrix-green) 0%,
-    transparent 100%
+    transparent,
+    var(--matrix-green, #00ff00),
+    transparent
   );
-  box-shadow: 0 0 10px var(--matrix-green);
+  animation: scan 3s linear infinite;
+  opacity: 0.5;
 }
 
-.socialLinks {
-  display: flex;
-  gap: var(--spacing-md);
+@keyframes scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
-.socialLinks a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.1) 0%,
-    rgba(0, 255, 0, 0.05) 100%
-  );
-  border: 1px solid var(--border-primary);
-  border-radius: 50%;
-  color: var(--matrix-green);
-  font-size: 1.3rem;
-  transition: all var(--duration-base) var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
 
-/* Pulse effect on hover */
-.socialLinks a::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 0, 0.4) 0%,
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-  transition: all var(--duration-slow) ease-out;
-}
+/* ========================================================================
+   Mobile Responsive Design
+   ======================================================================== */
 
-.socialLinks a:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.2) 0%,
-    rgba(0, 255, 0, 0.1) 100%
-  );
-  box-shadow: 
-    0 0 30px var(--matrix-green),
-    inset 0 0 15px rgba(0, 255, 0, 0.2);
-  color: var(--color-text-bright);
-  transform: translateY(-2px);
-}
+@media (max-width: 1024px) {
+  .footerContent {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-.socialLinks a:hover::before {
-  width: 100px;
-  height: 100px;
-}
-
-.footerLinks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footerLinks li {
-  margin-bottom: var(--spacing-xs);
-}
-
-.footerLinks a {
-  color: var(--color-text-dim);
-  text-decoration: none;
-  transition: all var(--duration-fast) ease;
-  position: relative;
-}
-
-.footerLinks a:hover {
-  color: var(--color-primary);
-  text-shadow: 0 0 10px var(--glow-primary);
-}
-
-.techStack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-}
-
-.techBadge {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.15) 0%,
-    rgba(0, 255, 0, 0.08) 100%
-  );
-  border: 1px solid var(--border-primary);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--border-radius-full);
-  font-size: var(--font-size-sm);
-  color: var(--matrix-green);
-  font-family: var(--font-primary);
-  letter-spacing: var(--letter-spacing-wide);
-  transition: all var(--duration-fast) var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
-
-.techBadge:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.25) 0%,
-    rgba(0, 255, 0, 0.15) 100%
-  );
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-  transform: translateY(-1px);
-}
-
-.footerBottom {
-  text-align: center;
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid rgba(0, 255, 0, 0.2);
-  color: var(--color-text-dim);
-}
-
-.footerBottom p {
-  margin: var(--spacing-xs) 0;
-}
-
-.location {
-  font-size: 0.9rem;
-}
-
-.location i {
-  margin-right: var(--spacing-xs);
+  .infoSection {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .siteFooter {
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    padding: 0.75rem 0;
+    margin-top: 1rem;
   }
 
   .footerContent {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .socialSection,
+  .linksSection {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     text-align: center;
+  }
+
+  .socialSection h3,
+  .linksSection h3 {
+    font-size: 0.6rem;
+  }
+
+  .footerLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .footerLinks a {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.4rem;
+    white-space: nowrap;
+    min-width: auto;
+    flex: 0 1 auto;
   }
 
   .socialLinks {
     justify-content: center;
+    gap: 1rem;
   }
 
-  .techStack {
-    justify-content: center;
+  .infoSection {
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
   }
+
+  .infoSection p {
+    font-size: 0.6rem;
+  }
+
+  .location {
+    font-size: 0.6rem;
+  }
+}
+
+/* ========================================================================
+   Dark Theme Override - Clean Professional Look
+   ======================================================================== */
+
+[data-theme="dark"] .siteFooter {
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(74, 158, 255, 0.5); /* Blue border in dark mode */
+}
+
+[data-theme="dark"] .socialSection h3,
+[data-theme="dark"] .linksSection h3 {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+[data-theme="dark"] .socialSection h3::before,
+[data-theme="dark"] .linksSection h3::before {
+  color: #FFFFFF !important; /* White // symbols */
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .footerLinks a {
+  color: #cccccc;
+}
+
+[data-theme="dark"] .footerLinks a::before {
+  content: '•';
+  color: #606060;
+}
+
+[data-theme="dark"] .footerLinks a:hover {
+  color: #ffffff;
+  text-shadow: none;
+  transform: translateX(5px);
+}
+
+[data-theme="dark"] .socialLinks a {
+  color: #cccccc;
+  border: 1px solid #404040;
+  background: transparent;
+}
+
+[data-theme="dark"] .socialLinks a:hover {
+  color: #40a040;
+  border-color: #40a040;
+  background: rgba(64, 160, 64, 0.1);
+  text-shadow: none;
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .infoSection p {
+  color: #999999;
+}
+
+[data-theme="dark"] .location {
+  color: #999999;
+}
+
+@media (max-width: 480px) {
+  .siteFooter {
+    padding: 0.5rem 0;
+  }
+
+  .footerContent {
+    padding: 0 0.8rem;
+    gap: 0.75rem;
+  }
+
+  .socialSection h3,
+  .linksSection h3 {
+    font-size: 0.55rem;
+  }
+
+  .footerLinks a {
+    font-size: 0.5rem;
+    padding: 0.2rem 0.3rem;
+    white-space: nowrap;
+  }
+
+  .socialLinks {
+    gap: 0.8rem;
+  }
+
+  .socialLinks a {
+    font-size: 0.75rem;
+  }
+
+  .infoSection p {
+    font-size: 0.55rem;
+  }
+
+  .location {
+    font-size: 0.55rem;
+  }
+}
+
+/* ========================================================================
+   Accessibility
+   ======================================================================== */
+
+.socialLink:focus-visible {
+  outline: 2px solid var(--matrix-green, #00ff00);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hardware acceleration */
+.siteFooter {
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }

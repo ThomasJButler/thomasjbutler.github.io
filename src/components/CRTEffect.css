@@ -1,0 +1,231 @@
+/* ==========================================================================
+   CRT Monitor Effect Component
+   ========================================================================== */
+
+.crt-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--matrix-dark);
+}
+
+/* ==========================================================================
+   Scanlines
+   ========================================================================== */
+
+.crt-scanline-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 0, 0.03) 2px,
+    rgba(0, 255, 0, 0.03) 4px
+  );
+  animation: scanline-movement 8s linear infinite;
+}
+
+@keyframes scanline-movement {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 10px;
+  }
+}
+
+/* Intensity variations */
+.crt-subtle .crt-scanline-overlay {
+  opacity: 0.05;
+}
+
+.crt-intense .crt-scanline-overlay {
+  opacity: 0.15;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 255, 0, 0.05) 1px,
+    rgba(0, 255, 0, 0.05) 3px
+  );
+}
+
+/* ==========================================================================
+   Phosphor Glow
+   ========================================================================== */
+
+.crt-phosphor-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 255, 0, 0.001) 40%,
+    rgba(0, 255, 0, 0.002) 100%
+  );
+}
+
+/* ==========================================================================
+   Screen Curve Effect
+   ========================================================================== */
+
+.crt-curve-overlay {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  right: -5%;
+  bottom: -5%;
+  border-radius: 50% / 10%;
+  box-shadow:
+    inset 0 0 120px rgba(0, 255, 0, 0.1),
+    inset 0 0 40px rgba(0, 255, 0, 0.05);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.crt-curve .crt-content {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Flicker Effect
+   ========================================================================== */
+
+.crt-flicker-enabled {
+  animation: crt-power-flicker 0.15s infinite;
+}
+
+@keyframes crt-power-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  92.5% {
+    opacity: 0.97;
+  }
+}
+
+.crt-flicker {
+  animation: crt-glitch 0.05s;
+}
+
+@keyframes crt-glitch {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.002) translateX(1px);
+  }
+}
+
+/* ==========================================================================
+   Screen Interference
+   ========================================================================== */
+
+.crt-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.01) 2px,
+      rgba(0, 255, 0, 0.01) 4px
+    );
+  pointer-events: none;
+  z-index: 1;
+  animation: interference 10s linear infinite;
+}
+
+@keyframes interference {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.02;
+  }
+}
+
+/* ==========================================================================
+   Content Container
+   ========================================================================== */
+
+.crt-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   Bad Signal Effect
+   ========================================================================== */
+
+.crt-bad-signal {
+  animation: bad-signal 2s linear infinite;
+}
+
+@keyframes bad-signal {
+  0%, 90%, 100% {
+    opacity: 1;
+    filter: saturate(1) brightness(1) contrast(1);
+  }
+  91% {
+    opacity: 0.8;
+    filter: saturate(0.7) brightness(1.2) contrast(0.8);
+  }
+  93% {
+    opacity: 0.9;
+    filter: saturate(1.3) brightness(0.9) contrast(1.1);
+  }
+  95% {
+    opacity: 0.7;
+    filter: saturate(0.5) brightness(1.1) contrast(0.9);
+  }
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .crt-scanline-overlay {
+    opacity: 0.05; /* Reduce effect on mobile for performance */
+  }
+
+  .crt-curve-overlay {
+    display: none; /* Disable curve on mobile */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-scanline-overlay,
+  .crt-container::before {
+    animation: none;
+  }
+
+  .crt-flicker-enabled {
+    animation: none;
+  }
+}

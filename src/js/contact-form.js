@@ -66,9 +66,9 @@ export class ContactForm {
                 
                 throw new Error(errorMessage);
             }
-        } catch (error) {
+        } catch {
             this.showError('Oops! There was a problem submitting your form. Please try again.');
-            
+
         } finally {
             this.isSubmitting = false;
             this.setLoadingState(false);
@@ -120,7 +120,7 @@ export class ContactForm {
             this.successMessage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             
             // Trigger reflow
-            this.successMessage.offsetHeight;
+            void this.successMessage.offsetHeight;
             
             // Animate in
             this.successMessage.style.opacity = '1';
@@ -146,7 +146,7 @@ export class ContactForm {
         this.form.insertBefore(errorDiv, this.submitButton);
         
         // Trigger reflow
-        errorDiv.offsetHeight;
+        void errorDiv.offsetHeight;
         
         // Animate in
         errorDiv.style.opacity = '1';
@@ -308,7 +308,7 @@ export class ContactForm {
         field.classList.add('error');
         
         // Trigger reflow
-        errorSpan.offsetHeight;
+        void errorSpan.offsetHeight;
         
         // Animate in
         errorSpan.style.opacity = '1';

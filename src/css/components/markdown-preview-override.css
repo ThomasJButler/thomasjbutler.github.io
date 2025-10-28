@@ -1,0 +1,322 @@
+/* ==========================================================================
+   MARKDOWN PREVIEW OVERRIDE STYLES
+   Custom styles for @uiw/react-markdown-preview to integrate with Matrix theme
+   ========================================================================== */
+
+/* Root markdown container - wmde-markdown is the library's default class */
+.wmde-markdown,
+.wmde-markdown-var {
+  background: transparent !important;
+  color: inherit !important;
+  font-family: inherit !important;
+}
+
+/* Override library's color scheme with our Matrix theme */
+.wmde-markdown * {
+  color: inherit;
+}
+
+/* Headings - maintain Matrix green theme */
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  color: rgba(0, 255, 0, 0.85) !important;
+  border: none !important;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+}
+
+.wmde-markdown h1 { font-size: 2.5rem; }
+.wmde-markdown h2 {
+  font-size: 2rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.2) !important;
+}
+.wmde-markdown h3 {
+  font-size: 1.6rem;
+  padding-left: 16px;
+  position: relative;
+}
+.wmde-markdown h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg,
+    rgba(0, 255, 0, 0.6) 0%,
+    rgba(0, 255, 0, 0.8) 50%,
+    rgba(0, 255, 0, 0.6) 100%
+  );
+}
+.wmde-markdown h4 { font-size: 1.3rem; }
+
+/* Paragraphs - white for readability */
+.wmde-markdown p {
+  color: #f8f8f2 !important;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 1.5em;
+}
+
+/* Lists */
+.wmde-markdown ul,
+.wmde-markdown ol {
+  color: #f8f8f2 !important;
+  margin: 1.5em 0;
+  padding-left: 2em;
+}
+
+.wmde-markdown li {
+  color: #f8f8f2 !important;
+  margin-bottom: 0.5em;
+  line-height: 1.7;
+}
+
+/* Links - Matrix green */
+.wmde-markdown a {
+  color: var(--matrix-green, #00ff00) !important;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.wmde-markdown a:hover {
+  color: #00ff00 !important;
+  border-bottom-color: #00ff00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+}
+
+/* Inline code - Dracula theme */
+.wmde-markdown code:not(pre code) {
+  background: #44475a !important;
+  color: #50fa7b !important;
+  padding: 3px 8px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid #6272a4;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Code blocks - Matrix theme with wider display */
+.wmde-markdown pre {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  border-radius: 8px;
+  padding: 20px 24px !important;
+  overflow-x: auto;
+  margin: 2em 0 !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(0, 255, 0, 0.1);
+}
+
+.wmde-markdown pre code {
+  background: none !important;
+  color: #00ff00 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 15px !important;
+  line-height: 1.6;
+  font-family: 'Courier New', Courier, monospace !important;
+  white-space: pre;
+  display: block;
+  text-shadow: 0 0 1px rgba(0, 255, 0, 0.5);
+}
+
+/* Custom scrollbar for code blocks */
+.wmde-markdown pre::-webkit-scrollbar {
+  height: 8px;
+  background: #44475a;
+  border-radius: 4px;
+}
+
+.wmde-markdown pre::-webkit-scrollbar-thumb {
+  background: #50fa7b;
+  border-radius: 4px;
+}
+
+.wmde-markdown pre::-webkit-scrollbar-thumb:hover {
+  background: #8be9fd;
+}
+
+/* Blockquotes */
+.wmde-markdown blockquote {
+  border-left: 4px solid rgba(0, 255, 0, 0.6) !important;
+  padding-left: 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(0, 255, 0, 0.02) !important;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.wmde-markdown blockquote p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Horizontal rules */
+.wmde-markdown hr {
+  border: none !important;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 255, 0, 0.3) 20%,
+    rgba(0, 255, 0, 0.6) 50%,
+    rgba(0, 255, 0, 0.3) 80%,
+    transparent 100%
+  );
+  margin: 3em 0;
+}
+
+/* Tables */
+.wmde-markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2em 0;
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  overflow-x: auto;
+  display: block;
+}
+
+.wmde-markdown thead {
+  background: rgba(0, 255, 0, 0.1) !important;
+}
+
+.wmde-markdown th {
+  background: rgba(0, 255, 0, 0.1) !important;
+  color: rgba(0, 255, 0, 0.9) !important;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  font-weight: 600;
+}
+
+.wmde-markdown td {
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 12px;
+  border: 1px solid rgba(0, 255, 0, 0.2) !important;
+}
+
+/* Images */
+.wmde-markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2em 0;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  display: block;
+}
+
+/* Strong and emphasis */
+.wmde-markdown strong {
+  color: rgba(0, 255, 0, 0.95) !important;
+  font-weight: 700;
+  text-shadow: 0 0 2px rgba(0, 255, 0, 0.3);
+}
+
+.wmde-markdown em {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-style: italic;
+}
+
+/* Task lists (if enabled) */
+.wmde-markdown input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--matrix-green, #00ff00);
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Reduce heading sizes for mobile */
+  .wmde-markdown h1 { font-size: 2rem; }
+  .wmde-markdown h2 { font-size: 1.6rem; }
+  .wmde-markdown h3 { font-size: 1.3rem; }
+  .wmde-markdown h4 { font-size: 1.1rem; }
+
+  /* Optimize paragraphs for mobile */
+  .wmde-markdown p {
+    font-size: 16px !important; /* Prevents iOS zoom */
+    line-height: 1.7;
+  }
+
+  /* Mobile code blocks - full bleed for maximum width */
+  .wmde-markdown pre {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+    border-radius: 0 !important;
+    padding: 16px !important;
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    box-sizing: border-box;
+  }
+
+  .wmde-markdown pre code {
+    font-size: 14px !important;
+  }
+
+  /* Mobile tables - enable horizontal scroll */
+  .wmde-markdown table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .wmde-markdown th,
+  .wmde-markdown td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Mobile images */
+  .wmde-markdown img {
+    margin: 1.5em -1rem;
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    border-radius: 0;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .wmde-markdown h1 { font-size: 2.2rem; }
+  .wmde-markdown h2 { font-size: 1.8rem; }
+  .wmde-markdown h3 { font-size: 1.5rem; }
+
+  .wmde-markdown p {
+    font-size: 17px;
+  }
+
+  .wmde-markdown pre code {
+    font-size: 14px !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .wmde-markdown h1 { font-size: 1.75rem; }
+  .wmde-markdown h2 { font-size: 1.5rem; }
+  .wmde-markdown h3 { font-size: 1.2rem; }
+
+  .wmde-markdown p {
+    font-size: 15px !important;
+  }
+
+  .wmde-markdown pre {
+    padding: 12px !important;
+  }
+
+  .wmde-markdown pre code {
+    font-size: 13px !important;
+  }
+}

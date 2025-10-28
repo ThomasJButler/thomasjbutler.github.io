@@ -1,239 +1,305 @@
-import React, { useEffect, useRef } from 'react';
-import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
-import { animate, stagger } from 'animejs';
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description About page showcasing programming journey, qualifications,
+ *              certifications, and expandable content sections
+ */
 
-interface SkillCategory {
-  title: string;
-  icon: string;
-  skills: string[];
-  color: string;
-}
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../css/about.css';
 
-const skillCategories: SkillCategory[] = [
-  {
-    title: 'Frontend Development',
-    icon: 'fa-code',
-    skills: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'CSS3/SASS', 'Tailwind CSS'],
-    color: '#00ff00'
-  },
-  {
-    title: 'Backend Development',
-    icon: 'fa-server',
-    skills: ['Node.js', 'Python', 'Express.js', 'FastAPI', 'PostgreSQL', 'MongoDB'],
-    color: '#00ffff'
-  },
-  {
-    title: 'AI & Machine Learning',
-    icon: 'fa-brain',
-    skills: ['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI API', 'Claude API', 'RAG Systems'],
-    color: '#ff00ff'
-  },
-  {
-    title: 'Cloud & DevOps',
-    icon: 'fa-cloud',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform', 'GitHub Actions'],
-    color: '#ffff00'
-  }
-];
-
-const timeline = [
-  {
-    year: '2020',
-    title: 'Started Web Development Journey',
-    description: 'Began learning HTML, CSS, and JavaScript. Built first portfolio website.',
-    icon: 'fa-rocket'
-  },
-  {
-    year: '2021',
-    title: 'Mastered Modern Frameworks',
-    description: 'Deep dive into React, Node.js, and full-stack development.',
-    icon: 'fa-layer-group'
-  },
-  {
-    year: '2022',
-    title: 'AI Integration Specialist',
-    description: 'Started integrating AI models into web applications. Worked with GPT-3 and early LLMs.',
-    icon: 'fa-robot'
-  },
-  {
-    year: '2023',
-    title: 'Founded AiTomatic',
-    description: 'Launched AI platform that streamlines workflows with 10+ integrated models.',
-    icon: 'fa-building'
-  },
-  {
-    year: '2024',
-    title: 'Open Source Contributor',
-    description: 'Active contributions to major open source projects and community involvement.',
-    icon: 'fa-code-branch'
-  }
-];
-
+/**
+ * About page component with expandable content and certification showcase
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const AboutPage: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const matrixAnim = useMatrixAnimation('fadeIn');
-  
-  useEffect(() => {
-    if (containerRef.current) {
-      matrixAnim.animateIn(containerRef.current);
-    }
-  }, [matrixAnim]);
-
-  useEffect(() => {
-    // Animate skills on mount
-    if (skillsRef.current) {
-      animate(skillsRef.current.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>, {
-        opacity: [0, 1],
-        translateY: [30, 0],
-        delay: stagger(100),
-        duration: 800,
-        ease: 'outQuad'
-      });
-    }
-
-    // Animate timeline
-    if (timelineRef.current) {
-      animate(timelineRef.current.querySelectorAll('.timeline-item') as NodeListOf<HTMLElement>, {
-        opacity: [0, 1],
-        translateX: function(el: any, i: number) {
-          return i % 2 === 0 ? [-50, 0] : [50, 0];
-        },
-        delay: stagger(150, {start: 300}),
-        duration: 1000,
-        ease: 'outQuad'
-      });
-    }
+  /**
+   * @constructs Scrolls page to top on mount
+   */
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const handleSkillHover = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    const icons = card.querySelectorAll('.skill-item');
-    
-    animate(icons as NodeListOf<HTMLElement>, {
-      scale: [1, 1.1],
-      duration: 300,
-      delay: stagger(50),
-      ease: 'outQuad'
-    });
-  };
-
-  const handleSkillLeave = (e: React.MouseEvent<HTMLElement>) => {
-    const card = e.currentTarget;
-    const icons = card.querySelectorAll('.skill-item');
-    
-    animate(icons as NodeListOf<HTMLElement>, {
-      scale: 1,
-      duration: 300,
-      ease: 'outQuad'
-    });
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
   };
 
   return (
-    <div ref={containerRef} className="about-section">
-      <div className="container">
-        <section className="about-intro">
-          <h1 className="about-title">About Me</h1>
-          <div className="about-content">
-            <div className="about-text">
-              <p className="lead">
-                I'm a full-stack developer with a passion for creating innovative web solutions 
-                that leverage the power of artificial intelligence.
-              </p>
-              <p>
-                With expertise spanning from responsive front-end interfaces to scalable backend 
-                architectures, I specialize in building modern web applications that push the 
-                boundaries of what's possible with today's technologies.
-              </p>
-              <p>
-                My journey in tech has been driven by curiosity and a desire to solve complex 
-                problems. From crafting pixel-perfect UIs to implementing sophisticated AI 
-                integrations, I bring a holistic approach to every project.
-              </p>
-            </div>
-            <div className="about-stats">
-              <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Projects Completed</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">4+</span>
-                <span className="stat-label">Years Experience</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number">10+</span>
-                <span className="stat-label">AI Models Integrated</span>
-              </div>
-            </div>
-          </div>
-        </section>
+    <div className="page-wrapper page-about">
+      {/* SECTION 1: Why I Love Programming - NOW FIRST */}
+      <section id="why-love-programming" className="about-section">
+        <div className="container">
+          <h2 className="section-title">Why I Love Programming</h2>
+          <div className="story-content">
+            <blockquote className="highlight-text">
+              Programming is not just a profession for me, it's a passion.
+              <br /> <br />
+              I love the ability to create something from absolutely nothing, to continuously learn and innovate, this drives me every day to improve.
+            </blockquote>
 
-        <section className="skills-section" ref={skillsRef}>
-          <h2 className="section-title">Technical Skills</h2>
-          <div className="skills-grid">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className="skill-card"
-                onMouseEnter={handleSkillHover}
-                onMouseLeave={handleSkillLeave}
-                style={{ '--skill-color': category.color } as React.CSSProperties}
+            {/* Read More button - shows when collapsed */}
+            {!isExpanded && (
+              <button
+                className="read-more-toggle"
+                onClick={toggleReadMore}
+                aria-expanded={isExpanded}
+                aria-label="Show more content"
               >
-                <div className="skill-header">
-                  <i className={`fas ${category.icon}`}></i>
-                  <h3>{category.title}</h3>
-                </div>
-                <div className="skill-list">
-                  {category.skills.map((skill, idx) => (
-                    <span key={idx} className="skill-item">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+                Read More
+                <i className="fas fa-chevron-down"></i>
+              </button>
+            )}
 
-        <section className="timeline-section" ref={timelineRef}>
-          <h2 className="section-title">My Journey</h2>
-          <div className="timeline">
-            {timeline.map((item, index) => (
-              <div key={index} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
-                <div className="timeline-content">
-                  <div className="timeline-icon">
-                    <i className={`fas ${item.icon}`}></i>
-                  </div>
-                  <div className="timeline-info">
-                    <span className="timeline-year">{item.year}</span>
-                    <h3 className="timeline-title">{item.title}</h3>
-                    <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <div className="timeline-line"></div>
-          </div>
-        </section>
+            {/* Expanded content with conditional Read Less buttons */}
+            {isExpanded && (
+              <div className="expanded-content">
+                {/* Mobile Read Less button (at top) */}
+                <button
+                  className="read-more-toggle mobile-read-less"
+                  onClick={toggleReadMore}
+                  aria-expanded={isExpanded}
+                  aria-label="Show less content"
+                >
+                  Read Less
+                  <i className="fas fa-chevron-up"></i>
+                </button>
 
-        <section className="cta-section">
-          <h2>Let's Build Something Amazing Together</h2>
-          <p>
-            Whether you need a cutting-edge web application, AI integration, or creative 
-            technical solutions, I'm here to help bring your vision to life.
-          </p>
-          <div className="cta-buttons">
-            <a href="/contact" className="btn-primary">
-              <span>Get In Touch</span>
-              <i className="fas fa-arrow-right"></i>
-            </a>
-            <a href="/projects" className="btn-secondary">
-              <span>View My Work</span>
+                <blockquote className="highlight-text">
+                  From a young age, I was always fascinated by technology and how things worked. This curiosity led me to explore various programming languages and frameworks. I quickly realised that programming was the perfect outlet for my creativity and problem solving skills.
+                  <br /> <br />
+                  Over the years, I have continued learning, fine tuned my skills and tried to stay on top of industry changes. I have gained experience in many different areas of software development, from networking, full-stack web development and cloud services, to AI and machine learning.
+                  <br /> <br />
+                  I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the endless boundaries of what is possible.
+                </blockquote>
+
+                {/* Desktop Read Less button (at bottom, centered) */}
+                <button
+                  className="read-more-toggle desktop-read-less"
+                  onClick={toggleReadMore}
+                  aria-expanded={isExpanded}
+                  aria-label="Show less content"
+                >
+                  Read Less
+                  <i className="fas fa-chevron-up"></i>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: My Programming Journey - with Timeline Button at Bottom */}
+      <section id="programming-journey" className="about-section">
+        <div className="container">
+          <h2 className="section-title">My Programming Journey</h2>
+          <div className="journey-grid">
+            <div className="journey-item">
+              <i className="fas fa-lightbulb"></i>
+              <h4>The Beginning</h4>
+              <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
+            </div>
+            <div className="journey-item">
               <i className="fas fa-code"></i>
-            </a>
+              <h4>Learning & Growth</h4>
+              <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-robot"></i>
+              <h4>AI Exploration</h4>
+              <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
+            </div>
           </div>
-        </section>
-      </div>
+
+          {/* EPIC TIMELINE BUTTON - AT BOTTOM OF JOURNEY SECTION */}
+          <div className="timeline-cta-section">
+            <Link to="/updates" className="epic-timeline-button">
+              <div className="button-glow"></div>
+              <div className="button-inner">
+                <div className="button-icon-wrapper">
+                  <i className="fas fa-timeline"></i>
+                  <div className="icon-pulse"></div>
+                </div>
+                <div className="button-content">
+                  <span className="button-title">View My Full Dev Timeline</span>
+                  <span className="button-subtitle">
+                    <i className="fas fa-calendar-alt"></i>
+                    25 Milestones  •  2000 - 2025
+                  </span>
+                </div>
+                <div className="button-arrow">
+                  <i className="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Qualifications & Certifications - NOW THIRD */}
+      <section id="continuous-learning" className="about-section qualifications-section">
+        <div className="container">
+          <h2 className="section-title">Qualifications & Certifications</h2>
+          <div className="learning-content">
+            <p className="highlight-text">
+              I believe in staying current with technology trends and continuously expanding my knowledge base.
+            </p>
+
+            {/* Matrix Timeline */}
+            <div className="matrix-timeline">
+              <div className="timeline-line"></div>
+
+              {/* Primary Tier - Major Certifications */}
+              <div className="qualifications-tier primary-tier">
+                <h3 className="tier-title">
+                  <span className="tier-glyph">◉</span>
+                  Primary Qualifications
+                  <span className="tier-glyph">◉</span>
+                </h3>
+
+                <div className="certification-matrix-grid">
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-graduation-cap"></i>
+                    </div>
+                    <span className="cert-name">Estio Level 4 Software Developer</span>
+                    <span className="cert-detail">Advanced Full-Stack Development • Completed 2024</span>
+                    <div className="achievement-glow primary-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-certificate"></i>
+                    </div>
+                    <span className="cert-name">City & Guilds Level 2 ICT Systems Support</span>
+                    <span className="cert-detail">Infrastructure Management • July 2025</span>
+                    <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow verify-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-robot"></i>
+                    </div>
+                    <span className="cert-name">Machine Learning & LLM Bootcamp</span>
+                    <span className="cert-detail">CodeCademy Certificate • September 2025</span>
+                    <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow ai-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-database"></i>
+                    </div>
+                    <span className="cert-name">Cisco Data Science Introduction</span>
+                    <span className="cert-detail">Data Analytics & AI/ML • April 2023</span>
+                    <a href="https://www.credly.com/badges/4167931a-2128-4e5a-b6a8-c2c0493325f6/linked_in_profile"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow cisco-glow"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Secondary Tier - Additional Certifications */}
+              <div className="qualifications-tier secondary-tier">
+                <h3 className="tier-title">
+                  <span className="tier-glyph">▣</span>
+                  Professional Certifications
+                  <span className="tier-glyph">▣</span>
+                </h3>
+
+                <div className="certification-matrix-grid">
+                  <div className="matrix-cert-item cloud">
+                    <div className="cert-icon">
+                      <i className="fab fa-aws"></i>
+                    </div>
+                    <span className="cert-name">AWS Qualified</span>
+                    <span className="cert-detail">Cloud Architecture & Serverless Computing</span>
+                    <div className="achievement-glow aws-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item cloud">
+                    <div className="cert-icon">
+                      <i className="fab fa-microsoft"></i>
+                    </div>
+                    <span className="cert-name">Azure Qualified</span>
+                    <span className="cert-detail">Cloud Infrastructure & DevOps</span>
+                    <div className="achievement-glow azure-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item network">
+                    <div className="cert-icon">
+                      <i className="fas fa-network-wired"></i>
+                    </div>
+                    <span className="cert-name">Cisco Qualified</span>
+                    <span className="cert-detail">Network Security & Data Analytics</span>
+                    <div className="achievement-glow cisco-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item cms">
+                    <div className="cert-icon">
+                      <i className="fas fa-hubspot"></i>
+                    </div>
+                    <span className="cert-name">HubSpot Qualified</span>
+                    <span className="cert-detail">CMS Development & Integration</span>
+                    <div className="achievement-glow hubspot-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item dev">
+                    <div className="cert-icon">
+                      <i className="fas fa-code"></i>
+                    </div>
+                    <span className="cert-name">Full Stack Engineer</span>
+                    <span className="cert-detail">CodeCademy Certificate</span>
+                    <div className="achievement-glow code-glow"></div>
+                  </div>
+
+                  <div className="matrix-cert-item data">
+                    <div className="cert-icon">
+                      <i className="fab fa-python"></i>
+                    </div>
+                    <span className="cert-name">Data Analysis with Python</span>
+                    <span className="cert-detail">Free Code Camp</span>
+                    <div className="achievement-glow python-glow"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* External Link */}
+              <div className="external-portfolio-link">
+                <a href="https://www.thomasjbutler.me/#education"
+                   target="_blank"
+                   rel="noopener"
+                   className="matrix-portal-btn">
+                  <div className="portal-ring"></div>
+                  <div className="portal-content">
+                    <span className="portal-text">ACCESS FULL EDUCATION MATRIX</span>
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
+                  <div className="portal-particles"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -48,18 +48,18 @@ header .container {
 }
 
 header h1 {
-    font-size: clamp(1.5rem, 1.3rem + 1vw, 1.75rem);
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem); /* Reduced from 1.5-1.75rem */
     margin: 0;
     font-weight: 400;
-    color: var(--matrix-green);
-    text-shadow: var(--matrix-glow);
-    transition: text-shadow var(--duration-base) ease;
+    color: var(--text-primary);
+    text-shadow: none;
+    transition: color var(--duration-base) ease;
     font-family: var(--font-primary);
     letter-spacing: var(--letter-spacing-wide);
 }
 
 header h1:hover {
-    text-shadow: var(--matrix-glow-intense);
+    color: var(--accent-color);
 }
 
 header h3 {
@@ -67,9 +67,9 @@ header h3 {
     margin: 0;
     opacity: 0.9;
     font-weight: 400;
-    color: var(--matrix-green);
+    color: var(--text-secondary);
     font-family: var(--font-primary);
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
+    text-shadow: none;
     letter-spacing: 0.05em;
 }
 

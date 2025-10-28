@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Matrix-themed loading spinner with progress bar support and
+ *              animated character rotation effects
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { animate, stagger } from 'animejs';
 import styles from './MatrixSpinner.module.css';
@@ -10,6 +17,17 @@ interface MatrixSpinnerProps {
   text?: string;
 }
 
+/**
+ * Animated loading spinner with Matrix character effects
+ * @param {Object} props
+ * @param {boolean} [props.isLoading=false] - Controls spinner visibility
+ * @param {string} [props.size='normal'] - Spinner size variant
+ * @param {boolean} [props.showProgress=false] - Display progress bar
+ * @param {number} [props.progress=0] - Progress percentage (0-100)
+ * @param {string} [props.text='Loading'] - Loading text label
+ * @return {JSX.Element | null}
+ * @constructor
+ */
 export const MatrixSpinner: React.FC<MatrixSpinnerProps> = ({ 
   isLoading = false,
   size = 'normal',
@@ -21,13 +39,12 @@ export const MatrixSpinner: React.FC<MatrixSpinnerProps> = ({
   const charsRef = useRef<HTMLSpanElement[]>([]);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * @listens isLoading - Initialises character animations when spinner becomes visible
+   */
   useEffect(() => {
     if (!isLoading || !spinnerRef.current) return;
 
-    // Matrix characters for the spinner
-    const matrixChars = '01アイウエオカキクケコ'.split('');
-    
-    // Animate spinner characters
     const charElements = charsRef.current.filter(Boolean);
     if (charElements.length > 0) {
       const animation = animate(charElements, {
@@ -40,7 +57,6 @@ export const MatrixSpinner: React.FC<MatrixSpinnerProps> = ({
         ease: 'inOutQuad'
       });
 
-      // Rotate the inner container
       const innerContainer = spinnerRef.current.querySelector(`.${styles.spinnerInner}`);
       if (innerContainer) {
         animate(innerContainer as HTMLElement, {
@@ -57,8 +73,10 @@ export const MatrixSpinner: React.FC<MatrixSpinnerProps> = ({
     }
   }, [isLoading]);
 
+  /**
+   * @listens progress, showProgress - Updates progress bar animation on value changes
+   */
   useEffect(() => {
-    // Animate progress bar
     if (showProgress && progressBarRef.current) {
       animate(progressBarRef.current, {
         scaleX: progress / 100,
@@ -120,12 +138,22 @@ export const MatrixSpinner: React.FC<MatrixSpinnerProps> = ({
   );
 };
 
-// Hook for easy spinner usage
+/**
+ * Custom hook for managing Matrix spinner state and controls
+ * @return {{
+ *   isLoading: boolean,
+ *   progress: number,
+ *   showSpinner: Function,
+ *   hideSpinner: Function,
+ *   updateProgress: Function,
+ *   SpinnerComponent: Function
+ * }}
+ */
 export const useMatrixSpinner = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
 
-  const showSpinner = (text?: string) => {
+  const showSpinner = (_text?: string) => {
     setIsLoading(true);
     setProgress(0);
   };

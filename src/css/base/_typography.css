@@ -1,7 +1,53 @@
 /* ==========================================================================
-   Typography System
-   Based on design_system.md - Matrix themed typography
+   Typography System - Consolidated
+   Based on design_system.md - Matrix themed typography with enhanced features
+   Consolidated from typography.css and base/_typography.css
    ========================================================================== */
+
+/* ==========================================================================
+   Google Fonts Import
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600&family=Share+Tech+Mono&display=swap');
+
+/* ==========================================================================
+   CSS Custom Properties - Enhanced Typography Scale
+   ========================================================================== */
+
+:root {
+  /* Font Families - Original working fonts */
+  --font-primary: 'Orbitron', sans-serif;
+  --font-body: 'Exo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-code: 'Share Tech Mono', 'Courier New', monospace;
+
+  /* Typography Scale - Fluid & Responsive */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-md: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --font-size-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --font-size-2xl: clamp(1.875rem, 1.65rem + 1.125vw, 2.5rem);
+  --font-size-3xl: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);
+  --font-size-4xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+
+  /* Line Heights for Optimal Readability */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+
+  /* Letter Spacing - Enhanced for Matrix Terminal Aesthetic */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0.02em; /* Increased from 0 for monospace */
+  --letter-spacing-wide: 0.08em; /* Increased from 0.025em for terminal look */
+  --letter-spacing-wider: 0.15em; /* Increased from 0.05em for headings */
+  --letter-spacing-widest: 0.2em; /* Increased from 0.1em for strong emphasis */
+
+  /* Maximum Content Width for Readability */
+  --content-width: 65ch;
+  --content-width-wide: 80ch;
+  --content-width-narrow: 50ch;
+}
 
 /* ==========================================================================
    Base Typography
@@ -10,81 +56,127 @@
 body {
     font-family: var(--font-body);
     font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
-    font-weight: 300;
+    line-height: 1.8; /* Increased from 1.75 - monospace needs more breathing room */
+    font-weight: 400; /* Increased from 300 for better readability */
     color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-normal);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1;
 }
 
 /* ==========================================================================
-   Headings - Matrix Terminal Style
+   Headings - Matrix Terminal Style with Enhanced Features
    ========================================================================== */
 
+/* All headings base - Matrix Terminal Style */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
-    font-weight: 300;
-    line-height: var(--line-height-tight);
-    color: var(--matrix-green);
-    text-shadow: var(--matrix-glow);
-    margin-bottom: var(--space-lg);
-    margin-top: var(--space-xl);
-    letter-spacing: var(--letter-spacing-wide);
+    font-weight: 600;
+    line-height: 1.2; /* Tighter for headings */
+    margin-top: 0;
+    margin-bottom: 1rem;
+    letter-spacing: var(--letter-spacing-wider); /* Wider spacing for terminal aesthetic */
+    text-transform: uppercase; /* Terminal/computer aesthetic */
+}
+
+/* Major headings (H1-H3) - White/Cyan for readability */
+h1, h2, h3 {
+    color: var(--text-primary); /* Uses white in both themes */
+    text-shadow: none; /* Remove glow for readability */
 }
 
 h1 {
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-4xl);
     text-align: center;
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(--letter-spacing-widest); /* Very wide for main titles */
+    margin-bottom: 1.5rem;
+    font-weight: 700; /* Bold for hierarchy */
 }
 
 h2 {
-    font-size: var(--font-size-h2);
+    font-size: var(--font-size-2xl);
     text-align: center;
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(--letter-spacing-wider); /* Wide for section titles */
+    margin-bottom: 1.25rem;
+    margin-top: 2rem;
+    font-weight: 600; /* Semi-bold for hierarchy */
 }
 
 h3 {
-    font-size: var(--font-size-h3);
-    letter-spacing: var(--letter-spacing-base);
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
+    font-size: var(--font-size-xl);
+    letter-spacing: var(--letter-spacing-wide); /* Wide for card titles */
+    font-family: var(--font-primary);
+    font-weight: 500; /* Medium for hierarchy */
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Subheadings (H4-H6) - Use text-primary for subtle green */
+h4, h5, h6 {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    text-shadow: var(--matrix-glow-soft);
 }
 
 h4 {
-    font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    font-size: var(--font-size-lg);
+    margin-bottom: 0.875rem;
+    margin-top: 1.25rem;
+    font-weight: 600;
 }
 
 h5 {
-    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    font-size: var(--font-size-md);
+    margin-bottom: 0.75rem;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 h6 {
     font-size: var(--font-size-base);
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    font-weight: 500;
 }
 
 /* ==========================================================================
-   Paragraphs
+   Paragraphs - Enhanced with Layout Fixes
    ========================================================================== */
 
 p {
     font-size: var(--font-size-base);
-    line-height: var(--line-height-relaxed);
-    letter-spacing: var(--letter-spacing-wide);
-    color: var(--text-primary);
-    margin-bottom: var(--space-md);
-    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    color: var(--text-base);  /* Using CCCCCC for maximum readability */
+    margin-bottom: 1.5rem;
+    max-width: var(--content-width);
     font-family: var(--font-body);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    text-rendering: optimizeLegibility;
+    /* Remove conflicting flex styles */
+    display: block !important;
+    flex-direction: unset !important;
+    flex-wrap: unset !important;
+    justify-content: unset !important;
+    text-align: left;
 }
 
-/* Optimal reading width */
+/* Optimal reading width for containers */
 .container > p,
-section p {
-    max-width: 65ch;
+section > p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center paragraphs in specific contexts */
+.text-center p,
+.center-content p,
+section > p:only-child {
     margin-left: auto;
     margin-right: auto;
 }
@@ -92,17 +184,19 @@ section p {
 /* Lead paragraph */
 .lead,
 p.lead {
-    font-size: clamp(1.125rem, 1rem + 0.75vw, 1.25rem);
+    font-size: var(--font-size-md);
+    line-height: 1.7;
     font-weight: 500;
-    color: var(--matrix-green);
+    color: var(--accent-color); /* Cyan in Matrix, Blue in Dark */
     letter-spacing: 0.03em;
-    line-height: var(--line-height-base);
+    margin-bottom: 2rem;
 }
 
 /* Small text */
 .small,
 p.small {
     font-size: var(--font-size-sm);
+    line-height: 1.6;
     color: var(--text-secondary);
 }
 
@@ -111,7 +205,7 @@ p.small {
    ========================================================================== */
 
 a {
-    color: var(--matrix-green);
+    color: var(--accent-color); /* Cyan in Matrix, Blue in Dark */
     text-decoration: underline;
     text-decoration-color: var(--border-primary);
     text-underline-offset: 2px;
@@ -119,49 +213,47 @@ a {
 }
 
 a:hover {
-    color: var(--matrix-cyan);
-    text-shadow: var(--matrix-glow);
-    text-decoration-color: var(--matrix-cyan);
+    color: var(--accent-hover);
+    text-shadow: none; /* Remove glow for readability */
+    text-decoration-color: var(--accent-hover);
 }
 
 a:active {
-    color: var(--matrix-cyan);
+    color: var(--matrix-green-bright);
     transform: translateY(1px);
 }
 
 /* ==========================================================================
-   Lists
+   Lists - Enhanced Spacing
    ========================================================================== */
 
 ul, ol {
-    margin-bottom: var(--space-md);
-    padding-left: var(--space-lg);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+    line-height: 1.8;
 }
 
 ul {
     list-style-type: none;
 }
 
-ul li::before {
-    content: "▸ ";
-    color: var(--matrix-green);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: 1em;
-}
-
 ol {
     list-style-type: decimal;
 }
 
-li {
-    margin-bottom: var(--space-sm);
-    line-height: var(--line-height-base);
+ul li, ol li {
+    margin-bottom: 0.5rem;
+    color: var(--text-base);  /* Readable grey for list items */
+    line-height: var(--line-height-normal);
+}
+
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* ==========================================================================
-   Code & Preformatted Text
+   Code & Preformatted Text - Enhanced Styling
    ========================================================================== */
 
 code,
@@ -169,43 +261,57 @@ kbd,
 samp,
 pre {
     font-family: var(--font-code);
-    font-size: 0.875em;
 }
 
 code {
-    background: var(--matrix-dark);
-    color: var(--matrix-green);
-    padding: 0.125em 0.375em;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-primary);
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background: var(--code-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
 }
 
 pre {
-    background: var(--matrix-dark);
-    color: var(--matrix-green);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-primary);
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     overflow-x: auto;
-    margin-bottom: var(--space-md);
+    line-height: 1.45;
 }
 
 pre code {
     background: none;
     padding: 0;
     border: none;
+    font-size: 0.875rem;
 }
 
 /* ==========================================================================
-   Blockquotes
+   Blockquotes - Enhanced with Pseudo-elements
    ========================================================================== */
 
 blockquote {
-    border-left: 4px solid var(--matrix-green);
-    padding-left: var(--space-lg);
-    margin: var(--space-lg) 0;
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--accent-color);
+    background: var(--code-bg);
     font-style: italic;
     color: var(--text-secondary);
+    position: relative;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    position: absolute;
+    top: -0.5rem;
+    left: 0.5rem;
+    color: var(--border-color);
+    font-family: Georgia, serif;
 }
 
 blockquote cite {
@@ -216,7 +322,137 @@ blockquote cite {
 }
 
 /* ==========================================================================
-   Text Utilities
+   Section-Specific Typography
+   ========================================================================== */
+
+.section-title {
+    font-size: var(--font-size-3xl);
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+/* Section Title Terminal Prefix */
+.welcome-text::before,
+.section-heading,
+.section-heading::before,
+.section-title::before,
+.skill-section-title::before,
+.nav-guide-title::before,
+.contact-info h2::before
+ {
+    content: '>';
+    color: var(--accent-color);
+    font-family: 'Courier New', monospace;
+    margin-right: 0.5rem;
+    text-shadow: inherit;
+    padding-top: 2px;
+}
+
+/* Ensure no unwanted pseudo-elements on section titles */
+.section-heading::after,
+.skill-section-title::after,
+.nav-guide-title::after {
+    content: none !important;
+}
+
+.section-description {
+    font-size: var(--font-size-md);
+    text-align: center;
+    color: var(--text-secondary);
+    max-width: var(--content-width-wide);
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+}
+
+/* Card Content Typography */
+.card-content p,
+.project-description,
+.repo-description {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: none; /* Allow cards to control width */
+}
+
+/* Skills and Tech Tags */
+.skill-item,
+.tech-tag,
+.topic {
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-wide);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Component Typography
+   ========================================================================== */
+
+/* Button Text */
+.btn,
+.button,
+button {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    letter-spacing: var(--letter-spacing-wider);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+/* Form Typography */
+label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+input,
+textarea,
+select {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    font-family: inherit;
+}
+
+/* Navigation Typography */
+nav a,
+.nav-link {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Footer Typography */
+footer {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+footer p {
+    max-width: none;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   Text Utilities - Comprehensive Set
    ========================================================================== */
 
 /* Text alignment */
@@ -246,8 +482,8 @@ blockquote cite {
 .text-muted { color: var(--text-muted); }
 .text-green { color: var(--matrix-green); }
 .text-cyan { color: var(--matrix-cyan); }
-.text-accent { color: var(--matrix-cyan); } /* Professional accent color */
-.text-warning { color: var(--matrix-red); } /* For warnings only */
+.text-accent { color: var(--matrix-cyan); }
+.text-warning { color: var(--matrix-red); }
 
 /* Professional text styles */
 .text-professional {
@@ -258,16 +494,152 @@ blockquote cite {
 }
 
 .text-emphasis {
-    color: var(--matrix-green);
+    color: var(--accent-color);
     font-weight: 500;
-    text-shadow: var(--matrix-glow);
+    text-shadow: none; /* Remove glow for readability */
 }
 
-/* Matrix glow text effect */
+/* Special Effects */
+.text-gradient {
+    background: linear-gradient(90deg, var(--accent-color), var(--matrix-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-glow {
+    text-shadow: 0 0 8px currentColor; /* Reduced glow */
+}
+
 .glow-text {
     text-shadow: var(--matrix-glow);
 }
 
 .glow-text-intense {
     text-shadow: var(--matrix-glow-intense);
+}
+
+.text-mono {
+    font-family: var(--font-primary);
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+/* ==========================================================================
+   Specific Content Areas - Layout Fixes
+   ========================================================================== */
+
+#introduction p,
+#about p,
+#services p,
+.about-text p,
+.service-description p {
+    text-align: center;
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   Responsive Typography
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Reduce font sizes slightly on mobile */
+    :root {
+        --font-size-base: clamp(0.9375rem, 0.9rem + 0.1875vw, 1rem);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        text-align: left;
+        margin-bottom: 1.25rem;
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .section-description {
+        font-size: var(--font-size-base);
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for small screens */
+    h1 {
+        font-size: var(--font-size-3xl);
+        letter-spacing: normal;
+    }
+
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-lg);
+    }
+
+    .welcome-text {
+        margin-top: 0 !important;
+        margin-bottom: -20px !important;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #000;
+        text-shadow: none;
+        page-break-after: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+/* ==========================================================================
+   Accessibility Features
+   ========================================================================== */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    body {
+        letter-spacing: 0.03em;
+        font-weight: 400;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+    }
+
+    p {
+        color: #00ff00;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }

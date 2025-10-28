@@ -342,6 +342,46 @@
     transition-delay: calc(var(--stagger-index, 0) * 100ms);
 }
 
+/* Initial states for animated elements */
+.gallery-card:not(.revealed) {
+    opacity: 0;
+    transform: translateY(50px) rotateX(-15deg);
+}
+
+/* Ensure gallery card pseudo-elements are also hidden during loading */
+.gallery-card:not(.revealed)::before {
+    opacity: 0 !important;
+    background: none !important;
+}
+
+/* Enable gradient hover effects only after reveal */
+.gallery-card.revealed::before {
+    background: none;
+    transition: all 0.3s ease;
+}
+
+.btn-professional:not(.animated),
+.matrix-btn-primary:not(.animated) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.introduction-img img:not(.animated) {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+}
+
+#introduction h2:not(.animated),
+.welcome-text:not(.animated) {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.introduction-expertise-card:not(.revealed) {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
 /* ==========================================================================
    Transition Utilities
    ========================================================================== */

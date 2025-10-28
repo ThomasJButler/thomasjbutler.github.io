@@ -1,14 +1,30 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Footer component with social links, quick navigation, and
+ *              intersection observer-based animation triggers
+ */
+
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import styles from './Footer.module.css';
 
+/**
+ * Site footer component with animated social links and navigation
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const Footer: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
   const socialLinksRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * @constructs Triggers animation when footer scrolls into viewport
+   *             Uses intersection observer to detect visibility at 20% threshold
+   */
   useEffect(() => {
-    // Animate footer on scroll into view
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -51,12 +67,12 @@ export const Footer: React.FC = () => {
   return (
     <footer ref={footerRef} className={styles.siteFooter}>
       <div className={styles.footerContent}>
-        <div className={styles.footerSection}>
+        <div className={styles.socialSection}>
           <h3>Connect With Me</h3>
           <div ref={socialLinksRef} className={styles.socialLinks}>
-            <a 
-              href="https://github.com/ThomasJButler" 
-              target="_blank" 
+            <a
+              href="https://github.com/ThomasJButler"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
               onMouseEnter={handleSocialHover}
@@ -64,9 +80,9 @@ export const Footer: React.FC = () => {
             >
               <i className="fab fa-github"></i>
             </a>
-            <a 
-              href="https://linkedin.com/in/thomas-j-butler" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/thomasbutleruk/"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
               onMouseEnter={handleSocialHover}
@@ -74,17 +90,17 @@ export const Footer: React.FC = () => {
             >
               <i className="fab fa-linkedin"></i>
             </a>
-            <a 
-              href="https://twitter.com/thomasjbutler" 
-              target="_blank" 
+            <a
+              href="https://codepen.io/thomasbutler"
+              target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="CodePen"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-codepen"></i>
             </a>
-            <a 
+            <a
               href="mailto:dev@thomasjbutler.me"
               aria-label="Email"
               onMouseEnter={handleSocialHover}
@@ -95,33 +111,21 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.footerSection}>
+        <div className={styles.linksSection}>
           <h3>Quick Links</h3>
-          <ul className={styles.footerLinks}>
-            <li><a href="/projects">Featured Projects</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Get in Touch</a></li>
-            <li><a href="https://aitomatic.co.uk/" target="_blank" rel="noopener noreferrer">AI Apps</a></li>
-          </ul>
-        </div>
-
-        <div className={styles.footerSection}>
-          <h3>Tech Stack</h3>
-          <div className={styles.techStack}>
-            <span className={styles.techBadge}>React</span>
-            <span className={styles.techBadge}>TypeScript</span>
-            <span className={styles.techBadge}>Node.js</span>
-            <span className={styles.techBadge}>Python</span>
-            <span className={styles.techBadge}>AI/ML</span>
+          <div className={styles.footerLinks}>
+            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a>
+            <Link to="/contact">Contact</Link>
+            <Link to="/sitemap">Sitemap</Link>
           </div>
         </div>
-      </div>
 
-      <div className={styles.footerBottom}>
-        <p>&copy; {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
-        <p className={styles.location}>
-          <i className="fas fa-map-marker-alt"></i> Liverpool, UK | Making technology more human
-        </p>
+        <div className={styles.infoSection}>
+          <p>&copy; {new Date().getFullYear()} Thomas J Butler. All rights reserved.</p>
+          <p className={styles.location}>
+            <i className="fas fa-map-marker-alt"></i> UK | Making technology more human
+          </p>
+        </div>
       </div>
     </footer>
   );
