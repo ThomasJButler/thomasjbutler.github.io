@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Individual blog post card with featured badge, metadata, tags,
+ *              and read time display
+ */
+
 import React from 'react';
 import { BlogPost } from '../utils/blogLoader';
 
@@ -5,6 +12,13 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
+/**
+ * Blog post preview card component
+ * @param {Object} props
+ * @param {BlogPost} props.post - Blog post data to display
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
     <article className="blog-card">

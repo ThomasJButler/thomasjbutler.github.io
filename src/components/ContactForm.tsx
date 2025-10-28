@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Contact form with validation, animated interactions, and
+ *              form submission handling with success/error states
+ */
+
 import React, { useState, useRef, useEffect } from 'react';
 import { animate } from 'animejs';
 import styles from './ContactForm.module.css';
@@ -14,6 +21,11 @@ interface FormErrors {
   message?: string;
 }
 
+/**
+ * Animated contact form with validation and submission handling
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -27,8 +39,10 @@ export const ContactForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRefs = useRef<(HTMLInputElement | HTMLTextAreaElement | null)[]>([]);
 
+  /**
+   * @constructs Initialises form entrance animation on mount
+   */
   useEffect(() => {
-    // Simple fade in on mount
     if (formRef.current) {
       animate(formRef.current, {
         opacity: [0, 1],
@@ -39,7 +53,6 @@ export const ContactForm: React.FC = () => {
   }, []);
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // Simple border color change on focus
     animate(e.target, {
       borderColor: '#00FF00',
       boxShadow: '0 0 10px rgba(0, 255, 0, 0.3)',
@@ -49,7 +62,6 @@ export const ContactForm: React.FC = () => {
   };
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // Revert border color on blur
     animate(e.target, {
       borderColor: 'rgba(0, 255, 0, 0.3)',
       boxShadow: '0 0 0 rgba(0, 255, 0, 0)',
@@ -88,16 +100,12 @@ export const ContactForm: React.FC = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', message: '' });
       
-      // Simple success state, no animation
-      
-      // Reset success state after 5 seconds
       setTimeout(() => setSubmitSuccess(false), 5000);
       
     } catch (error) {
@@ -111,7 +119,6 @@ export const ContactForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Clear error for this field
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
     }

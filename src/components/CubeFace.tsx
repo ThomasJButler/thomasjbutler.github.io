@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description 3D cube face component displaying project information with preview,
+ *              description, tags, and external links
+ */
+
 import React from 'react';
 
 interface CubeProject {
@@ -16,6 +23,14 @@ interface CubeFaceProps {
   project: CubeProject;
 }
 
+/**
+ * Individual face of 3D project showcase cube
+ * @param {Object} props
+ * @param {string} props.face - Cube face position identifier
+ * @param {CubeProject} props.project - Project data to display
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const CubeFace: React.FC<CubeFaceProps> = ({ face, project }) => {
   return (
     <div className={`cube-face ${face}`}>

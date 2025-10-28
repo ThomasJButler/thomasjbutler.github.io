@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description React error boundary for graceful error handling with fallback UI,
+ *              error logging, and retry functionality
+ */
+
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
@@ -12,6 +19,10 @@ interface State {
   errorInfo?: ErrorInfo;
 }
 
+/**
+ * Error boundary component that catches JavaScript errors in child components
+ * @constructor
+ */
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -21,7 +32,6 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI
     return {
       hasError: true,
       error
@@ -29,28 +39,19 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    // Log error details
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     
-    // Call the optional onError callback
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
     }
 
-    // Update state with error info
     this.setState({
       error,
       errorInfo
     });
 
-    // In production, you might want to send this to an error reporting service
     if (process.env.NODE_ENV === 'production') {
-      // Example: Send error to monitoring service
-      // analytics.track('Error Boundary Triggered', { 
-      //   error: error.message, 
-      //   stack: error.stack,
-      //   componentStack: errorInfo.componentStack 
-      // });
+      // Production error reporting integration point
     }
   }
 
@@ -64,12 +65,10 @@ class ErrorBoundary extends Component<Props, State> {
 
   render(): ReactNode {
     if (this.state.hasError) {
-      // Custom fallback UI or use the provided one
       if (this.props.fallback) {
         return this.props.fallback;
       }
 
-      // Default error UI
       return (
         <div className="error-boundary">
           <div className="error-boundary-content">

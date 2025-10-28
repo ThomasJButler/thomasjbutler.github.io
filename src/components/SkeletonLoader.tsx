@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Skeleton loading placeholders with multiple variants and
+ *              preset components for common loading states
+ */
+
 import React from 'react';
 import styles from './SkeletonLoader.module.css';
 
@@ -9,6 +16,17 @@ interface SkeletonLoaderProps {
   count?: number;
 }
 
+/**
+ * Configurable skeleton loading placeholder
+ * @param {Object} props
+ * @param {string} [props.variant='rect'] - Skeleton shape type
+ * @param {string} [props.width='100%'] - Width CSS value
+ * @param {string} [props.height='20px'] - Height CSS value
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @param {number} [props.count=1] - Number of skeleton elements to render
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   variant = 'rect',
   width = '100%',
@@ -39,7 +57,11 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   );
 };
 
-// Preset skeleton for blog cards
+/**
+ * Preset skeleton for blog card loading state
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BlogCardSkeleton: React.FC = () => (
   <div className={styles.blogCardSkeleton}>
     <SkeletonLoader variant="rect" height="200px" />
@@ -54,7 +76,11 @@ export const BlogCardSkeleton: React.FC = () => (
   </div>
 );
 
-// Preset skeleton for gallery cards
+/**
+ * Preset skeleton for gallery card loading state
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const GalleryCardSkeleton: React.FC = () => (
   <div className={styles.galleryCardSkeleton}>
     <SkeletonLoader variant="circle" width="60px" height="60px" />
@@ -64,7 +90,13 @@ export const GalleryCardSkeleton: React.FC = () => (
   </div>
 );
 
-// Preset skeleton for image placeholders
+/**
+ * Preset skeleton for image loading placeholder
+ * @param {Object} props
+ * @param {string} [props.aspectRatio='16/9'] - Image aspect ratio
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ImageSkeleton: React.FC<{ aspectRatio?: string }> = ({
   aspectRatio = '16/9'
 }) => (

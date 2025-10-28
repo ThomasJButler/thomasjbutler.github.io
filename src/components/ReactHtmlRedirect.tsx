@@ -1,23 +1,35 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Redirect handler for transitioning from static HTML pages to React routes
+ *              using hash fragments and query parameters
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+/**
+ * Silent redirect component for HTML to React route transitions
+ * @return {null}
+ * @constructor
+ */
 export const ReactHtmlRedirect: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const hasNavigated = useRef(false);
 
+  /**
+   * @constructs Processes redirect from hash or query parameters on initial mount
+   *             Prevents duplicate navigation with ref guard
+   */
   useEffect(() => {
-    // Only process redirect once
     if (hasNavigated.current) return;
     
-    // Check for hash-based redirect (e.g., #blog or #/blog/slug)
     const hash = window.location.hash.replace('#', '');
     
-    // Also check for query parameter redirect
     const searchParams = new URLSearchParams(location.search);
     const redirect = searchParams.get('redirect') || hash;
     
-    // Check if we're on react.html path and need to redirect
     const isReactHtml = window.location.pathname.includes('react.html');
     
     if ((redirect || isReactHtml) && !hasNavigated.current) {
@@ -26,11 +38,9 @@ export const ReactHtmlRedirect: React.FC = () => {
       let route = '/';
       
       if (redirect) {
-        // Handle full path redirects (e.g., "/blog/slug")
         if (redirect.startsWith('/')) {
           route = redirect;
         } else {
-          // Map simple redirect values to routes
           const routeMap: Record<string, string> = {
             'blog': '/blog',
             'about': '/about',
@@ -44,10 +54,8 @@ export const ReactHtmlRedirect: React.FC = () => {
         }
       }
       
-      // Clear the hash and navigate to the route using React Router
       window.location.hash = '';
       
-      // Use React Router's navigate function for SPA navigation
       navigate(route, { replace: true });
       return;
     }

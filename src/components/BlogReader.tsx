@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Full blog post reader with reading progress tracking, social sharing,
+ *              markdown rendering, and keyboard navigation shortcuts
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { animate } from 'animejs';
@@ -5,12 +12,16 @@ import ReactMarkdown from 'react-markdown';
 import { loadBlogPost, BlogPost } from '../utils/blogLoader';
 import '../css/components/markdown-preview-override.css';
 
-// Helper function to format date from YYYY-MM-DD to DD/MM/YYYY
 const formatDate = (dateStr: string): string => {
   const [year, month, day] = dateStr.split('-');
   return `${day}/${month}/${year}`;
 };
 
+/**
+ * Blog post reader with progress tracking and sharing capabilities
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BlogReader: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -22,7 +33,9 @@ export const BlogReader: React.FC = () => {
   const [shareMessage, setShareMessage] = useState('');
   const articleRef = useRef<HTMLElement>(null);
 
-  // Load blog post
+  /**
+   * @listens slug - Loads blog post content when slug parameter changes
+   */
   useEffect(() => {
     const loadPost = async () => {
       if (!slug) {
@@ -39,10 +52,6 @@ export const BlogReader: React.FC = () => {
         
         if (loadedPost) {
           setPost(loadedPost);
-          console.log('Loading blog post:', loadedPost.title);
-          console.log('Raw content length:', loadedPost.content.length);
-          
-          // Content will be rendered directly by ReactMarkdown
         } else {
           setError('Blog post not found');
         }
@@ -57,7 +66,9 @@ export const BlogReader: React.FC = () => {
     loadPost();
   }, [slug, navigate]);
 
-  // Animate on mount
+  /**
+   * @listens loading - Triggers entrance animation after content loads
+   */
   useEffect(() => {
     if (!loading && articleRef.current) {
       animate(articleRef.current, {
@@ -69,7 +80,9 @@ export const BlogReader: React.FC = () => {
     }
   }, [loading]);
 
-  // Track reading progress with throttling
+  /**
+   * @constructs Initialises scroll progress tracking with RAF throttling for performance
+   */
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -89,6 +102,7 @@ export const BlogReader: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const shareArticle = async (platform: string) => {
     if (!post) return;
     
@@ -103,7 +117,7 @@ export const BlogReader: React.FC = () => {
           setShareMessage('Link copied to clipboard!');
           setShowShareToast(true);
           setTimeout(() => setShowShareToast(false), 3000);
-        } catch (err) {
+        } catch {
           setShareMessage('Failed to copy link');
           setShowShareToast(true);
           setTimeout(() => setShowShareToast(false), 3000);
@@ -163,12 +177,11 @@ export const BlogReader: React.FC = () => {
   }
 
   if (!post) {
-    return null; // Still loading
+    return null;
   }
 
   return (
     <div className="blog-reader" onKeyDown={handleKeyPress}>
-      {/* Reading progress bar */}
       <div className="reading-progress-bar" role="progressbar" aria-valuenow={readingProgress} aria-valuemin={0} aria-valuemax={100}>
         <div 
           className="reading-progress-fill" 
@@ -177,7 +190,6 @@ export const BlogReader: React.FC = () => {
         <div className="progress-glow" style={{ width: `${readingProgress}%` }} />
       </div>
 
-      {/* Mobile top bar - moved from bottom */}
       <div className="mobile-top-bar">
         <Link to="/blog" className="mobile-back">
           <i className="fas fa-arrow-left"></i>
@@ -188,7 +200,6 @@ export const BlogReader: React.FC = () => {
         </div>
       </div>
 
-      {/* Reader header */}
       <header className="reader-header">
         <div className="reader-header-content">
           <Link to="/blog" className="back-button">
@@ -198,7 +209,6 @@ export const BlogReader: React.FC = () => {
         </div>
       </header>
 
-      {/* Article content */}
       <article ref={articleRef} className="blog-article">
         <div className="article-container">
           <header className="article-header">
@@ -226,13 +236,12 @@ export const BlogReader: React.FC = () => {
             <div className="blog-markdown-content">
               <ReactMarkdown
                 components={{
-                  // Custom renderers for better styling
-                  h1: ({node, ...props}) => <h1 style={{marginTop: '2em', marginBottom: '1em'}} {...props} />,
-                  h2: ({node, ...props}) => <h2 style={{marginTop: '1.5em', marginBottom: '0.75em'}} {...props} />,
-                  h3: ({node, ...props}) => <h3 style={{marginTop: '1.25em', marginBottom: '0.5em'}} {...props} />,
-                  p: ({node, ...props}) => <p style={{marginBottom: '1em', lineHeight: 'inherit'}} {...props} />,
-                  code: ({node, inline, ...props}) =>
-                    inline
+                  h1: ({...props}) => <h1 style={{marginTop: '2em', marginBottom: '1em'}} {...props} />,
+                  h2: ({...props}) => <h2 style={{marginTop: '1.5em', marginBottom: '0.75em'}} {...props} />,
+                  h3: ({...props}) => <h3 style={{marginTop: '1.25em', marginBottom: '0.5em'}} {...props} />,
+                  p: ({...props}) => <p style={{marginBottom: '1em', lineHeight: 'inherit'}} {...props} />,
+                  code: ({...props}: any) =>
+                    props.inline
                       ? <code style={{background: 'rgba(0,255,0,0.1)', padding: '0.2em 0.4em', borderRadius: '3px'}} {...props} />
                       : <code style={{display: 'block', background: 'rgba(0,20,0,0.5)', padding: '1em', borderRadius: '8px', overflow: 'auto'}} {...props} />,
                 }}
@@ -291,8 +300,6 @@ export const BlogReader: React.FC = () => {
         </div>
       </article>
 
-
-      {/* Share Toast Notification */}
       {showShareToast && (
         <div className="share-toast">
           <i className="fas fa-check-circle"></i>
