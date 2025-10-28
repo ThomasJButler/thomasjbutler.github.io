@@ -1,18 +1,27 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Custom hook for card animations including scroll reveals, hover effects,
+ *              and entrance animations with intersection observer integration
+ */
+
 import { useEffect, useRef } from 'react';
 import { animate, stagger } from 'animejs';
 
 /**
- * Hook for animating cards with scroll, hover, and load effects
- * Converted from card-animations.js to React patterns
+ * Manages card animations across the application
+ * @return {{ triggerAnimations: Function }}
  */
 export const useCardAnimations = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const hoverAnimationsRef = useRef<Map<HTMLElement, ReturnType<typeof animate>>>(new Map());
 
+  /**
+   * @constructs Initialises card animations including load reveals, scroll triggers,
+   *             and hover effects with performance optimisation
+   */
   useEffect(() => {
-    // Initial card reveal animation
     const animateCardsOnLoad = () => {
-      // Expertise cards animation
       const expertiseCards = document.querySelectorAll('.introduction-expertise-card');
       if (expertiseCards.length > 0) {
         animate(Array.from(expertiseCards) as HTMLElement[], {
@@ -24,7 +33,6 @@ export const useCardAnimations = () => {
         });
       }
 
-      // Project cards animation
       const projectCards = document.querySelectorAll('.project-card, .matrix-project-card');
       if (projectCards.length > 0) {
         animate(Array.from(projectCards) as HTMLElement[], {
@@ -37,7 +45,6 @@ export const useCardAnimations = () => {
       }
     };
 
-    // Scroll-triggered animations
     const setupScrollAnimations = () => {
       const observerOptions = {
         threshold: 0.1,
@@ -49,7 +56,6 @@ export const useCardAnimations = () => {
           if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
             entry.target.classList.add('animated');
 
-            // Animate the card
             animate(entry.target as HTMLElement, {
               translateY: [20, 0],
               opacity: [0, 1],
@@ -58,7 +64,6 @@ export const useCardAnimations = () => {
               easing: 'easeOutQuad'
             });
 
-            // Animate child elements (tags)
             const tags = entry.target.querySelectorAll('.introduction-expertise-tags span, .project-tags span');
             if (tags.length > 0) {
               animate(Array.from(tags) as HTMLElement[], {
@@ -73,7 +78,6 @@ export const useCardAnimations = () => {
         });
       }, observerOptions);
 
-      // Observe all cards
       const allCards = document.querySelectorAll(
         '.introduction-expertise-card, .project-card, .matrix-project-card'
       );
@@ -82,7 +86,6 @@ export const useCardAnimations = () => {
       });
     };
 
-    // Hover animations
     const setupHoverAnimations = () => {
       const cards = document.querySelectorAll(
         '.introduction-expertise-card, .project-card, .matrix-project-card'
@@ -92,7 +95,6 @@ export const useCardAnimations = () => {
         const cardElement = card as HTMLElement;
 
         const handleMouseEnter = () => {
-          // Cancel any running animation
           const existingAnimation = hoverAnimationsRef.current.get(cardElement);
           if (existingAnimation) existingAnimation.pause();
 
@@ -105,7 +107,6 @@ export const useCardAnimations = () => {
 
           hoverAnimationsRef.current.set(cardElement, hoverAnimation);
 
-          // Glow effect
           animate(cardElement, {
             boxShadow: [
               '0 4px 15px rgba(0, 255, 0, 0.2)',
@@ -117,7 +118,6 @@ export const useCardAnimations = () => {
         };
 
         const handleMouseLeave = () => {
-          // Cancel any running animation
           const existingAnimation = hoverAnimationsRef.current.get(cardElement);
           if (existingAnimation) existingAnimation.pause();
 
@@ -130,7 +130,6 @@ export const useCardAnimations = () => {
 
           hoverAnimationsRef.current.set(cardElement, leaveAnimation);
 
-          // Remove glow
           animate(cardElement, {
             boxShadow: '0 4px 15px rgba(0, 255, 0, 0.2)',
             duration: 300,
@@ -143,7 +142,6 @@ export const useCardAnimations = () => {
       });
     };
 
-    // Performance optimization
     const optimizeCardPerformance = () => {
       const cards = document.querySelectorAll(
         '.introduction-expertise-card, .project-card, .matrix-project-card'
@@ -153,14 +151,12 @@ export const useCardAnimations = () => {
         const cardElement = card as HTMLElement;
         cardElement.style.willChange = 'transform, opacity';
 
-        // Remove will-change after animations complete
         setTimeout(() => {
           cardElement.style.willChange = 'auto';
         }, 2000);
       });
     };
 
-    // Small delay to ensure DOM is ready
     const initTimeout = setTimeout(() => {
       animateCardsOnLoad();
       setupScrollAnimations();
@@ -168,28 +164,21 @@ export const useCardAnimations = () => {
       optimizeCardPerformance();
     }, 100);
 
-    // Cleanup
     return () => {
       clearTimeout(initTimeout);
 
-      // Disconnect observer
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
 
-      // Clean up hover animations - capture current value
       const currentAnimations = hoverAnimationsRef.current;
       currentAnimations.forEach(animation => {
         animation.pause();
       });
       currentAnimations.clear();
-
-      // Note: Event listeners will be cleaned up when component unmounts
-      // React handles DOM cleanup automatically
     };
   }, []);
 
-  // Return a function to manually trigger animations if needed
   const triggerAnimations = () => {
     const cards = document.querySelectorAll(
         '.introduction-expertise-card, .project-card, .matrix-project-card'

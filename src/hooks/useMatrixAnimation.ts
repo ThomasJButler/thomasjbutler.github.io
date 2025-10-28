@@ -1,16 +1,30 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Matrix-themed animation hooks including entrance/exit effects, glitch,
+ *              typewriter, and scroll-triggered animations
+ */
+
 import { useEffect, useRef, useCallback } from 'react';
 import { animate } from 'animejs';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 
+/**
+ * Provides Matrix-themed animation controls for elements
+ * @param {React.RefObject<HTMLElement>} [_containerRef] - Optional container reference
+ * @param {Record<string, unknown>} [_options] - Optional configuration
+ * @return {{ animateIn: Function, animateOut: Function, glitch: Function, typewrite: Function, pulse: Function }}
+ */
 export const useMatrixAnimation = (_containerRef?: React.RefObject<HTMLElement>, _options?: Record<string, unknown>) => {
   const animationRef = useRef<ReturnType<typeof animate> | null>(null);
 
-  // Clean up animation on unmount
+  /**
+   * @constructs Cleans up running animations on unmount
+   */
   useEffect(() => {
     return () => {
       if (animationRef.current) {
         animationRef.current.pause();
-        // anime.remove is not available in v4, pause is sufficient
       }
     };
   }, []);
@@ -22,7 +36,10 @@ export const useMatrixAnimation = (_containerRef?: React.RefObject<HTMLElement>,
     
     const animationFunction = matrixAnimations[type];
     if (typeof animationFunction === 'function') {
-      animationRef.current = animationFunction(element);
+      const result = animationFunction(element);
+      if (result) {
+        animationRef.current = result;
+      }
     }
   }, []);
 
@@ -60,11 +77,18 @@ export const useMatrixAnimation = (_containerRef?: React.RefObject<HTMLElement>,
   };
 };
 
-// Hook for scroll-triggered animations
+/**
+ * Triggers Matrix fade-in animation when element scrolls into viewport
+ * @param {number} [threshold=0.1] - Intersection observer threshold
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const useScrollAnimation = (threshold = 0.1) => {
   const elementRef = useRef<HTMLElement | null>(null);
   const hasAnimated = useRef(false);
 
+  /**
+   * @listens threshold - Sets up intersection observer for scroll animation
+   */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
@@ -89,7 +113,10 @@ export const useScrollAnimation = (threshold = 0.1) => {
   return elementRef;
 };
 
-// Hook for hover animations
+/**
+ * Provides hover glow animation effects for elements
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const useHoverAnimation = () => {
   const elementRef = useRef<HTMLElement | null>(null);
 
@@ -105,6 +132,9 @@ export const useHoverAnimation = () => {
     }
   }, []);
 
+  /**
+   * @listens handleMouseEnter, handleMouseLeave - Attaches hover event listeners
+   */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
@@ -121,19 +151,23 @@ export const useHoverAnimation = () => {
   return elementRef;
 };
 
-// Hook for page transitions
+/**
+ * Manages page entrance and exit transition animations
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const usePageTransition = () => {
   const pageRef = useRef<HTMLElement | null>(null);
 
+  /**
+   * @constructs Triggers entrance animation on mount and exit on unmount
+   */
   useEffect(() => {
     const element = pageRef.current;
     if (!element) return;
 
-    // Animate in on mount
     matrixAnimations.pageTransition.in(element);
 
     return () => {
-      // Animate out on unmount
       matrixAnimations.pageTransition.out(element);
     };
   }, []);

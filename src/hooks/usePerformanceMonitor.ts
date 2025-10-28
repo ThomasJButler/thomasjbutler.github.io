@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Performance monitoring hooks for tracking render times, web vitals,
+ *              and performance budgets in development
+ */
+
 import { useEffect, useRef } from 'react';
 
 interface PerformanceMetrics {
@@ -10,10 +17,15 @@ interface PerformanceMetrics {
 interface PerformanceConfig {
   componentName: string;
   enableLogging?: boolean;
-  logThreshold?: number; // Log if render time exceeds this threshold (ms)
+  logThreshold?: number;
   onMetrics?: (metrics: PerformanceMetrics) => void;
 }
 
+/**
+ * Monitors component render performance and logs slow renders
+ * @param {PerformanceConfig} config - Performance monitoring configuration
+ * @return {{ markStart: Function, markEnd: Function, measureAsync: Function }}
+ */
 export const usePerformanceMonitor = (config: PerformanceConfig) => {
   const {
     componentName,
@@ -27,9 +39,11 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
   const updateCount = useRef<number>(0);
   const isFirstRender = useRef<boolean>(true);
 
-  // Mark render start
   renderStartTime.current = performance.now();
 
+  /**
+   * @constructs Calculates render time and logs performance metrics
+   */
   useEffect(() => {
     const renderEndTime = performance.now();
     const renderTime = renderEndTime - renderStartTime.current;
@@ -102,8 +116,14 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
   };
 };
 
-// Web Vitals monitoring hook
+/**
+ * Monitors Core Web Vitals (LCP, FID, CLS) in development
+ * @param {boolean} [enableLogging] - Enable console logging
+ */
 export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'development') => {
+  /**
+   * @constructs Sets up performance observers for web vitals monitoring
+   */
   useEffect(() => {
     if (!enableLogging) return;
 
@@ -131,7 +151,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
       try {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry) => {
+          entries.forEach((entry: any) => {
             if (enableLogging) {
               console.warn(`[FID] ${entry.processingStart - entry.startTime}ms`);
             }
@@ -152,7 +172,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry: PerformanceEntry & { value?: number; hadRecentInput?: boolean }) => {
-            if (!entry.hadRecentInput) {
+            if (!entry.hadRecentInput && entry.value) {
               clsValue += entry.value;
             }
           });
@@ -181,8 +201,14 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
   }, [enableLogging]);
 };
 
-// Performance budget monitoring
+/**
+ * Monitors performance against defined budgets and logs violations
+ * @param {{ [key: string]: number }} budget - Performance budget thresholds
+ */
 export const usePerformanceBudget = (budget: { [key: string]: number }) => {
+  /**
+   * @listens budget - Checks performance metrics against budget thresholds
+   */
   useEffect(() => {
     if (process.env.NODE_ENV !== 'development') return;
 
@@ -193,9 +219,9 @@ export const usePerformanceBudget = (budget: { [key: string]: number }) => {
 
       const metrics = {
         'Time to First Byte': navigation.responseStart - navigation.requestStart,
-        'DOM Content Loaded': navigation.domContentLoadedEventEnd - navigation.navigationStart,
-        'Load Complete': navigation.loadEventEnd - navigation.navigationStart,
-        'DOM Interactive': navigation.domInteractive - navigation.navigationStart
+        'DOM Content Loaded': navigation.domContentLoadedEventEnd - navigation.fetchStart,
+        'Load Complete': navigation.loadEventEnd - navigation.fetchStart,
+        'DOM Interactive': navigation.domInteractive - navigation.fetchStart
       };
 
       Object.entries(metrics).forEach(([metric, value]) => {

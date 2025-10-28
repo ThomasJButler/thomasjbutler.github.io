@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Collection of lazy loading hooks for images, content, and videos
+ *              using intersection observer for performance optimisation
+ */
+
 import { useEffect, useRef, useState } from 'react';
 
 interface LazyLoadingOptions {
@@ -6,7 +13,11 @@ interface LazyLoadingOptions {
   triggerOnce?: boolean;
 }
 
-// Hook for lazy loading elements when they come into view
+/**
+ * Intersection observer hook for detecting element visibility
+ * @param {LazyLoadingOptions} [options={}] - Observer configuration options
+ * @return {{ elementRef: React.RefObject, isVisible: boolean, hasBeenVisible: boolean }}
+ */
 export const useIntersectionObserver = (options: LazyLoadingOptions = {}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
@@ -18,11 +29,13 @@ export const useIntersectionObserver = (options: LazyLoadingOptions = {}) => {
     triggerOnce = true
   } = options;
 
+  /**
+   * @listens threshold, rootMargin, triggerOnce, hasBeenVisible - Sets up intersection observer
+   */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
 
-    // If already been visible and triggerOnce is true, don't observe again
     if (hasBeenVisible && triggerOnce) {
       setIsVisible(true);
       return;
@@ -57,13 +70,21 @@ export const useIntersectionObserver = (options: LazyLoadingOptions = {}) => {
   return { elementRef, isVisible, hasBeenVisible };
 };
 
-// Hook for lazy loading images
+/**
+ * Lazy loads images when they enter viewport
+ * @param {string} src - Image source URL
+ * @param {LazyLoadingOptions} [options={}] - Observer configuration options
+ * @return {{ elementRef: React.RefObject, imageSrc: string, imageLoaded: boolean, imageError: boolean, isVisible: boolean }}
+ */
 export const useLazyImage = (src: string, options: LazyLoadingOptions = {}) => {
   const [imageSrc, setImageSrc] = useState<string>('');
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { elementRef, isVisible } = useIntersectionObserver(options);
 
+  /**
+   * @listens isVisible, src - Loads image when element becomes visible
+   */
   useEffect(() => {
     if (!isVisible || !src) return;
 
@@ -97,7 +118,12 @@ export const useLazyImage = (src: string, options: LazyLoadingOptions = {}) => {
   };
 };
 
-// Hook for lazy loading with placeholder
+/**
+ * Lazy loads content when element enters viewport
+ * @param {Function} loadContent - Async function that loads content
+ * @param {LazyLoadingOptions} [options={}] - Observer configuration options
+ * @return {{ elementRef: React.RefObject, content: T | null, loading: boolean, error: Error | null, isVisible: boolean }}
+ */
 export const useLazyContent = <T>(
   loadContent: () => Promise<T>,
   options: LazyLoadingOptions = {}
@@ -107,6 +133,9 @@ export const useLazyContent = <T>(
   const [error, setError] = useState<Error | null>(null);
   const { elementRef, isVisible } = useIntersectionObserver(options);
 
+  /**
+   * @listens isVisible, content, loadContent - Loads content when visible
+   */
   useEffect(() => {
     if (!isVisible || content !== null) return;
 
@@ -133,7 +162,13 @@ export const useLazyContent = <T>(
   };
 };
 
-// Progressive image loading component hook
+/**
+ * Progressive image loading starting with low quality, upgrading to high quality
+ * @param {string} lowQualitySrc - Low quality image source for initial load
+ * @param {string} highQualitySrc - High quality image source for final render
+ * @param {LazyLoadingOptions} [options={}] - Observer configuration options
+ * @return {{ elementRef: React.RefObject, currentSrc: string, isHighQualityLoaded: boolean, isVisible: boolean }}
+ */
 export const useProgressiveImage = (
   lowQualitySrc: string,
   highQualitySrc: string,
@@ -143,13 +178,14 @@ export const useProgressiveImage = (
   const [isHighQualityLoaded, setIsHighQualityLoaded] = useState(false);
   const { elementRef, isVisible } = useIntersectionObserver(options);
 
+  /**
+   * @listens isVisible, lowQualitySrc, highQualitySrc - Progressively loads images
+   */
   useEffect(() => {
     if (!isVisible) return;
 
-    // Start with low quality image
     setCurrentSrc(lowQualitySrc);
 
-    // Load high quality image in background
     const highQualityImg = new Image();
     highQualityImg.onload = () => {
       setCurrentSrc(highQualitySrc);
@@ -170,11 +206,18 @@ export const useProgressiveImage = (
   };
 };
 
-// Preload images for better UX
+/**
+ * Preloads multiple images for improved user experience
+ * @param {string[]} imageSources - Array of image URLs to preload
+ * @return {{ loadedImages: Set<string>, failedImages: Set<string>, isImageLoaded: Function, isImageFailed: Function }}
+ */
 export const useImagePreloader = (imageSources: string[]) => {
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
+  /**
+   * @listens imageSources - Preloads all images when sources array changes
+   */
   useEffect(() => {
     if (imageSources.length === 0) return;
 
@@ -219,13 +262,21 @@ export const useImagePreloader = (imageSources: string[]) => {
   };
 };
 
-// Video lazy loading hook
+/**
+ * Lazy loads video when element enters viewport
+ * @param {string} src - Video source URL
+ * @param {LazyLoadingOptions} [options={}] - Observer configuration options
+ * @return {{ elementRef: React.RefObject, videoRef: React.RefObject, videoSrc: string, isLoaded: boolean, isVisible: boolean }}
+ */
 export const useLazyVideo = (src: string, options: LazyLoadingOptions = {}) => {
   const [videoSrc, setVideoSrc] = useState<string>('');
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { elementRef, isVisible } = useIntersectionObserver(options);
 
+  /**
+   * @listens isVisible, src - Loads video when element becomes visible
+   */
   useEffect(() => {
     if (!isVisible || !src) return;
 

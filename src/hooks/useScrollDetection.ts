@@ -1,7 +1,8 @@
 /**
- * React Hook for Scroll Detection
- * Provides scroll-based header visibility and back-to-top functionality
- * for React components in the Thomas J Butler portfolio
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Scroll detection hooks for header visibility and back-to-top functionality
+ *              with throttled scroll handling and state management
  */
 
 import { useEffect, useRef, useCallback, useMemo } from 'react';
@@ -24,6 +25,11 @@ interface ScrollDetectionState {
   scrollY: number;
 }
 
+/**
+ * Comprehensive scroll detection with header visibility and back-to-top controls
+ * @param {UseScrollDetectionOptions} [options={}] - Configuration options
+ * @return {{ getState: Function, forceUpdate: Function, setHeaderVisible: Function, scrollToTop: Function, isInitialized: boolean }}
+ */
 export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
   const scrollDetectionRef = useRef<ScrollDetection | null>(null);
   const stateRef = useRef<ScrollDetectionState>({
@@ -40,11 +46,13 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     hideThreshold: 200,
     backToTopThreshold: 300,
     throttleMs: 16,
-    enableBackToTop: false,  // Don't create DOM elements by default
+    enableBackToTop: false,
     ...options
   }), [options]);
 
-  // Initialize scroll detection
+  /**
+   * @constructs Initialises scroll detection with cleanup on unmount
+   */
   useEffect(() => {
     if (!scrollDetectionRef.current) {
       scrollDetectionRef.current = new ScrollDetection(defaultOptions);
@@ -59,14 +67,15 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     };
   }, [defaultOptions]);
 
-  // Update options when they change
+  /**
+   * @listens defaultOptions - Updates scroll detection configuration when options change
+   */
   useEffect(() => {
     if (scrollDetectionRef.current) {
       scrollDetectionRef.current.updateOptions(defaultOptions);
     }
   }, [defaultOptions]);
 
-  // Get current state
   const getState = useCallback((): ScrollDetectionState => {
     if (scrollDetectionRef.current) {
       const state = scrollDetectionRef.current.getState();
@@ -80,14 +89,12 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     return stateRef.current;
   }, []);
 
-  // Force update visibility
   const forceUpdate = useCallback(() => {
     if (scrollDetectionRef.current) {
       scrollDetectionRef.current.forceUpdate();
     }
   }, []);
 
-  // Manually control header visibility
   const setHeaderVisible = useCallback((visible: boolean) => {
     const header = document.querySelector(defaultOptions.headerSelector);
     if (header) {
@@ -101,7 +108,6 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
     }
   }, [defaultOptions.headerSelector]);
 
-  // Scroll to top programmatically
   const scrollToTop = useCallback((smooth: boolean = true) => {
     window.scrollTo({
       top: 0,
@@ -118,7 +124,11 @@ export const useScrollDetection = (options: UseScrollDetectionOptions = {}) => {
   };
 };
 
-// Helper hook for just header visibility
+/**
+ * Simplified hook for header visibility management only
+ * @param {UseScrollDetectionOptions} [options={}] - Configuration options
+ * @return {{ getState: Function, setHeaderVisible: Function }}
+ */
 export const useHeaderVisibility = (options: UseScrollDetectionOptions = {}) => {
   const { getState, setHeaderVisible } = useScrollDetection({
     ...options,
@@ -138,11 +148,15 @@ export const useHeaderVisibility = (options: UseScrollDetectionOptions = {}) => 
   };
 };
 
-// Helper hook for just back-to-top functionality
+/**
+ * Simplified hook for back-to-top functionality only
+ * @param {number} [threshold=300] - Scroll distance before showing button
+ * @return {{ isVisible: Function, scrollToTop: Function, threshold: number }}
+ */
 export const useBackToTop = (threshold: number = 300) => {
   const { getState, scrollToTop } = useScrollDetection({
     backToTopThreshold: threshold,
-    enableBackToTop: false  // Don't create DOM elements, only manage state
+    enableBackToTop: false
   });
 
   return {

@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Scroll-triggered animation hooks with intersection observer,
+ *              staggered reveals, and parallax effects
+ */
+
 import { useEffect, useRef } from 'react';
 import { animate } from 'animejs';
 
@@ -54,10 +61,19 @@ const animationTypes = {
   }
 };
 
+/**
+ * Triggers animation when element scrolls into viewport
+ * @param {ScrollAnimationOptions} [options={}] - Animation configuration
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const useScrollAnimation = (options: ScrollAnimationOptions = {}) => {
   const elementRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
+  /**
+   * @listens options.animationProps, options.threshold, options.animationType, options.duration, options.delay
+   *          Sets up intersection observer for scroll-triggered animation
+   */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
@@ -68,7 +84,6 @@ export const useScrollAnimation = (options: ScrollAnimationOptions = {}) => {
           if (entry.isIntersecting && !hasAnimated.current) {
             hasAnimated.current = true;
             
-            // Get animation based on type or use custom
             let animationProps;
             if (options.animationType && options.animationType !== 'custom') {
               animationProps = { 
@@ -99,11 +114,17 @@ export const useScrollAnimation = (options: ScrollAnimationOptions = {}) => {
   return elementRef;
 };
 
-// Hook for animating multiple children with stagger
+/**
+ * Animates multiple child elements with staggered timing when container scrolls into view
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const useScrollReveal = () => {
   const containerRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
+  /**
+   * @constructs Sets up intersection observer for staggered child element animations
+   */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -142,10 +163,17 @@ export const useScrollReveal = () => {
   return containerRef;
 };
 
-// Parallax scroll effect hook
+/**
+ * Creates parallax scrolling effect for element
+ * @param {number} [speed=0.5] - Parallax movement speed multiplier
+ * @return {React.RefObject<HTMLElement>}
+ */
 export const useParallax = (speed: number = 0.5) => {
   const elementRef = useRef<HTMLElement>(null);
 
+  /**
+   * @listens speed - Attaches scroll listener for parallax effect
+   */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
@@ -157,7 +185,6 @@ export const useParallax = (speed: number = 0.5) => {
       const elementHeight = rect.height;
       const windowHeight = window.innerHeight;
       
-      // Check if element is in viewport
       if (scrolled + windowHeight > elementTop && scrolled < elementTop + elementHeight) {
         const yPos = -(scrolled - elementTop) * speed;
         element.style.transform = `translateY(${yPos}px)`;
@@ -165,7 +192,7 @@ export const useParallax = (speed: number = 0.5) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);

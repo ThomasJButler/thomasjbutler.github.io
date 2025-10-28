@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description SEO management hook for updating meta tags, Open Graph properties,
+ *              Twitter Card data, and structured data on page load
+ */
+
 import { useEffect } from 'react';
 
 interface SEOConfig {
@@ -16,7 +23,14 @@ interface SEOConfig {
   structuredData?: object;
 }
 
+/**
+ * Manages SEO metadata and structured data for the current page
+ * @param {SEOConfig} config - SEO configuration object with meta tags and structured data
+ */
 export const useSEO = (config: SEOConfig) => {
+  /**
+   * @listens config - Updates all SEO meta tags and structured data when configuration changes
+   */
   useEffect(() => {
     const { 
       title, 
@@ -34,12 +48,10 @@ export const useSEO = (config: SEOConfig) => {
       structuredData
     } = config;
 
-    // Update document title
     if (title) {
       document.title = title;
     }
 
-    // Helper function to update or create meta tags
     const updateMetaTag = (property: string, content: string, useProperty = false) => {
       const attribute = useProperty ? 'property' : 'name';
       let element = document.querySelector(`meta[${attribute}="${property}"]`) as HTMLMetaElement;
@@ -53,7 +65,6 @@ export const useSEO = (config: SEOConfig) => {
       element.content = content;
     };
 
-    // Update basic meta tags
     if (description) {
       updateMetaTag('description', description);
     }
@@ -62,7 +73,6 @@ export const useSEO = (config: SEOConfig) => {
       updateMetaTag('keywords', keywords);
     }
 
-    // Update Open Graph tags
     if (ogTitle) {
       updateMetaTag('og:title', ogTitle, true);
     }
@@ -81,7 +91,6 @@ export const useSEO = (config: SEOConfig) => {
 
     updateMetaTag('og:type', 'website', true);
 
-    // Update Twitter Card tags
     updateMetaTag('twitter:card', twitterCard);
 
     if (twitterTitle) {
@@ -96,7 +105,6 @@ export const useSEO = (config: SEOConfig) => {
       updateMetaTag('twitter:image', twitterImage);
     }
 
-    // Update canonical URL
     if (canonicalUrl) {
       let canonicalElement = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
       
@@ -109,9 +117,8 @@ export const useSEO = (config: SEOConfig) => {
       canonicalElement.href = canonicalUrl;
     }
 
-    // Add structured data
     if (structuredData) {
-      let structuredDataElement = document.querySelector('script[type="application/ld+json"]');
+      let structuredDataElement = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
       
       if (!structuredDataElement) {
         structuredDataElement = document.createElement('script');
@@ -122,9 +129,7 @@ export const useSEO = (config: SEOConfig) => {
       structuredDataElement.textContent = JSON.stringify(structuredData);
     }
 
-    // Cleanup function to reset on component unmount
     return () => {
-      // Reset title to default
       document.title = 'Thomas J Butler - Full Stack Developer';
     };
   }, [config]);
