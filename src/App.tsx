@@ -19,8 +19,9 @@ const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ defa
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const SitemapPage = lazy(() => import('./pages/SitemapPage').then(m => ({ default: m.SitemapPage })));
-const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
-const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
+// Blog pages - temporarily hidden for deployment
+// const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
+// const BlogReader = lazy(() => import('./components/BlogReader').then(m => ({ default: m.BlogReader })));
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage').then(m => ({ default: m.default })));
 
 // Styles - Optimized import order
@@ -137,7 +138,8 @@ export const App: React.FC = () => {
                 <SitemapPage />
               </Suspense>
             } />
-            <Route path="blog" element={
+            {/* Blog routes - temporarily hidden for deployment */}
+            {/* <Route path="blog" element={
               <Suspense fallback={<PageLoader />}>
                 <BlogPage />
               </Suspense>
@@ -146,7 +148,7 @@ export const App: React.FC = () => {
               <Suspense fallback={<PageLoader />}>
                 <BlogReader />
               </Suspense>
-            } />
+            } /> */}
             <Route path="updates" element={
               <Suspense fallback={<PageLoader />}>
                 <UpdatesPage />

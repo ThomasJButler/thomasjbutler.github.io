@@ -45,7 +45,6 @@ const SitemapPageComponent: React.FC = () => {
     { name: 'ABOUT', path: '/about' },
     { name: 'SKILLS', path: '/skills' },
     { name: 'PROJECTS', path: '/projects' },
-    { name: 'BLOG', path: '/blog' },
     { name: 'SERVICES', path: '/services' },
     { name: 'CONTACT', path: '/contact' }
   ], []);
