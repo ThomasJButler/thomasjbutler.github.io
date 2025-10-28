@@ -1,1 +1,0 @@
-System.register(["./react-legacy-BExpoZ1s.js","./anime.esm-legacy-BosNHZUj.js","./scrollDetection-legacy-BLTuatsx.js"],function(e,t){"use strict";var s;return{setters:[e=>{s=e.j},null,null],execute:function(){e("ContactPage",()=>s.jsxs("div",{children:[s.jsx("h1",{children:"Contact"}),s.jsx("p",{children:"Coming soon - This page is being migrated to React"})]}))}}});

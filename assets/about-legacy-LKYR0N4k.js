@@ -1,1 +1,0 @@
-System.register(["./anime.esm-legacy-BosNHZUj.js","./main-page-legacy-ErX8Oy9e.js","./index-legacy-B5pnv-Eb.js","./scrollDetection-legacy-BLTuatsx.js"],function(e,l){"use strict";return{setters:[null,null,null,null],execute:function(){}}});
