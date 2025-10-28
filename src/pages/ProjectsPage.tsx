@@ -1,9 +1,15 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Projects showcase page with filterable categories, pagination,
+ *              and 3D flippable project cards with animated interactions
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
-// Import local project images
 import aiComparisonShowcaseImg from '../images/aicomparisonshowcase.webp';
 import aiComparisonShowcase2Img from '../images/aicomparisonshowcase2.webp';
 import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
@@ -35,7 +41,7 @@ interface Project {
   };
   links: {
     demo?: string;
-    github: string;
+    github?: string;
   };
   category: string;
   backgroundImage?: string;
@@ -378,20 +384,23 @@ const categories = [
   { id: 'personal', label: 'Personal Projects' }
 ];
 
+/**
+ * Projects showcase page with category filtering and 3D card interactions
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ProjectsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
   const [currentPage, setCurrentPage] = useState(1);
   const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
-  const [interactedCards, setInteractedCards] = useState<Set<string>>(new Set()); // Track cards that have been flipped at least once
+  const [interactedCards, setInteractedCards] = useState<Set<string>>(new Set());
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Pagination configuration
   const projectsPerPage = 6;
   const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
 
-  // Calculate projects for current page
   const startIndex = (currentPage - 1) * projectsPerPage;
   const endIndex = startIndex + projectsPerPage;
   const currentProjects = visibleProjects.slice(startIndex, endIndex);
@@ -399,27 +408,31 @@ export const ProjectsPage: React.FC = () => {
   useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
   useCardAnimations();
 
-  // Scroll to top on page mount
+  /**
+   * @constructs Scrolls page to top on mount
+   */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    console.log('[DEBUG] ProjectsPage mounted');
   }, []);
 
+  /**
+   * @listens activeCategory - Filters projects by selected category
+   */
   useEffect(() => {
     if (activeCategory === 'all') {
       setVisibleProjects(projects);
     } else {
       setVisibleProjects(projects.filter(p => p.category === activeCategory));
     }
-    // Reset to first page when category changes
     setCurrentPage(1);
   }, [activeCategory]);
 
-  // Track previous projects to only animate on actual project changes, not flip state changes
   const prevProjectsRef = useRef<Project[]>([]);
 
+  /**
+   * @listens currentProjects - Triggers staggered animation when displayed projects change
+   */
   useEffect(() => {
-    // Only animate if the projects actually changed (not just flip state)
     const projectsChanged = prevProjectsRef.current.length !== currentProjects.length ||
       prevProjectsRef.current.some((p, i) => p.id !== currentProjects[i]?.id);
 
@@ -437,9 +450,8 @@ export const ProjectsPage: React.FC = () => {
     }
   }, [currentProjects]);
   
-  // Create particle burst effect - refined for better performance
   const createParticleBurst = (x: number, y: number) => {
-    const particleCount = 10; // Reduced particle count
+    const particleCount = 10;
     let container = document.querySelector('.particle-container');
     
     if (!container) {
@@ -453,7 +465,7 @@ export const ProjectsPage: React.FC = () => {
       particle.className = 'particle-burst';
       
       const angle = (Math.PI * 2 * i) / particleCount;
-      const velocity = 50 + Math.random() * 50; // Reduced velocity
+      const velocity = 50 + Math.random() * 50;
       const tx = Math.cos(angle) * velocity;
       const ty = Math.sin(angle) * velocity;
       
@@ -470,7 +482,9 @@ export const ProjectsPage: React.FC = () => {
     }
   };
   
-  // Add particle effects to buttons
+  /**
+   * @listens currentProjects - Adds particle click effects to project buttons
+   */
   useEffect(() => {
     const handleButtonClick = (e: Event) => {
       const mouseEvent = e as MouseEvent;
@@ -489,11 +503,9 @@ export const ProjectsPage: React.FC = () => {
     };
   }, [currentProjects]);
 
-  // Pagination handlers
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      // Scroll to top of projects section
       containerRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -513,7 +525,6 @@ export const ProjectsPage: React.FC = () => {
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
     
-    // Animate tab change
     const tabButtons = document.querySelectorAll('.matrix-tab-button');
     animate(tabButtons as NodeListOf<HTMLElement>, {
       scale: [1, 0.95, 1],
@@ -522,15 +533,9 @@ export const ProjectsPage: React.FC = () => {
     });
   };
 
-  // Removed handleCardHover and handleCardLeave for performance optimization
-  // Now using CSS-only hover effects for 60fps smooth animations
-
-  // Handle magical card flip
   const handleCardFlip = (projectId: string) => {
-    // Mark this card as interacted with
     setInteractedCards(prev => new Set(prev).add(projectId));
 
-    // Toggle flip state
     setFlippedCards(prev => {
       const newSet = new Set(prev);
       if (newSet.has(projectId)) {

@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Blog listing page with search, filtering, sorting, and pagination
+ *              functionality for browsing articles
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
@@ -12,6 +19,11 @@ import '../css/blog.css';
 import { BlogList } from '../components/BlogList';
 import { BlogCardSkeleton } from '../components/SkeletonLoader';
 
+/**
+ * Blog page with search, filtering, sorting, and pagination
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const BlogPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
@@ -23,20 +35,17 @@ export const BlogPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
 
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6); // 6 posts per page for mobile
+  const [postsPerPage] = useState(6);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const matrixAnim = useMatrixAnimation();
 
-  // Calculate pagination values
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
-  // Load blog posts function
   const loadPosts = async () => {
     setLoading(true);
     setError(null);
@@ -59,12 +68,16 @@ export const BlogPage: React.FC = () => {
     }
   };
 
-  // Load blog posts on mount
+  /**
+   * @constructs Loads blog posts on component mount
+   */
   useEffect(() => {
     loadPosts();
   }, []);
 
-  // Animate on mount
+  /**
+   * @listens loading - Triggers entrance animations after posts finish loading
+   */
   useEffect(() => {
     if (containerRef.current && !loading) {
       matrixAnim.animateIn(containerRef.current);
@@ -80,7 +93,9 @@ export const BlogPage: React.FC = () => {
     }
   }, [loading, matrixAnim]);
 
-  // Filter and sort posts based on search, tag, and sort order
+  /**
+   * @listens posts, searchQuery, selectedTag, sortBy - Updates filtered posts when filters change
+   */
   useEffect(() => {
     let filtered = posts;
 
@@ -92,7 +107,6 @@ export const BlogPage: React.FC = () => {
       filtered = filterByTag(filtered, selectedTag);
     }
 
-    // Sort posts
     const sorted = [...filtered].sort((a, b) => {
       if (sortBy === 'date') {
         const dateA = new Date(a.publishDate);
@@ -109,10 +123,6 @@ export const BlogPage: React.FC = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-  };
-
-  const handleTagClick = (tag: string) => {
-    setSelectedTag(selectedTag === tag ? null : tag);
   };
 
   const clearFilters = () => {

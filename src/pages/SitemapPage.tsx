@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Sitemap page with SEO optimisation and memoised link structures
+ *              for improved performance
+ */
+
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
@@ -8,8 +15,12 @@ interface SiteLink {
   external?: boolean;
 }
 
+/**
+ * Sitemap page component with SEO and memoised navigation structure
+ * @return {JSX.Element}
+ * @constructor
+ */
 const SitemapPageComponent: React.FC = () => {
-  // SEO Configuration
   useSEO({
     title: 'Site Map - Thomas J Butler Portfolio Navigation',
     description: 'Complete navigation structure and site map for Thomas J Butler\'s portfolio website. Find all pages, blog articles, and external links.',
@@ -29,7 +40,6 @@ const SitemapPageComponent: React.FC = () => {
     }
   });
 
-  // Site structure for clean minimalist design
   const mainPages: SiteLink[] = useMemo(() => [
     { name: 'HOME', path: '/' },
     { name: 'ABOUT', path: '/about' },
@@ -46,14 +56,12 @@ const SitemapPageComponent: React.FC = () => {
     { name: 'BUY ME A COFFEE', path: 'https://buymeacoffee.com/ojrwoqkgmv', external: true }
   ], []);
 
-  // Memoize the current date to prevent unnecessary re-renders
   const lastUpdated = useMemo(() => new Date().toLocaleDateString('en-GB', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   }), []);
 
-  // Helper function for rendering links
   const renderLink = (link: SiteLink, index: number) => {
     if (link.external) {
       return (
@@ -112,5 +120,4 @@ const SitemapPageComponent: React.FC = () => {
   );
 };
 
-// Export memoized component for performance
 export const SitemapPage = memo(SitemapPageComponent);

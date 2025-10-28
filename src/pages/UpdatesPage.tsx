@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Development timeline page showcasing career milestones and journey
+ *              from childhood tech passion to professional developer
+ */
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
@@ -6,12 +13,18 @@ import { timelineData } from '../utils/timelineData';
 import type { TimelineEntry } from '../utils/timelineData';
 import '../css/pages/updates.css';
 
+/**
+ * Timeline page displaying development journey milestones
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const UpdatesPage: React.FC = () => {
+  /**
+   * @constructs Scrolls to top and sets page title on mount
+   */
   useEffect(() => {
-    // Scroll to top on mount
     window.scrollTo(0, 0);
 
-    // Set page title
     document.title = 'Dev Timeline & Journey | Thomas J Butler';
   }, []);
 

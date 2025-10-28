@@ -1,14 +1,27 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description About page showcasing programming journey, qualifications,
+ *              certifications, and expandable content sections
+ */
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/about.css';
 
+/**
+ * About page component with expandable content and certification showcase
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const AboutPage: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Scroll to top on page mount
+  /**
+   * @constructs Scrolls page to top on mount
+   */
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    console.log('[DEBUG] AboutPage mounted');
   }, []);
 
   const toggleReadMore = () => {

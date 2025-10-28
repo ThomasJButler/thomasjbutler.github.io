@@ -1,20 +1,30 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Services page showcasing web development, backend, AI, mobile, design,
+ *              and consultancy offerings with expandable tech stack categories
+ */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import '../css/pages/services.css';
 
+/**
+ * Services showcase page with expandable service cards and tech stack
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const techStackTitleRef = useRef<HTMLHeadingElement>(null);
-  // On mobile, expand first card by default for better UX
   const [expandedCards, setExpandedCards] = useState<Set<number>>(
     () => window.innerWidth < 768 ? new Set([0]) : new Set()
   );
   const [showAllTech, setShowAllTech] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set());
 
-  // Apply card animations
   useCardAnimations();
 
   const services = [
@@ -113,24 +123,25 @@ export const ServicesPage: React.FC = () => {
     }
   ];
 
-  // Scroll to top on page mount
+  /**
+   * @constructs Scrolls page to top on mount
+   */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    console.log('[DEBUG] ServicesPage mounted');
   }, []);
 
+  /**
+   * @constructs Initialises title text and triggers staggered card animations
+   */
   useEffect(() => {
-    // Set title text directly without animation to prevent glitching
     if (titleRef.current) {
       titleRef.current.textContent = 'WEB, MOBILE, AND AI';
     }
 
-    // Set tech stack title
     if (techStackTitleRef.current) {
       techStackTitleRef.current.textContent = '$ TECH STACKS';
     }
 
-    // Stagger service cards animation
     if (servicesRef.current) {
       const cards = servicesRef.current.querySelectorAll('.service-card');
       matrixAnimations.staggerIn(Array.from(cards) as HTMLElement[], 100);
@@ -153,26 +164,21 @@ export const ServicesPage: React.FC = () => {
       const newSet = new Set(prev);
       const isCurrentlyExpanded = newSet.has(index);
 
-      // On desktop (≥768px), handle row-based expansion
       if (window.innerWidth >= 768) {
-        // Calculate which row this card is in (3 cards per row on desktop)
         const cardsPerRow = 3;
         const rowStart = Math.floor(index / cardsPerRow) * cardsPerRow;
         const rowEnd = rowStart + cardsPerRow;
 
         if (isCurrentlyExpanded) {
-          // Collapse all cards in this row
           for (let i = rowStart; i < rowEnd && i < services.length; i++) {
             newSet.delete(i);
           }
         } else {
-          // Expand all cards in this row
           for (let i = rowStart; i < rowEnd && i < services.length; i++) {
             newSet.add(i);
           }
         }
       } else {
-        // Mobile: toggle individual card
         if (isCurrentlyExpanded) {
           newSet.delete(index);
         } else {

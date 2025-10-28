@@ -1,15 +1,27 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Skills page displaying core expertise and specialisations with
+ *              expandable tag lists for each skill category
+ */
+
 import React, { useState } from 'react';
 
+/**
+ * Skills showcase page with expandable technology tags
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const SkillsPage: React.FC = () => {
-  // Scroll to top on page mount
+  /**
+   * @constructs Scrolls page to top on mount
+   */
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    console.log('[DEBUG] SkillsPage mounted');
   }, []);
 
   const [expandedTags, setExpandedTags] = useState<Record<number, boolean>>({});
 
-  // Core Expertise from homepage - consolidated and enhanced
   const coreExpertise = [
     {
       title: "Full-Stack Development",
@@ -55,7 +67,6 @@ export const SkillsPage: React.FC = () => {
     }
   ];
 
-  // Additional specialized skills (non-redundant)
   const additionalSkills = [
     {
       title: "Version Control & Git",

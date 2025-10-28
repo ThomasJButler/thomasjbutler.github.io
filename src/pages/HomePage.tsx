@@ -1,20 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Home page with animated introduction, navigation cards, project showcases,
+ *              and interactive scroll effects with particle animations
+ */
+
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NavigationGuide } from '../components/NavigationGuide';
-import { useScrollAnimation, useScrollReveal } from '../hooks/useScrollAnimation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
-// hover effects now included in utilities.css via main.css
 
-
+/**
+ * Home page component with cascading animations and scroll effects
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const HomePage: React.FC = () => {
-  const [imagesLoaded, setImagesLoaded] = React.useState(false);
-
-  // Card animations hook
   useCardAnimations();
 
-  // Scroll animation refs
-  const expertiseRef = useScrollReveal();
   const galleriesRef = useScrollAnimation({
     threshold: 0.3,
     animationProps: {
@@ -25,8 +30,9 @@ export const HomePage: React.FC = () => {
     }
   });
 
-  
-  // Parallax scrolling effect - refined for smoother performance
+  /**
+   * @constructs Initialises parallax scrolling and reveal animations with RAF throttling
+   */
   useEffect(() => {
     let ticking = false;
     
@@ -42,8 +48,6 @@ export const HomePage: React.FC = () => {
             (img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
           });
           
-          
-          // Reveal animations on scroll - only once per element
           const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
           revealElements.forEach(el => {
             const rect = el.getBoundingClientRect();
@@ -70,9 +74,11 @@ export const HomePage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Add hover effects for buttons and cards
+  /**
+   * @constructs Sets up entrance animations, hover effects, and interactive button behaviours
+   *             Includes magnetic cursor effects and particle systems
+   */
   useEffect(() => {
-    // Add matrix-loaded class to galleries section after delay to prevent visual glitch
     const galleries = document.getElementById('galleries');
     if (galleries) {
       setTimeout(() => {
@@ -80,9 +86,7 @@ export const HomePage: React.FC = () => {
       }, 2000);
     }
 
-    // Cascade entrance animations on page load
     const animatePageEntrance = () => {
-      // Animate welcome text first with special effect
       const welcomeText = document.querySelector('.welcome-text');
       if (welcomeText) {
         animate(welcomeText as HTMLElement, {
@@ -94,10 +98,8 @@ export const HomePage: React.FC = () => {
         });
       }
 
-      // Animate main introduction text with subtle cascade effect (excluding welcome-text)
       const introElements = document.querySelectorAll('#introduction h2:not(.welcome-text)');
       introElements.forEach((el, index) => {
-        // Remove inline styles - let CSS classes handle initial state
         el.classList.add('animated');
 
         animate(el as HTMLElement, {
@@ -109,13 +111,10 @@ export const HomePage: React.FC = () => {
         });
       });
       
-      // Animate introduction images with subtle entrance (only when loaded)
       const introImages = document.querySelectorAll('.introduction-img img');
       introImages.forEach((img, index) => {
-        // Remove inline styles - let CSS classes handle initial state
         img.classList.add('animated');
 
-        // Wait for image to load before animating
         if ((img as HTMLImageElement).complete) {
           animate(img as HTMLElement, {
             opacity: [0, 1],
@@ -139,8 +138,6 @@ export const HomePage: React.FC = () => {
         }
       });
       
-      
-      // Animate gallery cards with stagger effect
       const galleryCards = document.querySelectorAll('.gallery-card');
       galleryCards.forEach((card, index) => {
         animate(card as HTMLElement, {
@@ -152,16 +149,13 @@ export const HomePage: React.FC = () => {
           easing: 'easeOutQuint'
         });
 
-        // Add revealed class after animation completes and sync with MatrixRain delay
         setTimeout(() => {
           card.classList.add('revealed');
-        }, 2200 + index * 100); // 2200ms = 2000ms MatrixRain delay + 200ms buffer
+        }, 2200 + index * 100);
       });
       
-      // Animate buttons with bounce effect
       const buttons = document.querySelectorAll('.btn-professional, .matrix-btn-primary');
       buttons.forEach((btn, index) => {
-        // Remove inline styles - let CSS classes handle initial state
         btn.classList.add('animated');
 
         animate(btn as HTMLElement, {
@@ -174,10 +168,8 @@ export const HomePage: React.FC = () => {
       });
     };
     
-    // Run entrance animations
     animatePageEntrance();
     
-    // Hover effects for gallery cards
     const cards = document.querySelectorAll('.gallery-card, .introduction-expertise-card');
     cards.forEach(card => {
       card.addEventListener('mouseenter', (e) => {
@@ -203,18 +195,15 @@ export const HomePage: React.FC = () => {
       });
     });
     
-    // Enhanced button effects with magnetic cursor and ripple
     const buttons = document.querySelectorAll('.matrix-btn-primary, .btn-professional, .matrix-btn, button');
     buttons.forEach(button => {
       const btn = button as HTMLElement;
       
-      // Magnetic cursor effect
       const handleMouseMove = (e: MouseEvent) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
         
-        // Calculate distance from center
         const distance = Math.sqrt(x * x + y * y);
         const maxDistance = 100;
         
@@ -233,9 +222,8 @@ export const HomePage: React.FC = () => {
         btn.style.removeProperty('--magnetic-transform');
       };
       
-      // Create particle effect - reduced for better performance
       const createParticles = (x: number, y: number) => {
-        const particleCount = 8; // Reduced particle count
+        const particleCount = 8;
         let container = document.querySelector('.particle-container');
         
         if (!container) {
@@ -249,7 +237,7 @@ export const HomePage: React.FC = () => {
           particle.className = 'particle';
           
           const angle = (Math.PI * 2 * i) / particleCount;
-          const velocity = 30 + Math.random() * 40; // Reduced velocity
+          const velocity = 30 + Math.random() * 40;
           const tx = Math.cos(angle) * velocity;
           const ty = Math.sin(angle) * velocity;
           
@@ -263,7 +251,6 @@ export const HomePage: React.FC = () => {
           setTimeout(() => particle.remove(), 1000);
         }
         
-        // Create sound wave effect
         const wave = document.createElement('div');
         wave.className = 'sound-wave';
         wave.style.left = `${x - 50}px`;
@@ -272,7 +259,6 @@ export const HomePage: React.FC = () => {
         setTimeout(() => wave.remove(), 600);
       };
       
-      // Ripple effect on click with particles
       const handleClick = (e: MouseEvent) => {
         const rect = btn.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -281,10 +267,8 @@ export const HomePage: React.FC = () => {
         btn.style.setProperty('--ripple-x', `${x}%`);
         btn.style.setProperty('--ripple-y', `${y}%`);
         
-        // Create particle effect at click position
         createParticles(e.clientX, e.clientY);
         
-        // Pulse animation
         animate(btn, {
           scale: [1, 0.95, 1.05, 1],
           duration: 400,

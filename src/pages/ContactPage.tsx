@@ -1,12 +1,24 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Contact page with video banner, contact information, and
+ *              Formspree-integrated contact form
+ */
+
+import React, { useState } from 'react';
 import '../css/contact-modern.css';
 
+/**
+ * Contact page with form submission and contact details
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ContactPage: React.FC = () => {
-  // Scroll to top on page mount
+  /**
+   * @constructs Scrolls page to top on mount
+   */
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    console.log('[DEBUG] ContactPage mounted');
   }, []);
 
   const [formData, setFormData] = useState({
@@ -39,7 +51,7 @@ export const ContactPage: React.FC = () => {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
