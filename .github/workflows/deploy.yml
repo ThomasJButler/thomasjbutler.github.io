@@ -39,4 +39,4 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx gh-pages -d dist -t $GH_TOKEN
+        run: npx gh-pages -d dist
