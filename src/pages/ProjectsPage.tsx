@@ -10,19 +10,16 @@ import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
-import aiComparisonShowcaseImg from '../images/aicomparisonshowcase.webp';
-import aiComparisonShowcase2Img from '../images/aicomparisonshowcase2.webp';
-import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
-import sqlBallImg from '../images/sqlball.webp';
-import webAgencyShowcaseImg from '../images/webagencyshowcase.webp';
-import portfolio35Img from '../images/portfolio35.webp';
-import lfcRedditImg from '../images/lfcreddit.webp';
-import dotnetCalendarImg from '../images/dotnetcalendar.webp';
+import aiComparisonShowcaseImg from '../images/aicomparisonshowcase3.png';
+import aiCodeGeneratorImg from '../images/aicodegenerator.png';
+import sqlBallImg from '../images/sqlball.png';
+import logo1Img from '../images/logo1.svg';
+import lfcRedditImg from '../images/lfcreddit2.png';
+import dotnetCalendarImg from '../images/dotnetcalendar.png';
 import cssShowcaseImg from '../images/cssshowcase.webp';
-import matrixArcadeImg from '../images/matrixarcade.webp';
 import bigBangGalleryImg from '../images/bigbanggallery.webp';
 import pythonProjectsImg from '../images/pythonprojects.webp';
-import versionTimeTravelImg from '../images/versiontimetravel.webp';
+import versionTimeTravelImg from '../images/versiontimetravel3.jpeg';
 
 interface Project {
   id: string;
@@ -54,9 +51,9 @@ const projects: Project[] = [
   // AI/ML Projects - Featured showcase from aitomatic.io
   {
     id: 'ai-comparison-showcase',
-    name: 'AI Comparison Showcase',
+    name: 'Real-time LLM Builder and Comparison Tool',
     visibility: 'Public',
-    description: 'Compare responses from multiple AI models side-by-side in real-time. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity models with performance metrics and beautiful visualizations.',
+    description: 'Build and compare responses from multiple AI models side-by-side. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity models with performance metrics and beautiful visualizations.',
     topics: ['AI/ML', 'Next.js', 'TypeScript', 'Multiple AI APIs', 'Performance Metrics'],
     language: {
       name: 'TypeScript',
@@ -74,12 +71,11 @@ const projects: Project[] = [
     category: 'ai',
     status: 'completed',
     featured: true,
-    backgroundImage: aiComparisonShowcaseImg,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'ai-code-generator',
-    name: 'AI Code Generator',
+    name: 'LangChain Code Generation Tool',
     visibility: 'Public',
     description: 'Generate production-ready code with AI assistance. Built with LangChain and React. Choose your language and generate code, unit tests, and documentation.',
     topics: ['LangChain', 'GPT-4o', 'Python', 'Flask', 'React', 'Code Generation'],
@@ -103,7 +99,7 @@ const projects: Project[] = [
   },
   {
     id: 'sql-ball',
-    name: 'SQL-Ball',
+    name: 'SQL, AI and RAG Football Analytics',
     visibility: 'Public',
     description: 'Football data analytics with natural language queries and AI insights. RAG-powered NL-to-SQL using a custom collated dataset of European football results.',
     topics: ['Supabase', 'LangChain', 'React', 'OpenAI', 'PostgreSQL', 'RAG', 'Football Analytics'],
@@ -127,7 +123,7 @@ const projects: Project[] = [
   },
   {
     id: 'mastering-ai-portfolio',
-    name: 'Mastering AI Course Portfolio',
+    name: 'AI & Agents Project Portfolio',
     visibility: 'Public',
     description: 'Interactive AI course portfolio showcasing projects and learning journey. A portfolio of web apps for the CodeCademy Mastering Generative AI & Agents for Developers Bootcamp.',
     topics: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Anime.js', 'Portfolio', 'Course Projects'],
@@ -146,63 +142,37 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: aiComparisonShowcase2Img,
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
-
-  // Web Development Projects
   {
-    id: 'web-agency-showcase',
-    name: 'Web Agency Showcase',
+    id: 'commercial-portfolio',
+    name: 'Commercial Portfolio Website',
     visibility: 'Public',
-    description: 'Comprehensive documentation of commercial web development work designed for employers and recruiters. Features 10+ detailed project case studies with step-by-step processes, technical decisions, and outcomes.',
-    topics: ['Case Studies', 'Commercial Work', 'Documentation', 'Portfolio', 'Web Development', 'Professional'],
+    description: 'Professional showcase of 3+ years full-stack development expertise. Built with React  dfeaturing modern design, performance optimization (90+ Lighthouse score), and comprehensive project documentation including web agency work and freelance projects.',
+    topics: ['React', 'TypeScript', 'Vite', 'SCSS', 'Node.js', '.NET', 'Azure', 'AWS'],
     language: {
-      name: 'Documentation',
-      color: '#10B981',
-      percent: 100
+      name: 'React',
+      color: '#61dafb',
+      percent: 65
     },
     stats: {
       stars: 0,
       forks: 0
     },
     links: {
-      demo: 'https://tombutler.notion.site/Web-Agency-Showcase-1a11b94bcaea80ffa87ae2fb8994e4de',
+      github: 'https://github.com/ThomasJButler/commercial-portfolio-react',
+      demo: 'https://www.thomasjbutler.me/'
     },
     category: 'web',
     status: 'completed',
     featured: true,
-    backgroundImage: webAgencyShowcaseImg,
-    gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(0, 40, 0, 0.95) 100%)'
-  },
-  {
-    id: 'portfolio-v3.5',
-    name: 'Portfolio v3.5 - React Migration',
-    visibility: 'Public',
-    description: 'Complete migration to React 19 with TypeScript, Vite 7, and Anime.js v4. Modern component architecture with maintained Matrix aesthetic.',
-    topics: ['React 19', 'TypeScript', 'Vite 7', 'Anime.js', 'Components', 'Migration'],
-    language: {
-      name: 'TypeScript',
-      color: '#3178c6',
-      percent: 45
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/ThomasJButler',
-      demo: 'https://thomasjbutler.github.io/ThomasJButler/'
-    },
-    category: 'web',
-    status: 'completed',
-    featured: true,
-    backgroundImage: portfolio35Img,
-    gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
+    backgroundImage: logo1Img,
+    gradient: 'linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
     id: 'lfc-news-reddit',
-    name: 'LFC News Reddit App',
+    name: 'LFC News Web App',
     visibility: 'Public',
     description: 'A minimal Reddit app created with React, Redux and Reddit API to bring the latest transfer rumours across a variety of different subreddits.',
     topics: ['React', 'Redux', 'Reddit API', 'Sports', 'News Aggregation', 'Real-time'],
@@ -226,9 +196,9 @@ const projects: Project[] = [
   },
   {
     id: 'dotnet-react-calendar',
-    name: 'Dotnet React Calendar',
+    name: '.NET/React Calendar App',
     visibility: 'Public',
-    description: 'A Calendar app project built with .NET, Fast Endpoints, React.js. Initially started as a code assessment, continued to master .NET backend development.',
+    description: 'A full-stack calendar app project built with .NET, Fast Endpoints, React.js. Initially started as a code assessment, continued to master .NET backend development.',
     topics: ['.NET', 'React', 'C#', 'Fast Endpoints', 'API', 'Full Stack'],
     language: {
       name: 'C#',
@@ -250,7 +220,7 @@ const projects: Project[] = [
   },
   {
     id: 'css-showcase',
-    name: 'CSS Showcase',
+    name: 'CSS Learning Showcase Website',
     visibility: 'Public',
     description: 'An interactive showcase of modern CSS foundations for learning and education purposes. Pure CSS, no frameworks.',
     topics: ['Pure CSS', 'Vanilla JS', ':has()', 'Container Queries', 'Responsive', 'No Framework'],
@@ -276,7 +246,7 @@ const projects: Project[] = [
   // Creative & Games
   {
     id: 'matrix-arcade',
-    name: 'The Matrix Arcade',
+    name: 'The Matrix Arcade Interactive Games Portal',
     visibility: 'Public',
     description: 'A collection of games in the style of \'The Matrix\' movies. An arcade website built using Vite, Python, and React to showcase playable mini-games.',
     topics: ['React', 'Python', 'Vite', 'Canvas API', 'Game Dev', 'Matrix Theme'],
@@ -295,12 +265,12 @@ const projects: Project[] = [
     },
     category: 'games',
     status: 'completed',
-    backgroundImage: matrixArcadeImg,
+    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png',
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
     id: 'bigbang-gallery',
-    name: 'Big Bang Gallery',
+    name: 'Big Bang Creative Canvas',
     visibility: 'Public',
     description: 'A creative image gallery / canvas inspired by the big bang. Creative visual gallery showcasing design work and experiments.',
     topics: ['Gallery', 'Creative', 'Visual', 'Design', 'Canvas', 'Animation'],
@@ -326,7 +296,7 @@ const projects: Project[] = [
   // Python Projects
   {
     id: 'python-projects',
-    name: 'Python Projects',
+    name: 'Collection of Python Projects',
     visibility: 'Public',
     description: 'This is a collection of Python hobby projects, from climate visualisations in Project Aetheris to the terminal text adventure of Ctrl-S the World.',
     topics: ['Python', 'Algorithms', 'Mathematics', 'Fractals', 'Machine Learning', 'Games'],
@@ -351,7 +321,7 @@ const projects: Project[] = [
   // Personal Projects
   {
     id: 'version-timetravel',
-    name: 'Version TimeTravel',
+    name: 'Portfolio Version TimeTravel Showcase',
     visibility: 'Public',
     description: 'Personal journey documenting the gradual transformation of my portfolio website. Visual timeline of portfolio evolution and version history.',
     topics: ['Timeline', 'Version Control', 'Interactive', 'History', 'Portfolio Evolution'],

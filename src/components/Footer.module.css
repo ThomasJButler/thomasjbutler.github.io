@@ -47,7 +47,7 @@
 .socialSection h3,
 .linksSection h3 {
   font-family: var(--font-primary);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--matrix-green, #00ff00);
   margin: 0;
   font-weight: 400;
@@ -297,7 +297,7 @@
 
   .socialSection h3,
   .linksSection h3 {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .footerLinks {
@@ -408,7 +408,7 @@
 
   .socialSection h3,
   .linksSection h3 {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
   }
 
   .footerLinks a {

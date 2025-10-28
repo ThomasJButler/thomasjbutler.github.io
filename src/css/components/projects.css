@@ -566,7 +566,7 @@
     grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
     gap: 1.5rem;
     position: relative;
-    justify-content: start; /* Align cards to left when < 3 */
+    justify-content: center; /* Center grid on wider screens */
 
     /* 3D perspective for magical flip effect */
     perspective: 2000px;

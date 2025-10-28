@@ -36,9 +36,9 @@ export const AboutPage: React.FC = () => {
           <h2 className="section-title">Why I Love Programming</h2>
           <div className="story-content">
             <blockquote className="highlight-text">
-              Programming is not just a profession for me; it's a passion.
-              <br />
-              The ability to create something from nothing, to solve complex problems, and to continuously learn and innovate drives me every day.
+              Programming is not just a profession for me, it's a passion.
+              <br /> <br />
+              I love the ability to create something from absolutely nothing, to continuously learn and innovate, this drives me every day to improve.
             </blockquote>
 
             {/* Read More button - shows when collapsed */}
@@ -69,17 +69,11 @@ export const AboutPage: React.FC = () => {
                 </button>
 
                 <blockquote className="highlight-text">
-                  From a young age, I was fascinated by technology and how it can be used to create amazing things.
-                  <br />
-                  This curiosity led me to explore various programming languages and frameworks, and I quickly realised that programming was the perfect outlet for my creativity and problem-solving skills.
-                </blockquote>
-
-                <blockquote className="highlight-text">
-                  Over the years, I have honed my skills and gained experience in different areas of software development.
-                  <br />
-                  I love the challenge of tackling complex problems and finding innovative solutions.
-                  <br />
-                  Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the boundaries of what is possible.
+                  From a young age, I was always fascinated by technology and how things worked. This curiosity led me to explore various programming languages and frameworks. I quickly realised that programming was the perfect outlet for my creativity and problem solving skills.
+                  <br /> <br />
+                  Over the years, I have continued learning, fine tuned my skills and tried to stay on top of industry changes. I have gained experience in many different areas of software development, from networking, full-stack web development and cloud services, to AI and machine learning.
+                  <br /> <br />
+                  I love the challenge of tackling complex problems and finding innovative solutions. Whether it's building a web application, developing an AI model, or creating a mobile app, I am always excited to take on new projects and push the endless boundaries of what is possible.
                 </blockquote>
 
                 {/* Desktop Read Less button (at bottom, centered) */}
@@ -98,7 +92,7 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: My Programming Journey - NOW SECOND with Epic Timeline Button at Bottom */}
+      {/* SECTION 2: My Programming Journey - with Timeline Button at Bottom */}
       <section id="programming-journey" className="about-section">
         <div className="container">
           <h2 className="section-title">My Programming Journey</h2>
@@ -166,154 +160,59 @@ export const AboutPage: React.FC = () => {
                   <span className="tier-glyph">◉</span>
                 </h3>
 
-                <div className="holographic-cards-grid">
-                  <div className="holographic-card primary-card" data-tier="platinum">
-                    <div className="card-glow"></div>
-                    <div className="card-content">
-                      <div className="cert-header">
-                        <div className="matrix-badge primary-badge">
-                          <svg className="badge-svg" viewBox="0 0 100 100">
-                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
-                            <circle cx="50" cy="50" r="20" className="badge-center"/>
-                            <text x="50" y="35" textAnchor="middle" className="badge-level">L4</text>
-                            <text x="50" y="55" textAnchor="middle" className="badge-type">DEV</text>
-                          </svg>
-                          <div className="badge-pulse"></div>
-                        </div>
-                        <div className="cert-details">
-                          <h3>Estio Level 4 Software Developer Apprenticeship</h3>
-                          <p className="cert-date">
-                            <i className="fas fa-calendar-check"></i>
-                            Completed 2024
-                          </p>
-                        </div>
-                      </div>
-                      <p className="cert-description">Advanced software development training with real-world application</p>
-                      <div className="cert-skills">
-                        <span className="skill-tag">Full-Stack Development</span>
-                        <span className="skill-tag">Software Engineering</span>
-                        <span className="skill-tag">Industry Standards</span>
-                      </div>
+                <div className="certification-matrix-grid">
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-graduation-cap"></i>
                     </div>
-                    <div className="holographic-overlay"></div>
+                    <span className="cert-name">Estio Level 4 Software Developer</span>
+                    <span className="cert-detail">Advanced Full-Stack Development • Completed 2024</span>
+                    <div className="achievement-glow primary-glow"></div>
                   </div>
 
-                  <div className="holographic-card primary-card" data-tier="gold">
-                    <div className="card-glow"></div>
-                    <div className="card-content">
-                      <div className="cert-header">
-                        <div className="matrix-badge verified-badge">
-                          <svg className="badge-svg" viewBox="0 0 100 100">
-                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
-                            <circle cx="50" cy="50" r="20" className="badge-center"/>
-                            <text x="50" y="35" textAnchor="middle" className="badge-level">L2</text>
-                            <text x="50" y="55" textAnchor="middle" className="badge-type">ICT</text>
-                          </svg>
-                          <div className="verification-pulse"></div>
-                        </div>
-                        <div className="cert-details">
-                          <h3>City & Guilds Level 2 ICT Systems Support Diploma</h3>
-                          <p className="cert-date">
-                            <i className="fas fa-calendar-check"></i>
-                            July 2025
-                          </p>
-                        </div>
-                      </div>
-                      <p className="cert-description">Systems support, troubleshooting, and technical infrastructure management</p>
-                      <div className="verify-section">
-                        <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw"
-                           target="_blank"
-                           rel="noopener"
-                           className="matrix-verify-btn">
-                          <span className="verify-text">VERIFY CREDENTIAL</span>
-                          <div className="verify-animation"></div>
-                        </a>
-                      </div>
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-certificate"></i>
                     </div>
-                    <div className="holographic-overlay"></div>
+                    <span className="cert-name">City & Guilds Level 2 ICT Systems Support</span>
+                    <span className="cert-detail">Infrastructure Management • July 2025</span>
+                    <a href="https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow verify-glow"></div>
                   </div>
 
-                  <div className="holographic-card primary-card" data-tier="gold">
-                    <div className="card-glow"></div>
-                    <div className="card-content">
-                      <div className="cert-header">
-                        <div className="matrix-badge ai-badge">
-                          <svg className="badge-svg" viewBox="0 0 100 100">
-                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
-                            <circle cx="50" cy="50" r="20" className="badge-center"/>
-                            <text x="50" y="35" textAnchor="middle" className="badge-level">AI</text>
-                            <text x="50" y="55" textAnchor="middle" className="badge-type">ML</text>
-                          </svg>
-                          <div className="ai-pulse"></div>
-                        </div>
-                        <div className="cert-details">
-                          <h3>CodeCademy Machine Learning and LLM Bootcamp</h3>
-                          <p className="cert-date">
-                            <i className="fas fa-calendar-check"></i>
-                            Completed September 2025
-                          </p>
-                        </div>
-                      </div>
-                      <p className="cert-description">Mastering Generative AI and advanced machine learning techniques</p>
-                      <div className="verify-section">
-                        <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6"
-                           target="_blank"
-                           rel="noopener"
-                           className="matrix-verify-btn">
-                          <span className="verify-text">VERIFY CREDENTIAL</span>
-                          <div className="verify-animation"></div>
-                        </a>
-                      </div>
-                      <div className="cert-skills">
-                        <span className="skill-tag">Machine Learning</span>
-                        <span className="skill-tag">LLM Development</span>
-                        <span className="skill-tag">Generative AI</span>
-                      </div>
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-robot"></i>
                     </div>
-                    <div className="holographic-overlay"></div>
+                    <span className="cert-name">Machine Learning & LLM Bootcamp</span>
+                    <span className="cert-detail">CodeCademy Certificate • September 2025</span>
+                    <a href="https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow ai-glow"></div>
                   </div>
 
-                  <div className="holographic-card primary-card" data-tier="gold">
-                    <div className="card-glow"></div>
-                    <div className="card-content">
-                      <div className="cert-header">
-                        <div className="matrix-badge cisco-badge">
-                          <svg className="badge-svg" viewBox="0 0 100 100">
-                            <polygon points="50,5 85,25 85,75 50,95 15,75 15,25" className="badge-shape"/>
-                            <circle cx="50" cy="50" r="20" className="badge-center"/>
-                            <text x="50" y="35" textAnchor="middle" className="badge-level">DS</text>
-                            <text x="50" y="55" textAnchor="middle" className="badge-type">CIS</text>
-                          </svg>
-                          <div className="cisco-pulse"></div>
-                        </div>
-                        <div className="cert-details">
-                          <h3>Cisco Introduction to Data Science</h3>
-                          <p className="cert-date">
-                            <i className="fas fa-calendar-check"></i>
-                            Issued April 2023
-                          </p>
-                        </div>
-                      </div>
-                      <p className="cert-description">Comprehensive understanding of data analytics, data engineering, and AI/ML related job functions</p>
-                      <div className="verify-section">
-                        <a href="https://www.credly.com/badges/4167931a-2128-4e5a-b6a8-c2c0493325f6/linked_in_profile"
-                           target="_blank"
-                           rel="noopener"
-                           className="matrix-verify-btn">
-                          <span className="verify-text">VERIFY CREDENTIAL</span>
-                          <div className="verify-animation"></div>
-                        </a>
-                      </div>
-                      <div className="cert-skills">
-                        <span className="skill-tag">Data Science</span>
-                        <span className="skill-tag">Data Analysis</span>
-                        <span className="skill-tag">Threat Analysis</span>
-                        <span className="skill-tag">Cyber Threat Intelligence</span>
-                        <span className="skill-tag">Cybersecurity Careers</span>
-                        <span className="skill-tag">Artificial Intelligence</span>
-                      </div>
+                  <div className="matrix-cert-item primary">
+                    <div className="cert-icon">
+                      <i className="fas fa-database"></i>
                     </div>
-                    <div className="holographic-overlay"></div>
+                    <span className="cert-name">Cisco Data Science Introduction</span>
+                    <span className="cert-detail">Data Analytics & AI/ML • April 2023</span>
+                    <a href="https://www.credly.com/badges/4167931a-2128-4e5a-b6a8-c2c0493325f6/linked_in_profile"
+                       target="_blank"
+                       rel="noopener"
+                       className="verify-link">
+                      Verify Credential →
+                    </a>
+                    <div className="achievement-glow cisco-glow"></div>
                   </div>
                 </div>
               </div>

@@ -288,7 +288,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <h2 className="welcome-text">Hey, I'm Tom<span className="cursor-blink">▮</span></h2>
           <br />
-          <h2>A Web Developer and Designer from Liverpool, England, UK</h2>
+          <h2>// A Full Stack AI Engineer from the UK</h2>
           <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
           <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
           <div className="introduction-img">
@@ -305,6 +305,38 @@ export const HomePage: React.FC = () => {
               <i className="fas fa-book-open"></i>
               View Blog
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio-purpose" ref={galleriesRef as React.RefObject<HTMLElement>}>
+        <div className="container">
+          <div className="purpose-card">
+            <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
+            <div className="purpose-content">
+              <p>
+                This portfolio started out as a hobby project. A space where I could push my web development skills and mess with new technologies without constraint.
+              </p>
+              <p>
+                Over time, I realised that I needed to seperate my business work and personal work. This gives me the creative freedom to work on new ideas, test out new frameworks, and implement test features that aren't always going to be ideal for client requirements.
+              </p>
+              <p>
+                That's where I can be irresponsible. I can crash things. I can try out that new animation library that everybody's talking about, or rebuild everything from the ground up because I want to demonstrate I can. It's my web playground, and that freedom keeps me on my toes for the commercial work.
+              </p>
+              <p className="purpose-cta-text">
+                For my commercial portfolio and professional client work:
+              </p>
+              <a 
+                href="https://thomasjbutler.me" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="purpose-link matrix-btn-primary"
+              >
+                <i className="fas fa-briefcase"></i>
+                View Commercial Portfolio
+                <i className="fas fa-external-link-alt"></i>
+              </a>
+            </div>
           </div>
         </div>
       </section>

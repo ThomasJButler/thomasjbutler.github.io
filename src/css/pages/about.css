@@ -834,6 +834,70 @@ html {
     text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
 }
 
+/* Primary Qualifications - 2x2 Grid */
+.primary-tier .certification-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Primary Qualifications Styling */
+.matrix-cert-item.primary {
+    position: relative;
+    padding: 2rem 1.5rem;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.matrix-cert-item.primary .cert-icon {
+    font-size: 2.5rem;
+}
+
+.matrix-cert-item.primary .cert-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.matrix-cert-item.primary .cert-detail {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+/* Verify Link Styling */
+.verify-link {
+    display: inline-block;
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 6px;
+    color: var(--neon-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.verify-link:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+}
+
+/* Additional Glow Effects */
+.primary-glow {
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.15) 0%, transparent 70%);
+}
+
+.verify-glow {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, transparent 70%);
+}
+
 /* Responsive Design */
 
 /* Desktop: Show Read Less button at bottom, centered */
