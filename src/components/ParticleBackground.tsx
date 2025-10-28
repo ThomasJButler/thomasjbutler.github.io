@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Animated particle field background with mouse interaction,
+ *              connection lines, and pulsing glow effects
+ */
+
 import React, { useEffect, useRef } from 'react';
 import './ParticleBackground.css';
 
@@ -11,12 +18,21 @@ interface Particle {
   pulse: number;
 }
 
+/**
+ * Interactive particle background with mouse-responsive animation
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number | null>(null);
   const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  /**
+   * @constructs Initialises canvas particle system with mouse tracking and RAF animation loop
+   *             Particle density doubled for enhanced visual effect
+   */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -24,15 +40,13 @@ export const ParticleBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
     const updateCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     updateCanvasSize();
 
-    // Initialize particles (2x density for epic effect)
-    const particleCount = Math.floor((canvas.width * canvas.height) / 7500); // Doubled particle density
+    const particleCount = Math.floor((canvas.width * canvas.height) / 7500);
     particlesRef.current = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -47,34 +61,27 @@ export const ParticleBackground: React.FC = () => {
       });
     }
 
-    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Animation loop
     const animate = () => {
       if (!ctx || !canvas) return;
 
-      // Clear canvas with fade effect
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw and update particles
       particlesRef.current.forEach((particle, index) => {
-        // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         particle.pulse += 0.02;
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Mouse interaction - gentle attraction with glow enhancement
         const dx = mouseRef.current.x - particle.x;
         const dy = mouseRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -82,25 +89,21 @@ export const ParticleBackground: React.FC = () => {
         let opacityBoost = 1;
         if (distance < 150) {
           const force = (150 - distance) / 150 * 0.015;
-          particle.speedX += (dx / distance) * force; // Attract toward cursor
+          particle.speedX += (dx / distance) * force;
           particle.speedY += (dy / distance) * force;
 
-          // Boost opacity near cursor for glow effect
           opacityBoost = 1 + (150 - distance) / 150 * 0.5;
         }
 
-        // Apply drag
         particle.speedX *= 0.99;
         particle.speedY *= 0.99;
 
-        // Draw particle with enhanced glow near cursor
         const pulseOpacity = (Math.sin(particle.pulse) + 1) / 2;
         ctx.fillStyle = `rgba(74, 158, 255, ${particle.opacity * pulseOpacity * opacityBoost})`;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Connect nearby particles (enhanced connection distance)
         for (let j = index + 1; j < particlesRef.current.length; j++) {
           const otherParticle = particlesRef.current[j];
           const dx2 = particle.x - otherParticle.x;
@@ -110,7 +113,6 @@ export const ParticleBackground: React.FC = () => {
           if (distance2 < 180) {
             let opacity = (1 - distance2 / 180) * 0.2;
 
-            // Brighten connections near cursor
             const midX = (particle.x + otherParticle.x) / 2;
             const midY = (particle.y + otherParticle.y) / 2;
             const distToMouse = Math.sqrt(
@@ -137,7 +139,6 @@ export const ParticleBackground: React.FC = () => {
 
     animate();
 
-    // Handle resize
     const handleResize = () => {
       updateCanvasSize();
     };

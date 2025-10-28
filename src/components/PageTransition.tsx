@@ -1,6 +1,13 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Page transition wrapper with multiple Matrix-themed animation styles
+ *              including glitch effects, cascading reveals, and corruption animations
+ */
+
 import React, { useEffect, useRef } from 'react';
 import { animate } from 'animejs';
-import { glitchText, matrixCascade, digitalCorruption } from '../utils/matrixAnimations';
+import { matrixCascade, digitalCorruption } from '../utils/matrixAnimations';
 import './PageTransition.css';
 
 interface PageTransitionProps {
@@ -8,6 +15,14 @@ interface PageTransitionProps {
   transitionType?: 'matrix' | 'glitch' | 'cascade' | 'corruption' | 'fade';
 }
 
+/**
+ * Animated page transition container with configurable effect types
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Content to wrap with transition
+ * @param {string} [props.transitionType='matrix'] - Animation style to apply
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const PageTransition: React.FC<PageTransitionProps> = ({
   children,
   transitionType = 'matrix'
@@ -15,6 +30,9 @@ export const PageTransition: React.FC<PageTransitionProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * @listens transitionType - Triggers selected transition animation on mount
+   */
   useEffect(() => {
     if (!containerRef.current || !overlayRef.current) return;
 
@@ -42,7 +60,6 @@ export const PageTransition: React.FC<PageTransitionProps> = ({
       const overlay = overlayRef.current!;
       overlay.style.display = 'block';
 
-      // Binary rain effect
       const chars = '01';
       let rain = '';
       for (let i = 0; i < 100; i++) {
@@ -77,7 +94,7 @@ export const PageTransition: React.FC<PageTransitionProps> = ({
     const cascadeTransition = async () => {
       const elements = containerRef.current!.querySelectorAll('*');
       if (elements.length > 0) {
-        await matrixCascade(Array.from(elements) as HTMLElement[], 10);
+        await matrixCascade(Array.from(elements) as HTMLElement[]);
       }
     };
 

@@ -1,3 +1,10 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-28
+ * @description Retro CRT monitor effect wrapper with configurable scanlines,
+ *              flicker animation, and screen curvature
+ */
+
 import React, { useEffect, useRef } from 'react';
 import './CRTEffect.css';
 
@@ -9,6 +16,17 @@ interface CRTEffectProps {
   children?: React.ReactNode;
 }
 
+/**
+ * CRT monitor visual effect container with customisable retro aesthetics
+ * @param {Object} props
+ * @param {string} [props.intensity='normal'] - Effect intensity level
+ * @param {boolean} [props.scanlines=true] - Enable horizontal scanline overlay
+ * @param {boolean} [props.flicker=true] - Enable random flicker animation
+ * @param {boolean} [props.curve=false] - Apply screen curvature distortion
+ * @param {React.ReactNode} [props.children] - Content to wrap with CRT effect
+ * @return {JSX.Element}
+ * @constructor
+ */
 export const CRTEffect: React.FC<CRTEffectProps> = ({
   intensity = 'normal',
   scanlines = true,
@@ -18,10 +36,12 @@ export const CRTEffect: React.FC<CRTEffectProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * @listens flicker - Initialises random flicker intervals when enabled
+   */
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Add random flicker effect
     if (flicker) {
       const flickerInterval = setInterval(() => {
         if (Math.random() > 0.99) {
