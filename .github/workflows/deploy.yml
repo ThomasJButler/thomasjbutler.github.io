@@ -25,6 +25,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Setup git identity
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+
       - name: Deploy to GitHub Pages
         run: npm run deploy
         env:
