@@ -20,14 +20,6 @@
 
 </div>
 
-<!-- Table of Contents -->
-- [About Me](#about-me)
-- [My Tech Stacks](#my-tech-stacks)
-- [Credentials & Specialisations](#credentials--specialisations)
-- [Focus Areas](#focus-areas)
-- [Featured Projects](#featured-projects)
-- [Get in Touch](#get-in-touch)
-
 ## About Me
 
 A Full-stack web developer and AI Engineer from York, UK. 
