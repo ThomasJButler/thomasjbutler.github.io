@@ -3,6 +3,21 @@ import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
+// Import local project images
+import aiComparisonShowcaseImg from '../images/aicomparisonshowcase.webp';
+import aiComparisonShowcase2Img from '../images/aicomparisonshowcase2.webp';
+import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
+import sqlBallImg from '../images/sqlball.webp';
+import webAgencyShowcaseImg from '../images/webagencyshowcase.webp';
+import portfolio35Img from '../images/portfolio35.webp';
+import lfcRedditImg from '../images/lfcreddit.webp';
+import dotnetCalendarImg from '../images/dotnetcalendar.webp';
+import cssShowcaseImg from '../images/cssshowcase.webp';
+import matrixArcadeImg from '../images/matrixarcade.webp';
+import bigBangGalleryImg from '../images/bigbanggallery.webp';
+import pythonProjectsImg from '../images/pythonprojects.webp';
+import versionTimeTravelImg from '../images/versiontimetravel.webp';
+
 interface Project {
   id: string;
   name: string;
@@ -53,7 +68,7 @@ const projects: Project[] = [
     category: 'ai',
     status: 'completed',
     featured: true,
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png',
+    backgroundImage: aiComparisonShowcaseImg,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -77,7 +92,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201680/codegeneratorfrontend_jccy53.png',
+    backgroundImage: aiCodeGeneratorImg,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -101,7 +116,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053629/generatesql_yclpkb.png',
+    backgroundImage: sqlBallImg,
     gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -125,7 +140,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
+    backgroundImage: aiComparisonShowcase2Img,
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -151,7 +166,7 @@ const projects: Project[] = [
     category: 'web',
     status: 'completed',
     featured: true,
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png',
+    backgroundImage: webAgencyShowcaseImg,
     gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
@@ -176,7 +191,7 @@ const projects: Project[] = [
     category: 'web',
     status: 'completed',
     featured: true,
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754541799/v30_sesrmp.png',
+    backgroundImage: portfolio35Img,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
@@ -200,7 +215,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214152/lfcreddit_hgvxyz.png',
+    backgroundImage: lfcRedditImg,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(200, 16, 46, 0.8) 100%)'
   },
   {
@@ -224,7 +239,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214153/dotnetcalculator_hjltgc.png',
+    backgroundImage: dotnetCalendarImg,
     gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -248,7 +263,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214157/cssshowcase_q25veb.png',
+    backgroundImage: cssShowcaseImg,
     gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -274,7 +289,7 @@ const projects: Project[] = [
     },
     category: 'games',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214154/matrixarcade_xofygu.png',
+    backgroundImage: matrixArcadeImg,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
@@ -298,7 +313,7 @@ const projects: Project[] = [
     },
     category: 'creative',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/bigbang_cqxwzy.png',
+    backgroundImage: bigBangGalleryImg,
     gradient: 'linear-gradient(135deg, rgba(255, 100, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -323,7 +338,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214156/pythonprojects_vvszeh.png',
+    backgroundImage: pythonProjectsImg,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -349,7 +364,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1754214155/timetravel_dqpgqu.png',
+    backgroundImage: versionTimeTravelImg,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   }
 ];
