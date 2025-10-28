@@ -39,4 +39,6 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx gh-pages -d dist
+        run: |
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          npx gh-pages -d dist
