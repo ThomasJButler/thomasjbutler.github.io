@@ -1,4 +1,11 @@
 /**
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Performance optimisation utilities providing throttle, debounce,
+ *              and RAF-based throttling for event handler rate limiting.
+ */
+
+/**
  * Throttle function to limit the rate at which a function can fire
  * @param func Function to throttle
  * @param limit Time in ms to wait before allowing next execution

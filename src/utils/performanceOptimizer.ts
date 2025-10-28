@@ -1,6 +1,9 @@
 /**
- * Performance Optimizer
- * Detects device capabilities and adjusts app performance settings
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Performance optimisation system for adaptive rendering.
+ *              Detects device capabilities and adjusts animation/effect settings
+ *              based on hardware constraints and user preferences.
  */
 
 export interface PerformanceSettings {
@@ -32,7 +35,7 @@ class PerformanceOptimizer {
 
     // Check device memory (if available)
     const deviceMemory = (navigator as { deviceMemory?: number }).deviceMemory;
-    const isLowMemory = deviceMemory && deviceMemory < 2; // Changed from 4 to 2GB
+    const isLowMemory = deviceMemory ? deviceMemory < 2 : false; // Changed from 4 to 2GB
 
     // Check hardware concurrency (CPU cores)
     const hardwareConcurrency = navigator.hardwareConcurrency || 2;
@@ -40,11 +43,10 @@ class PerformanceOptimizer {
 
     // Check connection speed
     const connection = (navigator as { connection?: { effectiveType?: string } }).connection;
-    const isSlowConnection = connection && (
+    const isSlowConnection = connection ? (
       connection.effectiveType === 'slow-2g' ||
       connection.effectiveType === '2g'
-      // Removed 3g - it's fast enough for animations
-    );
+    ) : false;
 
     // Determine if low-end device - More restrictive conditions
     // Only mark as low-end if multiple conditions are met, not just one
@@ -114,10 +116,19 @@ class PerformanceOptimizer {
     }
   }
 
+  /**
+   * Returns current performance settings
+   * @return {PerformanceSettings} Copy of current settings
+   */
   public getSettings(): PerformanceSettings {
     return { ...this.settings };
   }
 
+  /**
+   * Determines if Matrix rain effect should be enabled
+   * @param {string} [currentTheme] - Current theme name
+   * @return {boolean} True if Matrix rain should be enabled
+   */
   public getMatrixRainEnabled(currentTheme?: string): boolean {
     // Always enable Matrix rain when Matrix theme is active, regardless of device capabilities
     if (currentTheme === 'matrix') {
@@ -126,11 +137,21 @@ class PerformanceOptimizer {
     return this.settings.enableMatrixRain;
   }
 
+  /**
+   * Forces Matrix rain effect enabled regardless of performance settings
+   * @return {void}
+   */
   public forceEnableMatrixRain(): void {
     // Force enable Matrix rain regardless of performance settings
     this.settings.enableMatrixRain = true;
   }
 
+  /**
+   * Updates a specific performance setting
+   * @param {K} key - Setting key to update
+   * @param {PerformanceSettings[K]} value - New value for setting
+   * @return {void}
+   */
   public updateSetting<K extends keyof PerformanceSettings>(
     key: K,
     value: PerformanceSettings[K]
@@ -139,6 +160,10 @@ class PerformanceOptimizer {
     this.applySettings();
   }
 
+  /**
+   * Enables high performance mode (disables all effects)
+   * @return {void}
+   */
   public enableHighPerformanceMode(): void {
     this.settings = {
       enableAnimations: false,
@@ -152,6 +177,10 @@ class PerformanceOptimizer {
     this.applySettings();
   }
 
+  /**
+   * Enables all visual effects regardless of device capabilities
+   * @return {void}
+   */
   public enableFullEffects(): void {
     this.settings = {
       enableAnimations: true,
@@ -169,9 +198,13 @@ class PerformanceOptimizer {
 // Export singleton instance
 export const performanceOptimizer = new PerformanceOptimizer();
 
-// Hook for React components
+// React hook for performance settings
 import { useEffect, useState } from 'react';
 
+/**
+ * React hook for accessing performance settings
+ * @return {PerformanceSettings} Current performance settings
+ */
 export function usePerformanceSettings() {
   const [settings, setSettings] = useState<PerformanceSettings>(
     performanceOptimizer.getSettings()

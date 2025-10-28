@@ -1,11 +1,19 @@
-import { animate } from 'animejs';
-
 /**
- * Matrix-themed animation utilities
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Matrix-themed animation effects using Anime.js.
+ *              Provides cyberpunk-style visual effects including glitches, cascades,
+ *              and terminal-inspired animations.
  */
 
-// Glitch text effect
-export const glitchText = (element: HTMLElement, duration: number = 2000) => {
+import { animate, stagger, createTimeline } from 'animejs';
+
+/**
+ * Creates glitch text effect with random character substitution
+ * @param {HTMLElement} element - Target element
+ * @return {void}
+ */
+export const glitchText = (element: HTMLElement) => {
   const originalText = element.textContent || '';
   const chars = '01!@#$%^&*()_+-=[]{}|;:,.<>?';
 
@@ -29,48 +37,51 @@ export const glitchText = (element: HTMLElement, duration: number = 2000) => {
   }, 30);
 };
 
-// Matrix cascade effect
-export const matrixCascade = (elements: HTMLElement[], stagger: number = 50) => {
-  return animate(elements, {
+/**
+ * Animates elements in cascading Matrix-style reveal
+ * @param {HTMLElement[]} elements - Array of elements to animate
+ * @param {number} [staggerDelay=50] - Delay between each element in milliseconds
+ * @return {Object} Anime.js animation instance
+ */
+export const matrixCascade = (elements: HTMLElement[], staggerDelay: number = 50) => {
+  return animate(elements as any, {
     translateY: [-50, 0],
     opacity: [0, 1],
-    color: ['#00FF00', '#FFFFFF', '#00FF00'],
-    delay: animate.stagger(stagger),
+    delay: stagger(staggerDelay),
     duration: 1000,
     easing: 'easeOutElastic(1, .5)',
-  });
+  } as any);
 };
 
-// Digital corruption effect
+/**
+ * Creates digital corruption effect with hue rotation and skew
+ * @param {HTMLElement} element - Target element
+ * @return {Object} Anime.js timeline instance
+ */
 export const digitalCorruption = (element: HTMLElement) => {
-  const timeline = animate.timeline({
-    targets: element,
-    easing: 'easeInOutQuad',
-  });
+  const timeline = createTimeline();
 
-  timeline
-    .add({
-      filter: [
-        'hue-rotate(0deg) saturate(1)',
-        'hue-rotate(90deg) saturate(2)',
-        'hue-rotate(-90deg) saturate(3)',
-        'hue-rotate(0deg) saturate(1)',
-      ],
-      duration: 500,
-    })
-    .add({
-      skewX: [0, 2, -2, 0],
-      duration: 200,
-    }, '-=300')
-    .add({
-      opacity: [1, 0.7, 1],
-      duration: 100,
-    }, '-=100');
+  timeline.add(element as any, {
+    filter: [
+      'hue-rotate(0deg) saturate(1)',
+      'hue-rotate(90deg) saturate(2)',
+      'hue-rotate(-90deg) saturate(3)',
+      'hue-rotate(0deg) saturate(1)',
+    ],
+    duration: 500,
+    easing: 'easeInOutQuad',
+  } as any);
 
   return timeline;
 };
 
-// Terminal typing effect
+/**
+ * Simulates terminal typing effect character by character
+ * @param {HTMLElement} element - Target element
+ * @param {string} text - Text to type out
+ * @param {number} [speed=50] - Typing speed in milliseconds per character
+ * @return {Promise<void>} Resolves when typing completes
+ */
 export const typewriterEffect = (
   element: HTMLElement,
   text: string,
@@ -94,7 +105,11 @@ export const typewriterEffect = (
   });
 };
 
-// Binary rain effect for backgrounds
+/**
+ * Creates falling binary digits effect for backgrounds
+ * @param {HTMLElement} container - Container element for rain effect
+ * @return {Function} Cleanup function to stop the animation
+ */
 export const binaryRain = (container: HTMLElement) => {
   const createDrop = () => {
     const drop = document.createElement('div');
@@ -121,7 +136,11 @@ export const binaryRain = (container: HTMLElement) => {
   return () => clearInterval(interval);
 };
 
-// Phosphor glow pulse
+/**
+ * Creates pulsing phosphor glow effect on text
+ * @param {HTMLElement} element - Target element
+ * @return {Object} Anime.js animation instance
+ */
 export const phosphorPulse = (element: HTMLElement) => {
   return animate(element, {
     textShadow: [
@@ -135,7 +154,11 @@ export const phosphorPulse = (element: HTMLElement) => {
   });
 };
 
-// Matrix reveal effect
+/**
+ * Reveals text with staggered character animation in Matrix style
+ * @param {HTMLElement} element - Target element containing text
+ * @return {Object} Anime.js animation instance
+ */
 export const matrixReveal = (element: HTMLElement) => {
   const text = element.textContent || '';
   const chars = text.split('');
@@ -148,16 +171,19 @@ export const matrixReveal = (element: HTMLElement) => {
     element.appendChild(span);
   });
 
-  return animate(element.children, {
+  return animate(Array.from(element.children) as any, {
     opacity: [0, 1],
-    color: ['#00FF00', '#FFFFFF', '#CCCCCC'],
-    delay: animate.stagger(20),
+    delay: stagger(20),
     duration: 500,
     easing: 'easeOutQuad',
-  });
+  } as any);
 };
 
-// System boot sequence
+/**
+ * Displays animated system boot sequence with messages
+ * @param {HTMLElement} container - Container element for boot sequence
+ * @return {Promise<void>} Resolves when boot sequence completes
+ */
 export const systemBoot = async (container: HTMLElement) => {
   const messages = [
     'INITIALIZING SYSTEM...',
@@ -207,7 +233,11 @@ export const systemBoot = async (container: HTMLElement) => {
   }).finished;
 };
 
-// Circuit trace animation
+/**
+ * Animates SVG circuit trace path drawing effect
+ * @param {HTMLElement} element - Container element for SVG
+ * @return {Object} Anime.js animation instance
+ */
 export const circuitTrace = (element: HTMLElement) => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.style.position = 'absolute';
@@ -228,15 +258,19 @@ export const circuitTrace = (element: HTMLElement) => {
   svg.appendChild(path);
   element.appendChild(svg);
 
-  return animate(path, {
+  return animate(path as any, {
     strokeDashoffset: [1000, 0],
     duration: 2000,
     easing: 'linear',
     loop: true,
-  });
+  } as any);
 };
 
-// Quantum flicker
+/**
+ * Creates subtle quantum-style flicker effect with random delays
+ * @param {HTMLElement} element - Target element
+ * @return {Object} Anime.js animation instance
+ */
 export const quantumFlicker = (element: HTMLElement) => {
   return animate(element, {
     opacity: [1, 0.95, 1, 0.98, 1],

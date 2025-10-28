@@ -1,5 +1,15 @@
-// Quick contrast ratio checker for WCAG compliance
+/**
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description WCAG contrast ratio checker for accessibility compliance.
+ *              Validates Matrix theme colour combinations against WCAG AA/AAA standards.
+ */
 
+/**
+ * Calculates relative luminance of a hex colour
+ * @param {string} hex - Hex colour code (e.g. "#00FF00")
+ * @return {number} Relative luminance value (0-1)
+ */
 function getLuminance(hex) {
   // Convert hex to RGB
   const rgb = parseInt(hex.slice(1), 16);
@@ -17,6 +27,12 @@ function getLuminance(hex) {
   return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
 }
 
+/**
+ * Calculates contrast ratio between two colours
+ * @param {string} color1 - First hex colour code
+ * @param {string} color2 - Second hex colour code
+ * @return {number} Contrast ratio (1-21)
+ */
 function getContrastRatio(color1, color2) {
   const lum1 = getLuminance(color1);
   const lum2 = getLuminance(color2);

@@ -1,5 +1,8 @@
 /**
- * Service Worker registration and management
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Service Worker registration and lifecycle management.
+ *              Handles offline caching, update notifications, and PWA functionality.
  */
 
 interface Config {
@@ -15,6 +18,11 @@ const isLocalhost = Boolean(
   )
 );
 
+/**
+ * Registers service worker with optional update/success callbacks
+ * @param {Config} [config] - Optional configuration with callbacks
+ * @return {void}
+ */
 export function register(config?: Config) {
   if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -113,6 +121,10 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
     });
 }
 
+/**
+ * Unregisters the service worker
+ * @return {void}
+ */
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready

@@ -1,4 +1,11 @@
-// Timeline data for career journey and tech updates
+/**
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Career timeline data and category management for professional journey.
+ *              Comprehensive chronicle of education, projects, career milestones,
+ *              and personal growth from 2022 to present.
+ */
+
 export interface TimelineEntry {
   id: number;
   date: string; // Formatted UK date like "September 2025"
@@ -24,6 +31,12 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
+/**
+ * Formats year and month into readable UK date string
+ * @param {number} year - Year value
+ * @param {number} month - Month value (1-12)
+ * @return {string} Formatted date string (e.g. "September 2025")
+ */
 const formatDate = (year: number, month: number): string => {
   return `${MONTHS[month - 1]} ${year}`;
 };
@@ -664,7 +677,11 @@ export const timelineData: TimelineEntry[] = [
   }
 ];
 
-// Helper function to get icon color based on category
+/**
+ * Maps category to its corresponding colour code
+ * @param {TimelineEntry['category']} category - Timeline entry category
+ * @return {string} Hex colour code for the category
+ */
 export const getCategoryColor = (category: TimelineEntry['category']): string => {
   const colors = {
     'education': '#F59E0B',

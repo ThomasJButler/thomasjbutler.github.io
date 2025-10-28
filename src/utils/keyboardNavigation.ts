@@ -1,12 +1,17 @@
 /**
- * Keyboard navigation utilities for improved accessibility
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Keyboard navigation and accessibility utilities.
+ *              Provides focus management, keyboard shortcuts, and screen reader announcements
+ *              for enhanced accessibility compliance.
  */
 
 // Track keyboard navigation state
 let isKeyboardNav = false;
 
 /**
- * Initialize keyboard navigation detection
+ * Initialises keyboard navigation detection and accessibility features
+ * @return {void}
  */
 export function initKeyboardNavigation(): void {
   // Detect keyboard usage
@@ -39,7 +44,9 @@ export function initKeyboardNavigation(): void {
 
 
 /**
- * Focus trap utility for modals and overlays
+ * Traps keyboard focus within a specific element for modal accessibility
+ * @param {HTMLElement} element - Element to trap focus within
+ * @return {Function} Cleanup function to remove focus trap
  */
 export function trapFocus(element: HTMLElement): () => void {
   const focusableElements = element.querySelectorAll(
@@ -129,28 +136,9 @@ function initKeyboardShortcuts(): void {
         break;
       }
         
-      case 'g':
-        if (e.ctrlKey || e.metaKey) {
-          break; // Let browser handle Ctrl+G
-        }
-        // Go to shortcuts
-        if (e.shiftKey) {
-          switch(e.key) {
-            case 'H':
-              window.location.href = '/';
-              break;
-            case 'A':
-              window.location.href = '/about';
-              break;
-            case 'P':
-              window.location.href = '/projects';
-              break;
-            case 'C':
-              window.location.href = '/contact';
-              break;
-          }
-        }
-        break;
+      // Note: Multi-key shortcuts (g+h, g+a, etc.) require state tracking
+      // Removed for now to prevent TypeScript errors
+      // TODO: Implement proper two-key shortcut system if needed
         
       case '?':
         // Show keyboard shortcuts help
@@ -215,7 +203,10 @@ function showKeyboardHelp(): void {
 }
 
 /**
- * Announce message to screen readers
+ * Announces message to screen readers using ARIA live regions
+ * @param {string} message - Message to announce
+ * @param {'polite'|'assertive'} [priority='polite'] - Announcement priority level
+ * @return {void}
  */
 export function announceToScreenReader(message: string, priority: 'polite' | 'assertive' = 'polite'): void {
   const announcement = document.createElement('div');
@@ -233,7 +224,8 @@ export function announceToScreenReader(message: string, priority: 'polite' | 'as
 }
 
 /**
- * Get current keyboard navigation state
+ * Returns current keyboard navigation state
+ * @return {boolean} True if user is navigating with keyboard
  */
 export function isUsingKeyboard(): boolean {
   return isKeyboardNav;

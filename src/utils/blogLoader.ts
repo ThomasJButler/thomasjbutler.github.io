@@ -1,3 +1,11 @@
+/**
+ * @author Tom Butler
+ * @date 2025-10-27
+ * @description Blog post loading and management utilities.
+ *              Handles fetching markdown blog posts, metadata parsing,
+ *              and post filtering/searching functionality.
+ */
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -84,13 +92,23 @@ const blogMetadata: Record<string, Partial<BlogPost>> = {
   }
 };
 
-// Calculate reading time (assuming 200 words per minute)
+/**
+ * Calculates reading time based on average reading speed
+ * @param {string} content - Markdown content to analyse
+ * @return {number} Estimated reading time in minutes
+ */
 function calculateReadTime(content: string): number {
+  // Uses industry standard 200 words per minute
   const words = content.split(/\s+/).length;
   return Math.ceil(words / 200);
 }
 
-// Generate excerpt from content if not provided
+/**
+ * Generates excerpt from markdown content
+ * @param {string} content - Full markdown content
+ * @param {number} [maxLength=150] - Maximum excerpt length in characters
+ * @return {string} Clean excerpt with ellipsis if truncated
+ */
 function generateExcerpt(content: string, maxLength: number = 150): string {
   const cleanContent = content
     .replace(/^#.*$/gm, '') // Remove headers
@@ -103,23 +121,28 @@ function generateExcerpt(content: string, maxLength: number = 150): string {
   return cleanContent.substring(0, maxLength).trim() + '...';
 }
 
-// Get the correct base path for the current environment
+/**
+ * Determines correct base path for current environment
+ * @return {string} Base path for asset loading
+ */
 function getBasePath(): string {
-  // In development, use the Vite dev server
+  // In development, use the Vite dev server root
   if (import.meta.env.DEV) {
-    // In development, files are served from the root
     return '';
   }
-  // In production, use the full base path
+  // In production, use GitHub Pages subdirectory
   return '/ThomasJButler';
 }
 
-// Load a single blog post
+/**
+ * Loads a single blog post by slug
+ * @param {string} slug - URL-friendly post identifier
+ * @return {Promise<BlogPost|null>} Blog post data or null if not found
+ */
 export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const basePath = getBasePath();
     const url = `${basePath}/src/content/blog/${slug}.md`;
-    
     
     const response = await fetch(url);
     
@@ -152,7 +175,10 @@ export async function loadBlogPost(slug: string): Promise<BlogPost | null> {
   }
 }
 
-// Load all blog posts
+/**
+ * Loads all available blog posts
+ * @return {Promise<BlogPost[]>} Array of blog posts sorted by date descending
+ */
 export async function loadAllBlogPosts(): Promise<BlogPost[]> {
   const slugs = Object.keys(blogMetadata);
   const posts = await Promise.all(slugs.map(slug => loadBlogPost(slug)));
@@ -161,17 +187,23 @@ export async function loadAllBlogPosts(): Promise<BlogPost[]> {
     .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => {
       // Sort by date descending (most recent first)
-      // Dates are in YYYY-MM-DD format, which works directly with Date constructor
+      // YYYY-MM-DD format works directly with Date constructor
       const dateA = new Date(a.publishDate);
       const dateB = new Date(b.publishDate);
       return dateB.getTime() - dateA.getTime();
     });
 }
 
-// Search blog posts
+/**
+ * Searches blog posts by query string
+ * @param {BlogPost[]} posts - Posts to search through
+ * @param {string} query - Search query (case-insensitive)
+ * @return {BlogPost[]} Filtered posts matching query
+ */
 export function searchBlogPosts(posts: BlogPost[], query: string): BlogPost[] {
   const lowerQuery = query.toLowerCase();
   
+  // Searches across title, excerpt, and tags
   return posts.filter(post => 
     post.title.toLowerCase().includes(lowerQuery) ||
     post.excerpt.toLowerCase().includes(lowerQuery) ||
@@ -179,12 +211,21 @@ export function searchBlogPosts(posts: BlogPost[], query: string): BlogPost[] {
   );
 }
 
-// Filter posts by tag
+/**
+ * Filters posts by specific tag
+ * @param {BlogPost[]} posts - Posts to filter
+ * @param {string} tag - Tag to filter by (exact match)
+ * @return {BlogPost[]} Posts containing the specified tag
+ */
 export function filterByTag(posts: BlogPost[], tag: string): BlogPost[] {
   return posts.filter(post => post.tags.includes(tag));
 }
 
-// Get all unique tags
+/**
+ * Extracts all unique tags from posts
+ * @param {BlogPost[]} posts - Posts to extract tags from
+ * @return {string[]} Sorted array of unique tags
+ */
 export function getAllTags(posts: BlogPost[]): string[] {
   const tags = new Set<string>();
   posts.forEach(post => post.tags.forEach(tag => tags.add(tag)));
