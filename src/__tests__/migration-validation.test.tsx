@@ -1,11 +1,11 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { App } from '../App';
 
 describe('v3.5 Migration Validation', () => {
-  test('✅ App renders without crashes', () => {
+  test('App renders without crashes', () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
@@ -15,7 +15,7 @@ describe('v3.5 Migration Validation', () => {
     expect(container.querySelector('#root')).toBeTruthy();
   });
 
-  test('✅ No infinite loops or stack overflow', () => {
+  test('No infinite loops or stack overflow', () => {
     const errorSpy = vi.spyOn(console, 'error');
     
     render(
@@ -33,7 +33,7 @@ describe('v3.5 Migration Validation', () => {
     errorSpy.mockRestore();
   });
 
-  test('✅ Content is visible (not hidden by opacity)', () => {
+  test('Content is visible (not hidden by opacity)', () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
@@ -61,7 +61,7 @@ describe('v3.5 Migration Validation', () => {
     expect(visibleCount).toBeGreaterThan(animatingCount * 10);
   });
 
-  test('✅ All routes work without redirects', async () => {
+  test('All routes work without redirects', async () => {
     const routes = [
       '/ThomasJButler/',
       '/ThomasJButler/about',
@@ -87,19 +87,13 @@ describe('v3.5 Migration Validation', () => {
     }
   });
 
-  test('✅ SEO metadata preserved', () => {
-    // Check that important meta tags exist in index.html
+  test('SEO metadata preserved', () => {
     const metaTags = document.querySelectorAll('meta');
-    const hasDescription = Array.from(metaTags).some(tag => 
-      tag.getAttribute('name') === 'description'
-    );
     
-    // Note: In test environment, meta tags from index.html won't be present
-    // This test validates the structure is correct for production
     expect(metaTags).toBeDefined();
   });
 
-  test('✅ Performance: Lazy loading configured', () => {
+  test('Performance: Lazy loading configured', () => {
     // Verify that pages are lazy loaded
     const appCode = App.toString();
     
@@ -110,7 +104,7 @@ describe('v3.5 Migration Validation', () => {
     expect(hasLazyLoading).toBe(true);
   });
 
-  test('⚠️ Animations need completion handlers', () => {
+  test('Animations need completion handlers', () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
