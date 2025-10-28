@@ -48,10 +48,9 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
       updateCount: updateCount.current
     };
 
-    // Log performance if enabled and threshold exceeded
     if (enableLogging && renderTime > logThreshold) {
       console.warn(
-        `🐌 Slow render detected in ${componentName}:`,
+        `[PERF] Slow render detected in ${componentName}:`,
         `${renderTime.toFixed(2)}ms (threshold: ${logThreshold}ms)`
       );
     }
@@ -61,10 +60,9 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
       onMetrics(metrics);
     }
 
-    // Log performance summary in development
     if (enableLogging && process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.groupCollapsed(`📊 ${componentName} Performance`);
+      console.groupCollapsed(`[PERF] ${componentName} Performance`);
       console.warn(`Render time: ${renderTime.toFixed(2)}ms`);
       console.warn(`Mount time: ${mountTime.current.toFixed(2)}ms`);
       console.warn(`Update count: ${updateCount.current}`);
@@ -90,13 +88,13 @@ export const usePerformanceMonitor = (config: PerformanceConfig) => {
         const result = await fn();
         const end = performance.now();
         if (enableLogging) {
-          console.warn(`⏱️ ${componentName} ${label}: ${(end - start).toFixed(2)}ms`);
+          console.warn(`[PERF] ${componentName} ${label}: ${(end - start).toFixed(2)}ms`);
         }
         return result;
       } catch (error) {
         const end = performance.now();
         if (enableLogging) {
-          console.error(`❌ ${componentName} ${label} failed after ${(end - start).toFixed(2)}ms:`, error);
+          console.error(`[ERROR] ${componentName} ${label} failed after ${(end - start).toFixed(2)}ms:`, error);
         }
         throw error;
       }
@@ -117,7 +115,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
           const lastEntry = entries[entries.length - 1];
           
           if (lastEntry && enableLogging) {
-            console.warn(`🎯 LCP: ${lastEntry.startTime.toFixed(2)}ms`);
+            console.warn(`[LCP] ${lastEntry.startTime.toFixed(2)}ms`);
           }
         });
         observer.observe({ entryTypes: ['largest-contentful-paint'] });
@@ -135,7 +133,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
           const entries = list.getEntries();
           entries.forEach((entry) => {
             if (enableLogging) {
-              console.warn(`⚡ FID: ${entry.processingStart - entry.startTime}ms`);
+              console.warn(`[FID] ${entry.processingStart - entry.startTime}ms`);
             }
           });
         });
@@ -160,7 +158,7 @@ export const useWebVitals = (enableLogging = process.env.NODE_ENV === 'developme
           });
           
           if (enableLogging) {
-            console.warn(`📐 CLS: ${clsValue.toFixed(4)}`);
+            console.warn(`[CLS] ${clsValue.toFixed(4)}`);
           }
         });
         observer.observe({ entryTypes: ['layout-shift'] });
@@ -204,10 +202,10 @@ export const usePerformanceBudget = (budget: { [key: string]: number }) => {
         const budgetValue = budget[metric];
         if (budgetValue && value > budgetValue) {
           console.warn(
-            `💸 Performance budget exceeded for ${metric}: ${value.toFixed(2)}ms (budget: ${budgetValue}ms)`
+            `[BUDGET] Exceeded for ${metric}: ${value.toFixed(2)}ms (budget: ${budgetValue}ms)`
           );
         } else if (budgetValue) {
-          console.warn(`✅ ${metric}: ${value.toFixed(2)}ms (under budget: ${budgetValue}ms)`);
+          console.warn(`[OK] ${metric}: ${value.toFixed(2)}ms (under budget: ${budgetValue}ms)`);
         }
       });
     };
