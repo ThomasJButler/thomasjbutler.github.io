@@ -28,14 +28,6 @@ interface UpdatesFeedProps {
   showStats?: boolean;
 }
 
-const typeEmojis: Record<string, string> = {
-  feature: '🎉',
-  achievement: '🏆',
-  learning: '📚',
-  milestone: '🚀',
-  thought: '💭'
-};
-
 const moodColors: Record<string, string> = {
   celebrating: '#00FF00',
   reflecting: '#00FFFF',
@@ -51,8 +43,8 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
   const feedRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
+  /** @constructs Runs once on mount to animate feed items */
   useEffect(() => {
-    // Stagger animation for feed items
     animate(itemsRef.current, {
       translateY: [20, 0],
       opacity: [0, 1],
@@ -78,7 +70,6 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
     });
   };
 
-  // Filter and limit updates
   let displayUpdates = updatesData.updates;
   if (featured) {
     displayUpdates = displayUpdates.filter(update => update.featured);
@@ -125,7 +116,7 @@ export const UpdatesFeed: React.FC<UpdatesFeedProps> = ({
           >
             <div className={styles.updateHeader}>
               <span className={styles.updateType}>
-                {typeEmojis[update.type]} {update.type}
+                {update.type}
               </span>
               <span className={styles.updateDate}>{formatDate(update.date)}</span>
             </div>
