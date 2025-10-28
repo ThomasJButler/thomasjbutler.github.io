@@ -12,7 +12,7 @@
 
 <div align="center">
 
-**Full-Stack Developer | AI Integration Specialist | York, UK**
+**Full-Stack Web Developer | AI Engineer | York, UK**
 
 [![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-thomasjbutler.me-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
 [![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-thomasjbutler.github.io-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
