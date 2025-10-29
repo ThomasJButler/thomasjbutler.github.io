@@ -6,6 +6,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import '../css/pages/services.css';
@@ -367,11 +368,10 @@ export const ServicesPage: React.FC = () => {
         {/* Sticky CTA */}
         <div className="ctaSection">
           <h3>Ready to start your project?</h3>
-          <p>Let's talk, I'll help bring your ideas to life.</p>
-          <a href="/contact" className="ctaButton">
+          <Link to="/contact" className="ctaButton">
             Get In Touch
             <i className="fas fa-envelope icon-margin-left"></i>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
