@@ -20,7 +20,7 @@ import bigBangGalleryImg from '../images/bigbanggallery.webp';
 import pythonProjectsImg from '../images/pythonprojects.webp';
 import versionTimeTravelImg from '../images/versiontimetravel.webp';
 import newsperspectiveImg from '../images/newsperspective.webp';
-import aiComparisonShowcaseImg from '../images/aicomparisonshowcase.webp';
+import aiComparisonShowcaseImg from '../images/aicomparisonshowcase3.webp';
 
 interface Project {
   id: string;
