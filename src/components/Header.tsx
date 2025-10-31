@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
       <div className={styles.container}>
         <Link to="/" className={styles.headerTitle}>
           <img
-            src="/ThomasJButler/logo.svg"
+            src="/logo.svg"
             alt="Thomas J Butler Logo"
             className={styles.headerLogo}
           />
