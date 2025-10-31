@@ -7,7 +7,7 @@ import { App } from '../App';
 describe('v3.5 Migration Validation', () => {
   test('App renders without crashes', () => {
     const { container } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
       </MemoryRouter>
     );
@@ -19,7 +19,7 @@ describe('v3.5 Migration Validation', () => {
     const errorSpy = vi.spyOn(console, 'error');
     
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
       </MemoryRouter>
     );
@@ -35,7 +35,7 @@ describe('v3.5 Migration Validation', () => {
 
   test('Content is visible (not hidden by opacity)', () => {
     const { container } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
       </MemoryRouter>
     );
@@ -63,13 +63,13 @@ describe('v3.5 Migration Validation', () => {
 
   test('All routes work without redirects', async () => {
     const routes = [
-      '/',
-      '/about',
-      '/blog',
-      '/skills',
-      '/projects',
-      '/services',
-      '/contact'
+      '/ThomasJButler/',
+      '/ThomasJButler/about',
+      '/ThomasJButler/blog',
+      '/ThomasJButler/skills',
+      '/ThomasJButler/projects',
+      '/ThomasJButler/services',
+      '/ThomasJButler/contact'
     ];
     
     for (const route of routes) {
@@ -106,7 +106,7 @@ describe('v3.5 Migration Validation', () => {
 
   test('Animations need completion handlers', () => {
     const { container } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/ThomasJButler/']}>
         <App />
       </MemoryRouter>
     );

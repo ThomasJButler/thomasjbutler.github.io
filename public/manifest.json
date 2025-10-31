@@ -2,15 +2,15 @@
   "name": "Thomas J Butler - Portfolio",
   "short_name": "TJB Portfolio",
   "description": "Liverpool-based Full Stack Developer specializing in AI integration",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/ThomasJButler/",
+  "scope": "/ThomasJButler/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#00FF00",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/logo.svg",
+      "src": "/ThomasJButler/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
