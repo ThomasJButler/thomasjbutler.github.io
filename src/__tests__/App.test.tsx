@@ -47,7 +47,7 @@ describe('App Component', () => {
 
   test('contains Router with correct basename', () => {
     render(<App />);
-    // Router should be configured with /ThomasJButler basename
+    // Router should be configured correctly
     expect(window.location.pathname).toBeDefined();
   });
 

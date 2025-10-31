@@ -130,8 +130,8 @@ function getBasePath(): string {
   if (import.meta.env.DEV) {
     return '';
   }
-  // In production, use GitHub Pages subdirectory
-  return '/ThomasJButler';
+  // In production, use root path
+  return '';
 }
 
 /**

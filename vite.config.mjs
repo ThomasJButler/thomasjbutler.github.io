@@ -6,7 +6,7 @@ import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from '
 
 export default defineConfig({
   root: '.',
-  base: '/ThomasJButler/',
+  base: '/',
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -45,8 +45,6 @@ export default defineConfig({
 
           if (url.startsWith('/src/content/blog/')) {
             blogPath = url.replace('/src/content/blog/', '');
-          } else if (url.startsWith('/ThomasJButler/src/content/blog/')) {
-            blogPath = url.replace('/ThomasJButler/src/content/blog/', '');
           }
 
           if (blogPath && blogPath.endsWith('.md')) {
@@ -70,19 +68,19 @@ export default defineConfig({
         });
 
         // Redirect blog article routes to React app with hash
-        server.middlewares.use('/ThomasJButler/blog/', (req, res, next) => {
+        server.middlewares.use('/blog/', (req, res, next) => {
           // Extract the blog slug from the URL
           const path = req.url;
           const slug = path.split('/').pop();
-          
+
           if (slug && slug !== 'blog') {
             // Redirect to react.html with hash routing
-            const redirectUrl = `/ThomasJButler/react.html#/blog/${slug}`;
+            const redirectUrl = `/react.html#/blog/${slug}`;
             res.writeHead(302, { Location: redirectUrl });
             res.end();
           } else {
             // For /blog route, redirect to blog list
-            const redirectUrl = `/ThomasJButler/react.html#/blog`;
+            const redirectUrl = `/react.html#/blog`;
             res.writeHead(302, { Location: redirectUrl });
             res.end();
           }
@@ -119,7 +117,7 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    open: '/ThomasJButler/react.html', // Open directly to correct URL to avoid base path warning
+    open: '/react.html', // Open directly to correct URL
     watch: {
       usePolling: true
     }

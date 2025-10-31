@@ -328,7 +328,7 @@ export const timelineData: TimelineEntry[] = [
     ],
     links: [
       {
-        href: 'https://thomasjbutler.github.io/ThomasJButler',
+        href: 'https://thomasjbutler.github.io',
         label: 'Visit Site',
         icon: 'fa-arrow-up-right-from-square'
       },
