@@ -28,9 +28,11 @@ My passion is to build human orientated applications that feel natural and joyfu
 
 I'm currently focused on creating AI integrated systems, building ethical AI models, and Next.js/React web applications as a secure front-end.
 
-<p align="center">
- <img width="1005" src="https://raw.githubusercontent.com/ThomasJButler/ThomasJButler/output/snake/github-contribution-grid-snake.svg" alt="snake"/>
-</p>
+## Featured Projects
+
+- **SQL-Ball** – RAG-powered NL-to-SQL using a custom collated dataset of European football results. [GitHub →](https://github.com/ThomasJButler/SQL-Ball)
+- **AgenticAICoursePortfolio** – Portfolio of web apps from the Generative AI & Agents Bootcamp. [GitHub →](https://github.com/ThomasJButler/AgenticAICoursePortfolio)
+- **The Matrix Arcade** – Collection of custom-built games in the style of “The Matrix.” [GitHub →](https://github.com/ThomasJButler/The-Matrix-Arcade)
 
 ## My Tech Stacks
 
@@ -153,12 +155,6 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 - **CSS** → GSAP animations, 3D transforms, Matrix effects
 - **Full-Stack** → End-to-end application development  
 
-## Featured Projects
-
-- **SQL-Ball** – RAG-powered NL-to-SQL using a custom collated dataset of European football results. [GitHub →](https://github.com/ThomasJButler/SQL-Ball)
-- **AgenticAICoursePortfolio** – Portfolio of web apps from the Generative AI & Agents Bootcamp. [GitHub →](https://github.com/ThomasJButler/AgenticAICoursePortfolio)
-- **The Matrix Arcade** – Collection of custom-built games in the style of “The Matrix.” [GitHub →](https://github.com/ThomasJButler/The-Matrix-Arcade)
-
 ## GitHub Stats
 
 <div align="center">
@@ -169,14 +165,26 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 
 </div>
 
+<div align="center">
+  
+## Get in Touch
+
+</div>
+
+<div align="center">
+  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
 [![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFB000?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ojrwoqkgmv)
 
-## Get in Touch
+</div>
 
-- **Email:** [dev@thomasjbutler.me](mailto:dev@thomasjbutler.me)
-- **Resume:** [Download Resume (PDF)](https://cvgenius.com/uk/cv-link/ca1e2690-125c-4422-804d-b68c1935f598/449d6614-8209-4741-bd30-2fc12fe4f8e8)
+<div align="center">
+
+**Email:** [dev@thomasjbutler.me](mailto:dev@thomasjbutler.me) |-------|
+**Resume:** [Download Resume (PDF)](https://cvgenius.com/uk/cv-link/ca1e2690-125c-4422-804d-b68c1935f598/449d6614-8209-4741-bd30-2fc12fe4f8e8)
+
+</div>
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=00FF00&height=100&section=footer" width="100%" />
