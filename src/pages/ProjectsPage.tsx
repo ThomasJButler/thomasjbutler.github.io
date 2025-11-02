@@ -50,7 +50,7 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // AI/ML Projects - Featured showcase from aitomatic.io
+  // AI/ML Projects - Featured showcase from Agentic AI Bootcamp
   {
     id: 'ai-comparison-showcase',
     name: 'Real-time LLM Builder and Comparison Tool',
@@ -143,7 +143,7 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: 'https://www.aitomatic.io/',
+      demo: 'https://mastering-ai-course-portfolio-dashb.vercel.app/',
       github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
     },
     category: 'ai',
@@ -291,7 +291,7 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: 'https://www.tomatic.tech/',
+      demo: 'https://the-matrix-arcade.vercel.app/',
       github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
     },
     category: 'games',
