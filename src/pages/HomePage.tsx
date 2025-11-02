@@ -353,7 +353,7 @@ export const HomePage: React.FC = () => {
               </div>
               <h3>GenAI Bootcamp Portfolio</h3>
               <p>Comprehensive AI portfolio showcasing practical applications and innovative solutions.</p>
-              <a href="https://aitomatic.io/" target="_blank" rel="noopener noreferrer" className="gallery-link">
+              <a href="https://mastering-ai-course-portfolio-dashb.vercel.app/" target="_blank" rel="noopener noreferrer" className="gallery-link">
                 View Portfolio <i className="fas fa-external-link-alt"></i>
               </a>
             </div>
