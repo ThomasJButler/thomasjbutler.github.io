@@ -10,17 +10,7 @@ import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
-import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
-import sqlBallImg from '../images/sqlball.webp';
-import logo1Img from '../images/logo.svg';
-import lfcRedditImg from '../images/lfcreddit.webp';
-import dotnetCalendarImg from '../images/dotnetcalendar.webp';
-import cssShowcaseImg from '../images/cssshowcase.webp';
-import bigBangGalleryImg from '../images/bigbanggallery.webp';
-import pythonProjectsImg from '../images/pythonprojects.webp';
-import versionTimeTravelImg from '../images/versiontimetravel.webp';
-import newsperspectiveImg from '../images/newsperspective.webp';
-import aiComparisonShowcaseImg from '../images/aicomparisonshowcase3.webp';
+import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
 
 interface Project {
   id: string;
@@ -72,7 +62,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: aiComparisonShowcaseImg,
+    backgroundImage: PLACEHOLDER_IMAGES.aiComparisonShowcase3,
     featured: true,
     hideNameOnFront: true,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
@@ -99,7 +89,7 @@ const projects: Project[] = [
     category: 'ai',
     status: 'completed',
     hideNameOnFront: true,
-    backgroundImage: aiCodeGeneratorImg,
+    backgroundImage: PLACEHOLDER_IMAGES.aiCodeGenerator,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -124,7 +114,7 @@ const projects: Project[] = [
     category: 'ai',
     status: 'completed',
     hideNameOnFront: true,
-    backgroundImage: sqlBallImg,
+    backgroundImage: PLACEHOLDER_IMAGES.sqlBall,
     gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -174,7 +164,7 @@ const projects: Project[] = [
     category: 'web',
     status: 'completed',
     featured: true,
-    backgroundImage: logo1Img,
+    backgroundImage: PLACEHOLDER_IMAGES.logo1,
     gradient: 'linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
@@ -197,7 +187,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: newsperspectiveImg,
+    backgroundImage: PLACEHOLDER_IMAGES.newsPerspective,
     hideNameOnFront: true,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -222,7 +212,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: lfcRedditImg,
+    backgroundImage: PLACEHOLDER_IMAGES.lfcReddit,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(200, 16, 46, 0.8) 100%)'
   },
   {
@@ -246,7 +236,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: dotnetCalendarImg,
+    backgroundImage: PLACEHOLDER_IMAGES.dotnetCalendar,
     gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -270,7 +260,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: cssShowcaseImg,
+    backgroundImage: PLACEHOLDER_IMAGES.cssShowcase,
     gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -321,7 +311,7 @@ const projects: Project[] = [
     },
     category: 'creative',
     status: 'completed',
-    backgroundImage: bigBangGalleryImg,
+    backgroundImage: PLACEHOLDER_IMAGES.bigBangGallery,
     gradient: 'linear-gradient(135deg, rgba(255, 100, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -346,7 +336,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: pythonProjectsImg,
+    backgroundImage: PLACEHOLDER_IMAGES.pythonProjects,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -372,7 +362,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: versionTimeTravelImg,
+    backgroundImage: PLACEHOLDER_IMAGES.versionTimeTravel,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   }
 ];

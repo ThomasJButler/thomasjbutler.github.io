@@ -10,9 +10,7 @@ import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
-import aiComparisonLeft from '../images/aicomparisonshowcase.webp';
-import matrixArcade from '../images/matrixarcade.webp';
-import aiComparisonRight from '../images/aicomparisonshowcase2.webp';
+import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
 
 /**
  * Home page component with cascading animations and scroll effects
@@ -294,9 +292,9 @@ export const HomePage: React.FC = () => {
           <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
           <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
           <div className="introduction-img">
-            <img src={aiComparisonRight} alt="AI Comparison Showcase - Performance Metrics" />
-            <img src={matrixArcade} alt="The Matrix Arcade - Interactive Gaming Experience" />
-            <img src={aiComparisonLeft} alt="AI Comparison Showcase - Advanced Features" />
+            <img src={PLACEHOLDER_IMAGES.aiComparisonRight} alt="AI Comparison Showcase - Performance Metrics" />
+            <img src={PLACEHOLDER_IMAGES.matrixArcade} alt="The Matrix Arcade - Interactive Gaming Experience" />
+            <img src={PLACEHOLDER_IMAGES.aiComparisonLeft} alt="AI Comparison Showcase - Advanced Features" />
           </div>
           <div className="galleries-mobile">
             <Link to="/projects" className="btn-professional glass-card hover-lift">
