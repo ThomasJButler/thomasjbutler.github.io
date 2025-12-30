@@ -1,7 +1,7 @@
 /**
- * Centralized placeholder image URLs for projects
- * Using placeholder.com service for distinct gray placeholders with text overlays
- * These will be replaced with actual CDN URLs when images are available
+ * Centralized image URLs for projects
+ * Using Cloudinary CDN for project images
+ * Synced with Agentic AI Projects Portfolio (agenticaiprojectsportfolio.vercel.app)
  */
 
 // Cloudinary configuration
@@ -35,9 +35,15 @@ export const generatePlaceholder = (
  * These replace the local images that were removed from source control
  */
 export const PLACEHOLDER_IMAGES = {
-  // ProjectsPage placeholders (600x400)
-  aiCodeGenerator: generatePlaceholder(600, 400, 'AI+Code+Generator'),
-  sqlBall: generatePlaceholder(600, 400, 'SQL+Ball'),
+  // AI/ML Projects - Real Cloudinary URLs from Agentic AI Portfolio
+  modelViz: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581000/ModelViz_rgtovj.png',
+  aiCodeGenerator: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201680/codegeneratordocs_snywas.png',
+  sqlBall: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581001/sqlball_rtdaag.png',
+  morpheus: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580765/morpheuschat_evuiol.png',
+  reviewBotProtocol: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581001/rvp_vr7mvr.png',
+  portfolioDashboard: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766595895/dashboardhomepage_xxsk0z.png',
+
+  // Web Projects - Placeholders (to be replaced with real images later)
   logo1: generatePlaceholder(600, 400, 'Commercial+Portfolio'),
   lfcReddit: generatePlaceholder(600, 400, 'LFC+News+Reddit'),
   dotnetCalendar: generatePlaceholder(600, 400, '.NET+React+Calendar'),
@@ -46,10 +52,12 @@ export const PLACEHOLDER_IMAGES = {
   pythonProjects: generatePlaceholder(600, 400, 'Python+Projects'),
   versionTimeTravel: generatePlaceholder(600, 400, 'Version+TimeTravel'),
   newsPerspective: generatePlaceholder(600, 400, 'News+Perspective'),
-  aiComparisonShowcase3: generatePlaceholder(600, 400, 'AI+Comparison'),
 
   // HomePage placeholders (400x300)
   aiComparisonLeft: generatePlaceholder(400, 300, 'AI+Comparison'),
   matrixArcade: generatePlaceholder(400, 300, 'Matrix+Arcade'),
-  aiComparisonRight: generatePlaceholder(400, 300, 'AI+Comparison')
+  aiComparisonRight: generatePlaceholder(400, 300, 'AI+Comparison'),
+
+  // Legacy - keeping for backward compatibility
+  aiComparisonShowcase3: generatePlaceholder(600, 400, 'AI+Comparison')
 } as const;
