@@ -175,14 +175,85 @@
 /* Service Description */
 .serviceDescription {
   color: #E0FFE0;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  opacity: 0.95;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  opacity: 0.9;
   flex-grow: 0;
-  min-height: 3rem;
 }
 
+/* ============================================================================
+   SERVICE HIGHLIGHTS - Always visible, icon-enhanced features
+   ============================================================================ */
+.serviceHighlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(0, 255, 0, 0.05);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.highlightItem:hover {
+  background: rgba(0, 255, 0, 0.12);
+  transform: translateX(4px);
+}
+
+.highlightItem i {
+  font-size: 0.9rem;
+  color: var(--matrix-green);
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.highlightItem span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Service Tech Tags */
+.serviceTechTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 255, 0, 0.15);
+}
+
+.techTag {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.25);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  color: rgba(0, 255, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.techTag:hover {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: var(--matrix-green);
+  color: var(--matrix-green);
+}
+
+/* ============================================================================
+   LEGACY: Service Features (keeping for backward compatibility)
+   ============================================================================ */
 /* Service Features */
 .serviceFeatures {
   list-style: none;

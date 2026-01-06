@@ -5,7 +5,7 @@
  *              and consultancy offerings with expandable tech stack categories
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
@@ -81,9 +81,6 @@ const processSteps = [
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(
-    () => window.innerWidth < 768 ? new Set([0]) : new Set()
-  );
 
   useCardAnimations();
 
@@ -92,67 +89,67 @@ export const ServicesPage: React.FC = () => {
       title: "Website & Web Apps",
       icon: "fas fa-code",
       description: "Responsive, performance-first websites and web apps built with modern stacks.",
-      features: [
-        { main: "React / Next.js", sub: ["TypeScript", "Tailwind", "SASS"] },
-        { main: "Performance optimization", sub: ["SEO ready"] },
-        { main: "Accessibility & responsive design", sub: [] }
+      highlights: [
+        { icon: "fab fa-react", text: "React / Next.js" },
+        { icon: "fas fa-bolt", text: "Performance & SEO" },
+        { icon: "fas fa-universal-access", text: "Accessible & Responsive" }
       ],
-      color: "#00ff00"
+      tech: ["TypeScript", "Tailwind", "SASS"]
     },
     {
       title: "Backend & APIs",
       icon: "fas fa-server",
-      description: "Robust servers and APIs that scale with your product. Production-ready architecture from day one.",
-      features: [
-        { main: "Node.js / Express", sub: ["Python / Django", "RESTful APIs"] },
-        { main: "PostgreSQL", sub: ["MongoDB", "Redis", "Database optimization"] },
-        { main: "Microservices", sub: ["System integration", "Authentication & security"] }
+      description: "Robust servers and APIs that scale with your product. Production-ready from day one.",
+      highlights: [
+        { icon: "fab fa-node-js", text: "Node.js / Python" },
+        { icon: "fas fa-database", text: "PostgreSQL / MongoDB" },
+        { icon: "fas fa-shield-alt", text: "Auth & Security" }
       ],
-      color: "#00cc00"
+      tech: ["Express", "Django", "Redis", "REST"]
     },
     {
       title: "AI & Automation",
       icon: "fas fa-robot",
       description: "Practical AI features and automation to save time and make data useful.",
-      features: [
-        { main: "ChatGPT integration", sub: ["n8n automation workflows"] },
-        { main: "Custom GPT models", sub: ["NLP", "Computer vision"] },
-        { main: "TensorFlow / PyTorch", sub: ["Data processing"] }
+      highlights: [
+        { icon: "fas fa-brain", text: "GPT Integration" },
+        { icon: "fas fa-cogs", text: "n8n Workflows" },
+        { icon: "fas fa-project-diagram", text: "Custom ML Models" }
       ],
-      color: "#00ff00"
+      tech: ["ChatGPT", "Claude", "TensorFlow", "LangChain"]
     },
     {
       title: "Mobile Applications",
       icon: "fas fa-mobile-alt",
-      description: "Cross-platform apps with native feel and store readiness. Built for iOS and Android.",
-      features: [
-        { main: "React Native", sub: ["iOS & Android", "Cross-platform"] },
-        { main: "Push notifications", sub: ["Offline functionality", "Analytics"] },
-        { main: "Native performance", sub: ["App store submission & compliance"] }
+      description: "Cross-platform apps with native feel and store readiness.",
+      highlights: [
+        { icon: "fab fa-react", text: "React Native" },
+        { icon: "fab fa-apple", text: "iOS & Android" },
+        { icon: "fas fa-bell", text: "Push & Offline" }
       ],
-      color: "#00cc00"
+      tech: ["Expo", "Native APIs", "App Store"]
     },
     {
       title: "Design & Brand",
       icon: "fas fa-palette",
       description: "Clear, usable interfaces and identity design that scales with your product.",
-      features: [
-        { main: "UI/UX design", sub: ["Brand identity", "Design systems"] },
-        { main: "Logo design", sub: ["Component libraries", "Responsive mockups"] },
-        { main: "Marketing assets", sub: ["Brand guidelines documentation"] }
+      highlights: [
+        { icon: "fas fa-pencil-ruler", text: "UI/UX Design" },
+        { icon: "fas fa-shapes", text: "Brand Identity" },
+        { icon: "fas fa-layer-group", text: "Design Systems" }
       ],
-      color: "#00ff00"
+      tech: ["Figma", "Logo", "Style Guides"]
     },
     {
       title: "Consultancy & Custom",
       icon: "fas fa-handshake",
       description: "Architecture reviews, training and bespoke engineering for special requirements.",
-      features: [
-        { main: "Architecture review", sub: ["Team training"] },
-        { main: "API development", sub: ["Bespoke solutions"] },
-        { main: "System integration", sub: ["Support"] }
+      highlights: [
+        { icon: "fas fa-sitemap", text: "Architecture Review" },
+        { icon: "fas fa-chalkboard-teacher", text: "Team Training" },
+        { icon: "fas fa-puzzle-piece", text: "Bespoke Solutions" }
       ],
-      color: "#00cc00"
+      tech: ["API Dev", "Integration", "Support"]
     }
   ];
 
@@ -188,37 +185,6 @@ export const ServicesPage: React.FC = () => {
     }
   };
 
-  const toggleCard = (index: number) => {
-    setExpandedCards(prev => {
-      const newSet = new Set(prev);
-      const isCurrentlyExpanded = newSet.has(index);
-
-      if (window.innerWidth >= 768) {
-        const cardsPerRow = 3;
-        const rowStart = Math.floor(index / cardsPerRow) * cardsPerRow;
-        const rowEnd = rowStart + cardsPerRow;
-
-        if (isCurrentlyExpanded) {
-          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
-            newSet.delete(i);
-          }
-        } else {
-          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
-            newSet.add(i);
-          }
-        }
-      } else {
-        if (isCurrentlyExpanded) {
-          newSet.delete(index);
-        } else {
-          newSet.add(index);
-        }
-      }
-
-      return newSet;
-    });
-  };
-
   return (
     <div className="page-wrapper page-services">
       <section id="services" className="servicesSection">
@@ -229,62 +195,38 @@ export const ServicesPage: React.FC = () => {
         </p>
 
         <div ref={servicesRef} className="servicesGrid">
-          {services.map((service, index) => {
-            const isExpanded = expandedCards.has(index);
-            return (
-              <div
-                key={index}
-                className={`service-card serviceCard ${isExpanded ? 'expanded' : ''}`}
-                onMouseEnter={handleCardHover}
-                style={{ '--card-color': service.color } as React.CSSProperties}
-              >
-                <div className="serviceHeader">
-                  <i
-                    className={`${service.icon} service-icon serviceIcon`}
-                    aria-hidden="true"
-                  ></i>
-                  <h3 className="serviceTitle">{service.title}</h3>
-                </div>
-
-                <p className="serviceDescription">{service.description}</p>
-
-                <ul className={`serviceFeatures ${isExpanded ? 'show' : ''}`}>
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="featureItem">
-                      <div className="featureMain">
-                        <span className="featureBullet">▸</span>
-                        <span>{feature.main}</span>
-                      </div>
-                      {feature.sub.length > 0 && (
-                        <ul className="featureSub">
-                          {feature.sub.map((subItem, subIdx) => (
-                            <li key={subIdx}>{subItem}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  className="expandButton"
-                  onClick={() => toggleCard(index)}
-                  aria-expanded={isExpanded}
-                  aria-label={isExpanded ? "Show less" : "Show more"}
-                >
-                  {isExpanded ? (
-                    <>
-                      Show Less <i className="fas fa-chevron-up"></i>
-                    </>
-                  ) : (
-                    <>
-                      View Details <i className="fas fa-chevron-down"></i>
-                    </>
-                  )}
-                </button>
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="service-card serviceCard"
+              onMouseEnter={handleCardHover}
+            >
+              <div className="serviceHeader">
+                <i
+                  className={`${service.icon} service-icon serviceIcon`}
+                  aria-hidden="true"
+                ></i>
+                <h3 className="serviceTitle">{service.title}</h3>
               </div>
-            );
-          })}
+
+              <p className="serviceDescription">{service.description}</p>
+
+              <ul className="serviceHighlights">
+                {service.highlights.map((highlight, idx) => (
+                  <li key={idx} className="highlightItem">
+                    <i className={highlight.icon} aria-hidden="true"></i>
+                    <span>{highlight.text}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="serviceTechTags">
+                {service.tech.map((tech, idx) => (
+                  <span key={idx} className="techTag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Professional Certifications Section */}
