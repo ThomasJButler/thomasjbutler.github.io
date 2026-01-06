@@ -564,7 +564,7 @@
 .matrix-project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
-    gap: 1.5rem;
+    gap: 2rem; /* Increased from 1.5rem for better visual separation */
     position: relative;
     justify-content: center; /* Center grid on wider screens */
 
@@ -760,8 +760,8 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 /* Matrix Project Cards with Glassmorphism */
 .matrix-project-card {
-    /* Glassmorphism Effect */
-    background: rgba(0, 30, 0, 0.25); /* More transparent for glass effect */
+    /* Glassmorphism Effect - slightly more solid for better contrast */
+    background: rgba(0, 25, 0, 0.4); /* Increased from 0.25 for better visibility */
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
 

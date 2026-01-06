@@ -647,14 +647,14 @@ export const ProjectsPage: React.FC = () => {
                         position: 'relative'
                       }}
                     >
-                      {/* Gradient overlay for depth */}
+                      {/* Gradient overlay for depth - reduced opacity for better image clarity */}
                       <div style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 40, 0, 0.7) 100%)',
+                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 40, 0, 0.55) 100%)',
                         borderRadius: '16px'
                       }} />
 
