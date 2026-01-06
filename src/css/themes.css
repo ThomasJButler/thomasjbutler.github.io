@@ -685,22 +685,40 @@
 
 /* Contact Info Sections */
 [data-theme="matrix"] .info-section {
-  background: linear-gradient(135deg, rgba(0, 255, 0, 0.85), rgba(0, 255, 255, 0.75)) !important;
-  border-color: var(--matrix-cyan) !important;
+  background: linear-gradient(145deg,
+    rgba(0, 20, 0, 0.9),
+    rgba(0, 35, 0, 0.85)
+  ) !important;
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+[data-theme="matrix"] .info-section:hover {
+  border-color: rgba(0, 255, 255, 0.5) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3) !important;
+  background: linear-gradient(145deg,
+    rgba(0, 25, 0, 0.95),
+    rgba(0, 40, 0, 0.9)
+  ) !important;
+}
+
+/* Remove underlines in Matrix theme */
+[data-theme="matrix"] .info-section a {
+  text-decoration: none !important;
 }
 
 [data-theme="matrix"] .info-section h3,
 [data-theme="matrix"] .info-card,
 [data-theme="matrix"] .info-section p {
-  color: #000000 !important;
-  text-shadow: none !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3) !important;
   font-weight: 500;
 }
 
 [data-theme="matrix"] .info-section h3 i,
 [data-theme="matrix"] .info-card i {
-  color: #000000 !important;
-  filter: none !important;
+  color: var(--matrix-green) !important;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5)) !important;
 }
 
 /* Coffee Button */

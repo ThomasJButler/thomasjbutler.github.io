@@ -8,6 +8,29 @@
 import React, { useState } from 'react';
 import '../css/contact-modern.css';
 
+const processSteps = [
+  {
+    icon: "fas fa-comments",
+    title: "1. Discovery Call",
+    description: "Free consultation to understand your goals, timeline, and requirements."
+  },
+  {
+    icon: "fas fa-file-invoice",
+    title: "2. Detailed Quote",
+    description: "Clear, itemised proposal with no hidden costs or surprises."
+  },
+  {
+    icon: "fas fa-rocket",
+    title: "3. Build & Deliver",
+    description: "Agile development with regular updates and milestone reviews."
+  },
+  {
+    icon: "fas fa-headset",
+    title: "4. Ongoing Support",
+    description: "Post-launch support, maintenance, and future enhancements."
+  }
+];
+
 /**
  * Contact page with form submission and contact details
  * @return {JSX.Element}
@@ -77,6 +100,22 @@ export const ContactPage: React.FC = () => {
 
       <section id="contact-main">
         <div className="container contact-container">
+          {/* Process Section - How We Work Together */}
+          <div className="process-section contact-process">
+            <h3 className="process-title">How We Work Together</h3>
+            <div className="process-grid">
+              {processSteps.map((step, index) => (
+                <div key={index} className="process-step">
+                  <div className="process-icon">
+                    <i className={step.icon} aria-hidden="true"></i>
+                  </div>
+                  <h4>{step.title}</h4>
+                  <p>{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="contact-grid">
             {/* Left side - Contact Information */}
             <div className="contact-info">
