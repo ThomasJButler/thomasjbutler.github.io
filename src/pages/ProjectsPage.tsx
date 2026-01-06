@@ -439,7 +439,7 @@ export const ProjectsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const projectsPerPage = 9; // Increased from 6 for compact layout
+  const projectsPerPage = 4; // Desktop 2x2 grid for optimal viewport fit
   const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
 
   const startIndex = (currentPage - 1) * projectsPerPage;
@@ -593,7 +593,6 @@ export const ProjectsPage: React.FC = () => {
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
         <h2 className="section-title">Project Showcase</h2>
-        <p className="section-description">Explore my open source contributions and personal projects. Flip cards for further details and links.</p>
         
         <div className="matrix-project-tabs">
           {categories.map(cat => (
