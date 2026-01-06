@@ -5,24 +5,9 @@
 [![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
 [![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
 
-
-</div>
-
-<div align="center">
-<pre>
-███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
-████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
-██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝ 
-██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗ 
-██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
-╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
-</pre>
-  <img width="2680" height="1790" alt="image" src="https://github.com/user-attachments/assets/4289282d-3724-494a-94b1-4e676dfb3588" />
-</div>
-
 ## About Me
 
-A Full-stack web developer and AI Engineer from York, UK. 
+A Full-stack web developer and AI Engineer from the UK. 
 
 My passion is to build human orientated applications that feel natural and joyful to use, and empower humanity by harnessing the power of AI, by saving time and energy on day to day tasks.
 
