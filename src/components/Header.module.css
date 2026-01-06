@@ -139,15 +139,9 @@
   align-items: center;
 }
 
-/* Terminal // prefix for nav items */
+/* Terminal // prefix for nav items - REMOVED for cleaner look */
 .navItem::before {
-  content: '//';
-  color: var(--matrix-green);
-  font-family: monospace;
-  margin-left: 0.25rem;
-  opacity: 0.7;
-  font-size: 0.75rem;
-  display: inline-block;
+  display: none;
 }
 
 .navLink {

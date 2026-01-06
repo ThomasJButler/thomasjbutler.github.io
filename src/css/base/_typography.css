@@ -90,7 +90,7 @@ h1, h2, h3 {
 h1 {
     font-size: var(--font-size-4xl);
     text-align: center;
-    letter-spacing: var(--letter-spacing-widest); /* Very wide for main titles */
+    letter-spacing: var(--letter-spacing-wider); /* Tightened from widest for better balance */
     margin-bottom: 1.5rem;
     font-weight: 700; /* Bold for hierarchy */
 }
