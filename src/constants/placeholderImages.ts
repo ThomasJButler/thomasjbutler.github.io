@@ -36,11 +36,11 @@ export const generatePlaceholder = (
  */
 export const PLACEHOLDER_IMAGES = {
   // AI/ML Projects - Real Cloudinary URLs from Agentic AI Portfolio
-  modelViz: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581000/ModelViz_rgtovj.png',
-  aiCodeGenerator: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758201680/codegeneratordocs_snywas.png',
-  sqlBall: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581001/sqlball_rtdaag.png',
-  morpheus: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580765/morpheuschat_evuiol.png',
-  reviewBotProtocol: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766581001/rvp_vr7mvr.png',
+  modelViz: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766586749/modelvizintro_aq3uq5.png',
+  aiCodeGenerator: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767707876/CodeGenerator2_u6x0jv.png',
+  sqlBall: 'https://res.cloudinary.com/depqttzlt/image/upload/v1765947198/sqlball_canxlv.png',
+  morpheus: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767707308/Morpheus_bnhtg6.png',
+  reviewBotProtocol: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767707875/ReviewBot2_xzcin9.png',
   portfolioDashboard: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766595895/dashboardhomepage_xxsk0z.png',
 
   // Web Projects - Placeholders (to be replaced with real images later)
