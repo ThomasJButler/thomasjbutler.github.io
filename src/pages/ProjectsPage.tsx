@@ -10,17 +10,7 @@ import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
 import { animate, stagger } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 
-import aiCodeGeneratorImg from '../images/aicodegenerator.webp';
-import sqlBallImg from '../images/sqlball.webp';
-import logo1Img from '../images/logo.svg';
-import lfcRedditImg from '../images/lfcreddit.webp';
-import dotnetCalendarImg from '../images/dotnetcalendar.webp';
-import cssShowcaseImg from '../images/cssshowcase.webp';
-import bigBangGalleryImg from '../images/bigbanggallery.webp';
-import pythonProjectsImg from '../images/pythonprojects.webp';
-import versionTimeTravelImg from '../images/versiontimetravel.webp';
-import newsperspectiveImg from '../images/newsperspective.webp';
-import aiComparisonShowcaseImg from '../images/aicomparisonshowcase3.webp';
+import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
 
 interface Project {
   id: string;
@@ -52,27 +42,27 @@ interface Project {
 const projects: Project[] = [
   // AI/ML Projects - Featured showcase from Agentic AI Bootcamp
   {
-    id: 'ai-comparison-showcase',
-    name: 'Real-time LLM Builder and Comparison Tool',
+    id: 'modelviz',
+    name: 'ModelViz - AI Model Comparison Platform',
     visibility: 'Public',
-    description: 'Build and compare responses from multiple AI models side-by-side. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity models with performance metrics and beautiful visualizations.',
-    topics: ['AI/ML', 'Next.js', 'TypeScript', 'Multiple AI APIs', 'Performance Metrics'],
+    description: 'Interactive analytics platform for comparing AI models across multiple providers with real-time performance metrics, cost analysis, and 3D visualisations',
+    topics: ['Next.js 16', 'React 19', 'TypeScript', 'Three.js', 'Framer Motion'],
     language: {
       name: 'TypeScript',
       color: '#3178c6',
-      percent: 75
+      percent: 85
     },
     stats: {
       stars: 0,
       forks: 0
     },
     links: {
-      demo: 'https://ai-comparison-showcase.vercel.app/',
-      github: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-'
+      demo: 'https://modelviz.vercel.app/',
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: aiComparisonShowcaseImg,
+    backgroundImage: PLACEHOLDER_IMAGES.modelViz,
     featured: true,
     hideNameOnFront: true,
     gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
@@ -94,12 +84,12 @@ const projects: Project[] = [
     },
     links: {
       github: 'https://github.com/ThomasJButler/AICodeGenerator',
-      demo: 'https://ai-code-generator-rouge.vercel.app/'
+      demo: 'https://theaigenerator.vercel.app/'
     },
     category: 'ai',
     status: 'completed',
     hideNameOnFront: true,
-    backgroundImage: aiCodeGeneratorImg,
+    backgroundImage: PLACEHOLDER_IMAGES.aiCodeGenerator,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -124,8 +114,57 @@ const projects: Project[] = [
     category: 'ai',
     status: 'completed',
     hideNameOnFront: true,
-    backgroundImage: sqlBallImg,
+    backgroundImage: PLACEHOLDER_IMAGES.sqlBall,
     gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+  {
+    id: 'morpheus',
+    name: 'Morpheus - Intelligent Document Q&A',
+    visibility: 'Public',
+    description: 'Intelligent document Q&A system with semantic search and source citations using RAG',
+    topics: ['Pinecone', 'Anthropic', 'OpenAI', 'LangChain', 'FastAPI', 'RAG'],
+    language: {
+      name: 'Python',
+      color: '#3572A5',
+      percent: 70
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      demo: 'https://morpheusrag.vercel.app',
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+    },
+    category: 'ai',
+    status: 'completed',
+    hideNameOnFront: true,
+    backgroundImage: PLACEHOLDER_IMAGES.morpheus,
+    gradient: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
+  },
+  {
+    id: 'reviewbot-protocol',
+    name: 'ReviewBot Protocol - AI Code Reviews',
+    visibility: 'Public',
+    description: 'AI-powered GitHub PR reviews with automated code analysis and intelligent feedback',
+    topics: ['Next.js 15', 'FastAPI', 'LangChain', 'LangGraph', 'PostgreSQL', 'GitHub API'],
+    language: {
+      name: 'TypeScript',
+      color: '#3178c6',
+      percent: 65
+    },
+    stats: {
+      stars: 0,
+      forks: 0
+    },
+    links: {
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+    },
+    category: 'ai',
+    status: 'completed',
+    hideNameOnFront: true,
+    backgroundImage: PLACEHOLDER_IMAGES.reviewBotProtocol,
+    gradient: 'linear-gradient(135deg, rgba(255, 69, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
     id: 'mastering-ai-portfolio',
@@ -143,13 +182,13 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      demo: 'https://mastering-ai-course-portfolio-dashb.vercel.app/',
+      demo: 'https://agenticaiprojectsportfolio.vercel.app/',
       github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
     },
     category: 'ai',
     status: 'completed',
     hideNameOnFront: true,
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1758053628/aicourseportfolio_pejlr2.png',
+    backgroundImage: PLACEHOLDER_IMAGES.portfolioDashboard,
     gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -174,7 +213,7 @@ const projects: Project[] = [
     category: 'web',
     status: 'completed',
     featured: true,
-    backgroundImage: logo1Img,
+    backgroundImage: PLACEHOLDER_IMAGES.logo1,
     gradient: 'linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(0, 40, 0, 0.95) 100%)'
   },
   {
@@ -197,7 +236,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    backgroundImage: newsperspectiveImg,
+    backgroundImage: PLACEHOLDER_IMAGES.newsPerspective,
     hideNameOnFront: true,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -222,7 +261,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: lfcRedditImg,
+    backgroundImage: PLACEHOLDER_IMAGES.lfcReddit,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(200, 16, 46, 0.8) 100%)'
   },
   {
@@ -246,7 +285,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: dotnetCalendarImg,
+    backgroundImage: PLACEHOLDER_IMAGES.dotnetCalendar,
     gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
   {
@@ -270,7 +309,7 @@ const projects: Project[] = [
     },
     category: 'web',
     status: 'completed',
-    backgroundImage: cssShowcaseImg,
+    backgroundImage: PLACEHOLDER_IMAGES.cssShowcase,
     gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -321,7 +360,7 @@ const projects: Project[] = [
     },
     category: 'creative',
     status: 'completed',
-    backgroundImage: bigBangGalleryImg,
+    backgroundImage: PLACEHOLDER_IMAGES.bigBangGallery,
     gradient: 'linear-gradient(135deg, rgba(255, 100, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -346,7 +385,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: pythonProjectsImg,
+    backgroundImage: PLACEHOLDER_IMAGES.pythonProjects,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
 
@@ -372,7 +411,7 @@ const projects: Project[] = [
     },
     category: 'personal',
     status: 'completed',
-    backgroundImage: versionTimeTravelImg,
+    backgroundImage: PLACEHOLDER_IMAGES.versionTimeTravel,
     gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
   }
 ];
