@@ -9,6 +9,39 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/about.css';
 
+const techStackCategories = [
+  {
+    category: "Frontend",
+    icon: "fas fa-laptop-code",
+    technologies: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "SASS", "HTML5", "CSS3"]
+  },
+  {
+    category: "Backend",
+    icon: "fas fa-server",
+    technologies: ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB", "Redis", "REST APIs"]
+  },
+  {
+    category: "AI & ML",
+    icon: "fas fa-robot",
+    technologies: ["ChatGPT", "Claude", "LangChain", "TensorFlow", "PyTorch", "Pinecone", "RAG Systems", "n8n"]
+  },
+  {
+    category: "Mobile",
+    icon: "fas fa-mobile-alt",
+    technologies: ["React Native", "iOS", "Android", "Cross-Platform", "Push Notifications"]
+  },
+  {
+    category: "DevOps & Cloud",
+    icon: "fas fa-cloud",
+    technologies: ["AWS", "Azure", "Docker", "CI/CD", "Vercel", "Git", "GitHub Actions"]
+  },
+  {
+    category: "Tools & APIs",
+    icon: "fas fa-tools",
+    technologies: ["GraphQL", "Stripe", "OAuth", "WebSockets", "Figma", "VS Code"]
+  }
+];
+
 /**
  * About page component with expandable content and certification showcase
  * @return {JSX.Element}
@@ -297,6 +330,28 @@ export const AboutPage: React.FC = () => {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: Tech Stack */}
+      <section id="tech-stack" className="about-section tech-stack-section">
+        <div className="container">
+          <h2 className="section-title">Tech Stack</h2>
+          <div className="tech-stack-grid">
+            {techStackCategories.map((cat, index) => (
+              <div key={index} className="tech-category-card">
+                <div className="tech-category-header">
+                  <i className={cat.icon} aria-hidden="true"></i>
+                  <h3>{cat.category}</h3>
+                </div>
+                <div className="tech-tags">
+                  {cat.technologies.map((tech, techIdx) => (
+                    <span key={techIdx} className="tech-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
