@@ -88,7 +88,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    hideNameOnFront: true,
+    hideNameOnFront: false,
     backgroundImage: PLACEHOLDER_IMAGES.aiCodeGenerator,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
