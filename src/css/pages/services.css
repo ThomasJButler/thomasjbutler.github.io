@@ -73,22 +73,22 @@
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
-/* Services Grid */
+/* Services Grid - 2 columns for one-screen layout */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-  padding: 0 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
 }
 
-/* Service Card */
+/* Service Card - Compact for one-screen layout */
 .serviceCard {
   position: relative;
-  padding: 2rem;
+  padding: 1rem 1.25rem;
   background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
   border: 1px solid var(--matrix-green);
-  border-radius: 12px;
+  border-radius: 10px;
   transition:
     transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     box-shadow 0.4s ease,
@@ -429,7 +429,7 @@
 /* Matrix Divider - Separates Services from Tech Stack */
 .matrix-divider {
   position: relative;
-  margin: 60px auto;
+  margin: 40px auto; /* Reduced from 60px */
   width: 100%;
   height: 40px;
   display: flex;
@@ -480,8 +480,8 @@
 
 /* Tech Stack Section */
 .techStackSection {
-  margin: 3rem 0;
-  padding: 2rem 1.5rem;
+  margin: 2rem 0; /* Reduced from 3rem */
+  padding: 1.5rem; /* Reduced from 2rem 1.5rem */
   background: linear-gradient(145deg, rgba(0, 25, 0, 0.7), rgba(0, 35, 0, 0.5));
   border: 2px solid rgba(0, 255, 0, 0.3);
   border-radius: 16px;
@@ -817,14 +817,25 @@ body.low-end-device .techCategory {
 /* CTA Section */
 .ctaSection {
   text-align: center;
-  padding: 3rem 2rem;
-  margin: 4rem 0 2rem;
+  padding: 2rem 1.5rem; /* Reduced from 3rem 2rem */
+  margin: 2rem 0 1.5rem; /* Reduced from 4rem 0 2rem */
   background: linear-gradient(145deg, rgba(0, 30, 0, 0.8), rgba(0, 50, 0, 0.6));
   border: 2px solid var(--matrix-green);
   border-radius: 12px;
   box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
   position: relative;
   overflow: hidden;
+}
+
+/* Compact CTA for one-screen layout */
+.ctaSection-compact {
+  padding: 1.25rem 1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.ctaSection-compact h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .ctaSection::before {

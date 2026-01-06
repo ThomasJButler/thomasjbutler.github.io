@@ -439,7 +439,7 @@ export const ProjectsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const projectsPerPage = 6;
+  const projectsPerPage = 9; // Increased from 6 for compact layout
   const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
 
   const startIndex = (currentPage - 1) * projectsPerPage;

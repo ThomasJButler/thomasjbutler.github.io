@@ -16,6 +16,102 @@
     }
 }
 
+/* ==========================================================================
+   HERO SECTION - Compact Layout with Typing Animation
+   ========================================================================== */
+
+.hero-tagline {
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+    color: var(--text-primary);
+    margin: 0.5rem 0 1rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    /* Stack vertically for cleaner layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.hero-tagline-prefix {
+    color: var(--text-primary);
+}
+
+.typing-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.4em; /* Fixed height prevents layout shift */
+}
+
+.typing-text {
+    color: var(--accent-color);
+    font-weight: 500;
+    text-shadow: 0 0 10px var(--glow-color-primary);
+    white-space: nowrap;
+}
+
+.typing-cursor {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 300;
+    animation: typingCursorBlink 0.7s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes typingCursorBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.5rem;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+}
+
+/* Dark theme overrides for hero */
+[data-theme="dark"] .typing-text {
+    color: #4A9EFF;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .typing-cursor {
+    color: #4A9EFF;
+}
+
+/* Responsive hero adjustments */
+@media (max-width: 768px) {
+    .hero-tagline {
+        font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+        margin: 0.4rem 0 0.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1.1rem);
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-tagline {
+        font-size: 1.1rem;
+        letter-spacing: 0.02em;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
 /* Galleries Section
    ========================================================================== */
 #galleries {

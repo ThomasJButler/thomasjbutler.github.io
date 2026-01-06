@@ -5,20 +5,87 @@
  *              and interactive scroll effects with particle animations
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { animate } from 'animejs';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
 
+// Featured projects for homepage showcase (no images - they appear in hero above)
+const FEATURED_PROJECTS = [
+  {
+    id: 'modelviz',
+    name: 'ModelViz - AI Model Comparison Platform',
+    description: 'Interactive analytics platform for comparing AI models across multiple providers with real-time performance metrics, cost analysis, and 3D visualisations',
+    links: {
+      demo: 'https://modelviz.vercel.app/',
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+    }
+  },
+  {
+    id: 'morpheus',
+    name: 'Morpheus - Intelligent Document Q&A',
+    description: 'Intelligent document Q&A system with semantic search and source citations using RAG, Pinecone, and Anthropic/OpenAI APIs',
+    links: {
+      demo: 'https://morpheusrag.vercel.app',
+      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+    }
+  }
+];
+
 /**
  * Home page component with cascading animations and scroll effects
  * @return {JSX.Element}
  * @constructor
  */
+// Typing animation phrases
+const TYPING_PHRASES = [
+  'AI-powered apps',
+  'production web apps',
+  'intelligent agents',
+  'creative solutions'
+];
+
 export const HomePage: React.FC = () => {
   useCardAnimations();
+
+  // Typing animation state
+  const [displayText, setDisplayText] = useState('');
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Typing animation effect
+  const animateTyping = useCallback(() => {
+    const currentPhrase = TYPING_PHRASES[phraseIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 500 : 2000;
+
+    if (!isDeleting && displayText === currentPhrase) {
+      // Pause before deleting
+      setTimeout(() => setIsDeleting(true), pauseTime);
+      return;
+    }
+
+    if (isDeleting && displayText === '') {
+      // Move to next phrase
+      setIsDeleting(false);
+      setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length);
+      return;
+    }
+
+    // Type or delete character
+    const nextText = isDeleting
+      ? currentPhrase.substring(0, displayText.length - 1)
+      : currentPhrase.substring(0, displayText.length + 1);
+
+    setTimeout(() => setDisplayText(nextText), typingSpeed);
+  }, [displayText, phraseIndex, isDeleting]);
+
+  useEffect(() => {
+    const timer = setTimeout(animateTyping, 100);
+    return () => clearTimeout(timer);
+  }, [animateTyping]);
 
   const galleriesRef = useScrollAnimation({
     threshold: 0.3,
@@ -288,11 +355,15 @@ export const HomePage: React.FC = () => {
     <>
       <section id="introduction">
         <div className="container">
-          <h2 className="welcome-text">Hey, I'm Tom<span className="cursor-blink">▮</span></h2>
-          <br />
-          <h2>// A Full Stack AI Engineer from the UK</h2>
-          <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
-          <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
+          <h2 className="welcome-text">Hey, I'm Tom</h2>
+          <h2 className="hero-tagline">
+            <span className="hero-tagline-prefix">// I build</span>
+            <span className="typing-wrapper">
+              <span className="typing-text">{displayText}</span>
+              <span className="typing-cursor">|</span>
+            </span>
+          </h2>
+          <p className="hero-subtitle">Full Stack AI Engineer from the UK</p>
           <div className="introduction-img">
             <img src={PLACEHOLDER_IMAGES.matrixArcadeGif} alt="The Matrix Arcade - Interactive Gaming Portal" />
             <video
@@ -305,6 +376,35 @@ export const HomePage: React.FC = () => {
               aria-label="Morpheus - Intelligent Document Q&A System"
             />
             <img src={PLACEHOLDER_IMAGES.modelVizGif} alt="ModelViz - AI Model Comparison Platform" />
+          </div>
+
+          {/* Featured Projects Section */}
+          <div className="featured-projects-section">
+            <h3 className="featured-projects-title">
+              <i className="fas fa-star"></i> Featured Projects
+            </h3>
+            <div className="featured-projects-grid">
+              {FEATURED_PROJECTS.map(project => (
+                <div key={project.id} className="featured-card featured-card-no-image">
+                  <div className="featured-card-content">
+                    <div className="featured-card-title">{project.name}</div>
+                    <div className="featured-card-desc">{project.description}</div>
+                  </div>
+                  <div className="featured-card-links">
+                    {project.links.demo && (
+                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" title="Live Demo">
+                        <i className="fas fa-globe"></i>
+                      </a>
+                    )}
+                    {project.links.github && (
+                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <i className="fab fa-github"></i>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

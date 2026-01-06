@@ -54,7 +54,7 @@
 .matrix-project-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     padding-top: 0;
     position: relative;
 }
@@ -67,16 +67,16 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    gap: 1.5rem; /* Reduced from 2rem */
+    padding: 1.5rem 0; /* Reduced from 2rem */
 }
 
 /* Horizontal Grid */
 .projects-horizontal-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem 0;
+    gap: 1.5rem; /* Reduced from 2rem */
+    padding: 1.5rem 0; /* Reduced from 2rem */
 }
 
 /* Compact Grid */
@@ -91,9 +91,145 @@
 .epic-projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-    margin: 3rem 0;
+    gap: 2rem; /* Reduced from 3rem */
+    margin: 2rem 0; /* Reduced from 3rem */
     perspective: 1200px;
+}
+
+/* Featured Projects Section - Horizontal Cards at Top */
+.featured-projects-section {
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.featured-projects-title {
+    color: var(--matrix-cyan, #00FFFF);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.featured-projects-title i {
+    color: var(--matrix-green);
+}
+
+.featured-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.featured-card {
+    background: linear-gradient(145deg, rgba(0, 40, 40, 0.5), rgba(0, 25, 0, 0.6));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 90px;
+}
+
+.featured-card:hover {
+    border-color: var(--matrix-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.featured-card-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.featured-card-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.featured-card-title {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.featured-card-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.featured-card-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.featured-card-links a {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.featured-card-links a:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* Featured card without image - content takes full width */
+.featured-card-no-image {
+    padding-left: 1.25rem;
+}
+
+.featured-card-no-image .featured-card-content {
+    flex: 1;
+}
+
+.featured-card-no-image .featured-card-title {
+    white-space: normal;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .featured-projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-card {
+        min-height: 80px;
+    }
+
+    .featured-card-image {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 /* ==========================================================================
@@ -560,11 +696,11 @@
    Epic Matrix-themed project showcase with glassmorphism
    ========================================================================== */
 
-/* Matrix Project Grid - Square Glassmorphism Cards */
+/* Matrix Project Grid - Compact 300px Cards */
 .matrix-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
-    gap: 2rem; /* Increased from 1.5rem for better visual separation */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 300px)); /* Compact 300px cards */
+    gap: 1.25rem; /* Tighter gap for compact layout */
     position: relative;
     justify-content: center; /* Center grid on wider screens */
 
@@ -724,12 +860,12 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     z-index: 10;
 }
 
-/* Matrix Project Tabs */
+/* Matrix Project Tabs - Compact Filter Buttons */
 .matrix-project-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0 3rem;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
     flex-wrap: wrap;
     position: relative;
     z-index: 20;
@@ -737,12 +873,12 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 .matrix-tab-button {
     background: var(--matrix-card-bg);
-    border: 2px solid var(--matrix-card-border);
+    border: 1px solid var(--matrix-card-border);
     color: var(--matrix-green);
-    padding: 0.8rem 1.5rem;
+    padding: 0.4rem 0.8rem;
     font-family: var(--font-primary);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
@@ -767,16 +903,16 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
     /* Glass borders and shadows */
     border: 1px solid rgba(0, 255, 0, 0.2);
-    border-radius: 16px; /* Rounder for modern look */
+    border-radius: 12px;
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-    /* Square dimensions - optimized for 14-16 inch laptops */
-    width: 390px;
-    height: 390px;
-    padding: 1rem;
-    padding-bottom: 0.75rem;
+    /* Compact dimensions - 300px for more cards per row */
+    width: 300px;
+    height: 300px;
+    padding: 0.75rem;
+    padding-bottom: 0.5rem;
 
     /* Layout */
     position: relative;

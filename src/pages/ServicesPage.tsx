@@ -19,12 +19,9 @@ import '../css/pages/services.css';
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const techStackTitleRef = useRef<HTMLHeadingElement>(null);
   const [expandedCards, setExpandedCards] = useState<Set<number>>(
     () => window.innerWidth < 768 ? new Set([0]) : new Set()
   );
-  const [showAllTech, setShowAllTech] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set());
 
   useCardAnimations();
 
@@ -97,33 +94,6 @@ export const ServicesPage: React.FC = () => {
     }
   ];
 
-  const techStackCategories = [
-    {
-      category: "Frontend",
-      technologies: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind", "SASS", "CSS3", "HTML5", "Vue.js", "Webpack", "Vite", "Redux"]
-    },
-    {
-      category: "Backend",
-      technologies: ["Node.js", "Express", "Python", "Django", "PHP", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "MySQL", "RESTful APIs", "WebSockets"]
-    },
-    {
-      category: "AI & ML",
-      technologies: ["ChatGPT", "GPT-4", "Claude", "OpenAI API", "LangChain", "Prompt Engineering", "n8n", "Zapier", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "Computer Vision", "RAG", "Vector Databases", "Fine-tuning", "AI Agents"]
-    },
-    {
-      category: "Mobile & Mobile Web Apps",
-      technologies: ["React Native", "iOS & Android", "PWA", "Mobile-First", "Responsive Design"]
-    },
-    {
-      category: "APIs",
-      technologies: ["REST APIs", "GraphQL", "Apollo", "tRPC", "WebSockets", "API Design", "Swagger/OpenAPI", "Postman", "Rate Limiting", "Authentication"]
-    },
-    {
-      category: "DevOps & Cloud",
-      technologies: ["Docker", "Git", "AWS", "Azure", "CI/CD", "GitHub Actions", "Vercel", "Netlify"]
-    }
-  ];
-
   /**
    * @constructs Scrolls page to top on mount
    */
@@ -137,10 +107,6 @@ export const ServicesPage: React.FC = () => {
   useEffect(() => {
     if (titleRef.current) {
       titleRef.current.textContent = 'WEB, MOBILE, AND AI';
-    }
-
-    if (techStackTitleRef.current) {
-      techStackTitleRef.current.textContent = '$ TECH STACKS';
     }
 
     if (servicesRef.current) {
@@ -187,18 +153,6 @@ export const ServicesPage: React.FC = () => {
         }
       }
 
-      return newSet;
-    });
-  };
-
-  const toggleCategory = (index: number) => {
-    setExpandedCategories(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
-      }
       return newSet;
     });
   };
@@ -271,102 +225,8 @@ export const ServicesPage: React.FC = () => {
           })}
         </div>
 
-        {/* Matrix Divider */}
-        <div className="matrix-divider">
-          <span className="divider-line"></span>
-          <span className="divider-center"></span>
-          <span className="divider-line"></span>
-        </div>
-
-        {/* Tech Stack Section Title */}
-        <h2 ref={techStackTitleRef} className="section-title tech-stack-title"></h2>
-
-        {/* Tech Stack Badges */}
-        <div className="techStackSection">
-          <div className="techStackContent">
-            {techStackCategories.map((category, catIndex) => {
-              const isVisible = showAllTech || catIndex === 0;
-              const isCategoryExpanded = expandedCategories.has(catIndex);
-              const visibleTech = category.technologies.slice(0, 4);
-              const hiddenTech = category.technologies.slice(4);
-              const hasMore = hiddenTech.length > 0;
-
-              return (
-                <div
-                  key={catIndex}
-                  className={`techCategory ${!isVisible ? 'hiddenOnMobile' : ''}`}
-                >
-                  <h4 className="categoryTitle">{category.category}</h4>
-
-                  {/* First line - always visible */}
-                  <div className="techBadges">
-                    {visibleTech.map((tech, techIndex) => (
-                      <span key={techIndex} className="techBadge">
-                        [{tech}]
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Additional badges - collapsible on desktop */}
-                  {hasMore && (
-                    <>
-                      <div className={`techBadges techBadgesExtra ${isCategoryExpanded ? 'expanded' : ''}`}>
-                        {hiddenTech.map((tech, techIndex) => (
-                          <span key={techIndex + 7} className="techBadge">
-                            [{tech}]
-                          </span>
-                        ))}
-                      </div>
-
-                      <button
-                        className="categoryToggle"
-                        onClick={() => toggleCategory(catIndex)}
-                        aria-expanded={isCategoryExpanded}
-                        aria-label={isCategoryExpanded ? `Show less ${category.category} technologies` : `Show ${hiddenTech.length} more ${category.category} technologies`}
-                      >
-                        {isCategoryExpanded ? (
-                          <>
-                            Show Less <i className="fas fa-chevron-up"></i>
-                          </>
-                        ) : (
-                          <>
-                            +{hiddenTech.length} More <i className="fas fa-chevron-down"></i>
-                          </>
-                        )}
-                      </button>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <button
-            className="showMoreTech"
-            onClick={() => setShowAllTech(!showAllTech)}
-            aria-expanded={showAllTech}
-            aria-label={showAllTech ? "Hide technologies" : "Show all technologies"}
-          >
-            {showAllTech ? (
-              <>
-                Show Less <i className="fas fa-chevron-up"></i>
-              </>
-            ) : (
-              <>
-                Show All Technologies <i className="fas fa-chevron-down"></i>
-              </>
-            )}
-          </button>
-        </div>
-
-        {/* Matrix Divider */}
-        <div className="matrix-divider">
-          <span className="divider-line"></span>
-          <span className="divider-center"></span>
-          <span className="divider-line"></span>
-        </div>
-
-        {/* Sticky CTA */}
-        <div className="ctaSection">
+        {/* CTA Section - Compact */}
+        <div className="ctaSection ctaSection-compact">
           <h3>Ready to start your project?</h3>
           <Link to="/contact" className="ctaButton">
             Get In Touch

@@ -4,7 +4,7 @@
 #learning {
     background: #000000;
     overflow: hidden;
-    padding: 40px 0;
+    padding: 30px 0; /* Reduced from 40px */
     padding-top: 0;
     position: relative;
     isolation: isolate;
@@ -50,10 +50,10 @@
 ========================================================================== */
 .skills-list {
     display: grid;
-    gap: 25px;
+    gap: 20px; /* Reduced from 25px */
     grid-template-columns: 1fr;
     list-style-type: none;
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     position: relative;
 }
 
@@ -195,11 +195,11 @@
 /* Skills Page Enhancements - Optimized Layout
    ========================================================================== */
 .core-expertise-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
 }
 
 .additional-skills-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
 }
 
 .skill-section-title {
@@ -215,7 +215,7 @@
 .core-expertise-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem; /* Reduced from 1.5rem */
     padding: 0;
     margin: 0;
     list-style: none;
