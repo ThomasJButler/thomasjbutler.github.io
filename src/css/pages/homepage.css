@@ -905,7 +905,8 @@
     padding: 40px;
 }
 
-.introduction-img img {
+.introduction-img img,
+.introduction-img video {
     border-radius: 10px;
     box-shadow: var(--glow-box-medium);
     max-width: 280px;
@@ -915,13 +916,29 @@
     filter: blur(10px);
 }
 
-.introduction-img img.animated {
+.introduction-img img.animated,
+.introduction-img video.animated {
     opacity: 1;
     filter: blur(0);
 }
 
-.introduction-img img:hover {
+.introduction-img img:hover,
+.introduction-img video:hover {
     transform: scale(1.05);
+}
+
+/* Featured middle element - slightly larger for visual hierarchy */
+.introduction-img .intro-featured {
+    max-width: 320px;
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow:
+        var(--glow-box-medium),
+        0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.introduction-img .intro-featured:hover {
+    transform: scale(1.12);
 }
 
 /* Introduction Skills Grid Section - Three Columns */
@@ -1465,7 +1482,8 @@
         width: 90%;
     }
 
-    .introduction-img img {
+    .introduction-img img,
+    .introduction-img video {
         max-width: 35%;
         height: auto;
         border-radius: 8px;
@@ -1492,7 +1510,8 @@
         padding: 2rem;
     }
 
-    .introduction-img img {
+    .introduction-img img,
+    .introduction-img video {
         max-width: 200px;
         width: 80%;
         height: auto;

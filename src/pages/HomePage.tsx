@@ -41,11 +41,11 @@ export const HomePage: React.FC = () => {
         requestAnimationFrame(() => {
           const scrolled = window.scrollY;
           
-          // Subtle parallax for introduction images
-          const introImages = document.querySelectorAll('.introduction-img img');
-          introImages.forEach((img, index) => {
+          // Subtle parallax for introduction images and videos
+          const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
+          introMedia.forEach((media, index) => {
             const speed = 0.05 + index * 0.02; // Much more subtle
-            (img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
+            (media as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
           });
           
           const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
@@ -111,12 +111,17 @@ export const HomePage: React.FC = () => {
         });
       });
       
-      const introImages = document.querySelectorAll('.introduction-img img');
-      introImages.forEach((img, index) => {
-        img.classList.add('animated');
+      const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
+      introMedia.forEach((media, index) => {
+        media.classList.add('animated');
 
-        if ((img as HTMLImageElement).complete) {
-          animate(img as HTMLElement, {
+        const isVideo = media.tagName === 'VIDEO';
+        const isReady = isVideo
+          ? (media as HTMLVideoElement).readyState >= 3
+          : (media as HTMLImageElement).complete;
+
+        if (isReady) {
+          animate(media as HTMLElement, {
             opacity: [0, 1],
             scale: [0.9, 1],
             translateY: [20, 0],
@@ -125,8 +130,9 @@ export const HomePage: React.FC = () => {
             easing: 'easeOutQuad'
           });
         } else {
-          (img as HTMLImageElement).addEventListener('load', () => {
-            animate(img as HTMLElement, {
+          const eventType = isVideo ? 'canplaythrough' : 'load';
+          media.addEventListener(eventType, () => {
+            animate(media as HTMLElement, {
               opacity: [0, 1],
               scale: [0.9, 1],
               translateY: [20, 0],
@@ -292,9 +298,17 @@ export const HomePage: React.FC = () => {
           <h2>With a passion for cutting-edge technology and creative problem-solving, I'm here to help transform your digital visions into reality.</h2>
           <h2 className="introduction-h2">My expertise spans web development, AI integration, and innovative design solutions.</h2>
           <div className="introduction-img">
-            <img src={PLACEHOLDER_IMAGES.aiComparisonRight} alt="AI Comparison Showcase - Performance Metrics" />
-            <img src={PLACEHOLDER_IMAGES.matrixArcade} alt="The Matrix Arcade - Interactive Gaming Experience" />
-            <img src={PLACEHOLDER_IMAGES.aiComparisonLeft} alt="AI Comparison Showcase - Advanced Features" />
+            <img src={PLACEHOLDER_IMAGES.matrixArcadeGif} alt="The Matrix Arcade - Interactive Gaming Portal" />
+            <video
+              src={PLACEHOLDER_IMAGES.morpheusVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="intro-featured"
+              aria-label="Morpheus - Intelligent Document Q&A System"
+            />
+            <img src={PLACEHOLDER_IMAGES.modelVizGif} alt="ModelViz - AI Model Comparison Platform" />
           </div>
           <div className="galleries-mobile">
             <Link to="/projects" className="btn-professional glass-card hover-lift">
