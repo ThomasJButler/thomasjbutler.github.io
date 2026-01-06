@@ -47,29 +47,24 @@ const professionalCertifications = [
     name: "Level 4 Software Dev",
     detail: "Estio Apprenticeship",
     glowClass: "primary-glow"
-  }
-];
-
-const processSteps = [
-  {
-    icon: "fas fa-comments",
-    title: "1. Discovery Call",
-    description: "Free consultation to understand your goals, timeline, and requirements."
   },
   {
-    icon: "fas fa-file-invoice",
-    title: "2. Detailed Quote",
-    description: "Clear, itemised proposal with no hidden costs or surprises."
+    icon: "fab fa-hubspot",
+    name: "HubSpot Qualified",
+    detail: "CMS Development & Integration",
+    glowClass: "hubspot-glow"
   },
   {
-    icon: "fas fa-rocket",
-    title: "3. Build & Deliver",
-    description: "Agile development with regular updates and milestone reviews."
+    icon: "fas fa-cube",
+    name: "Umbraco Qualified",
+    detail: "Enterprise CMS & .NET",
+    glowClass: "umbraco-glow"
   },
   {
-    icon: "fas fa-headset",
-    title: "4. Ongoing Support",
-    description: "Post-launch support, maintenance, and future enhancements."
+    icon: "fab fa-wordpress",
+    name: "WordPress Qualified",
+    detail: "Theme Development & Customisation",
+    glowClass: "wordpress-glow"
   }
 ];
 
@@ -94,7 +89,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fas fa-bolt", text: "Performance & SEO" },
         { icon: "fas fa-universal-access", text: "Accessible & Responsive" }
       ],
-      tech: ["TypeScript", "Tailwind", "SASS"]
+      tech: ["React", "TypeScript", "WordPress", "HubSpot", "Next.js"]
     },
     {
       title: "Backend & APIs",
@@ -105,7 +100,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fas fa-database", text: "PostgreSQL / MongoDB" },
         { icon: "fas fa-shield-alt", text: "Auth & Security" }
       ],
-      tech: ["Express", "Django", "Redis", "REST"]
+      tech: ["Node.js", "Django", "PostgreSQL", "GraphQL", "Flask"]
     },
     {
       title: "AI & Automation",
@@ -116,7 +111,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fas fa-cogs", text: "n8n Workflows" },
         { icon: "fas fa-project-diagram", text: "Custom ML Models" }
       ],
-      tech: ["ChatGPT", "Claude", "TensorFlow", "LangChain"]
+      tech: ["ChatGPT", "Claude", "PyTorch", "TensorFlow", "n8n"]
     },
     {
       title: "Mobile Applications",
@@ -127,7 +122,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fab fa-apple", text: "iOS & Android" },
         { icon: "fas fa-bell", text: "Push & Offline" }
       ],
-      tech: ["Expo", "Native APIs", "App Store"]
+      tech: ["React Native", "Expo", "iOS", "Android"]
     },
     {
       title: "Design & Brand",
@@ -138,7 +133,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fas fa-shapes", text: "Brand Identity" },
         { icon: "fas fa-layer-group", text: "Design Systems" }
       ],
-      tech: ["Figma", "Logo", "Style Guides"]
+      tech: ["Figma", "Adobe XD", "UI/UX", "Wireframes"]
     },
     {
       title: "Consultancy & Custom",
@@ -149,7 +144,7 @@ export const ServicesPage: React.FC = () => {
         { icon: "fas fa-chalkboard-teacher", text: "Team Training" },
         { icon: "fas fa-puzzle-piece", text: "Bespoke Solutions" }
       ],
-      tech: ["API Dev", "Integration", "Support"]
+      tech: ["DevOps", "Git", "Agile", "Testing", "Cloud"]
     }
   ];
 
@@ -194,92 +189,96 @@ export const ServicesPage: React.FC = () => {
           I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
         </p>
 
-        <div ref={servicesRef} className="servicesGrid">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="service-card serviceCard"
-              onMouseEnter={handleCardHover}
-            >
-              <div className="serviceHeader">
-                <i
-                  className={`${service.icon} service-icon serviceIcon`}
-                  aria-hidden="true"
-                ></i>
-                <h3 className="serviceTitle">{service.title}</h3>
-              </div>
-
-              <p className="serviceDescription">{service.description}</p>
-
-              <ul className="serviceHighlights">
-                {service.highlights.map((highlight, idx) => (
-                  <li key={idx} className="highlightItem">
-                    <i className={highlight.icon} aria-hidden="true"></i>
-                    <span>{highlight.text}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="serviceTechTags">
-                {service.tech.map((tech, idx) => (
-                  <span key={idx} className="techTag">{tech}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Professional Certifications Section */}
-        <div className="certifications-section">
-          <h3 className="certifications-title">
-            <span className="tier-glyph">▣</span>
-            Professional Certifications
-            <span className="tier-glyph">▣</span>
-          </h3>
-          <div className="certifications-grid">
-            {professionalCertifications.map((cert, index) => (
-              <div key={index} className={`cert-card ${cert.glowClass}`}>
-                <i className={cert.icon} aria-hidden="true"></i>
-                <div className="cert-info">
-                  <span className="cert-name">{cert.name}</span>
-                  <span className="cert-detail">{cert.detail}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Process Section */}
-        <div className="process-section">
-          <h3 className="process-title">How We Work Together</h3>
-          <div className="process-grid">
-            {processSteps.map((step, index) => (
-              <div key={index} className="process-step">
-                <div className="process-icon">
-                  <i className={step.icon} aria-hidden="true"></i>
-                </div>
-                <h4>{step.title}</h4>
-                <p>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Value Proposition */}
-        <div className="value-section">
+        {/* Value Proposition - Hero Position with Quick Contact */}
+        <div className="value-section value-section-hero">
           <div className="value-card">
             <i className="fas fa-pound-sign" aria-hidden="true"></i>
             <div className="value-content">
               <h4>Competitive Pricing, Effective Results</h4>
               <p>Quality work doesn't have to break the bank. I offer transparent, competitive rates with a focus on delivering measurable outcomes for your business.</p>
             </div>
+            <Link to="/contact" className="quick-contact-btn">
+              <i className="fas fa-envelope"></i>
+              Get Quote
+            </Link>
+          </div>
+        </div>
+
+        {/* Combined Services & Credentials Section */}
+        <div className="services-main-section">
+          {/* Subsection: Credentials */}
+          <div className="services-subsection" id="credentials">
+            <h3 className="services-section-title">
+              <span>Credentials</span>
+            </h3>
+            <div className="certifications-grid">
+              {professionalCertifications.map((cert, index) => (
+                <div key={index} className={`cert-card ${cert.glowClass}`}>
+                  <i className={cert.icon} aria-hidden="true"></i>
+                  <div className="cert-info">
+                    <span className="cert-name">{cert.name}</span>
+                    <span className="cert-detail">{cert.detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Matrix Divider */}
+          <div className="matrix-divider">
+            <span className="divider-glyph">⟨</span>
+            <span className="divider-line"></span>
+            <span className="divider-center">◆</span>
+            <span className="divider-line"></span>
+            <span className="divider-glyph">⟩</span>
+          </div>
+
+          {/* Subsection: What I Build */}
+          <div className="services-subsection" id="what-i-build">
+            <h3 className="services-section-title">
+              <span>What I Build</span>
+            </h3>
+            <div ref={servicesRef} className="servicesGrid">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="service-card serviceCard"
+                  onMouseEnter={handleCardHover}
+                >
+                  <div className="serviceHeader">
+                    <i
+                      className={`${service.icon} service-icon serviceIcon`}
+                      aria-hidden="true"
+                    ></i>
+                    <h3 className="serviceTitle">{service.title}</h3>
+                  </div>
+
+                  <p className="serviceDescription">{service.description}</p>
+
+                  <ul className="serviceHighlights">
+                    {service.highlights.map((highlight, idx) => (
+                      <li key={idx} className="highlightItem">
+                        <i className={highlight.icon} aria-hidden="true"></i>
+                        <span>{highlight.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="serviceTechTags">
+                    {service.tech.map((tech, idx) => (
+                      <span key={idx} className="techTag">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* CTA Section - Enhanced */}
         <div className="ctaSection ctaSection-enhanced">
-          <h3>Ready to start your project?</h3>
-          <p className="cta-subtitle">Let's discuss your requirements and build something great together.</p>
+          <h3>Let's Build Something Great</h3>
+          <p className="cta-subtitle">Free consultation. No obligation. Let's discuss your project and make it happen.</p>
           <div className="cta-buttons">
             <Link to="/contact" className="ctaButton ctaButton-primary">
               Get A Free Quote

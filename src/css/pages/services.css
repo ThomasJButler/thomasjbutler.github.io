@@ -73,22 +73,22 @@
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
-/* Services Grid - 2 columns for one-screen layout */
+/* Services Grid - 3 columns for compact one-screen layout */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
   margin: 1rem 0;
   padding: 0 0.5rem;
 }
 
-/* Service Card - Compact for one-screen layout */
+/* Service Card - Compact for 3-column layout */
 .serviceCard {
   position: relative;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   background: linear-gradient(145deg, rgba(0, 20, 0, 0.9), rgba(0, 40, 0, 0.8));
   border: 1px solid var(--matrix-green);
-  border-radius: 10px;
+  border-radius: 8px;
   transition:
     transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     box-shadow 0.4s ease,
@@ -146,16 +146,16 @@
   background: linear-gradient(145deg, rgba(0, 30, 0, 0.95), rgba(0, 50, 0, 0.85));
 }
 
-/* Service Header */
+/* Service Header - Compact */
 .serviceHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .serviceIcon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--matrix-green);
   transition: transform 0.6s ease, filter 0.3s ease;
 }
@@ -167,40 +167,40 @@
 .serviceTitle {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   margin: 0;
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
-/* Service Description */
+/* Service Description - Compact */
 .serviceDescription {
   color: #E0FFE0;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
   opacity: 0.9;
   flex-grow: 0;
 }
 
 /* ============================================================================
-   SERVICE HIGHLIGHTS - Always visible, icon-enhanced features
+   SERVICE HIGHLIGHTS - Compact for 3-column layout
    ============================================================================ */
 .serviceHighlights {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .highlightItem {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.4rem 0.6rem;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
   background: rgba(0, 255, 0, 0.05);
-  border-radius: 6px;
+  border-radius: 4px;
   transition: all 0.2s ease;
 }
 
@@ -210,38 +210,38 @@
 }
 
 .highlightItem i {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--matrix-green);
-  width: 20px;
+  width: 18px;
   text-align: center;
   flex-shrink: 0;
 }
 
 .highlightItem span {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
-/* Service Tech Tags */
+/* Service Tech Tags - Compact */
 .serviceTechTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.25rem;
   margin-top: auto;
-  padding-top: 0.5rem;
+  padding-top: 0.4rem;
   border-top: 1px solid rgba(0, 255, 0, 0.15);
 }
 
 .techTag {
   background: rgba(0, 255, 0, 0.1);
   border: 1px solid rgba(0, 255, 0, 0.25);
-  border-radius: 4px;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.7rem;
+  border-radius: 3px;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.6rem;
   color: rgba(0, 255, 0, 0.8);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   transition: all 0.2s ease;
 }
 
@@ -1059,6 +1059,18 @@ body.low-end-device .techCategory {
   background: radial-gradient(circle at center, rgba(0, 255, 0, 0.15) 0%, transparent 70%);
 }
 
+.cert-card.hubspot-glow:hover::before {
+  background: radial-gradient(circle at center, rgba(255, 122, 89, 0.15) 0%, transparent 70%);
+}
+
+.cert-card.umbraco-glow:hover::before {
+  background: radial-gradient(circle at center, rgba(60, 80, 180, 0.15) 0%, transparent 70%);
+}
+
+.cert-card.wordpress-glow:hover::before {
+  background: radial-gradient(circle at center, rgba(33, 117, 155, 0.15) 0%, transparent 70%);
+}
+
 .cert-card i {
   font-size: 1.5rem;
   color: var(--matrix-green);
@@ -1222,6 +1234,145 @@ body.low-end-device .techCategory {
   margin: 0;
 }
 
+/* Value Section Hero Variant - At top with quick contact */
+.value-section-hero {
+  margin: 1rem 0 2rem;
+}
+
+.value-section-hero .value-card {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.quick-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--matrix-cyan, #00FFFF);
+  border-radius: 6px;
+  color: var(--matrix-cyan, #00FFFF);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quick-contact-btn:hover {
+  background: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.quick-contact-btn i {
+  font-size: 0.9rem;
+}
+
+/* ============================================================================
+   MAIN SECTION CONTAINER & SUBSECTIONS
+   ============================================================================ */
+.services-main-section {
+  margin: 2rem 0;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.services-subsection {
+  padding: 1rem 0;
+  scroll-margin-top: 80px;
+}
+
+.services-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--matrix-green);
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.services-section-title::before,
+.services-section-title::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--matrix-green));
+}
+
+.services-section-title::after {
+  background: linear-gradient(90deg, var(--matrix-green), transparent);
+}
+
+.services-section-title span {
+  padding: 0 0.5rem;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* ============================================================================
+   MATRIX DIVIDER - Between Subsections
+   ============================================================================ */
+.matrix-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 2.5rem 0;
+  padding: 1rem 0;
+}
+
+.matrix-divider .divider-line {
+  flex: 1;
+  max-width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--matrix-green) 20%,
+    var(--matrix-green) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.matrix-divider .divider-glyph {
+  color: var(--matrix-green);
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+  opacity: 0.8;
+}
+
+.matrix-divider .divider-center {
+  color: var(--matrix-cyan, #00FFFF);
+  font-size: 1rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    opacity: 0.8;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+    opacity: 1;
+  }
+}
+
+/* Smooth scrolling for the page */
+.page-services {
+  scroll-behavior: smooth;
+}
+
 /* ============================================================================
    ENHANCED CTA SECTION
    ============================================================================ */
@@ -1267,6 +1418,12 @@ body.low-end-device .techCategory {
    RESPONSIVE ADJUSTMENTS FOR NEW SECTIONS
    ============================================================================ */
 @media (max-width: 1024px) {
+  /* Tablet: 2 columns for services */
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
   .certifications-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1301,6 +1458,37 @@ body.low-end-device .techCategory {
   .ctaButton {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Quick contact button - mobile */
+  .quick-contact-btn {
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section titles - mobile */
+  .services-section-title {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+  }
+
+  .services-section-title::before,
+  .services-section-title::after {
+    max-width: 60px;
+  }
+
+  /* Matrix divider - mobile */
+  .matrix-divider {
+    margin: 1.5rem 0;
+  }
+
+  .matrix-divider .divider-line {
+    max-width: 80px;
+  }
+
+  .matrix-divider .divider-glyph {
+    font-size: 1rem;
   }
 }
 
