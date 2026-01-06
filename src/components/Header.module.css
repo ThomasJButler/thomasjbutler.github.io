@@ -34,12 +34,52 @@
    Logo & Title - Clean Typography
    ======================================================================== */
 
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .headerTitle {
   display: flex;
   align-items: center;
   gap: 0.75rem; /* Reduced gap for tighter logo + text layout */
   cursor: pointer;
   text-decoration: none;
+}
+
+/* Social Icons - Small but accessible */
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: rgba(0, 255, 0, 0.6);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.socialIcon:hover {
+  color: var(--matrix-green, #00ff00);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .socialIcon {
+  color: rgba(74, 158, 255, 0.6);
+}
+
+[data-theme="dark"] .socialIcon:hover {
+  color: #4A9EFF;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
 }
 
 /* Logo Styling */

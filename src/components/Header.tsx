@@ -123,14 +123,36 @@ export const Header: React.FC = () => {
   return (
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <Link to="/" className={styles.headerTitle}>
-          <img
-            src="/logo.svg"
-            alt="Thomas J Butler Logo"
-            className={styles.headerLogo}
-          />
-          <h1 className={styles.headerText}>Thomas J Butler</h1>
-        </Link>
+        <div className={styles.headerBrand}>
+          <Link to="/" className={styles.headerTitle}>
+            <img
+              src="/logo.svg"
+              alt="Thomas J Butler Logo"
+              className={styles.headerLogo}
+            />
+            <h1 className={styles.headerText}>Thomas J Butler</h1>
+          </Link>
+          <div className={styles.socialIcons}>
+            <a
+              href="https://github.com/thomasjbutler"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="GitHub Profile"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/thomasjbutler"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="LinkedIn Profile"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
         
         <nav className={styles.nav} role="navigation" aria-label="Main navigation">
           <button
