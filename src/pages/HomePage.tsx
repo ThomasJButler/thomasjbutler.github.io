@@ -48,7 +48,7 @@ export const HomePage: React.FC = () => {
             (media as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
           });
           
-          const revealElements = document.querySelectorAll('.gallery-card:not(.revealed), .introduction-expertise-card:not(.revealed)');
+          const revealElements = document.querySelectorAll('.introduction-expertise-card:not(.revealed), .timetravel-card:not(.revealed)');
           revealElements.forEach(el => {
             const rect = el.getBoundingClientRect();
             const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
@@ -79,10 +79,10 @@ export const HomePage: React.FC = () => {
    *             Includes magnetic cursor effects and particle systems
    */
   useEffect(() => {
-    const galleries = document.getElementById('galleries');
-    if (galleries) {
+    const timetravelCta = document.getElementById('timetravel-cta');
+    if (timetravelCta) {
       setTimeout(() => {
-        galleries.classList.add('matrix-loaded');
+        timetravelCta.classList.add('matrix-loaded');
       }, 2000);
     }
 
@@ -144,22 +144,18 @@ export const HomePage: React.FC = () => {
         }
       });
       
-      const galleryCards = document.querySelectorAll('.gallery-card');
-      galleryCards.forEach((card, index) => {
-        animate(card as HTMLElement, {
+      // Animate timetravel card
+      const timetravelCard = document.querySelector('.timetravel-card');
+      if (timetravelCard) {
+        animate(timetravelCard as HTMLElement, {
           opacity: [0, 1],
-          translateY: [50, 0],
-          rotateX: [-15, 0],
-          duration: 1000,
-          delay: 1200 + index * 100,
-          easing: 'easeOutQuint'
+          translateY: [30, 0],
+          duration: 800,
+          delay: 1200,
+          easing: 'easeOutQuad'
         });
+      }
 
-        setTimeout(() => {
-          card.classList.add('revealed');
-        }, 2200 + index * 100);
-      });
-      
       const buttons = document.querySelectorAll('.btn-professional, .matrix-btn-primary');
       buttons.forEach((btn, index) => {
         btn.classList.add('animated');
@@ -176,7 +172,7 @@ export const HomePage: React.FC = () => {
     
     animatePageEntrance();
     
-    const cards = document.querySelectorAll('.gallery-card, .introduction-expertise-card');
+    const cards = document.querySelectorAll('.introduction-expertise-card, .timetravel-card');
     cards.forEach(card => {
       card.addEventListener('mouseenter', (e) => {
         if (e.currentTarget) {
@@ -323,75 +319,139 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section id="portfolio-purpose" ref={galleriesRef as React.RefObject<HTMLElement>}>
+      <section id="portfolio-hub" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
-          <div className="purpose-card">
-            <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
-            <div className="purpose-content">
-              <p>
-                This portfolio started out as a hobby project. A space where I could push my web development skills and mess with new technologies without constraint.
-              </p>
-              <p>
-                Over time, I realised that I needed to seperate my business work and personal work. This gives me the creative freedom to work on new ideas, test out new frameworks, and implement test features that aren't always going to be ideal for client requirements.
-              </p>
-              <p>
-                That's where I can be irresponsible. I can crash things. I can try out that new animation library that everybody's talking about, or rebuild everything from the ground up because I want to demonstrate I can. It's my web playground, and that freedom keeps me on my toes for the commercial work.
-              </p>
-              <p className="purpose-cta-text">
-                For my commercial portfolio and professional client work:
-              </p>
-              <a 
-                href="https://thomasjbutler.me" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="purpose-link matrix-btn-primary"
-              >
-                <i className="fas fa-briefcase"></i>
-                View Commercial Portfolio
-                <i className="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="galleries" ref={galleriesRef as React.RefObject<HTMLElement>}>
-        <div className="container">
-          <h2 className="section-heading">Showcases</h2>
-          <div className="galleries-grid">
-            <div className="gallery-card">
-              <div className="gallery-icon">
-                <i className="fas fa-graduation-cap"></i>
+          <div className="hub-layout">
+            {/* Left Column - Purpose Text */}
+            <div className="hub-left">
+              <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
+              <div className="purpose-content">
+                <p>
+                  Ever since I watched The Matrix as a kid, I've been obsessed with building things on the web. This site is the sci-fi inspired playground I always dreamed of creating.
+                </p>
+                <p>
+                  It's where I separate creative freedom from client work. I can crash things, try that new animation library everyone's talking about, and rebuild from scratch just because I can.
+                </p>
+                <p>
+                  Cyberpunk aesthetics, AI experiments, pushing boundaries. This is my space to geek out and have fun with code.
+                </p>
               </div>
-              <h3>GenAI Bootcamp Portfolio</h3>
-              <p>Comprehensive AI portfolio showcasing practical applications and innovative solutions.</p>
-              <a href="https://mastering-ai-course-portfolio-dashb.vercel.app/" target="_blank" rel="noopener noreferrer" className="gallery-link">
-                View Portfolio <i className="fas fa-external-link-alt"></i>
-              </a>
             </div>
-            <div className="gallery-card">
-              <div className="gallery-icon">
-                <i className="fas fa-history"></i>
-              </div>
-              <h3>Version TimeTravel v1.4</h3>
-              <p>Interactive timeline documenting the complete evolution and transformation of my portfolio.</p>
-              <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" className="gallery-link">
-                Time Travel <i className="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section id="contact">
-        <div className="container">
-          <h2 className="section-heading">Get in Touch</h2>
-          <p>Interested in working together or have a question? Please don't hesitate to reach out!</p>
-          <div className="contact-button-container">
-            <Link to="/contact" className="btn-contact-us">
-              <i className="fas fa-envelope"></i>
-              Contact Me
-            </Link>
+            {/* Right Column - All Navigation */}
+            <div className="hub-right">
+              {/* Explore Section */}
+              <div className="hub-section">
+                <span className="hub-label">Explore</span>
+                <div className="hub-grid">
+                  <Link to="/projects" className="hub-btn">
+                    <i className="fas fa-images"></i>
+                    Projects
+                  </Link>
+                  <Link to="/skills" className="hub-btn">
+                    <i className="fas fa-code"></i>
+                    Skills
+                  </Link>
+                  <Link to="/services" className="hub-btn">
+                    <i className="fas fa-cogs"></i>
+                    Services
+                  </Link>
+                  <Link to="/contact" className="hub-btn">
+                    <i className="fas fa-envelope"></i>
+                    Contact
+                  </Link>
+                </div>
+              </div>
+
+              {/* Professional Work Section */}
+              <div className="hub-section">
+                <span className="hub-label">Professional Work</span>
+                <div className="hub-stack">
+                  <a
+                    href="https://thomasjbutler.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hub-btn-external"
+                  >
+                    <i className="fas fa-briefcase"></i>
+                    Commercial Portfolio
+                    <i className="fas fa-external-link-alt hub-external-icon"></i>
+                  </a>
+                  <a
+                    href="https://agenticaiprojectsportfolio.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hub-btn-external"
+                  >
+                    <i className="fas fa-robot"></i>
+                    Agentic AI Portfolio
+                    <i className="fas fa-external-link-alt hub-external-icon"></i>
+                  </a>
+                </div>
+              </div>
+
+              {/* TimeTravel Section */}
+              <div className="hub-section hub-timetravel">
+                <span className="hub-timetravel-text">Want to see how this project evolved?</span>
+                <a
+                  href="https://thomasjbutler.github.io/version-timetravel/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hub-btn-timetravel"
+                >
+                  <i className="fas fa-history"></i>
+                  Version TimeTravel
+                  <i className="fas fa-external-link-alt hub-external-icon"></i>
+                </a>
+              </div>
+
+              {/* Get in Touch Section */}
+              <div className="hub-section hub-contact">
+                <span className="hub-label">Get in Touch</span>
+                <div className="hub-contact-row">
+                  <Link to="/contact" className="hub-btn hub-btn-contact">
+                    <i className="fas fa-envelope"></i>
+                    Contact Me
+                  </Link>
+                  <div className="hub-social-icons">
+                    <a
+                      href="https://github.com/thomasjbutler"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hub-social-icon"
+                      aria-label="GitHub Profile"
+                    >
+                      <i className="fab fa-github"></i>
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/thomasjbutler"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hub-social-icon"
+                      aria-label="LinkedIn Profile"
+                    >
+                      <i className="fab fa-linkedin"></i>
+                    </a>
+                    <a
+                      href="https://codepen.io/thomasjbutler"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hub-social-icon"
+                      aria-label="CodePen Profile"
+                    >
+                      <i className="fab fa-codepen"></i>
+                    </a>
+                    <a
+                      href="mailto:hello@thomasjbutler.com"
+                      className="hub-social-icon"
+                      aria-label="Email Me"
+                    >
+                      <i className="fas fa-at"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
