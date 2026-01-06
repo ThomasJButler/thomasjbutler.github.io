@@ -14,7 +14,6 @@ import { BackToTop } from './components/BackToTop';
 // Lazy load pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
-const SkillsPage = lazy(() => import('./pages/SkillsPage').then(m => ({ default: m.SkillsPage })));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
@@ -113,11 +112,6 @@ export const App: React.FC = () => {
                 <AboutPage />
               </Suspense>
             } />
-            <Route path="skills" element={
-              <Suspense fallback={<PageLoader />}>
-                <SkillsPage />
-              </Suspense>
-            } />
             <Route path="projects" element={
               <Suspense fallback={<PageLoader />}>
                 <ProjectsPage />
@@ -158,7 +152,8 @@ export const App: React.FC = () => {
             {/* Legacy HTML file redirects */}
             <Route path="index.html" element={<Navigate to="/" replace />} />
             <Route path="about.html" element={<Navigate to="/about" replace />} />
-            <Route path="skills.html" element={<Navigate to="/skills" replace />} />
+            <Route path="skills.html" element={<Navigate to="/services" replace />} />
+            <Route path="skills" element={<Navigate to="/services" replace />} />
             <Route path="projects.html" element={<Navigate to="/projects" replace />} />
             <Route path="services.html" element={<Navigate to="/services" replace />} />
             <Route path="contact.html" element={<Navigate to="/contact" replace />} />

@@ -23,9 +23,8 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { label: 'ABOUT', href: '/about', tooltip: 'Learn About Me' },
-  { label: 'SKILLS', href: '/skills', tooltip: 'Check My Skills' },
   { label: 'PROJECTS', href: '/projects', tooltip: 'View My Projects' },
-  { label: 'SERVICES', href: '/services', tooltip: 'Explore My Services' },
+  { label: 'SERVICES', href: '/services', tooltip: 'Skills & Services' },
   { label: 'CONTACT', href: '/contact', tooltip: 'Get in Touch' }
 ];
 
