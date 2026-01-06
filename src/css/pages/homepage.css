@@ -49,15 +49,15 @@
 .galleries-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
+    gap: 2.5rem; /* Reduced ~17% from 3rem */
+    margin-top: 2.5rem; /* Reduced ~17% from 3rem */
 }
 
 .gallery-card {
     background: rgba(0, 20, 0, 0.8);
     border: 2px solid #00FF00;
     border-radius: 15px;
-    padding: 2.5rem;
+    padding: 2.1rem; /* Reduced ~16% from 2.5rem */
     text-align: center;
     transition: all var(--duration-base) var(--ease-out);
     position: relative;
@@ -408,7 +408,7 @@
 /* Portfolio Purpose Section
    ========================================================================== */
 #portfolio-purpose {
-    padding: 4rem 0;
+    padding: 3.4rem 0; /* Reduced ~15% from 4rem */
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -461,7 +461,7 @@
     background: rgba(0, 20, 0, 0.85);
     border: 2px solid rgba(0, 255, 0, 0.3);
     border-radius: 20px;
-    padding: 3rem;
+    padding: 2.5rem; /* Reduced ~17% from 3rem */
     position: relative;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -764,7 +764,7 @@
 /* Responsive design */
 @media (max-width: 768px) {
     #portfolio-purpose {
-        padding: 2.5rem 0;
+        padding: 2.1rem 0; /* Reduced ~15% from 2.5rem */
     }
 
     .purpose-card {
