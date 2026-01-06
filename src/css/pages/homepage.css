@@ -1690,18 +1690,628 @@ body {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-    .gallery-card:hover {
-        transform: none;
-        animation: none;
-    }
-
-    .gallery-card:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
-    }
-
     .introduction-img img:hover {
         transform: none;
         filter: brightness(0.9) contrast(1.1);
+    }
+}
+
+/* ==========================================================================
+   PURPOSE BUTTONS - Side by side layout
+   ========================================================================== */
+.purpose-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.purpose-buttons .purpose-link {
+    margin: 0;
+}
+
+/* ==========================================================================
+   TIMETRAVEL CTA SECTION - Compact replacement for Showcases
+   ========================================================================== */
+#timetravel-cta {
+    padding: 2rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+[data-theme="matrix"] #timetravel-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%);
+    z-index: -1;
+}
+
+[data-theme="matrix"] #timetravel-cta {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.timetravel-card {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    transition: all 0.4s var(--ease-out);
+}
+
+.timetravel-card:hover {
+    border-color: rgba(0, 255, 0, 0.4);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+}
+
+.timetravel-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.timetravel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #00FF00;
+    color: #000000 !important;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 2px solid #00FF00;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timetravel-link:hover {
+    background: #000000;
+    color: #00FF00 !important;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+}
+
+/* Dark theme overrides for timetravel */
+[data-theme="dark"] #timetravel-cta {
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] #timetravel-cta::before {
+    background: linear-gradient(45deg, transparent 45%, rgba(74, 158, 255, 0.02) 50%, transparent 55%);
+}
+
+[data-theme="dark"] .timetravel-card {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.2);
+}
+
+[data-theme="dark"] .timetravel-card:hover {
+    border-color: rgba(74, 158, 255, 0.4);
+    box-shadow: 0 0 30px rgba(74, 158, 255, 0.15);
+}
+
+[data-theme="dark"] .timetravel-link {
+    background: #4A9EFF;
+    color: #FFFFFF !important;
+    border-color: #4A9EFF;
+}
+
+[data-theme="dark"] .timetravel-link:hover {
+    background: #000000;
+    color: #4A9EFF !important;
+    border-color: #00FFFF;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   PORTFOLIO HUB - Two Column Navigation Layout
+   ========================================================================== */
+#portfolio-hub {
+    padding: 1rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="matrix"] #portfolio-hub {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+[data-theme="dark"] #portfolio-hub {
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.hub-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Left Column - Purpose Text */
+.hub-left {
+    flex: 1;
+}
+
+.hub-left .purpose-heading {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--glow-color-primary);
+}
+
+.hub-left .purpose-content {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.hub-left .purpose-content p {
+    margin-bottom: 0.75rem;
+}
+
+/* Right Column - Navigation Hub */
+.hub-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.hub-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hub-label {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    color: rgba(0, 255, 0, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+[data-theme="dark"] .hub-label {
+    color: rgba(74, 158, 255, 0.7);
+}
+
+/* 2x2 Grid for Explore buttons */
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+/* Stack layout for professional work buttons */
+.hub-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Common button styles */
+.hub-btn,
+.hub-btn-external,
+.hub-btn-timetravel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 20, 0, 0.6);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.hub-btn i,
+.hub-btn-external i,
+.hub-btn-timetravel i {
+    color: var(--accent-color);
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+}
+
+.hub-btn:hover,
+.hub-btn-external:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.hub-external-icon {
+    margin-left: auto;
+    font-size: 0.7rem !important;
+    opacity: 0.5;
+}
+
+/* TimeTravel section */
+.hub-timetravel {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    padding-top: 1rem;
+}
+
+.hub-timetravel-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+}
+
+.hub-btn-timetravel {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.hub-btn-timetravel:hover {
+    background: rgba(0, 255, 0, 0.25);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Hub Contact Section */
+.hub-contact {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    padding-top: 1rem;
+}
+
+[data-theme="dark"] .hub-contact {
+    border-top-color: rgba(74, 158, 255, 0.1);
+}
+
+.hub-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hub-btn-contact {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.hub-social-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.hub-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 20, 0, 0.6);
+    color: var(--accent-color);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.hub-social-icon:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-3px) scale(1.1);
+}
+
+[data-theme="dark"] .hub-social-icon {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .hub-social-icon:hover {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* Matrix Gap - visual separator */
+.matrix-gap {
+    height: 2rem;
+    background: #000000;
+    position: relative;
+}
+
+.matrix-gap::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+/* Dark theme overrides for hub */
+[data-theme="dark"] .hub-btn,
+[data-theme="dark"] .hub-btn-external,
+[data-theme="dark"] .hub-btn-timetravel {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .hub-btn i,
+[data-theme="dark"] .hub-btn-external i,
+[data-theme="dark"] .hub-btn-timetravel i {
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .hub-btn:hover,
+[data-theme="dark"] .hub-btn-external:hover {
+    background: rgba(74, 158, 255, 0.1);
+    border-color: rgba(74, 158, 255, 0.6);
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.2);
+}
+
+[data-theme="dark"] .hub-timetravel {
+    border-top-color: rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] .hub-btn-timetravel {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .hub-btn-timetravel:hover {
+    background: rgba(74, 158, 255, 0.25);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 25px rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .matrix-gap::before {
+    background: linear-gradient(90deg, transparent, #4A9EFF, transparent);
+}
+
+/* ==========================================================================
+   CONTACT SECTION - Expanded Two-Column Layout
+   ========================================================================== */
+#contact.contact-expanded {
+    padding: 2rem 0;
+}
+
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-content .section-heading {
+    margin-bottom: 1rem;
+}
+
+.contact-intro {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.contact-cta {
+    color: rgba(0, 255, 0, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+[data-theme="dark"] .contact-cta {
+    color: rgba(74, 158, 255, 0.8);
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contact-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 20, 0, 0.6);
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.contact-social-icon:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Dark theme for contact social icons */
+[data-theme="dark"] .contact-social-icon {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .contact-social-icon:hover {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* ==========================================================================
+   DESKTOP UX OPTIMIZATIONS - Fit content on single viewport
+   ========================================================================== */
+@media (min-width: 1024px) {
+    /* Hero section - reduce padding and image sizes */
+    #introduction {
+        padding: var(--space-sm) 0;
+    }
+
+    #introduction h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+    }
+
+    #introduction .welcome-text {
+        font-size: 2.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    #introduction br {
+        display: none;
+    }
+
+    .introduction-img {
+        gap: 15px;
+        padding: 20px 40px;
+    }
+
+    .introduction-img img,
+    .introduction-img video {
+        max-width: 200px;
+    }
+
+    .introduction-img .intro-featured {
+        max-width: 240px;
+    }
+
+    /* Portfolio Hub - Two Column Layout */
+    #portfolio-hub {
+        padding: 0.75rem 0;
+    }
+
+    .hub-layout {
+        flex-direction: row;
+        gap: 2.5rem;
+        align-items: flex-start;
+    }
+
+    .hub-left {
+        flex: 0 0 42%;
+        position: sticky;
+        top: 100px;
+    }
+
+    .hub-left .purpose-heading {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hub-left .purpose-content {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .hub-left .purpose-content p {
+        margin-bottom: 0.5rem;
+    }
+
+    .hub-right {
+        flex: 0 0 55%;
+        gap: 1rem;
+    }
+
+    .hub-section {
+        gap: 0.5rem;
+    }
+
+    .hub-label {
+        font-size: 0.7rem;
+    }
+
+    .hub-grid {
+        gap: 0.6rem;
+    }
+
+    .hub-stack {
+        gap: 0.6rem;
+    }
+
+    .hub-btn,
+    .hub-btn-external,
+    .hub-btn-timetravel {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .hub-timetravel {
+        padding-top: 0.5rem;
+    }
+
+    .hub-timetravel-text {
+        font-size: 0.8rem;
+    }
+
+    /* Hub Contact Section - Desktop */
+    .hub-contact {
+        padding-top: 0.5rem;
+    }
+
+    .hub-contact-row {
+        gap: 0.75rem;
+    }
+
+    .hub-btn-contact {
+        flex: 0 1 auto;
+        min-width: auto;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hub-social-icons {
+        gap: 0.4rem;
+    }
+
+    .hub-social-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+    }
+
+    /* Hide mobile-only elements on desktop */
+    .galleries-mobile {
+        display: none;
     }
 }
