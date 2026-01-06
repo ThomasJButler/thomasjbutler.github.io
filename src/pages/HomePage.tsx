@@ -306,16 +306,6 @@ export const HomePage: React.FC = () => {
             />
             <img src={PLACEHOLDER_IMAGES.modelVizGif} alt="ModelViz - AI Model Comparison Platform" />
           </div>
-          <div className="galleries-mobile">
-            <Link to="/projects" className="btn-professional glass-card hover-lift">
-              <i className="fas fa-images"></i>
-              View Projects
-            </Link>
-            <Link to="/skills" className="btn-professional glass-card hover-lift bg-matrix-gradient-button">
-              <i className="fas fa-code"></i>
-              View Skills
-            </Link>
-          </div>
         </div>
       </section>
 
