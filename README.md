@@ -159,7 +159,7 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 <div align="center">
   
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
-[![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
+[![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasjbutler)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFB000?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ojrwoqkgmv)
 
 </div>

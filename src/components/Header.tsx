@@ -40,11 +40,12 @@ export const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
 
-  useHeaderVisibility({
-    headerSelector: 'header',
-    hideThreshold: 100,
-    showThreshold: 50
-  });
+  // Disabled header hide-on-scroll behavior - header now stays fixed
+  // useHeaderVisibility({
+  //   headerSelector: 'header',
+  //   hideThreshold: 100,
+  //   showThreshold: 50
+  // });
 
   /** @constructs Initialises scroll listener with RAF throttling for performance */
   useEffect(() => {

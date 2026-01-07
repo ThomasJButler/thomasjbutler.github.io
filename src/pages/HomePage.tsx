@@ -87,6 +87,24 @@ export const HomePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [animateTyping]);
 
+  // Add .animated class to intro content on mount
+  useEffect(() => {
+    // Wait a small delay for DOM to be ready
+    setTimeout(() => {
+      // Animate intro media (images/videos)
+      const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
+      introMedia.forEach(media => {
+        media.classList.add('animated');
+      });
+
+      // Animate intro text elements
+      const introText = document.querySelectorAll('.welcome-text, .hero-tagline, .hero-subtitle');
+      introText.forEach(text => {
+        text.classList.add('animated');
+      });
+    }, 100);
+  }, []);
+
   const galleriesRef = useScrollAnimation({
     threshold: 0.3,
     animationProps: {
@@ -156,11 +174,25 @@ export const HomePage: React.FC = () => {
     const animatePageEntrance = () => {
       const welcomeText = document.querySelector('.welcome-text');
       if (welcomeText) {
+        welcomeText.classList.add('animated');
         animate(welcomeText as HTMLElement, {
           opacity: [0, 1],
           scale: [0.95, 1],
           duration: 800,
           delay: 100,
+          easing: 'easeOutQuad'
+        });
+      }
+
+      // Animate hero subtitle ("Full Stack AI Engineer from the UK")
+      const heroSubtitle = document.querySelector('.hero-subtitle');
+      if (heroSubtitle) {
+        heroSubtitle.classList.add('animated');
+        animate(heroSubtitle as HTMLElement, {
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 600,
+          delay: 500,
           easing: 'easeOutQuad'
         });
       }
