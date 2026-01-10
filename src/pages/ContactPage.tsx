@@ -5,7 +5,8 @@
  *              Formspree-integrated contact form
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { ProcessTimeline } from '../components/ProcessTimeline';
 import '../css/contact-modern.css';
 
 const processSteps = [
@@ -55,27 +56,6 @@ export const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Process section animation state
-  const [isVisible, setIsVisible] = useState(false);
-  const processRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (processRef.current) {
-      observer.observe(processRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -121,21 +101,8 @@ export const ContactPage: React.FC = () => {
 
       <section id="contact-main">
         <div className="container contact-container">
-          {/* Process Section - How We Work Together */}
-          <div className="process-section contact-process">
-            <h3 className="process-title">How We Work Together</h3>
-            <div className="process-grid">
-              {processSteps.map((step, index) => (
-                <div key={index} className="process-step">
-                  <div className="process-icon">
-                    <i className={step.icon} aria-hidden="true"></i>
-                  </div>
-                  <h4>{step.title}</h4>
-                  <p>{step.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Process Section - How We Work Together with Framer Motion */}
+          <ProcessTimeline steps={processSteps} />
 
           <div className="contact-grid">
             {/* Left side - Contact Information */}
