@@ -1679,34 +1679,106 @@ section#contact {
   filter: drop-shadow(0 0 6px rgba(74, 158, 255, 0.5));
 }
 
-/* Coffee/Support Section */
+/* Coffee/Support Section - Dark Theme - Match other info-sections exactly */
 [data-theme="dark"] .coffee-section {
   background: linear-gradient(
     135deg,
-    rgba(74, 158, 255, 0.06),
+    rgba(74, 158, 255, 0.08),
     rgba(74, 158, 255, 0.02)
   ) !important;
-  border-color: rgba(74, 158, 255, 0.25) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(74, 158, 255, 0.2) !important;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .coffee-section h3 {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.4);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .coffee-section h3 i {
+  color: #FF6B9D;
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+[data-theme="dark"] .support-text {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
 [data-theme="dark"] .coffee-button-premium {
-  background: linear-gradient(135deg, #4A9EFF, #2A7EDF);
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.2),
+    rgba(74, 158, 255, 0.1)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(74, 158, 255, 0.4);
-  color: #000;
+  color: #fff !important;
   font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
   box-shadow:
-    0 4px 20px rgba(74, 158, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 4px 20px rgba(74, 158, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(74, 158, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .coffee-button-premium i {
+  color: #FFDD57 !important;
+  filter: drop-shadow(0 0 8px rgba(255, 221, 87, 0.5));
   transition: all 0.3s ease;
 }
 
+[data-theme="dark"] .coffee-button-premium span {
+  color: #fff !important;
+}
+
 [data-theme="dark"] .coffee-button-premium:hover {
-  background: linear-gradient(135deg, #5AADFF, #4A9EFF);
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.35),
+    rgba(74, 158, 255, 0.2)
+  );
+  border-color: rgba(74, 158, 255, 0.6);
   box-shadow:
-    0 8px 30px rgba(74, 158, 255, 0.5),
-    0 0 40px rgba(74, 158, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+    0 8px 32px rgba(74, 158, 255, 0.4),
+    0 0 40px rgba(74, 158, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(74, 158, 255, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+[data-theme="dark"] .coffee-button-premium:hover i {
+  transform: rotate(-10deg) scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(255, 221, 87, 0.7));
+}
+
+[data-theme="dark"] .coffee-button-premium::before {
+  background: radial-gradient(
+    circle,
+    rgba(74, 158, 255, 0.3),
+    transparent 70%
+  );
+}
+
+/* Coffee Steam - Dark Theme Blue */
+[data-theme="dark"] .coffee-steam span {
+  background: linear-gradient(
+    to top,
+    transparent,
+    rgba(74, 158, 255, 0.5),
+    transparent
+  );
 }
 
 /* Remove scanline effect for dark theme */

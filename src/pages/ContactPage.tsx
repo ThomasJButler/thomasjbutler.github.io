@@ -150,7 +150,7 @@ export const ContactPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="info-section coffee-section">
+              <div className="info-section">
                 <h3><i className="fas fa-heart"></i> Support My Work</h3>
                 <p className="support-text">If you find my work valuable, consider supporting me!</p>
                 <a 
