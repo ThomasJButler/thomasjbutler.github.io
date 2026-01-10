@@ -43,7 +43,6 @@ const SitemapPageComponent: React.FC = () => {
   const mainPages: SiteLink[] = useMemo(() => [
     { name: 'HOME', path: '/' },
     { name: 'ABOUT', path: '/about' },
-    { name: 'SKILLS', path: '/skills' },
     { name: 'PROJECTS', path: '/projects' },
     { name: 'SERVICES', path: '/services' },
     { name: 'CONTACT', path: '/contact' }
