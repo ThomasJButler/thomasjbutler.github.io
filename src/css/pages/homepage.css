@@ -1968,7 +1968,7 @@ body {
 
 /* TimeTravel compact at bottom */
 .hub-timetravel-bottom {
-    margin-top: 1.5rem;
+    margin: 1.5rem auto 0;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(0, 255, 0, 0.1);
     display: flex;
@@ -1976,8 +1976,6 @@ body {
     justify-content: center;
     gap: 1rem;
     max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 [data-theme="dark"] .hub-timetravel-bottom {

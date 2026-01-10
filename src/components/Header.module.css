@@ -396,10 +396,14 @@
     display: none;
   }
 
+  .headerText {
+    display: none; /* Hide title text on mobile to save space */
+  }
+
   .nav {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 0.5rem; /* Original gap - title hidden on mobile saves space */
     align-items: center;
   }
 
