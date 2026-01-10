@@ -516,14 +516,13 @@ img:hover,
 }
 
 /* Navigation Hover Effects */
-.nav-link,
-nav a {
+/* Note: nav a::before styles moved to _navigation.css to avoid duplication */
+.nav-link {
   position: relative;
   color: var(--matrix-green);
 }
 
-.nav-link::before,
-nav a::before {
+.nav-link::before {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -534,13 +533,11 @@ nav a::before {
   transition: width var(--hover-duration) var(--hover-timing);
 }
 
-.nav-link:hover::before,
-nav a:hover::before {
+.nav-link:hover::before {
   width: 100%;
 }
 
-.nav-link:hover,
-nav a:hover {
+.nav-link:hover {
   color: var(--text-primary);
   text-shadow: none;
 }

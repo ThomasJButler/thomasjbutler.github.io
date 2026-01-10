@@ -241,7 +241,7 @@ html, body {
       ========================================================================== */
    a {
        color: var(--matrix-green);
-       text-decoration: underline;
+       text-decoration: none;
        transition: all var(--duration-base) var(--ease-in-out);
    }
    
@@ -985,26 +985,8 @@ body.loaded {
    Micro-interactions & Hover Effects
    ========================================================================== */
 
-/* Link hover underline animation */
-a {
-    position: relative;
-    text-decoration: none;
-}
-
-a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--matrix-green);
-    transition: width var(--duration-base) var(--ease-out);
-}
-
-a:hover::after {
-    width: 100%;
-}
+/* Link hover underline animation - Removed global underline effect.
+   Navigation links have their own scoped underline styles in _navigation.css */
 
 /* Interactive element focus ring */
 button:focus-visible,
