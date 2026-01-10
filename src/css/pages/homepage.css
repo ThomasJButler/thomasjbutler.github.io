@@ -129,6 +129,18 @@
     .hero-subtitle {
         font-size: 0.9rem;
     }
+
+    /* Hide 2nd and 3rd images in introduction to reduce scrolling */
+    .introduction-img video,
+    .introduction-img img:nth-child(3) {
+        display: none;
+    }
+
+    /* Make the remaining first image bigger since we have more space */
+    .introduction-img img:first-child {
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 /* Galleries Section
