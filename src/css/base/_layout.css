@@ -39,7 +39,7 @@ main {
 
 /* Account for fixed header */
 body:has(header:not(.transparent)) main {
-    padding-top: calc(80px + var(--space-xl)); /* Header height + spacing */
+    padding-top: 75px; /* Visible Matrix rain strip */
 }
 
 /* ==========================================================================
