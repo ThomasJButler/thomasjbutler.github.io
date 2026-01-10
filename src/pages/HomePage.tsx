@@ -20,7 +20,7 @@ const FEATURED_PROJECTS = [
     description: 'Interactive analytics platform for comparing AI models across multiple providers with real-time performance metrics, cost analysis, and 3D visualisations',
     links: {
       demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/thomasjbutler/modelviz'
     }
   },
   {
@@ -29,7 +29,7 @@ const FEATURED_PROJECTS = [
     description: 'Intelligent document Q&A system with semantic search and source citations using RAG, Pinecone, and Anthropic/OpenAI APIs',
     links: {
       demo: 'https://morpheusrag.vercel.app',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/Morpheus'
     }
   }
 ];
@@ -531,7 +531,7 @@ export const HomePage: React.FC = () => {
                       <i className="fab fa-github"></i>
                     </a>
                     <a
-                      href="https://linkedin.com/in/thomasjbutler"
+                      href="https://linkedin.com/in/thomasbutleruk"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hub-social-icon"
@@ -540,7 +540,7 @@ export const HomePage: React.FC = () => {
                       <i className="fab fa-linkedin"></i>
                     </a>
                     <a
-                      href="https://codepen.io/thomasjbutler"
+                      href="https://codepen.io/thomasbutler"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hub-social-icon"

@@ -58,7 +58,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/ModelViz'
     },
     category: 'ai',
     status: 'completed',

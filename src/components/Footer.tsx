@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
               <i className="fab fa-github"></i>
             </a>
             <a
-              href="https://linkedin.com/in/thomasjbutler"
+              href="https://linkedin.com/in/thomasbutleruk"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
               <i className="fab fa-linkedin"></i>
             </a>
             <a
-              href="https://codepen.io/thomasjbutler"
+              href="https://codepen.io/thomasbutler"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="CodePen Profile"
@@ -110,7 +110,7 @@ export const Footer: React.FC = () => {
               <i className="fab fa-codepen"></i>
             </a>
             <a
-              href="mailto:hello@thomasjbutler.com"
+              href="mailto:dev@thomasjbutler.me"
               aria-label="Email Me"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}

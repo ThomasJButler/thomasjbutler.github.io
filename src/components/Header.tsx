@@ -221,7 +221,7 @@ export const Header: React.FC = () => {
               <i className="fab fa-github"></i>
             </a>
             <a
-              href="https://linkedin.com/in/thomasjbutler"
+              href="https://linkedin.com/in/thomasbutleruk"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}

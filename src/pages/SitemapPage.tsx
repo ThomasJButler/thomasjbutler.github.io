@@ -50,7 +50,7 @@ const SitemapPageComponent: React.FC = () => {
 
   const externalLinks: SiteLink[] = useMemo(() => [
     { name: 'GITHUB', path: 'https://github.com/ThomasJButler', external: true },
-    { name: 'LINKEDIN', path: 'https://linkedin.com/in/thomasjbutler', external: true },
+    { name: 'LINKEDIN', path: 'https://linkedin.com/in/thomasbutleruk', external: true },
     { name: 'BUY ME A COFFEE', path: 'https://buymeacoffee.com/ojrwoqkgmv', external: true }
   ], []);
 

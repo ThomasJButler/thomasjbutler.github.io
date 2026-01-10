@@ -127,7 +127,7 @@ describe('SitemapPage', () => {
       expect(githubLink).toHaveAttribute('target', '_blank');
       expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
       
-      expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/thomasjbutler');
+      expect(linkedinLink).toHaveAttribute('href', 'https://linkedin.com/in/thomasbutleruk');
       expect(linkedinLink).toHaveAttribute('target', '_blank');
       expect(linkedinLink).toHaveAttribute('rel', 'noopener noreferrer');
       
