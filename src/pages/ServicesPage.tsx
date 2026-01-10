@@ -224,6 +224,9 @@ export const ServicesPage: React.FC = () => {
             </div>
           </div>
 
+          {/* Matrix Rain Divider - matches header/footer strip height */}
+          <div className="services-matrix-divider" aria-hidden="true"></div>
+
           {/* Subsection: What I Build */}
           <div className="services-subsection" id="what-i-build">
             <h3 className="services-section-title">

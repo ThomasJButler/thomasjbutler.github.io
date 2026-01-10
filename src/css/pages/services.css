@@ -1,5 +1,14 @@
 /* Services Page specific styles */
 
+/* Matrix Rain Divider - matches header/footer 75px strip */
+.services-matrix-divider {
+  height: 75px;
+  width: 100%;
+  background: transparent;
+  position: relative;
+  margin: 2rem 0;
+}
+
 /* Services Section */
 .servicesSection {
   min-height: 100vh;
