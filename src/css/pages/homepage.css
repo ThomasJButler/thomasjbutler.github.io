@@ -16,6 +16,133 @@
     }
 }
 
+/* ==========================================================================
+   HERO SECTION - Compact Layout with Typing Animation
+   ========================================================================== */
+
+.hero-tagline {
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+    color: var(--text-primary);
+    margin: 0.5rem 0 2rem; /* Increased from 1rem for better spacing */
+    letter-spacing: 0.05em;
+    text-transform: none;
+    /* Stack vertically for cleaner layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Increased from 0.25rem for better separation */
+}
+
+.hero-tagline-prefix {
+    color: var(--text-primary);
+    margin: 15px;    
+}
+
+.typing-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.4em; /* Fixed height prevents layout shift */
+}
+
+.typing-text {
+    color: var(--accent-color);
+    font-weight: 500;
+    text-shadow: 0 0 10px var(--glow-color-primary);
+    white-space: nowrap;
+}
+
+.typing-cursor {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 300;
+    animation: typingCursorBlink 0.7s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes typingCursorBlink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 3rem; /* Increased from 1.5rem for better spacing before images */
+    letter-spacing: 0.02em;
+    font-weight: 400;
+}
+
+/* Dark theme overrides for hero */
+[data-theme="dark"] .typing-text {
+    color: #4A9EFF;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .typing-cursor {
+    color: #4A9EFF;
+}
+
+/* Responsive hero adjustments */
+@media (max-width: 768px) {
+    #introduction {
+        padding-top: 3rem; /* More breathing room from top on mobile */
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem; /* Fixed smaller size for mobile */
+        margin: 0.4rem 0 0.8rem;
+        gap: 0.3rem; /* Tighter gap on mobile */
+    }
+
+    .typing-wrapper {
+        height: auto; /* Allow wrapping if needed */
+        min-height: 1.4em;
+    }
+
+    .typing-text {
+        font-size: 0.9rem; /* Smaller typing text */
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1.1rem);
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-tagline {
+        font-size: 0.85rem; /* Even smaller for very small screens */
+        letter-spacing: 0.02em;
+    }
+
+    .typing-text {
+        font-size: 0.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* Hide 2nd and 3rd images in introduction to reduce scrolling */
+    .introduction-img video,
+    .introduction-img img:nth-child(3) {
+        display: none;
+    }
+
+    /* Make the remaining first image bigger since we have more space */
+    .introduction-img img:first-child {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 /* Galleries Section
    ========================================================================== */
 #galleries {
@@ -49,15 +176,15 @@
 .galleries-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
+    gap: 2rem; /* Reduced ~33% from 3rem for tighter spacing */
+    margin-top: 2rem; /* Reduced ~33% from 3rem */
 }
 
 .gallery-card {
     background: rgba(0, 20, 0, 0.8);
     border: 2px solid #00FF00;
     border-radius: 15px;
-    padding: 2.5rem;
+    padding: 1.75rem; /* Reduced ~30% from 2.5rem for tighter spacing */
     text-align: center;
     transition: all var(--duration-base) var(--ease-out);
     position: relative;
@@ -408,7 +535,7 @@
 /* Portfolio Purpose Section
    ========================================================================== */
 #portfolio-purpose {
-    padding: 4rem 0;
+    padding: 2.5rem 0; /* Reduced ~38% from 4rem for tighter spacing */
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -461,7 +588,7 @@
     background: rgba(0, 20, 0, 0.85);
     border: 2px solid rgba(0, 255, 0, 0.3);
     border-radius: 20px;
-    padding: 3rem;
+    padding: 2rem; /* Reduced ~33% from 3rem for tighter spacing */
     position: relative;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -764,7 +891,7 @@
 /* Responsive design */
 @media (max-width: 768px) {
     #portfolio-purpose {
-        padding: 2.5rem 0;
+        padding: 1.75rem 0; /* Reduced ~30% from 2.5rem for tighter mobile spacing */
     }
 
     .purpose-card {
@@ -902,10 +1029,11 @@
     flex-direction: row;
     gap: 20px;
     justify-content: center;
-    padding: 40px;
+    padding: 60px 40px; /* Increased top/bottom from 40px to 60px for more breathing room */
 }
 
-.introduction-img img {
+.introduction-img img,
+.introduction-img video {
     border-radius: 10px;
     box-shadow: var(--glow-box-medium);
     max-width: 280px;
@@ -915,13 +1043,29 @@
     filter: blur(10px);
 }
 
-.introduction-img img.animated {
+.introduction-img img.animated,
+.introduction-img video.animated {
     opacity: 1;
     filter: blur(0);
 }
 
-.introduction-img img:hover {
+.introduction-img img:hover,
+.introduction-img video:hover {
     transform: scale(1.05);
+}
+
+/* Featured middle element - slightly larger for visual hierarchy */
+.introduction-img .intro-featured {
+    max-width: 320px;
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow:
+        var(--glow-box-medium),
+        0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.introduction-img .intro-featured:hover {
+    transform: scale(1.12);
 }
 
 /* Introduction Skills Grid Section - Three Columns */
@@ -1465,7 +1609,8 @@
         width: 90%;
     }
 
-    .introduction-img img {
+    .introduction-img img,
+    .introduction-img video {
         max-width: 35%;
         height: auto;
         border-radius: 8px;
@@ -1492,7 +1637,8 @@
         padding: 2rem;
     }
 
-    .introduction-img img {
+    .introduction-img img,
+    .introduction-img video {
         max-width: 200px;
         width: 80%;
         height: auto;
@@ -1671,18 +1817,757 @@ body {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-    .gallery-card:hover {
-        transform: none;
-        animation: none;
-    }
-
-    .gallery-card:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
-    }
-
     .introduction-img img:hover {
         transform: none;
         filter: brightness(0.9) contrast(1.1);
+    }
+}
+
+/* ==========================================================================
+   PURPOSE BUTTONS - Side by side layout
+   ========================================================================== */
+.purpose-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.purpose-buttons .purpose-link {
+    margin: 0;
+}
+
+/* ==========================================================================
+   TIMETRAVEL CTA SECTION - Compact replacement for Showcases
+   ========================================================================== */
+#timetravel-cta {
+    padding: 2rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+[data-theme="matrix"] #timetravel-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.02) 50%, transparent 55%);
+    z-index: -1;
+}
+
+[data-theme="matrix"] #timetravel-cta {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.timetravel-card {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 15px;
+    transition: all 0.4s var(--ease-out);
+}
+
+.timetravel-card:hover {
+    border-color: rgba(0, 255, 0, 0.4);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+}
+
+.timetravel-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.timetravel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #00FF00;
+    color: #000000 !important;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 2px solid #00FF00;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timetravel-link:hover {
+    background: #000000;
+    color: #00FF00 !important;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+}
+
+/* Dark theme overrides for timetravel */
+[data-theme="dark"] #timetravel-cta {
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] #timetravel-cta::before {
+    background: linear-gradient(45deg, transparent 45%, rgba(74, 158, 255, 0.02) 50%, transparent 55%);
+}
+
+[data-theme="dark"] .timetravel-card {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.2);
+}
+
+[data-theme="dark"] .timetravel-card:hover {
+    border-color: rgba(74, 158, 255, 0.4);
+    box-shadow: 0 0 30px rgba(74, 158, 255, 0.15);
+}
+
+[data-theme="dark"] .timetravel-link {
+    background: #4A9EFF;
+    color: #FFFFFF !important;
+    border-color: #4A9EFF;
+}
+
+[data-theme="dark"] .timetravel-link:hover {
+    background: #000000;
+    color: #4A9EFF !important;
+    border-color: #00FFFF;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   PORTFOLIO HUB - Two Column Navigation Layout
+   ========================================================================== */
+#portfolio-hub {
+    padding: 2.5rem 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+}
+
+#portfolio-hub .purpose-heading {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 15px var(--glow-color-primary);
+}
+
+[data-theme="matrix"] #portfolio-hub {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+[data-theme="dark"] #portfolio-hub {
+    border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.hub-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* Left Column - Purpose Text */
+.hub-left {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hub-left .purpose-content {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.15rem;
+    line-height: 1.9;
+}
+
+.hub-left .purpose-content p {
+    margin-bottom: 1.25rem;
+}
+
+/* TimeTravel compact at bottom */
+.hub-timetravel-bottom {
+    margin: 1.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1400px;
+}
+
+[data-theme="dark"] .hub-timetravel-bottom {
+    border-top-color: rgba(74, 158, 255, 0.1);
+}
+
+.hub-timetravel-intro {
+    font-family: var(--font-primary);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 0 10px var(--glow-color-primary);
+}
+
+.hub-btn-timetravel-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 6px;
+    background: rgba(0, 255, 0, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+    border-color: rgba(0, 255, 0, 0.4);
+    flex-shrink: 0;
+}
+
+.hub-btn-timetravel-large i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.hub-btn-timetravel-large:hover {
+    background: rgba(0, 255, 0, 0.25);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .hub-btn-timetravel-large {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .hub-btn-timetravel-large i {
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .hub-btn-timetravel-large:hover {
+    background: rgba(74, 158, 255, 0.25);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* Right Column - Navigation Hub */
+.hub-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hub-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hub-label {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    color: rgba(0, 255, 0, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+[data-theme="dark"] .hub-label {
+    color: rgba(74, 158, 255, 0.7);
+}
+
+/* 2x2 Grid for Explore buttons */
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* Stack layout for professional work buttons */
+.hub-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Horizontal grid for Professional Work buttons (side by side) */
+.hub-grid-horizontal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .hub-grid-horizontal {
+        grid-template-columns: 1fr;
+    }
+
+    .hub-section {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hub-label {
+        text-align: center;
+    }
+
+    .hub-timetravel-bottom {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hub-timetravel-intro {
+        font-size: 0.85rem;
+    }
+
+    .hub-btn-timetravel-large {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.9rem;
+    }
+}
+
+/* Common button styles */
+.hub-btn,
+.hub-btn-external,
+.hub-btn-timetravel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 20, 0, 0.6);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.hub-btn i,
+.hub-btn-external i,
+.hub-btn-timetravel i {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    width: 18px;
+    text-align: center;
+}
+
+.hub-btn:hover,
+.hub-btn-external:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.hub-external-icon {
+    margin-left: auto;
+    font-size: 0.7rem !important;
+    opacity: 0.5;
+}
+
+/* TimeTravel section */
+.hub-timetravel {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    padding-top: 1.5rem;
+}
+
+.hub-timetravel-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.hub-btn-timetravel {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.hub-btn-timetravel:hover {
+    background: rgba(0, 255, 0, 0.25);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Hub Contact Section */
+.hub-contact {
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    padding-top: 1.5rem;
+}
+
+[data-theme="dark"] .hub-contact {
+    border-top-color: rgba(74, 158, 255, 0.1);
+}
+
+.hub-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.hub-btn-contact {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.hub-social-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.hub-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 20, 0, 0.6);
+    color: var(--accent-color);
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.hub-social-icon:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-3px) scale(1.1);
+}
+
+[data-theme="dark"] .hub-social-icon {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .hub-social-icon:hover {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* Matrix Gap - visual separator (matches header height for consistency) */
+.matrix-gap {
+    height: 100px;
+    background: rgba(0, 0, 0, 0.95);
+    position: relative;
+    border-top: 1px solid var(--matrix-green, #00ff00);
+    border-bottom: 1px solid var(--matrix-green, #00ff00);
+}
+
+.matrix-gap::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .matrix-gap {
+        height: 80px;
+    }
+
+    .matrix-gap::before {
+        width: 100px;
+    }
+}
+
+/* Dark theme overrides for hub */
+[data-theme="dark"] .hub-btn,
+[data-theme="dark"] .hub-btn-external,
+[data-theme="dark"] .hub-btn-timetravel {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .hub-btn i,
+[data-theme="dark"] .hub-btn-external i,
+[data-theme="dark"] .hub-btn-timetravel i {
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .hub-btn:hover,
+[data-theme="dark"] .hub-btn-external:hover {
+    background: rgba(74, 158, 255, 0.1);
+    border-color: rgba(74, 158, 255, 0.6);
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.2);
+}
+
+[data-theme="dark"] .hub-timetravel {
+    border-top-color: rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] .hub-btn-timetravel {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .hub-btn-timetravel:hover {
+    background: rgba(74, 158, 255, 0.25);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 25px rgba(74, 158, 255, 0.3);
+}
+
+[data-theme="dark"] .matrix-gap {
+    border-top: 1px solid rgba(74, 158, 255, 0.5);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .matrix-gap::before {
+    background: linear-gradient(90deg, transparent, #4A9EFF, transparent);
+    box-shadow: 0 0 8px rgba(74, 158, 255, 0.6);
+}
+
+/* ==========================================================================
+   CONTACT SECTION - Expanded Two-Column Layout
+   ========================================================================== */
+#contact.contact-expanded {
+    padding: 2rem 0;
+}
+
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-content .section-heading {
+    margin-bottom: 1rem;
+}
+
+.contact-intro {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.contact-cta {
+    color: rgba(0, 255, 0, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+[data-theme="dark"] .contact-cta {
+    color: rgba(74, 158, 255, 0.8);
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contact-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 20, 0, 0.6);
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out);
+}
+
+.contact-social-icon:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Dark theme for contact social icons */
+[data-theme="dark"] .contact-social-icon {
+    background: rgba(15, 15, 30, 0.6);
+    border-color: rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .contact-social-icon:hover {
+    background: rgba(74, 158, 255, 0.15);
+    border-color: #4A9EFF;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* ==========================================================================
+   DESKTOP UX OPTIMIZATIONS - Fit content on single viewport
+   ========================================================================== */
+@media (min-width: 1024px) {
+    /* Hero section - reduce padding and image sizes */
+    #introduction {
+        padding: var(--space-sm) 0;
+    }
+
+    #introduction h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+    }
+
+    #introduction .welcome-text {
+        font-size: 2.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    #introduction br {
+        display: none;
+    }
+
+    .introduction-img {
+        gap: 15px;
+        padding: 20px 40px;
+    }
+
+    .introduction-img img,
+    .introduction-img video {
+        max-width: 200px;
+    }
+
+    .introduction-img .intro-featured {
+        max-width: 240px;
+    }
+
+    /* Portfolio Hub - Two Column Layout */
+    #portfolio-hub {
+        padding: 2rem 0;
+    }
+
+    .hub-layout {
+        flex-direction: row;
+        gap: 3.5rem;
+        align-items: flex-start;
+    }
+
+    .hub-left {
+        flex: 0 0 45%;
+        position: sticky;
+        top: 100px;
+    }
+
+    .hub-left .purpose-heading {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hub-left .purpose-content {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .hub-left .purpose-content p {
+        margin-bottom: 0.5rem;
+    }
+
+    .hub-right {
+        flex: 0 0 55%;
+        gap: 1.5rem;
+    }
+
+    .hub-section {
+        gap: 0.5rem;
+    }
+
+    .hub-label {
+        font-size: 0.7rem;
+    }
+
+    .hub-grid {
+        gap: 0.6rem;
+    }
+
+    .hub-stack {
+        gap: 0.6rem;
+    }
+
+    .hub-btn,
+    .hub-btn-external,
+    .hub-btn-timetravel {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .hub-timetravel {
+        padding-top: 0.5rem;
+    }
+
+    .hub-timetravel-text {
+        font-size: 0.8rem;
+    }
+
+    /* Hub Contact Section - Desktop */
+    .hub-contact {
+        padding-top: 0.5rem;
+    }
+
+    .hub-contact-row {
+        gap: 0.75rem;
+    }
+
+    .hub-btn-contact {
+        flex: 0 1 auto;
+        min-width: auto;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hub-social-icons {
+        gap: 0.4rem;
+    }
+
+    .hub-social-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+    }
+
+    /* Hide mobile-only elements on desktop */
+    .galleries-mobile {
+        display: none;
     }
 }

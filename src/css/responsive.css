@@ -261,7 +261,7 @@
   }
 
   section {
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-lg) var(--space-md); /* Reduced from space-xl for less scrolling */
   }
 
   /* Blog page mobile layout */

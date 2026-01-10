@@ -6,7 +6,31 @@
  */
 
 import React, { useState } from 'react';
+import { ProcessTimeline } from '../components/ProcessTimeline';
 import '../css/contact-modern.css';
+
+const processSteps = [
+  {
+    icon: "fas fa-comments",
+    title: "1. Discovery Call",
+    description: "Free consultation to understand your goals, timeline, and requirements."
+  },
+  {
+    icon: "fas fa-file-invoice",
+    title: "2. Detailed Quote",
+    description: "Clear, itemised proposal with no hidden costs or surprises."
+  },
+  {
+    icon: "fas fa-rocket",
+    title: "3. Build & Deliver",
+    description: "Agile development with regular updates and milestone reviews."
+  },
+  {
+    icon: "fas fa-headset",
+    title: "4. Ongoing Support",
+    description: "Post-launch support, maintenance, and future enhancements."
+  }
+];
 
 /**
  * Contact page with form submission and contact details
@@ -123,7 +147,7 @@ export const ContactPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="info-section coffee-section">
+              <div className="info-section">
                 <h3><i className="fas fa-heart"></i> Support My Work</h3>
                 <p className="support-text">If you find my work valuable, consider supporting me!</p>
                 <a 
@@ -246,6 +270,9 @@ export const ContactPage: React.FC = () => {
               </form>
             </div>
           </div>
+
+          {/* Process Section - How We Work Together with Framer Motion */}
+          <ProcessTimeline steps={processSteps} />
         </div>
       </section>
     </div>

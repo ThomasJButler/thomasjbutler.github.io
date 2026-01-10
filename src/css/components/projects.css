@@ -41,22 +41,42 @@
    2. PROJECT CONTAINERS & LAYOUT
    ========================================================================== */
 
+/* Page wrapper for consistent matrix line heights */
+.page-wrapper.page-projects {
+    margin-block: 0; /* Removed negative margin - fixes matrix rain sizing issue */
+}
+
 #projects-section,
 #matrix-projects-showcase {
     position: relative;
-    min-height: 100vh;
+    min-height: auto; /* Allow content to determine height */
     overflow: hidden;
     perspective: 1000px;
-    background: var(--dark-bg);
+    background: #000000; /* Solid black background for better project visibility */
+    padding-top: 2rem; /* Add top padding for breathing room */
 }
 
 .projects-container,
 .matrix-project-container {
-    max-width: 1400px;
+    max-width: 100%; /* Full width to span screen */
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem 1.5rem; /* Reduced padding */
     padding-top: 0;
     position: relative;
+}
+
+/* Projects Page Section Title - Smaller */
+.projects-section .section-title,
+#matrix-projects-showcase .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.projects-section .section-description,
+#matrix-projects-showcase .section-description {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
 }
 
 /* ==========================================================================
@@ -67,16 +87,16 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    gap: 1.5rem; /* Reduced from 2rem */
+    padding: 1.5rem 0; /* Reduced from 2rem */
 }
 
 /* Horizontal Grid */
 .projects-horizontal-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem 0;
+    gap: 1.5rem; /* Reduced from 2rem */
+    padding: 1.5rem 0; /* Reduced from 2rem */
 }
 
 /* Compact Grid */
@@ -91,9 +111,151 @@
 .epic-projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-    margin: 3rem 0;
+    gap: 2rem; /* Reduced from 3rem */
+    margin: 2rem 0; /* Reduced from 3rem */
     perspective: 1200px;
+}
+
+/* Featured Projects Section - Horizontal Cards at Top */
+.featured-projects-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem 1rem 0; /* Reduced since parent now has padding-top */
+    background: #000000; /* Solid black background to ensure visibility */
+}
+
+.featured-projects-title {
+    color: var(--matrix-cyan, #00FFFF);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.featured-projects-title i {
+    color: var(--matrix-green);
+}
+
+.featured-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.featured-card {
+    background: linear-gradient(145deg, rgba(0, 40, 40, 0.5), rgba(0, 25, 0, 0.6));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 90px;
+}
+
+.featured-card:hover {
+    border-color: var(--matrix-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.featured-card-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.featured-card-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.featured-card-title {
+    color: var(--matrix-green);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.featured-card-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.featured-card-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.featured-card-links a {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+    color: var(--matrix-green);
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.featured-card-links a:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* Featured card without image - content takes full width */
+.featured-card-no-image {
+    padding-left: 1.25rem;
+}
+
+.featured-card-no-image .featured-card-content {
+    flex: 1;
+}
+
+.featured-card-no-image .featured-card-title {
+    white-space: normal;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .featured-projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-card {
+        min-height: 80px;
+    }
+
+    .featured-card-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Add extra top padding on mobile */
+    .featured-projects-section {
+        padding-top: 0; /* Increased from 2rem for more breathing room */
+    }
 }
 
 /* ==========================================================================
@@ -560,17 +722,46 @@
    Epic Matrix-themed project showcase with glassmorphism
    ========================================================================== */
 
-/* Matrix Project Grid - Square Glassmorphism Cards */
+/* Matrix Project Grid - 4-Column Horizontal Layout */
 .matrix-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(390px, 390px)); /* Square 390px cards - optimized for 14-16 inch laptops */
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible card width */
+    gap: 0.5rem; /* Reduced gap between cards */
     position: relative;
-    justify-content: center; /* Center grid on wider screens */
+    justify-content: center;
+    max-width: 100%; /* Full width */
+    margin: 0 auto;
 
     /* 3D perspective for magical flip effect */
     perspective: 2000px;
     perspective-origin: center;
+}
+
+/* Desktop: Force 4-column grid spanning full width */
+@media (min-width: 1025px) {
+    .matrix-project-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+        max-width: 100%; /* Span full width */
+    }
+
+    .matrix-project-card {
+        width: 100%; /* Cards fill their grid cell */
+        max-width: 100%; /* No limit - fill available space */
+        height: 400px; /* Taller cards for more content */
+    }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .matrix-project-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+
+    .matrix-project-card {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 /* ==========================================================================
@@ -680,19 +871,19 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 /* Flip Button - Inside matrix-project-actions container */
 .card-flip-trigger {
-    width: 34px;  /* Match project-icon-link size */
-    height: 34px;
+    width: 26px;  /* Match project-icon-link size */
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);  /* Match project-icon-link */
-    border: 2px solid var(--matrix-green);
+    border: 1.5px solid var(--matrix-green);
     border-radius: 50%;
     color: var(--matrix-green);
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);  /* Match project-icon-link */
-    font-size: 0.95rem;  /* Match project-icon-link */
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.2);  /* Match project-icon-link */
+    font-size: 0.7rem;  /* Match project-icon-link */
 }
 
 .card-flip-trigger:hover {
@@ -724,12 +915,12 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     z-index: 10;
 }
 
-/* Matrix Project Tabs */
+/* Matrix Project Tabs - Compact Filter Buttons */
 .matrix-project-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0 3rem;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
     flex-wrap: wrap;
     position: relative;
     z-index: 20;
@@ -737,12 +928,12 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 .matrix-tab-button {
     background: var(--matrix-card-bg);
-    border: 2px solid var(--matrix-card-border);
+    border: 1px solid var(--matrix-card-border);
     color: var(--matrix-green);
-    padding: 0.8rem 1.5rem;
+    padding: 0.4rem 0.8rem;
     font-family: var(--font-primary);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
@@ -760,23 +951,23 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 /* Matrix Project Cards with Glassmorphism */
 .matrix-project-card {
-    /* Glassmorphism Effect */
-    background: rgba(0, 30, 0, 0.25); /* More transparent for glass effect */
+    /* Glassmorphism Effect - slightly more solid for better contrast */
+    background: rgba(0, 25, 0, 0.4); /* Increased from 0.25 for better visibility */
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
 
     /* Glass borders and shadows */
     border: 1px solid rgba(0, 255, 0, 0.2);
-    border-radius: 16px; /* Rounder for modern look */
+    border-radius: 10px;
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 6px 24px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-    /* Square dimensions - optimized for 14-16 inch laptops */
-    width: 390px;
-    height: 390px;
-    padding: 1rem;
-    padding-bottom: 0.75rem;
+    /* Slightly smaller dimensions for 4 cards per row */
+    width: 300px;
+    height: 360px;
+    padding: 0.75rem;
+    padding-bottom: 0.5rem;
 
     /* Layout */
     position: relative;
@@ -791,10 +982,10 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 /* Top-right action buttons */
 .matrix-project-actions {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.6rem;
+    right: 0.6rem;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.35rem;
     z-index: 50;
 }
 
@@ -802,21 +993,21 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .project-icon-link,
 .project-icon-link:link,
 .project-icon-link:visited {
-    width: 34px;
-    height: 34px;
+    width: 26px;
+    height: 26px;
     display: flex !important;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--matrix-green);
+    border: 1.5px solid var(--matrix-green);
     border-radius: 50%;
     color: var(--matrix-green) !important;
-    font-size: 0.95rem;
+    font-size: 0.7rem;
     text-decoration: none !important;
     text-underline-offset: 0 !important;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.2);
 }
 
 .project-icon-link:hover,
@@ -883,23 +1074,27 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .matrix-project-header {
     position: relative;
     z-index: 5;
-    margin-bottom: 0.5rem; /* Reduced to save space */
+    margin-bottom: 0.35rem; /* Further reduced to save space */
 }
 
 .matrix-project-title {
     color: var(--matrix-green);
-    font-size: 1.1rem; /* Slightly reduced for better fit */
-    margin-bottom: 0.2rem; /* Reduced margin */
+    font-size: 1rem; /* Increased from 0.85rem */
+    margin-bottom: 0.15rem; /* Reduced margin */
     font-family: var(--font-primary); /* Orbitron */
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-shadow: var(--matrix-glow);
     display: flex;
     align-items: flex-start;
-    gap: 0.3rem; /* Tighter gap */
-    line-height: 1.2; /* Tighter line height */
-    padding-right: 75px; /* Space for smaller buttons */
+    gap: 0.25rem; /* Tighter gap */
+    line-height: 1.15; /* Tighter line height */
+    padding-right: 70px; /* Space for smaller buttons */
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.matrix-project-title i {
+    font-size: 0.9rem; /* Increased from 0.75rem */
 }
 
 .matrix-project-stats {
@@ -920,13 +1115,13 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 
 .matrix-project-description {
     color: rgba(255, 255, 255, 0.95);
-    font-size: 0.85rem; /* Reduced for better fit */
+    font-size: 0.85rem; /* Increased from 0.7rem */
     font-family: var(--font-body); /* Exo 2 */
-    line-height: 1.4; /* Tighter line height */
-    margin-bottom: 0.5rem;
+    line-height: 1.4; /* Slightly increased from 1.3 */
+    margin-bottom: 0.35rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     display: -webkit-box;
-    -webkit-line-clamp: 5; /* 5 lines to show more content */
+    -webkit-line-clamp: 3; /* Reduced to 3 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -934,11 +1129,11 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .matrix-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem; /* Even tighter gap for more tags */
-    margin: 0.3rem 0; /* Reduced margin */
+    gap: 0.2rem; /* Even tighter gap */
+    margin: 0.25rem 0; /* Reduced margin */
 
-    /* Increased height to show more tags */
-    max-height: 6.5rem; /* Allows ~3 rows of tags */
+    /* Reduced height for compact cards */
+    max-height: 3.5rem; /* Allows ~2 rows of tags */
     overflow: hidden; /* Hides excess tags cleanly */
 }
 
@@ -946,10 +1141,10 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
-    padding: 0.25rem 0.6rem; /* Smaller padding for more tags */
-    font-size: 0.75rem; /* Reduced for better fit */
+    padding: 0.2rem 0.5rem; /* Increased padding */
+    font-size: 0.7rem; /* Increased from 0.6rem */
     font-family: var(--font-primary); /* Orbitron for consistency */
-    border-radius: 20px;
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
@@ -958,16 +1153,16 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
 .matrix-project-language {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35rem;
     margin-top: auto; /* Push to bottom automatically */
-    font-size: 0.85rem; /* Reduced for better fit */
+    font-size: 0.75rem; /* Increased from 0.65rem */
     font-family: var(--font-primary); /* Orbitron */
-    margin-block: 0.5rem; /* Reduced spacing */
+    margin-block: 0.35rem; /* Reduced spacing */
 }
 
 .language-dot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     display: inline-block;
 }
@@ -1129,7 +1324,7 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 3rem 0 2rem;
+    margin: 0.75rem 0 0.25rem; /* Further reduced spacing */
     position: relative;
     z-index: 10;
 }
@@ -1217,7 +1412,7 @@ body.low-end-device .matrix-project-card.has-flipped:not(.is-flipped) .card-3d-i
     font-family: var(--font-primary);
     font-size: 0.9rem;
     letter-spacing: 1px;
-    margin: 1rem 0 2rem;
+    margin: 0.25rem 0 0.25rem; /* Further reduced spacing */
     text-transform: uppercase;
 }
 

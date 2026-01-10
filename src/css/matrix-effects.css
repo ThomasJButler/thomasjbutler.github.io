@@ -424,3 +424,69 @@ select:focus {
     background-size: 30px 30px, 30px 30px, 30px 30px, 30px 30px;
   }
 }
+
+/* ==========================================================================
+   Standard Matrix Divider - Consistent Site-Wide Height
+   ========================================================================== */
+
+.matrix-divider-standard {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid var(--matrix-green, #00ff00);
+  border-bottom: 1px solid var(--matrix-green, #00ff00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+/* Visual line in center */
+.matrix-divider-standard::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--matrix-green) 20%,
+    var(--matrix-green) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+/* Mobile sizing */
+@media (max-width: 768px) {
+  .matrix-divider-standard {
+    height: 80px;
+    margin: 1.5rem 0;
+  }
+
+  .matrix-divider-standard::before {
+    width: 100px;
+  }
+}
+
+/* Dark theme override */
+[data-theme="dark"] .matrix-divider-standard {
+  border-top: 1px solid rgba(74, 158, 255, 0.5);
+  border-bottom: 1px solid rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .matrix-divider-standard::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #4A9EFF 20%,
+    #4A9EFF 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.6);
+}

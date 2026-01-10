@@ -23,9 +23,8 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { label: 'ABOUT', href: '/about', tooltip: 'Learn About Me' },
-  { label: 'SKILLS', href: '/skills', tooltip: 'Check My Skills' },
   { label: 'PROJECTS', href: '/projects', tooltip: 'View My Projects' },
-  { label: 'SERVICES', href: '/services', tooltip: 'Explore My Services' },
+  { label: 'SERVICES', href: '/services', tooltip: 'Skills & Services' },
   { label: 'CONTACT', href: '/contact', tooltip: 'Get in Touch' }
 ];
 
@@ -37,15 +36,18 @@ const navigation: NavItem[] = [
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [touchStart, setTouchStart] = useState<number>(0);
+  const [touchEnd, setTouchEnd] = useState<number>(0);
   const location = useLocation();
   const headerRef = useRef<HTMLElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
 
-  useHeaderVisibility({
-    headerSelector: 'header',
-    hideThreshold: 100,
-    showThreshold: 50
-  });
+  // Disabled header hide-on-scroll behavior - header now stays fixed
+  // useHeaderVisibility({
+  //   headerSelector: 'header',
+  //   hideThreshold: 100,
+  //   showThreshold: 50
+  // });
 
   /** @constructs Initialises scroll listener with RAF throttling for performance */
   useEffect(() => {
@@ -73,26 +75,65 @@ export const Header: React.FC = () => {
     }
   }, []);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isDownSwipe = distance < -50; // Swipe down at least 50px
+
+    if (isDownSwipe && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+
+    // Reset
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
   const toggleMenu = () => {
     const newState = !isMenuOpen;
     setIsMenuOpen(newState);
 
     if (navRef.current) {
       if (newState) {
+        // Opening menu
         navRef.current.style.display = 'flex';
+
+        // Animate menu container
         animate(navRef.current, {
           opacity: [0, 1],
           translateY: [-10, 0],
-          scale: [0.95, 1],
+          translateX: '-50%', // Keep centered
           duration: 300,
           ease: 'outQuad'
         });
+
+        // Staggered animation for menu items
+        const menuItems = navRef.current.querySelectorAll('li');
+        menuItems.forEach((item, index) => {
+          animate(item as HTMLElement, {
+            opacity: [0, 1],
+            translateY: [-20, 0],
+            duration: 400,
+            delay: 100 + (index * 80), // Stagger delay: 100ms, 180ms, 260ms, 340ms
+            ease: 'outQuad'
+          });
+        });
       } else {
+        // Closing menu
         animate(navRef.current, {
           opacity: [1, 0],
           translateY: [0, -10],
-          scale: [1, 0.95],
-          duration: 300,
+          translateX: '-50%',
+          duration: 250,
           ease: 'inQuad',
           complete: () => {
             if (navRef.current && !isMenuOpen) {
@@ -116,6 +157,43 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
+  /** @listens isMenuOpen - Blur page content when menu is open */
+  useEffect(() => {
+    const mainContent = document.querySelector('main');
+    const footer = document.querySelector('footer');
+
+    if (isMenuOpen) {
+      if (mainContent) {
+        mainContent.style.filter = 'blur(8px)';
+        mainContent.style.transition = 'filter 0.3s ease';
+      }
+      if (footer) {
+        footer.style.filter = 'blur(8px)';
+        footer.style.transition = 'filter 0.3s ease';
+      }
+    } else {
+      if (mainContent) {
+        mainContent.style.filter = '';
+      }
+      if (footer) {
+        footer.style.filter = '';
+      }
+    }
+  }, [isMenuOpen]);
+
+  /** @listens isMenuOpen - Prevent body scroll when menu is open */
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const handleNavHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     matrixAnimations.pulse(e.currentTarget);
   };
@@ -123,14 +201,36 @@ export const Header: React.FC = () => {
   return (
     <header ref={headerRef} className={`${styles.siteHeader} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <Link to="/" className={styles.headerTitle}>
-          <img
-            src="/logo.svg"
-            alt="Thomas J Butler Logo"
-            className={styles.headerLogo}
-          />
-          <h1 className={styles.headerText}>Thomas J Butler</h1>
-        </Link>
+        <div className={styles.headerBrand}>
+          <Link to="/" className={styles.headerTitle}>
+            <img
+              src="/logo.svg"
+              alt="Thomas J Butler Logo"
+              className={styles.headerLogo}
+            />
+            <h1 className={styles.headerText}>Thomas J Butler</h1>
+          </Link>
+          <div className={styles.socialIcons}>
+            <a
+              href="https://github.com/thomasjbutler"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="GitHub Profile"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/thomasbutleruk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="LinkedIn Profile"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
         
         <nav className={styles.nav} role="navigation" aria-label="Main navigation">
           <button
@@ -145,10 +245,22 @@ export const Header: React.FC = () => {
             <span></span>
           </button>
 
+          {/* Backdrop overlay */}
+          {isMenuOpen && (
+            <div
+              className={styles.menuBackdrop}
+              onClick={() => setIsMenuOpen(false)}
+              aria-hidden="true"
+            />
+          )}
+
           <ul
             id="main-navigation"
             ref={navRef}
             className={`${styles.navList} ${isMenuOpen ? styles.open : ''}`}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {navigation.map((item) => (
               <li 

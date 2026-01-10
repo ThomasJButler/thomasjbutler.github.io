@@ -2,13 +2,13 @@
  * @author Tom Butler
  * @date 2025-10-28
  * @description Skills page displaying core expertise and specialisations with
- *              expandable tag lists for each skill category
+ *              all technology tags visible by default
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 /**
- * Skills showcase page with expandable technology tags
+ * Skills showcase page displaying all technology tags by default
  * @return {JSX.Element}
  * @constructor
  */
@@ -19,8 +19,6 @@ export const SkillsPage: React.FC = () => {
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
-
-  const [expandedTags, setExpandedTags] = useState<Record<number, boolean>>({});
 
   const coreExpertise = [
     {
@@ -106,35 +104,16 @@ export const SkillsPage: React.FC = () => {
     }
     ];
 
-  const toggleTags = (index: number) => {
-    setExpandedTags(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
-  };
-
-  const renderCoreTags = (tags: string[], index: number) => {
-    const isExpanded = expandedTags[index];
-    const visibleTags = isExpanded ? tags : tags.slice(0, 3);
-    const hasMore = tags.length > 3;
-
-    return (
-      <div className="skill-tags">
-        {visibleTags.map((tag: string, tagIndex: number) => (
-          <span key={tagIndex} className="skill-tag">{tag}</span>
-        ))}
-        {hasMore && (
-          <button
-            className="skill-tag skill-tag-expand"
-            onClick={() => toggleTags(index)}
-            aria-label={isExpanded ? "Show less" : `Show ${tags.length - 3} more`}
-          >
-            {isExpanded ? 'Less' : `+${tags.length - 3}`}
-          </button>
-        )}
-      </div>
-    );
-  };
+  /**
+   * Renders all skill tags for a category - no expansion needed
+   */
+  const renderCoreTags = (tags: string[]) => (
+    <div className="skill-tags">
+      {tags.map((tag: string, tagIndex: number) => (
+        <span key={tagIndex} className="skill-tag">{tag}</span>
+      ))}
+    </div>
+  );
 
   return (
     <div className="page-wrapper page-skills">
@@ -154,7 +133,7 @@ export const SkillsPage: React.FC = () => {
                   <h4>{skill.title}</h4>
                 </div>
                 <p className="expertise-description">{skill.description}</p>
-                {renderCoreTags(skill.tags, index)}
+                {renderCoreTags(skill.tags)}
               </li>
             ))}
           </ul>
