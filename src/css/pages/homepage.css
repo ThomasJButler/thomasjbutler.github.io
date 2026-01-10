@@ -2232,11 +2232,13 @@ body {
     box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
 }
 
-/* Matrix Gap - visual separator */
+/* Matrix Gap - visual separator (matches header height for consistency) */
 .matrix-gap {
-    height: 2rem;
-    background: #000000;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.95);
     position: relative;
+    border-top: 1px solid var(--matrix-green, #00ff00);
+    border-bottom: 1px solid var(--matrix-green, #00ff00);
 }
 
 .matrix-gap::before {
@@ -2245,9 +2247,20 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100px;
+    width: 150px;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .matrix-gap {
+        height: 80px;
+    }
+
+    .matrix-gap::before {
+        width: 100px;
+    }
 }
 
 /* Dark theme overrides for hub */
@@ -2286,8 +2299,14 @@ body {
     box-shadow: 0 0 25px rgba(74, 158, 255, 0.3);
 }
 
+[data-theme="dark"] .matrix-gap {
+    border-top: 1px solid rgba(74, 158, 255, 0.5);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.5);
+}
+
 [data-theme="dark"] .matrix-gap::before {
     background: linear-gradient(90deg, transparent, #4A9EFF, transparent);
+    box-shadow: 0 0 8px rgba(74, 158, 255, 0.6);
 }
 
 /* ==========================================================================

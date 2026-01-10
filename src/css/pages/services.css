@@ -497,57 +497,8 @@
   }
 }
 
-/* Matrix Divider - Separates Services from Tech Stack */
-.matrix-divider {
-  position: relative;
-  margin: 40px auto; /* Reduced from 60px */
-  width: 100%;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.matrix-divider .divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(0, 255, 0, 0.2) 20%,
-    rgba(0, 255, 0, 0.4) 100%
-  );
-}
-
-.matrix-divider .divider-line:last-of-type {
-  background: linear-gradient(90deg,
-    rgba(0, 255, 0, 0.4) 0%,
-    rgba(0, 255, 0, 0.2) 80%,
-    transparent 100%
-  );
-}
-
-.matrix-divider .divider-center {
-  width: 60px;
-  height: 1px;
-  background: var(--matrix-green);
-  position: relative;
-  box-shadow:
-    0 0 10px rgba(0, 255, 0, 0.6),
-    0 0 20px rgba(0, 255, 0, 0.4);
-}
-
-.matrix-divider .divider-center::before {
-  content: '◆';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--matrix-green);
-  font-size: 14px;
-  background: #0a0a0a;
-  padding: 0 8px;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
-}
+/* Matrix Divider - Now uses standard .matrix-divider-standard from matrix-effects.css
+   This ensures consistent 100px height (desktop) / 80px height (mobile) across all pages */
 
 /* Tech Stack Section */
 .techStackSection {
@@ -1318,55 +1269,7 @@ body.low-end-device .techCategory {
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
-/* ============================================================================
-   MATRIX DIVIDER - Between Subsections
-   ============================================================================ */
-.matrix-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 2.5rem 0;
-  padding: 1rem 0;
-}
-
-.matrix-divider .divider-line {
-  flex: 1;
-  max-width: 150px;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--matrix-green) 20%,
-    var(--matrix-green) 80%,
-    transparent 100%
-  );
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
-}
-
-.matrix-divider .divider-glyph {
-  color: var(--matrix-green);
-  font-size: 1.25rem;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
-  opacity: 0.8;
-}
-
-.matrix-divider .divider-center {
-  color: var(--matrix-cyan, #00FFFF);
-  font-size: 1rem;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-    opacity: 0.8;
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(0, 255, 255, 1);
-    opacity: 1;
-  }
-}
+/* Matrix divider removed - no longer used on services page */
 
 /* Smooth scrolling for the page */
 .page-services {
@@ -1476,19 +1379,6 @@ body.low-end-device .techCategory {
   .services-section-title::before,
   .services-section-title::after {
     max-width: 60px;
-  }
-
-  /* Matrix divider - mobile */
-  .matrix-divider {
-    margin: 1.5rem 0;
-  }
-
-  .matrix-divider .divider-line {
-    max-width: 80px;
-  }
-
-  .matrix-divider .divider-glyph {
-    font-size: 1rem;
   }
 }
 
