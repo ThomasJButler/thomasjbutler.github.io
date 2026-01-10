@@ -206,16 +206,13 @@ p.small {
 
 a {
     color: var(--accent-color); /* Cyan in Matrix, Blue in Dark */
-    text-decoration: underline;
-    text-decoration-color: var(--border-primary);
-    text-underline-offset: 2px;
+    text-decoration: none;
     transition: all var(--duration-base) var(--ease-out);
 }
 
 a:hover {
     color: var(--accent-hover);
     text-shadow: none; /* Remove glow for readability */
-    text-decoration-color: var(--accent-hover);
 }
 
 a:active {
