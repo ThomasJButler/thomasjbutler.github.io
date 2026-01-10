@@ -228,7 +228,7 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* Matrix Rain Divider - outside section so canvas shows through */}
-      <div className="services-matrix-divider" aria-hidden="true"></div>
+      <div className="services-matrix-divider-custom" aria-hidden="true"></div>
 
       <section id="services-build" className="servicesSection">
         <div className="container">

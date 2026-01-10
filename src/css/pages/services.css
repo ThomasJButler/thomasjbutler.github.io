@@ -2,6 +2,14 @@
 
 /* Matrix Rain Divider - matches header/footer 75px strip */
 .services-matrix-divider {
+  /*height: 15px;*/
+  width: 100%;
+  background: transparent;
+  position: relative;
+  margin: 0;
+}
+
+.services-matrix-divider-custom {
   height: 15px;
   width: 100%;
   background: transparent;
