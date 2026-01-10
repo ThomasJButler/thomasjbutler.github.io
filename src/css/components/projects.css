@@ -254,7 +254,7 @@
 
     /* Add extra top padding on mobile */
     .featured-projects-section {
-        padding-top: 2.5rem; /* Increased from 2rem for more breathing room */
+        padding-top: 0; /* Increased from 2rem for more breathing room */
     }
 }
 
