@@ -1,5 +1,5 @@
 /**
- * Process Timeline - Glassmorphism & Magnetic Hover Effects
+ * Process Timeline - Performance Optimized
  * Theme-aware: GREEN for Matrix, BLUE for Dark
  */
 
@@ -18,7 +18,7 @@
   border-radius: 16px;
 }
 
-/* ========== Morphing Blobs Background ========== */
+/* ========== Simple Blob Background (CSS-based, no SVG morphing) ========== */
 .background-blobs {
   position: absolute;
   inset: 0;
@@ -29,27 +29,12 @@
 
 .blob {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  color: var(--accent-color);
-  filter: blur(60px);
-  opacity: 0.08;
-}
-
-.blob:nth-child(1) {
-  top: -100px;
-  left: -50px;
-}
-
-.blob:nth-child(2) {
-  bottom: -100px;
-  right: -50px;
-}
-
-.blob:nth-child(3) {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, var(--accent-color), transparent 70%);
+  filter: blur(40px);
+  border-radius: 50%;
+  opacity: 0.06;
 }
 
 /* ========== Title ========== */
@@ -73,8 +58,6 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  filter: drop-shadow(0 0 20px rgba(var(--accent-rgb), 0.4));
 }
 
 /* ========== Grid Layout ========== */
@@ -86,44 +69,41 @@
   gap: 1rem;
 }
 
-/* ========== Magnetic Cards with Glassmorphism ========== */
+/* ========== Magnetic Cards - Performance Optimized ========== */
 .magnetic-card {
   position: relative;
   padding: 1.5rem 1.2rem;
   text-align: center;
 
-  /* Glassmorphism effect */
+  /* Solid background instead of backdrop-filter for performance */
   background: linear-gradient(
     135deg,
-    rgba(var(--accent-rgb), 0.08),
-    rgba(var(--accent-rgb), 0.03)
+    rgba(var(--accent-rgb), 0.12),
+    rgba(var(--accent-rgb), 0.06)
   );
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
 
   border: 1px solid rgba(var(--accent-rgb), 0.25);
   border-radius: 16px;
 
-  /* Multi-layer glow */
+  /* Simplified shadow - 2 layers instead of 4 */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(var(--accent-rgb), 0.1),
-    0 8px 32px rgba(var(--accent-rgb), 0.12),
-    0 0 0 1px rgba(var(--accent-rgb), 0.1);
+    0 8px 24px rgba(var(--accent-rgb), 0.15);
 
   cursor: pointer;
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   overflow: visible;
 }
 
 .magnetic-card:hover {
   border-color: rgba(var(--accent-rgb), 0.5);
+  /* Backdrop-filter only on hover for performance */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Simplified hover shadow - 2 layers instead of 5 */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(var(--accent-rgb), 0.2),
-    0 16px 48px rgba(var(--accent-rgb), 0.25),
-    0 0 0 1px rgba(var(--accent-rgb), 0.3),
-    0 0 60px rgba(var(--accent-rgb), 0.15);
+    0 12px 32px rgba(var(--accent-rgb), 0.25);
 }
 
 /* ========== Number Badge ========== */
@@ -142,9 +122,8 @@
   );
 
   border: 2px solid rgba(var(--accent-rgb), 0.3);
-  box-shadow:
-    0 4px 16px rgba(var(--accent-rgb), 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  /* Simplified shadow */
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
 
   display: flex;
   align-items: center;
@@ -155,13 +134,11 @@
   font-weight: 700;
   color: #000;
   z-index: 10;
+  transition: transform 0.3s ease;
 }
 
 .magnetic-card:hover .step-number-badge {
-  transform: rotate(360deg) scale(1.1);
-  box-shadow:
-    0 6px 24px rgba(var(--accent-rgb), 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
 }
 
 /* ========== Icon ========== */
@@ -182,17 +159,14 @@
   border: 2px solid rgba(var(--accent-rgb), 0.3);
   border-radius: 50%;
 
-  box-shadow:
-    0 4px 16px rgba(var(--accent-rgb), 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-  transition: all 0.4s ease;
+  /* Simplified shadow */
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2);
+  transition: border-color 0.3s ease, background 0.3s ease;
 }
 
 .magnetic-card-icon i {
   font-size: 1.3rem;
   color: var(--accent-color);
-  filter: drop-shadow(0 2px 8px rgba(var(--accent-rgb), 0.6));
 }
 
 .magnetic-card:hover .magnetic-card-icon {
@@ -202,9 +176,6 @@
     rgba(var(--accent-rgb), 0.1)
   );
   border-color: rgba(var(--accent-rgb), 0.5);
-  box-shadow:
-    0 8px 32px rgba(var(--accent-rgb), 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* ========== Text Content ========== */
@@ -216,11 +187,6 @@
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
   color: var(--accent-color);
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
-}
-
-.magnetic-card:hover .magnetic-card-title {
-  filter: drop-shadow(0 0 10px rgba(var(--accent-rgb), 0.6));
 }
 
 .magnetic-card-description {
@@ -233,25 +199,6 @@
 
 .magnetic-card:hover .magnetic-card-description {
   color: var(--text-primary);
-}
-
-/* ========== Shimmer Effect ========== */
-.card-shimmer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40%;
-  height: 100%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-
-  transform: skewX(-20deg);
-  pointer-events: none;
 }
 
 /* ========== Responsive Design ========== */
@@ -267,8 +214,8 @@
   }
 
   .blob {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
   }
 }
 
@@ -317,9 +264,9 @@
   }
 
   .blob {
-    width: 200px;
-    height: 200px;
-    filter: blur(50px);
+    width: 180px;
+    height: 180px;
+    filter: blur(35px);
   }
 
   /* Disable magnetic hover on mobile for performance */
@@ -342,15 +289,10 @@
   .magnetic-card {
     transform: none !important;
   }
-
-  .card-shimmer {
-    display: none;
-  }
 }
 
 /* ========== GPU Acceleration ========== */
 .magnetic-card,
-.magnetic-card-icon,
 .step-number-badge {
   will-change: transform;
   transform: translateZ(0);

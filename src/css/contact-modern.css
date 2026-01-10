@@ -644,6 +644,18 @@ p.info-card {
         inset 0 1px 0 rgba(0, 255, 0, 0.05);
 }
 
+/* Dark theme - Remove all matrix styling from form section */
+[data-theme="dark"] .contact-form-section::before {
+    content: none !important;
+    display: none !important;
+}
+
+[data-theme="dark"] .contact-form-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
 @keyframes matrixFormRotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -742,15 +754,15 @@ p.info-card {
     will-change: color, transform;
 }
 
-/* Form Inputs - Ultra Compact */
+/* Form Inputs - Ultra Compact - Blends with dark page background */
 .form-group input,
 .form-group textarea,
 .form-input {
     width: 100%;
     padding: 0.5rem 0.5rem 0.25rem 0.5rem;
-    background: rgba(0, 255, 0, 0.01);
+    background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.2);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.8rem;
@@ -772,7 +784,7 @@ p.info-card {
     position: absolute;
     left: 0.5rem;
     top: 0.5rem;
-    color: rgba(0, 255, 0, 0.4);
+    color: rgba(var(--accent-rgb), 0.5);
     font-size: 0.7rem;
     pointer-events: none;
     transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
@@ -797,7 +809,7 @@ p.info-card {
     color: var(--matrix-green);
     font-weight: 500;
     letter-spacing: 0.05em;
-    background: linear-gradient(145deg, rgba(0, 15, 0, 0.98), rgba(0, 25, 0, 0.95));
+    background: var(--bg-primary);
     padding: 0 0.25rem;
 }
 
@@ -805,7 +817,7 @@ p.info-card {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-input:focus {
-    background: rgba(0, 255, 0, 0.03);
+    background: rgba(var(--accent-rgb), 0.03);
     border-bottom-color: var(--matrix-green);
     color: var(--matrix-green);
 }
@@ -841,7 +853,7 @@ p.info-card {
     right: 0;
     bottom: -20px;
     font-size: 0.8rem;
-    color: rgba(0, 255, 0, 0.4);
+    color: rgba(var(--accent-rgb), 0.4);
     transition: color 300ms ease;
 }
 
@@ -856,11 +868,11 @@ p.info-card {
 /* Validation states */
 .form-group.valid input,
 .form-group.valid textarea {
-    border-bottom-color: rgba(0, 255, 0, 0.5);
+    border-bottom-color: rgba(var(--accent-rgb), 0.5);
 }
 
 .form-group.valid .form-group-icon {
-    color: rgba(0, 255, 0, 0.5);
+    color: rgba(var(--accent-rgb), 0.5);
 }
 
 .form-group.error input,
@@ -889,7 +901,7 @@ p.info-card {
     transform: translateY(0);
 }
 
-/* Submit Button - Ultra Compact */
+/* Submit Button - Ultra Compact - Theme-aware */
 .btn-submit-modern,
 .submit-btn {
     position: relative;
@@ -898,10 +910,10 @@ p.info-card {
     padding: var(--space-xs);
     background: linear-gradient(
         135deg,
-        rgba(0, 255, 0, 0.1),
-        rgba(0, 255, 0, 0.05)
+        rgba(var(--accent-rgb), 0.1),
+        rgba(var(--accent-rgb), 0.05)
     );
-    border: 1px solid rgba(0, 255, 0, 0.4);
+    border: 1px solid rgba(var(--accent-rgb), 0.4);
     border-radius: 4px;
     color: var(--matrix-green);
     font-size: 0.75rem;
@@ -926,7 +938,7 @@ p.info-card {
     height: 100%;
     background: radial-gradient(
         circle,
-        rgba(0, 255, 0, 0.2),
+        rgba(var(--accent-rgb), 0.2),
         transparent 70%
     );
     transform: translate(-50%, -50%) scale(0);
@@ -938,8 +950,8 @@ p.info-card {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     background: linear-gradient(
         135deg,
-        rgba(0, 255, 0, 0.15),
-        rgba(0, 255, 0, 0.08)
+        rgba(var(--accent-rgb), 0.15),
+        rgba(var(--accent-rgb), 0.08)
     );
     border-color: var(--matrix-green);
 }
@@ -1802,6 +1814,122 @@ section#contact {
 [data-theme="dark"] #contact-main {
   border-top: 1px solid rgba(74, 158, 255, 0.1);
   box-shadow: inset 0 0 100px rgba(74, 158, 255, 0.02);
+}
+
+/* ============================================================================
+   DARK THEME - Contact Form Blending Styles
+   Form inputs blend seamlessly with dark page background
+   ============================================================================ */
+
+/* Remove green gradient from form section container - maximum specificity */
+[data-theme="dark"] .contact-form-section,
+[data-theme="dark"] .contact-grid .contact-form-section,
+[data-theme="dark"] #contact-main .contact-form-section,
+[data-theme="dark"] .contact-container .contact-form-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .contact-form-section::before,
+[data-theme="dark"] .contact-form-section::after {
+    display: none !important; /* Remove matrix rotating gradient effect */
+    background: transparent !important;
+}
+
+/* Form container - blend with page */
+[data-theme="dark"] .contact-form,
+[data-theme="dark"] form.contact-form,
+[data-theme="dark"] .contact-form-section .contact-form {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Override any green gradients on form wrapper */
+[data-theme="dark"] .contact-form-wrapper {
+    background: transparent !important;
+    border: none !important;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-input {
+    background: transparent;
+    border-bottom-color: rgba(74, 158, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus,
+[data-theme="dark"] .form-input:focus {
+    background: rgba(74, 158, 255, 0.03);
+    border-bottom-color: #4A9EFF;
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .form-group label {
+    color: rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .form-group input:focus ~ label,
+[data-theme="dark"] .form-group input:not(:placeholder-shown) ~ label,
+[data-theme="dark"] .form-group textarea:focus ~ label,
+[data-theme="dark"] .form-group textarea:not(:placeholder-shown) ~ label,
+[data-theme="dark"] .form-input:focus ~ label,
+[data-theme="dark"] .form-input:not(:placeholder-shown) ~ label {
+    color: #4A9EFF;
+    background: #000000;
+}
+
+[data-theme="dark"] .form-line {
+    background: #4A9EFF;
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
+}
+
+[data-theme="dark"] .submit-btn,
+[data-theme="dark"] .btn-submit-modern {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 158, 255, 0.1),
+        rgba(74, 158, 255, 0.05)
+    );
+    border: 1px solid rgba(74, 158, 255, 0.4);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .submit-btn:hover,
+[data-theme="dark"] .btn-submit-modern:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 158, 255, 0.15),
+        rgba(74, 158, 255, 0.08)
+    );
+    border-color: #4A9EFF;
+    color: #FFFFFF;
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.4);
+}
+
+/* Dark theme success/error messages */
+[data-theme="dark"] .form-success {
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(74, 158, 255, 0.05));
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+/* Character counter and validation in dark theme */
+[data-theme="dark"] .char-counter {
+    color: rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .form-group.valid input,
+[data-theme="dark"] .form-group.valid textarea {
+    border-bottom-color: rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .form-group.valid .form-group-icon {
+    color: rgba(74, 158, 255, 0.5);
 }
 
 /* Print styles */

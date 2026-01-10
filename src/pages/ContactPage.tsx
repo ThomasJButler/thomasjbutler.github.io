@@ -101,9 +101,6 @@ export const ContactPage: React.FC = () => {
 
       <section id="contact-main">
         <div className="container contact-container">
-          {/* Process Section - How We Work Together with Framer Motion */}
-          <ProcessTimeline steps={processSteps} />
-
           <div className="contact-grid">
             {/* Left side - Contact Information */}
             <div className="contact-info">
@@ -273,6 +270,9 @@ export const ContactPage: React.FC = () => {
               </form>
             </div>
           </div>
+
+          {/* Process Section - How We Work Together with Framer Motion */}
+          <ProcessTimeline steps={processSteps} />
         </div>
       </section>
     </div>
