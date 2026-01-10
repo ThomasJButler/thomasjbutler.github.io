@@ -265,7 +265,7 @@ section.reveal-section.active {
 
 @media (max-width: 768px) {
     main {
-        padding-top: 100px;
+        padding-top: 75px; /* Match desktop Matrix rain strip */
     }
     
     section {
@@ -292,9 +292,9 @@ section.reveal-section.active {
         max-width: 100%;
         padding-inline: var(--space-sm);
     }
-    
+
     main {
-        padding-top: 80px;
+        padding-top: 75px; /* Match desktop Matrix rain strip */
     }
     
     section {

@@ -224,15 +224,6 @@ export const ServicesPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Matrix Divider */}
-          <div className="matrix-divider">
-            <span className="divider-glyph">⟨</span>
-            <span className="divider-line"></span>
-            <span className="divider-center">◆</span>
-            <span className="divider-line"></span>
-            <span className="divider-glyph">⟩</span>
-          </div>
-
           {/* Subsection: What I Build */}
           <div className="services-subsection" id="what-i-build">
             <h3 className="services-section-title">
