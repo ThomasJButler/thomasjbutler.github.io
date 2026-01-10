@@ -536,19 +536,30 @@ html {
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
+/* Journey Introduction Text */
+.journey-intro {
+    max-width: 800px;
+    margin: 1.5rem auto 2rem;
+    color: rgba(0, 255, 0, 0.85);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    text-align: center;
+    font-family: var(--font-body);
+}
+
 /* Journey Grid Styling */
 .journey-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .journey-item {
     background: var(--card-bg);
     border: var(--border-glow);
     border-radius: 12px;
-    padding: 1rem;
+    padding: 0.85rem;
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
@@ -556,16 +567,26 @@ html {
 }
 
 .journey-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 255, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 255, 0, 0.15);
     border-color: rgba(0, 255, 0, 0.4);
 }
 
 .journey-item i {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--neon-green);
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.journey-item h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.journey-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 /* ============================================================================
@@ -699,6 +720,90 @@ html {
     border-left: 3px solid var(--neon-green);
     border-radius: 4px;
     text-align: center;
+}
+
+/* ============================================================================
+   TECH STACK GALLERY - Replaces Qualifications Section
+   ============================================================================ */
+.tech-stack-section {
+    padding: 4rem 0;
+}
+
+.tech-stack-intro {
+    text-align: center;
+    color: rgba(0, 255, 0, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    font-family: var(--font-body);
+}
+
+.tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: rgba(0, 20, 0, 0.3);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon-green);
+    box-shadow: 0 8px 24px rgba(0, 255, 0, 0.15);
+}
+
+.tech-item i {
+    font-size: 2.5rem;
+    color: var(--neon-green);
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px var(--neon-green));
+}
+
+.tech-name {
+    font-family: var(--font-code);
+    font-size: 0.95rem;
+    color: rgba(0, 255, 0, 0.9);
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Specific tech icon colors */
+.tech-item.react-glow i { color: #61DAFB; }
+.tech-item.js-glow i { color: #F7DF1E; }
+.tech-item.ts-glow i { color: #3178C6; }
+.tech-item.html-glow i { color: #E34F26; }
+.tech-item.node-glow i { color: #339933; }
+.tech-item.python-glow i { color: #3776AB; }
+.tech-item.aws-glow i { color: #FF9900; }
+.tech-item.azure-glow i { color: #0089D6; }
+.tech-item.docker-glow i { color: #2496ED; }
+
+/* Keep neon-green for generic tech */
+.tech-item.vite-glow i,
+.tech-item.db-glow i,
+.tech-item.api-glow i,
+.tech-item.cicd-glow i,
+.tech-item.tf-glow i,
+.tech-item.pytorch-glow i,
+.tech-item.llm-glow i,
+.tech-item.ml-glow i {
+    color: var(--neon-green);
 }
 
 /* Achievement Tags */
@@ -864,6 +969,24 @@ html {
   .certifications-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Tech stack grid - responsive for mobile */
+  .tech-stack-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .tech-item {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .tech-item i {
+    font-size: 2rem;
+  }
+
+  .tech-name {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -876,6 +999,11 @@ html {
   .highlight-text {
     font-size: 0.95rem;
     padding: 1rem;
+  }
+
+  /* Tech stack grid - 2 columns for very small screens */
+  .tech-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1122,6 +1250,49 @@ html {
 @keyframes arrowBounce {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(5px); }
+}
+
+/* Compact Timeline Button - for journey section */
+.timeline-cta-compact {
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+}
+
+.timeline-button-compact .button-inner {
+  gap: 1rem;
+  padding: 1rem 1.75rem;
+}
+
+.timeline-button-compact .button-icon-wrapper {
+  width: 35px;
+  height: 35px;
+}
+
+.timeline-button-compact .button-icon-wrapper i {
+  font-size: 1.2rem;
+}
+
+.timeline-button-compact .button-title {
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+}
+
+.timeline-button-compact .button-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.timeline-button-compact .button-arrow {
+  width: 32px;
+  height: 32px;
+}
+
+.timeline-button-compact .button-arrow i {
+  font-size: 1.2rem;
+}
+
+.timeline-button-compact:hover {
+  transform: translateY(-5px) scale(1.01);
 }
 
 /* Mobile responsive design for epic button */

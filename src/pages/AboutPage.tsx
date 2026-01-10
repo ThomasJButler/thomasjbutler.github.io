@@ -9,70 +9,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/about.css';
 
-const certifications = [
-  {
-    icon: "fas fa-graduation-cap",
-    name: "Estio Level 4 Software Developer",
-    detail: "Advanced Full-Stack Development • Completed 2024",
-    glowClass: "primary-glow"
-  },
-  {
-    icon: "fas fa-certificate",
-    name: "City & Guilds Level 2 ICT Systems Support",
-    detail: "Infrastructure Management • July 2025",
-    verifyLink: "https://digitalcredentials.cityandguilds.com/46a4d6de-63e8-4e80-9949-50e4ed5b91c4#acc.pzMH8SWw",
-    glowClass: "verify-glow"
-  },
-  {
-    icon: "fas fa-robot",
-    name: "Machine Learning & LLM Bootcamp",
-    detail: "CodeCademy Certificate • September 2025",
-    verifyLink: "https://www.codecademy.com/bootcamps/ai-1/certificates/61bbd81425580b633fee49f6",
-    glowClass: "ai-glow"
-  },
-  {
-    icon: "fas fa-database",
-    name: "Cisco Data Science Introduction",
-    detail: "Data Analytics & AI/ML • April 2023",
-    verifyLink: "https://www.credly.com/badges/4167931a-2128-4e5a-b6a8-c2c0493325f6/linked_in_profile",
-    glowClass: "cisco-glow"
-  },
-  {
-    icon: "fab fa-aws",
-    name: "AWS Qualified",
-    detail: "Cloud Architecture & Serverless Computing",
-    glowClass: "aws-glow"
-  },
-  {
-    icon: "fab fa-microsoft",
-    name: "Azure Qualified",
-    detail: "Cloud Infrastructure & DevOps",
-    glowClass: "azure-glow"
-  },
-  {
-    icon: "fas fa-network-wired",
-    name: "Cisco Qualified",
-    detail: "Network Security & Data Analytics",
-    glowClass: "cisco-glow"
-  },
-  {
-    icon: "fas fa-hubspot",
-    name: "HubSpot Qualified",
-    detail: "CMS Development & Integration",
-    glowClass: "hubspot-glow"
-  },
-  {
-    icon: "fas fa-code",
-    name: "Full Stack Engineer",
-    detail: "CodeCademy Certificate",
-    glowClass: "code-glow"
-  },
-  {
-    icon: "fab fa-python",
-    name: "Data Analysis with Python",
-    detail: "Free Code Camp",
-    glowClass: "python-glow"
-  }
+const techStack = [
+  // Frontend
+  { icon: "fab fa-react", name: "React", glowClass: "react-glow" },
+  { icon: "fab fa-js", name: "JavaScript", glowClass: "js-glow" },
+  { icon: "fas fa-code", name: "TypeScript", glowClass: "ts-glow" },
+  { icon: "fab fa-html5", name: "HTML/CSS", glowClass: "html-glow" },
+  { icon: "fas fa-bolt", name: "Vite", glowClass: "vite-glow" },
+
+  // Backend
+  { icon: "fab fa-node-js", name: "Node.js", glowClass: "node-glow" },
+  { icon: "fab fa-python", name: "Python", glowClass: "python-glow" },
+  { icon: "fas fa-database", name: "PostgreSQL", glowClass: "db-glow" },
+  { icon: "fas fa-server", name: "REST APIs", glowClass: "api-glow" },
+
+  // Cloud/DevOps
+  { icon: "fab fa-aws", name: "AWS", glowClass: "aws-glow" },
+  { icon: "fab fa-microsoft", name: "Azure", glowClass: "azure-glow" },
+  { icon: "fab fa-docker", name: "Docker", glowClass: "docker-glow" },
+  { icon: "fas fa-rocket", name: "CI/CD", glowClass: "cicd-glow" },
+  { icon: "fas fa-cloud", name: "Vercel", glowClass: "vercel-glow" },
+  { icon: "fas fa-cloud-upload-alt", name: "Netlify", glowClass: "netlify-glow" },
+
+  // AI/ML
+  { icon: "fas fa-brain", name: "TensorFlow", glowClass: "tf-glow" },
+  { icon: "fas fa-robot", name: "PyTorch", glowClass: "pytorch-glow" },
+  { icon: "fas fa-comments", name: "LLMs", glowClass: "llm-glow" },
+  { icon: "fas fa-chart-line", name: "ML Models", glowClass: "ml-glow" },
+  { icon: "fas fa-database", name: "Pinecone", glowClass: "pinecone-glow" },
+
+  // Frameworks
+  { icon: "fas fa-code", name: ".NET", glowClass: "dotnet-glow" }
 ];
 
 /**
@@ -96,7 +63,13 @@ export const AboutPage: React.FC = () => {
           <h2 className="section-title">Why I Love Programming</h2>
           <div className="story-content">
             <p className="highlight-text">
-              Programming is not just a profession for me, it's a passion. I love creating something from nothing and continuously learning to push the boundaries of what's possible.
+              Programming is not just a profession for me, it's a passion. There's something magical about transforming ideas into reality through code. The ability to create something from nothing, to build tools that solve real problems, and to see the immediate impact of your work is incredibly satisfying. Every project is a blank canvas, and the only limit is imagination and determination.
+            </p>
+            <p className="highlight-text">
+              What truly captivates me is the puzzle-solving aspect of development. Each challenge is an opportunity to think critically, to break down complex problems into elegant solutions. The moment when everything clicks into place, when the code finally works after hours of debugging, is pure joy. It's like solving a thousand puzzles at once, each one teaching you something new.
+            </p>
+            <p className="highlight-text">
+              The technology landscape never stops evolving, and that's what keeps me energised. There's always a new framework to explore, a better pattern to learn, or an innovative approach to discover. This constant growth and the vibrant community of developers sharing knowledge makes programming an endless journey of learning and improvement.
             </p>
           </div>
         </div>
@@ -105,10 +78,35 @@ export const AboutPage: React.FC = () => {
       {/* Matrix Rain Divider */}
       <div className="services-matrix-divider" aria-hidden="true"></div>
 
-      {/* SECTION 2: My Programming Journey - with Timeline Button at Bottom */}
+      {/* SECTION 2: Tech Stack Gallery */}
+      <section id="tech-stack" className="about-section tech-stack-section">
+        <div className="container">
+          <h2 className="section-title">Tech Stack</h2>
+          <p className="tech-stack-intro">
+            Technologies I work with to build modern, scalable solutions
+          </p>
+
+          <div className="tech-stack-grid">
+            {techStack.map((tech, index) => (
+              <div key={index} className={`tech-item ${tech.glowClass}`}>
+                <i className={tech.icon} aria-hidden="true"></i>
+                <span className="tech-name">{tech.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Matrix Rain Divider */}
+      <div className="services-matrix-divider" aria-hidden="true"></div>
+
+      {/* SECTION 3: My Programming Journey - with Timeline Button at Bottom */}
       <section id="programming-journey" className="about-section">
         <div className="container">
           <h2 className="section-title">My Programming Journey</h2>
+          <p className="journey-intro">
+            What started as curiosity with simple HTML pages has evolved into a comprehensive career building production systems, exploring cutting-edge technologies, and continuously pushing the boundaries of what's possible with code.
+          </p>
           <div className="journey-grid">
             <div className="journey-item">
               <i className="fas fa-lightbulb"></i>
@@ -125,11 +123,26 @@ export const AboutPage: React.FC = () => {
               <h4>AI Exploration</h4>
               <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
             </div>
+            <div className="journey-item">
+              <i className="fas fa-briefcase"></i>
+              <h4>Professional Development</h4>
+              <p>Transitioned from hobby projects to production systems, working with clients and delivering scalable solutions that impact real users.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fab fa-github"></i>
+              <h4>Open Source Contribution</h4>
+              <p>Engaged with the developer community, contributing to open-source projects and building tools that help other developers.</p>
+            </div>
+            <div className="journey-item">
+              <i className="fas fa-rocket"></i>
+              <h4>Current Focus</h4>
+              <p>Exploring cutting-edge AI integration, modern development tools, and pushing the boundaries of what's possible with current technology.</p>
+            </div>
           </div>
 
           {/* EPIC TIMELINE BUTTON - AT BOTTOM OF JOURNEY SECTION */}
-          <div className="timeline-cta-section">
-            <Link to="/updates" className="epic-timeline-button">
+          <div className="timeline-cta-section timeline-cta-compact">
+            <Link to="/updates" className="epic-timeline-button timeline-button-compact">
               <div className="button-glow"></div>
               <div className="button-inner">
                 <div className="button-icon-wrapper">
@@ -148,41 +161,6 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Matrix Rain Divider */}
-      <div className="services-matrix-divider" aria-hidden="true"></div>
-
-      {/* SECTION 3: Qualifications & Certifications */}
-      <section id="continuous-learning" className="about-section qualifications-section">
-        <div className="container">
-          <h2 className="section-title">Qualifications & Certifications</h2>
-          <p className="servicesIntro">
-            I believe in staying current with technology trends and continuously expanding my knowledge base.
-          </p>
-
-          <div className="certifications-grid">
-            {certifications.map((cert, index) => (
-              <div key={index} className={`cert-card ${cert.glowClass}`}>
-                <i className={cert.icon} aria-hidden="true"></i>
-                <div className="cert-info">
-                  <span className="cert-name">{cert.name}</span>
-                  <span className="cert-detail">{cert.detail}</span>
-                  {cert.verifyLink && (
-                    <a
-                      href={cert.verifyLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="verify-link-simple"
-                    >
-                      Verify →
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
