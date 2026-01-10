@@ -118,7 +118,7 @@
 /* Featured Projects Section - Horizontal Cards at Top */
 .featured-projects-section {
     margin-bottom: 1.5rem;
-    padding: 0 1rem;
+    padding: 2rem 1rem 0; /* Added 2rem top padding for better spacing */
 }
 
 .featured-projects-title {
@@ -248,6 +248,11 @@
     .featured-card-image {
         width: 60px;
         height: 60px;
+    }
+
+    /* Add extra top padding on mobile */
+    .featured-projects-section {
+        padding-top: 2.5rem; /* Increased from 2rem for more breathing room */
     }
 }
 
