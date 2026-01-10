@@ -1,17 +1,15 @@
 <div align="center">
 
-**Full-Stack Web Developer | AI Engineer | York, UK**
-
-[![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
-[![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
-
 ## About Me
-
-A Full-stack web developer and AI Engineer from the UK. 
 
 My passion is to build human orientated applications that feel natural and joyful to use, and empower humanity by harnessing the power of AI, by saving time and energy on day to day tasks.
 
 I'm currently focused on creating AI integrated systems, building ethical AI models, and Next.js/React web applications as a secure front-end.
+
+[![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
+[![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
+
+<img width="1337" height="714" alt="v3 6" src="https://github.com/user-attachments/assets/7dec964a-2649-409d-97eb-468349f600a1" />
 
 ## Featured Projects
 
