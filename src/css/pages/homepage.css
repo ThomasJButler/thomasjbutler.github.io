@@ -90,6 +90,10 @@
 
 /* Responsive hero adjustments */
 @media (max-width: 768px) {
+    #introduction {
+        padding-top: 3rem; /* More breathing room from top on mobile */
+    }
+
     .hero-tagline {
         font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
         margin: 0.4rem 0 0.8rem;
