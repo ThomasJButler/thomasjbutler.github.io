@@ -24,7 +24,7 @@
     font-family: var(--font-primary);
     font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
     color: var(--text-primary);
-    margin: 0.5rem 0 1rem;
+    margin: 0.5rem 0 2rem; /* Increased from 1rem for better spacing */
     letter-spacing: 0.05em;
     text-transform: none;
     /* Stack vertically for cleaner layout */
@@ -73,7 +73,7 @@
     font-family: var(--font-body);
     font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
     color: rgba(255, 255, 255, 0.7);
-    margin: 0 0 1.5rem;
+    margin: 0 0 3rem; /* Increased from 1.5rem for better spacing before images */
     letter-spacing: 0.02em;
     font-weight: 400;
 }
@@ -998,7 +998,7 @@
     flex-direction: row;
     gap: 20px;
     justify-content: center;
-    padding: 40px;
+    padding: 60px 40px; /* Increased top/bottom from 40px to 60px for more breathing room */
 }
 
 .introduction-img img,
