@@ -39,10 +39,10 @@ main {
 
 /* Account for fixed header */
 body:has(header:not(.transparent)) main {
-    padding-top: 75px; /* Visible Matrix rain strip */
+    padding-top: 120px; /* Visible Matrix rain strip */
 }
 
-/* ==========================================================================
+/* =================================================== =======================
    Section Styles
    ========================================================================== */
 
@@ -306,7 +306,7 @@ section.reveal-section.active {
 @media (max-width: 480px) {
     body:has(header:not(.transparent)) 
     main {
-    padding-top: 60px;
+    padding-top: 100px;
     }
 
     section {
