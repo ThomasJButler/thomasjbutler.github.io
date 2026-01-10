@@ -15,21 +15,21 @@ import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
 // Featured projects for homepage showcase (no images - they appear in hero above)
 const FEATURED_PROJECTS = [
   {
-    id: 'modelviz',
-    name: 'ModelViz - AI Model Comparison Platform',
-    description: 'Interactive analytics platform for comparing AI models across multiple providers with real-time performance metrics, cost analysis, and 3D visualisations',
+    id: 'matrix-arcade',
+    name: 'The Matrix Arcade',
+    description: 'Retro-style arcade games with a Matrix theme. Built with React, Vite, and Canvas API.',
     links: {
-      demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/thomasjbutler/modelviz'
+      demo: 'https://the-matrix-arcade.vercel.app/',
+      github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
     }
   },
   {
-    id: 'morpheus',
-    name: 'Morpheus - Intelligent Document Q&A',
-    description: 'Intelligent document Q&A system with semantic search and source citations using RAG, Pinecone, and Anthropic/OpenAI APIs',
+    id: 'modelviz',
+    name: 'ModelViz',
+    description: 'Compare AI models across providers with real-time metrics, cost analysis, and 3D visualisations.',
     links: {
-      demo: 'https://morpheusrag.vercel.app',
-      github: 'https://github.com/ThomasJButler/Morpheus'
+      demo: 'https://modelviz.vercel.app/',
+      github: 'https://github.com/thomasjbutler/modelviz'
     }
   }
 ];
