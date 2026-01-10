@@ -49,10 +49,11 @@
 #projects-section,
 #matrix-projects-showcase {
     position: relative;
-    min-height: auto; /* Allow content to determine height - shows matrix rain */
+    min-height: auto; /* Allow content to determine height */
     overflow: hidden;
     perspective: 1000px;
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent to show matrix rain background */
+    background: #000000; /* Solid black background for better project visibility */
+    padding-top: 3rem; /* Add top padding for breathing room */
 }
 
 .projects-container,
@@ -118,7 +119,8 @@
 /* Featured Projects Section - Horizontal Cards at Top */
 .featured-projects-section {
     margin-bottom: 1.5rem;
-    padding: 2rem 1rem 0; /* Added 2rem top padding for better spacing */
+    padding: 1rem 1rem 0; /* Reduced since parent now has padding-top */
+    background: #000000; /* Solid black background to ensure visibility */
 }
 
 .featured-projects-title {
