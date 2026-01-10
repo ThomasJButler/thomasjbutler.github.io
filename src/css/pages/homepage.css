@@ -2019,6 +2019,7 @@ body {
     font-size: 0.9rem;
     line-height: 1.4;
     margin: 0;
+    text-align: center;
     text-shadow: 0 0 10px var(--glow-color-primary);
 }
 
@@ -2115,6 +2116,15 @@ body {
 @media (max-width: 768px) {
     .hub-grid-horizontal {
         grid-template-columns: 1fr;
+    }
+
+    .hub-section {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hub-label {
+        text-align: center;
     }
 
     .hub-timetravel-bottom {
