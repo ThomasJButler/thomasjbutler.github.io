@@ -36,6 +36,7 @@
 
 .hero-tagline-prefix {
     color: var(--text-primary);
+    padding: 10px;
 }
 
 .typing-wrapper {
