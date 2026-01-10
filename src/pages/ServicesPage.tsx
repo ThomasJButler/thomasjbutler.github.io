@@ -223,10 +223,15 @@ export const ServicesPage: React.FC = () => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+      </section>
 
-          {/* Matrix Rain Divider - matches header/footer strip height */}
-          <div className="services-matrix-divider" aria-hidden="true"></div>
+      {/* Matrix Rain Divider - outside section so canvas shows through */}
+      <div className="services-matrix-divider" aria-hidden="true"></div>
 
+      <section id="services-build" className="servicesSection">
+        <div className="container">
           {/* Subsection: What I Build */}
           <div className="services-subsection" id="what-i-build">
             <h3 className="services-section-title">
@@ -284,8 +289,7 @@ export const ServicesPage: React.FC = () => {
             </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 };
