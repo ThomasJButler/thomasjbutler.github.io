@@ -304,6 +304,11 @@ section.reveal-section.active {
 }
 
 @media (max-width: 480px) {
+    body:has(header:not(.transparent)) 
+    main {
+    padding-top: 60px;
+    }
+
     section {
         padding: var(--space-md) var(--space-sm);
     }
