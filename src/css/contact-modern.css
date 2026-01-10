@@ -1,12 +1,5 @@
 /* Premium Contact Form with Refined Matrix Design - Performance Optimized */
 
-
-/* For video banner */ 
-.page-wrapper.page-contact {
-    margin-block: -2.7rem;
-}
-
-
 /* Performance optimization layer */
 .contact-container {
     perspective: 1000px;

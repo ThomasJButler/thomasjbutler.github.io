@@ -43,7 +43,7 @@
 
 /* Page wrapper for consistent matrix line heights */
 .page-wrapper.page-projects {
-    margin-block: -2.7rem;
+    margin-block: 0; /* Removed negative margin - fixes matrix rain sizing issue */
 }
 
 #projects-section,
@@ -53,7 +53,7 @@
     overflow: hidden;
     perspective: 1000px;
     background: #000000; /* Solid black background for better project visibility */
-    padding-top: 3rem; /* Add top padding for breathing room */
+    padding-top: 2rem; /* Add top padding for breathing room */
 }
 
 .projects-container,
