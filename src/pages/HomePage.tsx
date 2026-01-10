@@ -443,10 +443,10 @@ export const HomePage: React.FC = () => {
 
       <section id="portfolio-hub" ref={galleriesRef as React.RefObject<HTMLElement>}>
         <div className="container">
+          <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
           <div className="hub-layout">
             {/* Left Column - Purpose Text */}
             <div className="hub-left">
-              <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
               <div className="purpose-content">
                 <p>
                   Ever since I watched The Matrix as a kid, I've been obsessed with building things on the web. This site is the sci-fi inspired playground I always dreamed of creating.
@@ -466,21 +466,21 @@ export const HomePage: React.FC = () => {
               <div className="hub-section">
                 <span className="hub-label">Explore</span>
                 <div className="hub-grid">
-                  <Link to="/projects" className="hub-btn">
-                    <i className="fas fa-images"></i>
-                    Projects
+                  <Link to="/about" className="hub-btn">
+                    <i className="fas fa-user"></i>
+                    About
                   </Link>
                   <Link to="/skills" className="hub-btn">
                     <i className="fas fa-code"></i>
                     Skills
                   </Link>
+                  <Link to="/projects" className="hub-btn">
+                    <i className="fas fa-images"></i>
+                    Projects
+                  </Link>
                   <Link to="/services" className="hub-btn">
                     <i className="fas fa-cogs"></i>
                     Services
-                  </Link>
-                  <Link to="/contact" className="hub-btn">
-                    <i className="fas fa-envelope"></i>
-                    Contact
                   </Link>
                 </div>
               </div>
@@ -488,7 +488,7 @@ export const HomePage: React.FC = () => {
               {/* Professional Work Section */}
               <div className="hub-section">
                 <span className="hub-label">Professional Work</span>
-                <div className="hub-stack">
+                <div className="hub-grid-horizontal">
                   <a
                     href="https://thomasjbutler.me"
                     target="_blank"
@@ -510,21 +510,6 @@ export const HomePage: React.FC = () => {
                     <i className="fas fa-external-link-alt hub-external-icon"></i>
                   </a>
                 </div>
-              </div>
-
-              {/* TimeTravel Section */}
-              <div className="hub-section hub-timetravel">
-                <span className="hub-timetravel-text">Want to see how this project evolved?</span>
-                <a
-                  href="https://thomasjbutler.github.io/version-timetravel/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hub-btn-timetravel"
-                >
-                  <i className="fas fa-history"></i>
-                  Version TimeTravel
-                  <i className="fas fa-external-link-alt hub-external-icon"></i>
-                </a>
               </div>
 
               {/* Get in Touch Section */}
@@ -574,6 +559,21 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* TimeTravel Section - Compact at bottom */}
+          <div className="hub-timetravel-bottom">
+            <p className="hub-timetravel-intro">Curious about the journey? Watch this portfolio evolve through time.</p>
+            <a
+              href="https://thomasjbutler.github.io/version-timetravel/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hub-btn-timetravel-large"
+            >
+              <i className="fas fa-history"></i>
+              TimeTravel
+              <i className="fas fa-external-link-alt hub-external-icon"></i>
+            </a>
           </div>
         </div>
       </section>
