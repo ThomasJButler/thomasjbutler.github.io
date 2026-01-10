@@ -95,9 +95,18 @@
     }
 
     .hero-tagline {
-        font-size: clamp(1rem, 0.9rem + 0.8vw, 1.4rem);
+        font-size: 0.95rem; /* Fixed smaller size for mobile */
         margin: 0.4rem 0 0.8rem;
-        gap: 0.4rem; /* Tighter gap on mobile */
+        gap: 0.3rem; /* Tighter gap on mobile */
+    }
+
+    .typing-wrapper {
+        height: auto; /* Allow wrapping if needed */
+        min-height: 1.4em;
+    }
+
+    .typing-text {
+        font-size: 0.9rem; /* Smaller typing text */
     }
 
     .hero-subtitle {
@@ -108,8 +117,12 @@
 
 @media (max-width: 480px) {
     .hero-tagline {
-        font-size: 1.1rem;
+        font-size: 0.85rem; /* Even smaller for very small screens */
         letter-spacing: 0.02em;
+    }
+
+    .typing-text {
+        font-size: 0.8rem;
     }
 
     .hero-subtitle {
