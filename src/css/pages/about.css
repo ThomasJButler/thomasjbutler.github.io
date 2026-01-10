@@ -1005,6 +1005,11 @@ html {
   .tech-stack-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Hide CI/CD on mobile to make even 10x2 grid (20 items) */
+  .tech-item[data-tech="CI/CD"] {
+    display: none;
+  }
 }
 
 /* Epic Timeline Button */

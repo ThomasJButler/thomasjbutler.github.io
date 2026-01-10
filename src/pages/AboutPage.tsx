@@ -88,7 +88,7 @@ export const AboutPage: React.FC = () => {
 
           <div className="tech-stack-grid">
             {techStack.map((tech, index) => (
-              <div key={index} className={`tech-item ${tech.glowClass}`}>
+              <div key={index} className={`tech-item ${tech.glowClass}`} data-tech={tech.name}>
                 <i className={tech.icon} aria-hidden="true"></i>
                 <span className="tech-name">{tech.name}</span>
               </div>
