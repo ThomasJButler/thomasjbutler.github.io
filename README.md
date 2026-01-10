@@ -5,24 +5,9 @@
 [![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
 [![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
 
-
-</div>
-
-<div align="center">
-<pre>
-███╗   ███╗ █████╗ ████████╗██████╗ ██╗██╗  ██╗
-████╗ ████║██╔══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝
-██╔████╔██║███████║   ██║   ██████╔╝██║ ╚███╔╝ 
-██║╚██╔╝██║██╔══██║   ██║   ██╔══██╗██║ ██╔██╗ 
-██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║██║██╔╝ ██╗
-╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
-</pre>
-  <img width="2680" height="1790" alt="image" src="https://github.com/user-attachments/assets/4289282d-3724-494a-94b1-4e676dfb3588" />
-</div>
-
 ## About Me
 
-A Full-stack web developer and AI Engineer from York, UK. 
+A Full-stack web developer and AI Engineer from the UK. 
 
 My passion is to build human orientated applications that feel natural and joyful to use, and empower humanity by harnessing the power of AI, by saving time and energy on day to day tasks.
 
@@ -174,7 +159,7 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 <div align="center">
   
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
-[![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasbutler)
+[![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasjbutler)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFB000?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ojrwoqkgmv)
 
 </div>

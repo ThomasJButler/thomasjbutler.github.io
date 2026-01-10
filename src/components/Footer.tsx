@@ -67,24 +67,33 @@ export const Footer: React.FC = () => {
   return (
     <footer ref={footerRef} className={styles.siteFooter}>
       <div className={styles.footerContent}>
+        <div className={styles.linksSection}>
+          <h3>Quick Links</h3>
+          <div className={styles.footerLinks}>
+            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a>
+            <Link to="/contact">Contact</Link>
+            <Link to="/sitemap">Sitemap</Link>
+          </div>
+        </div>
+
         <div className={styles.socialSection}>
-          <h3>Connect With Me</h3>
-          <div ref={socialLinksRef} className={styles.socialLinks}>
+          <h3>Connect</h3>
+          <div className={styles.socialLinks} ref={socialLinksRef}>
             <a
-              href="https://github.com/ThomasJButler"
+              href="https://github.com/thomasjbutler"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="GitHub Profile"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
               <i className="fab fa-github"></i>
             </a>
             <a
-              href="https://www.linkedin.com/in/thomasbutleruk/"
+              href="https://linkedin.com/in/thomasbutleruk"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn Profile"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
@@ -94,7 +103,7 @@ export const Footer: React.FC = () => {
               href="https://codepen.io/thomasbutler"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="CodePen"
+              aria-label="CodePen Profile"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
@@ -102,21 +111,12 @@ export const Footer: React.FC = () => {
             </a>
             <a
               href="mailto:dev@thomasjbutler.me"
-              aria-label="Email"
+              aria-label="Email Me"
               onMouseEnter={handleSocialHover}
               onMouseLeave={handleSocialLeave}
             >
               <i className="fas fa-envelope"></i>
             </a>
-          </div>
-        </div>
-
-        <div className={styles.linksSection}>
-          <h3>Quick Links</h3>
-          <div className={styles.footerLinks}>
-            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">Commercial Work</a>
-            <Link to="/contact">Contact</Link>
-            <Link to="/sitemap">Sitemap</Link>
           </div>
         </div>
 

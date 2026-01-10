@@ -39,10 +39,10 @@ main {
 
 /* Account for fixed header */
 body:has(header:not(.transparent)) main {
-    padding-top: calc(80px + var(--space-xl)); /* Header height + spacing */
+    padding-top: 120px; /* Visible Matrix rain strip */
 }
 
-/* ==========================================================================
+/* =================================================== =======================
    Section Styles
    ========================================================================== */
 
@@ -265,7 +265,7 @@ section.reveal-section.active {
 
 @media (max-width: 768px) {
     main {
-        padding-top: 100px;
+        padding-top: 75px; /* Match desktop Matrix rain strip */
     }
     
     section {
@@ -292,9 +292,9 @@ section.reveal-section.active {
         max-width: 100%;
         padding-inline: var(--space-sm);
     }
-    
+
     main {
-        padding-top: 80px;
+        padding-top: 75px; /* Match desktop Matrix rain strip */
     }
     
     section {
@@ -304,6 +304,11 @@ section.reveal-section.active {
 }
 
 @media (max-width: 480px) {
+    body:has(header:not(.transparent)) 
+    main {
+    padding-top: 100px;
+    }
+
     section {
         padding: var(--space-md) var(--space-sm);
     }

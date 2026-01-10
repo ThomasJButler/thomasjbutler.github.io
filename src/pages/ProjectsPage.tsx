@@ -58,7 +58,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/ModelViz'
     },
     category: 'ai',
     status: 'completed',
@@ -88,7 +88,7 @@ const projects: Project[] = [
     },
     category: 'ai',
     status: 'completed',
-    hideNameOnFront: true,
+    hideNameOnFront: false,
     backgroundImage: PLACEHOLDER_IMAGES.aiCodeGenerator,
     gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
   },
@@ -134,7 +134,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://morpheusrag.vercel.app',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/Morpheus'
     },
     category: 'ai',
     status: 'completed',
@@ -158,7 +158,7 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/ReviewBot-Protocol'
     },
     category: 'ai',
     status: 'completed',
@@ -183,7 +183,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://agenticaiprojectsportfolio.vercel.app/',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio'
     },
     category: 'ai',
     status: 'completed',
@@ -439,7 +439,7 @@ export const ProjectsPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const projectsPerPage = 6;
+  const projectsPerPage = 4; // Desktop 2x2 grid for optimal viewport fit
   const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
 
   const startIndex = (currentPage - 1) * projectsPerPage;
@@ -593,7 +593,6 @@ export const ProjectsPage: React.FC = () => {
     <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
       <div className="matrix-project-container">
         <h2 className="section-title">Project Showcase</h2>
-        <p className="section-description">Explore my open source contributions and personal projects. Flip cards for further details and links.</p>
         
         <div className="matrix-project-tabs">
           {categories.map(cat => (
@@ -647,14 +646,14 @@ export const ProjectsPage: React.FC = () => {
                         position: 'relative'
                       }}
                     >
-                      {/* Gradient overlay for depth */}
+                      {/* Gradient overlay for depth - reduced opacity for better image clarity */}
                       <div style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 40, 0, 0.7) 100%)',
+                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 40, 0, 0.55) 100%)',
                         borderRadius: '16px'
                       }} />
 

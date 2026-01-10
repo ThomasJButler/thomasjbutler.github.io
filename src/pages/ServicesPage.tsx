@@ -5,11 +5,68 @@
  *              and consultancy offerings with expandable tech stack categories
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useCardAnimations } from '../hooks/useCardAnimations';
 import { matrixAnimations } from '../utils/animations/matrixAnimations';
 import '../css/pages/services.css';
+
+const professionalCertifications = [
+  {
+    icon: "fab fa-aws",
+    name: "AWS Qualified",
+    detail: "Cloud Architecture & Serverless",
+    glowClass: "aws-glow"
+  },
+  {
+    icon: "fab fa-microsoft",
+    name: "Azure Qualified",
+    detail: "Cloud Infrastructure & DevOps",
+    glowClass: "azure-glow"
+  },
+  {
+    icon: "fas fa-network-wired",
+    name: "Cisco Qualified",
+    detail: "Network Security & Analytics",
+    glowClass: "cisco-glow"
+  },
+  {
+    icon: "fas fa-robot",
+    name: "ML & LLM Bootcamp",
+    detail: "CodeCademy Certificate",
+    glowClass: "ai-glow"
+  },
+  {
+    icon: "fas fa-code",
+    name: "Full Stack Engineer",
+    detail: "CodeCademy Certificate",
+    glowClass: "code-glow"
+  },
+  {
+    icon: "fas fa-graduation-cap",
+    name: "Level 4 Software Dev",
+    detail: "Estio Apprenticeship",
+    glowClass: "primary-glow"
+  },
+  {
+    icon: "fab fa-hubspot",
+    name: "HubSpot Qualified",
+    detail: "CMS Development & Integration",
+    glowClass: "hubspot-glow"
+  },
+  {
+    icon: "fas fa-cube",
+    name: "Umbraco Qualified",
+    detail: "Enterprise CMS & .NET",
+    glowClass: "umbraco-glow"
+  },
+  {
+    icon: "fab fa-wordpress",
+    name: "WordPress Qualified",
+    detail: "Theme Development & Customisation",
+    glowClass: "wordpress-glow"
+  }
+];
 
 /**
  * Services showcase page with expandable service cards and tech stack
@@ -19,12 +76,6 @@ import '../css/pages/services.css';
 export const ServicesPage: React.FC = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const techStackTitleRef = useRef<HTMLHeadingElement>(null);
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(
-    () => window.innerWidth < 768 ? new Set([0]) : new Set()
-  );
-  const [showAllTech, setShowAllTech] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set());
 
   useCardAnimations();
 
@@ -33,94 +84,67 @@ export const ServicesPage: React.FC = () => {
       title: "Website & Web Apps",
       icon: "fas fa-code",
       description: "Responsive, performance-first websites and web apps built with modern stacks.",
-      features: [
-        { main: "React / Next.js", sub: ["TypeScript", "Tailwind", "SASS"] },
-        { main: "Performance optimization", sub: ["SEO ready"] },
-        { main: "Accessibility & responsive design", sub: [] }
+      highlights: [
+        { icon: "fab fa-react", text: "React / Next.js" },
+        { icon: "fas fa-bolt", text: "Performance & SEO" },
+        { icon: "fas fa-universal-access", text: "Accessible & Responsive" }
       ],
-      color: "#00ff00"
+      tech: ["React", "TypeScript", "WordPress", "HubSpot", "Next.js"]
     },
     {
       title: "Backend & APIs",
       icon: "fas fa-server",
-      description: "Robust servers and APIs that scale with your product. Production-ready architecture from day one.",
-      features: [
-        { main: "Node.js / Express", sub: ["Python / Django", "RESTful APIs"] },
-        { main: "PostgreSQL", sub: ["MongoDB", "Redis", "Database optimization"] },
-        { main: "Microservices", sub: ["System integration", "Authentication & security"] }
+      description: "Robust servers and APIs that scale with your product. Production-ready from day one.",
+      highlights: [
+        { icon: "fab fa-node-js", text: "Node.js / Python" },
+        { icon: "fas fa-database", text: "PostgreSQL / MongoDB" },
+        { icon: "fas fa-shield-alt", text: "Auth & Security" }
       ],
-      color: "#00cc00"
+      tech: ["Node.js", "Django", "PostgreSQL", "GraphQL", "Flask"]
     },
     {
       title: "AI & Automation",
       icon: "fas fa-robot",
       description: "Practical AI features and automation to save time and make data useful.",
-      features: [
-        { main: "ChatGPT integration", sub: ["n8n automation workflows"] },
-        { main: "Custom GPT models", sub: ["NLP", "Computer vision"] },
-        { main: "TensorFlow / PyTorch", sub: ["Data processing"] }
+      highlights: [
+        { icon: "fas fa-brain", text: "GPT Integration" },
+        { icon: "fas fa-cogs", text: "n8n Workflows" },
+        { icon: "fas fa-project-diagram", text: "Custom ML Models" }
       ],
-      color: "#00ff00"
+      tech: ["ChatGPT", "Claude", "PyTorch", "TensorFlow", "n8n"]
     },
     {
       title: "Mobile Applications",
       icon: "fas fa-mobile-alt",
-      description: "Cross-platform apps with native feel and store readiness. Built for iOS and Android.",
-      features: [
-        { main: "React Native", sub: ["iOS & Android", "Cross-platform"] },
-        { main: "Push notifications", sub: ["Offline functionality", "Analytics"] },
-        { main: "Native performance", sub: ["App store submission & compliance"] }
+      description: "Cross-platform apps with native feel and store readiness.",
+      highlights: [
+        { icon: "fab fa-react", text: "React Native" },
+        { icon: "fab fa-apple", text: "iOS & Android" },
+        { icon: "fas fa-bell", text: "Push & Offline" }
       ],
-      color: "#00cc00"
+      tech: ["React Native", "Expo", "iOS", "Android"]
     },
     {
       title: "Design & Brand",
       icon: "fas fa-palette",
       description: "Clear, usable interfaces and identity design that scales with your product.",
-      features: [
-        { main: "UI/UX design", sub: ["Brand identity", "Design systems"] },
-        { main: "Logo design", sub: ["Component libraries", "Responsive mockups"] },
-        { main: "Marketing assets", sub: ["Brand guidelines documentation"] }
+      highlights: [
+        { icon: "fas fa-pencil-ruler", text: "UI/UX Design" },
+        { icon: "fas fa-shapes", text: "Brand Identity" },
+        { icon: "fas fa-layer-group", text: "Design Systems" }
       ],
-      color: "#00ff00"
+      tech: ["Figma", "Adobe XD", "UI/UX", "Wireframes"]
     },
     {
       title: "Consultancy & Custom",
       icon: "fas fa-handshake",
       description: "Architecture reviews, training and bespoke engineering for special requirements.",
-      features: [
-        { main: "Architecture review", sub: ["Team training"] },
-        { main: "API development", sub: ["Bespoke solutions"] },
-        { main: "System integration", sub: ["Support"] }
+      highlights: [
+        { icon: "fas fa-sitemap", text: "Architecture Review" },
+        { icon: "fas fa-chalkboard-teacher", text: "Team Training" },
+        { icon: "fas fa-puzzle-piece", text: "Bespoke Solutions" }
       ],
-      color: "#00cc00"
-    }
-  ];
-
-  const techStackCategories = [
-    {
-      category: "Frontend",
-      technologies: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind", "SASS", "CSS3", "HTML5", "Vue.js", "Webpack", "Vite", "Redux"]
-    },
-    {
-      category: "Backend",
-      technologies: ["Node.js", "Express", "Python", "Django", "PHP", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "MySQL", "RESTful APIs", "WebSockets"]
-    },
-    {
-      category: "AI & ML",
-      technologies: ["ChatGPT", "GPT-4", "Claude", "OpenAI API", "LangChain", "Prompt Engineering", "n8n", "Zapier", "TensorFlow", "PyTorch", "Scikit-learn", "NLP", "Computer Vision", "RAG", "Vector Databases", "Fine-tuning", "AI Agents"]
-    },
-    {
-      category: "Mobile & Mobile Web Apps",
-      technologies: ["React Native", "iOS & Android", "PWA", "Mobile-First", "Responsive Design"]
-    },
-    {
-      category: "APIs",
-      technologies: ["REST APIs", "GraphQL", "Apollo", "tRPC", "WebSockets", "API Design", "Swagger/OpenAPI", "Postman", "Rate Limiting", "Authentication"]
-    },
-    {
-      category: "DevOps & Cloud",
-      technologies: ["Docker", "Git", "AWS", "Azure", "CI/CD", "GitHub Actions", "Vercel", "Netlify"]
+      tech: ["DevOps", "Git", "Agile", "Testing", "Cloud"]
     }
   ];
 
@@ -137,10 +161,6 @@ export const ServicesPage: React.FC = () => {
   useEffect(() => {
     if (titleRef.current) {
       titleRef.current.textContent = 'WEB, MOBILE, AND AI';
-    }
-
-    if (techStackTitleRef.current) {
-      techStackTitleRef.current.textContent = '$ TECH STACKS';
     }
 
     if (servicesRef.current) {
@@ -160,49 +180,6 @@ export const ServicesPage: React.FC = () => {
     }
   };
 
-  const toggleCard = (index: number) => {
-    setExpandedCards(prev => {
-      const newSet = new Set(prev);
-      const isCurrentlyExpanded = newSet.has(index);
-
-      if (window.innerWidth >= 768) {
-        const cardsPerRow = 3;
-        const rowStart = Math.floor(index / cardsPerRow) * cardsPerRow;
-        const rowEnd = rowStart + cardsPerRow;
-
-        if (isCurrentlyExpanded) {
-          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
-            newSet.delete(i);
-          }
-        } else {
-          for (let i = rowStart; i < rowEnd && i < services.length; i++) {
-            newSet.add(i);
-          }
-        }
-      } else {
-        if (isCurrentlyExpanded) {
-          newSet.delete(index);
-        } else {
-          newSet.add(index);
-        }
-      }
-
-      return newSet;
-    });
-  };
-
-  const toggleCategory = (index: number) => {
-    setExpandedCategories(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
-      }
-      return newSet;
-    });
-  };
-
   return (
     <div className="page-wrapper page-services">
       <section id="services" className="servicesSection">
@@ -212,169 +189,107 @@ export const ServicesPage: React.FC = () => {
           I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
         </p>
 
-        <div ref={servicesRef} className="servicesGrid">
-          {services.map((service, index) => {
-            const isExpanded = expandedCards.has(index);
-            return (
-              <div
-                key={index}
-                className={`service-card serviceCard ${isExpanded ? 'expanded' : ''}`}
-                onMouseEnter={handleCardHover}
-                style={{ '--card-color': service.color } as React.CSSProperties}
-              >
-                <div className="serviceHeader">
-                  <i
-                    className={`${service.icon} service-icon serviceIcon`}
-                    aria-hidden="true"
-                  ></i>
-                  <h3 className="serviceTitle">{service.title}</h3>
-                </div>
-
-                <p className="serviceDescription">{service.description}</p>
-
-                <ul className={`serviceFeatures ${isExpanded ? 'show' : ''}`}>
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="featureItem">
-                      <div className="featureMain">
-                        <span className="featureBullet">▸</span>
-                        <span>{feature.main}</span>
-                      </div>
-                      {feature.sub.length > 0 && (
-                        <ul className="featureSub">
-                          {feature.sub.map((subItem, subIdx) => (
-                            <li key={subIdx}>{subItem}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  className="expandButton"
-                  onClick={() => toggleCard(index)}
-                  aria-expanded={isExpanded}
-                  aria-label={isExpanded ? "Show less" : "Show more"}
-                >
-                  {isExpanded ? (
-                    <>
-                      Show Less <i className="fas fa-chevron-up"></i>
-                    </>
-                  ) : (
-                    <>
-                      View Details <i className="fas fa-chevron-down"></i>
-                    </>
-                  )}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Matrix Divider */}
-        <div className="matrix-divider">
-          <span className="divider-line"></span>
-          <span className="divider-center"></span>
-          <span className="divider-line"></span>
-        </div>
-
-        {/* Tech Stack Section Title */}
-        <h2 ref={techStackTitleRef} className="section-title tech-stack-title"></h2>
-
-        {/* Tech Stack Badges */}
-        <div className="techStackSection">
-          <div className="techStackContent">
-            {techStackCategories.map((category, catIndex) => {
-              const isVisible = showAllTech || catIndex === 0;
-              const isCategoryExpanded = expandedCategories.has(catIndex);
-              const visibleTech = category.technologies.slice(0, 4);
-              const hiddenTech = category.technologies.slice(4);
-              const hasMore = hiddenTech.length > 0;
-
-              return (
-                <div
-                  key={catIndex}
-                  className={`techCategory ${!isVisible ? 'hiddenOnMobile' : ''}`}
-                >
-                  <h4 className="categoryTitle">{category.category}</h4>
-
-                  {/* First line - always visible */}
-                  <div className="techBadges">
-                    {visibleTech.map((tech, techIndex) => (
-                      <span key={techIndex} className="techBadge">
-                        [{tech}]
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Additional badges - collapsible on desktop */}
-                  {hasMore && (
-                    <>
-                      <div className={`techBadges techBadgesExtra ${isCategoryExpanded ? 'expanded' : ''}`}>
-                        {hiddenTech.map((tech, techIndex) => (
-                          <span key={techIndex + 7} className="techBadge">
-                            [{tech}]
-                          </span>
-                        ))}
-                      </div>
-
-                      <button
-                        className="categoryToggle"
-                        onClick={() => toggleCategory(catIndex)}
-                        aria-expanded={isCategoryExpanded}
-                        aria-label={isCategoryExpanded ? `Show less ${category.category} technologies` : `Show ${hiddenTech.length} more ${category.category} technologies`}
-                      >
-                        {isCategoryExpanded ? (
-                          <>
-                            Show Less <i className="fas fa-chevron-up"></i>
-                          </>
-                        ) : (
-                          <>
-                            +{hiddenTech.length} More <i className="fas fa-chevron-down"></i>
-                          </>
-                        )}
-                      </button>
-                    </>
-                  )}
-                </div>
-              );
-            })}
+        {/* Value Proposition - Hero Position with Quick Contact */}
+        <div className="value-section value-section-hero">
+          <div className="value-card">
+            <i className="fas fa-pound-sign" aria-hidden="true"></i>
+            <div className="value-content">
+              <h4>Competitive Pricing, Effective Results</h4>
+              <p>Quality work doesn't have to break the bank. I offer transparent, competitive rates with a focus on delivering measurable outcomes for your business.</p>
+            </div>
+            <Link to="/contact" className="quick-contact-btn">
+              <i className="fas fa-envelope"></i>
+              Get Quote
+            </Link>
           </div>
-          <button
-            className="showMoreTech"
-            onClick={() => setShowAllTech(!showAllTech)}
-            aria-expanded={showAllTech}
-            aria-label={showAllTech ? "Hide technologies" : "Show all technologies"}
-          >
-            {showAllTech ? (
-              <>
-                Show Less <i className="fas fa-chevron-up"></i>
-              </>
-            ) : (
-              <>
-                Show All Technologies <i className="fas fa-chevron-down"></i>
-              </>
-            )}
-          </button>
         </div>
 
-        {/* Matrix Divider */}
-        <div className="matrix-divider">
-          <span className="divider-line"></span>
-          <span className="divider-center"></span>
-          <span className="divider-line"></span>
-        </div>
-
-        {/* Sticky CTA */}
-        <div className="ctaSection">
-          <h3>Ready to start your project?</h3>
-          <Link to="/contact" className="ctaButton">
-            Get In Touch
-            <i className="fas fa-envelope icon-margin-left"></i>
-          </Link>
+        {/* Combined Services & Credentials Section */}
+        <div className="services-main-section">
+          {/* Subsection: Credentials */}
+          <div className="services-subsection" id="credentials">
+            <h3 className="services-section-title">
+              <span>Credentials</span>
+            </h3>
+            <div className="certifications-grid">
+              {professionalCertifications.map((cert, index) => (
+                <div key={index} className={`cert-card ${cert.glowClass}`}>
+                  <i className={cert.icon} aria-hidden="true"></i>
+                  <div className="cert-info">
+                    <span className="cert-name">{cert.name}</span>
+                    <span className="cert-detail">{cert.detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+      </section>
+
+      {/* Matrix Rain Divider - outside section so canvas shows through */}
+      <div className="services-matrix-divider-custom" aria-hidden="true"></div>
+
+      <section id="services-build" className="servicesSection">
+        <div className="container">
+          {/* Subsection: What I Build */}
+          <div className="services-subsection" id="what-i-build">
+            <h3 className="services-section-title">
+              <span>What I Build</span>
+            </h3>
+            <div ref={servicesRef} className="servicesGrid">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="service-card serviceCard"
+                  onMouseEnter={handleCardHover}
+                >
+                  <div className="serviceHeader">
+                    <i
+                      className={`${service.icon} service-icon serviceIcon`}
+                      aria-hidden="true"
+                    ></i>
+                    <h3 className="serviceTitle">{service.title}</h3>
+                  </div>
+
+                  <p className="serviceDescription">{service.description}</p>
+
+                  <ul className="serviceHighlights">
+                    {service.highlights.map((highlight, idx) => (
+                      <li key={idx} className="highlightItem">
+                        <i className={highlight.icon} aria-hidden="true"></i>
+                        <span>{highlight.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="serviceTechTags">
+                    {service.tech.map((tech, idx) => (
+                      <span key={idx} className="techTag">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section - Enhanced */}
+        <div className="ctaSection ctaSection-enhanced">
+          <h3>Let's Build Something Great</h3>
+          <p className="cta-subtitle">Free consultation. No obligation. Let's discuss your project and make it happen.</p>
+          <div className="cta-buttons">
+            <Link to="/contact" className="ctaButton ctaButton-primary">
+              Get A Free Quote
+              <i className="fas fa-arrow-right icon-margin-left"></i>
+            </Link>
+            <a href="mailto:hello@thomasjbutler.co.uk" className="ctaButton ctaButton-secondary">
+              Email Me Directly
+              <i className="fas fa-envelope icon-margin-left"></i>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -544,7 +544,7 @@ export const timelineData: TimelineEntry[] = [
     ],
     links: [
       {
-        href: 'https://codepen.io/thomasbutler',
+        href: 'https://codepen.io/thomasjbutler',
         label: 'View CodePen',
         icon: 'fa-brands fa-codepen'
       }

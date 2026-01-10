@@ -40,12 +40,12 @@ nav a {
     padding: 0.25rem 0;
 }
 
-/* Active page indicator */
-nav a.active {
+/* Active page indicator - Scope to menu links only */
+nav ul li a.active {
     color: var(--matrix-cyan);
 }
 
-nav a.active::after {
+nav ul li a.active::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -56,14 +56,14 @@ nav a.active::after {
     box-shadow: 0 0 10px var(--matrix-cyan);
 }
 
-/* Hover effects */
-nav a:hover {
+/* Hover effects - Scope to menu links only */
+nav ul li a:hover {
     color: var(--accent-color);
     text-shadow: none; /* Removed for readability */
 }
 
-/* Underline hover effect on links */
-nav a::before {
+/* Underline hover effect on links - Only apply to menu links, not logo */
+nav ul li a::before {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -74,7 +74,7 @@ nav a::before {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
 }
 
-nav a:hover::before {
+nav ul li a:hover::before {
     width: 100%;
     box-shadow: 0 0 8px var(--accent-color);
 }

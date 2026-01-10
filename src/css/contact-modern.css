@@ -1,12 +1,5 @@
 /* Premium Contact Form with Refined Matrix Design - Performance Optimized */
 
-
-/* For video banner */ 
-.page-wrapper.page-contact {
-    margin-block: -2.7rem;
-}
-
-
 /* Performance optimization layer */
 .contact-container {
     perspective: 1000px;
@@ -229,13 +222,14 @@ section#contact .container > p,
     line-height: 1.6;
 }
 
-/* Info Sections - Ultra Compact with Gradient Hover */
+/* Info Sections - Subtle Professional Design */
 .info-section {
     font-family: var(--font-primary);
-    margin-bottom: 0;
-    padding: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    background: rgba(0, 20, 0, 0.5); /* Subtle dark overlay */
     border-radius: 8px;
-    border: 1px solid rgba(0, 255, 0, 0.15);
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -243,33 +237,21 @@ section#contact .container > p,
     flex-direction: column;
     justify-content: center;
     backdrop-filter: blur(10px);
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(0, 255, 0, 0.1);
-}
-
-
-/* Subtle pulse animation */
-@keyframes subtlePulse {
-    0%, 100% {
-        box-shadow:
-            0 4px 15px rgba(0, 0, 0, 0.2),
-            inset 0 1px 0 rgba(0, 255, 0, 0.1);
-    }
-    50% {
-        box-shadow:
-            0 4px 20px rgba(0, 0, 0, 0.25),
-            inset 0 1px 0 rgba(0, 255, 0, 0.15),
-            0 0 20px rgba(0, 255, 0, 0.1);
-    }
-}
-
-.info-section {
-    animation: subtlePulse 4s ease-in-out infinite;
 }
 
 .info-section:hover {
+    border-color: rgba(0, 255, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.15);
     transform: translateY(-2px);
+}
+
+/* Remove text underlines */
+.info-section a {
+    text-decoration: none;
+}
+
+.info-section a:hover {
+    text-decoration: none;
 }
 
 .info-section:last-child {
@@ -283,6 +265,69 @@ section#contact .container > p,
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+    }
+}
+
+/* Contact Cards Specific Styling */
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-cards a,
+.contact-cards p {
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+}
+
+.contact-cards a:hover {
+    color: var(--matrix-cyan);
+    text-decoration: none !important;
+}
+
+/* Availability checkmarks */
+.info-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-section li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Support My Work - Buy Coffee Button */
+.coffee-button,
+.info-section .coffee-btn,
+.coffee-button-premium {
+    background: rgba(0, 255, 0, 0.15) !important;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    color: var(--matrix-green);
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.coffee-button:hover,
+.info-section .coffee-btn:hover,
+.coffee-button-premium:hover {
+    background: rgba(0, 255, 0, 0.25) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    text-decoration: none !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+    .info-section {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-section h3 {
+        font-size: 1.1rem;
     }
 }
 
@@ -405,7 +450,7 @@ p.info-card {
     );
     border: 1px solid rgba(0, 255, 0, 0.08);
     border-radius: 6px;
-    color: #000000;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.8rem;
     text-align: center;
     line-height: 1.4;
@@ -413,7 +458,7 @@ p.info-card {
 }
 
 .availability-summary i {
-    color: #000000;
+    color: var(--matrix-green);
 }
 
 .availability-list li {
@@ -599,6 +644,18 @@ p.info-card {
         inset 0 1px 0 rgba(0, 255, 0, 0.05);
 }
 
+/* Dark theme - Remove all matrix styling from form section */
+[data-theme="dark"] .contact-form-section::before {
+    content: none !important;
+    display: none !important;
+}
+
+[data-theme="dark"] .contact-form-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
 @keyframes matrixFormRotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -697,15 +754,15 @@ p.info-card {
     will-change: color, transform;
 }
 
-/* Form Inputs - Ultra Compact */
+/* Form Inputs - Ultra Compact - Blends with dark page background */
 .form-group input,
 .form-group textarea,
 .form-input {
     width: 100%;
     padding: 0.5rem 0.5rem 0.25rem 0.5rem;
-    background: rgba(0, 255, 0, 0.01);
+    background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.2);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.8rem;
@@ -727,7 +784,7 @@ p.info-card {
     position: absolute;
     left: 0.5rem;
     top: 0.5rem;
-    color: rgba(0, 255, 0, 0.4);
+    color: rgba(var(--accent-rgb), 0.5);
     font-size: 0.7rem;
     pointer-events: none;
     transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
@@ -752,7 +809,7 @@ p.info-card {
     color: var(--matrix-green);
     font-weight: 500;
     letter-spacing: 0.05em;
-    background: linear-gradient(145deg, rgba(0, 15, 0, 0.98), rgba(0, 25, 0, 0.95));
+    background: var(--bg-primary);
     padding: 0 0.25rem;
 }
 
@@ -760,7 +817,7 @@ p.info-card {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-input:focus {
-    background: rgba(0, 255, 0, 0.03);
+    background: rgba(var(--accent-rgb), 0.03);
     border-bottom-color: var(--matrix-green);
     color: var(--matrix-green);
 }
@@ -796,7 +853,7 @@ p.info-card {
     right: 0;
     bottom: -20px;
     font-size: 0.8rem;
-    color: rgba(0, 255, 0, 0.4);
+    color: rgba(var(--accent-rgb), 0.4);
     transition: color 300ms ease;
 }
 
@@ -811,11 +868,11 @@ p.info-card {
 /* Validation states */
 .form-group.valid input,
 .form-group.valid textarea {
-    border-bottom-color: rgba(0, 255, 0, 0.5);
+    border-bottom-color: rgba(var(--accent-rgb), 0.5);
 }
 
 .form-group.valid .form-group-icon {
-    color: rgba(0, 255, 0, 0.5);
+    color: rgba(var(--accent-rgb), 0.5);
 }
 
 .form-group.error input,
@@ -844,7 +901,7 @@ p.info-card {
     transform: translateY(0);
 }
 
-/* Submit Button - Ultra Compact */
+/* Submit Button - Ultra Compact - Theme-aware */
 .btn-submit-modern,
 .submit-btn {
     position: relative;
@@ -853,10 +910,10 @@ p.info-card {
     padding: var(--space-xs);
     background: linear-gradient(
         135deg,
-        rgba(0, 255, 0, 0.1),
-        rgba(0, 255, 0, 0.05)
+        rgba(var(--accent-rgb), 0.1),
+        rgba(var(--accent-rgb), 0.05)
     );
-    border: 1px solid rgba(0, 255, 0, 0.4);
+    border: 1px solid rgba(var(--accent-rgb), 0.4);
     border-radius: 4px;
     color: var(--matrix-green);
     font-size: 0.75rem;
@@ -881,7 +938,7 @@ p.info-card {
     height: 100%;
     background: radial-gradient(
         circle,
-        rgba(0, 255, 0, 0.2),
+        rgba(var(--accent-rgb), 0.2),
         transparent 70%
     );
     transform: translate(-50%, -50%) scale(0);
@@ -893,8 +950,8 @@ p.info-card {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     background: linear-gradient(
         135deg,
-        rgba(0, 255, 0, 0.15),
-        rgba(0, 255, 0, 0.08)
+        rgba(var(--accent-rgb), 0.15),
+        rgba(var(--accent-rgb), 0.08)
     );
     border-color: var(--matrix-green);
 }
@@ -1383,6 +1440,496 @@ section#contact {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* ============================================================================
+   PROCESS SECTION - How We Work Together
+   ============================================================================ */
+.contact-process {
+  margin: 0 0 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(0, 25, 0, 0.5), rgba(0, 35, 0, 0.3));
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 12px;
+}
+
+.contact-process .process-title {
+  color: var(--matrix-green);
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+.contact-process .process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.contact-process .process-step {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(145deg, rgba(0, 20, 0, 0.7), rgba(0, 35, 0, 0.5));
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.contact-process .process-step::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -0.6rem;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid rgba(0, 255, 0, 0.3);
+}
+
+.contact-process .process-step:last-child::after {
+  display: none;
+}
+
+.contact-process .process-step:hover {
+  transform: translateY(-4px);
+  border-color: var(--matrix-green);
+  box-shadow: 0 6px 20px rgba(0, 255, 0, 0.2);
+}
+
+.contact-process .process-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.contact-process .process-step:hover .process-icon {
+  background: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+.contact-process .process-icon i {
+  font-size: 1.25rem;
+  color: var(--matrix-green);
+}
+
+.contact-process .process-step h4 {
+  color: var(--matrix-green);
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-process .process-step p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+  max-width: none;
+}
+
+/* Process Section Responsive */
+@media (max-width: 1024px) {
+  .contact-process .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-process .process-step::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-process .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-process {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ============================================================================
+   DARK THEME - Get in Touch Section Premium Redesign
+   ============================================================================ */
+
+[data-theme="dark"] .contact-info {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 15, 25, 0.95),
+    rgba(10, 10, 20, 0.98)
+  );
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(74, 158, 255, 0.1);
+}
+
+[data-theme="dark"] .contact-info:hover {
+  border-color: rgba(74, 158, 255, 0.35);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(74, 158, 255, 0.08),
+    inset 0 1px 0 rgba(74, 158, 255, 0.15);
+}
+
+/* Title with gradient effect */
+[data-theme="dark"] .contact-info h2 {
+  background: linear-gradient(135deg, #4A9EFF 0%, #7AB8FF 50%, #4A9EFF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.3));
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Info Section Cards - Glassmorphism */
+[data-theme="dark"] .info-section {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.08),
+    rgba(74, 158, 255, 0.02)
+  );
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .info-section:hover {
+  border-color: rgba(74, 158, 255, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.12),
+    rgba(74, 158, 255, 0.05)
+  );
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(74, 158, 255, 0.15);
+}
+
+/* Section Headers */
+[data-theme="dark"] .info-section h3 {
+  color: #4A9EFF;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  filter: drop-shadow(0 0 8px rgba(74, 158, 255, 0.3));
+}
+
+[data-theme="dark"] .info-section h3 i {
+  color: #4A9EFF;
+  filter: drop-shadow(0 0 10px rgba(74, 158, 255, 0.5));
+}
+
+/* Info Cards - Premium Glass Effect */
+[data-theme="dark"] .info-card {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.1),
+    rgba(74, 158, 255, 0.03)
+  );
+  border: 1px solid rgba(74, 158, 255, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .info-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.15),
+    rgba(74, 158, 255, 0.05)
+  );
+  border-color: rgba(74, 158, 255, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(74, 158, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .info-card i {
+  color: #4A9EFF;
+  filter: drop-shadow(0 0 8px rgba(74, 158, 255, 0.6));
+}
+
+/* Contact Cards Container */
+[data-theme="dark"] .contact-cards {
+  gap: 0.6rem;
+}
+
+/* Availability Section */
+[data-theme="dark"] .availability-summary {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .availability-summary i {
+  color: #4A9EFF;
+  filter: drop-shadow(0 0 6px rgba(74, 158, 255, 0.5));
+}
+
+/* Coffee/Support Section - Dark Theme - Match other info-sections exactly */
+[data-theme="dark"] .coffee-section {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.08),
+    rgba(74, 158, 255, 0.02)
+  ) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(74, 158, 255, 0.2) !important;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .coffee-section h3 {
+  color: #4A9EFF !important;
+  text-shadow: 0 0 20px rgba(74, 158, 255, 0.4);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .coffee-section h3 i {
+  color: #FF6B9D;
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+}
+
+[data-theme="dark"] .support-text {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+[data-theme="dark"] .coffee-button-premium {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.2),
+    rgba(74, 158, 255, 0.1)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  color: #fff !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  box-shadow:
+    0 4px 20px rgba(74, 158, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(74, 158, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .coffee-button-premium i {
+  color: #FFDD57 !important;
+  filter: drop-shadow(0 0 8px rgba(255, 221, 87, 0.5));
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .coffee-button-premium span {
+  color: #fff !important;
+}
+
+[data-theme="dark"] .coffee-button-premium:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 158, 255, 0.35),
+    rgba(74, 158, 255, 0.2)
+  );
+  border-color: rgba(74, 158, 255, 0.6);
+  box-shadow:
+    0 8px 32px rgba(74, 158, 255, 0.4),
+    0 0 40px rgba(74, 158, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(74, 158, 255, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+[data-theme="dark"] .coffee-button-premium:hover i {
+  transform: rotate(-10deg) scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(255, 221, 87, 0.7));
+}
+
+[data-theme="dark"] .coffee-button-premium::before {
+  background: radial-gradient(
+    circle,
+    rgba(74, 158, 255, 0.3),
+    transparent 70%
+  );
+}
+
+/* Coffee Steam - Dark Theme Blue */
+[data-theme="dark"] .coffee-steam span {
+  background: linear-gradient(
+    to top,
+    transparent,
+    rgba(74, 158, 255, 0.5),
+    transparent
+  );
+}
+
+/* Remove scanline effect for dark theme */
+[data-theme="dark"] .contact-info::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 158, 255, 0.15) 50%,
+    transparent
+  );
+}
+
+/* Dark theme background enhancement */
+[data-theme="dark"] #contact-main::before {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(74, 158, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(74, 158, 255, 0.03) 0%, transparent 40%),
+    linear-gradient(135deg, rgba(74, 158, 255, 0.01) 0%, transparent 25%);
+}
+
+[data-theme="dark"] #contact-main {
+  border-top: 1px solid rgba(74, 158, 255, 0.1);
+  box-shadow: inset 0 0 100px rgba(74, 158, 255, 0.02);
+}
+
+/* ============================================================================
+   DARK THEME - Contact Form Blending Styles
+   Form inputs blend seamlessly with dark page background
+   ============================================================================ */
+
+/* Remove green gradient from form section container - maximum specificity */
+[data-theme="dark"] .contact-form-section,
+[data-theme="dark"] .contact-grid .contact-form-section,
+[data-theme="dark"] #contact-main .contact-form-section,
+[data-theme="dark"] .contact-container .contact-form-section {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .contact-form-section::before,
+[data-theme="dark"] .contact-form-section::after {
+    display: none !important; /* Remove matrix rotating gradient effect */
+    background: transparent !important;
+}
+
+/* Form container - blend with page */
+[data-theme="dark"] .contact-form,
+[data-theme="dark"] form.contact-form,
+[data-theme="dark"] .contact-form-section .contact-form {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Override any green gradients on form wrapper */
+[data-theme="dark"] .contact-form-wrapper {
+    background: transparent !important;
+    border: none !important;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-input {
+    background: transparent;
+    border-bottom-color: rgba(74, 158, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus,
+[data-theme="dark"] .form-input:focus {
+    background: rgba(74, 158, 255, 0.03);
+    border-bottom-color: #4A9EFF;
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .form-group label {
+    color: rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .form-group input:focus ~ label,
+[data-theme="dark"] .form-group input:not(:placeholder-shown) ~ label,
+[data-theme="dark"] .form-group textarea:focus ~ label,
+[data-theme="dark"] .form-group textarea:not(:placeholder-shown) ~ label,
+[data-theme="dark"] .form-input:focus ~ label,
+[data-theme="dark"] .form-input:not(:placeholder-shown) ~ label {
+    color: #4A9EFF;
+    background: #000000;
+}
+
+[data-theme="dark"] .form-line {
+    background: #4A9EFF;
+    box-shadow: 0 0 10px rgba(74, 158, 255, 0.6);
+}
+
+[data-theme="dark"] .submit-btn,
+[data-theme="dark"] .btn-submit-modern {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 158, 255, 0.1),
+        rgba(74, 158, 255, 0.05)
+    );
+    border: 1px solid rgba(74, 158, 255, 0.4);
+    color: #4A9EFF;
+}
+
+[data-theme="dark"] .submit-btn:hover,
+[data-theme="dark"] .btn-submit-modern:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 158, 255, 0.15),
+        rgba(74, 158, 255, 0.08)
+    );
+    border-color: #4A9EFF;
+    color: #FFFFFF;
+    box-shadow: 0 0 15px rgba(74, 158, 255, 0.4);
+}
+
+/* Dark theme success/error messages */
+[data-theme="dark"] .form-success {
+    background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(74, 158, 255, 0.05));
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    color: #4A9EFF;
+}
+
+/* Character counter and validation in dark theme */
+[data-theme="dark"] .char-counter {
+    color: rgba(74, 158, 255, 0.4);
+}
+
+[data-theme="dark"] .form-group.valid input,
+[data-theme="dark"] .form-group.valid textarea {
+    border-bottom-color: rgba(74, 158, 255, 0.5);
+}
+
+[data-theme="dark"] .form-group.valid .form-group-icon {
+    color: rgba(74, 158, 255, 0.5);
 }
 
 /* Print styles */
