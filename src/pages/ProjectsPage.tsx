@@ -134,7 +134,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://morpheusrag.vercel.app',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/Morpheus'
     },
     category: 'ai',
     status: 'completed',
@@ -158,7 +158,7 @@ const projects: Project[] = [
       forks: 0
     },
     links: {
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/ReviewBot-Protocol'
     },
     category: 'ai',
     status: 'completed',
@@ -183,7 +183,7 @@ const projects: Project[] = [
     },
     links: {
       demo: 'https://agenticaiprojectsportfolio.vercel.app/',
-      github: 'https://github.com/ThomasJButler/MasteringAICoursePortfolio'
+      github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio'
     },
     category: 'ai',
     status: 'completed',
