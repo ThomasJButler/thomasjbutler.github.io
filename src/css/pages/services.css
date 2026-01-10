@@ -1252,6 +1252,8 @@ body.low-end-device .techCategory {
   margin: 2rem 0;
   padding: 2rem 0;
   position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .services-subsection {
