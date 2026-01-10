@@ -3,6 +3,9 @@
    Based on design_system.md - Maintaining Matrix aesthetic
    ========================================================================== */
 
+/* Import JetBrains Mono for terminal-style typography */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 :root {
     /* ==========================================================================
        Colors - Matrix Theme (from design_system.md)
@@ -58,6 +61,7 @@
     --font-primary: 'Orbitron', sans-serif;          /* Headers and special text */
     --font-body: 'Exo 2', sans-serif;                /* Body text */
     --font-code: 'Share Tech Mono', monospace;       /* Code blocks */
+    --font-terminal: 'JetBrains Mono', 'Courier New', monospace; /* Terminal/command aesthetic */
     
     /* Type Scale - Responsive with clamp() - bumped +1px for readability */
     --font-size-base: clamp(1.0625rem, 0.95rem + 0.5vw, 1.1875rem);
