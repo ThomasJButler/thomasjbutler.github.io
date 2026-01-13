@@ -55,7 +55,7 @@ export const PLACEHOLDER_IMAGES = {
   matrixArcadeStatic: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767710994/matrixarcade2_kbbnaf.png',
 
   // HomePage introduction images - GIFs and Video
-  matrixArcadeGif: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767712404/matrixarcadegif2_ubesub.gif',
+  matrixArcadeGif: 'https://res.cloudinary.com/depqttzlt/image/upload/w_320,q_auto,f_auto/v1767712404/matrixarcadegif2_ubesub.gif',
   modelVizGif: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767712413/modelvizgif2_wkl1lh.gif',
   morpheusVideo: 'https://res.cloudinary.com/depqttzlt/video/upload/v1767706547/2_1080_N_s5t1ww.mp4',
   morpheusGif: 'https://res.cloudinary.com/depqttzlt/image/upload/v1767712416/morpheusgif2_zdkku9.gif',

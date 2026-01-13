@@ -399,11 +399,11 @@ export const HomePage: React.FC = () => {
           <div className="introduction-img">
             <img src={PLACEHOLDER_IMAGES.matrixArcadeGif} alt="The Matrix Arcade - Interactive Gaming Portal" />
             <img
-              src="https://res.cloudinary.com/depqttzlt/image/upload/v1768064855/Tom_Minimalist_3D_logo_of_Personal_with_a_glowing_neon-green__fd6f82e1-e17a-459f-825b-aee88269f44a_1_ecz9sh.gif"
+              src="https://res.cloudinary.com/depqttzlt/image/upload/w_320,q_auto,f_auto/v1768064855/Tom_Minimalist_3D_logo_of_Personal_with_a_glowing_neon-green__fd6f82e1-e17a-459f-825b-aee88269f44a_1_ecz9sh.gif"
               alt="Personal Logo Animation"
               className="intro-featured"
             />
-            <img src="https://res.cloudinary.com/depqttzlt/image/upload/v1768067110/modelviz2short_ukdyda.gif" alt="ModelViz - AI Model Comparison Platform" />
+            <img src="https://res.cloudinary.com/depqttzlt/image/upload/w_320,q_auto,f_auto/v1768067110/modelviz2short_ukdyda.gif" alt="ModelViz - AI Model Comparison Platform" />
           </div>
 
           {/* Featured Projects Section */}
