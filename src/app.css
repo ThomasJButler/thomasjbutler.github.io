@@ -159,22 +159,58 @@
 /* ─── Light theme: circuit board grid background ─── */
 :root:not(.dark) body {
   background-image:
-    linear-gradient(oklch(0.35 0.22 145 / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(oklch(0.35 0.22 145 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
 }
 
-/* ─── Light theme: card borders more defined ─── */
+/* ─── Light theme: card treatment ─── */
 :root:not(.dark) [data-slot="card"] {
-  box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.06), 0 0 0 1px oklch(0.35 0.22 145 / 0.08);
+  background: oklch(1 0 0 / 0.90);
+  border: 1px solid oklch(0.35 0.22 145 / 0.12);
+  box-shadow:
+    0 1px 2px oklch(0.35 0.22 145 / 0.04),
+    0 2px 8px oklch(0 0 0 / 0.03);
 }
 :root:not(.dark) [data-slot="card"]:hover {
-  box-shadow: 0 4px 16px oklch(0.35 0.22 145 / 0.10), 0 0 0 1px oklch(0.35 0.22 145 / 0.15);
+  border-color: oklch(0.35 0.22 145 / 0.25);
+  box-shadow:
+    0 4px 16px oklch(0.35 0.22 145 / 0.08),
+    0 1px 3px oklch(0.35 0.22 145 / 0.06);
+  transform: translateY(-1px);
 }
 
-/* ─── Light theme: buttons with more green presence ─── */
+/* ─── Light theme: heading accents ─── */
+:root:not(.dark) h1 {
+  color: oklch(0.18 0.06 145);
+}
+
+/* ─── Light theme: buttons with green depth ─── */
 :root:not(.dark) [data-slot="button"][data-variant="default"] {
-  box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.20);
+  box-shadow: 0 2px 6px oklch(0.35 0.22 145 / 0.25);
+}
+:root:not(.dark) [data-slot="button"][data-variant="default"]:hover {
+  box-shadow: 0 4px 12px oklch(0.35 0.22 145 / 0.30);
+}
+
+/* ─── Light theme: terminal window frames ─── */
+:root:not(.dark) .border-border\/50 {
+  border-color: oklch(0.35 0.22 145 / 0.15);
+}
+:root:not(.dark) .border-border\/30 {
+  border-color: oklch(0.35 0.22 145 / 0.10);
+}
+:root:not(.dark) .bg-muted\/30,
+:root:not(.dark) .bg-muted\/20 {
+  background: oklch(0.35 0.22 145 / 0.04);
+}
+
+/* ─── Light theme: gradient lines more visible ─── */
+:root:not(.dark) .via-primary\/30 {
+  --tw-gradient-via-position: ;
+  --tw-gradient-to: oklch(0.35 0.22 145 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), oklch(0.35 0.22 145 / 0.15) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
 /* ─── Base layer ─── */

@@ -13,11 +13,12 @@ import {
   Code,
   Bot,
   Database,
+  Sparkles,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-// Badge available for future use
+import { Badge } from '@/components/ui/badge';
 
 const TYPING_PHRASES = [
   'AI-powered apps',
@@ -36,41 +37,35 @@ const SKILL_BARS = [
 ];
 
 const SYSTEM_STATS = [
-  { icon: GitBranch, label: 'Projects', value: '15+', desc: 'shipped' },
-  { icon: Cpu, label: 'AI Models', value: '7', desc: 'integrated' },
-  { icon: Globe, label: 'Deployments', value: '20+', desc: 'live' },
-  { icon: Zap, label: 'Uptime', value: '99.9%', desc: 'reliability' },
+  { icon: GitBranch, label: 'Projects', value: '15+', numericValue: 15, desc: 'shipped' },
+  { icon: Cpu, label: 'AI Models', value: '7', numericValue: 7, desc: 'integrated' },
+  { icon: Globe, label: 'Deployments', value: '20+', numericValue: 20, desc: 'live' },
+  { icon: Zap, label: 'Uptime', value: '99.9%', numericValue: 99, desc: 'reliability' },
 ];
 
 const RECENT_ACTIVITY = [
-  { icon: Bot, text: 'Built RAG pipeline with LangChain + Pinecone', time: '2025' },
-  { icon: Code, text: 'Shipped ModelViz — AI model comparison platform', time: '2025' },
-  { icon: Database, text: 'SQL Ball: NL-to-SQL football analytics', time: '2025' },
-  { icon: Terminal, text: 'Portfolio redesign with ShadCN + Tailwind v4', time: '2025' },
+  { icon: Bot, text: 'Built RAG pipeline with LangChain + Pinecone', time: '2025', badge: 'AI' },
+  { icon: Code, text: 'Shipped ModelViz — AI model comparison platform', time: '2025', badge: 'Web' },
+  { icon: Database, text: 'SQL Ball: NL-to-SQL football analytics', time: '2025', badge: 'Data' },
+  { icon: Terminal, text: 'Portfolio redesign with ShadCN + Tailwind v4', time: '2025', badge: 'Dev' },
 ];
 
-/* ─── Animated Counter Hook ─── */
+/* ─── Animated Counter ─── */
 function AnimatedNumber({ target, duration = 1.5 }: { target: number; duration?: number }) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (v) => Math.round(v));
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    const controls = motionAnimate(count, target, {
-      duration,
-      ease: 'easeOut',
-    });
+    const controls = motionAnimate(count, target, { duration, ease: 'easeOut' });
     const unsub = rounded.on('change', (v) => setDisplay(v));
-    return () => {
-      controls.stop();
-      unsub();
-    };
+    return () => { controls.stop(); unsub(); };
   }, [target, duration, count, rounded]);
 
   return <span>{display}</span>;
 }
 
-/* ─── Skill Bar Component ─── */
+/* ─── Skill Bar ─── */
 function SkillBar({ label, value, color, delay }: { label: string; value: number; color: string; delay: number }) {
   return (
     <motion.div
@@ -78,7 +73,6 @@ function SkillBar({ label, value, color, delay }: { label: string; value: number
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay }}
-      className="group"
     >
       <div className="flex items-center justify-between mb-1.5">
         <span className="font-mono text-xs text-foreground/80">{label}</span>
@@ -86,7 +80,7 @@ function SkillBar({ label, value, color, delay }: { label: string; value: number
           <AnimatedNumber target={value} duration={1.5 + delay} />%
         </span>
       </div>
-      <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+      <div className="h-2 w-full rounded-full bg-muted/60 overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${value}%` }}
@@ -137,61 +131,83 @@ export function HomePage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6">
-      {/* Hero */}
-      <section className="flex flex-col items-center justify-center py-24 sm:py-28 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+      {/* ═══ Hero — Terminal Session ═══ */}
+      <section className="py-20 sm:py-24">
+        {/* Terminal window frame */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="glow-text font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+          className="relative rounded-xl border border-border/50 overflow-hidden"
         >
-          Hey, I&apos;m Tom
-        </motion.h1>
+          {/* Terminal title bar */}
+          <div className="flex items-center gap-2 px-4 py-2.5 bg-muted/30 border-b border-border/30">
+            <div className="flex gap-1.5">
+              <span className="size-2.5 rounded-full bg-red-500/60" />
+              <span className="size-2.5 rounded-full bg-yellow-500/60" />
+              <span className="size-2.5 rounded-full bg-green-500/60" />
+            </div>
+            <span className="font-mono text-[10px] text-muted-foreground/60 ml-2">tom@matrix ~ </span>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-4 font-mono text-lg text-muted-foreground sm:text-xl"
-        >
-          <span className="text-primary/60">// I build </span>
-          <span className="text-primary">{displayText}</span>
-          <span className="inline-block w-[0.55em] h-[1.05em] bg-primary/80 animate-pulse rounded-sm align-text-bottom shadow-[0_0_8px_oklch(0.50_0.28_145/0.4)]" />
+          {/* Terminal content */}
+          <div className="px-6 py-12 sm:py-16 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="glow-text font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+            >
+              Hey, I&apos;m Tom
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-4 font-mono text-lg text-muted-foreground sm:text-xl"
+            >
+              <span className="text-primary/60">// I build </span>
+              <span className="text-primary">{displayText}</span>
+              <span className="inline-block w-[0.55em] h-[1.05em] bg-primary/80 animate-pulse rounded-sm align-text-bottom shadow-[0_0_8px_oklch(0.50_0.28_145/0.4)]" />
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-3 text-sm text-muted-foreground"
+            >
+              Full Stack AI Engineer from the UK
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
+              className="mt-8 flex justify-center gap-3"
+            >
+              <Button asChild size="lg" className="glow-pulse">
+                <Link to="/projects">
+                  View Projects <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/contact">Get in Touch</Link>
+              </Button>
+            </motion.div>
+          </div>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-3 text-sm text-muted-foreground"
-        >
-          Full Stack AI Engineer from the UK
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 flex gap-3"
-        >
-          <Button asChild size="lg" className="glow-pulse">
-            <Link to="/projects">
-              View Projects <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link to="/contact">Get in Touch</Link>
-          </Button>
-        </motion.div>
-
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5, y: [0, 6, 0] }}
+          animate={{ opacity: 0.4, y: [0, 6, 0] }}
           transition={{
             opacity: { delay: 2, duration: 0.8 },
             y: { delay: 2.5, duration: 1.8, repeat: Infinity, ease: 'easeInOut' },
           }}
-          className="mt-16 flex flex-col items-center gap-1"
+          className="mt-10 flex flex-col items-center gap-1"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">scroll</span>
           <ChevronDown className="size-4 text-muted-foreground" />
@@ -199,7 +215,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ System Status Dashboard ═══ */}
-      <section className="py-12">
+      <section className="py-8">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -231,12 +247,12 @@ export function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
               >
-                <Card size="sm" className="text-center">
-                  <CardContent className="pt-4 pb-3">
-                    <Icon className="size-4 mx-auto mb-2 text-primary/60" />
-                    <div className="font-heading text-2xl font-bold text-foreground">{stat.value}</div>
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">
-                      {stat.label} <span className="text-primary/40">{stat.desc}</span>
+                <Card size="sm" className="text-center group hover:border-primary/30">
+                  <CardContent className="pt-5 pb-4">
+                    <Icon className="size-4 mx-auto mb-2.5 text-primary/50 group-hover:text-primary transition-colors" />
+                    <div className="font-heading text-3xl font-bold text-foreground glow-text">{stat.value}</div>
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
+                      {stat.label}
                     </div>
                   </CardContent>
                 </Card>
@@ -246,7 +262,7 @@ export function HomePage() {
         </div>
 
         {/* Two Column: Skills + Activity */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           {/* Skill Levels */}
           <Card>
             <CardHeader>
@@ -281,14 +297,17 @@ export function HomePage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: i * 0.08 }}
-                      className="flex items-start gap-3 group"
+                      className="flex items-start gap-3"
                     >
                       <div className="flex size-6 shrink-0 items-center justify-center rounded bg-primary/10 text-primary mt-0.5">
                         <Icon className="size-3" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-foreground/90 leading-tight">{item.text}</p>
-                        <span className="font-mono text-[10px] text-muted-foreground">{item.time}</span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4">{item.badge}</Badge>
+                          <span className="font-mono text-[10px] text-muted-foreground">{item.time}</span>
+                        </div>
                       </div>
                     </motion.div>
                   );
@@ -299,30 +318,69 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Brief About */}
-      <section className="py-12">
-        <blockquote className="border-l-2 border-primary/50 pl-6 text-muted-foreground leading-relaxed">
-          <p>
-            Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building things on the web.
-            This site is the sci-fi playground I always dreamed of — a space to experiment with AI,
-            cyberpunk aesthetics, and creative code.
+      {/* ═══ Currently Working On ═══ */}
+      <section className="py-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-lg border border-primary/20 bg-primary/[0.03] p-5"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="size-3.5 text-primary" />
+            <span className="font-mono text-xs uppercase tracking-wider text-primary/70">now</span>
+          </div>
+          <p className="text-sm text-foreground/80 leading-relaxed">
+            Building AI-powered applications and exploring agentic workflows.
+            Currently focused on RAG systems, LangChain integrations, and
+            pushing the boundaries of what&apos;s possible with modern web tech.
           </p>
-        </blockquote>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/about">More about me <ArrowRight className="size-3" /></Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">
-              Commercial portfolio <ExternalLink className="size-3" />
-            </a>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
-              <GithubIcon className="size-3" /> GitHub
-            </a>
-          </Button>
-        </div>
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            <Badge variant="cyan" className="text-[10px]">LangChain</Badge>
+            <Badge variant="cyan" className="text-[10px]">RAG</Badge>
+            <Badge variant="amber" className="text-[10px]">Agents</Badge>
+            <Badge variant="secondary" className="text-[10px]">ShadCN</Badge>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ═══ About Quote — Terminal Output ═══ */}
+      <section className="py-8 pb-16">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="rounded-lg border border-border/30 overflow-hidden">
+            <div className="px-4 py-1.5 bg-muted/20 border-b border-border/20">
+              <span className="font-mono text-[10px] text-muted-foreground/50">$ cat about.md</span>
+            </div>
+            <div className="p-5">
+              <p className="text-muted-foreground leading-relaxed text-[15px]">
+                Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building things on the web.
+                This site is the sci-fi playground I always dreamed of — a space to experiment with AI,
+                cyberpunk aesthetics, and creative code.
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/about">More about me <ArrowRight className="size-3" /></Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">
+                Commercial portfolio <ExternalLink className="size-3" />
+              </a>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
+                <GithubIcon className="size-3" /> GitHub
+              </a>
+            </Button>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
