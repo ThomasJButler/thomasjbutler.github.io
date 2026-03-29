@@ -1,289 +1,117 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Canvas-based Matrix rain animation with performance optimisation,
- *              interactive mouse effects, and layered character streams
- */
+import { useEffect, useRef, useState } from 'react';
 
-import React, { useEffect, useRef } from 'react';
-
-interface MatrixRainProps {
-  theme?: 'matrix';
+interface Drop {
+  y: number;
+  speed: number;
+  chars: string[];
+  brightness: number;
+  isBackground: boolean;
 }
 
-/**
- * Matrix-style falling character animation with authentic visual effects
- * @param {Object} props
- * @param {string} [props.theme='matrix'] - Theme identifier
- * @return {JSX.Element | null}
- * @constructor
- */
-export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
+export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const dropsRef = useRef<Array<{
-    y: number;
-    speed: number;
-    chars: string[];
-    color?: string;
-    brightness?: number;
-    glitchRate?: number;
-    layer?: 'foreground' | 'background';
-    isGlitch?: boolean;
-  }>>([]);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const animationRef = useRef<number>(0);
+  const dropsRef = useRef<Drop[]>([]);
+  const [visible, setVisible] = useState(false);
 
-  /**
-   * @constructs Delays animation start by 2 seconds for page load performance
-   *             Initialises mouse tracking for interactive effects
-   */
   useEffect(() => {
-    const delayTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 2000);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      clearTimeout(delayTimer);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    const timer = setTimeout(() => setVisible(true), 1500);
+    return () => clearTimeout(timer);
   }, []);
 
-  /**
-   * @listens isVisible - Initialises canvas animation when visibility toggles
-   *          Implements performance optimisations for mobile devices
-   */
   useEffect(() => {
-    if (!isVisible) return;
+    if (!visible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const isFirefox = navigator.userAgent.includes('Firefox');
+    const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01';
+    const fontSize = 16;
 
-    const updateCanvasSize = () => {
+    const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    };
-    updateCanvasSize();
-
-    const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
-    const binaryChars = '01';
-    const fontSize = 18;
-
-    // Reduce columns on mobile and Firefox for performance
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const performanceMultiplier = isMobile ? 0.6 : isFirefox ? 0.7 : 1;
-    const columns = Math.floor((canvas.width / fontSize) * performanceMultiplier) + 1;
-
-    dropsRef.current = Array(columns).fill(null).map(() => {
-      const isBackground = Math.random() < 0.4;
-      const isBinary = Math.random() < 0.2; // 20% binary streams
-      const chars = isBinary ? binaryChars : matrixChars;
-
-      return {
-        y: Math.random() * canvas.height - canvas.height,
-        speed: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6,
-        chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() =>
-          chars[Math.floor(Math.random() * chars.length)]
-        ),
-        color: Math.random() < 0.01 ? '#FF0000' :
-               Math.random() < 0.02 ? '#FFD700' :
-               Math.random() < 0.03 ? '#FFEA00' :
-               Math.random() < 0.05 ? '#00FFFF' :
-               '#00FF00',
-        brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
-        glitchRate: Math.random() * 0.02,
-        layer: isBackground ? 'background' : 'foreground',
-        isGlitch: false
-      };
-    });
-
-    const animateDrop = (_dropIndex: number) => {
-      // Placeholder for compatibility - drops animate in draw loop
+      initDrops();
     };
 
-    dropsRef.current.forEach((_, index) => animateDrop(index));
+    const initDrops = () => {
+      // Reduced density: 70% of max columns
+      const cols = Math.floor((canvas.width / fontSize) * 0.7);
+      dropsRef.current = Array.from({ length: cols }, () => {
+        const isBackground = Math.random() < 0.45;
+        return {
+          y: Math.random() * canvas.height * 2 - canvas.height,
+          speed: isBackground ? Math.random() * 0.3 + 0.15 : Math.random() * 0.5 + 0.4,
+          chars: Array.from({ length: Math.floor(canvas.height / fontSize) + 15 }, () =>
+            chars[Math.floor(Math.random() * chars.length)]
+          ),
+          brightness: isBackground ? Math.random() * 0.25 + 0.1 : Math.random() * 0.4 + 0.35,
+          isBackground,
+        };
+      });
+    };
 
-    // Firefox: throttle to ~30fps and use faster fade
-    const targetInterval = isFirefox ? 33 : 0; // 33ms ≈ 30fps
-    let lastFrameTime = 0;
+    resize();
 
-    const draw = (timestamp?: number) => {
-      if (targetInterval && timestamp) {
-        if (timestamp - lastFrameTime < targetInterval) {
-          animationRef.current = requestAnimationFrame(draw);
-          return;
-        }
-        lastFrameTime = timestamp;
-      }
-
-      ctx.fillStyle = (isMobile || isFirefox) ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
+      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
 
-      dropsRef.current.forEach((drop, x) => {
+      for (let x = 0; x < dropsRef.current.length; x++) {
+        const drop = dropsRef.current[x];
         drop.y += drop.speed;
 
-        if (drop.y > canvas.height && Math.random() > 0.97) {
-          const isBackground = drop.layer === 'background';
-          const isBinary = Math.random() < 0.2;
-          const chars = isBinary ? binaryChars : matrixChars;
-
-          drop.y = -drop.chars.length * fontSize - Math.random() * 200;
-          drop.speed = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6;
-          drop.brightness = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5;
-          drop.glitchRate = Math.random() * 0.02;
-          drop.isGlitch = false;
-
-          // Randomize characters on reset
-          drop.chars = drop.chars.map(() =>
-            chars[Math.floor(Math.random() * chars.length)]
-          );
-
-          drop.color = Math.random() < 0.01 ? '#FF0000' :
-                       Math.random() < 0.02 ? '#FFD700' :
-                       Math.random() < 0.03 ? '#FFEA00' :
-                       Math.random() < 0.05 ? '#00FFFF' :
-                       '#00FF00';
+        // Reset when off screen
+        if (drop.y > canvas.height && Math.random() > 0.975) {
+          drop.y = -drop.chars.length * fontSize - Math.random() * 300;
+          drop.speed = drop.isBackground ? Math.random() * 0.3 + 0.15 : Math.random() * 0.5 + 0.4;
         }
-        
-        drop.chars.forEach((char, i) => {
-          const y = drop.y + i * fontSize;
-          
-          if (y > -fontSize && y < canvas.height + fontSize) {
-            const fadePosition = i / drop.chars.length;
-            const opacity = (1 - fadePosition * 0.8) * (drop.brightness || 1);
-            const color = drop.color || '#0F0';
-            
-            const rgb = color === '#0F0' ? '0, 255, 0' :
-                       color === '#00FF00' ? '0, 255, 0' :
-                       color === '#00FFFF' ? '0, 255, 255' :
-                       color === '#FFD700' ? '255, 215, 0' :
-                       color === '#FFEA00' ? '255, 234, 0' :
-                       color === '#FF0000' ? '255, 0, 0' :
-                       color === '#39FF14' ? '57, 255, 20' : '0, 255, 0';
-            
-            if (i === drop.chars.length - 1) {
-              ctx.shadowBlur = isFirefox ? 0 : 25;
-              ctx.shadowColor = color;
-              ctx.fillStyle = '#ffffff';
-              ctx.font = `${fontSize * 1.2}px 'Share Tech Mono', monospace`;
-            } else if (i >= drop.chars.length - 3) {
-              const glowIntensity = 15 - (drop.chars.length - 1 - i) * 4;
-              ctx.shadowBlur = isFirefox ? 0 : glowIntensity;
-              ctx.shadowColor = color;
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.3})`;
-            } else if (i >= drop.chars.length - 10) {
-              ctx.shadowBlur = isFirefox ? 0 : 2;
-              ctx.shadowColor = color;
-              ctx.fillStyle = `rgba(${rgb}, ${opacity * 1.1})`;
-            } else {
-              ctx.shadowBlur = 0;
-              ctx.fillStyle = `rgba(${rgb}, ${opacity * 0.7})`;
-            }
-            
-            if (Math.random() < (drop.glitchRate || 0.01)) {
-              char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-              drop.chars[i] = char;
-            }
-            
-            ctx.fillText(char, x * fontSize + fontSize / 2, y);
-            
-            if (i === drop.chars.length - 1) {
-              ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
-            }
+
+        const len = drop.chars.length;
+        for (let i = 0; i < len; i++) {
+          const py = drop.y + i * fontSize;
+          if (py < -fontSize || py > canvas.height + fontSize) continue;
+
+          const fade = (1 - (i / len) * 0.85) * drop.brightness;
+
+          if (i >= len - 2) {
+            // Leading character: bright white-green
+            ctx.fillStyle = `rgba(200, 255, 200, ${Math.min(fade * 1.5, 0.9)})`;
+          } else {
+            ctx.fillStyle = `rgba(0, 200, 0, ${fade * 0.7})`;
           }
-        });
-        
-        if (drop.speed > 5) {
-          drop.speed *= 0.98;
+
+          // Occasional character mutation
+          if (Math.random() < 0.002) {
+            drop.chars[i] = chars[Math.floor(Math.random() * chars.length)];
+          }
+
+          ctx.fillText(drop.chars[i], x * (fontSize / 0.7) + fontSize / 2, py);
         }
-      });
+      }
 
       animationRef.current = requestAnimationFrame(draw);
     };
 
     draw();
-
-    const handleResize = () => {
-      updateCanvasSize();
-      const newColumns = Math.floor(canvas.width / fontSize);
-      
-      if (newColumns > dropsRef.current.length) {
-        const newDrops = Array(newColumns - dropsRef.current.length).fill(null).map(() => ({
-          y: Math.random() * -100,
-          speed: Math.random() * 1.5 + 0.8,
-          chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() => 
-            matrixChars[Math.floor(Math.random() * matrixChars.length)]
-          ),
-          color: Math.random() < 0.85 ? '#0F0' : (Math.random() < 0.5 ? '#00FFFF' : '#39FF14'),
-          brightness: Math.random() * 0.5 + 0.5,
-          glitchRate: Math.random() * 0.02
-        }));
-        dropsRef.current = [...dropsRef.current, ...newDrops];
-        newDrops.forEach((_, index) => animateDrop(dropsRef.current.length - newDrops.length + index));
-      } else if (newColumns < dropsRef.current.length) {
-        dropsRef.current = dropsRef.current.slice(0, newColumns);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = Math.floor(e.clientX / fontSize);
-      if (dropsRef.current[x]) {
-        const radius = 3;
-        for (let i = x - radius; i <= x + radius; i++) {
-          if (dropsRef.current[i]) {
-            dropsRef.current[i].speed = 8;
-          }
-        }
-      }
-    };
-
-    canvas.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', resize);
 
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationRef.current);
+      window.removeEventListener('resize', resize);
     };
-  }, [isVisible, theme]);
+  }, [visible]);
 
-  if (!isVisible) return null;
+  if (!visible) return null;
 
   return (
     <canvas
       ref={canvasRef}
-      className="matrix-rain"
-      role="presentation"
       aria-hidden="true"
-      aria-label="Decorative Matrix code rain animation background"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -1,
-        pointerEvents: 'none',
-        background: 'transparent',
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 1s ease-in-out'
-      }}
+      className="pointer-events-none fixed inset-0 -z-10 opacity-60 transition-opacity duration-1000"
     />
   );
-};
+}

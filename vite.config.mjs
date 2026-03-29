@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
+import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'path';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
 
@@ -30,9 +30,7 @@ export default defineConfig({
   // Custom plugins
   plugins: [
     react(),
-    legacy({
-      targets: ['defaults', 'not IE 11']
-    }),
+    tailwindcss(),
     // Development middleware to serve blog markdown files
     {
       name: 'serve-blog-files',

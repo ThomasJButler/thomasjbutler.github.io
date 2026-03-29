@@ -25,7 +25,7 @@
       "@js/*": ["src/js/*"],
       "@images/*": ["src/images/*"]
     },
-    "types": ["vite/client", "node", "gsap", "scrollmagic"]
+    "types": ["vite/client", "node"]
   },
   "include": ["src/**/*", "*.html"],
   "exclude": ["node_modules", "dist", "bigbang-gallery", "version-timetravel"]
