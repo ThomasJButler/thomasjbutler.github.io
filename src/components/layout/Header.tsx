@@ -19,14 +19,14 @@ export function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-surface-0/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
         <Link
           to="/"
-          className="font-mono text-sm font-semibold text-matrix-300 transition-colors hover:text-matrix-200"
+          className="font-mono text-sm font-semibold text-primary transition-colors hover:text-primary/80"
         >
-          <span className="text-matrix-500">&gt;</span> tom_butler
+          <span className="text-primary/60">&gt;</span> tom_butler
         </Link>
 
         {/* Desktop nav */}
@@ -51,7 +51,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-matrix-300"
+              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-primary"
             >
               <GithubIcon className="size-4" />
             </a>
@@ -60,7 +60,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-matrix-300"
+              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-primary"
             >
               <LinkedinIcon className="size-4" />
             </a>
@@ -90,7 +90,7 @@ export function Header() {
             aria-hidden="true"
           />
           <nav
-            className="fixed inset-x-0 top-14 z-50 border-b border-border bg-surface-0/95 backdrop-blur-md p-4 md:hidden"
+            className="fixed inset-x-0 top-14 z-50 border-b border-border bg-background/95 backdrop-blur-md p-4 md:hidden"
             aria-label="Mobile navigation"
           >
             <div className="flex flex-col gap-1">
@@ -102,7 +102,7 @@ export function Header() {
                   className={cn(
                     'rounded-md px-4 py-2.5 font-mono text-sm transition-colors',
                     location.pathname === item.href
-                      ? 'bg-surface-2 text-matrix-300'
+                      ? 'bg-surface-2 text-primary'
                       : 'text-text-muted hover:bg-surface-1 hover:text-text'
                   )}
                 >
@@ -115,7 +115,7 @@ export function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
-                  className="rounded-md p-2 text-text-muted transition-colors hover:text-matrix-300"
+                  className="rounded-md p-2 text-text-muted transition-colors hover:text-primary"
                 >
                   <GithubIcon className="size-4" />
                 </a>
@@ -124,7 +124,7 @@ export function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="rounded-md p-2 text-text-muted transition-colors hover:text-matrix-300"
+                  className="rounded-md p-2 text-text-muted transition-colors hover:text-primary"
                 >
                   <LinkedinIcon className="size-4" />
                 </a>

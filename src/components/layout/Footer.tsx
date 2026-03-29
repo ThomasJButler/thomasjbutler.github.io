@@ -15,7 +15,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-text-muted transition-colors hover:text-matrix-300"
+            className="text-text-muted transition-colors hover:text-primary"
           >
             <GithubIcon className="size-4" />
           </a>
@@ -24,14 +24,14 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-text-muted transition-colors hover:text-matrix-300"
+            className="text-text-muted transition-colors hover:text-primary"
           >
             <LinkedinIcon className="size-4" />
           </a>
           <a
             href="mailto:dev@thomasjbutler.me"
             aria-label="Email"
-            className="text-text-muted transition-colors hover:text-matrix-300"
+            className="text-text-muted transition-colors hover:text-primary"
           >
             <Mail className="size-4" />
           </a>
