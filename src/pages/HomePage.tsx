@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, ChevronDown } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -71,7 +71,7 @@ export function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="glow-text font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+          className="glow-text font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
         >
           Hey, I&apos;m Tom
         </motion.h1>
@@ -84,7 +84,7 @@ export function HomePage() {
         >
           <span className="text-primary/60">// I build </span>
           <span className="text-primary">{displayText}</span>
-          <span className="animate-pulse text-primary">|</span>
+          <span className="inline-block w-[0.55em] h-[1.05em] bg-primary/80 animate-pulse rounded-sm align-text-bottom shadow-[0_0_8px_oklch(0.50_0.28_145/0.4)]" />
         </motion.div>
 
         <motion.p
@@ -102,7 +102,7 @@ export function HomePage() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-8 flex gap-3"
         >
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="glow-pulse">
             <Link to="/projects">
               View Projects <ArrowRight className="size-4" />
             </Link>
@@ -110,6 +110,19 @@ export function HomePage() {
           <Button asChild variant="outline" size="lg">
             <Link to="/contact">Get in Touch</Link>
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5, y: [0, 6, 0] }}
+          transition={{
+            opacity: { delay: 2, duration: 0.8 },
+            y: { delay: 2.5, duration: 1.8, repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="mt-16 flex flex-col items-center gap-1"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">scroll</span>
+          <ChevronDown className="size-4 text-muted-foreground" />
         </motion.div>
       </section>
 

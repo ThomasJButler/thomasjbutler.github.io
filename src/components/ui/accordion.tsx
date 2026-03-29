@@ -17,7 +17,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("not-last:border-b", className)}
+      className={cn("not-last:border-b transition-all data-open:border-l-2 data-open:border-l-primary/40 data-open:pl-2", className)}
       {...props}
     />
   )

@@ -221,7 +221,7 @@ export function ServicesPage() {
           Free consultation. No obligation. Let&apos;s discuss your project.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="glow-pulse">
             <Link to="/contact">
               Get in Touch <ArrowRight className="size-4" />
             </Link>

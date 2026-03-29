@@ -14,6 +14,7 @@ import {
   Headphones,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { LinkedInBanner } from '@/components/LinkedInBanner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,6 +29,7 @@ export function ContactPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6">
+      <LinkedInBanner />
       {/* Page Header */}
       <section className="py-16 text-center">
         <motion.h1

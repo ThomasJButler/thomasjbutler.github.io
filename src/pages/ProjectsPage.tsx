@@ -8,6 +8,15 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects, categories } from '@/lib/projects';
 import { MotionSection } from '@/components/MotionSection';
+import { cn } from '@/lib/utils';
+
+const categoryBorder: Record<string, string> = {
+  ai: 'border-l-cyan',
+  web: 'border-l-matrix-400',
+  games: 'border-l-amber',
+  creative: 'border-l-amber',
+  personal: 'border-l-matrix-600',
+};
 
 export function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -53,7 +62,7 @@ export function ProjectsPage() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
             >
-              <Card className="h-full transition-shadow hover:ring-primary/30 hover:ring-2">
+              <Card featured={project.featured} className={cn("h-full border-l-2", categoryBorder[project.category] || "border-l-matrix-600", "transition-shadow hover:ring-primary/30 hover:ring-2")}>
                 <CardHeader>
                   <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
                   <CardDescription className="line-clamp-2">{project.description}</CardDescription>

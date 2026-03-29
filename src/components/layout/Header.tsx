@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -18,7 +19,7 @@ export function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-primary/10 bg-surface-0/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
+    <header className="sticky top-0 z-50 bg-surface-0/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
         <Link
@@ -63,6 +64,7 @@ export function Header() {
             >
               <LinkedinIcon className="size-4" />
             </a>
+            <ThemeToggle />
           </div>
         </nav>
 
@@ -126,11 +128,13 @@ export function Header() {
                 >
                   <LinkedinIcon className="size-4" />
                 </a>
+                <ThemeToggle />
               </div>
             </div>
           </nav>
         </>
       )}
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </header>
   );
 }
