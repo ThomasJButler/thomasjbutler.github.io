@@ -1,85 +1,61 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Home page with animated introduction, navigation cards, project showcases,
- *              and interactive scroll effects with particle animations
- */
-
-import React, { useEffect, useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { animate } from 'animejs';
-import { useCardAnimations } from '../hooks/useCardAnimations';
-import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
+import { motion } from 'framer-motion';
+import { ArrowRight, ExternalLink } from 'lucide-react';
+import { GithubIcon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
-// Featured projects for homepage showcase (no images - they appear in hero above)
-const FEATURED_PROJECTS = [
-  {
-    id: 'matrix-arcade',
-    name: 'The Matrix Arcade',
-    description: 'Retro-style arcade games with a Matrix theme. Built with React, Vite, and Canvas API.',
-    links: {
-      demo: 'https://the-matrix-arcade.vercel.app/',
-      github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
-    }
-  },
-  {
-    id: 'modelviz',
-    name: 'ModelViz',
-    description: 'Compare AI models across providers with real-time metrics, cost analysis, and 3D visualisations.',
-    links: {
-      demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/thomasjbutler/modelviz'
-    }
-  }
-];
-
-/**
- * Home page component with cascading animations and scroll effects
- * @return {JSX.Element}
- * @constructor
- */
-// Typing animation phrases
 const TYPING_PHRASES = [
   'AI-powered apps',
   'production web apps',
   'intelligent agents',
-  'creative solutions'
+  'creative solutions',
 ];
 
-export const HomePage: React.FC = () => {
-  useCardAnimations();
+const FEATURED_PROJECTS = [
+  {
+    id: 'modelviz',
+    name: 'ModelViz',
+    description: 'Compare AI models across providers with real-time metrics, cost analysis, and 3D visualisations.',
+    topics: ['Next.js', 'TypeScript', 'Three.js'],
+    links: { demo: 'https://modelviz.vercel.app/', github: 'https://github.com/ThomasJButler/ModelViz' },
+  },
+  {
+    id: 'matrix-arcade',
+    name: 'The Matrix Arcade',
+    description: 'Retro-style arcade games with a Matrix theme. Built with React, Vite, and Canvas API.',
+    topics: ['React', 'Canvas API', 'Vite'],
+    links: { demo: 'https://the-matrix-arcade.vercel.app/', github: 'https://github.com/ThomasJButler/The-Matrix-Arcade' },
+  },
+];
 
-  // Typing animation state
+export function HomePage() {
   const [displayText, setDisplayText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Typing animation effect
   const animateTyping = useCallback(() => {
     const currentPhrase = TYPING_PHRASES[phraseIndex];
-    const typingSpeed = isDeleting ? 50 : 100;
-    const pauseTime = isDeleting ? 500 : 2000;
+    const speed = isDeleting ? 50 : 100;
+    const pause = isDeleting ? 500 : 2000;
 
     if (!isDeleting && displayText === currentPhrase) {
-      // Pause before deleting
-      setTimeout(() => setIsDeleting(true), pauseTime);
+      setTimeout(() => setIsDeleting(true), pause);
       return;
     }
-
     if (isDeleting && displayText === '') {
-      // Move to next phrase
       setIsDeleting(false);
       setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length);
       return;
     }
 
-    // Type or delete character
     const nextText = isDeleting
       ? currentPhrase.substring(0, displayText.length - 1)
       : currentPhrase.substring(0, displayText.length + 1);
 
-    setTimeout(() => setDisplayText(nextText), typingSpeed);
+    setTimeout(() => setDisplayText(nextText), speed);
   }, [displayText, phraseIndex, isDeleting]);
 
   useEffect(() => {
@@ -87,488 +63,124 @@ export const HomePage: React.FC = () => {
     return () => clearTimeout(timer);
   }, [animateTyping]);
 
-  // Add .animated class to intro content on mount
-  useEffect(() => {
-    // Wait a small delay for DOM to be ready
-    setTimeout(() => {
-      // Animate intro media (images/videos)
-      const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
-      introMedia.forEach(media => {
-        media.classList.add('animated');
-      });
-
-      // Animate intro text elements
-      const introText = document.querySelectorAll('.welcome-text, .hero-tagline, .hero-subtitle');
-      introText.forEach(text => {
-        text.classList.add('animated');
-      });
-    }, 100);
-  }, []);
-
-  const galleriesRef = useScrollAnimation({
-    threshold: 0.3,
-    animationProps: {
-      opacity: [0, 1],
-      scale: [0.9, 1],
-      duration: 1200,
-      ease: 'outElastic'
-    }
-  });
-
-  /**
-   * @constructs Initialises parallax scrolling and reveal animations with RAF throttling
-   */
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrolled = window.scrollY;
-          
-          // Subtle parallax for introduction images and videos
-          const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
-          introMedia.forEach((media, index) => {
-            const speed = 0.05 + index * 0.02; // Much more subtle
-            (media as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
-          });
-          
-          const revealElements = document.querySelectorAll('.introduction-expertise-card:not(.revealed), .timetravel-card:not(.revealed)');
-          revealElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
-
-            if (isVisible) {
-              el.classList.add('revealed');
-              animate(el as HTMLElement, {
-                opacity: [0, 1],
-                translateY: [20, 0],
-                duration: 600,
-                easing: 'easeOutQuad'
-              });
-            }
-          });
-          
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  /**
-   * @constructs Sets up entrance animations, hover effects, and interactive button behaviours
-   *             Includes magnetic cursor effects and particle systems
-   */
-  useEffect(() => {
-    const timetravelCta = document.getElementById('timetravel-cta');
-    if (timetravelCta) {
-      setTimeout(() => {
-        timetravelCta.classList.add('matrix-loaded');
-      }, 2000);
-    }
-
-    const animatePageEntrance = () => {
-      const welcomeText = document.querySelector('.welcome-text');
-      if (welcomeText) {
-        welcomeText.classList.add('animated');
-        animate(welcomeText as HTMLElement, {
-          opacity: [0, 1],
-          scale: [0.95, 1],
-          duration: 800,
-          delay: 100,
-          easing: 'easeOutQuad'
-        });
-      }
-
-      // Animate hero subtitle ("Full Stack AI Engineer from the UK")
-      const heroSubtitle = document.querySelector('.hero-subtitle');
-      if (heroSubtitle) {
-        heroSubtitle.classList.add('animated');
-        animate(heroSubtitle as HTMLElement, {
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 600,
-          delay: 500,
-          easing: 'easeOutQuad'
-        });
-      }
-
-      const introElements = document.querySelectorAll('#introduction h2:not(.welcome-text)');
-      introElements.forEach((el, index) => {
-        el.classList.add('animated');
-
-        animate(el as HTMLElement, {
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 600,
-          delay: 300 + index * 100,
-          easing: 'easeOutQuad'
-        });
-      });
-      
-      const introMedia = document.querySelectorAll('.introduction-img img, .introduction-img video');
-      introMedia.forEach((media, index) => {
-        media.classList.add('animated');
-
-        const isVideo = media.tagName === 'VIDEO';
-        const isReady = isVideo
-          ? (media as HTMLVideoElement).readyState >= 3
-          : (media as HTMLImageElement).complete;
-
-        if (isReady) {
-          animate(media as HTMLElement, {
-            opacity: [0, 1],
-            scale: [0.9, 1],
-            translateY: [20, 0],
-            duration: 700,
-            delay: 400 + index * 150,
-            easing: 'easeOutQuad'
-          });
-        } else {
-          const eventType = isVideo ? 'canplaythrough' : 'load';
-          media.addEventListener(eventType, () => {
-            animate(media as HTMLElement, {
-              opacity: [0, 1],
-              scale: [0.9, 1],
-              translateY: [20, 0],
-              duration: 700,
-              delay: index * 150,
-              easing: 'easeOutQuad'
-            });
-          });
-        }
-      });
-      
-      // Animate timetravel card
-      const timetravelCard = document.querySelector('.timetravel-card');
-      if (timetravelCard) {
-        animate(timetravelCard as HTMLElement, {
-          opacity: [0, 1],
-          translateY: [30, 0],
-          duration: 800,
-          delay: 1200,
-          easing: 'easeOutQuad'
-        });
-      }
-
-      const buttons = document.querySelectorAll('.btn-professional, .matrix-btn-primary');
-      buttons.forEach((btn, index) => {
-        btn.classList.add('animated');
-
-        animate(btn as HTMLElement, {
-          opacity: [0, 1],
-          scale: [0, 1.1, 1],
-          duration: 600,
-          delay: 1500 + index * 100,
-          easing: 'easeOutBack'
-        });
-      });
-    };
-    
-    animatePageEntrance();
-    
-    const cards = document.querySelectorAll('.introduction-expertise-card, .timetravel-card');
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', (e) => {
-        if (e.currentTarget) {
-          animate(e.currentTarget as HTMLElement, {
-            scale: 1.05,
-            translateY: -5,
-            duration: 300,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-      
-      card.addEventListener('mouseleave', (e) => {
-        if (e.currentTarget) {
-          animate(e.currentTarget as HTMLElement, {
-            scale: 1,
-            translateY: 0,
-            duration: 300,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-    });
-    
-    const buttons = document.querySelectorAll('.matrix-btn-primary, .btn-professional, .matrix-btn, button');
-    buttons.forEach(button => {
-      const btn = button as HTMLElement;
-      
-      const handleMouseMove = (e: MouseEvent) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const distance = Math.sqrt(x * x + y * y);
-        const maxDistance = 100;
-        
-        if (distance < maxDistance) {
-          const strength = (1 - distance / maxDistance) * 0.3;
-          const translateX = x * strength;
-          const translateY = y * strength;
-          
-          btn.style.setProperty('--magnetic-transform', `translate(${translateX}px, ${translateY}px)`);
-          btn.style.transform = `translate(${translateX}px, ${translateY}px) scale(1.02)`;
-        }
-      };
-      
-      const handleMouseLeave = () => {
-        btn.style.transform = '';
-        btn.style.removeProperty('--magnetic-transform');
-      };
-      
-      const createParticles = (x: number, y: number) => {
-        const particleCount = 8;
-        let container = document.querySelector('.particle-container');
-        
-        if (!container) {
-          container = document.createElement('div');
-          container.className = 'particle-container';
-          document.body.appendChild(container);
-        }
-        
-        for (let i = 0; i < particleCount; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          
-          const angle = (Math.PI * 2 * i) / particleCount;
-          const velocity = 30 + Math.random() * 40;
-          const tx = Math.cos(angle) * velocity;
-          const ty = Math.sin(angle) * velocity;
-          
-          particle.style.left = `${x}px`;
-          particle.style.top = `${y}px`;
-          particle.style.setProperty('--tx', `${tx}px`);
-          particle.style.setProperty('--ty', `${ty}px`);
-          
-          container.appendChild(particle);
-          
-          setTimeout(() => particle.remove(), 1000);
-        }
-        
-        const wave = document.createElement('div');
-        wave.className = 'sound-wave';
-        wave.style.left = `${x - 50}px`;
-        wave.style.top = `${y - 50}px`;
-        container.appendChild(wave);
-        setTimeout(() => wave.remove(), 600);
-      };
-      
-      const handleClick = (e: MouseEvent) => {
-        const rect = btn.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        
-        btn.style.setProperty('--ripple-x', `${x}%`);
-        btn.style.setProperty('--ripple-y', `${y}%`);
-        
-        createParticles(e.clientX, e.clientY);
-        
-        animate(btn, {
-          scale: [1, 0.95, 1.05, 1],
-          duration: 400,
-          easing: 'easeOutElastic(1, .5)'
-        });
-      };
-      
-      btn.addEventListener('mousemove', handleMouseMove);
-      btn.addEventListener('mouseleave', handleMouseLeave);
-      btn.addEventListener('click', handleClick);
-    });
-  }, []);
-
   return (
-    <>
-      <section id="introduction">
-        <div className="container">
-          <h2 className="welcome-text">Hey, I'm Tom</h2>
-          <h2 className="hero-tagline">
-            <span className="hero-tagline-prefix">// I build</span>
-            <span className="typing-wrapper">
-              <span className="typing-text">{displayText}</span>
-              <span className="typing-cursor">|</span>
-            </span>
-          </h2>
-          <p className="hero-subtitle">Full Stack AI Engineer from the UK</p>
-          <div className="introduction-img">
-            <img src={PLACEHOLDER_IMAGES.matrixArcadeGif} alt="The Matrix Arcade - Interactive Gaming Portal" />
-            <img
-              src="https://res.cloudinary.com/depqttzlt/image/upload/w_320,q_auto,f_auto/v1768064855/Tom_Minimalist_3D_logo_of_Personal_with_a_glowing_neon-green__fd6f82e1-e17a-459f-825b-aee88269f44a_1_ecz9sh.gif"
-              alt="Personal Logo Animation"
-              className="intro-featured"
-            />
-            <img src="https://res.cloudinary.com/depqttzlt/image/upload/w_320,q_auto,f_auto/v1768067110/modelviz2short_ukdyda.gif" alt="ModelViz - AI Model Comparison Platform" />
-          </div>
+    <div className="mx-auto max-w-5xl px-6">
+      {/* Hero */}
+      <section className="flex flex-col items-center justify-center py-28 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="glow-text font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+        >
+          Hey, I&apos;m Tom
+        </motion.h1>
 
-          {/* Featured Projects Section */}
-          <div className="featured-projects-section">
-            <h3 className="featured-projects-title">
-              <i className="fas fa-star"></i> Featured Projects
-            </h3>
-            <div className="featured-projects-grid">
-              {FEATURED_PROJECTS.map(project => (
-                <div key={project.id} className="featured-card featured-card-no-image">
-                  <div className="featured-card-content">
-                    <div className="featured-card-title">{project.name}</div>
-                    <div className="featured-card-desc">{project.description}</div>
-                  </div>
-                  <div className="featured-card-links">
-                    {project.links.demo && (
-                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer" title="Live Demo">
-                        <i className="fas fa-globe"></i>
-                      </a>
-                    )}
-                    {project.links.github && (
-                      <a href={project.links.github} target="_blank" rel="noopener noreferrer" title="GitHub">
-                        <i className="fab fa-github"></i>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-4 font-mono text-lg text-muted-foreground sm:text-xl"
+        >
+          <span className="text-primary/60">// I build </span>
+          <span className="text-primary">{displayText}</span>
+          <span className="animate-pulse text-primary">|</span>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-3 text-sm text-muted-foreground"
+        >
+          Full Stack AI Engineer from the UK
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-8 flex gap-3"
+        >
+          <Button asChild size="lg">
+            <Link to="/projects">
+              View Projects <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link to="/contact">Get in Touch</Link>
+          </Button>
+        </motion.div>
       </section>
 
-      <section id="portfolio-hub" ref={galleriesRef as React.RefObject<HTMLElement>}>
-        <div className="container">
-          <h2 className="purpose-heading">// Why I Built This Portfolio</h2>
-          <div className="hub-layout">
-            {/* Left Column - Purpose Text */}
-            <div className="hub-left">
-              <div className="purpose-content">
-                <p>
-                  Ever since I watched The Matrix as a kid, I've been obsessed with building things on the web. This site is the sci-fi inspired playground I always dreamed of creating.
-                </p>
-                <p>
-                  It's where I separate creative freedom from client work. I can crash things, try that new animation library everyone's talking about, and rebuild from scratch just because I can.
-                </p>
-                <p>
-                  Cyberpunk aesthetics, AI experiments, pushing boundaries. This is my space to geek out and have fun with code.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column - All Navigation */}
-            <div className="hub-right">
-              {/* Explore Section */}
-              <div className="hub-section">
-                <span className="hub-label">Explore</span>
-                <div className="hub-grid">
-                  <Link to="/about" className="hub-btn">
-                    <i className="fas fa-user"></i>
-                    About
-                  </Link>
-                  <a
-                    href="https://github.com/thomasjbutler"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hub-btn"
-                  >
-                    <i className="fab fa-github"></i>
-                    GitHub
-                  </a>
-                  <Link to="/projects" className="hub-btn">
-                    <i className="fas fa-images"></i>
-                    Projects
-                  </Link>
-                  <Link to="/services" className="hub-btn">
-                    <i className="fas fa-cogs"></i>
-                    Services
-                  </Link>
-                </div>
-              </div>
-
-              {/* Professional Work Section */}
-              <div className="hub-section">
-                <span className="hub-label">Professional Work</span>
-                <div className="hub-grid-horizontal">
-                  <a
-                    href="https://thomasjbutler.me"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hub-btn-external"
-                  >
-                    <i className="fas fa-briefcase"></i>
-                    Commercial Portfolio
-                    <i className="fas fa-external-link-alt hub-external-icon"></i>
-                  </a>
-                  <a
-                    href="https://agenticaiprojectsportfolio.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hub-btn-external"
-                  >
-                    <i className="fas fa-robot"></i>
-                    Agentic AI Portfolio
-                    <i className="fas fa-external-link-alt hub-external-icon"></i>
-                  </a>
-                </div>
-              </div>
-
-              {/* Get in Touch Section */}
-              <div className="hub-section hub-contact">
-                <span className="hub-label">Get in Touch</span>
-                <div className="hub-contact-row">
-                  <Link to="/contact" className="hub-btn hub-btn-contact">
-                    <i className="fas fa-envelope"></i>
-                    Contact Me
-                  </Link>
-                  <div className="hub-social-icons">
-                    <a
-                      href="https://linkedin.com/in/thomasbutleruk"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hub-social-icon"
-                      aria-label="LinkedIn Profile"
-                    >
-                      <i className="fab fa-linkedin"></i>
-                    </a>
-                    <a
-                      href="https://codepen.io/thomasbutler"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hub-social-icon"
-                      aria-label="CodePen Profile"
-                    >
-                      <i className="fab fa-codepen"></i>
-                    </a>
-                    <a
-                      href="mailto:hello@thomasjbutler.com"
-                      className="hub-social-icon"
-                      aria-label="Email Me"
-                    >
-                      <i className="fas fa-at"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* TimeTravel Section - Compact at bottom */}
-          <div className="hub-timetravel-bottom">
-            <p className="hub-timetravel-intro">Curious about the journey? Watch this portfolio evolve through time.</p>
-            <a
-              href="https://thomasjbutler.github.io/version-timetravel/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hub-btn-timetravel-large"
+      {/* Featured Work */}
+      <section className="py-16">
+        <h2 className="font-heading text-sm font-medium uppercase tracking-widest text-primary/70">
+          Featured Work
+        </h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {FEATURED_PROJECTS.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <i className="fas fa-history"></i>
-              TimeTravel
-              <i className="fas fa-external-link-alt hub-external-icon"></i>
-            </a>
-          </div>
+              <Card className="h-full transition-shadow hover:ring-primary/30 hover:ring-2">
+                <CardHeader>
+                  <CardTitle className="font-heading text-base">{project.name}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.topics.map((t) => (
+                      <Badge key={t} variant="secondary">{t}</Badge>
+                    ))}
+                  </div>
+                </CardContent>
+                <CardFooter className="gap-2">
+                  {project.links.demo && (
+                    <Button asChild variant="ghost" size="xs">
+                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="size-3" /> Live
+                      </a>
+                    </Button>
+                  )}
+                  {project.links.github && (
+                    <Button asChild variant="ghost" size="xs">
+                      <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                        <GithubIcon className="size-3" /> Code
+                      </a>
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </section>
-    </>
+
+      {/* Brief About */}
+      <section className="py-16">
+        <blockquote className="border-l-2 border-primary/50 pl-6 text-muted-foreground leading-relaxed">
+          <p>
+            Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building things on the web.
+            This site is the sci-fi playground I always dreamed of — a space to experiment with AI,
+            cyberpunk aesthetics, and creative code.
+          </p>
+        </blockquote>
+        <div className="mt-4 flex gap-3">
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/about">More about me <ArrowRight className="size-3" /></Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">
+              Commercial portfolio <ExternalLink className="size-3" />
+            </a>
+          </Button>
+        </div>
+      </section>
+    </div>
   );
-};
+}

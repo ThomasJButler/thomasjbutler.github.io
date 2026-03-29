@@ -1,810 +1,94 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Projects showcase page with filterable categories, pagination,
- *              and 3D flippable project cards with animated interactions
- */
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
+import { GithubIcon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { projects, categories } from '@/lib/projects';
+import { MotionSection } from '@/components/MotionSection';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useMatrixAnimation } from '../hooks/useMatrixAnimation';
-import { animate, stagger } from 'animejs';
-import { useCardAnimations } from '../hooks/useCardAnimations';
-
-import { PLACEHOLDER_IMAGES } from '../constants/placeholderImages';
-
-interface Project {
-  id: string;
-  name: string;
-  visibility: string;
-  description: string;
-  topics: string[];
-  language: {
-    name: string;
-    color: string;
-    percent: number;
-  };
-  stats: {
-    stars: number;
-    forks: number;
-  };
-  links: {
-    demo?: string;
-    github?: string;
-  };
-  category: string;
-  backgroundImage?: string;
-  gradient?: string;
-  status?: 'completed' | 'in-progress' | 'coming-soon';
-  featured?: boolean;
-  hideNameOnFront?: boolean;
-}
-
-const projects: Project[] = [
-  // AI/ML Projects - Featured showcase from Agentic AI Bootcamp
-  {
-    id: 'modelviz',
-    name: 'ModelViz - AI Model Comparison Platform',
-    visibility: 'Public',
-    description: 'Interactive analytics platform for comparing AI models across multiple providers with real-time performance metrics, cost analysis, and 3D visualisations',
-    topics: ['Next.js 16', 'React 19', 'TypeScript', 'Three.js', 'Framer Motion'],
-    language: {
-      name: 'TypeScript',
-      color: '#3178c6',
-      percent: 85
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://modelviz.vercel.app/',
-      github: 'https://github.com/ThomasJButler/ModelViz'
-    },
-    category: 'ai',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.modelViz,
-    featured: true,
-    hideNameOnFront: true,
-    gradient: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'ai-code-generator',
-    name: 'LangChain Code Generation Tool',
-    visibility: 'Public',
-    description: 'Generate production-ready code with AI assistance. Built with LangChain and React. Choose your language and generate code, unit tests, and documentation.',
-    topics: ['LangChain', 'GPT-4o', 'Python', 'Flask', 'React', 'Code Generation'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 60
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/AICodeGenerator',
-      demo: 'https://theaigenerator.vercel.app/'
-    },
-    category: 'ai',
-    status: 'completed',
-    hideNameOnFront: false,
-    backgroundImage: PLACEHOLDER_IMAGES.aiCodeGenerator,
-    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'sql-ball',
-    name: 'SQL, AI and RAG Football Analytics',
-    visibility: 'Public',
-    description: 'Football data analytics with natural language queries and AI insights. RAG-powered NL-to-SQL using a custom collated dataset of European football results.',
-    topics: ['Supabase', 'LangChain', 'React', 'OpenAI', 'PostgreSQL', 'RAG', 'Football Analytics'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 65
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/SQL-Ball',
-      demo: 'https://sql-ball.vercel.app/'
-    },
-    category: 'ai',
-    status: 'completed',
-    hideNameOnFront: true,
-    backgroundImage: PLACEHOLDER_IMAGES.sqlBall,
-    gradient: 'linear-gradient(135deg, rgba(0, 150, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'morpheus',
-    name: 'Morpheus - Intelligent Document Q&A',
-    visibility: 'Public',
-    description: 'Intelligent document Q&A system with semantic search and source citations using RAG',
-    topics: ['Pinecone', 'Anthropic', 'OpenAI', 'LangChain', 'FastAPI', 'RAG'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 70
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://morpheusrag.vercel.app',
-      github: 'https://github.com/ThomasJButler/Morpheus'
-    },
-    category: 'ai',
-    status: 'completed',
-    hideNameOnFront: true,
-    backgroundImage: PLACEHOLDER_IMAGES.morpheus,
-    gradient: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'reviewbot-protocol',
-    name: 'ReviewBot Protocol - AI Code Reviews',
-    visibility: 'Public',
-    description: 'AI-powered GitHub PR reviews with automated code analysis and intelligent feedback',
-    topics: ['Next.js 15', 'FastAPI', 'LangChain', 'LangGraph', 'PostgreSQL', 'GitHub API'],
-    language: {
-      name: 'TypeScript',
-      color: '#3178c6',
-      percent: 65
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/ReviewBot-Protocol'
-    },
-    category: 'ai',
-    status: 'completed',
-    hideNameOnFront: true,
-    backgroundImage: PLACEHOLDER_IMAGES.reviewBotProtocol,
-    gradient: 'linear-gradient(135deg, rgba(255, 69, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'mastering-ai-portfolio',
-    name: 'AI & Agents Project Portfolio',
-    visibility: 'Public',
-    description: 'Interactive AI course portfolio showcasing projects and learning journey. A portfolio of web apps for the CodeCademy Mastering Generative AI & Agents for Developers Bootcamp.',
-    topics: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Anime.js', 'Portfolio', 'Course Projects'],
-    language: {
-      name: 'TypeScript',
-      color: '#3178c6',
-      percent: 80
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://agenticaiprojectsportfolio.vercel.app/',
-      github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio'
-    },
-    category: 'ai',
-    status: 'completed',
-    hideNameOnFront: true,
-    backgroundImage: PLACEHOLDER_IMAGES.portfolioDashboard,
-    gradient: 'linear-gradient(135deg, rgba(49, 120, 198, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'commercial-portfolio',
-    name: 'Commercial Portfolio Website',
-    visibility: 'Public',
-    description: 'Professional showcase of 3+ years full-stack development expertise. Built with React  dfeaturing modern design, performance optimization (90+ Lighthouse score), and comprehensive project documentation including web agency work and freelance projects.',
-    topics: ['React', 'TypeScript', 'Vite', 'SCSS', 'Node.js', '.NET', 'Azure', 'AWS'],
-    language: {
-      name: 'React',
-      color: '#61dafb',
-      percent: 65
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/commercial-portfolio-react',
-      demo: 'https://www.thomasjbutler.me/'
-    },
-    category: 'web',
-    status: 'completed',
-    featured: true,
-    backgroundImage: PLACEHOLDER_IMAGES.logo1,
-    gradient: 'linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(0, 40, 0, 0.95) 100%)'
-  },
-  {
-    id: 'news-perspective',
-    name: 'News Perspective',
-    visibility: 'Public',
-    description: 'A tool to fetch news headlines and rewrite them in a more positive, factual tone. Built with Azure AI services to reduce doomscrolling and emotional bias caused by alarmist headlines. Fetches headlines, analyses sentiment, rewrites with Azure OpenAI, and indexes in Azure AI Search.',
-    topics: ['Azure OpenAI', 'Azure AI Language', 'Azure AI Search', 'Python', 'NewsAPI', 'Streamlit', 'Sentiment Analysis'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 85
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/NewsPerspective'
-    },
-    category: 'ai',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.newsPerspective,
-    hideNameOnFront: true,
-    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'lfc-news-reddit',
-    name: 'LFC News Web App',
-    visibility: 'Public',
-    description: 'A minimal Reddit app created with React, Redux and Reddit API to bring the latest transfer rumours across a variety of different subreddits.',
-    topics: ['React', 'Redux', 'Reddit API', 'Sports', 'News Aggregation', 'Real-time'],
-    language: {
-      name: 'JavaScript',
-      color: '#f1e05a',
-      percent: 80
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App',
-      demo:'https://lfc-news-reddit-app.vercel.app/'
-    },
-    category: 'web',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.lfcReddit,
-    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(200, 16, 46, 0.8) 100%)'
-  },
-  {
-    id: 'dotnet-react-calendar',
-    name: '.NET/React Calendar App',
-    visibility: 'Public',
-    description: 'A full-stack calendar app project built with .NET, Fast Endpoints, React.js. Initially started as a code assessment, continued to master .NET backend development.',
-    topics: ['.NET', 'React', 'C#', 'Fast Endpoints', 'API', 'Full Stack'],
-    language: {
-      name: 'C#',
-      color: '#178600',
-      percent: 55
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://dotnet-react-calendar.vercel.app/',
-      github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar'
-    },
-    category: 'web',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.dotnetCalendar,
-    gradient: 'linear-gradient(135deg, rgba(23, 134, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-  {
-    id: 'css-showcase',
-    name: 'CSS Learning Showcase Website',
-    visibility: 'Public',
-    description: 'An interactive showcase of modern CSS foundations for learning and education purposes. Pure CSS, no frameworks.',
-    topics: ['Pure CSS', 'Vanilla JS', ':has()', 'Container Queries', 'Responsive', 'No Framework'],
-    language: {
-      name: 'CSS',
-      color: '#563d7c',
-      percent: 85
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://thomasjbutler.github.io/css-showcase/',
-      github: 'https://github.com/ThomasJButler/css-showcase'
-    },
-    category: 'web',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.cssShowcase,
-    gradient: 'linear-gradient(135deg, rgba(86, 61, 124, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-
-  // Creative & Games
-  {
-    id: 'matrix-arcade',
-    name: 'The Matrix Arcade Interactive Games Portal',
-    visibility: 'Public',
-    description: 'A collection of games in the style of \'The Matrix\' movies. An arcade website built using Vite, Python, and React to showcase playable mini-games.',
-    topics: ['React', 'Python', 'Vite', 'Canvas API', 'Game Dev', 'Matrix Theme'],
-    language: {
-      name: 'JavaScript',
-      color: '#f1e05a',
-      percent: 72
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://the-matrix-arcade.vercel.app/',
-      github: 'https://github.com/ThomasJButler/The-Matrix-Arcade'
-    },
-    category: 'games',
-    status: 'completed',
-    hideNameOnFront: true,
-    backgroundImage: 'https://res.cloudinary.com/depqttzlt/image/upload/v1737693678/MatrixArcade2_eg34bs.png',
-    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.95) 100%)'
-  },
-  {
-    id: 'bigbang-gallery',
-    name: 'Big Bang Creative Canvas',
-    visibility: 'Public',
-    description: 'A creative image gallery / canvas inspired by the big bang. Creative visual gallery showcasing design work and experiments.',
-    topics: ['Gallery', 'Creative', 'Visual', 'Design', 'Canvas', 'Animation'],
-    language: {
-      name: 'JavaScript',
-      color: '#f1e05a',
-      percent: 65
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://thomasjbutler.github.io/bigbang-gallery/',
-      github: 'https://github.com/ThomasJButler/bigbang-gallery'
-    },
-    category: 'creative',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.bigBangGallery,
-    gradient: 'linear-gradient(135deg, rgba(255, 100, 0, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-
-  // Python Projects
-  {
-    id: 'python-projects',
-    name: 'Collection of Python Projects',
-    visibility: 'Public',
-    description: 'This is a collection of Python hobby projects, from climate visualisations in Project Aetheris to the terminal text adventure of Ctrl-S the World.',
-    topics: ['Python', 'Algorithms', 'Mathematics', 'Fractals', 'Machine Learning', 'Games'],
-    language: {
-      name: 'Python',
-      color: '#3572A5',
-      percent: 100
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      github: 'https://github.com/ThomasJButler/PythonProjects'
-    },
-    category: 'personal',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.pythonProjects,
-    gradient: 'linear-gradient(135deg, rgba(53, 114, 165, 0.2) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  },
-
-  // Personal Projects
-  {
-    id: 'version-timetravel',
-    name: 'Portfolio Version TimeTravel Showcase',
-    visibility: 'Public',
-    description: 'Personal journey documenting the gradual transformation of my portfolio website. Visual timeline of portfolio evolution and version history.',
-    topics: ['Timeline', 'Version Control', 'Interactive', 'History', 'Portfolio Evolution'],
-    language: {
-      name: 'JavaScript',
-      color: '#f1e05a',
-      percent: 70
-    },
-    stats: {
-      stars: 0,
-      forks: 0
-    },
-    links: {
-      demo: 'https://thomasjbutler.github.io/version-timetravel/',
-      github: 'https://github.com/ThomasJButler/version-timetravel'
-    },
-    category: 'personal',
-    status: 'completed',
-    backgroundImage: PLACEHOLDER_IMAGES.versionTimeTravel,
-    gradient: 'linear-gradient(135deg, rgba(241, 224, 90, 0.1) 0%, rgba(0, 40, 0, 0.9) 100%)'
-  }
-];
-
-const categories = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'ai', label: 'AI & Machine Learning' },
-  { id: 'web', label: 'Web Development' },
-  { id: 'games', label: 'Games & Creative' },
-  { id: 'creative', label: 'Creative Projects' },
-  { id: 'personal', label: 'Personal Projects' }
-];
-
-/**
- * Projects showcase page with category filtering and 3D card interactions
- * @return {JSX.Element}
- * @constructor
- */
-export const ProjectsPage: React.FC = () => {
+export function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [visibleProjects, setVisibleProjects] = useState<Project[]>(projects);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
-  const [interactedCards, setInteractedCards] = useState<Set<string>>(new Set());
-  const containerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
-  const projectsPerPage = 4; // Desktop 2x2 grid for optimal viewport fit
-  const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-
-  const startIndex = (currentPage - 1) * projectsPerPage;
-  const endIndex = startIndex + projectsPerPage;
-  const currentProjects = visibleProjects.slice(startIndex, endIndex);
-
-  useMatrixAnimation(containerRef as React.RefObject<HTMLElement>, {});
-  useCardAnimations();
-
-  /**
-   * @constructs Scrolls page to top on mount
-   */
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
-
-  /**
-   * @listens activeCategory - Filters projects by selected category
-   */
-  useEffect(() => {
-    if (activeCategory === 'all') {
-      setVisibleProjects(projects);
-    } else {
-      setVisibleProjects(projects.filter(p => p.category === activeCategory));
-    }
-    setCurrentPage(1);
-  }, [activeCategory]);
-
-  const prevProjectsRef = useRef<Project[]>([]);
-
-  /**
-   * @listens currentProjects - Triggers staggered animation when displayed projects change
-   */
-  useEffect(() => {
-    const projectsChanged = prevProjectsRef.current.length !== currentProjects.length ||
-      prevProjectsRef.current.some((p, i) => p.id !== currentProjects[i]?.id);
-
-    if (gridRef.current && projectsChanged) {
-      const children = Array.from(gridRef.current.children) as HTMLElement[];
-      animate(children, {
-        opacity: [0, 1],
-        translateY: [20, 0],
-        delay: stagger(100, {from: 'first'}),
-        duration: 600,
-        easing: 'easeOutQuad'
-      });
-
-      prevProjectsRef.current = currentProjects;
-    }
-  }, [currentProjects]);
-  
-  const createParticleBurst = (x: number, y: number) => {
-    const particleCount = 10;
-    let container = document.querySelector('.particle-container');
-    
-    if (!container) {
-      container = document.createElement('div');
-      container.className = 'particle-container';
-      document.body.appendChild(container);
-    }
-    
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle-burst';
-      
-      const angle = (Math.PI * 2 * i) / particleCount;
-      const velocity = 50 + Math.random() * 50;
-      const tx = Math.cos(angle) * velocity;
-      const ty = Math.sin(angle) * velocity;
-      
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      particle.style.setProperty('--x', `${tx}px`);
-      particle.style.setProperty('--y', `${ty}px`);
-      particle.style.width = Math.random() * 4 + 2 + 'px';
-      particle.style.height = particle.style.width;
-      
-      container.appendChild(particle);
-      
-      setTimeout(() => particle.remove(), 800);
-    }
-  };
-  
-  /**
-   * @listens currentProjects - Adds particle click effects to project buttons
-   */
-  useEffect(() => {
-    const handleButtonClick = (e: Event) => {
-      const mouseEvent = e as MouseEvent;
-      createParticleBurst(mouseEvent.clientX, mouseEvent.clientY);
-    };
-
-    const buttons = document.querySelectorAll('.matrix-btn-primary') as NodeListOf<HTMLElement>;
-    buttons.forEach(btn => {
-      btn.addEventListener('click', handleButtonClick);
-    });
-
-    return () => {
-      buttons.forEach(btn => {
-        btn.removeEventListener('click', handleButtonClick);
-      });
-    };
-  }, [currentProjects]);
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-      containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      handlePageChange(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      handlePageChange(currentPage - 1);
-    }
-  };
-
-  const handleCategoryClick = (category: string) => {
-    setActiveCategory(category);
-    
-    const tabButtons = document.querySelectorAll('.matrix-tab-button');
-    animate(tabButtons as NodeListOf<HTMLElement>, {
-      scale: [1, 0.95, 1],
-      duration: 300,
-      easing: 'easeInOutQuad'
-    });
-  };
-
-  const handleCardFlip = (projectId: string) => {
-    setInteractedCards(prev => new Set(prev).add(projectId));
-
-    setFlippedCards(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(projectId)) {
-        newSet.delete(projectId);
-      } else {
-        newSet.add(projectId);
-      }
-      return newSet;
-    });
-  };
+  const filtered = activeCategory === 'all'
+    ? projects
+    : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="page-wrapper page-projects">
-    <div ref={containerRef} id="matrix-projects-showcase" className="projects-section">
-      <div className="matrix-project-container">
-        <h2 className="section-title">Project Showcase</h2>
-        
-        <div className="matrix-project-tabs">
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              className={`matrix-tab-button ${activeCategory === cat.id ? 'active' : ''}`}
-              onClick={() => handleCategoryClick(cat.id)}
-              data-category={cat.id}
+    <div className="mx-auto max-w-5xl px-6 py-16">
+      <MotionSection>
+        <h1 className="font-heading text-3xl font-bold tracking-tight">Projects</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          A collection of AI, web, and creative projects.
+        </p>
+      </MotionSection>
+
+      {/* Filter tabs */}
+      <div className="mt-8">
+        <Tabs
+          value={activeCategory}
+          onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}
+        >
+          <TabsList className="flex-wrap">
+            {categories.map((cat) => (
+              <TabsTrigger key={cat.id} value={cat.id}>
+                {cat.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
+
+      {/* Project grid */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <AnimatePresence mode="popLayout">
+          {filtered.map((project) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
             >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        <div ref={gridRef} className="matrix-project-grid">
-          {currentProjects.map((project) => {
-            const isFlipped = flippedCards.has(project.id);
-            const hasBeenFlipped = interactedCards.has(project.id);
-
-            return (
-              <article
-                key={project.id}
-                className={`matrix-project-card ${isFlipped ? 'is-flipped' : ''} ${hasBeenFlipped ? 'has-flipped' : ''}`}
-                data-category={project.category}
-              >
-                {/* 3D Card Inner Container */}
-                <div className="card-3d-inner">
-
-                  {/* FRONT FACE - Project Image (shows first) */}
-                  <div className="card-face card-front">
-                    {/* Action buttons in top-right corner */}
-                    <div className="matrix-project-actions">
-                      <button
-                        className="card-flip-trigger"
-                        onClick={() => handleCardFlip(project.id)}
-                        title="Flip card"
-                      >
-                        <i className="fas fa-sync-alt"></i>
-                      </button>
-                    </div>
-
-                    <div
-                      className="project-showcase-image"
-                      style={{
-                        backgroundImage: `url(${project.backgroundImage || 'https://res.cloudinary.com/depqttzlt/image/upload/v1754529216/aicomparison_xoherd.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '16px',
-                        position: 'relative'
-                      }}
-                    >
-                      {/* Gradient overlay for depth - reduced opacity for better image clarity */}
-                      <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 40, 0, 0.55) 100%)',
-                        borderRadius: '16px'
-                      }} />
-
-                      {/* Project name overlay */}
-                      {!project.hideNameOnFront && (
-                        <div className="project-name-overlay">
-                          {project.name}
-                        </div>
-                      )}
-                    </div>
+              <Card className="h-full transition-shadow hover:ring-primary/30 hover:ring-2">
+                <CardHeader>
+                  <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
+                  <CardDescription className="line-clamp-2">{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.topics.map((t) => (
+                      <Badge key={t} variant="secondary">{t}</Badge>
+                    ))}
                   </div>
-                  {/* End FRONT FACE */}
-
-                  {/* BACK FACE - Project Details */}
-                  <div
-                    className="card-face card-back"
-                    style={{
-                      background: project.gradient || 'rgba(0, 20, 0, 0.6)',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundBlendMode: 'overlay'
-                    }}
-                  >
-              {/* Background overlay for better text readability */}
-              <div className="project-card-overlay" style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 20, 0, 0.9) 60%, rgba(0, 20, 0, 0.95) 100%)',
-                zIndex: 1,
-                pointerEvents: 'none'
-              }} />
-              
-              {/* Action buttons in top-right corner */}
-              <div className="matrix-project-actions">
-                <button
-                  className="card-flip-trigger"
-                  onClick={() => handleCardFlip(project.id)}
-                  title="Flip card"
-                >
-                  <i className="fas fa-sync-alt"></i>
-                </button>
-                {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-icon-link"
-                    title="View Code on GitHub"
-                  >
-                    <i className="fab fa-github"></i>
-                  </a>
-                )}
-                {project.links.demo && (
-                  <a
-                    href={project.links.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-icon-link"
-                    title="Live Demo"
-                  >
-                    <i className="fas fa-globe"></i>
-                  </a>
-                )}
-              </div>
-
-              <div className="matrix-project-header relative z-20" style={{ paddingTop: '2rem' }}>
-                <h3 className="matrix-project-title">
-                  <i className="fas fa-terminal"></i> {project.name}
-                </h3>
-                {project.status && project.status !== 'completed' && (
-                  <span className={`status-badge status-${project.status}`}>
-                    {project.status === 'in-progress' ? 'In Progress' : 'Coming Soon'}
-                  </span>
-                )}
-              </div>
-              
-              <div className="matrix-project-content relative z-20">
-                <p className="matrix-project-description">{project.description}</p>
-                
-                <div className="matrix-project-tags">
-                  {project.topics.map((topic, index) => (
-                    <span key={index} className="matrix-tag">{topic}</span>
-                  ))}
-                </div>
-                
-                <div className="matrix-project-language">
-                  <span
-                    className="language-dot"
-                    style={{ backgroundColor: project.language.color }}
-                  ></span>
-                  <span className="language-name">{project.language.name}</span>
-                  <span className="language-percent">{project.language.percent}%</span>
-                </div>
-              </div>
-            </div>
-            {/* End BACK FACE */}
-
-          </div>
-          {/* End 3D Inner */}
-
-        </article>
-      );
-    })}
-        </div>
-
-        {/* Pagination Component */}
-        {totalPages > 1 && (
-          <div className="matrix-pagination">
-            <button
-              className={`matrix-pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              <i className="fas fa-chevron-left"></i>
-              Prev
-            </button>
-
-            <div className="matrix-pagination-numbers">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  className={`matrix-pagination-number ${currentPage === page ? 'active' : ''}`}
-                  onClick={() => handlePageChange(page)}
-                >
-                  {page}
-                </button>
-              ))}
-            </div>
-
-            <button
-              className={`matrix-pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-              <i className="fas fa-chevron-right"></i>
-            </button>
-          </div>
-        )}
-
-        {/* Pagination Info */}
-        {totalPages > 1 && (
-          <div className="matrix-pagination-info">
-            Showing {startIndex + 1}-{Math.min(endIndex, visibleProjects.length)} of {visibleProjects.length} projects
-          </div>
-        )}
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="font-mono text-xs text-muted-foreground">{project.language}</span>
+                  </div>
+                </CardContent>
+                <CardFooter className="gap-2">
+                  {project.links.demo && (
+                    <Button asChild variant="ghost" size="xs">
+                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="size-3" /> Live
+                      </a>
+                    </Button>
+                  )}
+                  {project.links.github && (
+                    <Button asChild variant="ghost" size="xs">
+                      <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                        <GithubIcon className="size-3" /> Code
+                      </a>
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
-    </div>
   );
-};
+}

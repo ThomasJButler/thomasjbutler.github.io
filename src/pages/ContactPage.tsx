@@ -1,280 +1,258 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Contact page with video banner, contact information, and
- *              Formspree-integrated contact form
- */
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Phone,
+  Coffee,
+  ArrowRight,
+  ExternalLink,
+  MessageSquare,
+  FileText,
+  Rocket,
+  Headphones,
+} from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 
-import React, { useState } from 'react';
-import { ProcessTimeline } from '../components/ProcessTimeline';
-import '../css/contact-modern.css';
-
-const processSteps = [
-  {
-    icon: "fas fa-comments",
-    title: "1. Discovery Call",
-    description: "Free consultation to understand your goals, timeline, and requirements."
-  },
-  {
-    icon: "fas fa-file-invoice",
-    title: "2. Detailed Quote",
-    description: "Clear, itemised proposal with no hidden costs or surprises."
-  },
-  {
-    icon: "fas fa-rocket",
-    title: "3. Build & Deliver",
-    description: "Agile development with regular updates and milestone reviews."
-  },
-  {
-    icon: "fas fa-headset",
-    title: "4. Ongoing Support",
-    description: "Post-launch support, maintenance, and future enhancements."
-  }
-];
-
-/**
- * Contact page with form submission and contact details
- * @return {JSX.Element}
- * @constructor
- */
-export const ContactPage: React.FC = () => {
-  /**
-   * @constructs Scrolls page to top on mount
-   */
-  React.useEffect(() => {
+export function ContactPage() {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('https://formspree.io/f/xeoeenqv', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <div className="page-wrapper page-contact">
-      {/* Video Banner Section - EXACT match from HTML */}
-      <div className="video-banner">
-        <video 
-          className="banner-video" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          preload="metadata"
+    <div className="mx-auto max-w-5xl px-6">
+      {/* Page Header */}
+      <section className="py-16 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
         >
-          <source src="https://res.cloudinary.com/depqttzlt/video/upload/v1752558251/large_green_banner_dv0bkk.mp4" type="video/mp4" />
-        </video>
-        <div className="video-overlay"></div>
-      </div>
+          Get in Touch
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto mt-4 max-w-lg font-mono text-sm text-muted-foreground"
+        >
+          // Whether it&apos;s a project, opportunity, or just a chat about code
+        </motion.p>
+      </section>
 
-      <section id="contact-main">
-        <div className="container contact-container">
-          <div className="contact-grid">
-            {/* Left side - Contact Information */}
-            <div className="contact-info">
-              <h2>Get in Touch</h2>
-              
-              <div className="info-section">
-                <h3><i className="fas fa-map-marker-alt"></i> Location</h3>
-                <div className="contact-cards">
-                  <a
-                    href="https://www.google.com/maps/place/York/@53.9585894,-1.1218767,13z"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="info-card"
-                  >
-                    <i className="fas fa-map-marker-alt"></i>
-                    <span className="info-content">York, UK</span>
-                  </a>
-                  <div className="info-card">
-                    <i className="fas fa-globe"></i>
-                    <span className="info-content">Available remotely</span>
-                  </div>
-                </div>
+      {/* Two-Column Layout */}
+      <section className="pb-24">
+        <div className="grid gap-8 md:grid-cols-5">
+          {/* Left Column — Contact Info */}
+          <div className="flex flex-col gap-6 md:col-span-2">
+            {/* Location */}
+            <div className="flex items-start gap-3">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="font-heading text-sm font-medium text-foreground">Location</p>
+                <p className="text-sm text-muted-foreground">York, UK</p>
+                <p className="text-sm text-muted-foreground">Available remotely</p>
               </div>
+            </div>
 
-              <div className="info-section">
-                <h3><i className="fas fa-address-card"></i> Contact Details</h3>
-                <div className="contact-cards">
-                  <a href="tel:+447903352059" className="info-card">
-                    <i className="fas fa-phone"></i>
-                    <span className="info-content">+44 7903352059</span>
-                  </a>
-                  <a href="mailto:dev@thomasjbutler.me" className="info-card">
-                    <i className="fas fa-envelope"></i>
-                    <span className="info-content">dev@thomasjbutler.me</span>
-                  </a>
-                </div>
-              </div>
-
-              <div className="info-section">
-                <h3><i className="fas fa-calendar-check"></i> Availability</h3>
-                <div className="availability-summary">
-                  <div><i className="fas fa-check-circle"></i> Available for full-time, freelance work</div>
-                  <div><i className="fas fa-check-circle"></i> Resume upon request</div>
-                </div>
-              </div>
-
-              <div className="info-section">
-                <h3><i className="fas fa-heart"></i> Support My Work</h3>
-                <p className="support-text">If you find my work valuable, consider supporting me!</p>
-                <a 
-                  href="https://buymeacoffee.com/ojrwoqkgmv" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="coffee-button-premium"
+            {/* Email */}
+            <div className="flex items-start gap-3">
+              <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="font-heading text-sm font-medium text-foreground">Email</p>
+                <a
+                  href="mailto:dev@thomasjbutler.me"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <i className="fas fa-coffee"></i>
-                  <span>Buy Me a Coffee</span>
-                  <span className="coffee-steam">
-                    <span className="steam-particle"></span>
-                    <span className="steam-particle"></span>
-                    <span className="steam-particle"></span>
-                  </span>
+                  dev@thomasjbutler.me
                 </a>
               </div>
             </div>
 
-            {/* Right side - Contact Form */}
-            <div className="contact-form-section">
-              <h2>Send a Message</h2>
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    required
-                    className="form-input"
-                    placeholder=" "
-                  />
-                  <label htmlFor="name">Name *</label>
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    required
-                    className="form-input"
-                    placeholder=" "
-                  />
-                  <label htmlFor="email">Email *</label>
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="form-input"
-                    placeholder=" "
-                  />
-                  <label htmlFor="phone">Phone</label>
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    required
-                    className="form-input"
-                    placeholder=" "
-                  />
-                  <label htmlFor="subject">Subject *</label>
-                </div>
-
-                <div className="form-group">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={3}
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    required
-                    className="form-input"
-                    placeholder=" "
-                  ></textarea>
-                  <label htmlFor="message">Message *</label>
-                </div>
-
-                <button 
-                  type="submit" 
-                  className="submit-btn"
-                  disabled={isSubmitting}
+            {/* Phone */}
+            <div className="flex items-start gap-3">
+              <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="font-heading text-sm font-medium text-foreground">Phone</p>
+                <a
+                  href="tel:+447903352059"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <i className="fas fa-spinner fa-spin"></i> Sending...
-                    </>
-                  ) : (
-                    <>
-                      <i className="fas fa-paper-plane"></i> Send Message
-                    </>
-                  )}
-                </button>
+                  +44 7903352059
+                </a>
+              </div>
+            </div>
 
-                {submitStatus === 'success' && (
-                  <div className="form-success">
-                    <i className="fas fa-check-circle"></i> Message sent successfully!
-                  </div>
-                )}
+            {/* Availability */}
+            <div className="flex items-start gap-3">
+              <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+              <div>
+                <p className="font-heading text-sm font-medium text-foreground">Availability</p>
+                <p className="text-sm text-muted-foreground">Full-time &amp; freelance</p>
+                <p className="text-sm text-muted-foreground">Resume upon request</p>
+              </div>
+            </div>
 
-                {submitStatus === 'error' && (
-                  <div className="form-error">
-                    <i className="fas fa-exclamation-circle"></i> Error sending message. Please try again.
-                  </div>
-                )}
-              </form>
+            <Separator />
+
+            {/* Social Links */}
+            <div className="flex items-center gap-2">
+              <Button asChild variant="ghost" size="icon">
+                <a
+                  href="https://github.com/ThomasJButler"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <GithubIcon className="size-4" />
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="icon">
+                <a
+                  href="https://www.linkedin.com/in/thomasjbutler/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedinIcon className="size-4" />
+                </a>
+              </Button>
+              <span className="text-muted-foreground">|</span>
+              <a
+                href="https://buymeacoffee.com/thomasjbutler"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Coffee className="size-3" />
+                Buy me a coffee
+                <ExternalLink className="size-3" />
+              </a>
             </div>
           </div>
 
-          {/* Process Section - How We Work Together with Framer Motion */}
-          <ProcessTimeline steps={processSteps} />
+          {/* Right Column — Contact Form */}
+          <Card className="md:col-span-3">
+            <CardHeader>
+              <CardTitle className="font-heading text-lg">Send a Message</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form
+                action="https://formspree.io/f/xeoeenqv"
+                method="POST"
+                className="flex flex-col gap-4"
+              >
+                {/* Name */}
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="name">
+                    Name <span className="text-primary">*</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    required
+                    autoComplete="name"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="email">
+                    Email <span className="text-primary">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    autoComplete="email"
+                  />
+                </div>
+
+                {/* Phone (optional) */}
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+44 ..."
+                    autoComplete="tel"
+                  />
+                </div>
+
+                {/* Subject */}
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="subject">
+                    Subject <span className="text-primary">*</span>
+                  </Label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    placeholder="What is this about?"
+                    required
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="message">
+                    Message <span className="text-primary">*</span>
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    placeholder="Tell me about your project or idea..."
+                    required
+                  />
+                </div>
+
+                {/* Submit */}
+                <Button type="submit" size="lg" className="mt-2 w-full sm:w-auto sm:self-end">
+                  Send Message <ArrowRight className="size-4" />
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Process Timeline */}
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: <MessageSquare className="size-4" />, title: '1. Discovery Call', description: 'Free consultation to understand your goals, timeline, and requirements.' },
+            { icon: <FileText className="size-4" />, title: '2. Detailed Quote', description: 'Clear, itemised proposal with no hidden costs or surprises.' },
+            { icon: <Rocket className="size-4" />, title: '3. Build & Deliver', description: 'Agile development with regular updates and milestone reviews.' },
+            { icon: <Headphones className="size-4" />, title: '4. Ongoing Support', description: 'Post-launch support, maintenance, and future enhancements.' },
+          ].map((step) => (
+            <Card key={step.title} size="sm">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    {step.icon}
+                  </div>
+                  <CardTitle className="text-sm">{step.title}</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-xs text-muted-foreground">{step.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
     </div>
   );
-};
+}

@@ -1,295 +1,238 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Services page showcasing web development, backend, AI, mobile, design,
- *              and consultancy offerings with expandable tech stack categories
- */
-
-import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useCardAnimations } from '../hooks/useCardAnimations';
-import { matrixAnimations } from '../utils/animations/matrixAnimations';
-import '../css/pages/services.css';
+import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  Mail,
+  Globe,
+  Server,
+  Bot,
+  Smartphone,
+  Palette,
+  Handshake,
+  Award,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@/components/ui/accordion';
+import { Separator } from '@/components/ui/separator';
+import { MotionSection } from '@/components/MotionSection';
 
-const professionalCertifications = [
+const SERVICES = [
   {
-    icon: "fab fa-aws",
-    name: "AWS Qualified",
-    detail: "Cloud Architecture & Serverless",
-    glowClass: "aws-glow"
+    title: 'Website & Web Apps',
+    icon: Globe,
+    description:
+      'Responsive, performance-first websites and web apps built with modern stacks.',
+    tech: ['React', 'TypeScript', 'WordPress', 'HubSpot', 'Next.js'],
+    highlights: ['React/Next.js', 'Performance & SEO', 'Accessible & Responsive'],
   },
   {
-    icon: "fab fa-microsoft",
-    name: "Azure Qualified",
-    detail: "Cloud Infrastructure & DevOps",
-    glowClass: "azure-glow"
+    title: 'Backend & APIs',
+    icon: Server,
+    description:
+      'Robust servers and APIs that scale with your product. Production-ready from day one.',
+    tech: ['Node.js', 'Django', 'PostgreSQL', 'GraphQL', 'Flask'],
+    highlights: ['Node.js/Python', 'PostgreSQL/MongoDB', 'Auth & Security'],
   },
   {
-    icon: "fas fa-network-wired",
-    name: "Cisco Qualified",
-    detail: "Network Security & Analytics",
-    glowClass: "cisco-glow"
+    title: 'AI & Automation',
+    icon: Bot,
+    description:
+      'Practical AI features and automation to save time and make data useful.',
+    tech: ['ChatGPT', 'Claude', 'PyTorch', 'TensorFlow', 'n8n'],
+    highlights: ['GPT Integration', 'n8n Workflows', 'Custom ML Models'],
   },
   {
-    icon: "fas fa-robot",
-    name: "ML & LLM Bootcamp",
-    detail: "CodeCademy Certificate",
-    glowClass: "ai-glow"
+    title: 'Mobile Applications',
+    icon: Smartphone,
+    description:
+      'Cross-platform apps with native feel and store readiness.',
+    tech: ['React Native', 'Expo', 'iOS', 'Android'],
+    highlights: ['React Native', 'iOS & Android', 'Push & Offline'],
   },
   {
-    icon: "fas fa-code",
-    name: "Full Stack Engineer",
-    detail: "CodeCademy Certificate",
-    glowClass: "code-glow"
+    title: 'Design & Brand',
+    icon: Palette,
+    description:
+      'Clear, usable interfaces and identity design that scales with your product.',
+    tech: ['Figma', 'Adobe XD', 'UI/UX', 'Wireframes'],
+    highlights: ['UI/UX Design', 'Brand Identity', 'Design Systems'],
   },
   {
-    icon: "fas fa-graduation-cap",
-    name: "Level 4 Software Dev",
-    detail: "Estio Apprenticeship",
-    glowClass: "primary-glow"
+    title: 'Consultancy & Custom',
+    icon: Handshake,
+    description:
+      'Architecture reviews, training and bespoke engineering for special requirements.',
+    tech: ['DevOps', 'Git', 'Agile', 'Testing', 'Cloud'],
+    highlights: ['Architecture Review', 'Team Training', 'Bespoke Solutions'],
+  },
+] as const;
+
+const CREDENTIALS = [
+  {
+    category: 'Cloud & Infrastructure',
+    items: [
+      'AWS Qualified — Cloud Architecture & Serverless',
+      'Azure Qualified — Cloud Infrastructure & DevOps',
+      'Cisco Qualified — Network Security & Analytics',
+    ],
   },
   {
-    icon: "fab fa-hubspot",
-    name: "HubSpot Qualified",
-    detail: "CMS Development & Integration",
-    glowClass: "hubspot-glow"
+    category: 'Engineering & AI',
+    items: [
+      'ML & LLM Bootcamp — CodeCademy Certificate',
+      'Full Stack Engineer — CodeCademy Certificate',
+      'Level 4 Software Dev — Estio Apprenticeship',
+    ],
   },
   {
-    icon: "fas fa-cube",
-    name: "Umbraco Qualified",
-    detail: "Enterprise CMS & .NET",
-    glowClass: "umbraco-glow"
+    category: 'Platforms',
+    items: [
+      'HubSpot Qualified — CMS Development & Integration',
+      'Umbraco Qualified — Enterprise CMS & .NET',
+      'WordPress Qualified — Theme Development & Customisation',
+    ],
   },
-  {
-    icon: "fab fa-wordpress",
-    name: "WordPress Qualified",
-    detail: "Theme Development & Customisation",
-    glowClass: "wordpress-glow"
-  }
-];
+] as const;
 
-/**
- * Services showcase page with expandable service cards and tech stack
- * @return {JSX.Element}
- * @constructor
- */
-export const ServicesPage: React.FC = () => {
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
-  useCardAnimations();
-
-  const services = [
-    {
-      title: "Website & Web Apps",
-      icon: "fas fa-code",
-      description: "Responsive, performance-first websites and web apps built with modern stacks.",
-      highlights: [
-        { icon: "fab fa-react", text: "React / Next.js" },
-        { icon: "fas fa-bolt", text: "Performance & SEO" },
-        { icon: "fas fa-universal-access", text: "Accessible & Responsive" }
-      ],
-      tech: ["React", "TypeScript", "WordPress", "HubSpot", "Next.js"]
-    },
-    {
-      title: "Backend & APIs",
-      icon: "fas fa-server",
-      description: "Robust servers and APIs that scale with your product. Production-ready from day one.",
-      highlights: [
-        { icon: "fab fa-node-js", text: "Node.js / Python" },
-        { icon: "fas fa-database", text: "PostgreSQL / MongoDB" },
-        { icon: "fas fa-shield-alt", text: "Auth & Security" }
-      ],
-      tech: ["Node.js", "Django", "PostgreSQL", "GraphQL", "Flask"]
-    },
-    {
-      title: "AI & Automation",
-      icon: "fas fa-robot",
-      description: "Practical AI features and automation to save time and make data useful.",
-      highlights: [
-        { icon: "fas fa-brain", text: "GPT Integration" },
-        { icon: "fas fa-cogs", text: "n8n Workflows" },
-        { icon: "fas fa-project-diagram", text: "Custom ML Models" }
-      ],
-      tech: ["ChatGPT", "Claude", "PyTorch", "TensorFlow", "n8n"]
-    },
-    {
-      title: "Mobile Applications",
-      icon: "fas fa-mobile-alt",
-      description: "Cross-platform apps with native feel and store readiness.",
-      highlights: [
-        { icon: "fab fa-react", text: "React Native" },
-        { icon: "fab fa-apple", text: "iOS & Android" },
-        { icon: "fas fa-bell", text: "Push & Offline" }
-      ],
-      tech: ["React Native", "Expo", "iOS", "Android"]
-    },
-    {
-      title: "Design & Brand",
-      icon: "fas fa-palette",
-      description: "Clear, usable interfaces and identity design that scales with your product.",
-      highlights: [
-        { icon: "fas fa-pencil-ruler", text: "UI/UX Design" },
-        { icon: "fas fa-shapes", text: "Brand Identity" },
-        { icon: "fas fa-layer-group", text: "Design Systems" }
-      ],
-      tech: ["Figma", "Adobe XD", "UI/UX", "Wireframes"]
-    },
-    {
-      title: "Consultancy & Custom",
-      icon: "fas fa-handshake",
-      description: "Architecture reviews, training and bespoke engineering for special requirements.",
-      highlights: [
-        { icon: "fas fa-sitemap", text: "Architecture Review" },
-        { icon: "fas fa-chalkboard-teacher", text: "Team Training" },
-        { icon: "fas fa-puzzle-piece", text: "Bespoke Solutions" }
-      ],
-      tech: ["DevOps", "Git", "Agile", "Testing", "Cloud"]
-    }
-  ];
-
-  /**
-   * @constructs Scrolls page to top on mount
-   */
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
-
-  /**
-   * @constructs Initialises title text and triggers staggered card animations
-   */
-  useEffect(() => {
-    if (titleRef.current) {
-      titleRef.current.textContent = 'WEB, MOBILE, AND AI';
-    }
-
-    if (servicesRef.current) {
-      const cards = servicesRef.current.querySelectorAll('.service-card');
-      matrixAnimations.staggerIn(Array.from(cards) as HTMLElement[], 100);
-    }
-  }, []);
-
-  const handleCardHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const icon = card.querySelector('.service-icon') as HTMLElement;
-    if (icon) {
-      icon.style.transform = 'rotateY(360deg)';
-      setTimeout(() => {
-        icon.style.transform = 'rotateY(0deg)';
-      }, 600);
-    }
-  };
-
+export function ServicesPage() {
   return (
-    <div className="page-wrapper page-services">
-      <section id="services" className="servicesSection">
-      <div className="container">
-        <h2 ref={titleRef} className="section-title"></h2>
-        <p className="servicesIntro">
-          I build fast, resilient digital products and systems. From performance-first websites to production AI integrations and mobile apps, I handle the architecture, delivery and support so you can focus on outcomes.
+    <div className="mx-auto max-w-5xl px-6">
+      {/* Intro */}
+      <section className="py-20">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
+        >
+          // services
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+        >
+          What I Build
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-4 max-w-2xl text-muted-foreground leading-relaxed"
+        >
+          Fast, resilient digital products. From performance-first websites to AI integrations and
+          mobile apps — I handle the architecture, delivery, and support so you can focus on
+          outcomes.
+        </motion.p>
+      </section>
+
+      <Separator />
+
+      {/* Service Cards */}
+      <MotionSection className="py-16">
+        <h2 className="font-heading text-sm font-medium uppercase tracking-widest text-primary/70">
+          Services
+        </h2>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {SERVICES.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+              >
+                <Card className="h-full transition-shadow hover:ring-2 hover:ring-primary/30">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                        <Icon className="size-4" />
+                      </div>
+                      <CardTitle>{service.title}</CardTitle>
+                    </div>
+                    <CardDescription className="mt-1">{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-1.5">
+                      {service.tech.map((t) => (
+                        <Badge key={t} variant="secondary" className="font-mono text-xs">
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </MotionSection>
+
+      <Separator />
+
+      {/* Credentials */}
+      <MotionSection className="py-16" delay={0.1}>
+        <h2 className="font-heading text-sm font-medium uppercase tracking-widest text-primary/70">
+          <Award className="mr-1.5 inline size-4 align-text-bottom" />
+          Credentials
+        </h2>
+
+        <Accordion className="mt-6">
+          {CREDENTIALS.map((group) => (
+            <AccordionItem key={group.category} value={group.category}>
+              <AccordionTrigger className="font-heading text-sm">
+                {group.category}
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-1 pl-1 text-muted-foreground">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-primary">&#8250;</span> {item}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </MotionSection>
+
+      <Separator />
+
+      {/* CTA */}
+      <MotionSection className="py-16 text-center" delay={0.15}>
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+          Let&apos;s Build Something Great
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Free consultation. No obligation. Let&apos;s discuss your project.
         </p>
-
-        {/* Value Proposition - Hero Position with Quick Contact */}
-        <div className="value-section value-section-hero">
-          <div className="value-card">
-            <i className="fas fa-pound-sign" aria-hidden="true"></i>
-            <div className="value-content">
-              <h4>Competitive Pricing, Effective Results</h4>
-              <p>Quality work doesn't have to break the bank. I offer transparent, competitive rates with a focus on delivering measurable outcomes for your business.</p>
-            </div>
-            <Link to="/contact" className="quick-contact-btn">
-              <i className="fas fa-envelope"></i>
-              Get Quote
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg">
+            <Link to="/contact">
+              Get in Touch <ArrowRight className="size-4" />
             </Link>
-          </div>
-        </div>
-
-        {/* Combined Services & Credentials Section */}
-        <div className="services-main-section">
-          {/* Subsection: Credentials */}
-          <div className="services-subsection" id="credentials">
-            <h3 className="services-section-title">
-              <span>Credentials</span>
-            </h3>
-            <div className="certifications-grid">
-              {professionalCertifications.map((cert, index) => (
-                <div key={index} className={`cert-card ${cert.glowClass}`}>
-                  <i className={cert.icon} aria-hidden="true"></i>
-                  <div className="cert-info">
-                    <span className="cert-name">{cert.name}</span>
-                    <span className="cert-detail">{cert.detail}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      </section>
-
-      {/* Matrix Rain Divider - outside section so canvas shows through */}
-      <div className="services-matrix-divider-custom" aria-hidden="true"></div>
-
-      <section id="services-build" className="servicesSection">
-        <div className="container">
-          {/* Subsection: What I Build */}
-          <div className="services-subsection" id="what-i-build">
-            <h3 className="services-section-title">
-              <span>What I Build</span>
-            </h3>
-            <div ref={servicesRef} className="servicesGrid">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="service-card serviceCard"
-                  onMouseEnter={handleCardHover}
-                >
-                  <div className="serviceHeader">
-                    <i
-                      className={`${service.icon} service-icon serviceIcon`}
-                      aria-hidden="true"
-                    ></i>
-                    <h3 className="serviceTitle">{service.title}</h3>
-                  </div>
-
-                  <p className="serviceDescription">{service.description}</p>
-
-                  <ul className="serviceHighlights">
-                    {service.highlights.map((highlight, idx) => (
-                      <li key={idx} className="highlightItem">
-                        <i className={highlight.icon} aria-hidden="true"></i>
-                        <span>{highlight.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="serviceTechTags">
-                    {service.tech.map((tech, idx) => (
-                      <span key={idx} className="techTag">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section - Enhanced */}
-        <div className="ctaSection ctaSection-enhanced">
-          <h3>Let's Build Something Great</h3>
-          <p className="cta-subtitle">Free consultation. No obligation. Let's discuss your project and make it happen.</p>
-          <div className="cta-buttons">
-            <Link to="/contact" className="ctaButton ctaButton-primary">
-              Get A Free Quote
-              <i className="fas fa-arrow-right icon-margin-left"></i>
-            </Link>
-            <a href="mailto:hello@thomasjbutler.co.uk" className="ctaButton ctaButton-secondary">
-              Email Me Directly
-              <i className="fas fa-envelope icon-margin-left"></i>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <a href="mailto:hello@thomasjbutler.co.uk">
+              <Mail className="size-4" /> Email Directly
             </a>
-          </div>
+          </Button>
         </div>
-      </section>
+      </MotionSection>
     </div>
   );
-};
+}

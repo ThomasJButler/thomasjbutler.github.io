@@ -30,6 +30,7 @@ export function App() {
           <Route path="updates" element={<Suspense fallback={<PageLoader />}><UpdatesPage /></Suspense>} />
 
           {/* Legacy redirects */}
+          <Route path="react.html" element={<Navigate to="/" replace />} />
           <Route path="index.html" element={<Navigate to="/" replace />} />
           <Route path="about.html" element={<Navigate to="/about" replace />} />
           <Route path="skills.html" element={<Navigate to="/services" replace />} />

@@ -31,6 +31,19 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // In dev, rewrite / to serve react.html so React Router sees clean paths
+    {
+      name: 'spa-rewrite',
+      configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+          // Rewrite root and all SPA routes to react.html
+          if (req.url === '/' || (!req.url.includes('.') && !req.url.startsWith('/@') && !req.url.startsWith('/src') && !req.url.startsWith('/node_modules'))) {
+            req.url = '/react.html';
+          }
+          next();
+        });
+      }
+    },
     // Development middleware to serve blog markdown files
     {
       name: 'serve-blog-files',
@@ -87,6 +100,18 @@ export default defineConfig({
         });
       }
     },
+    // SPA fallback: copy react.html as 404.html for GitHub Pages + preview server
+    {
+      name: 'spa-fallback',
+      writeBundle() {
+        const reactHtml = resolve(__dirname, 'dist/react.html');
+        const fallback = resolve(__dirname, 'dist/404.html');
+        if (existsSync(reactHtml)) {
+          copyFileSync(reactHtml, fallback);
+          console.log('Created 404.html SPA fallback');
+        }
+      }
+    },
     // Build-time plugin to copy blog markdown files
     {
       name: 'copy-blog-files',
@@ -117,7 +142,7 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    open: '/react.html', // Open directly to correct URL to avoid base path warning
+    open: '/',
     watch: {
       usePolling: true
     }

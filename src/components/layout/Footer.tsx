@@ -3,7 +3,7 @@ import { GithubIcon, LinkedinIcon } from '@/components/icons';
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50">
+    <footer className="border-t border-primary/10 shadow-[0_-1px_20px_oklch(0.50_0.28_145/0.03)]">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
         <p className="font-mono text-xs text-text-muted">
           &copy; {new Date().getFullYear()} Tom Butler

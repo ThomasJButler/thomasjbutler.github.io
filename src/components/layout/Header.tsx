@@ -18,7 +18,7 @@ export function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/50 bg-surface-0/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-primary/10 bg-surface-0/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
         <Link
@@ -37,7 +37,7 @@ export function Header() {
               className={cn(
                 'rounded-md px-3 py-1.5 font-mono text-xs transition-colors',
                 location.pathname === item.href
-                  ? 'bg-surface-2 text-matrix-300'
+                  ? 'bg-surface-2 text-matrix-300 shadow-[0_1px_0_oklch(0.50_0.28_145/0.5)]'
                   : 'text-text-muted hover:bg-surface-2 hover:text-text'
               )}
             >
