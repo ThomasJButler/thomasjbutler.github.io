@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Star } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -9,6 +9,8 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects, categories } from '@/lib/projects';
 import { MotionSection } from '@/components/MotionSection';
 import { cn } from '@/lib/utils';
+
+const featuredProjects = projects.filter((p) => p.featured);
 
 const categoryBorder: Record<string, string> = {
   ai: 'border-l-cyan',
@@ -33,6 +35,56 @@ export function ProjectsPage() {
           A collection of AI, web, and creative projects.
         </p>
       </MotionSection>
+
+      {/* Featured Projects */}
+      {activeCategory === 'all' && featuredProjects.length > 0 && (
+        <section className="mt-8">
+          <div className="flex items-center gap-2 mb-4">
+            <Star className="size-3.5 text-amber" />
+            <span className="font-mono text-xs uppercase tracking-wider text-primary/70">Featured</span>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+              >
+                <Card featured className={cn('h-full border-l-2', categoryBorder[project.category] || 'border-l-matrix-600')}>
+                  <CardHeader>
+                    <CardTitle className="font-heading text-base">{project.name}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.topics.map((t) => (
+                        <Badge key={t} variant="secondary">{t}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="gap-2">
+                    {project.links.demo && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="size-3" /> Live
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.github && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                          <GithubIcon className="size-3" /> Code
+                        </a>
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Filter tabs */}
       <div className="mt-8">

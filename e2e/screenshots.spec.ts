@@ -12,39 +12,57 @@ const pages = [
 
 const screenshotDir = path.join(__dirname, '..', 'playwright-screenshots');
 
-for (const pg of pages) {
-  test(`screenshot: ${pg.name}`, async ({ page, browserName }, testInfo) => {
-    const viewport = testInfo.project.name.includes('iPhone') ? 'mobile' : 'desktop';
+const themes = ['dark', 'light'] as const;
 
-    // Navigate to the page — 404.html fallback serves the SPA for all routes
-    await page.goto(pg.route, { waitUntil: 'domcontentloaded' });
+for (const theme of themes) {
+  for (const pg of pages) {
+    test(`screenshot: ${pg.name} (${theme})`, async ({ page, browserName }, testInfo) => {
+      const viewport = testInfo.project.name.includes('iPhone') ? 'mobile' : 'desktop';
 
-    // Wait for the page content to render
-    await page.waitForTimeout(2000);
+      await page.goto(pg.route, { waitUntil: 'domcontentloaded' });
 
-    // Scroll the full page to trigger all whileInView animations
-    await autoScroll(page);
+      // Set theme
+      await page.evaluate((t) => {
+        localStorage.setItem('theme', t);
+        if (t === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }, theme);
 
-    // Scroll back to top and let animations settle
-    await page.evaluate(() => window.scrollTo({ top: 0 }));
-    await page.waitForTimeout(1000);
+      // Wait for theme to apply and content to render
+      await page.waitForTimeout(2000);
 
-    await page.screenshot({
-      path: path.join(screenshotDir, `${pg.name}-${viewport}-${browserName}.png`),
-      fullPage: true,
+      // Scroll the full page to trigger all whileInView animations
+      await autoScroll(page);
+
+      // Scroll back to top and let animations settle
+      await page.evaluate(() => window.scrollTo({ top: 0 }));
+      await page.waitForTimeout(1000);
+
+      const suffix = theme === 'dark' ? '' : `-${theme}`;
+      await page.screenshot({
+        path: path.join(screenshotDir, `${pg.name}-${viewport}-${browserName}${suffix}.png`),
+        fullPage: true,
+      });
     });
-  });
+  }
 }
 
 // Page-specific content assertions
 test.describe('page content checks', () => {
-  test('home page has hero and featured projects', async ({ page }) => {
+  test('home page has hero and system status dashboard', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('text=Hey, I\'m Tom')).toBeVisible();
     await expect(page.locator('text=Full Stack AI Engineer')).toBeVisible();
-    await expect(page.locator('text=Featured Work')).toBeVisible();
-    // Featured project cards
-    await expect(page.locator('[data-slot="card"]')).toHaveCount(3, { timeout: 5000 });
+    // System status dashboard
+    await autoScroll(page);
+    await page.waitForTimeout(1000);
+    await expect(page.locator('text=system_status')).toBeVisible();
+    // Stats + skill/activity cards
+    const cards = page.locator('[data-slot="card"]');
+    expect(await cards.count()).toBeGreaterThanOrEqual(4);
   });
 
   test('projects page has filter tabs and project cards', async ({ page }) => {

@@ -81,27 +81,27 @@
 
 /* ══════════════════════════════════════════
    LIGHT THEME — "Circuit Board Schematic"
-   Warm off-white with green trace accents
+   Crisp white with engineered green accents
    ══════════════════════════════════════════ */
 :root {
-  --background: oklch(0.97 0.005 145);
-  --foreground: oklch(0.15 0.02 145);
-  --card: oklch(0.99 0.003 145 / 0.85);
-  --card-foreground: oklch(0.15 0.02 145);
-  --popover: oklch(0.99 0.003 145);
-  --popover-foreground: oklch(0.15 0.02 145);
-  --primary: oklch(0.40 0.22 145);
-  --primary-foreground: oklch(0.98 0.005 145);
-  --secondary: oklch(0.93 0.01 145);
-  --secondary-foreground: oklch(0.30 0.10 145);
-  --muted: oklch(0.95 0.008 145);
-  --muted-foreground: oklch(0.45 0.06 145);
-  --accent: oklch(0.93 0.01 145);
-  --accent-foreground: oklch(0.30 0.10 145);
+  --background: oklch(0.985 0.002 145);
+  --foreground: oklch(0.12 0.03 145);
+  --card: oklch(1 0 0 / 0.92);
+  --card-foreground: oklch(0.12 0.03 145);
+  --popover: oklch(0.99 0.002 145);
+  --popover-foreground: oklch(0.12 0.03 145);
+  --primary: oklch(0.35 0.22 145);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.012 145);
+  --secondary-foreground: oklch(0.25 0.10 145);
+  --muted: oklch(0.96 0.005 145);
+  --muted-foreground: oklch(0.40 0.06 145);
+  --accent: oklch(0.92 0.015 145);
+  --accent-foreground: oklch(0.25 0.10 145);
   --destructive: oklch(0.55 0.20 25);
-  --border: oklch(0.88 0.015 145);
-  --input: oklch(0.88 0.015 145);
-  --ring: oklch(0.40 0.22 145);
+  --border: oklch(0.90 0.02 145);
+  --input: oklch(0.92 0.015 145);
+  --ring: oklch(0.35 0.22 145);
   --radius: 0.5rem;
   --chart-1: oklch(0.40 0.22 145);
   --chart-2: oklch(0.60 0.12 195);
@@ -154,6 +154,27 @@
   --sidebar-accent-foreground: oklch(0.85 0.12 145);
   --sidebar-border: oklch(0.22 0.04 145);
   --sidebar-ring: oklch(0.50 0.28 145);
+}
+
+/* ─── Light theme: circuit board grid background ─── */
+:root:not(.dark) body {
+  background-image:
+    linear-gradient(oklch(0.35 0.22 145 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Light theme: card borders more defined ─── */
+:root:not(.dark) [data-slot="card"] {
+  box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.06), 0 0 0 1px oklch(0.35 0.22 145 / 0.08);
+}
+:root:not(.dark) [data-slot="card"]:hover {
+  box-shadow: 0 4px 16px oklch(0.35 0.22 145 / 0.10), 0 0 0 1px oklch(0.35 0.22 145 / 0.15);
+}
+
+/* ─── Light theme: buttons with more green presence ─── */
+:root:not(.dark) [data-slot="button"][data-variant="default"] {
+  box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.20);
 }
 
 /* ─── Base layer ─── */
