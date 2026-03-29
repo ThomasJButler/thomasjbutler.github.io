@@ -40,20 +40,28 @@ export const CRTEffect: React.FC<CRTEffectProps> = ({
    * @listens flicker - Initialises random flicker intervals when enabled
    */
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !flicker) return;
 
-    if (flicker) {
-      const flickerInterval = setInterval(() => {
+    let rafId: number;
+    let lastFlicker = 0;
+
+    const tick = (timestamp: number) => {
+      // Check roughly every 100ms (but via RAF, not setInterval)
+      if (timestamp - lastFlicker > 100) {
+        lastFlicker = timestamp;
         if (Math.random() > 0.99) {
           containerRef.current?.classList.add('crt-flicker');
+          // Remove flicker class after 50ms
           setTimeout(() => {
             containerRef.current?.classList.remove('crt-flicker');
           }, 50);
         }
-      }, 100);
+      }
+      rafId = requestAnimationFrame(tick);
+    };
 
-      return () => clearInterval(flickerInterval);
-    }
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [flicker]);
 
   const classNames = [

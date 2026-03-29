@@ -43,3 +43,6 @@
 /* Contact Modern - Comprehensive contact styling */
 @import './contact-modern.css';
 
+/* Firefox Performance - Must be last to override other styles */
+@import './firefox-performance.css';
+

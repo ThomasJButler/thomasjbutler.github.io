@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Firefox Performance Overrides
+   Reduces expensive CSS effects that Firefox renders less efficiently
+   than Chromium browsers. Applied via .is-firefox class on <html>.
+   ========================================================================== */
+
+/* ==========================================================================
+   Backdrop Filter Reduction
+   Firefox supports backdrop-filter but renders it expensively.
+   Replace blur effects with solid semi-transparent backgrounds.
+   ========================================================================== */
+
+.is-firefox header,
+.is-firefox footer,
+.is-firefox .footer,
+.is-firefox section,
+.is-firefox form,
+.is-firefox .form-container,
+.is-firefox .matrix-spinner-overlay,
+.is-firefox nav ul,
+.is-firefox nav ul.mobile-open,
+.is-firefox header.scrolled,
+.is-firefox .backdrop-performance {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Compensate for lost blur with slightly more opaque backgrounds */
+.is-firefox header {
+  background: rgba(26, 26, 26, 0.98) !important;
+}
+
+.is-firefox footer,
+.is-firefox .footer {
+  background: rgba(26, 26, 26, 0.95) !important;
+}
+
+.is-firefox section {
+  background-color: var(--matrix-darker) !important;
+}
+
+.is-firefox nav ul {
+  background: rgba(0, 20, 0, 0.98) !important;
+}
+
+.is-firefox form,
+.is-firefox .form-container {
+  background: rgba(0, 20, 0, 0.85) !important;
+}
+
+/* ==========================================================================
+   Will-Change Cleanup
+   Firefox doesn't release will-change layers efficiently.
+   Remove persistent will-change; let the browser optimize naturally.
+   ========================================================================== */
+
+.is-firefox .mainContent,
+.is-firefox header,
+.is-firefox footer,
+.is-firefox .back-to-top {
+  will-change: auto !important;
+}
+
+.is-firefox .will-change-transform,
+.is-firefox .will-change-opacity,
+.is-firefox .will-change-filter,
+.is-firefox .will-change-contents,
+.is-firefox .interactive,
+.is-firefox .gpu-accelerated {
+  will-change: auto !important;
+}
+
+/* ==========================================================================
+   Filter Animation Reduction
+   CSS filter animations (hue-rotate, brightness, blur) are not
+   GPU-accelerated in Firefox. Simplify or disable them.
+   ========================================================================== */
+
+.is-firefox .glitch-text:hover {
+  animation: none !important;
+}
+
+.is-firefox .matrix-rain-background {
+  filter: none !important;
+}
+
+/* ==========================================================================
+   Scanline Overlay Optimization
+   The full-screen repeating-gradient scanline is expensive in Firefox.
+   Reduce opacity to minimize compositing cost.
+   ========================================================================== */
+
+.is-firefox [data-theme="matrix"] body::after {
+  opacity: 0.2;
+}
+
+/* ==========================================================================
+   Text Shadow / Glow Reduction
+   Firefox renders multi-layer text-shadow less efficiently.
+   Simplify to single-layer glows.
+   ========================================================================== */
+
+.is-firefox [data-theme="matrix"] h1,
+.is-firefox [data-theme="matrix"] h2,
+.is-firefox [data-theme="matrix"] .section-title,
+.is-firefox [data-theme="matrix"] .page-heading {
+  text-shadow: 0 0 10px var(--glow-color-primary) !important;
+}
+
+/* ==========================================================================
+   Transition Simplification
+   Reduce the global wildcard transition on theme changes.
+   ========================================================================== */
+
+.is-firefox * {
+  transition-property: none !important;
+}
+
+.is-firefox a,
+.is-firefox button,
+.is-firefox input,
+.is-firefox textarea,
+.is-firefox header,
+.is-firefox [class*="card"],
+.is-firefox [class*="btn"],
+.is-firefox .menu-toggle,
+.is-firefox nav ul {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow !important;
+  transition-duration: 0.2s !important;
+}

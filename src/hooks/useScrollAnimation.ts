@@ -173,29 +173,44 @@ export const useParallax = (speed: number = 0.5) => {
 
   /**
    * @listens speed - Attaches scroll listener for parallax effect
+   *                  Uses cached layout values to avoid forced reflows on scroll
    */
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
 
-    const handleScroll = () => {
-      const scrolled = window.pageYOffset;
-      const rect = element.getBoundingClientRect();
-      const elementTop = rect.top + scrolled;
-      const elementHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      
-      if (scrolled + windowHeight > elementTop && scrolled < elementTop + elementHeight) {
-        const yPos = -(scrolled - elementTop) * speed;
-        element.style.transform = `translateY(${yPos}px)`;
-      }
+    // Cache layout values to avoid getBoundingClientRect() on every scroll frame
+    let elementTop = element.offsetTop;
+    let elementHeight = element.offsetHeight;
+    const windowHeight = window.innerHeight;
+    let rafPending = false;
+
+    const updateLayout = () => {
+      elementTop = element.offsetTop;
+      elementHeight = element.offsetHeight;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (rafPending) return;
+      rafPending = true;
+
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        if (scrolled + windowHeight > elementTop && scrolled < elementTop + elementHeight) {
+          const yPos = -(scrolled - elementTop) * speed;
+          element.style.transform = `translateY(${yPos}px)`;
+        }
+        rafPending = false;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateLayout);
     handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateLayout);
     };
   }, [speed]);
 
