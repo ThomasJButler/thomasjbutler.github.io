@@ -66,6 +66,8 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const isFirefox = navigator.userAgent.includes('Firefox');
+
     const updateCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -76,9 +78,9 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
     const binaryChars = '01';
     const fontSize = 18;
 
-    // 40% fewer columns on mobile devices for performance
+    // Reduce columns on mobile and Firefox for performance
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const performanceMultiplier = isMobile ? 0.6 : 1;
+    const performanceMultiplier = isMobile ? 0.6 : isFirefox ? 0.7 : 1;
     const columns = Math.floor((canvas.width / fontSize) * performanceMultiplier) + 1;
 
     dropsRef.current = Array(columns).fill(null).map(() => {
@@ -110,8 +112,20 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
 
     dropsRef.current.forEach((_, index) => animateDrop(index));
 
-    const draw = () => {
-      ctx.fillStyle = isMobile ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
+    // Firefox: throttle to ~30fps and use faster fade
+    const targetInterval = isFirefox ? 33 : 0; // 33ms ≈ 30fps
+    let lastFrameTime = 0;
+
+    const draw = (timestamp?: number) => {
+      if (targetInterval && timestamp) {
+        if (timestamp - lastFrameTime < targetInterval) {
+          animationRef.current = requestAnimationFrame(draw);
+          return;
+        }
+        lastFrameTime = timestamp;
+      }
+
+      ctx.fillStyle = (isMobile || isFirefox) ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
@@ -161,17 +175,17 @@ export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
                        color === '#39FF14' ? '57, 255, 20' : '0, 255, 0';
             
             if (i === drop.chars.length - 1) {
-              ctx.shadowBlur = 25;
+              ctx.shadowBlur = isFirefox ? 0 : 25;
               ctx.shadowColor = color;
               ctx.fillStyle = '#ffffff';
               ctx.font = `${fontSize * 1.2}px 'Share Tech Mono', monospace`;
             } else if (i >= drop.chars.length - 3) {
               const glowIntensity = 15 - (drop.chars.length - 1 - i) * 4;
-              ctx.shadowBlur = glowIntensity;
+              ctx.shadowBlur = isFirefox ? 0 : glowIntensity;
               ctx.shadowColor = color;
               ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.3})`;
             } else if (i >= drop.chars.length - 10) {
-              ctx.shadowBlur = 2;
+              ctx.shadowBlur = isFirefox ? 0 : 2;
               ctx.shadowColor = color;
               ctx.fillStyle = `rgba(${rgb}, ${opacity * 1.1})`;
             } else {

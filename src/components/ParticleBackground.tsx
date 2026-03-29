@@ -40,13 +40,17 @@ export const ParticleBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const isFirefox = navigator.userAgent.includes('Firefox');
+
     const updateCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     updateCanvasSize();
 
-    const particleCount = Math.floor((canvas.width * canvas.height) / 7500);
+    // Halve particle count on Firefox to reduce O(n²) connection line calculations
+    const divisor = isFirefox ? 15000 : 7500;
+    const particleCount = Math.floor((canvas.width * canvas.height) / divisor);
     particlesRef.current = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -66,8 +70,19 @@ export const ParticleBackground: React.FC = () => {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    const animate = () => {
+    const targetInterval = isFirefox ? 33 : 0;
+    let lastFrameTime = 0;
+
+    const animate = (timestamp?: number) => {
       if (!ctx || !canvas) return;
+
+      if (targetInterval && timestamp) {
+        if (timestamp - lastFrameTime < targetInterval) {
+          animationRef.current = requestAnimationFrame(animate);
+          return;
+        }
+        lastFrameTime = timestamp;
+      }
 
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -104,14 +119,15 @@ export const ParticleBackground: React.FC = () => {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
 
+        const connectionDistance = isFirefox ? 100 : 180;
         for (let j = index + 1; j < particlesRef.current.length; j++) {
           const otherParticle = particlesRef.current[j];
           const dx2 = particle.x - otherParticle.x;
           const dy2 = particle.y - otherParticle.y;
           const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
 
-          if (distance2 < 180) {
-            let opacity = (1 - distance2 / 180) * 0.2;
+          if (distance2 < connectionDistance) {
+            let opacity = (1 - distance2 / connectionDistance) * 0.2;
 
             const midX = (particle.x + otherParticle.x) / 2;
             const midY = (particle.y + otherParticle.y) / 2;

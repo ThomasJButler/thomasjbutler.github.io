@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 // import * as serviceWorker from './utils/serviceWorker';
 
+// Browser detection for performance optimizations
+if (navigator.userAgent.includes('Firefox')) {
+  document.documentElement.classList.add('is-firefox');
+}
+
 // Initialize React app
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

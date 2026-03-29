@@ -79,13 +79,24 @@ export const PageTransition: React.FC<PageTransitionProps> = ({
     const glitchTransition = async () => {
       const container = containerRef.current!;
 
-      await animate(container, [
-        { filter: 'hue-rotate(0deg) contrast(1)' },
-        { filter: 'hue-rotate(90deg) contrast(2)', offset: 0.1 },
-        { filter: 'hue-rotate(-90deg) contrast(3)', offset: 0.2 },
-        { filter: 'hue-rotate(180deg) contrast(1.5)', offset: 0.3 },
-        { filter: 'hue-rotate(0deg) contrast(1)', offset: 1 }
-      ], {
+      // Firefox: filter animations aren't GPU-accelerated, use opacity flash instead
+      if (navigator.userAgent.includes('Firefox')) {
+        await animate(container, {
+          opacity: [0.7, 1, 0.8, 1],
+          duration: 300,
+          easing: 'easeInOutQuad',
+        }).finished;
+        return;
+      }
+
+      await animate(container, {
+        filter: [
+          'hue-rotate(0deg) contrast(1)',
+          'hue-rotate(90deg) contrast(2)',
+          'hue-rotate(-90deg) contrast(3)',
+          'hue-rotate(180deg) contrast(1.5)',
+          'hue-rotate(0deg) contrast(1)'
+        ],
         duration: 500,
         easing: 'easeInOutQuad',
       }).finished;
