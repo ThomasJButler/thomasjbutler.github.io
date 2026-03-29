@@ -27,3 +27,9 @@ Thumbs.db
 *.log
 *.tmp
 *.temp
+
+# Playwright
+/playwright-screenshots
+/playwright-report
+/playwright-artifacts
+/test-results
