@@ -339,6 +339,15 @@
   a:not([data-slot]):not([class]):hover {
     color: oklch(0.60 0.25 145);
   }
+
+  /* Accessibility: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* ─── Utility classes ─── */

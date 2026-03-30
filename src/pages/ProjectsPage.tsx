@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Star, Terminal } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
@@ -47,6 +47,8 @@ const categoryBorder: Record<string, string> = {
 };
 
 export function ProjectsPage() {
+  useEffect(() => { document.title = 'Projects | Tom Butler'; }, []);
+
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 

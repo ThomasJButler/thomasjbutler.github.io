@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -102,6 +103,8 @@ const CREDENTIALS = [
 ] as const;
 
 export function ServicesPage() {
+  useEffect(() => { document.title = 'Services | Tom Butler'; }, []);
+
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Intro */}

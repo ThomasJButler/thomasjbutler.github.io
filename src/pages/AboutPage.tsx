@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
@@ -74,6 +75,8 @@ const badgeItem = {
 };
 
 export function AboutPage() {
+  useEffect(() => { document.title = 'About | Tom Butler'; }, []);
+
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Intro */}
@@ -173,17 +176,19 @@ export function AboutPage() {
           Programming Journey
         </h2>
 
-        <div className="relative mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="relative mt-8 ml-4 space-y-4 border-l-2 border-primary/20 pl-8">
           {JOURNEY_MILESTONES.map((milestone, i) => {
             const Icon = milestone.icon;
             return (
               <motion.div
                 key={milestone.era}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative"
               >
+                <div className="absolute -left-[calc(2rem+5px)] top-4 flex size-2.5 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
                 <Card className="h-full transition-shadow hover:ring-2 hover:ring-primary/30">
                   <CardHeader>
                     <div className="flex items-center gap-3">

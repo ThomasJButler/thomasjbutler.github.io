@@ -45,6 +45,13 @@ export function UpdatesPage() {
     document.title = 'Dev Timeline & Journey | Thomas J Butler';
   }, []);
 
+  const entriesByYear = timelineData.reduce<Record<number, TimelineEntry[]>>((acc, entry) => {
+    if (!acc[entry.year]) acc[entry.year] = [];
+    acc[entry.year].push(entry);
+    return acc;
+  }, {});
+  const years = Object.keys(entriesByYear).map(Number).sort((a, b) => b - a);
+
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Page Header */}
@@ -109,84 +116,81 @@ export function UpdatesPage() {
       {/* Timeline */}
       <section className="pb-24">
         <div className="relative ml-4 border-l-2 border-primary/20 pl-8">
-          {timelineData.map((entry, i) => (
-            <motion.div
-              key={entry.id}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '0px' }}
-              transition={{ duration: 0.4, delay: i * 0.03 }}
-              className="relative pb-8 last:pb-0"
-            >
-              {/* Timeline dot */}
-              <div className="absolute -left-[calc(2rem+5px)] top-1 flex size-2.5 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
-
-              <Card className="border-l-2 border-l-primary/40 transition-shadow hover:ring-2 hover:ring-primary/20">
-                <CardHeader className="flex-row items-start gap-3">
-                  <div
-                    className="flex size-8 shrink-0 items-center justify-center rounded-md text-white"
-                    style={{ backgroundColor: entry.iconBg }}
-                  >
-                    {categoryIcons[entry.category] || <Terminal className="size-4" />}
-                  </div>
-                  <div className="flex flex-1 flex-col gap-1.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <CardTitle className="text-base">{entry.title}</CardTitle>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <Badge variant="outline" className="font-mono text-xs">
-                        {entry.date}
+          {years.map((year) => (
+            <div key={year}>
+              <div className="sticky top-16 z-10 -ml-12 mb-3 mt-6 first:mt-0">
+                <span className="inline-flex items-center rounded-full border border-primary/30 bg-background px-3 py-0.5 font-heading text-xs font-medium text-primary shadow-sm">
+                  {year <= 2000 ? '2000s' : year}
+                </span>
+              </div>
+              {entriesByYear[year].map((entry, i) => (
+                <motion.div
+                  key={entry.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '0px' }}
+                  transition={{ duration: 0.4, delay: i * 0.03 }}
+                  className="relative pb-8 last:pb-0"
+                >
+                  <div className="absolute -left-[calc(2rem+5px)] top-1 flex size-2.5 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
+                  <Card className="border-l-2 border-l-primary/40 transition-shadow hover:ring-2 hover:ring-primary/20">
+                    <CardHeader className="flex-row items-start gap-3">
+                      <div
+                        className="flex size-8 shrink-0 items-center justify-center rounded-md text-white"
+                        style={{ backgroundColor: entry.iconBg }}
+                      >
+                        {categoryIcons[entry.category] || <Terminal className="size-4" />}
+                      </div>
+                      <div className="flex flex-1 flex-col gap-1.5">
+                        <CardTitle className="text-base">{entry.title}</CardTitle>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge variant="outline" className="font-mono text-xs">{entry.date}</Badge>
+                          <span className="text-xs text-muted-foreground">{entry.location}</span>
+                        </div>
+                        {entry.institution && (
+                          <p className="text-xs font-medium text-muted-foreground">{entry.institution}</p>
+                        )}
+                      </div>
+                      <Badge
+                        className="shrink-0 text-[10px]"
+                        style={{
+                          backgroundColor: `${getCategoryColor(entry.category)}20`,
+                          color: getCategoryColor(entry.category),
+                          borderColor: `${getCategoryColor(entry.category)}40`,
+                        }}
+                      >
+                        {categoryLabels[entry.category]}
                       </Badge>
-                      <span className="text-xs text-muted-foreground">{entry.location}</span>
-                    </div>
-                    {entry.institution && (
-                      <p className="text-xs font-medium text-muted-foreground">
-                        {entry.institution}
-                      </p>
-                    )}
-                  </div>
-                  <Badge
-                    className="shrink-0 text-[10px]"
-                    style={{
-                      backgroundColor: `${getCategoryColor(entry.category)}20`,
-                      color: getCategoryColor(entry.category),
-                      borderColor: `${getCategoryColor(entry.category)}40`,
-                    }}
-                  >
-                    {categoryLabels[entry.category]}
-                  </Badge>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-3">
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {entry.description}
-                  </p>
-
-                  {entry.achievements.length > 0 && (
-                    <ul className="flex flex-col gap-1">
-                      {entry.achievements.map((achievement) => (
-                        <li key={achievement} className="flex items-start gap-2 text-xs">
-                          <span className="mt-px font-mono text-primary">&gt;</span>
-                          <span className="text-muted-foreground">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {entry.links && entry.links.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {entry.links.map((link) => (
-                        <Button key={link.href} asChild variant="outline" size="sm" className="h-7 text-xs">
-                          <a href={link.href} target="_blank" rel="noopener noreferrer">
-                            {link.label}
-                            <ExternalLink className="ml-1 size-3" />
-                          </a>
-                        </Button>
-                      ))}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
+                    </CardHeader>
+                    <CardContent className="flex flex-col gap-3">
+                      <p className="text-sm leading-relaxed text-muted-foreground">{entry.description}</p>
+                      {entry.achievements.length > 0 && (
+                        <ul className="flex flex-col gap-1">
+                          {entry.achievements.map((achievement) => (
+                            <li key={achievement} className="flex items-start gap-2 text-xs">
+                              <span className="mt-px font-mono text-primary">&gt;</span>
+                              <span className="text-muted-foreground">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {entry.links && entry.links.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {entry.links.map((link) => (
+                            <Button key={link.href} asChild variant="outline" size="sm" className="h-7 text-xs">
+                              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                                {link.label}
+                                <ExternalLink className="ml-1 size-3" />
+                              </a>
+                            </Button>
+                          ))}
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           ))}
 
           {/* Terminal end marker */}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Mail,
@@ -25,7 +25,31 @@ import { Separator } from '@/components/ui/separator';
 export function ContactPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+    document.title = 'Contact | Tom Butler';
   }, []);
+
+  const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitState('submitting');
+    try {
+      const formData = new FormData(e.currentTarget);
+      const res = await fetch('https://formspree.io/f/xeoeenqv', {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setSubmitState('success');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitState('error');
+      }
+    } catch {
+      setSubmitState('error');
+    }
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-6">
@@ -147,9 +171,20 @@ export function ContactPage() {
               <CardTitle className="font-heading text-lg">Send a Message</CardTitle>
             </CardHeader>
             <CardContent>
+              {submitState === 'success' ? (
+                <div className="rounded-lg border border-primary/30 bg-primary/5 p-8 text-center">
+                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4 font-heading text-xl">✓</div>
+                  <h3 className="font-heading text-lg font-medium text-foreground">Message Sent</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Thanks for reaching out! I&apos;ll get back to you within 24-48 hours.
+                  </p>
+                  <Button variant="ghost" size="sm" className="mt-4" onClick={() => setSubmitState('idle')}>
+                    Send another message
+                  </Button>
+                </div>
+              ) : (
               <form
-                action="https://formspree.io/f/xeoeenqv"
-                method="POST"
+                onSubmit={handleSubmit}
                 className="flex flex-col gap-4"
               >
                 {/* Name */}
@@ -223,10 +258,14 @@ export function ContactPage() {
                 </div>
 
                 {/* Submit */}
-                <Button type="submit" size="lg" className="mt-2 w-full sm:w-auto sm:self-end">
-                  Send Message <ArrowRight className="size-4" />
+                {submitState === 'error' && (
+                  <p className="text-sm text-red-400 text-right">Something went wrong. Please try again.</p>
+                )}
+                <Button type="submit" size="lg" className="mt-2 w-full sm:w-auto sm:self-end" disabled={submitState === 'submitting'}>
+                  {submitState === 'submitting' ? 'Sending...' : <>Send Message <ArrowRight className="size-4" /></>}
                 </Button>
               </form>
+              )}
             </CardContent>
           </Card>
         </div>

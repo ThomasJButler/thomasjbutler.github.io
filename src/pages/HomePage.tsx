@@ -97,6 +97,8 @@ function SkillBar({ label, value, color, delay }: { label: string; value: number
 }
 
 export function HomePage() {
+  useEffect(() => { document.title = 'Tom Butler — Full Stack AI Engineer'; }, []);
+
   const [displayText, setDisplayText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);

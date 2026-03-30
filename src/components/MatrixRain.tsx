@@ -13,6 +13,7 @@ export function MatrixRain() {
   const animationRef = useRef<number>(0);
   const dropsRef = useRef<Drop[]>([]);
   const [visible, setVisible] = useState(false);
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 1500);
@@ -105,7 +106,7 @@ export function MatrixRain() {
     };
   }, [visible]);
 
-  if (!visible) return null;
+  if (!visible || prefersReducedMotion) return null;
 
   return (
     <canvas
