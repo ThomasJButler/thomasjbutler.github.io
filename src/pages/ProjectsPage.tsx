@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Star } from 'lucide-react';
+import { ExternalLink, Star, Terminal } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -113,6 +113,13 @@ export function ProjectsPage() {
 
       {/* Filter tabs */}
       <div className="mt-10">
+        <div className="flex items-center gap-2 mb-4">
+          <Terminal className="size-3.5 text-primary" />
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">all_projects</span>
+          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
+        </div>
+      </div>
+      <div>
         <Tabs
           value={activeCategory}
           onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}

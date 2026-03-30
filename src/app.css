@@ -274,7 +274,8 @@
 
   /* Dark cards — neon glow hover */
   .dark [data-slot="card"] {
-    border-color: oklch(0.30 0.10 145 / 0.5);
+    border-color: oklch(0.30 0.12 145 / 0.45);
+    border-top-color: oklch(0.40 0.18 145 / 0.35);
     background: linear-gradient(
       180deg,
       oklch(0.12 0.02 145 / 0.75) 0%,
@@ -282,12 +283,12 @@
     );
   }
   .dark [data-slot="card"]:hover {
-    border-color: oklch(0.45 0.20 145 / 0.6);
+    border-color: oklch(0.50 0.28 145 / 0.6);
     box-shadow:
-      0 0 24px oklch(0.50 0.28 145 / 0.10),
-      0 0 48px oklch(0.50 0.28 145 / 0.04),
+      0 0 28px oklch(0.50 0.28 145 / 0.12),
+      0 0 56px oklch(0.50 0.28 145 / 0.04),
       0 8px 32px oklch(0 0 0 / 0.4);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   /* Light cards — clean glass */
@@ -384,7 +385,7 @@
 
   /* Glass panel — readable content over Matrix rain */
   .glass-panel {
-    background: oklch(0.06 0.01 145 / 0.92);
+    background: oklch(0.06 0.01 145 / 0.88);
     backdrop-filter: blur(32px) saturate(1.5);
     -webkit-backdrop-filter: blur(32px) saturate(1.5);
     border: 1px solid oklch(0.28 0.08 145 / 0.35);

@@ -35,6 +35,15 @@ export function Footer() {
           >
             <Mail className="size-4" />
           </a>
+          <span className="text-muted-foreground/30">|</span>
+          <a
+            href="https://thomasjbutler.github.io/version-timetravel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary"
+          >
+            TimeTravel
+          </a>
         </div>
       </div>
     </footer>

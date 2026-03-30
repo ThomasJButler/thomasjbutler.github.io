@@ -304,7 +304,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent my-2" />
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-2" />
 
       {/* ═══ Currently Working On ═══ */}
       <section className="py-4">
@@ -333,7 +333,7 @@ export function HomePage() {
         </motion.div>
       </section>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent my-2" />
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-2" />
 
       {/* ═══ About Quote — Terminal Output ═══ */}
       <section className="py-6 pb-12">
@@ -367,6 +367,11 @@ export function HomePage() {
             <Button asChild variant="ghost" size="sm">
               <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
                 <GithubIcon className="size-3" /> GitHub
+              </a>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener noreferrer">
+                TimeTravel <ExternalLink className="size-3" />
               </a>
             </Button>
           </div>
