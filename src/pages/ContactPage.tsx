@@ -7,11 +7,11 @@ import {
   Phone,
   Coffee,
   ArrowRight,
-  ExternalLink,
   MessageSquare,
   FileText,
   Rocket,
   Headphones,
+  Terminal,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 import { LinkedInBanner } from '@/components/LinkedInBanner';
@@ -20,7 +20,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 
 export function ContactPage() {
   useEffect(() => {
@@ -127,42 +126,44 @@ export function ContactPage() {
               </div>
             </div>
 
-            <Separator />
-
-            {/* Social Links */}
-            <div className="flex items-center gap-2">
-              <Button asChild variant="ghost" size="icon">
+            {/* Connect */}
+            <Card size="sm">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Terminal className="size-4 text-primary/60" />
+                  <CardTitle className="font-mono text-xs uppercase tracking-wider">connect</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
                 <a
                   href="https://github.com/ThomasJButler"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub"
+                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <GithubIcon className="size-4" />
+                  <GithubIcon className="size-4 shrink-0" />
+                  github.com/ThomasJButler
                 </a>
-              </Button>
-              <Button asChild variant="ghost" size="icon">
                 <a
                   href="https://www.linkedin.com/in/thomasjbutler/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn"
+                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  <LinkedinIcon className="size-4" />
+                  <LinkedinIcon className="size-4 shrink-0" />
+                  linkedin.com/in/thomasjbutler
                 </a>
-              </Button>
-              <span className="text-muted-foreground">|</span>
-              <a
-                href="https://buymeacoffee.com/thomasjbutler"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Coffee className="size-3" />
-                Buy me a coffee
-                <ExternalLink className="size-3" />
-              </a>
-            </div>
+                <a
+                  href="https://buymeacoffee.com/thomasjbutler"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Coffee className="size-4 shrink-0" />
+                  Buy me a coffee
+                </a>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Right Column — Contact Form */}

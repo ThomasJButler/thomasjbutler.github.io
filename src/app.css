@@ -159,8 +159,8 @@
 /* ─── Light theme: circuit board grid background ─── */
 :root:not(.dark) body {
   background-image:
-    linear-gradient(oklch(0.35 0.22 145 / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.04) 1px, transparent 1px);
+    linear-gradient(oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px);
   background-size: 32px 32px;
   background-position: center;
 }
@@ -169,8 +169,9 @@
 :root:not(.dark) [data-slot="card"] {
   background: oklch(1 0 0 / 0.90);
   border: 1px solid oklch(0.35 0.22 145 / 0.12);
+  border-left: 2px solid oklch(0.35 0.22 145 / 0.15);
   box-shadow:
-    0 1px 2px oklch(0.35 0.22 145 / 0.04),
+    0 1px 2px oklch(0.35 0.22 145 / 0.05),
     0 2px 8px oklch(0 0 0 / 0.03);
 }
 :root:not(.dark) [data-slot="card"]:hover {
@@ -203,7 +204,7 @@
 }
 :root:not(.dark) .bg-muted\/30,
 :root:not(.dark) .bg-muted\/20 {
-  background: oklch(0.35 0.22 145 / 0.04);
+  background: oklch(0.35 0.22 145 / 0.05);
 }
 
 /* ─── Light theme: gradient lines more visible ─── */
@@ -402,9 +403,9 @@
     border-radius: var(--radius-xl);
   }
   :root:not(.dark) .glass-panel {
-    background: oklch(0.985 0.002 145 / 0.88);
+    background: oklch(0.98 0.006 145 / 0.90);
     border-color: oklch(0.85 0.02 145 / 0.4);
-    box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.04);
+    box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.05);
   }
   /* Mobile: higher opacity for readability */
   @media (max-width: 640px) {
