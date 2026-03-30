@@ -4,7 +4,6 @@ import { motion, useMotionValue, useTransform, animate as motionAnimate } from '
 import {
   ArrowRight,
   ExternalLink,
-  ChevronDown,
   Terminal,
   Cpu,
   GitBranch,
@@ -132,7 +131,7 @@ export function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* ═══ Hero — Terminal Session ═══ */}
-      <section className="pt-12 pb-6 sm:pt-16 sm:pb-8">
+      <section className="pt-12 pb-2 sm:pt-16 sm:pb-4">
         {/* Terminal window frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -199,19 +198,6 @@ export function HomePage() {
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4, y: [0, 6, 0] }}
-          transition={{
-            opacity: { delay: 2, duration: 0.8 },
-            y: { delay: 2.5, duration: 1.8, repeat: Infinity, ease: 'easeInOut' },
-          }}
-          className="mt-6 flex flex-col items-center gap-1"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">scroll</span>
-          <ChevronDown className="size-4 text-muted-foreground" />
-        </motion.div>
       </section>
 
       {/* ═══ System Status Dashboard ═══ */}
@@ -318,6 +304,8 @@ export function HomePage() {
         </div>
       </section>
 
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent my-2" />
+
       {/* ═══ Currently Working On ═══ */}
       <section className="py-4">
         <motion.div
@@ -344,6 +332,8 @@ export function HomePage() {
           </div>
         </motion.div>
       </section>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent my-2" />
 
       {/* ═══ About Quote — Terminal Output ═══ */}
       <section className="py-6 pb-12">
