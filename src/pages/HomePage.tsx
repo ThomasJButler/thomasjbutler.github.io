@@ -132,7 +132,7 @@ export function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* ═══ Hero — Terminal Session ═══ */}
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-20">
         {/* Terminal window frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -207,7 +207,7 @@ export function HomePage() {
             opacity: { delay: 2, duration: 0.8 },
             y: { delay: 2.5, duration: 1.8, repeat: Infinity, ease: 'easeInOut' },
           }}
-          className="mt-10 flex flex-col items-center gap-1"
+          className="mt-6 flex flex-col items-center gap-1"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">scroll</span>
           <ChevronDown className="size-4 text-muted-foreground" />
@@ -319,7 +319,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ Currently Working On ═══ */}
-      <section className="py-8">
+      <section className="py-4">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -346,7 +346,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ About Quote — Terminal Output ═══ */}
-      <section className="py-8 pb-16">
+      <section className="py-6 pb-12">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

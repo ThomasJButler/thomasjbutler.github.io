@@ -166,6 +166,14 @@ export function ServicesPage() {
                     <CardDescription className="mt-1">{service.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
+                    <ul className="mb-3 space-y-1.5">
+                      {service.highlights.map((highlight) => (
+                        <li key={highlight} className="flex items-center gap-2 text-sm text-foreground/80">
+                          <span className="text-primary text-xs">›</span>
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
                     <div className="flex flex-wrap gap-1.5">
                       {service.tech.map((t) => (
                         <Badge key={t} variant="secondary" className="font-mono text-xs">
