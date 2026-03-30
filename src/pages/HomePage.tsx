@@ -132,7 +132,7 @@ export function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* ═══ Hero — Terminal Session ═══ */}
-      <section className="py-16 sm:py-20">
+      <section className="pt-12 pb-6 sm:pt-16 sm:pb-8">
         {/* Terminal window frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -215,14 +215,14 @@ export function HomePage() {
       </section>
 
       {/* ═══ System Status Dashboard ═══ */}
-      <section className="py-8">
+      <section className="py-4">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center gap-2 mb-8">
+          <div className="flex items-center gap-2 mb-5">
             <Terminal className="size-4 text-primary" />
             <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
               system_status
@@ -236,7 +236,7 @@ export function HomePage() {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-8">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-5">
           {SYSTEM_STATS.map((stat, i) => {
             const Icon = stat.icon;
             return (

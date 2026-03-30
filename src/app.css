@@ -228,8 +228,15 @@
 
   body {
     @apply font-sans bg-background text-foreground;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.65;
     overflow-x: hidden;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
   }
 
   /* Headings — phosphor glow in dark, subtle shadow in light */
@@ -377,9 +384,9 @@
 
   /* Glass panel — readable content over Matrix rain */
   .glass-panel {
-    background: oklch(0.06 0.01 145 / 0.88);
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    background: oklch(0.06 0.01 145 / 0.92);
+    backdrop-filter: blur(32px) saturate(1.5);
+    -webkit-backdrop-filter: blur(32px) saturate(1.5);
     border: 1px solid oklch(0.22 0.04 145 / 0.3);
     border-radius: var(--radius-xl);
   }
@@ -391,9 +398,9 @@
   /* Mobile: higher opacity for readability */
   @media (max-width: 640px) {
     .glass-panel {
-      background: oklch(0.08 0.01 145 / 0.90);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: oklch(0.06 0.01 145 / 0.94);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
     }
     :root:not(.dark) .glass-panel {
       background: oklch(0.985 0.002 145 / 0.94);
