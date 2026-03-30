@@ -7,6 +7,8 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects, categories } from '@/lib/projects';
+import type { Project } from '@/lib/projects';
+import { ProjectDetailModal } from '@/components/ProjectDetailModal';
 import { MotionSection } from '@/components/MotionSection';
 import { cn } from '@/lib/utils';
 
@@ -46,6 +48,7 @@ const categoryBorder: Record<string, string> = {
 
 export function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filtered = activeCategory === 'all'
     ? projects
@@ -76,7 +79,7 @@ export function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <Card featured className={cn('h-full border-l-[3px]', categoryBorder[project.category] || 'border-l-matrix-600')}>
+                <Card featured className={cn('h-full border-l-[3px] cursor-pointer', categoryBorder[project.category] || 'border-l-matrix-600')} onClick={() => setSelectedProject(project)}>
                   <CardHeader>
                     <CardTitle className="font-heading text-base">{project.name}</CardTitle>
                     <CardDescription>{project.description}</CardDescription>
@@ -88,7 +91,7 @@ export function ProjectsPage() {
                       ))}
                     </div>
                   </CardContent>
-                  <CardFooter className="gap-2">
+                  <CardFooter className="gap-2" onClick={(e) => e.stopPropagation()}>
                     {project.links.demo && (
                       <Button asChild variant="ghost" size="xs">
                         <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -149,7 +152,11 @@ export function ProjectsPage() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
             >
-              <Card featured={project.featured} className={cn("h-full border-l-[3px]", categoryBorder[project.category] || "border-l-matrix-600", "transition-shadow hover:ring-primary/30 hover:ring-2")}>
+              <Card
+                featured={project.featured}
+                className={cn("h-full border-l-[3px] cursor-pointer", categoryBorder[project.category] || "border-l-matrix-600", "transition-shadow hover:ring-primary/30 hover:ring-2")}
+                onClick={() => setSelectedProject(project)}
+              >
                 <CardHeader>
                   <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
                   <CardDescription className="line-clamp-2">{project.description}</CardDescription>
@@ -170,7 +177,7 @@ export function ProjectsPage() {
                     </Badge>
                   </div>
                 </CardContent>
-                <CardFooter className="gap-2">
+                <CardFooter className="gap-2" onClick={(e) => e.stopPropagation()}>
                   {project.links.demo && (
                     <Button asChild variant="ghost" size="xs">
                       <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -191,6 +198,13 @@ export function ProjectsPage() {
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        open={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 }

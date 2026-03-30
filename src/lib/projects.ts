@@ -2,14 +2,21 @@ export interface Project {
   id: string;
   name: string;
   description: string;
+  longDescription?: string;
   topics: string[];
   language: string;
   category: 'ai' | 'web' | 'games' | 'creative' | 'personal';
   links: {
     demo?: string;
     github?: string;
+    video?: string;
+  };
+  images?: {
+    gallery?: string[];
   };
   featured?: boolean;
+  status?: 'completed' | 'in-progress' | 'coming-soon';
+  highlights?: string[];
 }
 
 export const projects: Project[] = [
@@ -17,11 +24,14 @@ export const projects: Project[] = [
     id: 'modelviz',
     name: 'ModelViz',
     description: 'Compare AI models across providers with real-time metrics, cost analysis, and 3D visualisations.',
+    longDescription: 'Interactive analytics platform for comparing AI models across multiple providers. Features real-time performance metrics, cost analysis breakdowns, and immersive 3D visualisations built with Three.js. Designed to help developers and teams make informed decisions about which AI models to use for their specific use cases.',
     topics: ['Next.js', 'React 19', 'TypeScript', 'Three.js'],
     language: 'TypeScript',
     category: 'ai',
     links: { demo: 'https://modelviz.vercel.app/', github: 'https://github.com/ThomasJButler/ModelViz' },
     featured: true,
+    status: 'completed',
+    highlights: ['Real-time model performance comparison', 'Interactive 3D data visualisations', 'Multi-provider cost analysis', 'Built with Next.js 16 and React 19'],
   },
   {
     id: 'ai-code-generator',
@@ -45,10 +55,13 @@ export const projects: Project[] = [
     id: 'morpheus',
     name: 'Morpheus',
     description: 'Intelligent document Q&A with semantic search and source citations using RAG.',
+    longDescription: 'Named after the Matrix character, Morpheus is an intelligent document Q&A system that uses Retrieval-Augmented Generation (RAG) to provide accurate answers with source citations. Upload documents, ask questions in natural language, and get precise answers backed by semantic search through Pinecone vector database.',
     topics: ['Pinecone', 'Anthropic', 'LangChain', 'FastAPI'],
     language: 'Python',
     category: 'ai',
     links: { demo: 'https://morpheusrag.vercel.app', github: 'https://github.com/ThomasJButler/Morpheus' },
+    status: 'completed',
+    highlights: ['RAG-powered document Q&A', 'Semantic search with Pinecone', 'Source citations for every answer', 'Multi-model support (Anthropic, OpenAI)'],
   },
   {
     id: 'reviewbot-protocol',
@@ -118,11 +131,14 @@ export const projects: Project[] = [
     id: 'matrix-arcade',
     name: 'The Matrix Arcade',
     description: 'A collection of playable mini-games in the style of The Matrix movies.',
+    longDescription: 'A retro-style arcade website featuring a collection of playable mini-games built in the style of The Matrix movies. Each game uses the Canvas API for rendering with custom physics and game loops. Includes Matrix Invaders, a code-breaking puzzle, and more — all wrapped in an authentic Matrix green-on-black aesthetic.',
     topics: ['React', 'Canvas API', 'Vite', 'Game Dev'],
     language: 'JavaScript',
     category: 'games',
     links: { demo: 'https://the-matrix-arcade.vercel.app/', github: 'https://github.com/ThomasJButler/The-Matrix-Arcade' },
     featured: true,
+    status: 'completed',
+    highlights: ['Multiple playable arcade games', 'Canvas API with custom game loops', 'Authentic Matrix aesthetic', 'High score tracking'],
   },
   {
     id: 'bigbang-gallery',
