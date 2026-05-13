@@ -78,7 +78,7 @@ export function UpdatesPage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mt-4 max-w-md text-sm text-muted-foreground"
         >
-          From a kid writing HTML after watching The Matrix to building production AI systems —
+          From a kid writing HTML after watching The Matrix to building production AI systems,
           tracking the milestones along the way.
         </motion.p>
       </section>

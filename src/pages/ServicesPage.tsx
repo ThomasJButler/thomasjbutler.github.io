@@ -79,25 +79,25 @@ const CREDENTIALS = [
   {
     category: 'Cloud & Infrastructure',
     items: [
-      'AWS Qualified — Cloud Architecture & Serverless',
-      'Azure Qualified — Cloud Infrastructure & DevOps',
-      'Cisco Qualified — Network Security & Analytics',
+      'AWS Qualified: Cloud Architecture & Serverless',
+      'Azure Qualified: Cloud Infrastructure & DevOps',
+      'Cisco Qualified: Network Security & Analytics',
     ],
   },
   {
     category: 'Engineering & AI',
     items: [
-      'ML & LLM Bootcamp — CodeCademy Certificate',
-      'Full Stack Engineer — CodeCademy Certificate',
-      'Level 4 Software Dev — Estio Apprenticeship',
+      'ML & LLM Bootcamp: CodeCademy Certificate',
+      'Full Stack Engineer: CodeCademy Certificate',
+      'Level 4 Software Dev: Estio Apprenticeship',
     ],
   },
   {
     category: 'Platforms',
     items: [
-      'HubSpot Qualified — CMS Development & Integration',
-      'Umbraco Qualified — Enterprise CMS & .NET',
-      'WordPress Qualified — Theme Development & Customisation',
+      'HubSpot Qualified: CMS Development & Integration',
+      'Umbraco Qualified: Enterprise CMS & .NET',
+      'WordPress Qualified: Theme Development & Customisation',
     ],
   },
 ] as const;
@@ -134,7 +134,7 @@ export function ServicesPage() {
           className="mt-4 max-w-2xl text-muted-foreground leading-relaxed"
         >
           Fast, resilient digital products. From performance-first websites to AI integrations and
-          mobile apps — I handle the architecture, delivery, and support so you can focus on
+          mobile apps. I handle the architecture, delivery, and support so you can focus on
           outcomes.
         </motion.p>
       </section>

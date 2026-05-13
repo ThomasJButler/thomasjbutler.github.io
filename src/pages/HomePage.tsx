@@ -44,7 +44,7 @@ const SYSTEM_STATS = [
 
 const RECENT_ACTIVITY = [
   { icon: Bot, text: 'Built RAG pipeline with LangChain + Pinecone', time: '2025', badge: 'AI' },
-  { icon: Code, text: 'Shipped ModelViz — AI model comparison platform', time: '2025', badge: 'Web' },
+  { icon: Code, text: 'Shipped ModelViz: AI model comparison platform', time: '2025', badge: 'Web' },
   { icon: Database, text: 'SQL Ball: NL-to-SQL football analytics', time: '2025', badge: 'Data' },
   { icon: Terminal, text: 'Portfolio redesign with ShadCN + Tailwind v4', time: '2025', badge: 'Dev' },
 ];
@@ -97,7 +97,7 @@ function SkillBar({ label, value, color, delay }: { label: string; value: number
 }
 
 export function HomePage() {
-  useEffect(() => { document.title = 'Tom Butler — Full Stack AI Engineer'; }, []);
+  useEffect(() => { document.title = 'Tom Butler | Full Stack AI Engineer'; }, []);
 
   const [displayText, setDisplayText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -352,7 +352,7 @@ export function HomePage() {
             <div className="p-5">
               <p className="text-muted-foreground leading-relaxed text-[15px]">
                 Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building things on the web.
-                This site is the sci-fi playground I always dreamed of — a space to experiment with AI,
+                This site is the sci-fi playground I always dreamed of, a space to experiment with AI,
                 cyberpunk aesthetics, and creative code.
               </p>
             </div>

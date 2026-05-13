@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export function NotFoundPage() {
   useEffect(() => {
-    document.title = '404 — Page Not Found | Tom Butler';
+    document.title = '404: Page Not Found | Tom Butler';
   }, []);
 
   return (
