@@ -13,10 +13,11 @@ import { useFx } from '@/hooks/useFx';
  * repainted imperatively, so changing theme or accent re-tints the palette without
  * tearing down the canvas and losing every drop's position.
  *
- * Deliberately has no pointer listeners. It used to part around the cursor and
- * ripple on click; both are gone. They made every mouse move do work on the main
- * thread while the draw loop was already running, which is exactly when the page
- * needs to feel responsive.
+ * The pointer morph (parting around the cursor, click ripples) is back, but it is
+ * gated — see morphOk below. It was once removed outright for making every mouse move
+ * do work on the main thread while the draw loop was already running. It is affordable
+ * now because the rain itself is ~4x cheaper and because the gate means the listeners
+ * do not exist at all unless the morph can actually be seen.
  */
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -114,8 +115,17 @@ export function MatrixRain() {
     engine.setMorph(true);
 
     const onMove = (e: MouseEvent) => engine.setPointer(e.clientX, e.clientY);
-    const onLeave = () => engine.clearPointer();
     const onDown = (e: MouseEvent) => engine.addRipple(e.clientX, e.clientY);
+
+    // `mouseout` bubbles, so a window listener sees the pointer cross out of *any*
+    // element, not just out of the page. That matters because scrolling under a
+    // stationary cursor re-runs hit-testing and fires mouseout/mouseover with no
+    // following mousemove to re-arm the pointer: the morph would switch itself off
+    // mid-scroll and stay off until the mouse was physically jiggled. relatedTarget
+    // is null only when the pointer has genuinely left the window.
+    const onLeave = (e: MouseEvent) => {
+      if (e.relatedTarget === null) engine.clearPointer();
+    };
 
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('mouseout', onLeave);

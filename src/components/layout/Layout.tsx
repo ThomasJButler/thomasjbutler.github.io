@@ -25,9 +25,22 @@ const RABBIT_SESSION_KEY = 'v5:rabbit';
 const RABBIT_APPEARS_AFTER = 22_000;
 const RABBIT_LEAVES_AFTER = 15_000;
 
+/**
+ * The fallback reserves a full viewport, and that height is the whole point of it.
+ *
+ * `main` is flex-1 inside a min-h-screen column, so a short fallback leaves the footer
+ * sitting at the bottom edge of the viewport — visible. The route chunk then lands, the
+ * real page is ~2,400px tall, and the footer is shoved down off-screen. That single move
+ * scored 0.115 of a 0.118-0.144 CLS on every lazy route: it was essentially the site's
+ * entire layout-shift score.
+ *
+ * CLS only counts elements that are *in* the viewport when they move. Reserving a full
+ * screen here puts the footer below the fold from the first paint, so the swap moves it
+ * from off-screen to further off-screen and scores zero.
+ */
 function PageLoader() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
+    <div className="flex min-h-screen items-start justify-center pt-[30vh]">
       <div className="size-8 animate-spin rounded-full border-2 border-matrix-700 border-t-matrix-500" />
     </div>
   );

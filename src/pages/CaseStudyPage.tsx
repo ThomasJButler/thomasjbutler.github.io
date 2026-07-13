@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Lock, Workflow } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info, Lock, Workflow } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -61,6 +61,19 @@ export function CaseStudyPage() {
             )}
           </div>
         )}
+
+        {/* Stated before the reader has to work it out from the badges above. Those badges
+            name hosted services, on a site whose argument is that your data should not go
+            to hosted services — and an undisclosed contradiction reads as a lie, while a
+            disclosed one reads as someone who knows the difference. */}
+        <Card size="sm" className="mt-6 max-w-3xl border-primary/20">
+          <CardContent className="flex gap-3 pt-5">
+            <Info className="mt-0.5 size-4 shrink-0 text-primary/70" />
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {CASE_STUDY.provenance}
+            </p>
+          </CardContent>
+        </Card>
       </Reveal>
 
       {/* The problem */}

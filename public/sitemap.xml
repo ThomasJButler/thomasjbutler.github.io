@@ -5,7 +5,12 @@
   It also used a stale /ThomasJButler/ path prefix, listed two routes that are now
   redirects (/skills, /sitemap), and omitted /updates.
 -->
-<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">
+<!--
+  The namespace host is sitemaps.org, plural. A singular "sitemap.org" parses as XML but
+  is not the sitemap protocol, so Search Console rejects the file and every URL in it is
+  ignored: the typo silently costs you the whole sitemap.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://thomasjbutler.github.io/</loc>
     <changefreq>weekly</changefreq>

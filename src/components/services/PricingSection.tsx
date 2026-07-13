@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Receipt } from 'lucide-react';
+import { ArrowRight, Check, Plus, Receipt } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
-import { PRICING, PRICING_INTRO, PRICE_TBC } from '@/lib/content';
+import { ENGAGEMENT_TERMS, PRICING, PRICING_INTRO, PRICE_TBC, RETAINER } from '@/lib/content';
 import { cn } from '@/lib/utils';
 
 /**
@@ -41,8 +41,13 @@ export function PricingSection() {
             <CardHeader>
               {/* pr-24 on the lead card: the flag chip is pinned top-right, and unlike
                   the full-width lead card on the services grid, this one is a third of
-                  the width — the title runs straight into it otherwise. */}
-              <CardTitle className={cn('font-heading text-base', offer.lead && 'pr-24')}>
+                  the width, so the title runs straight into it otherwise. The min-height
+                  reserves two lines on every card: "AI Cost & Privacy Audit" wraps and
+                  the others do not, which otherwise drops its price a line below theirs
+                  and the three anchors stop reading as a row. */}
+              <CardTitle
+                className={cn('flex min-h-12 items-start font-heading text-base', offer.lead && 'pr-24')}
+              >
                 {offer.title}
               </CardTitle>
               <p className="mt-2 font-heading text-2xl font-bold text-foreground">
@@ -68,6 +73,59 @@ export function PricingSection() {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* The retainer is not an upsell tacked on the end. "AI you own" means there is no
+          vendor to call when the model drifts, so somebody has to maintain it. Saying that
+          plainly is more convincing than pretending the question does not arise. */}
+      <Card className="mt-4">
+        <CardContent className="flex flex-wrap items-baseline gap-x-4 gap-y-2 pt-5">
+          <span className="font-heading text-base font-bold text-foreground">{RETAINER.title}</span>
+          <span className="font-heading text-lg font-bold text-primary">{RETAINER.price}</span>
+          <p className="min-w-[16rem] flex-1 text-sm leading-relaxed text-muted-foreground">
+            {RETAINER.summary}
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Iteration, stated up front. A fixed fee with no revision limit is an hourly job
+          at a bad rate that nobody has admitted to yet. */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <Card size="sm" className="h-full">
+          <CardHeader>
+            <CardTitle className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
+              included
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {ENGAGEMENT_TERMS.included.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-foreground/80">
+                  <Check className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card size="sm" className="h-full">
+          <CardHeader>
+            <CardTitle className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              charged separately
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {ENGAGEMENT_TERMS.charged.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <Plus className="mt-0.5 size-3.5 shrink-0 text-muted-foreground/70" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-3">

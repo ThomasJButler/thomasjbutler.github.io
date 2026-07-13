@@ -6,10 +6,11 @@ Contact: dev@thomasjbutler.me
 
 ## Services
 
-- [Services](https://thomasjbutler.github.io/services): Local & Private AI (Ollama and open-model LLM setups, private RAG knowledge systems, AI cost and privacy audits), plus web apps, backend and APIs, AI automation, mobile applications, design, and consultancy.
+- [Services](https://thomasjbutler.github.io/services): Local & Private AI (Ollama and open-model LLM setups, private RAG knowledge systems, AI cost and privacy audits), plus web apps, backend and APIs, AI automation, mobile applications, design, and consultancy. Includes fixed-fee pricing (AI Cost & Privacy Audit from £4,800; Local LLM Setup from £12,000; Private RAG System from £18,000; Care & Tuning retainer from £950/month), the revision and iteration policy, and an FAQ covering hardware, GDPR, and when NOT to move to local AI.
 
 ## Work
 
+- [Case study](https://thomasjbutler.github.io/case-study): ISQ Agent, a RAG agent that drafts supplier security questionnaires, grounds every answer in the customer's own policy documents with citations, scores confidence on each answer, and routes weak ones to a human. Python/FastAPI RAG engine with an n8n orchestration tier, 480+ tests. The showcase build ran on hosted models (Claude, Voyage, Pinecone); the model sits behind an interface, so the same pipeline runs against open models on the customer's own hardware.
 - [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and creative projects, including ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Sanctuary (an offline, on-device iOS app for neurodiverse users).
 - [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from first HTML to production AI systems.
 

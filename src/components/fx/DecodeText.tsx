@@ -38,6 +38,14 @@ interface DecodeTextProps {
  *    prototype put aria-label on a bare <span>, which is prohibited ARIA (a span has
  *    an implicit generic role) — axe flags it and screen readers increasingly ignore
  *    it, so its "screen readers never see scramble" promise did not actually hold.
+ *
+ * 3. Every character slot is sized by its *final* character, with the animating glyph
+ *    laid over the top. The scramble alphabet is half-width katakana and symbols, whose
+ *    advance widths are nothing like the latin they stand in for, so a slot that sizes
+ *    itself to the current glyph re-widths on every frame, re-wraps the words, and moves
+ *    the line. On the home hero that was measured at 0.075 CLS, all of the page's score,
+ *    on the LCP element itself. The hidden sizer holds the box still; it also re-measures
+ *    for free when the web font finishes loading.
  */
 export function DecodeText({
   text,
@@ -86,7 +94,7 @@ export function DecodeText({
 
         // Only touch className on a transition, so the 0.45s lock glow fires once.
         if (state !== states[i]) {
-          el.className = `ch ch--${state}`;
+          el.className = `ch__glyph ch--${state}`;
           states[i] = state;
         }
       }
@@ -112,15 +120,26 @@ export function DecodeText({
             <span className="ch-word">
               {chars.slice(from, to).map((char, k) => {
                 const i = from + k;
+                // Under reduced motion nothing scrambles, so the slot needs no sizer to
+                // hold it still and no overlay to hold: just the character.
+                if (reduced) {
+                  return (
+                    <span key={i} className="ch ch--locked">
+                      {char}
+                    </span>
+                  );
+                }
                 return (
-                  <span
-                    key={i}
-                    ref={(el) => {
-                      spanRefs.current[i] = el;
-                    }}
-                    className={reduced ? 'ch ch--locked' : 'ch ch--pending'}
-                  >
-                    {reduced ? char : ' '}
+                  <span key={i} className="ch">
+                    {/* Reserves the slot at the size of the finished character, so the
+                        glyph churn above it cannot re-wrap the line. */}
+                    <span className="ch__sizer">{char}</span>
+                    <span
+                      ref={(el) => {
+                        spanRefs.current[i] = el;
+                      }}
+                      className="ch__glyph ch--pending"
+                    />
                   </span>
                 );
               })}

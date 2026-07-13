@@ -249,10 +249,26 @@ export interface PricedOffer {
 export const PRICING_INTRO =
   'Fixed fees, not day rates. You know what it costs before you commit, and I carry the risk of it taking longer than I thought.';
 
+/*
+ * The anchors below are benchmarked, not guessed. Sources, July 2026:
+ *
+ *   Day rate  IT Jobs Watch UK contract medians: AI Engineer £575, AI Agents £588
+ *             (75th pct £730), RAG £558. North West median £530 against London's £563,
+ *             so the regional discount people assume is ~6%, not 30%. An independent
+ *             bills 120-160 days a year, not 220, so matching a £530/day contractor
+ *             means charging ~£700-760. Three unrelated 2026 sources put UK freelance
+ *             AI consulting at £400-900/day.
+ *   Audit     Nearest published UK comparators: £3,500 (readiness sprint) to £8,000.
+ *   RAG       Nearest published UK comparator is a London agency's £15,000 RAG chatbot.
+ *             Pricing a compliance-grade private system below that would be self-harm.
+ *
+ * These are "from" anchors: the entry price of each package, not the expected fee. They
+ * are one-line edits — change the string and the card changes.
+ */
 export const PRICING: PricedOffer[] = [
   {
     title: 'AI Cost & Privacy Audit',
-    price: null,
+    price: 'from £4,800',
     duration: '1 to 2 weeks',
     lead: true,
     summary:
@@ -266,7 +282,7 @@ export const PRICING: PricedOffer[] = [
   },
   {
     title: 'Local LLM Setup',
-    price: null,
+    price: 'from £12,000',
     duration: '2 to 4 weeks',
     summary:
       'Open models running on your own hardware. Same results as the APIs for everyday work, no per-token bill, and nothing leaves the building.',
@@ -279,7 +295,7 @@ export const PRICING: PricedOffer[] = [
   },
   {
     title: 'Private RAG System',
-    price: null,
+    price: 'from £18,000',
     duration: '3 to 6 weeks',
     summary:
       'Your own documents, searchable and answerable, without any of them being sent to a third party. Answers cite their sources, so you can check them.',
@@ -295,6 +311,43 @@ export const PRICING: PricedOffer[] = [
 /** Shown in place of a price until a real figure exists. Honest, and it still invites the enquiry. */
 export const PRICE_TBC = 'Fixed fee · get a quote';
 
+/* ─── Iteration, revisions and the ongoing relationship ───
+ *
+ * Two things a fixed fee has to answer or it quietly becomes an hourly job at a bad rate:
+ * how much back-and-forth is included, and what happens after handover.
+ *
+ * The shape is the conventional one (N rounds included, then a fixed price per extra
+ * round, plus a defect warranty), stated up front rather than discovered later. A round
+ * is defined as one *consolidated* set of changes precisely so that requests trickling
+ * in one at a time do not become ten free rounds.
+ */
+export const ENGAGEMENT_TERMS = {
+  included: [
+    'Two rounds of revisions on each deliverable. A round is one consolidated set of changes, sent together.',
+    'A 30-day warranty from handover. If it does not do what the scope says it does, I fix it, free.',
+    'Handover documentation, so your team is not dependent on me.',
+  ],
+  charged: [
+    'Further rounds after the first two: £1,200 per round, fixed, so you can decide whether it is worth it before you ask.',
+    'New scope, as opposed to a revision: quoted and agreed in writing before any work starts.',
+    'Re-tuning against new documents or new criteria after acceptance.',
+  ],
+} as const;
+
+/**
+ * The retainer, which is the honest other half of "AI you own".
+ *
+ * Owning the system outright means there is no vendor on the hook when the model drifts
+ * or the documents move on. That is not a hole in the pitch, it is the pitch: you
+ * maintain it, or I do.
+ */
+export const RETAINER = {
+  title: 'Care & Tuning',
+  price: 'from £950/month',
+  summary:
+    'Optional, and genuinely optional. Monitoring, model updates, re-indexing as your documents change, and half a day of tuning a month. Cancel whenever it stops being worth it.',
+} as const;
+
 /* ─── FAQ ───
    Objection handling. These are the doubts that stop someone emailing, and the last
    one is the one that earns the most trust. */
@@ -302,11 +355,11 @@ export const PRICE_TBC = 'Fixed fee · get a quote';
 export const FAQ: { q: string; a: string }[] = [
   {
     q: 'Is a local model actually as good as the big APIs?',
-    a: 'For the everyday 90% — drafting, summarising, answering questions from your own documents — you will not tell the difference. The current generation of open models is genuinely good, and it runs on hardware a small business can afford. For frontier reasoning on hard novel problems, the big APIs are still ahead, and I will say so.',
+    a: 'For the everyday 90% (drafting, summarising, answering questions from your own documents) you will not tell the difference. The current generation of open models is genuinely good, and it runs on hardware a small business can afford. For frontier reasoning on hard novel problems, the big APIs are still ahead, and I will say so.',
   },
   {
     q: 'What hardware do I need?',
-    a: 'Less than you think. A single well-specified workstation covers most small teams, and you likely have something close already. Sizing it for your real workload rather than a benchmark is part of the audit — I would rather tell you a £1,500 machine is enough than sell you a rack.',
+    a: 'Less than you think. A single well-specified workstation covers most small teams, and you likely have something close already. Sizing it for your real workload rather than a benchmark is part of the audit. I would rather tell you a £1,500 machine is enough than sell you a rack.',
   },
   {
     q: 'What about GDPR and client data?',
@@ -314,11 +367,15 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'When should I NOT do this?',
-    a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive — in that case you are paying me to save you money you were not really spending. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”. You get that in writing too.',
+    a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive. In that case you are paying me to save you money you were not really spending. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”. You get that in writing too.',
+  },
+  {
+    q: 'What if we want changes once we see it?',
+    a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,200 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.',
   },
   {
     q: 'What happens if you get hit by a bus?',
-    a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around — which is rather the point of owning it rather than renting it.',
+    a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around, which is rather the point of owning it rather than renting it.',
   },
 ];
 
@@ -337,6 +394,15 @@ export interface CaseStudy {
   approach: string[];
   architecture: { step: string; detail: string }[];
   proves: string[];
+  /**
+   * What this actually is, stated before anyone has to ask.
+   *
+   * The build used hosted models, and the site's whole argument is local AI. Saying so
+   * plainly is not a weakness: a reader who spots the Claude and Pinecone badges and no
+   * disclosure concludes the pitch is dishonest, whereas a reader who is told up front
+   * concludes the opposite.
+   */
+  provenance: string;
   /** Null until there are real, measured figures. Do not invent these. */
   results: { value: string; label: string }[] | null;
 }
@@ -348,25 +414,27 @@ export const CASE_STUDY: CaseStudy = {
   subtitle: 'A private RAG agent that drafts supplier security questionnaires, grounds every answer in your own policy, and flags the ones a human needs to look at.',
   problem: [
     'Supplier security questionnaires are a tax on selling. A single one can run to two hundred questions, most of which you have answered before, in slightly different words, in a document nobody can find.',
-    'The obvious fix is to point an LLM at it. The obvious problem with the obvious fix is that a security questionnaire is a document about your security — pasting it, and your policies, into someone else’s API is a strange way to demonstrate that you take data protection seriously.',
+    'The obvious fix is to point an LLM at it. The obvious problem with the obvious fix is that a security questionnaire is a document about your security, and pasting it, along with your policies, into someone else’s API is a strange way to demonstrate that you take data protection seriously.',
     'So the requirement writes itself: it has to be good enough to save real time, and it has to run somewhere you control.',
   ],
   approach: [
-    'Retrieval over your own policy documents, not a general model’s memory. Every answer is drafted from something you have actually written and approved, and it cites which document it came from — so a reviewer can check it in seconds rather than trusting it.',
+    'Retrieval over your own policy documents, not a general model’s memory. Every answer is drafted from something you have actually written and approved, and it cites which document it came from, so a reviewer can check it in seconds rather than trusting it.',
     'A confidence score on every answer, and a hard rule that low-confidence answers are never submitted silently. The agent is a drafting assistant with a paper trail, not an oracle.',
-    'The whole thing runs against models you host. Nothing about the questionnaire, the policies, or the answers leaves the building.',
+    'The model is a swappable part. Retrieval, grounding, scoring and the audit log are the system; the thing that writes the sentence is a component behind an interface. Point it at a hosted API or at an open model on your own hardware and the pipeline does not change.',
   ],
   architecture: [
     { step: 'Ingest', detail: 'Your policies, previous questionnaires and controls documentation, chunked and embedded into a private vector store.' },
-    { step: 'Retrieve', detail: 'For each question, pull the passages that actually bear on it — tuned on your content, not on a demo corpus.' },
+    { step: 'Retrieve', detail: 'For each question, pull the passages that actually bear on it, tuned on your content rather than on a demo corpus.' },
     { step: 'Draft', detail: 'The model answers strictly from the retrieved passages, and cites them. If the passages do not support an answer, it says so instead of inventing one.' },
     { step: 'Score', detail: 'Each answer gets a confidence score based on how well the retrieved evidence actually covers the question.' },
     { step: 'Review', detail: 'Anything below the bar is routed to a human, with the evidence attached. The reviewer is checking, not writing from scratch.' },
   ],
   proves: [
-    'That a genuinely useful RAG system can run entirely on infrastructure you control.',
-    'That grounding and citation are not a nice-to-have — they are what make an AI answer checkable, and therefore usable, in a context where being wrong has consequences.',
+    'That the hard part of a RAG agent is not the model. It is the retrieval, the grounding, the confidence scoring and the audit trail, and none of those care which model you plug in.',
+    'That grounding and citation are not a nice-to-have. They are what make an AI answer checkable, and therefore usable, in a context where being wrong has consequences.',
     'That the honest move is to build the escape hatch in from the start: the system is designed to know when it does not know.',
   ],
+  provenance:
+    'Built as a working system, not a demo: a Python and FastAPI RAG engine with an n8n orchestration tier, 480+ tests, test-driven throughout. This build ran on hosted models (Claude, Voyage, Pinecone), which is worth saying plainly on a site that argues for local AI. The reason it can make that argument is the point above: the model is a component behind an interface, so the same pipeline runs against open models on your own hardware, which is the configuration I would deploy for anyone whose documents cannot leave the building. The repository and the deployments are offline, so there is no live link to give you.',
   results: null,
 };

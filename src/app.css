@@ -649,8 +649,22 @@
     display: inline-block;
     white-space: nowrap;
   }
+  /* The slot is sized by the finished character (.ch__sizer) and the animating glyph is
+     laid over it. The scramble alphabet is half-width katakana and symbols, so a slot
+     that sized itself to the *current* glyph re-widthed every frame and re-wrapped the
+     line: 0.075 CLS on the home hero, which is the LCP element. Sizing from the real
+     text also means the box is re-measured for free once the web font loads. */
   .ch {
+    position: relative;
     display: inline-block;
+  }
+  .ch__sizer {
+    visibility: hidden;
+  }
+  .ch__glyph {
+    position: absolute;
+    inset: 0;
+    text-align: center;
   }
   .ch--pending {
     opacity: 0;

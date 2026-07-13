@@ -43,8 +43,8 @@ export const projects: Project[] = [
   {
     id: 'premier-league-oracle',
     name: 'The Kicker',
-    description: 'Premier League predictions plus a clean, ad-free football newsreader — five statistical models and an XGBoost ensemble, shown as honest probability bars.',
-    longDescription: 'A rebrand and evolution of the Premier League Oracle. Blends five statistical models (ELO, Poisson, form, head-to-head and standings) with a trained XGBoost ensemble to predict results — shown as honest probability bars rather than over-confident scorelines. It pairs the numbers with a distraction-free newsreader, because sometimes you want the story, not just the prediction — a deliberate antidote to ad-heavy, cluttered sports sites. Includes a Kelly Criterion calculator, value-bet detection and an Oracle Chat with client-side RAG over 33 seasons of data.',
+    description: 'Premier League predictions plus a clean, ad-free football newsreader. Five statistical models and an XGBoost ensemble, shown as honest probability bars.',
+    longDescription: 'A rebrand and evolution of the Premier League Oracle. Blends five statistical models (ELO, Poisson, form, head-to-head and standings) with a trained XGBoost ensemble to predict results, shown as honest probability bars rather than over-confident scorelines. It pairs the numbers with a distraction-free newsreader, because sometimes you want the story, not just the prediction: a deliberate antidote to ad-heavy, cluttered sports sites. Includes a Kelly Criterion calculator, value-bet detection and an Oracle Chat with client-side RAG over 33 seasons of data.',
     topics: ['Svelte', 'TypeScript', 'XGBoost', 'FastAPI'],
     language: 'TypeScript',
     category: 'web',
@@ -56,12 +56,15 @@ export const projects: Project[] = [
   {
     id: 'isq-agent',
     name: 'ISQ Agent',
-    description: 'RAG agent that completes supplier security questionnaires — grounding every answer in policy, scoring confidence, and flagging weak answers for human review.',
-    longDescription: 'An AI-powered RAG agent that ingests supplier security questionnaires (PDF, DOCX or XLSX), grounds each answer in a knowledge base of policies and historical responses, scores confidence across four dimensions, and flags weak answers for human review. It renders completed questionnaires as DOCX, XLSX and JSON and logs tokens, cost and latency per question for full auditability. A two-tier system: a Python/FastAPI RAG engine (Voyage + Pinecone + Claude) with an n8n orchestration tier — a reusable, grounded methodology that adapts well beyond questionnaires (RFPs, compliance, onboarding, support).',
+    description: 'RAG agent that completes supplier security questionnaires, grounding every answer in policy, scoring confidence, and flagging weak answers for human review.',
+    longDescription: 'An AI-powered RAG agent that ingests supplier security questionnaires (PDF, DOCX or XLSX), grounds each answer in a knowledge base of policies and historical responses, scores confidence across four dimensions, and flags weak answers for human review. It renders completed questionnaires as DOCX, XLSX and JSON and logs tokens, cost and latency per question for full auditability. A two-tier system: a Python/FastAPI RAG engine (Voyage + Pinecone + Claude) with an n8n orchestration tier. A reusable, grounded methodology that adapts well beyond questionnaires (RFPs, compliance, onboarding, support).',
     topics: ['Claude', 'Pinecone', 'FastAPI', 'n8n'],
     language: 'Python',
     category: 'ai',
-    links: { github: 'https://github.com/ThomasJButler/isq-agent' },
+    // No links: the repo and the deployments were taken down deliberately. Leaving the
+    // GitHub URL here would put a 404 on the project card *and* on the case study, which
+    // renders this same links object.
+    links: {},
     status: 'completed',
     highlights: ['Grounded answers with four-dimension confidence scoring', 'Outputs DOCX / XLSX / JSON', 'n8n orchestration + per-question cost/latency auditing', '480+ tests, CI, test-driven throughout'],
   },
@@ -235,15 +238,15 @@ export const projects: Project[] = [
   {
     id: 'sanctuary',
     name: 'Sanctuary',
-    description: 'Native iOS app for daily neurodiversity functioning — in active build with Swift after roughly two years of research and development.',
-    longDescription: 'Sanctuary is a neurodiversity daily-functioning app, built natively in Swift after around two years of research and development. It helps neurodiverse people manage executive function and communicate better — growing out of the same coaching automations built and proven in daily use. Currently in active development.',
+    description: 'Native iOS app for daily neurodiversity functioning, in active build with Swift after roughly two years of research and development.',
+    longDescription: 'Sanctuary is a neurodiversity daily-functioning app, built natively in Swift after around two years of research and development. It helps neurodiverse people manage executive function and communicate better, growing out of the same coaching automations built and proven in daily use. Currently in active development.',
     topics: ['Swift', 'Xcode', 'iOS', 'Neurodiversity'],
     language: 'Swift',
     category: 'mobile',
     links: {},
     featured: true,
     status: 'in-progress',
-    highlights: ['Built natively in Swift / Xcode', 'Supports executive function and communication', 'Around two years of research and design', 'In active development — coming soon'],
+    highlights: ['Built natively in Swift / Xcode', 'Supports executive function and communication', 'Around two years of research and design', 'In active development, coming soon'],
   },
 ];
 
