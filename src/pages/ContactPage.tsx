@@ -51,7 +51,7 @@ export function ContactPage() {
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="fx-page mx-auto max-w-5xl px-6">
       <LinkedInBanner />
       {/* Page Header */}
       <section className="py-16 text-center">

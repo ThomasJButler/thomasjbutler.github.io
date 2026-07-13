@@ -50,10 +50,16 @@ export function UpdatesPage() {
     acc[entry.year].push(entry);
     return acc;
   }, {});
+  // Sort within a year too, not just between years. Without this, entries in the
+  // same year render in whatever order they happen to sit in the array, so the
+  // newest milestone leads only by accident.
+  for (const entries of Object.values(entriesByYear)) {
+    entries.sort((a, b) => b.month - a.month);
+  }
   const years = Object.keys(entriesByYear).map(Number).sort((a, b) => b - a);
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="fx-page mx-auto max-w-5xl px-6">
       {/* Page Header */}
       <section className="py-16 text-center">
         <motion.p

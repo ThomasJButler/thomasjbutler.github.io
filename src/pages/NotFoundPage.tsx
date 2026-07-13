@@ -10,7 +10,7 @@ export function NotFoundPage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-24 text-center">
+    <div className="fx-page mx-auto max-w-5xl px-6 py-24 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

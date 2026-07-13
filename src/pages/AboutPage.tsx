@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
+import { ArrowRight, Terminal, Code, Bot, Briefcase, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { MotionSection } from '@/components/MotionSection';
+import { Reveal } from '@/components/fx/Reveal';
+import { ABOUT_CURRENT_FOCUS, ABOUT_CURRENT_FOCUS_TAGS } from '@/lib/content';
 
 const TECH_TABS = [
   {
@@ -83,7 +85,7 @@ export function AboutPage() {
   useEffect(() => { document.title = 'About | Tom Butler'; }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="fx-page mx-auto max-w-5xl px-6">
       {/* Intro */}
       <section className="py-20">
         <motion.p
@@ -132,6 +134,30 @@ export function AboutPage() {
             improvement.
           </p>
         </motion.div>
+
+        {/* Current Focus */}
+        <Reveal className="mt-10 max-w-2xl">
+          <div className="fx-scrim rounded-lg border border-primary/20 bg-primary/[0.03] p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <Cpu className="size-3.5 text-primary" />
+              <span className="font-mono text-xs uppercase tracking-wider text-primary/70">
+                current_focus
+              </span>
+            </div>
+            <p className="text-sm text-foreground/80 leading-relaxed">{ABOUT_CURRENT_FOCUS}</p>
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {ABOUT_CURRENT_FOCUS_TAGS.map((tag) => (
+                <Badge
+                  key={tag.label}
+                  variant={tag.tone === 'default' ? 'secondary' : tag.tone}
+                  className="text-[10px]"
+                >
+                  {tag.label}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       <Separator />

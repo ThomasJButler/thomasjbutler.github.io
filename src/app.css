@@ -984,3 +984,465 @@
     animation: none;
   }
 }
+
+/* ─── Command palette ─── */
+@layer components {
+  .fx-kbd {
+    padding: 4px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--muted-foreground);
+    background: color-mix(in oklab, var(--muted) 50%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .fx-kbd:hover {
+    color: var(--primary);
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 15%, transparent);
+  }
+
+  .fx-pal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 119;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+  }
+  .fx-pal {
+    position: fixed;
+    top: 16vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 120;
+    width: min(580px, calc(100vw - 40px));
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+    border-radius: 12px;
+    background: linear-gradient(
+      180deg,
+      oklch(0.11 0.02 145 / 0.96),
+      oklch(0.07 0.01 145 / 0.98)
+    );
+    box-shadow:
+      0 0 44px color-mix(in oklab, var(--primary) 14%, transparent),
+      0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  :root:not(.dark) .fx-pal {
+    background: oklch(1 0 0 / 0.98);
+  }
+
+  .fx-pal__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: color-mix(in oklab, var(--muted) 55%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-pal__inputrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-pal__inputrow .p {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--primary);
+  }
+  .fx-pal__input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--foreground);
+    caret-color: var(--primary);
+  }
+
+  .fx-pal__list {
+    max-height: 320px;
+    overflow: auto;
+    padding: 6px;
+    margin: 0;
+    list-style: none;
+  }
+  .fx-pal__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* 44px: an option is a control, even if it is never tab-focused. */
+    min-height: 44px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--muted-foreground);
+    transition: background 0.12s, color 0.12s;
+  }
+  .fx-pal__item .cara {
+    flex-shrink: 0;
+    width: 12px;
+    color: var(--primary);
+  }
+  .fx-pal__item .lab {
+    flex: 1;
+  }
+  .fx-pal__item .pill {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .fx-pal__item .typ {
+    padding: 2px 6px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
+    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    border-radius: 4px;
+  }
+  .fx-pal__item.is-selected {
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: var(--foreground);
+  }
+  .fx-pal__item.is-selected .typ {
+    color: color-mix(in oklab, var(--primary) 80%, transparent);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+  .fx-pal__empty {
+    margin: 0;
+    padding: 22px 14px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted-foreground);
+  }
+  .fx-pal__hint {
+    padding: 8px 14px;
+    border-top: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+  }
+
+  /* ─── Toast ─── */
+  .fx-toast-region {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 125;
+    pointer-events: none;
+  }
+  .fx-toast {
+    max-width: min(560px, 88vw);
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--foreground);
+    background: rgba(0, 0, 0, 0.88);
+    border: 1px solid color-mix(in oklab, var(--primary) 40%, transparent);
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--primary) 18%, transparent),
+      0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+  :root:not(.dark) .fx-toast {
+    background: oklch(1 0 0 / 0.96);
+  }
+
+  /* ─── Boot intro ─── */
+  body.fx-lock {
+    overflow: hidden;
+  }
+  .fx-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    background: #000;
+    cursor: pointer;
+    transition: opacity 0.38s ease;
+  }
+  .fx-boot.is-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .fx-boot__line {
+    margin: 0;
+    white-space: pre;
+    font-family: var(--font-mono);
+    font-size: clamp(19px, 2.8vw, 28px);
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    text-shadow: 0 0 14px color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+  .fx-skip {
+    position: fixed;
+    right: 28px;
+    bottom: 26px;
+    min-height: 44px;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .fx-skip:hover {
+    color: var(--primary);
+  }
+
+  /* ─── Eggs ─── */
+  .fx-spoon {
+    position: fixed;
+    inset: 0;
+    z-index: 130;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.92);
+  }
+  :root:not(.dark) .fx-spoon {
+    background: rgba(250, 252, 250, 0.94);
+  }
+  .fx-spoon__title {
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 62px);
+    letter-spacing: 0.06em;
+    color: var(--foreground);
+    text-shadow:
+      0 0 16px color-mix(in oklab, var(--primary) 45%, transparent),
+      0 0 60px color-mix(in oklab, var(--primary) 20%, transparent);
+  }
+  .fx-spoon__sub {
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: color-mix(in oklab, var(--primary) 70%, transparent);
+  }
+
+  .fx-rabbit {
+    position: fixed;
+    right: 22px;
+    bottom: 20px;
+    z-index: 110;
+    /* The SVG is 52x44; padding takes the hit area to 44px in both axes. */
+    width: 52px;
+    height: 44px;
+    padding: 0;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.92;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+    animation:
+      fx-hop-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+      fx-twitch 4s ease-in-out 1.2s infinite;
+  }
+  .fx-rabbit:hover {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95));
+  }
+  :root:not(.dark) .fx-rabbit {
+    color: oklch(0.35 0.05 145);
+    filter: drop-shadow(0 0 6px oklch(0.4 0.2 145 / 0.5));
+  }
+
+  /* ─── Newsletter strip ─── */
+  .fx-news {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 18px;
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in oklab, var(--primary) 24%, transparent);
+    background: color-mix(in oklab, var(--primary) 4%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .fx-news__head h3 {
+    margin: 6px 0;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  .fx-news__head p {
+    margin: 0;
+    max-width: 520px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  .fx-news__act {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .fx-news__note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
+  }
+
+  @media (max-width: 820px) {
+    .fx-news {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .fx-news__act {
+      align-items: flex-start;
+    }
+    .fx-rabbit {
+      right: 14px;
+      bottom: 14px;
+    }
+    .fx-toast-region {
+      bottom: 20px;
+    }
+  }
+}
+
+@keyframes fx-hop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) translateX(24px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-8px) translateX(4px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes fx-twitch {
+  0%, 92%, 100% {
+    transform: none;
+  }
+  94% {
+    transform: translateY(-3px);
+  }
+  97% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-rabbit {
+    animation: none;
+  }
+}
+
+/* ─── Reading column scrim ───
+   With the page-wide glass panel gone, prose sits directly on the rain. Measured:
+   the brightest pixel behind a paragraph is rgb(110,142,114) (a head glyph at 0.55
+   canvas opacity), which is 1.38:1 against muted body text — WCAG AA wants 4.5:1.
+
+   So the rain still pours down the full-width margins, but it is damped behind the
+   reading column. The scrim is the page's own background colour and fades out at the
+   left and right edges, so it reads as atmosphere rather than as a card: no border,
+   no blur, no visible seam. */
+@layer utilities {
+  .fx-page {
+    position: relative;
+  }
+  .fx-page > * {
+    position: relative;
+    z-index: 1;
+  }
+  .fx-page::before {
+    content: '';
+    position: absolute;
+    inset: 0 -3rem;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.08 0.01 145 / 0.88) 6%,
+      oklch(0.08 0.01 145 / 0.88) 94%,
+      transparent 100%
+    );
+  }
+  :root:not(.dark) .fx-page::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.985 0.002 145 / 0.88) 6%,
+      oklch(0.985 0.002 145 / 0.88) 94%,
+      transparent 100%
+    );
+  }
+}
+
+/* ─── Services lead card ───
+   Layered over the card's own background rather than replacing it. A Tailwind
+   bg-gradient-* utility here would override background-image, and since
+   .dark [data-slot="card"] paints its dark surface with a gradient (via the
+   `background` shorthand), that would strip the dark treatment and expose a
+   near-white background-color underneath. Two stacked gradients keep both. */
+@layer components {
+  .fx-lead-card {
+    position: relative;
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    box-shadow: 0 0 26px color-mix(in oklab, var(--primary) 10%, transparent);
+  }
+  .dark .fx-lead-card {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent 70%),
+      linear-gradient(180deg, oklch(0.12 0.02 145 / 0.78), oklch(0.08 0.01 145 / 0.82));
+  }
+  :root:not(.dark) .fx-lead-card {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primary) 6%, oklch(1 0 0)),
+      oklch(1 0 0 / 0.95)
+    );
+  }
+  .fx-lead-card__flag {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    padding: 3px 10px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in oklab, var(--primary) 40%, transparent);
+    border-radius: 999px;
+  }
+}

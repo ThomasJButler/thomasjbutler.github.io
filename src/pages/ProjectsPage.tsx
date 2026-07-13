@@ -9,8 +9,9 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects, categories } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
 import { ProjectDetailModal } from '@/components/ProjectDetailModal';
+import { ProjectCover } from '@/components/projects/ProjectCover';
 import { MotionSection } from '@/components/MotionSection';
-import { cn } from '@/lib/utils';
+import { DecodeText } from '@/components/fx/DecodeText';
 
 const featuredProjects = projects.filter((p) => p.featured);
 
@@ -41,30 +42,6 @@ const categoryBadgeVariant: Record<string, string> = {
 /** Full green retro border for every project card. */
 const cardBorder = 'h-full cursor-pointer border border-primary/40 transition-colors hover:border-primary/70';
 
-/** Card cover: Cloudinary image when present, else a branded placeholder. Kept compact. */
-function ProjectCover({ project }: { project: Project }) {
-  const cover = project.images?.cover;
-  if (cover) {
-    const isSvg = cover.endsWith('.svg');
-    return (
-      <img
-        src={cover}
-        alt={`${project.name} cover`}
-        loading="lazy"
-        className={cn('h-36 w-full bg-muted/40', isSvg ? 'object-contain p-6' : 'object-cover')}
-      />
-    );
-  }
-  return (
-    <div className="flex h-36 w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/8 via-card to-background">
-      <Terminal className="size-6 text-primary/30" />
-      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary/45">
-        {project.status === 'in-progress' ? 'coming soon' : 'preview coming soon'}
-      </span>
-    </div>
-  );
-}
-
 export function ProjectsPage() {
   useEffect(() => { document.title = 'Projects | Tom Butler'; }, []);
 
@@ -84,9 +61,12 @@ export function ProjectsPage() {
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="fx-page mx-auto max-w-5xl px-6 py-16">
       <MotionSection>
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Projects</h1>
+        <p className="font-mono text-xs tracking-[0.2em] text-primary/70">
+          <DecodeText text="// projects" step={20} />
+        </p>
+        <h1 className="mt-2 font-heading text-3xl font-bold tracking-tight">Projects</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           A collection of AI, web, and creative projects.
         </p>
@@ -173,14 +153,22 @@ export function ProjectsPage() {
       {/* Project grid */}
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
+          {filtered.map((project, i) => (
+            // Keyed by category as well as id, so switching filter remounts every card
+            // and the stagger plays again instead of the survivors sitting still.
             <motion.div
-              key={project.id}
+              key={`${activeCategory}-${project.id}`}
               layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
+              initial={{ opacity: 0, scale: 0.95, y: 12 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                // Stagger per column, not down the whole grid: cards ripple across
+                // each row of three rather than the last card waiting on all the rest.
+                transition: { duration: 0.35, delay: (i % 3) * 0.07 },
+              }}
+              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.18 } }}
             >
               <Card
                 featured={project.featured}

@@ -1,17 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  Mail,
-  Globe,
-  Server,
-  Bot,
-  Smartphone,
-  Palette,
-  Handshake,
-  Award,
-} from 'lucide-react';
+import { ArrowRight, Mail, Cpu, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -23,57 +13,10 @@ import {
 } from '@/components/ui/accordion';
 import { Separator } from '@/components/ui/separator';
 import { MotionSection } from '@/components/MotionSection';
-
-const SERVICES = [
-  {
-    title: 'Website & Web Apps',
-    icon: Globe,
-    description:
-      'Responsive, performance-first websites and web apps built with modern stacks.',
-    tech: ['React', 'TypeScript', 'WordPress', 'HubSpot', 'Next.js'],
-    highlights: ['React/Next.js', 'Performance & SEO', 'Accessible & Responsive'],
-  },
-  {
-    title: 'Backend & APIs',
-    icon: Server,
-    description:
-      'Robust servers and APIs that scale with your product. Production-ready from day one.',
-    tech: ['Node.js', 'Django', 'PostgreSQL', 'GraphQL', 'Flask'],
-    highlights: ['Node.js/Python', 'PostgreSQL/MongoDB', 'Auth & Security'],
-  },
-  {
-    title: 'AI & Automation',
-    icon: Bot,
-    description:
-      'Custom AI agents and automations that sound like you and give you your time back — grounded, secure, and built around real workflows.',
-    tech: ['Claude', 'LangChain', 'MCP', 'n8n', 'RAG', 'Pinecone'],
-    highlights: ['Custom AI agents & grounded RAG', 'n8n + MCP workflow automation', 'Scrapers, triage & CV/job tooling'],
-  },
-  {
-    title: 'Mobile Applications',
-    icon: Smartphone,
-    description:
-      'Native iOS apps built in Swift, plus cross-platform builds with a native feel and store readiness.',
-    tech: ['Swift', 'Xcode', 'SwiftUI', 'React Native', 'iOS'],
-    highlights: ['Native iOS (Swift / Xcode)', 'Cross-platform with React Native', 'Store-ready & accessible'],
-  },
-  {
-    title: 'Design & Prototyping',
-    icon: Palette,
-    description:
-      'Design and prototype first — in Figma and Claude Design — so the UX is settled before a line of code is written.',
-    tech: ['Figma', 'Claude Design', 'Prototyping', 'UI/UX', 'Design Systems'],
-    highlights: ['Prototype-first workflow', 'UI/UX & design systems', 'Brand identity'],
-  },
-  {
-    title: 'Consultancy & Custom',
-    icon: Handshake,
-    description:
-      'Architecture reviews, training and bespoke engineering for special requirements.',
-    tech: ['DevOps', 'Git', 'Agile', 'Testing', 'Cloud'],
-    highlights: ['Architecture Review', 'Team Training', 'Bespoke Solutions'],
-  },
-] as const;
+import { NewsletterStrip } from '@/components/NewsletterStrip';
+import { Reveal } from '@/components/fx/Reveal';
+import { SERVICES, SERVICES_INTRO, WHY_LOCAL_AI, WHY_LOCAL_AI_STATS, LINKS } from '@/lib/content';
+import { cn } from '@/lib/utils';
 
 const CREDENTIALS = [
   {
@@ -106,7 +49,7 @@ export function ServicesPage() {
   useEffect(() => { document.title = 'Services | Tom Butler'; }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="fx-page mx-auto max-w-5xl px-6">
       {/* Intro */}
       <section className="py-20">
         <motion.p
@@ -133,9 +76,7 @@ export function ServicesPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-4 max-w-2xl text-muted-foreground leading-relaxed"
         >
-          Fast, resilient digital products. From performance-first websites to AI integrations and
-          mobile apps. I handle the architecture, delivery, and support so you can focus on
-          outcomes.
+          {SERVICES_INTRO}
         </motion.p>
       </section>
 
@@ -157,8 +98,15 @@ export function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={cn(service.lead && 'sm:col-span-2')}
               >
-                <Card className="h-full transition-shadow hover:ring-2 hover:ring-primary/30">
+                <Card
+                  className={cn(
+                    'h-full transition-shadow hover:ring-2 hover:ring-primary/30',
+                    service.lead && 'fx-lead-card'
+                  )}
+                >
+                  {service.lead && <span className="fx-lead-card__flag">local_first</span>}
                   <CardHeader>
                     <div className="flex items-center gap-3">
                       <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -191,6 +139,47 @@ export function ServicesPage() {
           })}
         </div>
       </MotionSection>
+
+      <Separator />
+
+      {/* Why Local AI */}
+      <Reveal as="section" className="py-16">
+        <div className="flex items-center gap-2 mb-5">
+          <Cpu className="size-4 text-primary" />
+          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
+            why_local_ai
+          </h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
+        </div>
+
+        <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+          Why Local AI
+        </h3>
+
+        {/* Prose sits over the live rain — fx-scrim paints the page background back in behind it. */}
+        <div className="fx-scrim mt-4 max-w-3xl space-y-4">
+          {WHY_LOCAL_AI.map((paragraph) => (
+            <p key={paragraph} className="text-muted-foreground leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {WHY_LOCAL_AI_STATS.map((stat) => (
+            <Card key={stat.label} size="sm" className="text-center hover:border-primary/30">
+              <CardContent className="pt-5 pb-4">
+                <div className="font-heading text-3xl font-bold text-foreground glow-text">
+                  {stat.value}
+                </div>
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
+                  {stat.label}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Reveal>
 
       <Separator />
 
@@ -238,12 +227,16 @@ export function ServicesPage() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <a href="mailto:hello@thomasjbutler.co.uk">
+            <a href={`mailto:${LINKS.email}`}>
               <Mail className="size-4" /> Email Directly
             </a>
           </Button>
         </div>
       </MotionSection>
+
+      <section className="pb-16">
+        <NewsletterStrip />
+      </section>
     </div>
   );
 }

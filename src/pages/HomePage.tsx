@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { OperatorHero } from '@/components/home/OperatorHero';
+import { NewsletterStrip } from '@/components/NewsletterStrip';
 import { NOW_COPY, NOW_TAGS, RECENT_ACTIVITY } from '@/lib/content';
 
 /* ─── System Status Dashboard Data ─── */
@@ -92,7 +93,7 @@ export function HomePage() {
       {/* Full-bleed: the hero is 1240px wide and breaks out of the page container. */}
       <OperatorHero />
 
-      <div id="below" className="mx-auto max-w-5xl px-6">
+      <div id="below" className="fx-page mx-auto max-w-5xl px-6">
       {/* ═══ System Status Dashboard ═══ */}
       <section className="py-4">
         <motion.div
@@ -271,6 +272,10 @@ export function HomePage() {
           </div>
         </motion.div>
       </section>
+
+        <section className="pb-16">
+          <NewsletterStrip />
+        </section>
       </div>
     </>
   );

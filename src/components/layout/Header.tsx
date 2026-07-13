@@ -15,7 +15,7 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
-export function Header() {
+export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
@@ -47,6 +47,17 @@ export function Header() {
             </Link>
           ))}
           <div className="ml-2 flex items-center gap-1 border-l border-border pl-3">
+            {onOpenPalette && (
+              <button
+                type="button"
+                onClick={onOpenPalette}
+                className="fx-kbd"
+                aria-keyshortcuts="Meta+K Control+K"
+                title="Command palette (⌘K)"
+              >
+                ⌘K
+              </button>
+            )}
             <a
               href="https://github.com/thomasjbutler"
               target="_blank"
@@ -111,6 +122,32 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+              {/* Dev Journey is not in the desktop nav, so without this it is
+                  unreachable on mobile except via the command palette. */}
+              <Link
+                to="/updates"
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  'rounded-md px-4 py-2.5 font-mono text-sm transition-colors',
+                  location.pathname === '/updates'
+                    ? 'bg-surface-2 text-primary'
+                    : 'text-text-muted hover:bg-surface-1 hover:text-text'
+                )}
+              >
+                Dev Journey
+              </Link>
+              {onOpenPalette && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onOpenPalette();
+                  }}
+                  className="rounded-md px-4 py-2.5 text-left font-mono text-sm text-primary transition-colors hover:bg-surface-1"
+                >
+                  ⌘K palette
+                </button>
+              )}
               <div className="mt-2 flex items-center gap-2 border-t border-border pt-3">
                 <a
                   href="https://github.com/thomasjbutler"

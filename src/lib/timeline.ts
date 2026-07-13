@@ -43,6 +43,26 @@ const formatDate = (year: number, month: number): string => {
 
 export const timelineData: TimelineEntry[] = [
   {
+    id: 26,
+    year: 2026,
+    month: 7,
+    date: formatDate(2026, 7),
+    title: 'AI you can own',
+    location: 'York, UK',
+    institution: 'Local & Private AI',
+    description: 'Local and private AI becomes the focus. Ollama setups and private RAG for businesses, contributing to Odysseus, building Sanctuary on-device, and writing Run It Local every week.',
+    achievements: [
+      'Ollama local LLM setups and private RAG systems for businesses',
+      'Contributing to Odysseus, an open source local AI project',
+      'Building Sanctuary, a fully offline on-device AI app',
+      'Writing Run It Local, a weekly plain-English AI newsletter'
+    ],
+    links: [],
+    icon: 'fa-microchip',
+    iconBg: '#8B5CF6',
+    category: 'ai-ml'
+  },
+  {
     id: 1,
     year: 2025,
     month: 9,
