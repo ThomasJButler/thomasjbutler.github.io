@@ -45,25 +45,25 @@ const SERVICES = [
     title: 'AI & Automation',
     icon: Bot,
     description:
-      'Practical AI features and automation to save time and make data useful.',
-    tech: ['ChatGPT', 'Claude', 'PyTorch', 'TensorFlow', 'n8n'],
-    highlights: ['GPT Integration', 'n8n Workflows', 'Custom ML Models'],
+      'Custom AI agents and automations that sound like you and give you your time back — grounded, secure, and built around real workflows.',
+    tech: ['Claude', 'LangChain', 'MCP', 'n8n', 'RAG', 'Pinecone'],
+    highlights: ['Custom AI agents & grounded RAG', 'n8n + MCP workflow automation', 'Scrapers, triage & CV/job tooling'],
   },
   {
     title: 'Mobile Applications',
     icon: Smartphone,
     description:
-      'Cross-platform apps with native feel and store readiness.',
-    tech: ['React Native', 'Expo', 'iOS', 'Android'],
-    highlights: ['React Native', 'iOS & Android', 'Push & Offline'],
+      'Native iOS apps built in Swift, plus cross-platform builds with a native feel and store readiness.',
+    tech: ['Swift', 'Xcode', 'SwiftUI', 'React Native', 'iOS'],
+    highlights: ['Native iOS (Swift / Xcode)', 'Cross-platform with React Native', 'Store-ready & accessible'],
   },
   {
-    title: 'Design & Brand',
+    title: 'Design & Prototyping',
     icon: Palette,
     description:
-      'Clear, usable interfaces and identity design that scales with your product.',
-    tech: ['Figma', 'Adobe XD', 'UI/UX', 'Wireframes'],
-    highlights: ['UI/UX Design', 'Brand Identity', 'Design Systems'],
+      'Design and prototype first — in Figma and Claude Design — so the UX is settled before a line of code is written.',
+    tech: ['Figma', 'Claude Design', 'Prototyping', 'UI/UX', 'Design Systems'],
+    highlights: ['Prototype-first workflow', 'UI/UX & design systems', 'Brand identity'],
   },
   {
     title: 'Consultancy & Custom',

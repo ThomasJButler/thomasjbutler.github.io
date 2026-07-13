@@ -5,15 +5,18 @@ export interface Project {
   longDescription?: string;
   topics: string[];
   language: string;
-  category: 'ai' | 'web' | 'games' | 'creative' | 'personal';
+  category: 'ai' | 'web' | 'mobile' | 'games' | 'creative' | 'personal';
   links: {
     demo?: string;
     github?: string;
     video?: string;
   };
   images?: {
+    cover?: string;
     gallery?: string[];
   };
+  /** Short embedded demo clips (mp4), e.g. 10-30s screen recordings. */
+  videos?: string[];
   featured?: boolean;
   status?: 'completed' | 'in-progress' | 'coming-soon';
   highlights?: string[];
@@ -29,9 +32,38 @@ export const projects: Project[] = [
     language: 'TypeScript',
     category: 'ai',
     links: { demo: 'https://modelviz.vercel.app/', github: 'https://github.com/ThomasJButler/ModelViz' },
+    images: {
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710994/ModelViz_blz9ct.png',
+      gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1768067110/modelviz2short_ukdyda.gif'],
+    },
     featured: true,
     status: 'completed',
     highlights: ['Multi-provider comparison (OpenAI, Anthropic, Google, Perplexity)', 'Real-time streaming with response metrics', 'Interactive 3D data visualisations', 'Cyberpunk-themed interface'],
+  },
+  {
+    id: 'premier-league-oracle',
+    name: 'The Kicker',
+    description: 'Premier League predictions plus a clean, ad-free football newsreader — five statistical models and an XGBoost ensemble, shown as honest probability bars.',
+    longDescription: 'A rebrand and evolution of the Premier League Oracle. Blends five statistical models (ELO, Poisson, form, head-to-head and standings) with a trained XGBoost ensemble to predict results — shown as honest probability bars rather than over-confident scorelines. It pairs the numbers with a distraction-free newsreader, because sometimes you want the story, not just the prediction — a deliberate antidote to ad-heavy, cluttered sports sites. Includes a Kelly Criterion calculator, value-bet detection and an Oracle Chat with client-side RAG over 33 seasons of data.',
+    topics: ['Svelte', 'TypeScript', 'XGBoost', 'FastAPI'],
+    language: 'TypeScript',
+    category: 'web',
+    links: { demo: 'https://the-premier-league-oracle.vercel.app', github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle' },
+    featured: true,
+    status: 'completed',
+    highlights: ['Five-model ensemble + trained XGBoost', 'Clean, ad-free football newsreader', 'Kelly Criterion calculator + value-bet detection', 'Oracle Chat: client-side RAG over 33 seasons'],
+  },
+  {
+    id: 'isq-agent',
+    name: 'ISQ Agent',
+    description: 'RAG agent that completes supplier security questionnaires — grounding every answer in policy, scoring confidence, and flagging weak answers for human review.',
+    longDescription: 'An AI-powered RAG agent that ingests supplier security questionnaires (PDF, DOCX or XLSX), grounds each answer in a knowledge base of policies and historical responses, scores confidence across four dimensions, and flags weak answers for human review. It renders completed questionnaires as DOCX, XLSX and JSON and logs tokens, cost and latency per question for full auditability. A two-tier system: a Python/FastAPI RAG engine (Voyage + Pinecone + Claude) with an n8n orchestration tier — a reusable, grounded methodology that adapts well beyond questionnaires (RFPs, compliance, onboarding, support).',
+    topics: ['Claude', 'Pinecone', 'FastAPI', 'n8n'],
+    language: 'Python',
+    category: 'ai',
+    links: { github: 'https://github.com/ThomasJButler/isq-agent' },
+    status: 'completed',
+    highlights: ['Grounded answers with four-dimension confidence scoring', 'Outputs DOCX / XLSX / JSON', 'n8n orchestration + per-question cost/latency auditing', '480+ tests, CI, test-driven throughout'],
   },
   {
     id: 'ai-code-generator',
@@ -42,6 +74,7 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/AICodeGenerator', demo: 'https://theaigenerator.vercel.app/' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710993/codegenerator3_z9dtie.png' },
     highlights: ['10 programming languages supported', 'GPT-4 powered code generation', 'Automatic test generation', 'Inline documentation generation'],
   },
   {
@@ -53,6 +86,7 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/SQL-Ball', demo: 'https://sql-ball.vercel.app/' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947198/sqlball_canxlv.png' },
     highlights: ['Natural language to SQL conversion', '22 European leagues, 7,600+ matches', 'Interactive dashboards with anomaly detection', 'RAG-powered query parsing'],
   },
   {
@@ -64,6 +98,11 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { demo: 'https://morpheusrag.vercel.app', github: 'https://github.com/ThomasJButler/Morpheus' },
+    images: {
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767713745/Morpheus5_pdcmvr.png',
+      gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1767712416/morpheusgif2_zdkku9.gif'],
+    },
+    videos: ['https://res.cloudinary.com/depqttzlt/video/upload/v1767706547/2_1080_N_s5t1ww.mp4'],
     status: 'completed',
     highlights: ['Private by design: fresh namespace per session', 'Semantic search with Pinecone vectors', 'Source citations for every answer', 'Cost effective: pay only for tokens used'],
   },
@@ -76,6 +115,7 @@ export const projects: Project[] = [
     language: 'TypeScript',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/ReviewBot-Protocol' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767707875/ReviewBot2_xzcin9.png' },
     highlights: ['Automated GitHub PR analysis', 'LangChain + LangGraph workflows', 'Webhook-driven reviews', 'Full-stack TypeScript/Python'],
   },
   {
@@ -87,6 +127,7 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/NewsPerspective' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947185/newsperspective2_ugdtqk.png' },
     highlights: ['AI headline rewriting', 'Sentiment analysis', 'Good News filter', 'No ads, no tracking'],
   },
   {
@@ -97,6 +138,7 @@ export const projects: Project[] = [
     language: 'TypeScript',
     category: 'ai',
     links: { demo: 'https://agenticaiprojectsportfolio.vercel.app/', github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1766595895/dashboardhomepage_xxsk0z.png' },
   },
   {
     id: 'commercial-portfolio',
@@ -106,6 +148,7 @@ export const projects: Project[] = [
     language: 'React',
     category: 'web',
     links: { github: 'https://github.com/ThomasJButler/commercial-portfolio-react', demo: 'https://www.thomasjbutler.me/' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580999/logo_ofodr8.svg' },
     featured: true,
   },
   {
@@ -117,6 +160,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     category: 'web',
     links: { github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App', demo: 'https://lfc-news-reddit-app.vercel.app/' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947167/lfcreddit2_wzbqty.png' },
     highlights: ['Distraction-free Reddit reader', 'Three kit themes', 'Threaded comments with inline media', 'No account or ads needed'],
   },
   {
@@ -127,6 +171,7 @@ export const projects: Project[] = [
     language: 'C#',
     category: 'web',
     links: { demo: 'https://dotnet-react-calendar.vercel.app/', github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947576/dotnetcalendar_fiu8p4.jpg' },
   },
   {
     id: 'css-showcase',
@@ -137,6 +182,7 @@ export const projects: Project[] = [
     language: 'CSS',
     category: 'web',
     links: { demo: 'https://thomasjbutler.github.io/css-showcase/', github: 'https://github.com/ThomasJButler/css-showcase' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765946936/cssshowcase_ugyvso.webp' },
   },
   {
     id: 'matrix-arcade',
@@ -147,6 +193,10 @@ export const projects: Project[] = [
     language: 'JavaScript',
     category: 'games',
     links: { demo: 'https://the-matrix-arcade.vercel.app/', github: 'https://github.com/ThomasJButler/The-Matrix-Arcade' },
+    images: {
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1737693678/MatrixArcade2_eg34bs.png',
+      gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1767712404/matrixarcadegif2_ubesub.gif'],
+    },
     featured: true,
     status: 'completed',
     highlights: ['6 playable arcade games', 'React 18 + TypeScript + PWA', 'Web Audio API sound effects', 'Authentic Matrix aesthetic'],
@@ -159,6 +209,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     category: 'creative',
     links: { demo: 'https://thomasjbutler.github.io/bigbang-gallery/', github: 'https://github.com/ThomasJButler/bigbang-gallery' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765946935/bigbanggallery_ckmaw1.webp' },
   },
   {
     id: 'python-projects',
@@ -168,6 +219,7 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'personal',
     links: { github: 'https://github.com/ThomasJButler/PythonProjects' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947170/LorenzAttractor_bd2dps.png' },
   },
   {
     id: 'version-timetravel',
@@ -177,6 +229,20 @@ export const projects: Project[] = [
     language: 'JavaScript',
     category: 'personal',
     links: { demo: 'https://thomasjbutler.github.io/version-timetravel/', github: 'https://github.com/ThomasJButler/version-timetravel' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710995/portfoliotimetravel_rh7jgr.png' },
+  },
+  {
+    id: 'sanctuary',
+    name: 'Sanctuary',
+    description: 'Native iOS app for daily neurodiversity functioning — in active build with Swift after roughly two years of research and development.',
+    longDescription: 'Sanctuary is a neurodiversity daily-functioning app, built natively in Swift after around two years of research and development. It helps neurodiverse people manage executive function and communicate better — growing out of the same coaching automations built and proven in daily use. Currently in active development.',
+    topics: ['Swift', 'Xcode', 'iOS', 'Neurodiversity'],
+    language: 'Swift',
+    category: 'mobile',
+    links: {},
+    featured: true,
+    status: 'in-progress',
+    highlights: ['Built natively in Swift / Xcode', 'Supports executive function and communication', 'Around two years of research and design', 'In active development — coming soon'],
   },
 ];
 
@@ -184,6 +250,7 @@ export const categories = [
   { id: 'all', label: 'All' },
   { id: 'ai', label: 'AI & ML' },
   { id: 'web', label: 'Web' },
+  { id: 'mobile', label: 'Mobile' },
   { id: 'games', label: 'Games' },
   { id: 'creative', label: 'Creative' },
   { id: 'personal', label: 'Personal' },

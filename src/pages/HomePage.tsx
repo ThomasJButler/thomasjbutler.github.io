@@ -216,9 +216,9 @@ export function HomePage() {
               system_status
             </h2>
             <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-            <span className="font-mono text-[10px] text-primary/40 flex items-center gap-1.5">
+            <span className="font-mono text-[10px] text-primary/60 flex items-center gap-1.5">
               <span className="inline-block size-1.5 rounded-full bg-green-500 animate-pulse" />
-              online
+              open to work
             </span>
           </div>
         </motion.div>

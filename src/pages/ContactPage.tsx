@@ -121,8 +121,8 @@ export function ContactPage() {
               <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="font-heading text-sm font-medium text-foreground">Availability</p>
-                <p className="text-sm text-muted-foreground">Full-time &amp; freelance</p>
-                <p className="text-sm text-muted-foreground">Resume upon request</p>
+                <p className="text-sm text-muted-foreground">Open to full-time roles &amp; freelance</p>
+                <p className="text-sm text-muted-foreground">UK / remote &middot; CV on request</p>
               </div>
             </div>
 

@@ -28,7 +28,12 @@ const TECH_TABS = [
   {
     value: 'ai-ml',
     label: 'AI & ML',
-    items: ['TensorFlow', 'PyTorch', 'LLMs', 'ML Models', 'Pinecone'],
+    items: ['Claude', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'Pinecone', 'PyTorch', 'LLMs', 'AI Agents'],
+  },
+  {
+    value: 'mobile-design',
+    label: 'Mobile & Design',
+    items: ['Swift', 'Xcode', 'iOS', 'SwiftUI', 'Figma', 'Claude Design', 'Prototyping'],
   },
 ] as const;
 

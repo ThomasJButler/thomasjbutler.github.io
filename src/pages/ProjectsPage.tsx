@@ -38,13 +38,32 @@ const categoryBadgeVariant: Record<string, string> = {
   personal: 'secondary',
 };
 
-const categoryBorder: Record<string, string> = {
-  ai: 'border-l-cyan',
-  web: 'border-l-matrix-400',
-  games: 'border-l-amber',
-  creative: 'border-l-amber',
-  personal: 'border-l-matrix-600',
-};
+/** Full green retro border for every project card. */
+const cardBorder = 'h-full cursor-pointer border border-primary/40 transition-colors hover:border-primary/70';
+
+/** Card cover: Cloudinary image when present, else a branded placeholder. Kept compact. */
+function ProjectCover({ project }: { project: Project }) {
+  const cover = project.images?.cover;
+  if (cover) {
+    const isSvg = cover.endsWith('.svg');
+    return (
+      <img
+        src={cover}
+        alt={`${project.name} cover`}
+        loading="lazy"
+        className={cn('h-36 w-full bg-muted/40', isSvg ? 'object-contain p-6' : 'object-cover')}
+      />
+    );
+  }
+  return (
+    <div className="flex h-36 w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/8 via-card to-background">
+      <Terminal className="size-6 text-primary/30" />
+      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary/45">
+        {project.status === 'in-progress' ? 'coming soon' : 'preview coming soon'}
+      </span>
+    </div>
+  );
+}
 
 export function ProjectsPage() {
   useEffect(() => { document.title = 'Projects | Tom Butler'; }, []);
@@ -55,6 +74,14 @@ export function ProjectsPage() {
   const filtered = activeCategory === 'all'
     ? projects
     : projects.filter((p) => p.category === activeCategory);
+
+  // Flick between projects (wrapping) while the modal stays open.
+  const navigateProject = (delta: number) => {
+    if (!selectedProject || filtered.length < 2) return;
+    const idx = filtered.findIndex((p) => p.id === selectedProject.id);
+    if (idx === -1) return;
+    setSelectedProject(filtered[(idx + delta + filtered.length) % filtered.length]);
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
@@ -81,7 +108,8 @@ export function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <Card featured className={cn('h-full border-l-[3px] cursor-pointer', categoryBorder[project.category] || 'border-l-matrix-600')} onClick={() => setSelectedProject(project)}>
+                <Card featured className={cardBorder} onClick={() => setSelectedProject(project)}>
+                  <ProjectCover project={project} />
                   <CardHeader>
                     <CardTitle className="font-heading text-base">{project.name}</CardTitle>
                     <CardDescription>{project.description}</CardDescription>
@@ -93,7 +121,7 @@ export function ProjectsPage() {
                       ))}
                     </div>
                   </CardContent>
-                  <CardFooter className="gap-2" onClick={(e) => e.stopPropagation()}>
+                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
                     {project.links.demo && (
                       <Button asChild variant="ghost" size="xs">
                         <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -156,9 +184,10 @@ export function ProjectsPage() {
             >
               <Card
                 featured={project.featured}
-                className={cn("h-full border-l-[3px] cursor-pointer", categoryBorder[project.category] || "border-l-matrix-600", "transition-shadow hover:ring-primary/30 hover:ring-2")}
+                className={cardBorder}
                 onClick={() => setSelectedProject(project)}
               >
+                <ProjectCover project={project} />
                 <CardHeader>
                   <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
                   <CardDescription className="line-clamp-2">{project.description}</CardDescription>
@@ -179,7 +208,7 @@ export function ProjectsPage() {
                     </Badge>
                   </div>
                 </CardContent>
-                <CardFooter className="gap-2" onClick={(e) => e.stopPropagation()}>
+                <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
                   {project.links.demo && (
                     <Button asChild variant="ghost" size="xs">
                       <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -206,6 +235,9 @@ export function ProjectsPage() {
         project={selectedProject}
         open={selectedProject !== null}
         onClose={() => setSelectedProject(null)}
+        onPrev={() => navigateProject(-1)}
+        onNext={() => navigateProject(1)}
+        hasNav={filtered.length > 1}
       />
     </div>
   );
