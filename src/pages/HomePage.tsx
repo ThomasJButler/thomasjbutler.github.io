@@ -17,6 +17,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { OperatorHero } from '@/components/home/OperatorHero';
+import { ServicesTeaser } from '@/components/home/ServicesTeaser';
+import { WhyLocalAiStrip } from '@/components/home/WhyLocalAiStrip';
 import { NewsletterStrip } from '@/components/NewsletterStrip';
 import { NOW_COPY, NOW_TAGS, RECENT_ACTIVITY } from '@/lib/content';
 
@@ -94,6 +96,17 @@ export function HomePage() {
       <OperatorHero />
 
       <div id="below" className="fx-page mx-auto max-w-5xl px-6">
+      {/*
+        Business-first. Someone landing here to hire Tom meets the offer and the
+        argument for it before they meet the skill bars and the commit feed. A fellow
+        developer still finds all of that — it just sits below the fold now.
+      */}
+      <ServicesTeaser />
+
+      <WhyLocalAiStrip />
+
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-6" />
+
       {/* ═══ System Status Dashboard ═══ */}
       <section className="py-4">
         <motion.div

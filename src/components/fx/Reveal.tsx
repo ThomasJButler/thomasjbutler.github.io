@@ -20,10 +20,8 @@ interface RevealProps {
  * users who ask for less motion, leaving a plain fade.
  */
 export function Reveal({ children, className, index = 0, delay, as = 'div' }: RevealProps) {
-  const Component = as === 'section' ? motion.section : motion.div;
-
-  return (
-    <Component
+  const inner = (
+    <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15, margin: '0px 0px -40px 0px' }}
@@ -32,9 +30,15 @@ export function Reveal({ children, className, index = 0, delay, as = 'div' }: Re
         ease: EASE_OUT_EXPO,
         delay: delay ?? index * 0.07,
       }}
-      className={cn(className)}
+      className={as === 'section' ? undefined : cn(className)}
     >
       {children}
-    </Component>
+    </motion.div>
   );
+
+  // A <section> is a landmark. Animate a div inside it rather than the section itself,
+  // so the landmark always occupies space and is never sitting at opacity 0 waiting
+  // for an observer to fire — which is how content ends up invisible to anything that
+  // isn't a scrolling human.
+  return as === 'section' ? <section className={cn(className)}>{inner}</section> : inner;
 }

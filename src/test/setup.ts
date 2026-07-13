@@ -18,16 +18,29 @@ afterEach(() => {
   vi.clearAllTimers();
 });
 
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-  takeRecords: vi.fn(),
-  root: null,
-  rootMargin: '',
-  thresholds: [],
-}));
+// Mock IntersectionObserver.
+//
+// It reports the element as intersecting as soon as it is observed. jsdom has no
+// layout, so a mock that never fires leaves every scroll-revealed section stuck at
+// opacity 0 — which is not what a real browser does, and it makes "is the content
+// visible?" tests fail for a reason that has nothing to do with the content.
+global.IntersectionObserver = vi.fn().mockImplementation((callback: IntersectionObserverCallback) => {
+  const instance = {
+    observe: (target: Element) => {
+      callback(
+        [{ isIntersecting: true, intersectionRatio: 1, target } as IntersectionObserverEntry],
+        instance as unknown as IntersectionObserver
+      );
+    },
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    takeRecords: vi.fn(() => []),
+    root: null,
+    rootMargin: '',
+    thresholds: [],
+  };
+  return instance;
+});
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn().mockImplementation(() => ({

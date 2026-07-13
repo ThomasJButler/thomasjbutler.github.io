@@ -14,6 +14,8 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { MotionSection } from '@/components/MotionSection';
 import { NewsletterStrip } from '@/components/NewsletterStrip';
+import { PricingSection } from '@/components/services/PricingSection';
+import { FaqSection } from '@/components/services/FaqSection';
 import { Reveal } from '@/components/fx/Reveal';
 import { SERVICES, SERVICES_INTRO, WHY_LOCAL_AI, WHY_LOCAL_AI_STATS, LINKS } from '@/lib/content';
 import { cn } from '@/lib/utils';
@@ -142,6 +144,10 @@ export function ServicesPage() {
 
       <Separator />
 
+      <PricingSection />
+
+      <Separator />
+
       {/* Why Local AI */}
       <Reveal as="section" className="py-16">
         <div className="flex items-center gap-2 mb-5">
@@ -209,6 +215,10 @@ export function ServicesPage() {
           ))}
         </Accordion>
       </MotionSection>
+
+      <Separator />
+
+      <FaqSection />
 
       <Separator />
 

@@ -139,6 +139,7 @@ export const projects: Project[] = [
     category: 'ai',
     links: { demo: 'https://agenticaiprojectsportfolio.vercel.app/', github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1766595895/dashboardhomepage_xxsk0z.png' },
+    featured: true,
   },
   {
     id: 'commercial-portfolio',

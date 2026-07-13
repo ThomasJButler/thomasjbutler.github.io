@@ -12,6 +12,7 @@ const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ defa
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage').then(m => ({ default: m.UpdatesPage })));
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage').then(m => ({ default: m.CaseStudyPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
 /**
@@ -32,6 +33,7 @@ export function AppRoutes() {
         <Route path="services" element={<ServicesPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="updates" element={<UpdatesPage />} />
+        <Route path="case-study" element={<CaseStudyPage />} />
 
         {/* Legacy redirects */}
         <Route path="react.html" element={<Navigate to="/" replace />} />

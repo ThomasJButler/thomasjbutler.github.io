@@ -226,3 +226,147 @@ export const NEWSLETTER = {
   copy: 'Keeping up with AI, and how to make it your own. One email a week, plain English, no hype. Written from the workshop floor, not the commentary box.',
   note: 'one email a week · no hype',
 };
+
+/* ─── Pricing ───
+   Productised, fixed-fee offers. Fixed fees beat a day rate for a first engagement:
+   the buyer knows the downside before they commit, which is the whole barrier.
+
+   `price` is null until Tom sets it, and a null price renders "Fixed fee · get a
+   quote" rather than a fake number. Fill these in and the cards become anchors. */
+
+export interface PricedOffer {
+  title: string;
+  /** e.g. 'from £2,500'. Null renders an honest fallback instead of a made-up figure. */
+  price: string | null;
+  /** The commitment being made, e.g. '1-2 weeks'. */
+  duration: string;
+  summary: string;
+  includes: string[];
+  /** The one people should start with. */
+  lead?: boolean;
+}
+
+export const PRICING_INTRO =
+  'Fixed fees, not day rates. You know what it costs before you commit, and I carry the risk of it taking longer than I thought.';
+
+export const PRICING: PricedOffer[] = [
+  {
+    title: 'AI Cost & Privacy Audit',
+    price: null,
+    duration: '1 to 2 weeks',
+    lead: true,
+    summary:
+      'The place to start. I look at what you are actually spending on AI, what leaves your building, and whether running it yourself would be better. You get a straight recommendation, in writing.',
+    includes: [
+      'Your current AI spend, itemised',
+      'What data is leaving, and where it goes',
+      'A local-vs-API comparison on your real usage',
+      'A straight recommendation, including “stay on the API” if that is the answer',
+    ],
+  },
+  {
+    title: 'Local LLM Setup',
+    price: null,
+    duration: '2 to 4 weeks',
+    summary:
+      'Open models running on your own hardware. Same results as the APIs for everyday work, no per-token bill, and nothing leaves the building.',
+    includes: [
+      'Hardware sizing for your actual workload',
+      'Ollama and open models, installed and tuned',
+      'Your team set up and shown how to use it',
+      'Handover docs, so you are not dependent on me',
+    ],
+  },
+  {
+    title: 'Private RAG System',
+    price: null,
+    duration: '3 to 6 weeks',
+    summary:
+      'Your own documents, searchable and answerable, without any of them being sent to a third party. Answers cite their sources, so you can check them.',
+    includes: [
+      'Ingestion for your documents, wherever they live',
+      'Retrieval tuned on your content, not a demo set',
+      'Answers grounded in sources, with citations',
+      'Runs on your hardware, or your private cloud',
+    ],
+  },
+];
+
+/** Shown in place of a price until a real figure exists. Honest, and it still invites the enquiry. */
+export const PRICE_TBC = 'Fixed fee · get a quote';
+
+/* ─── FAQ ───
+   Objection handling. These are the doubts that stop someone emailing, and the last
+   one is the one that earns the most trust. */
+
+export const FAQ: { q: string; a: string }[] = [
+  {
+    q: 'Is a local model actually as good as the big APIs?',
+    a: 'For the everyday 90% — drafting, summarising, answering questions from your own documents — you will not tell the difference. The current generation of open models is genuinely good, and it runs on hardware a small business can afford. For frontier reasoning on hard novel problems, the big APIs are still ahead, and I will say so.',
+  },
+  {
+    q: 'What hardware do I need?',
+    a: 'Less than you think. A single well-specified workstation covers most small teams, and you likely have something close already. Sizing it for your real workload rather than a benchmark is part of the audit — I would rather tell you a £1,500 machine is enough than sell you a rack.',
+  },
+  {
+    q: 'What about GDPR and client data?',
+    a: 'This is the strongest argument for running locally. If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust. For anyone handling client records, contracts, or health data, that is usually the whole conversation.',
+  },
+  {
+    q: 'When should I NOT do this?',
+    a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive — in that case you are paying me to save you money you were not really spending. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”. You get that in writing too.',
+  },
+  {
+    q: 'What happens if you get hit by a bus?',
+    a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around — which is rather the point of owning it rather than renting it.',
+  },
+];
+
+/* ─── Case study ───
+   A technical deep-dive on my own work, not a client reference. `results` stays null
+   until there are real numbers to put in it, and the Results block does not render
+   without them. Nothing invented. */
+
+export interface CaseStudy {
+  slug: string;
+  title: string;
+  subtitle: string;
+  /** Which project in projects.ts this deep-dives. */
+  projectId: string;
+  problem: string[];
+  approach: string[];
+  architecture: { step: string; detail: string }[];
+  proves: string[];
+  /** Null until there are real, measured figures. Do not invent these. */
+  results: { value: string; label: string }[] | null;
+}
+
+export const CASE_STUDY: CaseStudy = {
+  slug: 'isq-agent',
+  projectId: 'isq-agent',
+  title: 'Answering security questionnaires without leaking the answers',
+  subtitle: 'A private RAG agent that drafts supplier security questionnaires, grounds every answer in your own policy, and flags the ones a human needs to look at.',
+  problem: [
+    'Supplier security questionnaires are a tax on selling. A single one can run to two hundred questions, most of which you have answered before, in slightly different words, in a document nobody can find.',
+    'The obvious fix is to point an LLM at it. The obvious problem with the obvious fix is that a security questionnaire is a document about your security — pasting it, and your policies, into someone else’s API is a strange way to demonstrate that you take data protection seriously.',
+    'So the requirement writes itself: it has to be good enough to save real time, and it has to run somewhere you control.',
+  ],
+  approach: [
+    'Retrieval over your own policy documents, not a general model’s memory. Every answer is drafted from something you have actually written and approved, and it cites which document it came from — so a reviewer can check it in seconds rather than trusting it.',
+    'A confidence score on every answer, and a hard rule that low-confidence answers are never submitted silently. The agent is a drafting assistant with a paper trail, not an oracle.',
+    'The whole thing runs against models you host. Nothing about the questionnaire, the policies, or the answers leaves the building.',
+  ],
+  architecture: [
+    { step: 'Ingest', detail: 'Your policies, previous questionnaires and controls documentation, chunked and embedded into a private vector store.' },
+    { step: 'Retrieve', detail: 'For each question, pull the passages that actually bear on it — tuned on your content, not on a demo corpus.' },
+    { step: 'Draft', detail: 'The model answers strictly from the retrieved passages, and cites them. If the passages do not support an answer, it says so instead of inventing one.' },
+    { step: 'Score', detail: 'Each answer gets a confidence score based on how well the retrieved evidence actually covers the question.' },
+    { step: 'Review', detail: 'Anything below the bar is routed to a human, with the evidence attached. The reviewer is checking, not writing from scratch.' },
+  ],
+  proves: [
+    'That a genuinely useful RAG system can run entirely on infrastructure you control.',
+    'That grounding and citation are not a nice-to-have — they are what make an AI answer checkable, and therefore usable, in a context where being wrong has consequences.',
+    'That the honest move is to build the escape hatch in from the start: the system is designed to know when it does not know.',
+  ],
+  results: null,
+};
