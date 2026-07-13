@@ -488,3 +488,499 @@
     box-shadow: 0 0 16px oklch(0.40 0.22 145 / 0.18);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   v5 "The Operator"
+   Ported from design_handoff_v5_operator-v4-redesign. The prototype
+   selects themes with [data-theme="neon-terminal"|"circuit"]; this
+   codebase uses .dark on <html>, so every rule is translated to
+   .dark / :root:not(.dark).
+
+   Layering, so overlays stack predictably:
+     rain -10 · header 50 · vignette 69 · scanlines 70 · boot 90
+     cursor 98/99 · rabbit 110 · palette 120 · toast 125 · spoon 130
+     lightbox 135
+   ══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-matrix-yellow: #ffea00;
+}
+
+@layer base {
+  /* The repo had no focus-visible rule at all. The dark companion shadow is not
+     decoration: without it the yellow outline can sit on a bright rain glyph and
+     lose its 3:1 non-text contrast. */
+  :focus-visible {
+    outline: 2px solid var(--color-matrix-yellow);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px oklch(0 0 0 / 0.6);
+  }
+}
+
+@layer utilities {
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 0 var(--radius) 0;
+    background: var(--background);
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+  .skip-link:focus-visible {
+    left: 0;
+  }
+
+  /* ─── Rain ─── */
+  .fx-rain {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    opacity: 0.55;
+    transition: opacity 0.6s;
+  }
+  :root:not(.dark) .fx-rain {
+    /* The light palette is far darker on a near-white page, so it needs a fraction
+       of the presence to read as the same effect. */
+    opacity: 0.066;
+  }
+
+  /* ─── Atmosphere ─── */
+  .fx-scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.275;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.28) 0 1px,
+      transparent 1px 3px
+    );
+  }
+  :root:not(.dark) .fx-scanlines {
+    opacity: 0.06;
+  }
+
+  /* The CRT refresh band, drifting down every 9s. Transform-only so it stays off
+     the main thread. */
+  .fx-scanlines::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -140px;
+    height: 140px;
+    will-change: transform;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in oklab, var(--primary) 4%, transparent),
+      transparent
+    );
+    animation: fx-drift 9s linear infinite;
+  }
+  :root:not(.dark) .fx-scanlines::after,
+  :root.fx-off .fx-scanlines::after {
+    display: none;
+  }
+
+  .fx-vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 69;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 38%,
+      transparent 52%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+  :root:not(.dark) .fx-vignette {
+    display: none;
+  }
+}
+
+@keyframes fx-drift {
+  to {
+    transform: translateY(calc(100vh + 280px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-scanlines::after {
+    display: none;
+  }
+}
+
+/* ─── Decode text ─── */
+@layer utilities {
+  .ch-word {
+    /* Keeps a word from breaking across lines mid-scramble, which would make the
+       text jump around as it resolves. */
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .ch {
+    display: inline-block;
+  }
+  .ch--pending {
+    opacity: 0;
+  }
+  .ch--scramble {
+    color: color-mix(in oklab, var(--primary) 80%, transparent);
+    opacity: 0.85;
+    text-shadow: 0 0 18px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  .ch--locked {
+    animation: fx-lock 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ─── Blinking block caret ─── */
+  .fx-caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: 3px;
+    border-radius: 1px;
+    vertical-align: text-bottom;
+    background: color-mix(in oklab, var(--primary) 85%, transparent);
+    box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 45%, transparent);
+    animation: fx-blink 1s steps(2) infinite;
+  }
+
+  /* ─── Terminal cursor ─── */
+  body.fx-cursor,
+  body.fx-cursor * {
+    cursor: none !important;
+  }
+  /* Except where losing the caret would break text entry. */
+  body.fx-cursor input,
+  body.fx-cursor textarea,
+  body.fx-cursor [contenteditable] {
+    cursor: text !important;
+  }
+  .fx-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 9px;
+    height: 15px;
+    border-radius: 1px;
+    pointer-events: none;
+    opacity: 0;
+    background: var(--primary);
+    box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 70%, transparent);
+    transition: opacity 0.25s;
+  }
+  .fx-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    width: 34px;
+    height: 34px;
+    border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      opacity 0.25s,
+      width 0.18s,
+      height 0.18s,
+      border-color 0.18s,
+      border-radius 0.18s,
+      box-shadow 0.18s;
+  }
+  .fx-cursor-ring.is-hover {
+    width: 46px;
+    height: 46px;
+    border-radius: 9px;
+    border-color: var(--primary);
+    box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+  .fx-cursor-ring.is-down {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+  }
+
+  /* ─── Scrim ───
+     Dissolving the page-wide glass panel puts text directly over the rain. A head
+     glyph is near-white at 0.98 alpha, so at 0.55 canvas opacity the local
+     background behind a character can reach ~1.3:1 against muted body text — a hard
+     WCAG 1.4.3 failure. This paints the page's own background colour back in behind
+     text blocks: invisible against the design, but it removes the rain from behind
+     the glyphs and restores ordinary dark-on-dark contrast. */
+  .fx-scrim {
+    position: relative;
+  }
+  .fx-scrim > * {
+    position: relative;
+    z-index: 1;
+  }
+  .fx-scrim::before {
+    content: '';
+    position: absolute;
+    inset: -6% -5%;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 40% 50%,
+      oklch(0.08 0.01 145 / 0.92) 0%,
+      oklch(0.08 0.01 145 / 0.78) 45%,
+      transparent 78%
+    );
+  }
+  :root:not(.dark) .fx-scrim::before {
+    background: radial-gradient(
+      ellipse at 40% 50%,
+      oklch(0.985 0.002 145 / 0.92) 0%,
+      oklch(0.985 0.002 145 / 0.78) 45%,
+      transparent 78%
+    );
+  }
+}
+
+@keyframes fx-lock {
+  0% {
+    color: var(--primary);
+    text-shadow:
+      0 0 26px var(--primary),
+      0 0 70px color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+}
+
+@keyframes fx-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-caret,
+  .ch--locked {
+    animation: none;
+  }
+}
+
+/* ─── Operator hero ─── */
+@layer components {
+  .fx-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px); /* 56px = sticky header */
+  }
+  .fx-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 90px 48px 110px;
+  }
+
+  .fx-bootline {
+    margin: 0 0 20px;
+    min-height: 15px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: color-mix(in oklab, var(--primary) 65%, transparent);
+  }
+
+  .fx-big {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(44px, 5.4vw, 74px);
+    line-height: 1.02;
+    color: var(--foreground);
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--primary) 30%, transparent),
+      0 0 34px color-mix(in oklab, var(--primary) 14%, transparent);
+  }
+
+  .fx-typedline {
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--muted-foreground);
+  }
+  .fx-typedline .pre {
+    color: color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+  .fx-typedline .word {
+    color: var(--primary);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
+  }
+
+  .fx-sub {
+    margin: 18px 0 0;
+    max-width: 600px;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
+  }
+
+  .fx-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .fx-scrollcue {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* 44px tall for the tap target, per WCAG 2.5.5. */
+    min-height: 44px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--primary) 60%, transparent);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .fx-scrollcue:hover {
+    color: var(--primary);
+  }
+  .fx-scrollcue .tri {
+    font-size: 9px;
+    animation: fx-bob 2.2s ease-in-out infinite;
+  }
+
+  /* ─── Terminal window ─── */
+  .fx-console {
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--primary) 32%, transparent);
+    border-radius: 12px;
+    background: linear-gradient(
+      180deg,
+      oklch(0.11 0.02 145 / 0.88),
+      oklch(0.07 0.01 145 / 0.94)
+    );
+    backdrop-filter: blur(10px) saturate(1.4);
+    box-shadow:
+      0 0 34px color-mix(in oklab, var(--primary) 10%, transparent),
+      0 24px 70px rgba(0, 0, 0, 0.55);
+  }
+  :root:not(.dark) .fx-console {
+    background: oklch(1 0 0 / 0.94);
+    border-color: oklch(0.35 0.22 145 / 0.25);
+    box-shadow:
+      0 4px 24px oklch(0.35 0.22 145 / 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+
+  .fx-console__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: color-mix(in oklab, var(--muted) 55%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-console__path {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: color-mix(in oklab, var(--muted-foreground) 85%, transparent);
+  }
+  .fx-console__rerun {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--muted-foreground) 75%, transparent);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .fx-console__rerun:hover {
+    color: var(--primary);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  .fx-console__body {
+    height: 320px;
+    overflow: hidden;
+    padding: 18px 20px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+  .fx-console__body .cline {
+    color: var(--foreground);
+  }
+  .fx-console__body .cline .p {
+    color: color-mix(in oklab, var(--primary) 75%, transparent);
+  }
+  .fx-console__body .oline {
+    color: color-mix(in oklab, var(--muted-foreground) 90%, transparent);
+  }
+  .fx-console__body .oline.hl {
+    color: var(--primary);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  .fx-dots {
+    display: inline-flex;
+    gap: 5px;
+  }
+  .fx-dots i {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .fx-dots .r { background: oklch(0.65 0.20 27 / 0.75); }
+  .fx-dots .y { background: oklch(0.80 0.15 85 / 0.75); }
+  .fx-dots .g { background: oklch(0.65 0.20 145 / 0.75); }
+
+  @media (max-width: 860px) {
+    .fx-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      padding: 70px 26px 100px;
+    }
+    .fx-console__body {
+      height: 250px;
+      font-size: 11.5px;
+    }
+  }
+}
+
+@keyframes fx-bob {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-scrollcue .tri {
+    animation: none;
+  }
+}

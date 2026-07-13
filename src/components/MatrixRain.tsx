@@ -1,118 +1,108 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { RainEngine } from '@/lib/fx/rain-engine';
+import { onBurst } from '@/lib/rain-bus';
+import { useTheme } from '@/hooks/useTheme';
+import { useAccent } from '@/hooks/useAccent';
+import { useFx } from '@/hooks/useFx';
 
-interface Drop {
-  y: number;
-  speed: number;
-  chars: string[];
-  brightness: number;
-  isBackground: boolean;
-}
-
+/**
+ * Cursor-reactive Matrix rain.
+ *
+ * Thin wrapper: all the drawing lives in RainEngine. The engine is created once and
+ * repainted imperatively, so changing theme or accent re-tints the palette without
+ * tearing down the canvas and losing every drop's position.
+ */
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>(0);
-  const dropsRef = useRef<Drop[]>([]);
-  const [visible, setVisible] = useState(false);
-  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const engineRef = useRef<RainEngine | null>(null);
+  const { theme } = useTheme();
+  const { accent } = useAccent();
+  const { motionOk } = useFx();
+
+  // Light mode has its own hard-coded palette, so an accent tint is dark-only.
+  const tint = theme === 'dark' ? accent : null;
+
+  // Read by the setup effect without making it a dependency: a theme change should
+  // re-tint the palette, not tear down the canvas and restart every drop.
+  const paletteRef = useRef({ theme, tint });
+  paletteRef.current = { theme, tint };
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!visible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
-    const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01';
-    const fontSize = 16;
+    // Fewer columns where the CPU is likely weaker. At the opacity the rain runs on
+    // small screens this is imperceptible, and pointer-parting is a mouse feature
+    // anyway.
+    const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initDrops();
-    };
-
-    const initDrops = () => {
-      // Reduced density: 70% of max columns
-      const cols = Math.floor((canvas.width / fontSize) * 0.7);
-      dropsRef.current = Array.from({ length: cols }, () => {
-        const isBackground = Math.random() < 0.45;
-        return {
-          y: Math.random() * canvas.height * 2 - canvas.height,
-          speed: isBackground ? Math.random() * 0.3 + 0.15 : Math.random() * 0.5 + 0.4,
-          chars: Array.from({ length: Math.floor(canvas.height / fontSize) + 15 }, () =>
-            chars[Math.floor(Math.random() * chars.length)]
-          ),
-          brightness: isBackground ? Math.random() * 0.25 + 0.1 : Math.random() * 0.4 + 0.35,
-          isBackground,
-        };
+    let engine: RainEngine;
+    try {
+      engine = new RainEngine(canvas, {
+        ...paletteRef.current,
+        density: coarse ? 0.6 : 0.95,
       });
+    } catch {
+      return; // no 2d context (jsdom, or a very old browser): render nothing
+    }
+    engineRef.current = engine;
+
+    if (!motionOk) {
+      // Presence without movement: one dim frame, no loop, no listeners.
+      engine.drawStaticFrame();
+      return () => {
+        engine.destroy();
+        engineRef.current = null;
+      };
+    }
+
+    engine.start();
+
+    const onMove = (e: MouseEvent) => engine.setPointer(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) engine.setPointer(t.clientX, t.clientY);
     };
-
-    resize();
-
-    const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
-      ctx.textAlign = 'center';
-
-      for (let x = 0; x < dropsRef.current.length; x++) {
-        const drop = dropsRef.current[x];
-        drop.y += drop.speed;
-
-        // Reset when off screen
-        if (drop.y > canvas.height && Math.random() > 0.975) {
-          drop.y = -drop.chars.length * fontSize - Math.random() * 300;
-          drop.speed = drop.isBackground ? Math.random() * 0.3 + 0.15 : Math.random() * 0.5 + 0.4;
-        }
-
-        const len = drop.chars.length;
-        for (let i = 0; i < len; i++) {
-          const py = drop.y + i * fontSize;
-          if (py < -fontSize || py > canvas.height + fontSize) continue;
-
-          const fade = (1 - (i / len) * 0.85) * drop.brightness;
-
-          if (i >= len - 2) {
-            // Leading character: bright white-green
-            ctx.fillStyle = `rgba(200, 255, 200, ${Math.min(fade * 1.5, 0.9)})`;
-          } else {
-            ctx.fillStyle = `rgba(0, 200, 0, ${fade * 0.7})`;
-          }
-
-          // Occasional character mutation
-          if (Math.random() < 0.002) {
-            drop.chars[i] = chars[Math.floor(Math.random() * chars.length)];
-          }
-
-          ctx.fillText(drop.chars[i], x * (fontSize / 0.7) + fontSize / 2, py);
-        }
-      }
-
-      animationRef.current = requestAnimationFrame(draw);
+    const onLeave = () => engine.clearPointer();
+    const onDown = (e: MouseEvent) => engine.addRipple(e.clientX, e.clientY);
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) engine.addRipple(t.clientX, t.clientY);
     };
+    const onResize = () => engine.resize();
+    const onVisibility = () => (document.hidden ? engine.stop() : engine.start());
 
-    draw();
-    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('mouseout', onLeave);
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const unsubscribe = onBurst(() => engine.burst());
 
     return () => {
-      cancelAnimationFrame(animationRef.current);
-      window.removeEventListener('resize', resize);
+      unsubscribe();
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('touchmove', onTouch);
+      window.removeEventListener('mouseout', onLeave);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibility);
+      engine.destroy();
+      engineRef.current = null;
     };
-  }, [visible]);
+  }, [motionOk]);
 
-  if (!visible || prefersReducedMotion) return null;
+  // Re-tint in place rather than rebuilding the engine.
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine) return;
+    engine.setPalette(theme, tint);
+    if (!motionOk) engine.drawStaticFrame();
+  }, [theme, tint, motionOk]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 transition-opacity duration-1000 dark:opacity-35 opacity-0 max-sm:dark:opacity-20 max-sm:opacity-0"
-    />
-  );
+  return <canvas ref={canvasRef} aria-hidden="true" className="fx-rain" />;
 }

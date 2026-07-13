@@ -7,6 +7,7 @@ import { PageTransition } from './PageTransition';
 import { MatrixRain } from '@/components/MatrixRain';
 import { Atmosphere } from '@/components/system/Atmosphere';
 import { SkipLink } from '@/components/system/SkipLink';
+import { TerminalCursor } from '@/components/system/TerminalCursor';
 
 function PageLoader() {
   return (
@@ -38,6 +39,8 @@ export function Layout() {
       </main>
 
       <Footer />
+
+      <TerminalCursor />
     </div>
   );
 }

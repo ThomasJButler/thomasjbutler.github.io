@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useMotionValue, useTransform, animate as motionAnimate } from 'framer-motion';
 import {
@@ -6,25 +6,18 @@ import {
   ExternalLink,
   Terminal,
   Cpu,
-  GitBranch,
   Zap,
   Globe,
   Code,
-  Bot,
-  Database,
+  GitBranch,
   Sparkles,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-
-const TYPING_PHRASES = [
-  'AI-powered apps',
-  'production web apps',
-  'intelligent agents',
-  'creative solutions',
-];
+import { OperatorHero } from '@/components/home/OperatorHero';
+import { NOW_COPY, NOW_TAGS, RECENT_ACTIVITY } from '@/lib/content';
 
 /* ─── System Status Dashboard Data ─── */
 const SKILL_BARS = [
@@ -36,17 +29,10 @@ const SKILL_BARS = [
 ];
 
 const SYSTEM_STATS = [
-  { icon: GitBranch, label: 'Projects', value: '15+', numericValue: 15, desc: 'shipped' },
-  { icon: Cpu, label: 'AI Models', value: '7', numericValue: 7, desc: 'integrated' },
-  { icon: Globe, label: 'Deployments', value: '20+', numericValue: 20, desc: 'live' },
-  { icon: Zap, label: 'Uptime', value: '99.9%', numericValue: 99, desc: 'reliability' },
-];
-
-const RECENT_ACTIVITY = [
-  { icon: Bot, text: 'Built RAG pipeline with LangChain + Pinecone', time: '2025', badge: 'AI' },
-  { icon: Code, text: 'Shipped ModelViz: AI model comparison platform', time: '2025', badge: 'Web' },
-  { icon: Database, text: 'SQL Ball: NL-to-SQL football analytics', time: '2025', badge: 'Data' },
-  { icon: Terminal, text: 'Portfolio redesign with ShadCN + Tailwind v4', time: '2025', badge: 'Dev' },
+  { icon: Code, label: 'Projects', value: '15+' },
+  { icon: Cpu, label: 'AI Models', value: '7' },
+  { icon: Globe, label: 'Deployments', value: '20+' },
+  { icon: Zap, label: 'Uptime', value: '99.9%' },
 ];
 
 /* ─── Animated Counter ─── */
@@ -97,111 +83,16 @@ function SkillBar({ label, value, color, delay }: { label: string; value: number
 }
 
 export function HomePage() {
-  useEffect(() => { document.title = 'Tom Butler | Full Stack AI Engineer'; }, []);
-
-  const [displayText, setDisplayText] = useState('');
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const animateTyping = useCallback(() => {
-    const currentPhrase = TYPING_PHRASES[phraseIndex];
-    const speed = isDeleting ? 50 : 100;
-    const pause = isDeleting ? 500 : 2000;
-
-    if (!isDeleting && displayText === currentPhrase) {
-      setTimeout(() => setIsDeleting(true), pause);
-      return;
-    }
-    if (isDeleting && displayText === '') {
-      setIsDeleting(false);
-      setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length);
-      return;
-    }
-
-    const nextText = isDeleting
-      ? currentPhrase.substring(0, displayText.length - 1)
-      : currentPhrase.substring(0, displayText.length + 1);
-
-    setTimeout(() => setDisplayText(nextText), speed);
-  }, [displayText, phraseIndex, isDeleting]);
-
   useEffect(() => {
-    const timer = setTimeout(animateTyping, 100);
-    return () => clearTimeout(timer);
-  }, [animateTyping]);
+    document.title = 'Tom Butler | Full Stack AI Engineer, Local AI & On-Device Systems';
+  }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-6">
-      {/* ═══ Hero — Terminal Session ═══ */}
-      <section className="pt-12 pb-2 sm:pt-16 sm:pb-4">
-        {/* Terminal window frame */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-xl border border-border/50 overflow-hidden"
-        >
-          {/* Terminal title bar */}
-          <div className="flex items-center gap-2 px-4 py-2.5 bg-muted/30 border-b border-border/30">
-            <div className="flex gap-1.5">
-              <span className="size-2.5 rounded-full bg-red-500/60" />
-              <span className="size-2.5 rounded-full bg-yellow-500/60" />
-              <span className="size-2.5 rounded-full bg-green-500/60" />
-            </div>
-            <span className="font-mono text-[10px] text-muted-foreground/60 ml-2">tom@matrix ~ </span>
-          </div>
+    <>
+      {/* Full-bleed: the hero is 1240px wide and breaks out of the page container. */}
+      <OperatorHero />
 
-          {/* Terminal content */}
-          <div className="px-6 py-12 sm:py-16 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="glow-text font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
-            >
-              Hey, I&apos;m Tom
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-4 font-mono text-lg text-muted-foreground sm:text-xl"
-            >
-              <span className="text-primary/60">// I build </span>
-              <span className="text-primary">{displayText}</span>
-              <span className="inline-block w-[0.55em] h-[1.05em] bg-primary/80 animate-pulse rounded-sm align-text-bottom shadow-[0_0_8px_oklch(0.50_0.28_145/0.4)]" />
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-3 text-sm text-muted-foreground"
-            >
-              Full Stack AI Engineer from the UK
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.8 }}
-              className="mt-8 flex justify-center gap-3"
-            >
-              <Button asChild size="lg" className="glow-pulse">
-                <Link to="/projects">
-                  View Projects <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/contact">Get in Touch</Link>
-              </Button>
-            </motion.div>
-          </div>
-        </motion.div>
-
-      </section>
-
+      <div id="below" className="mx-auto max-w-5xl px-6">
       {/* ═══ System Status Dashboard ═══ */}
       <section className="py-4">
         <motion.div
@@ -294,7 +185,7 @@ export function HomePage() {
                         <p className="text-sm text-foreground/90 leading-tight">{item.text}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4">{item.badge}</Badge>
-                          <span className="font-mono text-[10px] text-muted-foreground">{item.time}</span>
+                          <span className="font-mono text-[10px] text-muted-foreground">{item.year}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -321,16 +212,17 @@ export function HomePage() {
             <Sparkles className="size-3.5 text-primary" />
             <span className="font-mono text-xs uppercase tracking-wider text-primary/70">now</span>
           </div>
-          <p className="text-sm text-foreground/80 leading-relaxed">
-            Building AI-powered applications and exploring agentic workflows.
-            Currently focused on RAG systems, LangChain integrations, and
-            pushing the boundaries of what&apos;s possible with modern web tech.
-          </p>
+          <p className="text-sm text-foreground/80 leading-relaxed">{NOW_COPY}</p>
           <div className="flex flex-wrap gap-1.5 mt-3">
-            <Badge variant="cyan" className="text-[10px]">LangChain</Badge>
-            <Badge variant="cyan" className="text-[10px]">RAG</Badge>
-            <Badge variant="amber" className="text-[10px]">Agents</Badge>
-            <Badge variant="secondary" className="text-[10px]">ShadCN</Badge>
+            {NOW_TAGS.map((tag) => (
+              <Badge
+                key={tag.label}
+                variant={tag.tone === 'default' ? 'secondary' : tag.tone}
+                className="text-[10px]"
+              >
+                {tag.label}
+              </Badge>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -379,6 +271,7 @@ export function HomePage() {
           </div>
         </motion.div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
