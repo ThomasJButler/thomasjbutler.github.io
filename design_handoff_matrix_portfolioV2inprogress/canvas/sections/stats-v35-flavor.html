@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  /* HYPOTHETICAL — v3.5 doesn't have this section, but if it did */
+  .wrap { padding: 28px 40px; position: relative; z-index: 5; }
+  .head {
+    text-align: center; margin-bottom: 22px;
+    font-family: 'Orbitron'; font-size: 22px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #00FFFF;
+    text-shadow: 0 0 12px rgba(0,255,255,0.5), 0 0 30px rgba(0,255,0,0.25);
+  }
+  .head::before { content: '// '; color: rgba(0,255,255,0.7); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+           margin-bottom: 22px; }
+  .stat {
+    text-align: center; padding: 22px 12px 18px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid rgba(0,255,0,0.5);
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(0,255,0,0.25), inset 0 0 18px rgba(0,255,0,0.06);
+    position: relative; overflow: hidden;
+  }
+  .stat::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 2px,
+      rgba(0,255,0,0.04) 2px, rgba(0,255,0,0.04) 4px);
+  }
+  .stat .v {
+    font-family: 'Orbitron'; font-size: 40px; font-weight: 700;
+    color: #00FF00;
+    text-shadow: 0 0 12px rgba(0,255,0,0.6), 0 0 30px rgba(0,255,0,0.3);
+    line-height: 1; position: relative; z-index: 2;
+  }
+  .stat .lbl {
+    font-family: 'Share Tech Mono'; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(0,255,0,0.7);
+    margin-top: 8px; position: relative; z-index: 2;
+  }
+  .stat .lbl::before { content: '> '; }
+  .dash { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel {
+    padding: 18px;
+    background: rgba(0,0,0,0.85);
+    border: 1px solid rgba(0,255,0,0.5);
+    border-radius: 4px;
+    box-shadow: 0 0 18px rgba(0,255,0,0.2);
+  }
+  .panel-h {
+    font-family: 'Orbitron'; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #00FFFF;
+    text-shadow: 0 0 8px rgba(0,255,255,0.5);
+    margin: 0 0 14px;
+  }
+  .panel-h::before { content: '> '; color: #00FF00; }
+  .skill { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+  .skill .row { display: flex; justify-content: space-between;
+                 font-family: 'Share Tech Mono'; font-size: 12px;
+                 color: #fff; letter-spacing: 0.05em; }
+  .skill .p { color: #00FF00; text-shadow: 0 0 6px rgba(0,255,0,0.5); }
+  .skill .bar {
+    height: 10px; border-radius: 2px; overflow: hidden;
+    background: rgba(0, 50, 0, 0.5);
+    border: 1px solid rgba(0,255,0,0.3);
+  }
+  .skill .fill {
+    height: 100%;
+    background: repeating-linear-gradient(90deg,
+      #00FF00 0, #00FF00 4px, rgba(0,255,0,0.5) 4px, rgba(0,255,0,0.5) 6px);
+    box-shadow: 0 0 14px rgba(0,255,0,0.6);
+  }
+  .act { display: flex; flex-direction: column; gap: 12px; }
+  .it {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 6px 8px;
+    border-left: 2px solid rgba(0,255,0,0.5);
+    background: linear-gradient(90deg, rgba(0,255,0,0.06), transparent 60%);
+  }
+  .it .ts { font-family: 'Share Tech Mono'; font-size: 10px;
+             color: #00FF00; margin-top: 3px;
+             text-shadow: 0 0 6px rgba(0,255,0,0.5); }
+  .it .tx { font-family: 'Exo 2'; font-size: 13px; line-height: 1.4;
+             color: rgba(255,255,255,0.92); }
+  .it .tag {
+    display: inline-block; margin-right: 6px; padding: 1px 7px;
+    font-family: 'Share Tech Mono'; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #00FFFF; border: 1px solid rgba(0,255,255,0.4);
+    text-shadow: 0 0 6px rgba(0,255,255,0.4);
+  }
+</style></head>
+<body>
+<div class="sec sec--v35 sec-scan">
+  <canvas class="rain"></canvas>
+  <span class="tag-version">hybrid · v3.5-flavor</span>
+  <div class="wrap">
+    <h2 class="head">SYSTEM STATUS</h2>
+    <div class="stats">
+      <div class="stat"><div class="v">15+</div><div class="lbl">Projects</div></div>
+      <div class="stat"><div class="v">7</div><div class="lbl">AI Models</div></div>
+      <div class="stat"><div class="v">20+</div><div class="lbl">Deployments</div></div>
+      <div class="stat"><div class="v">99.9%</div><div class="lbl">Uptime</div></div>
+    </div>
+    <div class="dash">
+      <div class="panel">
+        <h3 class="panel-h">core_skills</h3>
+        <div class="skill"><div class="row"><span>React / Next.js</span><span class="p">95%</span></div><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+        <div class="skill"><div class="row"><span>TypeScript</span><span class="p">90%</span></div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+        <div class="skill"><div class="row"><span>Python / AI</span><span class="p">85%</span></div><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+        <div class="skill"><div class="row"><span>Cloud / DevOps</span><span class="p">75%</span></div><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+      </div>
+      <div class="panel">
+        <h3 class="panel-h">recent_activity</h3>
+        <div class="act">
+          <div class="it"><span class="ts">2025</span><div><span class="tag">AI</span><span class="tx">Built RAG pipeline with LangChain + Pinecone</span></div></div>
+          <div class="it"><span class="ts">2025</span><div><span class="tag">WEB</span><span class="tx">Shipped ModelViz — AI model comparison platform</span></div></div>
+          <div class="it"><span class="ts">2025</span><div><span class="tag">DATA</span><span class="tx">SQL Ball: NL-to-SQL football analytics</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="_rain.js"></script>
+</div>
+</body></html>

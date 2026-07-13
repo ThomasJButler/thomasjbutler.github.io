@@ -10,6 +10,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    // Without this, vitest also collects e2e/screenshots.spec.ts, which is a
+    // Playwright spec and blows up on import.
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    exclude: ['**/node_modules/**', 'dist/**', 'e2e/**'],
   },
   resolve: {
     alias: {

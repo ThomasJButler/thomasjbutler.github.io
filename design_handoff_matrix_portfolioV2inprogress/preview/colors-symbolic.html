@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
+  .sw { display: flex; flex-direction: column; gap: 6px; padding: 12px; border-radius: 8px;
+        border: 1px solid var(--border-color); background: rgba(0,0,0,0.4); }
+  .sw .chip { height: 56px; border-radius: 6px; }
+  .sw .name { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.15em;
+              text-transform: uppercase; color: #fff; }
+  .sw .val  { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .sw .use  { font-family: var(--font-body); font-size: 11px; color: var(--text-muted);
+              line-height: 1.4; }
+</style></head>
+<body data-theme="matrix">
+<div class="ds-card">
+  <div class="ds-eyebrow">symbolic_colors / film_theory</div>
+  <div class="row">
+    <div class="sw">
+      <div class="chip" style="background:#FFEA00; box-shadow:0 0 14px rgba(255,234,0,0.55)"></div>
+      <span class="name">YELLOW</span>
+      <span class="val">#FFEA00</span>
+      <span class="use">Machines · Neo · CTAs that demand attention</span>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#FF0000; box-shadow:0 0 14px rgba(255,0,0,0.55)"></div>
+      <span class="name">RED</span>
+      <span class="val">#FF0000</span>
+      <span class="use">Danger · system failure · errors</span>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#FFD700; box-shadow:0 0 14px rgba(255,215,0,0.5)"></div>
+      <span class="name">GOLD</span>
+      <span class="val">#FFD700</span>
+      <span class="use">Enlightenment · advanced mode</span>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#FFFFFF; box-shadow:0 0 14px rgba(255,255,255,0.4)"></div>
+      <span class="name">WHITE</span>
+      <span class="val">#FFFFFF</span>
+      <span class="use">Purity · transitions · body text</span>
+    </div>
+  </div>
+</div>
+</body></html>

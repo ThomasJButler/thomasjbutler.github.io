@@ -1,0 +1,160 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { background: oklch(0.07 0.01 145); }
+  .ds-card { gap: 12px; }
+  .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+
+  .cat {
+    --a: oklch(0.75 0.15 195);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    background: oklch(0.10 0.015 145 / 0.85);
+    border: 1px solid color-mix(in oklab, var(--a) 35%, transparent);
+    border-top: 1px solid color-mix(in oklab, var(--a) 60%, transparent);
+    box-shadow: 0 0 22px color-mix(in oklab, var(--a) 14%, transparent),
+                inset 0 1px 0 color-mix(in oklab, var(--a) 22%, transparent);
+  }
+  /* Each category gets a unique corner motif */
+  .cat .motif { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; }
+
+  .cat .head { display: flex; align-items: center; gap: 9px; position: relative; z-index: 2; }
+  .cat .icon {
+    width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in oklab, var(--a) 16%, transparent);
+    border: 1px solid color-mix(in oklab, var(--a) 40%, transparent);
+    color: var(--a);
+  }
+  .cat .icon svg { width: 16px; height: 16px; }
+  .cat .name {
+    font-family: var(--font-display); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: oklch(0.97 0.01 145);
+  }
+  .cat .name small {
+    display: block; font-family: var(--font-mono); font-size: 8.5px; font-weight: 400;
+    letter-spacing: 0.14em; color: var(--a); margin-top: 2px;
+  }
+
+  /* Accent ramp unique per card */
+  .cat .ramp { display: flex; gap: 3px; position: relative; z-index: 2; }
+  .cat .ramp i { height: 8px; flex: 1; border-radius: 2px; display: block; }
+
+  .cat .val {
+    font-family: var(--font-mono); font-size: 9.5px;
+    color: oklch(0.65 0.03 145); position: relative; z-index: 2;
+  }
+  .cat .val b { color: var(--a); font-weight: 400; }
+
+  .cat .ex {
+    margin-top: auto; position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cat .ex .proj {
+    font-family: var(--font-body); font-size: 11px; font-weight: 600;
+    color: oklch(0.92 0.01 145);
+  }
+  .cat .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .cat .chip {
+    font-family: var(--font-body); font-size: 9px; font-weight: 500;
+    padding: 1px 7px; border-radius: 999px;
+    background: color-mix(in oklab, var(--a) 14%, transparent);
+    color: var(--a);
+    border: 1px solid color-mix(in oklab, var(--a) 28%, transparent);
+  }
+
+  /* ── AI · cyan — scanline data motif ── */
+  .cat[data-c="ai"] { --a: oklch(0.75 0.15 195); }
+  .cat[data-c="ai"] .motif {
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 5px,
+      oklch(0.75 0.15 195 / 0.06) 5px, oklch(0.75 0.15 195 / 0.06) 6px);
+  }
+  /* ── Web · matrix green — circuit grid motif ── */
+  .cat[data-c="web"] { --a: oklch(0.62 0.26 145); }
+  .cat[data-c="web"] .motif {
+    background-image:
+      linear-gradient(oklch(0.62 0.26 145 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.62 0.26 145 / 0.07) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+  /* ── Creative · amber — warm radial glow motif ── */
+  .cat[data-c="creative"] { --a: oklch(0.80 0.15 85); }
+  .cat[data-c="creative"] .motif {
+    background: radial-gradient(circle at 80% 15%, oklch(0.80 0.15 85 / 0.18), transparent 55%);
+  }
+  /* ── Personal · deep green — soft diagonal motif ── */
+  .cat[data-c="personal"] { --a: oklch(0.50 0.20 150); }
+  .cat[data-c="personal"] .motif {
+    background: repeating-linear-gradient(45deg, transparent 0, transparent 8px,
+      oklch(0.50 0.20 150 / 0.07) 8px, oklch(0.50 0.20 150 / 0.07) 9px);
+  }
+</style></head>
+<body data-theme="neon-terminal">
+<div class="ds-card">
+  <div class="ds-eyebrow">project_categories / four_distinct_identities</div>
+  <div class="cats">
+
+    <div class="cat" data-c="ai">
+      <span class="motif"></span>
+      <div class="head">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></span>
+        <span class="name">AI<small>// cyan</small></span>
+      </div>
+      <div class="ramp"><i style="background:oklch(0.85 0.10 195)"></i><i style="background:oklch(0.75 0.15 195)"></i><i style="background:oklch(0.62 0.15 195)"></i><i style="background:oklch(0.48 0.12 195)"></i></div>
+      <span class="val"><b>oklch(0.75 0.15 195)</b></span>
+      <div class="ex">
+        <span class="proj">SQL‑Ball · Morpheus</span>
+        <div class="chips"><span class="chip">RAG</span><span class="chip">LangChain</span></div>
+      </div>
+    </div>
+
+    <div class="cat" data-c="web">
+      <span class="motif"></span>
+      <div class="head">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"/></svg></span>
+        <span class="name">Web<small>// matrix‑400</small></span>
+      </div>
+      <div class="ramp"><i style="background:oklch(0.78 0.20 145)"></i><i style="background:oklch(0.62 0.26 145)"></i><i style="background:oklch(0.50 0.22 145)"></i><i style="background:oklch(0.38 0.16 145)"></i></div>
+      <span class="val"><b>oklch(0.55 0.25 145)</b></span>
+      <div class="ex">
+        <span class="proj">PL Oracle · NewsPerspective</span>
+        <div class="chips"><span class="chip">Svelte</span><span class="chip">FastAPI</span></div>
+      </div>
+    </div>
+
+    <div class="cat" data-c="creative">
+      <span class="motif"></span>
+      <div class="head">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg></span>
+        <span class="name">Creative<small>// amber</small></span>
+      </div>
+      <div class="ramp"><i style="background:oklch(0.88 0.12 85)"></i><i style="background:oklch(0.80 0.15 85)"></i><i style="background:oklch(0.68 0.14 80)"></i><i style="background:oklch(0.54 0.12 70)"></i></div>
+      <span class="val"><b>oklch(0.80 0.15 85)</b></span>
+      <div class="ex">
+        <span class="proj">Matrix Arcade · BigBang</span>
+        <div class="chips"><span class="chip">Canvas</span><span class="chip">GSAP</span></div>
+      </div>
+    </div>
+
+    <div class="cat" data-c="personal">
+      <span class="motif"></span>
+      <div class="head">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg></span>
+        <span class="name">Personal<small>// matrix‑600</small></span>
+      </div>
+      <div class="ramp"><i style="background:oklch(0.62 0.18 150)"></i><i style="background:oklch(0.50 0.20 150)"></i><i style="background:oklch(0.40 0.16 150)"></i><i style="background:oklch(0.30 0.12 150)"></i></div>
+      <span class="val"><b>oklch(0.40 0.22 145)</b></span>
+      <div class="ex">
+        <span class="proj">Portfolio · TimeTravel</span>
+        <div class="chips"><span class="chip">React</span><span class="chip">Vite</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body></html>

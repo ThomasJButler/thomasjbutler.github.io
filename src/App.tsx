@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
@@ -10,40 +10,46 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ defaul
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage').then(m => ({ default: m.UpdatesPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
-function PageLoader() {
+/**
+ * The route tree without a Router, so tests can mount it inside a MemoryRouter
+ * without nesting two routers.
+ *
+ * Suspense lives in Layout's PageTransition rather than per-route: with
+ * AnimatePresence mode="wait", a per-route fallback would replace the incoming
+ * page mid-transition and the enter animation would never play.
+ */
+export function AppRoutes() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="size-8 animate-spin rounded-full border-2 border-matrix-700 border-t-matrix-500" />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="projects" element={<ProjectsPage />} />
+        <Route path="services" element={<ServicesPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="updates" element={<UpdatesPage />} />
+
+        {/* Legacy redirects */}
+        <Route path="react.html" element={<Navigate to="/" replace />} />
+        <Route path="index.html" element={<Navigate to="/" replace />} />
+        <Route path="about.html" element={<Navigate to="/about" replace />} />
+        <Route path="skills.html" element={<Navigate to="/services" replace />} />
+        <Route path="skills" element={<Navigate to="/services" replace />} />
+        <Route path="projects.html" element={<Navigate to="/projects" replace />} />
+        <Route path="services.html" element={<Navigate to="/services" replace />} />
+        <Route path="contact.html" element={<Navigate to="/contact" replace />} />
+        <Route path="sitemap.html" element={<Navigate to="/" replace />} />
+        <Route path="sitemap" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
 
 export function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Suspense fallback={<PageLoader />}><HomePage /></Suspense>} />
-          <Route path="about" element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
-          <Route path="projects" element={<Suspense fallback={<PageLoader />}><ProjectsPage /></Suspense>} />
-          <Route path="services" element={<Suspense fallback={<PageLoader />}><ServicesPage /></Suspense>} />
-          <Route path="contact" element={<Suspense fallback={<PageLoader />}><ContactPage /></Suspense>} />
-          <Route path="updates" element={<Suspense fallback={<PageLoader />}><UpdatesPage /></Suspense>} />
-
-          {/* Legacy redirects */}
-          <Route path="react.html" element={<Navigate to="/" replace />} />
-          <Route path="index.html" element={<Navigate to="/" replace />} />
-          <Route path="about.html" element={<Navigate to="/about" replace />} />
-          <Route path="skills.html" element={<Navigate to="/services" replace />} />
-          <Route path="skills" element={<Navigate to="/services" replace />} />
-          <Route path="projects.html" element={<Navigate to="/projects" replace />} />
-          <Route path="services.html" element={<Navigate to="/services" replace />} />
-          <Route path="contact.html" element={<Navigate to="/contact" replace />} />
-          <Route path="sitemap.html" element={<Navigate to="/" replace />} />
-          <Route path="sitemap" element={<Navigate to="/" replace />} />
-          <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFoundPage /></Suspense>} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </Router>
   );
 }

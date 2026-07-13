@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .scale { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; flex: 1; }
+  .sw { display: flex; flex-direction: column; gap: 4px; }
+  .sw .chip { height: 72px; border-radius: 6px; }
+  .sw .step { font-family: var(--font-mono); font-size: 10px; color: var(--text-primary); }
+  .sw .l    { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); }
+  .note { font-family: var(--font-body); font-size: 11px; color: var(--text-muted); }
+</style></head>
+<body data-theme="neon-terminal">
+<div class="ds-card">
+  <div class="ds-eyebrow">neon_terminal / matrix_scale · oklch(L 0.28 145)</div>
+  <span class="note">10-step matrix scale in OKLCH. <code style="font-family:var(--font-mono);font-size:11px;color:var(--primary)">--color-matrix-500</code> is the canonical neon green; primary anchors here.</span>
+  <div class="scale">
+    <div class="sw"><div class="chip" style="background:oklch(0.95 0.05 145)"></div><span class="step">50</span><span class="l">0.95</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.85 0.12 145)"></div><span class="step">100</span><span class="l">0.85</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.75 0.18 145)"></div><span class="step">200</span><span class="l">0.75</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.65 0.22 145)"></div><span class="step">300</span><span class="l">0.65</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.55 0.25 145)"></div><span class="step">400</span><span class="l">0.55</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.50 0.28 145); box-shadow:0 0 16px oklch(0.50 0.28 145 / 0.4)"></div><span class="step" style="color:oklch(0.85 0.12 145)">500</span><span class="l">0.50★</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.40 0.22 145)"></div><span class="step">600</span><span class="l">0.40</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.30 0.16 145)"></div><span class="step">700</span><span class="l">0.30</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.20 0.10 145)"></div><span class="step">800</span><span class="l">0.20</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.12 0.06 145)"></div><span class="step">900</span><span class="l">0.12</span></div>
+  </div>
+</div>
+</body></html>

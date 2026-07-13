@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; flex: 1; }
+  .logo-svg {
+    width: 60px; height: 60px;
+    filter: drop-shadow(0 0 6px rgba(0, 255, 0, 0.5));
+  }
+  .wordmark {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 22px; font-weight: 600;
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px rgba(0,255,0,0.4);
+  }
+  .wordmark .gt { color: rgba(0,255,0,0.6); margin-right: 4px; }
+  .v4 .wordmark { color: var(--primary, oklch(0.50 0.28 145)); }
+  .lockup { display: flex; flex-direction: column; gap: 8px; }
+  .lockup .h { font-family: 'Orbitron'; font-size: 11px; letter-spacing: 0.15em;
+               text-transform: uppercase; color: var(--text-muted); }
+  .alts { display: flex; gap: 24px; align-items: center; }
+</style></head>
+<body data-theme="matrix">
+<div class="ds-card">
+  <div class="ds-eyebrow">brand / logo_lockup</div>
+  <div class="row">
+    <img class="logo-svg" src="../assets/logo.svg" alt="Tom Butler logo">
+    <div class="lockup">
+      <span class="h">v3.5 — SVG mark + Orbitron wordmark</span>
+      <div class="wordmark"><span class="gt">&gt;</span>THOMAS&nbsp;J&nbsp;BUTLER</div>
+      <span class="h" style="margin-top:8px">v4.0 — &lsquo;tom_butler&rsquo; mono wordmark only</span>
+      <div class="wordmark v4"><span class="gt">&gt;</span>tom_butler</div>
+    </div>
+  </div>
+</div>
+</body></html>

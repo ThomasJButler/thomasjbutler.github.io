@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { expect, afterEach, vi, beforeAll } from 'vitest';
+import { expect, afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
@@ -31,11 +31,23 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }));
 
-// Mock window.matchMedia
+// Mock window.matchMedia.
+//
+// Reduced motion defaults to ON in tests. Every FX component (rain, decode text,
+// cursor, boot intro) short-circuits its rAF loop under reduced motion, so this
+// keeps jsdom free of animation loops it cannot drive and makes assertions see
+// final text rather than mid-scramble glyphs. Tests that specifically exercise
+// the animated path opt out with setReducedMotion(false).
+let reducedMotion = true;
+
+export function setReducedMotion(value: boolean) {
+  reducedMotion = value;
+}
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
-    matches: false,
+    matches: query.includes('prefers-reduced-motion') ? reducedMotion : false,
     media: query,
     onchange: null,
     addListener: vi.fn(),
@@ -44,6 +56,10 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
+});
+
+afterEach(() => {
+  reducedMotion = true;
 });
 
 // Mock canvas for Matrix rain effect
@@ -81,7 +97,12 @@ HTMLCanvasElement.prototype.getContext = vi.fn().mockImplementation(() => ({
 // Mock scrollTo
 window.scrollTo = vi.fn();
 
-// Use fake timers
-beforeAll(() => {
-  vi.useFakeTimers();
-});
+// NOTE: fake timers are deliberately NOT installed globally.
+//
+// Vitest's fake timers also patch requestAnimationFrame and performance.now, so
+// every rAF-driven component (rain, decode text, boot typer) would freeze, and
+// both waitFor() and @testing-library/user-event hang waiting on real time.
+// Suites that need to control time should opt in locally:
+//
+//   vi.useFakeTimers({ toFake: ['setTimeout', 'setInterval', 'Date'] });
+//   afterEach(() => vi.useRealTimers());

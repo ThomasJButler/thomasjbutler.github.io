@@ -1,0 +1,221 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body {
+    background:
+      radial-gradient(ellipse at 50% 0%, oklch(0.18 0.04 145 / 0.5), transparent 65%),
+      oklch(0.06 0.01 145);
+  }
+  .ds-card { padding: 22px; gap: 12px; }
+
+  .form {
+    display: grid; gap: 12px;
+  }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .field { display: flex; flex-direction: column; gap: 5px; }
+
+  .field label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: lowercase;
+    color: oklch(0.65 0.03 145);
+    margin: 0; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .field label::before {
+    content: '//'; color: oklch(0.50 0.28 145 / 0.6);
+  }
+  .field label .req { color: oklch(0.75 0.15 85); opacity: 0.8; }
+
+  /* Input wrapper — gives us room for leading icon + trailing badge */
+  .input-wrap {
+    position: relative;
+    display: flex; align-items: center;
+    background: linear-gradient(180deg,
+      oklch(0.09 0.014 145 / 0.95),
+      oklch(0.07 0.012 145 / 0.95));
+    border: 1px solid oklch(0.22 0.04 145);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow:
+      inset 0 1px 2px oklch(0 0 0 / 0.5),
+      inset 0 -1px 0 oklch(0.30 0.10 145 / 0.15);
+  }
+  .input-wrap:hover {
+    border-color: oklch(0.30 0.10 145 / 0.6);
+  }
+
+  /* Leading icon */
+  .leading {
+    padding-left: 12px; padding-right: 8px;
+    color: oklch(0.50 0.28 145 / 0.6);
+    display: flex; align-items: center;
+  }
+  .leading svg { width: 14px; height: 14px; }
+
+  /* The input itself */
+  .input-wrap input, .input-wrap textarea {
+    flex: 1; min-width: 0;
+    border: 0; background: transparent; outline: 0;
+    padding: 11px 12px 11px 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px; line-height: 1.4;
+    color: oklch(0.95 0.005 145);
+    caret-color: oklch(0.50 0.28 145);
+    letter-spacing: 0.01em;
+  }
+  .input-wrap input::placeholder,
+  .input-wrap textarea::placeholder {
+    color: oklch(0.45 0.03 145);
+    font-style: italic;
+  }
+  .input-wrap.has-icon input,
+  .input-wrap.has-icon textarea { padding-left: 4px; }
+
+  .input-wrap textarea {
+    padding: 10px 12px;
+    min-height: 78px; resize: vertical;
+  }
+
+  /* Focused state — multi-layer ring */
+  .input-wrap.is-focused {
+    border-color: oklch(0.50 0.28 145 / 0.7);
+    box-shadow:
+      inset 0 1px 2px oklch(0 0 0 / 0.5),
+      0 0 0 3px oklch(0.50 0.28 145 / 0.18),
+      0 0 24px oklch(0.50 0.28 145 / 0.12);
+  }
+  .input-wrap.is-focused .leading { color: oklch(0.50 0.28 145); }
+
+  /* Validation states */
+  .input-wrap.is-valid {
+    border-color: oklch(0.60 0.20 145 / 0.7);
+    box-shadow:
+      inset 0 1px 2px oklch(0 0 0 / 0.5),
+      0 0 0 1px oklch(0.50 0.28 145 / 0.2);
+  }
+  .input-wrap.is-valid .trailing {
+    color: oklch(0.65 0.20 145);
+  }
+
+  .trailing {
+    padding-right: 12px; padding-left: 8px;
+    color: oklch(0.50 0.28 145 / 0.6);
+    display: flex; align-items: center;
+  }
+  .trailing svg { width: 14px; height: 14px; }
+
+  /* Helper / hint line */
+  .hint {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: oklch(0.55 0.03 145);
+    display: flex; justify-content: space-between;
+    margin-top: 2px;
+  }
+  .hint .ok { color: oklch(0.65 0.20 145); }
+  .hint .count { color: oklch(0.50 0.28 145 / 0.7); }
+
+  /* Footer row */
+  .actions {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 8px;
+    border-top: 1px dashed oklch(0.22 0.04 145);
+    margin-top: 2px;
+  }
+  .status {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: oklch(0.55 0.03 145);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: oklch(0.65 0.20 145);
+    box-shadow: 0 0 8px oklch(0.50 0.28 145);
+  }
+  .send {
+    height: 32px; padding: 0 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Exo 2'; font-size: 12px; font-weight: 500;
+    background: oklch(0.50 0.28 145);
+    color: oklch(0.08 0.01 145);
+    border: 0; border-radius: 6px;
+    cursor: pointer;
+    box-shadow:
+      0 0 16px oklch(0.50 0.28 145 / 0.3),
+      inset 0 1px 0 oklch(0.70 0.25 145 / 0.4);
+    transition: all 0.2s;
+  }
+  .send:hover {
+    background: oklch(0.55 0.28 145);
+    box-shadow:
+      0 0 22px oklch(0.50 0.28 145 / 0.5),
+      inset 0 1px 0 oklch(0.70 0.25 145 / 0.5);
+  }
+  .send svg { width: 12px; height: 12px; }
+</style></head>
+<body data-theme="neon-terminal">
+<div class="ds-card">
+  <div class="ds-eyebrow">forms / inputs · focus · validation</div>
+
+  <form class="form" onsubmit="event.preventDefault();">
+    <div class="row">
+      <div class="field">
+        <label>name <span class="req">*</span></label>
+        <div class="input-wrap has-icon is-valid">
+          <span class="leading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </span>
+          <input type="text" value="Tom Butler" />
+          <span class="trailing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label>email <span class="req">*</span></label>
+        <div class="input-wrap has-icon is-focused">
+          <span class="leading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </span>
+          <input type="email" value="tom@matrix.io" autofocus />
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>subject</label>
+      <div class="input-wrap">
+        <input type="text" placeholder="Project enquiry — RAG pipeline build" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>message <span class="req">*</span></label>
+      <div class="input-wrap">
+        <textarea placeholder="Tell me about your project — what you’re building, the stack, what success looks like.">Tell me about your project — what you’re building, the stack, what success looks like.</textarea>
+      </div>
+      <div class="hint">
+        <span class="ok">$ ok — reads like a real brief</span>
+        <span class="count">62 / 1000</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <span class="status"><span class="dot"></span> awaiting send · encrypted in transit</span>
+      <button type="submit" class="send">
+        Send transmission
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </form>
+</div>
+</body></html>

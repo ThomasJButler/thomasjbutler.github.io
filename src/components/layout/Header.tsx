@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { MotionToggle } from '@/components/system/MotionToggle';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -64,6 +65,7 @@ export function Header() {
             >
               <LinkedinIcon className="size-4" />
             </a>
+            <MotionToggle />
             <ThemeToggle />
           </div>
         </nav>

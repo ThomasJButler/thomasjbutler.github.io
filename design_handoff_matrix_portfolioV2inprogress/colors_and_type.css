@@ -1,0 +1,464 @@
+/* ==========================================================================
+   Matrix Portfolio Design System — Tokens
+   Drop into any HTML: <link rel="stylesheet" href="colors_and_type.css">
+   Then use the CSS vars directly, or apply [data-theme="matrix"|"dark"|"light"].
+   ==========================================================================
+
+   Three theme layers:
+     [data-theme="matrix"]       v3.5 Matrix — neon green on black + cyan accents (DEFAULT)
+     [data-theme="dark"]         v3.5 "Dark mode" — blue on black (retired in v4.0)
+     [data-theme="neon-terminal"]v4.0 dark — OKLCH matrix green on deep near-black
+     [data-theme="circuit"]      v4.0 light — engineered green on off-white circuit grid
+
+   Pick ONE per page (matrix + neon-terminal both work; they share the v3.5 vars
+   but neon-terminal also wires up the ShadCN-shaped --primary/--card/--ring layer).
+   ========================================================================== */
+
+/* ─── Fonts (loaded once) ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ─── Base type + neutrals (theme-independent) ────────────────────────── */
+:root {
+  /* Font families */
+  --font-display:  'Orbitron', sans-serif;        /* h1-h3, logo, nav, buttons */
+  --font-body:     'Exo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:     'Share Tech Mono', 'Courier New', monospace;  /* code, inline labels */
+  --font-terminal: 'JetBrains Mono', ui-monospace, monospace;    /* v4.0 terminal copy */
+
+  /* Aliases preserving v3.5 names */
+  --font-primary:  var(--font-display);
+  --font-code:     var(--font-mono);
+
+  /* Fluid type scale */
+  --font-size-xs:   clamp(0.75rem,  0.7rem  + 0.25vw,  0.875rem);
+  --font-size-sm:   clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --font-size-base: clamp(1rem,     0.95rem + 0.25vw,  1.125rem);
+  --font-size-md:   clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --font-size-lg:   clamp(1.25rem,  1.15rem + 0.5vw,   1.5rem);
+  --font-size-xl:   clamp(1.5rem,   1.35rem + 0.75vw,  2rem);
+  --font-size-2xl:  clamp(1.875rem, 1.65rem + 1.125vw, 2.5rem);
+  --font-size-3xl:  clamp(2.25rem,  1.95rem + 1.5vw,   3rem);
+  --font-size-4xl:  clamp(3rem,     2.5rem + 2.5vw,    4rem);
+
+  /* Line heights */
+  --line-height-tight:   1.25;
+  --line-height-normal:  1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose:   2;
+
+  /* Letter spacing — wider than usual for terminal aesthetic */
+  --letter-spacing-tight:   -0.025em;
+  --letter-spacing-normal:   0.02em;
+  --letter-spacing-wide:     0.08em;
+  --letter-spacing-wider:    0.15em;
+  --letter-spacing-widest:   0.2em;
+
+  /* Spacing — 4px base */
+  --space-xs:  0.25rem;   /* 4px  */
+  --space-sm:  0.5rem;    /* 8px  */
+  --space-md:  1rem;      /* 16px */
+  --space-lg:  1.5rem;    /* 24px */
+  --space-xl:  2rem;      /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+
+  /* Radii */
+  --radius-sm:   4px;
+  --radius-base: 6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* Glow intensities (compose with --glow-color-*) */
+  --glow-subtle:   0 0 5px;
+  --glow-standard: 0 0 10px;
+  --glow-medium:   0 0 15px;
+  --glow-intense:  0 0 20px;
+  --glow-extreme:  0 0 30px;
+
+  /* Animation */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --duration-fast:   150ms;
+  --duration-base:   300ms;
+  --duration-slow:   500ms;
+  --duration-slower: 1000ms;
+
+  /* Content widths */
+  --content-width:        65ch;
+  --content-width-wide:   80ch;
+  --content-width-narrow: 50ch;
+
+  /* Z-index */
+  --z-modal:        1000;
+  --z-dropdown:     2000;
+  --z-tooltip:      3000;
+  --z-notification: 4000;
+
+  /* Symbolic colors — same meaning across all themes (film-theory in source) */
+  --matrix-yellow: #FFEA00;  /* Machines / Neo / spirit / CTAs that demand attention */
+  --matrix-red:    #FF0000;  /* Danger, system failure, errors */
+  --matrix-gold:   #FFD700;  /* Enlightenment / advanced mode */
+  --matrix-white:  #FFFFFF;  /* Purity / transitions */
+}
+
+/* ============================================================================
+   THEME 1 — Matrix (v3.5) — DEFAULT
+   Pure neon green on absolute black + cyan accents.
+   ============================================================================ */
+:root,
+[data-theme="matrix"] {
+  /* Palette */
+  --matrix-green:        #00FF00;
+  --matrix-green-bright: #44ff44;
+  --matrix-green-muted:  #1B4D3E;
+  --matrix-green-soft:   rgba(0, 255, 0, 0.92);
+  --matrix-cyan:         #00FFFF;
+  --matrix-blue:         #0A1E3F;
+  --matrix-dark:         #000000;
+
+  /* Semantic */
+  --bg-primary:    #000000;
+  --bg-secondary:  #0a0a0a;
+  --bg-tertiary:   #050505;
+  --bg-overlay:    rgba(0, 0, 0, 0.8);
+  --bg-transparent: rgba(0, 20, 0, 0.4);
+  --bg-terminal:   rgba(0, 0, 0, 0.95);
+  --bg-section-digital: linear-gradient(180deg, #000000 0%, #0A1F0A 100%);
+  --bg-section-real:    linear-gradient(180deg, #000000 0%, #0A1E3F 100%);
+
+  /* Text hierarchy */
+  --text-primary:   #FFFFFF;                       /* Body text — white for readability */
+  --text-base:      #CCCCCC;                       /* Body alternate */
+  --text-secondary: #CCCCCC;
+  --text-tertiary:  rgba(255, 255, 255, 0.6);
+  --text-muted:     rgba(204, 204, 204, 0.7);
+  --text-inverse:   #000000;
+  --text-danger:    #FF4444;
+  --text-warning:   var(--matrix-yellow);
+
+  /* Accents */
+  --accent-color:    var(--matrix-cyan);          /* Links + highlights are cyan in matrix */
+  --accent-hover:    #00DDDD;
+  --accent-rgb:      0, 255, 255;
+
+  /* Surfaces */
+  --card-bg:         rgba(0, 0, 0, 0.9);
+  --card-hover:      rgba(0, 0, 0, 0.95);
+  --code-bg:         rgba(0, 255, 0, 0.05);
+  --overlay-bg:      rgba(0, 0, 0, 0.8);
+
+  /* Borders */
+  --border-color:    rgba(0, 255, 0, 0.3);
+  --border-hover:    rgba(0, 255, 0, 0.5);
+  --border-primary:  rgba(0, 255, 0, 0.3);
+  --border-accent:   var(--matrix-yellow);
+  --border-danger:   var(--matrix-red);
+
+  /* Glow color tokens (compose with --glow-* intensities) */
+  --glow-color-primary:  rgba(0, 255, 0, 0.3);
+  --glow-color-accent:   rgba(0, 255, 255, 0.3);
+  --glow-color-subtle:   rgba(0, 255, 0, 0.2);
+  --glow-color-intense:  rgba(0, 255, 255, 0.5);
+
+  /* Composed glow tokens */
+  --glow-box-subtle:    var(--glow-subtle)   var(--glow-color-subtle);
+  --glow-box-standard:  var(--glow-standard) var(--glow-color-primary);
+  --glow-box-medium:    var(--glow-medium)   var(--glow-color-primary);
+  --glow-box-intense:   var(--glow-intense)  var(--glow-color-intense);
+  --glow-box-extreme:   var(--glow-extreme)  var(--glow-color-intense);
+  --glow-text-subtle:   var(--glow-subtle)   var(--glow-color-subtle);
+  --glow-text-standard: var(--glow-standard) var(--glow-color-primary);
+  --glow-triple-layer:
+      var(--glow-standard) var(--glow-color-intense),
+      var(--glow-intense)  var(--glow-color-primary),
+      var(--glow-extreme)  var(--glow-color-subtle);
+  --phosphor-glow: 0 0 2px var(--matrix-green), 0 0 8px rgba(0, 255, 0, 0.4);
+
+  /* Shadow (green-tinted, reads as glow) */
+  --shadow-sm:    0 2px 4px  rgba(0, 255, 0, 0.10);
+  --shadow-md:    0 4px 8px  rgba(0, 255, 0, 0.15);
+  --shadow-lg:    0 8px 16px rgba(0, 255, 0, 0.20);
+  --shadow-xl:    0 12px 24px rgba(0, 255, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  /* Glassmorphism */
+  --glass-bg:        rgba(0, 20, 0, 0.6);
+  --glass-border:    rgba(0, 255, 0, 0.2);
+  --glass-blur:      blur(12px);
+  --glass-saturate:  saturate(180%);
+
+  /* Scrollbar */
+  --scrollbar-bg:    #000000;
+  --scrollbar-thumb: #00ff00;
+}
+
+/* ============================================================================
+   THEME 2 — Dark Blue (v3.5) — retired, kept for parity
+   Same structure but green → blue. Useful if you need to dial down intensity.
+   ============================================================================ */
+[data-theme="dark"] {
+  --matrix-green: #4A9EFF;             /* Green overridden to blue */
+  --matrix-green-bright: #5AADFF;
+  --matrix-green-muted:  #1B3A66;
+
+  --bg-primary:    #000000;
+  --bg-secondary:  #0f0f0f;
+  --bg-tertiary:   #1a1a1a;
+  --bg-overlay:    rgba(0, 0, 0, 0.9);
+
+  --text-primary:   #FFFFFF;
+  --text-base:      #CCCCCC;
+  --text-secondary: #CCCCCC;
+  --text-tertiary:  #999999;
+  --text-muted:     rgba(255, 255, 255, 0.6);
+  --text-inverse:   #000000;
+
+  --accent-color: #4A9EFF;
+  --accent-hover: #5AADFF;
+  --accent-rgb:   74, 158, 255;
+
+  --card-bg:      rgba(15, 15, 15, 0.95);
+  --card-hover:   rgba(25, 25, 25, 0.95);
+  --code-bg:      rgba(255, 255, 255, 0.05);
+
+  --border-color:   rgba(74, 158, 255, 0.3);
+  --border-hover:   rgba(74, 158, 255, 0.5);
+  --border-primary: rgba(74, 158, 255, 0.3);
+
+  --glow-color-primary:  rgba(74, 158, 255, 0.3);
+  --glow-color-accent:   rgba(90, 173, 255, 0.3);
+  --glow-color-subtle:   rgba(74, 158, 255, 0.2);
+  --glow-color-intense:  rgba(74, 158, 255, 0.5);
+
+  --shadow-sm:  0 2px 4px  rgba(74, 158, 255, 0.10);
+  --shadow-md:  0 4px 8px  rgba(74, 158, 255, 0.15);
+  --shadow-lg:  0 8px 16px rgba(74, 158, 255, 0.20);
+  --shadow-xl:  0 12px 24px rgba(74, 158, 255, 0.25);
+
+  --scrollbar-thumb: #4A9EFF;
+}
+
+/* ============================================================================
+   THEME 3 — Neon Terminal (v4.0 dark)
+   OKLCH matrix green on near-black. Also exposes ShadCN-shaped tokens so
+   Tailwind v4 / ShadCN-compatible components Just Work.
+   ============================================================================ */
+[data-theme="neon-terminal"],
+.dark {
+  /* Matrix scale in OKLCH */
+  --color-matrix-50:  oklch(0.95 0.05 145);
+  --color-matrix-100: oklch(0.85 0.12 145);
+  --color-matrix-200: oklch(0.75 0.18 145);
+  --color-matrix-300: oklch(0.65 0.22 145);
+  --color-matrix-400: oklch(0.55 0.25 145);
+  --color-matrix-500: oklch(0.50 0.28 145);   /* canonical neon green */
+  --color-matrix-600: oklch(0.40 0.22 145);
+  --color-matrix-700: oklch(0.30 0.16 145);
+  --color-matrix-800: oklch(0.20 0.10 145);
+  --color-matrix-900: oklch(0.12 0.06 145);
+
+  --color-surface-0: oklch(0.08 0.01 145);
+  --color-surface-1: oklch(0.11 0.015 145);
+  --color-surface-2: oklch(0.14 0.02 145);
+  --color-surface-3: oklch(0.18 0.025 145);
+
+  --color-cyan:  oklch(0.75 0.15 195);
+  --color-amber: oklch(0.80 0.15 85);
+  --color-text: oklch(0.92 0.01 145);
+  --color-text-muted: oklch(0.60 0.03 145);
+  --color-glow: oklch(0.50 0.28 145 / 0.3);
+
+  /* ShadCN-shaped tokens */
+  --background:           oklch(0.08 0.01 145);
+  --foreground:           oklch(0.95 0.005 145);
+  --card:                 oklch(0.10 0.015 145 / 0.70);
+  --card-foreground:      oklch(0.95 0.005 145);
+  --popover:              oklch(0.11 0.015 145);
+  --popover-foreground:   oklch(0.95 0.005 145);
+  --primary:              oklch(0.50 0.28 145);
+  --primary-foreground:   oklch(0.08 0.01 145);
+  --secondary:            oklch(0.18 0.025 145);
+  --secondary-foreground: oklch(0.85 0.12 145);
+  --muted:                oklch(0.14 0.02 145);
+  --muted-foreground:     oklch(0.65 0.03 145);
+  --accent:               oklch(0.18 0.025 145);
+  --accent-foreground:    oklch(0.88 0.10 145);
+  --destructive:          oklch(0.55 0.20 25);
+  --border:               oklch(0.22 0.04 145);
+  --input:                oklch(0.22 0.04 145);
+  --ring:                 oklch(0.50 0.28 145);
+  --radius:               0.5rem;
+
+  /* Wire legacy v3.5 names through to OKLCH */
+  --bg-primary:   var(--background);
+  --bg-secondary: var(--color-surface-1);
+  --bg-tertiary:  var(--color-surface-2);
+  --text-primary: var(--foreground);
+  --text-base:    var(--color-text);
+  --text-muted:   var(--color-text-muted);
+  --accent-color: var(--primary);
+  --card-bg:      var(--card);
+  --border-color: var(--border);
+}
+
+/* ============================================================================
+   THEME 4 — Circuit Board (v4.0 light)
+   Off-white near-paper with engineered green accents + circuit grid background.
+   ============================================================================ */
+[data-theme="circuit"] {
+  /* Same matrix scale; the surfaces invert */
+  --color-matrix-500: oklch(0.40 0.22 145);
+
+  --background:           oklch(0.985 0.002 145);
+  --foreground:           oklch(0.12 0.03 145);
+  --card:                 oklch(1 0 0 / 0.92);
+  --card-foreground:      oklch(0.12 0.03 145);
+  --popover:              oklch(0.99 0.002 145);
+  --popover-foreground:   oklch(0.12 0.03 145);
+  --primary:              oklch(0.35 0.22 145);
+  --primary-foreground:   oklch(0.99 0 0);
+  --secondary:            oklch(0.94 0.012 145);
+  --secondary-foreground: oklch(0.25 0.10 145);
+  --muted:                oklch(0.96 0.005 145);
+  --muted-foreground:     oklch(0.40 0.06 145);
+  --accent:               oklch(0.92 0.015 145);
+  --accent-foreground:    oklch(0.25 0.10 145);
+  --destructive:          oklch(0.55 0.20 25);
+  --border:               oklch(0.90 0.02 145);
+  --input:                oklch(0.92 0.015 145);
+  --ring:                 oklch(0.35 0.22 145);
+  --radius:               0.5rem;
+
+  /* Legacy aliases */
+  --bg-primary:   var(--background);
+  --text-primary: var(--foreground);
+  --accent-color: var(--primary);
+  --card-bg:      var(--card);
+  --border-color: var(--border);
+}
+
+/* Circuit grid background (32×32 graph paper) */
+[data-theme="circuit"] body,
+[data-theme="circuit"] .ds-circuit-grid {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+}
+
+/* ============================================================================
+   Semantic typography — selectors map straight to elements.
+   ============================================================================ */
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  letter-spacing: var(--letter-spacing-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--font-size-4xl); font-weight: 700; letter-spacing: var(--letter-spacing-wider); }
+h2 { font-size: var(--font-size-2xl); font-weight: 600; }
+h3 { font-size: var(--font-size-xl);  font-weight: 500; letter-spacing: var(--letter-spacing-wide); }
+h4 { font-size: var(--font-size-lg);  font-weight: 600; font-family: var(--font-body); }
+h5 { font-size: var(--font-size-md);  font-weight: 500; font-family: var(--font-body); }
+h6 { font-size: var(--font-size-base); font-weight: 500; font-family: var(--font-body);
+     text-transform: uppercase; letter-spacing: var(--letter-spacing-wider); }
+
+p {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--text-base);
+  margin: 0 0 1.5rem;
+  max-width: var(--content-width);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--duration-base) var(--ease-out);
+}
+a:hover { color: var(--accent-hover, var(--accent-color)); text-shadow: var(--glow-text-subtle); }
+
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
+code {
+  padding: 0.2em 0.4em;
+  background: var(--code-bg);
+  color: var(--accent-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+pre {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-terminal, rgba(0,0,0,0.8));
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  line-height: 1.45;
+  font-family: var(--font-mono);
+}
+pre code { background: none; padding: 0; border: none; }
+
+/* Terminal section-title prefix ("> section_name") */
+.section-title::before,
+.terminal-prefix::before {
+  content: '>';
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  margin-right: 0.5rem;
+}
+
+/* Mono comment-style label ("// section_name") */
+.comment-label,
+.hub-label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wider);
+  color: color-mix(in oklab, var(--accent-color) 70%, transparent);
+  text-transform: lowercase;
+}
+.comment-label::before { content: '// '; opacity: 0.6; }
+
+/* Buttons / form labels share display font in v3.5 */
+button, .btn { font-family: var(--font-display); font-size: var(--font-size-base);
+                letter-spacing: var(--letter-spacing-wider); text-transform: uppercase; line-height: 1; }
+label { font-family: var(--font-body); font-size: var(--font-size-sm);
+        font-weight: 500; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; }
+
+/* Glow text utility */
+.glow-text       { text-shadow: var(--glow-text-standard); }
+.glow-text-soft  { text-shadow: var(--glow-text-subtle); }
+.glow-text-heavy { text-shadow: var(--glow-triple-layer); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

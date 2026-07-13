@@ -1,0 +1,61 @@
+/* Canvas-section base — common normalize + scoping */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Exo 2', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.sec {
+  width: 100%; min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.sec--v35 { background: #000; color: #fff; }
+.sec--v40-dark { background: oklch(0.08 0.01 145); color: oklch(0.95 0.005 145); }
+.sec--v40-light {
+  background: oklch(0.985 0.002 145); color: oklch(0.12 0.03 145);
+  background-image:
+    linear-gradient(oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.sec--hybrid {
+  background:
+    radial-gradient(ellipse at 50% 0%, oklch(0.16 0.06 145 / 0.7), transparent 70%),
+    #000;
+  color: oklch(0.95 0.005 145);
+}
+
+/* Scanlines overlay helper */
+.sec-scan::after {
+  content: ''; position: absolute; inset: 0; z-index: 50; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px,
+    rgba(0,255,0,0.04) 2px, rgba(0,255,0,0.04) 4px);
+}
+.sec-scan-soft::after {
+  content: ''; position: absolute; inset: 0; z-index: 50; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 3px,
+    oklch(0.50 0.28 145 / 0.025) 3px, oklch(0.50 0.28 145 / 0.025) 4px);
+}
+canvas.rain {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+}
+.sec--v35 canvas.rain { opacity: 0.55; }
+.sec--hybrid canvas.rain { opacity: 0.40; }
+.sec--v40-dark canvas.rain { opacity: 0.30; }
+.sec > .inner { position: relative; z-index: 5; padding: 32px 48px; }
+.tag-version {
+  position: absolute; top: 12px; right: 14px; z-index: 60;
+  font-family: 'Share Tech Mono', monospace; font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 999px;
+  background: oklch(0.10 0.02 145 / 0.85);
+  border: 1px solid oklch(0.50 0.28 145 / 0.5);
+  color: oklch(0.85 0.12 145);
+}
+.sec--v40-light .tag-version {
+  background: oklch(1 0 0 / 0.85);
+  border-color: oklch(0.35 0.22 145 / 0.3);
+  color: oklch(0.30 0.10 145);
+}

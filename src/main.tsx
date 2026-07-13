@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { Providers } from './Providers';
 import { App } from './App';
 import './app.css';
 
@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
+    <Providers>
       <App />
-    </ThemeProvider>
+    </Providers>
   </React.StrictMode>
 );

@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&family=Exo+2&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  .wrap { padding: 14px 40px 16px; position: relative; z-index: 5; }
+  .hdr {
+    position: relative;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 18px; height: 56px;
+    background: linear-gradient(180deg, oklch(0.10 0.02 145 / 0.92), oklch(0.06 0.01 145 / 0.92));
+    backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid oklch(0.30 0.10 145 / 0.6);
+    border-top-color: oklch(0.50 0.18 145 / 0.7);
+    border-radius: 12px; overflow: hidden;
+    box-shadow:
+      0 1px 0 oklch(0.60 0.22 145 / 0.2) inset,
+      0 8px 20px oklch(0 0 0 / 0.4),
+      0 0 24px oklch(0.50 0.28 145 / 0.15);
+  }
+  .hdr::after {
+    content: ''; position: absolute; bottom: 0; left: -25%;
+    width: 50%; height: 2px;
+    background: linear-gradient(90deg, transparent, oklch(0.75 0.18 195), oklch(0.50 0.28 145), transparent);
+    box-shadow: 0 0 14px oklch(0.50 0.28 145 / 0.7);
+    animation: sw 4s linear infinite;
+  }
+  @keyframes sw { 0% { left: -25%; } 100% { left: 100%; } }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .lg {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: oklch(0.12 0.03 145 / 0.7); border: 1px solid oklch(0.50 0.28 145 / 0.7);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron'; font-weight: 800; font-size: 11px;
+    color: #fff; text-shadow: 0 0 8px oklch(0.50 0.28 145);
+    box-shadow: 0 0 10px oklch(0.50 0.28 145 / 0.4);
+  }
+  .word { font-family: 'Share Tech Mono'; font-size: 13px;
+          color: oklch(0.85 0.12 145); letter-spacing: 0.02em; }
+  .word .gt { color: oklch(0.50 0.28 145 / 0.7); margin-right: 2px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 8px; border-radius: 999px;
+    background: oklch(0.50 0.28 145 / 0.08);
+    border: 1px solid oklch(0.50 0.28 145 / 0.25);
+    font-family: 'Share Tech Mono'; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: oklch(0.85 0.12 145);
+  }
+  .pill .pulse { width: 5px; height: 5px; border-radius: 50%;
+    background: oklch(0.65 0.22 145); box-shadow: 0 0 8px oklch(0.65 0.22 145);
+    animation: p 1.6s ease-in-out infinite; }
+  @keyframes p { 50% { opacity: 0.4; } }
+  nav.c {
+    display: flex; gap: 2px; padding: 4px;
+    background: oklch(0.10 0.02 145 / 0.6);
+    border: 1px solid oklch(0.22 0.04 145);
+    border-radius: 8px;
+  }
+  nav.c a {
+    font-family: 'Share Tech Mono'; font-size: 12px; padding: 7px 14px;
+    border-radius: 6px; color: oklch(0.65 0.03 145); text-decoration: none;
+  }
+  nav.c a.active {
+    background: linear-gradient(180deg, oklch(0.18 0.04 145 / 0.95), oklch(0.12 0.03 145 / 0.95));
+    color: #fff;
+    box-shadow: inset 0 1px 0 oklch(0.50 0.28 145 / 0.35),
+                0 0 16px oklch(0.50 0.28 145 / 0.2),
+                0 2px 0 oklch(0.50 0.28 145 / 0.8);
+  }
+  nav.c a.active::before { content: '>'; color: oklch(0.50 0.28 145); margin-right: 6px; }
+  .util { display: flex; align-items: center; gap: 10px; }
+  .cmdk {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 28px; padding: 0 8px 0 10px;
+    border-radius: 6px; background: oklch(0.10 0.02 145);
+    border: 1px solid oklch(0.22 0.04 145);
+    font-family: 'Share Tech Mono'; font-size: 11px; color: oklch(0.55 0.03 145);
+  }
+  .cmdk svg { width: 12px; height: 12px; }
+  .cmdk kbd { font-family: 'Share Tech Mono'; font-size: 9px;
+    padding: 1px 5px; border-radius: 3px; background: oklch(0.06 0.01 145);
+    color: oklch(0.50 0.28 145); border: 1px solid oklch(0.22 0.04 145); }
+  .clock { font-family: 'Share Tech Mono'; font-size: 9px;
+           letter-spacing: 0.15em; color: oklch(0.55 0.03 145); text-align: right; line-height: 1.15; }
+  .clock .v { color: oklch(0.85 0.12 145); }
+  .ico { width: 28px; height: 28px; display: inline-flex;
+         align-items: center; justify-content: center;
+         color: oklch(0.65 0.03 145); }
+  .ico svg { width: 14px; height: 14px; }
+  .below {
+    margin-top: 12px;
+    font-family: 'Share Tech Mono'; font-size: 9px;
+    color: oklch(0.45 0.03 145); letter-spacing: 0.15em;
+  }
+  .below::before { content: '// '; opacity: 0.6; }
+</style></head>
+<body>
+<div class="sec sec--v40-dark">
+  <span class="tag-version">v4.0 · mission control</span>
+  <div class="wrap">
+    <header class="hdr">
+      <div class="brand">
+        <div class="lg">TB</div>
+        <span class="word"><span class="gt">&gt;</span>tom_butler</span>
+        <span class="pill"><span class="pulse"></span> online</span>
+      </div>
+      <nav class="c">
+        <a href="#" class="active">Home</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="util">
+        <div class="cmdk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          Search <kbd>⌘K</kbd>
+        </div>
+        <div class="clock">
+          <div>UTC <span class="v">14:32</span></div>
+          <div>UP <span class="v">99.94%</span></div>
+        </div>
+        <span class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </div>
+    </header>
+    <div class="below">scanline sweep · magnetic indicator · status pill · cmd-k · uptime ticker</div>
+  </div>
+</div>
+</body></html>

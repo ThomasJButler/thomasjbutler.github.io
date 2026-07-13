@@ -1,0 +1,104 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { background: #000; }
+  .ds-card {
+    gap: 14px; position: relative; overflow: hidden;
+    background:
+      radial-gradient(ellipse at 22% 30%, rgba(0,80,0,0.35), transparent 60%),
+      #000;
+  }
+  .ds-card::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 2px,
+      rgba(0,255,0,0.03) 2px, rgba(0,255,0,0.03) 4px);
+  }
+  .ds-card > * { position: relative; z-index: 2; }
+
+  .top { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: stretch; }
+
+  /* Hero green token */
+  .hero {
+    border-radius: 10px; padding: 16px;
+    background:
+      radial-gradient(circle at 50% 30%, #18ff18, #00d400 55%, #009a00 100%);
+    box-shadow:
+      0 0 30px rgba(0,255,0,0.55),
+      inset 0 0 24px rgba(255,255,255,0.25);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 132px;
+  }
+  .hero .nm {
+    font-family: var(--font-display); font-size: 17px; font-weight: 800;
+    letter-spacing: 0.12em; color: #001a00;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .hero .swatch-note {
+    font-family: var(--font-mono); font-size: 10px; color: rgba(0,30,0,0.75);
+    line-height: 1.5;
+  }
+  .hero .swatch-note b { color: #002600; font-weight: 700; }
+
+  .notes { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .notrow {
+    display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: baseline;
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .notrow .k { color: rgba(0,255,0,0.6); letter-spacing: 0.12em; text-transform: uppercase; font-size: 10px; }
+  .notrow .v { color: #d8ffd8; }
+  .usage {
+    font-family: var(--font-body); font-size: 12px; line-height: 1.55;
+    color: rgba(255,255,255,0.72); margin: 0; max-width: 46ch;
+  }
+  .usage b { color: #44ff44; font-weight: 600; }
+
+  /* Supporting ramp */
+  .ramp { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .sw { display: flex; flex-direction: column; gap: 5px; }
+  .sw .chip {
+    height: 52px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative; overflow: hidden;
+  }
+  .sw .chip::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 3px,
+      rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px);
+  }
+  .sw .nm { font-family: var(--font-mono); font-size: 10px; color: #cfeccf; }
+  .sw .hx { font-family: var(--font-mono); font-size: 9px; color: rgba(255,255,255,0.45); }
+</style></head>
+<body data-theme="matrix">
+<div class="ds-card">
+  <div class="ds-eyebrow">matrix_v3_5 / core_green</div>
+
+  <div class="top">
+    <div class="hero">
+      <span class="nm">MATRIX GREEN</span>
+      <div class="swatch-note">
+        <div><b>#00FF00</b></div>
+        <div>rgb(0, 255, 0)</div>
+        <div>oklch(0.87 0.30 142)</div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="notrow"><span class="k">token</span><span class="v">--matrix-green</span></div>
+      <div class="notrow"><span class="k">glow</span><span class="v">0 0 10px rgba(0,255,0,.3)</span></div>
+      <p class="usage">The one signature neon. Reserved for <b>borders</b>, <b>hover accents</b>, <b>icons</b>, the <b>digital‑rain canvas</b>, and the brand phosphor glow — always over pure black. Cyan handles links; green carries identity.</p>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <div class="ramp">
+    <div class="sw"><div class="chip" style="background:#00FF00"></div><span class="nm">green</span><span class="hx">#00FF00</span></div>
+    <div class="sw"><div class="chip" style="background:#44ff44"></div><span class="nm">bright</span><span class="hx">#44FF44</span></div>
+    <div class="sw"><div class="chip" style="background:rgba(0,255,0,0.55)"></div><span class="nm">soft</span><span class="hx">α 0.92</span></div>
+    <div class="sw"><div class="chip" style="background:#1B4D3E"></div><span class="nm">muted</span><span class="hx">#1B4D3E</span></div>
+    <div class="sw"><div class="chip" style="background:#00FFFF"></div><span class="nm">cyan</span><span class="hx">#00FFFF</span></div>
+    <div class="sw"><div class="chip" style="background:#000;border-color:rgba(0,255,0,0.35)"></div><span class="nm">void</span><span class="hx">#000000</span></div>
+  </div>
+</div>
+</body></html>

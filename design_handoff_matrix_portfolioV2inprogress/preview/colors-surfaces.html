@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .surfaces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+  .sw { display: flex; flex-direction: column; padding: 14px; border-radius: 8px;
+        border: 1px solid var(--border); min-height: 100%; gap: 4px; }
+  .sw .name { font-family: var(--font-mono); font-size: 11px; color: var(--foreground); }
+  .sw .val  { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); }
+  .sw .role { font-family: var(--font-body); font-size: 10px; color: var(--muted-foreground); margin-top: 4px; line-height: 1.4; }
+</style></head>
+<body data-theme="neon-terminal">
+<div class="ds-card">
+  <div class="ds-eyebrow">neon_terminal / surfaces</div>
+  <div class="surfaces">
+    <div class="sw" style="background:oklch(0.08 0.01 145)">
+      <span class="name">surface-0</span><span class="val">L 0.08</span>
+      <span class="role">Page background — &lt;body&gt;. The deep near‑black.</span>
+    </div>
+    <div class="sw" style="background:oklch(0.11 0.015 145)">
+      <span class="name">surface-1</span><span class="val">L 0.11</span>
+      <span class="role">Popovers, dropdowns. One step up.</span>
+    </div>
+    <div class="sw" style="background:oklch(0.14 0.02 145)">
+      <span class="name">surface-2</span><span class="val">L 0.14</span>
+      <span class="role">Muted areas — nav rest, progress track.</span>
+    </div>
+    <div class="sw" style="background:oklch(0.18 0.025 145)">
+      <span class="name">surface-3</span><span class="val">L 0.18</span>
+      <span class="role">Secondary buttons, code blocks.</span>
+    </div>
+  </div>
+</div>
+</body></html>

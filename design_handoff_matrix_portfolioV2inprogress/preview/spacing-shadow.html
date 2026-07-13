@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; flex: 1; align-items: end; padding: 18px 0; }
+  .sw { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .card {
+    width: 110px; height: 70px; border-radius: 8px;
+    background: rgba(0,0,0,0.9);
+    border: 1px solid rgba(0,255,0,0.3);
+  }
+  .lab { font-family: var(--font-mono); font-size: 11px; color: var(--text-primary); }
+  .v   { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-align: center;}
+</style></head>
+<body data-theme="matrix">
+<div class="ds-card">
+  <div class="ds-eyebrow">shadow / green_tinted_elevation</div>
+  <div class="row">
+    <div class="sw"><div class="card" style="box-shadow:0 2px 4px rgba(0,255,0,0.1)"></div><span class="lab">sm</span><span class="v">0 2 4 · α 0.10</span></div>
+    <div class="sw"><div class="card" style="box-shadow:0 4px 8px rgba(0,255,0,0.15)"></div><span class="lab">md</span><span class="v">0 4 8 · α 0.15</span></div>
+    <div class="sw"><div class="card" style="box-shadow:0 8px 16px rgba(0,255,0,0.2)"></div><span class="lab">lg</span><span class="v">0 8 16 · α 0.20</span></div>
+    <div class="sw"><div class="card" style="box-shadow:0 12px 24px rgba(0,255,0,0.25)"></div><span class="lab">xl</span><span class="v">0 12 24 · α 0.25</span></div>
+  </div>
+</div>
+</body></html>

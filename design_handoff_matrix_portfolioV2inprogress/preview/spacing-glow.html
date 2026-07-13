@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; flex: 1; align-items: end; padding: 18px 0 8px;}
+  .sw { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .orb {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--matrix-green);
+  }
+  .lab { font-family: var(--font-mono); font-size: 11px; color: var(--text-primary); }
+  .v   { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .note { font-family: var(--font-body); font-size: 11px; color: var(--text-muted);
+          max-width: 80ch; line-height: 1.5; }
+</style></head>
+<body data-theme="matrix">
+<div class="ds-card">
+  <div class="ds-eyebrow">glow_intensity / phosphor</div>
+  <span class="note">Compose intensity (px) with theme color (<code style="font-family:var(--font-mono);font-size:11px;color:var(--matrix-green)">--glow-color-primary</code>). Triple‑layer used on h1/h2.</span>
+  <div class="row">
+    <div class="sw"><div class="orb" style="box-shadow:0 0 5px rgba(0,255,0,0.5)"></div><span class="lab">subtle</span><span class="v">0 0 5px</span></div>
+    <div class="sw"><div class="orb" style="box-shadow:0 0 10px rgba(0,255,0,0.5)"></div><span class="lab">standard</span><span class="v">0 0 10px</span></div>
+    <div class="sw"><div class="orb" style="box-shadow:0 0 15px rgba(0,255,0,0.5)"></div><span class="lab">medium</span><span class="v">0 0 15px</span></div>
+    <div class="sw"><div class="orb" style="box-shadow:0 0 20px rgba(0,255,255,0.6)"></div><span class="lab">intense</span><span class="v">0 0 20px</span></div>
+    <div class="sw"><div class="orb" style="box-shadow:0 0 30px rgba(0,255,255,0.6), 0 0 12px rgba(0,255,0,0.5)"></div><span class="lab">triple</span><span class="v">multi‑layer</span></div>
+  </div>
+</div>
+</body></html>

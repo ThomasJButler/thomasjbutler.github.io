@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  .v35-hero { display: flex; flex-direction: column; align-items: center; justify-content: center;
+              gap: 18px; padding: 60px 40px 40px; text-align: center; }
+  .name {
+    font-family: 'Orbitron'; font-size: 84px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #00FFFF;
+    text-shadow: 0 0 12px rgba(0,255,255,0.6), 0 0 30px rgba(0,255,0,0.4),
+                 0 0 60px rgba(0,255,0,0.2);
+    margin: 0;
+  }
+  .name::before { content: '> '; color: #00FFFF; margin-right: 4px; }
+  .build {
+    font-family: 'Orbitron'; font-size: 22px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.85);
+    text-shadow: 0 0 12px rgba(0,255,255,0.3); margin: 0;
+  }
+  .typing {
+    font-family: 'Orbitron'; font-size: 42px; font-weight: 500;
+    letter-spacing: 0.1em; color: #00FFFF;
+    text-shadow: 0 0 14px rgba(0,255,255,0.5); margin: 0;
+  }
+  .typing .cur { display: inline-block; width: 0.5em; height: 1em;
+    background: #00FFFF; margin-left: 3px; vertical-align: text-bottom;
+    box-shadow: 0 0 8px #00FFFF; animation: bl 1s steps(2) infinite; }
+  @keyframes bl { 50% { opacity: 0; } }
+  .sub { font-family: 'Exo 2'; font-size: 18px; color: rgba(255,255,255,0.92); margin: 0; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+           margin-top: 30px; width: 100%; max-width: 900px; }
+  .tile {
+    aspect-ratio: 4/3;
+    border: 2px solid rgba(0,255,0,0.5); border-radius: 4px;
+    background: radial-gradient(ellipse at center, rgba(0,60,0,0.4), rgba(0,0,0,0.85));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 24px rgba(0,255,0,0.25), inset 0 0 24px rgba(0,255,0,0.08);
+  }
+  .tile h3 {
+    font-family: 'Orbitron'; font-size: 18px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #00FF00;
+    text-shadow: 0 0 12px rgba(0,255,0,0.7); margin: 0; text-align: center;
+  }
+</style></head>
+<body>
+<div class="sec sec--v35 sec-scan">
+  <canvas class="rain"></canvas>
+  <span class="tag-version">v3.5 · matrix</span>
+  <div class="inner v35-hero">
+    <h1 class="name">HEY, I'M TOM</h1>
+    <div class="build">// I build</div>
+    <div class="typing">AI-powered apps<span class="cur"></span></div>
+    <p class="sub">Full Stack AI Engineer from the UK</p>
+    <div class="tiles">
+      <div class="tile"><h3>The Matrix Arcade</h3></div>
+      <div class="tile"><h3>Personal</h3></div>
+      <div class="tile"><h3>ModelViz</h3></div>
+    </div>
+  </div>
+  <script src="_rain.js"></script>
+</div>
+</body></html>

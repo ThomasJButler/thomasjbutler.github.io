@@ -1,0 +1,532 @@
+/* v4.0 Neon Terminal kit styles — light + dark theme variables flow
+   from ../../colors_and_type.css ([data-theme="neon-terminal"] or "circuit"). */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh;
+  font-family: 'Exo 2', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Matrix rain (subtle in both themes) */
+.nt-rain {
+  position: fixed; inset: 0; pointer-events: none;
+  z-index: -1; transition: opacity 1s;
+}
+[data-theme="neon-terminal"] .nt-rain { opacity: 0.35; }
+[data-theme="circuit"]       .nt-rain { opacity: 0.05; }
+
+/* Circuit grid lives on the page in light mode */
+[data-theme="circuit"] body {
+  background-image:
+    linear-gradient(oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+}
+
+/* ─── Header ─── */
+.nt-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in oklab, var(--background) 80%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px oklch(0.50 0.28 145 / 0.04);
+}
+.nt-header__inner {
+  max-width: 1024px; margin: 0 auto;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+}
+.nt-logo {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px; font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+.nt-logo .gt { color: color-mix(in oklab, var(--primary) 60%, transparent); margin-right: 4px; }
+.nt-nav { display: flex; align-items: center; gap: 4px; }
+.nt-nav a {
+  padding: 6px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; color: var(--muted-foreground);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.nt-nav a:hover { background: var(--accent); color: var(--foreground); }
+.nt-nav a.is-active {
+  background: var(--accent); color: var(--accent-foreground);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--primary) 50%, transparent);
+}
+.nt-nav__side {
+  display: flex; gap: 4px; align-items: center;
+  border-left: 1px solid var(--border);
+  padding-left: 10px; margin-left: 6px;
+}
+.nt-iconbtn {
+  width: 28px; height: 28px; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted-foreground);
+  background: transparent; border: none; cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+.nt-iconbtn:hover { color: var(--primary); background: var(--accent); }
+.nt-iconbtn svg { width: 16px; height: 16px; display: block; }
+.nt-header__rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 30%, transparent), transparent);
+}
+
+/* ─── Main container ─── */
+.nt-container {
+  max-width: 1024px; margin: 0 auto; padding: 0 24px;
+}
+
+/* ─── Terminal window frame ─── */
+.nt-term {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--background) 60%, transparent);
+}
+.nt-term__bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  background: color-mix(in oklab, var(--muted) 60%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.nt-term__dots { display: flex; gap: 5px; }
+.nt-term__dot { width: 10px; height: 10px; border-radius: 50%; }
+.nt-term__dot--r { background: oklch(0.65 0.20 27 / 0.7); }
+.nt-term__dot--y { background: oklch(0.80 0.15 85 / 0.7); }
+.nt-term__dot--g { background: oklch(0.65 0.20 145 / 0.7); }
+.nt-term__path {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: color-mix(in oklab, var(--muted-foreground) 80%, transparent);
+  margin-left: 4px;
+}
+.nt-term__body { padding: 56px 28px; text-align: center; }
+.nt-term__body--cmd { padding: 0; }
+.nt-term__cmd {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
+  padding: 6px 16px;
+  background: color-mix(in oklab, var(--muted) 30%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.nt-term__cmd--inner { padding: 16px 20px; background: transparent; border: 0;
+  font-family: 'Exo 2'; font-size: 15px; line-height: 1.6;
+  color: var(--muted-foreground); }
+
+/* ─── Hero ─── */
+.nt-hero {
+  padding: 48px 0 16px;
+}
+.nt-hero__title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(48px, 7vw, 84px);
+  font-weight: 700; letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--foreground);
+  line-height: 1;
+}
+[data-theme="neon-terminal"] .nt-hero__title {
+  text-shadow:
+    0 0 10px oklch(0.50 0.28 145 / 0.35),
+    0 0 30px oklch(0.50 0.28 145 / 0.15),
+    0 0 60px oklch(0.50 0.28 145 / 0.05);
+}
+[data-theme="circuit"] .nt-hero__title {
+  color: oklch(0.18 0.06 145);
+  text-shadow: 0 0 20px oklch(0.40 0.22 145 / 0.10);
+}
+.nt-hero__typing {
+  margin-top: 18px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  color: var(--muted-foreground);
+}
+.nt-hero__typing .pre  { color: color-mix(in oklab, var(--primary) 60%, transparent); }
+.nt-hero__typing .word { color: var(--primary); }
+.nt-hero__typing .cursor {
+  display: inline-block;
+  width: 0.55em; height: 1.05em;
+  background: color-mix(in oklab, var(--primary) 80%, transparent);
+  vertical-align: text-bottom; margin-left: 2px;
+  animation: ntblink 1s steps(2) infinite;
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);
+  border-radius: 1px;
+}
+@keyframes ntblink { 50% { opacity: 0; } }
+.nt-hero__sub {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+.nt-hero__cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; }
+
+/* ─── Buttons ─── */
+.nt-btn {
+  height: 36px; padding: 0 14px; border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Exo 2'; font-weight: 500; font-size: 13px;
+  text-transform: none; letter-spacing: 0;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.nt-btn svg { width: 14px; height: 14px; }
+.nt-btn--default {
+  background: var(--primary); color: var(--primary-foreground);
+  box-shadow: 0 0 16px oklch(0.50 0.28 145 / 0.18);
+}
+.nt-btn--default:hover {
+  background: color-mix(in oklab, var(--primary) 85%, transparent);
+  box-shadow: 0 0 24px oklch(0.50 0.28 145 / 0.3);
+}
+.nt-btn--outline {
+  background: transparent; color: var(--foreground);
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+}
+.nt-btn--outline:hover {
+  border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+  background: color-mix(in oklab, var(--primary) 5%, transparent);
+  color: var(--primary);
+}
+.nt-btn--ghost { background: transparent; color: var(--muted-foreground); }
+.nt-btn--ghost:hover { background: var(--accent); color: var(--foreground); }
+.nt-btn--lg { height: 40px; padding: 0 18px; font-size: 14px; }
+.nt-btn--sm { height: 28px; padding: 0 10px; font-size: 12px; border-radius: 6px; gap: 4px; }
+.nt-btn--xs { height: 24px; padding: 0 8px; font-size: 11px; border-radius: 6px; gap: 4px; }
+.nt-btn--xs svg { width: 12px; height: 12px; }
+
+/* ─── Section eyebrow ─── */
+.nt-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.nt-eyebrow__label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: color-mix(in oklab, var(--primary) 70%, transparent);
+}
+.nt-eyebrow__rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primary) 20%, transparent), transparent);
+}
+.nt-eyebrow__status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: color-mix(in oklab, var(--primary) 40%, transparent);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nt-eyebrow__status .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: oklch(0.65 0.20 145);
+  animation: ntpulse 2s ease-in-out infinite;
+}
+@keyframes ntpulse { 50% { opacity: 0.4; } }
+
+/* ─── Cards ─── */
+.nt-card {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 16px;
+  background: var(--card);
+  color: var(--card-foreground);
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  backdrop-filter: blur(8px) saturate(1.2);
+  transition: all 0.3s;
+  text-align: left;
+}
+[data-theme="neon-terminal"] .nt-card {
+  background: linear-gradient(180deg,
+    oklch(0.12 0.02 145 / 0.75),
+    oklch(0.08 0.01 145 / 0.80));
+  border-color: oklch(0.30 0.12 145 / 0.45);
+  border-top-color: oklch(0.40 0.18 145 / 0.35);
+}
+[data-theme="neon-terminal"] .nt-card:hover {
+  border-color: oklch(0.50 0.28 145 / 0.6);
+  box-shadow:
+    0 0 28px oklch(0.50 0.28 145 / 0.12),
+    0 0 56px oklch(0.50 0.28 145 / 0.04),
+    0 8px 32px oklch(0 0 0 / 0.4);
+  transform: translateY(-3px);
+}
+[data-theme="circuit"] .nt-card {
+  background: oklch(1 0 0 / 0.92);
+  border-color: oklch(0.35 0.22 145 / 0.15);
+  border-left: 2px solid oklch(0.35 0.22 145 / 0.18);
+  box-shadow: 0 1px 2px oklch(0.35 0.22 145 / 0.05), 0 2px 8px oklch(0 0 0 / 0.03);
+}
+[data-theme="circuit"] .nt-card:hover {
+  border-color: oklch(0.35 0.22 145 / 0.35);
+  box-shadow: 0 4px 16px oklch(0.35 0.22 145 / 0.08), 0 1px 3px oklch(0.35 0.22 145 / 0.06);
+  transform: translateY(-1px);
+}
+.nt-card--featured {
+  box-shadow: 0 0 16px oklch(0.50 0.28 145 / 0.08);
+  border-color: oklch(0.50 0.28 145 / 0.3);
+}
+.nt-card--accent-cyan     { border-left: 3px solid oklch(0.75 0.15 195); }
+.nt-card--accent-amber    { border-left: 3px solid oklch(0.80 0.15 85); }
+.nt-card--accent-matrix   { border-left: 3px solid oklch(0.55 0.25 145); }
+.nt-card--accent-personal { border-left: 3px solid oklch(0.40 0.22 145); }
+.nt-card--small  { padding: 14px; gap: 8px; }
+
+.nt-card__title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px; font-weight: 500;
+  margin: 0;
+  color: var(--foreground);
+}
+.nt-card__desc {
+  font-size: 12px; line-height: 1.5;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.nt-card__footer {
+  display: flex; align-items: center; gap: 8px;
+  padding-top: 12px; margin-top: auto;
+  border-top: 1px solid color-mix(in oklab, var(--border) 50%, transparent);
+}
+
+/* ─── Stats grid ─── */
+.nt-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin-bottom: 16px;
+}
+.nt-stat { text-align: center; padding: 18px 12px 14px; }
+.nt-stat__icon {
+  display: inline-block;
+  color: color-mix(in oklab, var(--primary) 50%, transparent);
+  margin-bottom: 8px;
+}
+.nt-stat__icon svg { width: 16px; height: 16px; }
+.nt-eyebrow svg { width: 14px; height: 14px; }
+.nt-activity__icon svg { width: 12px; height: 12px; }
+.nt-now svg { width: 14px; height: 14px; }
+.nt-card > div > svg { width: 14px; height: 14px; }
+.nt-stat__value {
+  font-family: 'Orbitron'; font-size: 30px; font-weight: 700;
+  color: var(--foreground);
+  text-shadow: 0 0 20px oklch(0.50 0.28 145 / 0.15);
+  line-height: 1;
+}
+.nt-stat__label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+
+/* ─── Dashboard 2-col ─── */
+.nt-dash { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.nt-skill { display: flex; flex-direction: column; gap: 4px; }
+.nt-skill__head {
+  display: flex; justify-content: space-between;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: color-mix(in oklab, var(--foreground) 80%, transparent);
+}
+.nt-skill__pct { color: color-mix(in oklab, var(--primary) 70%, transparent); }
+.nt-skill__bar {
+  height: 8px; border-radius: 999px;
+  background: color-mix(in oklab, var(--muted) 60%, transparent);
+  overflow: hidden;
+}
+.nt-skill__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), color-mix(in oklab, var(--primary) 55%, transparent));
+  box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 40%, transparent);
+  border-radius: 999px;
+}
+
+.nt-activity { display: flex; flex-direction: column; gap: 12px; }
+.nt-activity__item { display: flex; gap: 10px; align-items: flex-start; }
+.nt-activity__icon {
+  flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+.nt-activity__icon svg { width: 12px; height: 12px; }
+.nt-activity__text {
+  font-size: 13px; line-height: 1.3;
+  color: color-mix(in oklab, var(--foreground) 90%, transparent);
+}
+.nt-activity__meta {
+  display: flex; align-items: center; gap: 8px; margin-top: 4px;
+}
+
+/* ─── Badges ─── */
+.nt-badge {
+  display: inline-flex; align-items: center;
+  height: 18px; padding: 0 7px; gap: 4px;
+  border-radius: 999px;
+  font-family: 'Exo 2'; font-weight: 500; font-size: 10px;
+  border: 1px solid transparent;
+  vertical-align: middle;
+}
+.nt-badge--default     { background: var(--primary); color: var(--primary-foreground); }
+.nt-badge--secondary   { background: var(--secondary); color: var(--secondary-foreground); }
+.nt-badge--outline     { border-color: var(--border); color: var(--foreground); }
+.nt-badge--cyan        { background: oklch(0.75 0.15 195 / 0.15); color: oklch(0.75 0.15 195);
+                         border-color: oklch(0.75 0.15 195 / 0.25); }
+.nt-badge--amber       { background: oklch(0.80 0.15 85 / 0.15);  color: oklch(0.80 0.15 85);
+                         border-color: oklch(0.80 0.15 85 / 0.25); }
+
+.nt-now {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--primary) 3%, transparent);
+  border: 1px solid color-mix(in oklab, var(--primary) 20%, transparent);
+}
+.nt-now__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+.nt-rule {
+  height: 1px; margin: 24px 0;
+  background: linear-gradient(90deg, transparent,
+    color-mix(in oklab, var(--primary) 25%, transparent), transparent);
+}
+
+/* ─── Projects page ─── */
+.nt-page-head {
+  padding: 48px 0 16px;
+}
+.nt-page-head h1 {
+  font-family: 'Orbitron'; font-size: 30px; font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground); margin: 0;
+}
+.nt-page-head p {
+  font-size: 14px; color: var(--muted-foreground); margin: 8px 0 0;
+}
+.nt-tabs {
+  display: flex; gap: 4px; padding: 4px;
+  background: color-mix(in oklab, var(--muted) 60%, transparent);
+  border-radius: 8px;
+  width: fit-content;
+  margin-bottom: 18px;
+}
+.nt-tab {
+  font-family: 'Exo 2'; font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: 6px;
+  background: transparent; color: var(--muted-foreground);
+  cursor: pointer; border: none;
+  text-transform: none; letter-spacing: 0;
+  transition: all 0.2s;
+}
+.nt-tab .count {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+  margin-left: 4px;
+}
+.nt-tab:hover { color: var(--foreground); }
+.nt-tab.is-active {
+  background: var(--background); color: var(--foreground);
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.2);
+}
+.nt-tab.is-active .count { color: var(--primary); }
+
+.nt-projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.nt-project-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.nt-project-meta {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Share Tech Mono', monospace; font-size: 11px;
+  color: var(--muted-foreground); margin-top: 4px;
+}
+.nt-project-meta .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ─── Contact form ─── */
+.nt-contact {
+  max-width: 640px; margin: 0 auto; padding: 30px 0;
+}
+.nt-field { margin-bottom: 14px; }
+.nt-label {
+  display: block; margin-bottom: 6px;
+  font-family: 'Exo 2'; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.nt-input, .nt-textarea {
+  width: 100%; padding: 10px 12px;
+  font-family: 'Share Tech Mono', monospace; font-size: 13px;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--background) 60%, var(--card));
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.nt-input:focus, .nt-textarea:focus {
+  border-color: color-mix(in oklab, var(--primary) 50%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 20%, transparent),
+              0 0 16px color-mix(in oklab, var(--primary) 10%, transparent);
+}
+.nt-textarea { min-height: 110px; resize: vertical; }
+
+/* ─── Footer ─── */
+.nt-footer {
+  margin-top: 60px;
+  padding: 24px;
+  box-shadow: 0 -1px 20px oklch(0.50 0.28 145 / 0.03);
+}
+.nt-footer__inner {
+  max-width: 1024px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.nt-footer__copy .gt { color: color-mix(in oklab, var(--primary) 50%, transparent); }
+.nt-footer__copy .bar {
+  display: inline-block;
+  width: 6px; height: 13px;
+  background: color-mix(in oklab, var(--primary) 40%, transparent);
+  margin-left: 4px;
+  animation: ntblink 1s steps(2) infinite;
+  vertical-align: text-bottom;
+}
+.nt-footer__links { display: flex; gap: 12px; align-items: center; }
+.nt-footer__links a { color: var(--muted-foreground); display: inline-flex; }
+.nt-footer__links a:hover { color: var(--primary); }
+.nt-footer__rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent,
+    color-mix(in oklab, var(--primary) 20%, transparent), transparent);
+}
+
+/* About page */
+.nt-about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 24px;
+}
+
+@media (max-width: 720px) {
+  .nt-stats { grid-template-columns: 1fr 1fr; }
+  .nt-dash { grid-template-columns: 1fr; }
+  .nt-about-grid { grid-template-columns: 1fr; }
+  .nt-hero__title { font-size: 44px; }
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { background: oklch(0.985 0.002 145); }
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; flex: 1; }
+  .sw { display: flex; flex-direction: column; gap: 4px; }
+  .sw .chip {
+    height: 64px; border-radius: 6px;
+    border: 1px solid oklch(0.85 0.02 145);
+  }
+  .sw .name { font-family: var(--font-mono); font-size: 11px; color: oklch(0.12 0.03 145); }
+  .sw .val  { font-family: var(--font-mono); font-size: 10px; color: oklch(0.40 0.06 145); }
+  .note { font-family: var(--font-body); font-size: 11px; color: oklch(0.40 0.06 145); }
+</style></head>
+<body data-theme="circuit">
+<div class="ds-card" data-bg="grid">
+  <div class="ds-eyebrow" style="color:oklch(0.35 0.22 145 / 0.7)">circuit_board / light_theme</div>
+  <span class="note">v4.0 light — engineered green on off‑white with a 32×32 grid. Same primary hue, lower lightness, lower chroma in surfaces.</span>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:oklch(0.985 0.002 145)"></div><span class="name">background</span><span class="val">L 0.985</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.99 0 0)"></div><span class="name">card</span><span class="val">paper</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.94 0.012 145)"></div><span class="name">secondary</span><span class="val">L 0.94</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.35 0.22 145); box-shadow:0 2px 6px oklch(0.35 0.22 145 / 0.25)"></div><span class="name">primary</span><span class="val">L 0.35</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.12 0.03 145)"></div><span class="name">foreground</span><span class="val">L 0.12</span></div>
+    <div class="sw"><div class="chip" style="background:oklch(0.55 0.20 25)"></div><span class="name">destructive</span><span class="val">red‑25</span></div>
+  </div>
+</div>
+</body></html>

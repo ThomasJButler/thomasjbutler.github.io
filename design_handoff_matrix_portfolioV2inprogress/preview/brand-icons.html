@@ -1,0 +1,65 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .ds-card { gap: 12px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+  .pane {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 14px; border-radius: 10px;
+    background: oklch(0.10 0.015 145 / 0.7);
+    border: 1px solid oklch(0.22 0.04 145);
+  }
+  .pane h4 {
+    font-family: 'Orbitron'; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: oklch(0.95 0.005 145);
+    margin: 0; font-weight: 600;
+  }
+  .pane .sub { font-family: var(--font-mono); font-size: 10px;
+               color: oklch(0.60 0.03 145); }
+  .glyphs { display: flex; gap: 14px; flex-wrap: wrap; padding: 6px 0; }
+  .gl {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: oklch(0.50 0.28 145);
+  }
+  .gl svg { width: 22px; height: 22px; }
+  .gl .lab { font-family: var(--font-mono); font-size: 9px; color: oklch(0.65 0.03 145); }
+  .v35 .gl { color: var(--matrix-green); filter: drop-shadow(0 0 6px rgba(0,255,0,0.5)); }
+</style></head>
+<body data-theme="neon-terminal">
+<div class="ds-card">
+  <div class="ds-eyebrow">iconography / two_stacks</div>
+  <div class="cols">
+    <div class="pane v35">
+      <h4>v3.5 · Font Awesome 6</h4>
+      <span class="sub">solid + brand · loaded from cdnjs at runtime</span>
+      <div class="glyphs">
+        <!-- Faux-FA style glyphs drawn with simpler SVGs since FA isn't linked -->
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.93c-3.2.7-3.87-1.54-3.87-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.03 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.87-.38s1.96.13 2.87.38c2.18-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.74.11 3.03.73.8 1.18 1.82 1.18 3.07 0 4.42-2.69 5.38-5.25 5.67.42.36.78 1.05.78 2.12v3.14c0 .31.21.67.8.55C20.21 21.39 23.5 17.07 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg><span class="lab">fa-github</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span class="lab">fa-linkedin</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 1 3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 13.14 2 8.27l6.91-1.01z"/></svg><span class="lab">fa-star</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 21h22zm0 5 8 13H4z" /></svg><span class="lab">fa-warning</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v12H5l-1 1zm2 3v2h12V7zm0 4v2h8v-2z"/></svg><span class="lab">fa-comment</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4v16h20V4zm2 2h16v2H4zm0 4h16v8H4z"/></svg><span class="lab">fa-envelope</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v6h5"/></svg><span class="lab">fa-history</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg><span class="lab">fa-user</span></div>
+      </div>
+    </div>
+    <div class="pane">
+      <h4>v4.0 · Lucide</h4>
+      <span class="sub">2px stroke · 24×24 · loaded via lucide cdn</span>
+      <div class="glyphs">
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span class="lab">terminal</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg><span class="lab">cpu</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><span class="lab">git-branch</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg><span class="lab">zap</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><span class="lab">globe</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg><span class="lab">bot</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 14.34A7 7 0 1 1 12 5"/><path d="M16 8l4 4-4 4"/></svg><span class="lab">sparkles</span></div>
+        <div class="gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span class="lab">arrow-right</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

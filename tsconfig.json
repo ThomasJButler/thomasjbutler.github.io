@@ -28,5 +28,16 @@
     "types": ["vite/client", "node"]
   },
   "include": ["src/**/*", "*.html"],
-  "exclude": ["node_modules", "dist", "bigbang-gallery", "version-timetravel"]
+  // BlogPage and UpdatesFeed are unrouted leftovers that import modules which no
+  // longer exist (hooks/useMatrixAnimation, components/SkeletonLoader,
+  // updates.json). They cannot compile as-is. Kept on disk rather than deleted, in
+  // case the blog comes back, but excluded so `type-check` reports real problems.
+  "exclude": [
+    "node_modules",
+    "dist",
+    "bigbang-gallery",
+    "version-timetravel",
+    "src/pages/BlogPage.tsx",
+    "src/components/UpdatesFeed"
+  ]
 }

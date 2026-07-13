@@ -1,4 +1,5 @@
 import React from 'react';
+import { Providers } from '@/Providers';
 import { render } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
@@ -7,9 +8,9 @@ import { HomePage } from '../pages/HomePage';
 describe('CRITICAL: Content Visibility Issues', () => {
   test('HomePage elements are not hidden by opacity:0', () => {
     const { container } = render(
-      <MemoryRouter>
+      <MemoryRouter><Providers>
         <HomePage />
-      </MemoryRouter>
+      </Providers></MemoryRouter>
     );
     
     // Check all elements with inline styles
@@ -53,9 +54,9 @@ describe('CRITICAL: Content Visibility Issues', () => {
 
   test('Navigation items should be visible', () => {
     const { container } = render(
-      <MemoryRouter>
+      <MemoryRouter><Providers>
         <HomePage />
-      </MemoryRouter>
+      </Providers></MemoryRouter>
     );
     
     const navItems = container.querySelectorAll('nav li');
@@ -71,9 +72,9 @@ describe('CRITICAL: Content Visibility Issues', () => {
 
   test('Main content sections are visible', () => {
     const { container } = render(
-      <MemoryRouter>
+      <MemoryRouter><Providers>
         <HomePage />
-      </MemoryRouter>
+      </Providers></MemoryRouter>
     );
     
     // Check main content areas
