@@ -18,10 +18,19 @@ import { createContext, useCallback, useEffect, useState, type ReactNode } from 
  * the user has never chosen, effects start off.
  */
 const STORAGE_KEY = 'v5:fx';
+const MORPH_KEY = 'v5:morph';
 
 interface FxContextValue {
   fxEnabled: boolean;
   toggleFx: () => void;
+  /**
+   * The rain "morph": glyphs parting around the pointer, and click ripples.
+   *
+   * Separate from fxEnabled so it can be turned off on its own — it is the most
+   * expensive part of the rain, and the only part that reacts to input.
+   */
+  morphEnabled: boolean;
+  toggleMorph: () => void;
 }
 
 export const FxContext = createContext<FxContextValue | null>(null);
@@ -34,8 +43,14 @@ function getInitialFx(): boolean {
   return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+function getInitialMorph(): boolean {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem(MORPH_KEY) !== 'off';
+}
+
 export function FxProvider({ children }: { children: ReactNode }) {
   const [fxEnabled, setFxEnabled] = useState<boolean>(getInitialFx);
+  const [morphEnabled, setMorphEnabled] = useState<boolean>(getInitialMorph);
 
   useEffect(() => {
     document.documentElement.classList.toggle('fx-off', !fxEnabled);
@@ -49,5 +64,17 @@ export function FxProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  return <FxContext.Provider value={{ fxEnabled, toggleFx }}>{children}</FxContext.Provider>;
+  const toggleMorph = useCallback(() => {
+    setMorphEnabled((previous) => {
+      const next = !previous;
+      localStorage.setItem(MORPH_KEY, next ? 'on' : 'off');
+      return next;
+    });
+  }, []);
+
+  return (
+    <FxContext.Provider value={{ fxEnabled, toggleFx, morphEnabled, toggleMorph }}>
+      {children}
+    </FxContext.Provider>
+  );
 }

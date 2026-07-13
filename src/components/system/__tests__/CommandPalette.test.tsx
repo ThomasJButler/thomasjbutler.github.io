@@ -12,6 +12,7 @@ function makeCtx(): CommandContext {
     navigate: vi.fn(),
     toggleTheme: vi.fn(),
     toggleFx: vi.fn(),
+    toggleMorph: vi.fn(),
     setAccent: vi.fn(),
     replayIntro: vi.fn(),
     showSpoon: vi.fn(),

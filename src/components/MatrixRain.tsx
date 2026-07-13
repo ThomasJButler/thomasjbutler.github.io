@@ -23,10 +23,24 @@ export function MatrixRain() {
   const engineRef = useRef<RainEngine | null>(null);
   const { theme } = useTheme();
   const { accent } = useAccent();
-  const { motionOk } = useFx();
+  const { motionOk, morphEnabled } = useFx();
 
   // Light mode has its own hand-tuned palette, so an accent tint is dark-only.
   const tint = theme === 'dark' ? accent : null;
+
+  /**
+   * The morph only runs in the dark theme, with the rain on, on a real pointer.
+   *
+   * That is not just taste. It means the pointer maths — and the mousemove listener —
+   * simply don't exist in light mode, on a phone, under reduced motion, or when the
+   * user has switched it off. The gate IS the optimisation.
+   */
+  const morphOk =
+    motionOk &&
+    morphEnabled &&
+    theme === 'dark' &&
+    typeof window !== 'undefined' &&
+    window.matchMedia('(pointer: fine)').matches;
 
   // Read by the setup effect without making it a dependency: a theme change should
   // re-tint the palette, not tear down the canvas and restart every drop.
@@ -84,6 +98,36 @@ export function MatrixRain() {
     engine.setPalette(theme, tint);
     if (!motionOk) engine.drawStaticFrame();
   }, [theme, tint, motionOk]);
+
+  /**
+   * The morph: parting and click ripples.
+   *
+   * Its own effect, so flipping it (or the theme) attaches and detaches the pointer
+   * listeners without tearing the canvas down. When it is off there are no pointer
+   * listeners on the page at all, and the draw loop skips every distance calculation —
+   * which is the whole reason it is safe to have back.
+   */
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine || !morphOk) return;
+
+    engine.setMorph(true);
+
+    const onMove = (e: MouseEvent) => engine.setPointer(e.clientX, e.clientY);
+    const onLeave = () => engine.clearPointer();
+    const onDown = (e: MouseEvent) => engine.addRipple(e.clientX, e.clientY);
+
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseout', onLeave);
+    window.addEventListener('mousedown', onDown);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseout', onLeave);
+      window.removeEventListener('mousedown', onDown);
+      engine.setMorph(false);
+    };
+  }, [morphOk, motionOk]);
 
   return <canvas ref={canvasRef} aria-hidden="true" className="fx-rain" />;
 }

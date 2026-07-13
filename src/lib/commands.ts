@@ -11,6 +11,7 @@ export interface CommandContext {
   navigate: (path: string) => void;
   toggleTheme: () => void;
   toggleFx: () => void;
+  toggleMorph: () => void;
   setAccent: (accent: string | null) => void;
   replayIntro: () => void;
   showSpoon: () => void;
@@ -46,6 +47,13 @@ export const COMMANDS: Command[] = [
     type: 'sys',
     keywords: 'reduce motion rain cursor animation accessibility calm',
     run: (c) => c.toggleFx(),
+  },
+  {
+    id: 'morph',
+    label: 'toggle rain morph',
+    type: 'sys',
+    keywords: 'cursor pointer parting ripple reactive matrix interactive',
+    run: (c) => c.toggleMorph(),
   },
   {
     id: 'email',

@@ -38,7 +38,7 @@ export function Layout() {
   const navigate = useNavigate();
   const { toggleTheme } = useTheme();
   const { accent, setAccent } = useAccent();
-  const { motionOk, toggleFx } = useFx();
+  const { motionOk, toggleFx, toggleMorph } = useFx();
 
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [spoon, setSpoon] = useState(false);
@@ -60,12 +60,13 @@ export function Layout() {
       navigate: (path) => navigate(path),
       toggleTheme,
       toggleFx,
+      toggleMorph,
       setAccent,
       replayIntro: () => setBooting(true),
       showSpoon: () => setSpoon(true),
       releaseRabbit: () => setRabbit(true),
     }),
-    [navigate, toggleTheme, toggleFx, setAccent]
+    [navigate, toggleTheme, toggleFx, toggleMorph, setAccent]
   );
 
   useKonami(useCallback(() => setSpoon(true), []));
