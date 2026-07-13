@@ -63,9 +63,13 @@ export function debounce<T extends (...args: unknown[]) => unknown>(
  * @param func Function to throttle
  * @returns RAF throttled function
  */
-export function rafThrottle<T extends (...args: unknown[]) => unknown>(
+export type RafThrottled<T extends (...args: never[]) => unknown> = ((
+  ...args: Parameters<T>
+) => void) & { cancel: () => void };
+
+export function rafThrottle<T extends (...args: never[]) => unknown>(
   func: T
-): (...args: Parameters<T>) => void {
+): RafThrottled<T> {
   let rafId: number | null = null;
   let lastArgs: Parameters<T> | null = null;
 
@@ -80,10 +84,11 @@ export function rafThrottle<T extends (...args: unknown[]) => unknown>(
         rafId = null;
       });
     }
-  };
+  } as RafThrottled<T>;
 
-  // Add cancel method
-  (throttled as ReturnType<typeof rafThrottle> & { cancel: () => void }).cancel = () => {
+  // cancel is part of the returned type, so callers can clean up on unmount without
+  // casting.
+  throttled.cancel = () => {
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;

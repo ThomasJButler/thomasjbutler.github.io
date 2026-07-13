@@ -26,8 +26,9 @@
 
   --color-cyan: oklch(0.75 0.15 195);
   --color-amber: oklch(0.80 0.15 85);
-  --color-text: oklch(0.92 0.01 145);
-  --color-text-muted: oklch(0.60 0.03 145);
+  --color-text: oklch(0.95 0.01 145);
+  /* The header nav uses this. Lifted with the rest of the dark palette for daylight. */
+  --color-text-muted: oklch(0.74 0.03 145);
   --color-glow: oklch(0.50 0.28 145 / 0.3);
 
   --font-mono: "Share Tech Mono", "JetBrains Mono", ui-monospace, monospace;
@@ -121,26 +122,35 @@
 /* ══════════════════════════════════════════
    DARK THEME — "Neon Terminal"
    Matrix green on deep black
+
+   Tuned for a bright room, not a dark one. The first pass was legible on a laptop
+   in the evening and washed out in daylight: body copy sat at L=0.65, cards were
+   70% translucent over a moving rain, and the borders were nearly invisible. The
+   values below lift the text and the chrome without touching the hue, so it still
+   reads as the Matrix.
    ══════════════════════════════════════════ */
 .dark {
   --background: oklch(0.08 0.01 145);
-  --foreground: oklch(0.95 0.005 145);
-  --card: oklch(0.10 0.015 145 / 0.70);
-  --card-foreground: oklch(0.95 0.005 145);
+  --foreground: oklch(0.97 0.005 145);
+  /* Nearly opaque: a card is a reading surface, and the rain runs behind it. */
+  --card: oklch(0.11 0.015 145 / 0.94);
+  --card-foreground: oklch(0.97 0.005 145);
   --popover: oklch(0.11 0.015 145);
-  --popover-foreground: oklch(0.95 0.005 145);
-  --primary: oklch(0.50 0.28 145);
+  --popover-foreground: oklch(0.97 0.005 145);
+  /* Brighter green: --primary carries every label, rule and link in the UI. */
+  --primary: oklch(0.60 0.26 145);
   --primary-foreground: oklch(0.08 0.01 145);
-  --secondary: oklch(0.18 0.025 145);
-  --secondary-foreground: oklch(0.85 0.12 145);
-  --muted: oklch(0.14 0.02 145);
-  --muted-foreground: oklch(0.65 0.03 145);
-  --accent: oklch(0.18 0.025 145);
-  --accent-foreground: oklch(0.88 0.10 145);
-  --destructive: oklch(0.55 0.20 25);
-  --border: oklch(0.22 0.04 145);
-  --input: oklch(0.22 0.04 145);
-  --ring: oklch(0.50 0.28 145);
+  --secondary: oklch(0.20 0.03 145);
+  --secondary-foreground: oklch(0.90 0.12 145);
+  --muted: oklch(0.16 0.02 145);
+  /* Most body copy on the site is this colour. It was the main casualty in daylight. */
+  --muted-foreground: oklch(0.78 0.025 145);
+  --accent: oklch(0.20 0.03 145);
+  --accent-foreground: oklch(0.90 0.10 145);
+  --destructive: oklch(0.60 0.20 25);
+  --border: oklch(0.34 0.06 145);
+  --input: oklch(0.34 0.06 145);
+  --ring: oklch(0.60 0.26 145);
   --chart-1: oklch(0.50 0.28 145);
   --chart-2: oklch(0.75 0.15 195);
   --chart-3: oklch(0.80 0.15 85);
@@ -273,14 +283,16 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   }
 
-  /* Dark cards — neon glow hover */
+  /* Dark cards — neon glow hover.
+     Near-opaque on purpose: the rain runs behind these, and at 75% the glyphs came
+     through the card and fought with the text. */
   .dark [data-slot="card"] {
-    border-color: oklch(0.30 0.12 145 / 0.45);
-    border-top-color: oklch(0.40 0.18 145 / 0.35);
+    border-color: oklch(0.42 0.14 145 / 0.55);
+    border-top-color: oklch(0.52 0.20 145 / 0.45);
     background: linear-gradient(
       180deg,
-      oklch(0.12 0.02 145 / 0.75) 0%,
-      oklch(0.08 0.01 145 / 0.80) 100%
+      oklch(0.13 0.02 145 / 0.94) 0%,
+      oklch(0.09 0.012 145 / 0.96) 100%
     );
   }
   .dark [data-slot="card"]:hover {
@@ -540,7 +552,9 @@
     inset: 0;
     z-index: -10;
     pointer-events: none;
-    opacity: 0.55;
+    /* Was 0.55. The rain is atmosphere, not content — at full strength it fought
+       the copy in a bright room and the page was only readable in the dark. */
+    opacity: 0.4;
     transition: opacity 0.6s;
   }
   :root:not(.dark) .fx-rain {
@@ -555,7 +569,8 @@
     inset: 0;
     z-index: 70;
     pointer-events: none;
-    opacity: 0.275;
+    /* Was 0.275. These sit over everything and dim the whole page. */
+    opacity: 0.15;
     background: repeating-linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.28) 0 1px,
@@ -596,8 +611,8 @@
     pointer-events: none;
     background: radial-gradient(
       ellipse at 50% 38%,
-      transparent 52%,
-      rgba(0, 0, 0, 0.55) 100%
+      transparent 58%,
+      rgba(0, 0, 0, 0.38) 100%
     );
   }
   :root:not(.dark) .fx-vignette {
@@ -651,63 +666,6 @@
     background: color-mix(in oklab, var(--primary) 85%, transparent);
     box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 45%, transparent);
     animation: fx-blink 1s steps(2) infinite;
-  }
-
-  /* ─── Terminal cursor ─── */
-  body.fx-cursor,
-  body.fx-cursor * {
-    cursor: none !important;
-  }
-  /* Except where losing the caret would break text entry. */
-  body.fx-cursor input,
-  body.fx-cursor textarea,
-  body.fx-cursor [contenteditable] {
-    cursor: text !important;
-  }
-  .fx-cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    width: 9px;
-    height: 15px;
-    border-radius: 1px;
-    pointer-events: none;
-    opacity: 0;
-    background: var(--primary);
-    box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 70%, transparent);
-    transition: opacity 0.25s;
-  }
-  .fx-cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 98;
-    width: 34px;
-    height: 34px;
-    border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
-    border-radius: 4px;
-    pointer-events: none;
-    opacity: 0;
-    transition:
-      opacity 0.25s,
-      width 0.18s,
-      height 0.18s,
-      border-color 0.18s,
-      border-radius 0.18s,
-      box-shadow 0.18s;
-  }
-  .fx-cursor-ring.is-hover {
-    width: 46px;
-    height: 46px;
-    border-radius: 9px;
-    border-color: var(--primary);
-    box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 25%, transparent);
-  }
-  .fx-cursor-ring.is-down {
-    width: 24px;
-    height: 24px;
-    border-radius: 3px;
   }
 
   /* ─── Scrim ───
@@ -1392,8 +1350,8 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(0.08 0.01 145 / 0.88) 6%,
-      oklch(0.08 0.01 145 / 0.88) 94%,
+      oklch(0.08 0.01 145 / 0.95) 6%,
+      oklch(0.08 0.01 145 / 0.95) 94%,
       transparent 100%
     );
   }

@@ -7,7 +7,6 @@ import { PageTransition } from './PageTransition';
 import { MatrixRain } from '@/components/MatrixRain';
 import { Atmosphere } from '@/components/system/Atmosphere';
 import { SkipLink } from '@/components/system/SkipLink';
-import { TerminalCursor } from '@/components/system/TerminalCursor';
 import { Toaster } from '@/components/system/Toaster';
 import { CommandPalette } from '@/components/system/CommandPalette';
 import { BootIntro, BOOT_SESSION_KEY } from '@/components/system/BootIntro';
@@ -153,7 +152,6 @@ export function Layout() {
 
       <Footer />
 
-      <TerminalCursor />
       <Toaster />
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} ctx={ctx} />
 

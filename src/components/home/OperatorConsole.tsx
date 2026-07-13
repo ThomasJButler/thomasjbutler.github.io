@@ -70,11 +70,13 @@ export function OperatorConsole() {
     return () => timers.forEach(clearTimeout);
   }, [runId, reduced]);
 
-  // Keep the newest line in view.
+  // Keep the newest line in view. Depends on `lines` rather than running on every
+  // render: reading scrollHeight forces a synchronous layout, and the component
+  // re-renders on every character typed.
   useEffect(() => {
     const body = bodyRef.current;
     if (body) body.scrollTop = body.scrollHeight;
-  });
+  }, [lines]);
 
   return (
     <div className="fx-console">

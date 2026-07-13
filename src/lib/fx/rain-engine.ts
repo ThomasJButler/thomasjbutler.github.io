@@ -1,60 +1,69 @@
 import { resolvePalette, type RainPalette } from './rain-palettes';
 
 /**
- * The cursor-reactive Matrix rain.
+ * The Matrix rain.
  *
- * Kept as a plain class rather than living inside the React component so the
- * signed-off visual maths (parting curve, ripple ring, burst decay) can be unit
- * tested without a canvas or a DOM.
+ * Kept as a plain class rather than living inside the React component so its maths
+ * can be unit tested without a canvas or a DOM.
+ *
+ * Performance is the whole design here. The naive version — which this used to be —
+ * gives every column a glyph trail as tall as the viewport, which at 1920x1080 on a
+ * retina display is roughly 9,000 fillText calls per frame plus a full-canvas
+ * alpha-blended fill over 7.2 million device pixels. That drops frames on real
+ * hardware even though it measures fine at DPR 1.
+ *
+ * Four things keep it cheap, none of which change how it reads:
+ *   - trails are bounded (STREAM_MIN..STREAM_MAX), not viewport-height;
+ *   - colour strings are looked up from a table, never built per glyph;
+ *   - glyphs are left-aligned against precomputed half-widths, so we don't pay for
+ *     textAlign: 'center' on every call;
+ *   - the canvas renders at a capped DPR, because a decorative background at 40%
+ *     opacity gains nothing from retina sharpness.
+ *
+ * If a machine still can't hold the frame budget, the quality governor sheds the
+ * head glow and then column density rather than letting the whole page judder.
  */
 
 /** Note the missing 6 — that's how the design specifies it. */
 export const GLYPHS = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:."=*+-<>¦｜╌';
 
 export const FONT_SIZE = 16;
-/** Pointer influence radius. */
-export const RADIUS = 120;
-/** Maximum horizontal displacement of a glyph shoved aside by the pointer. */
-export const PART = 26;
-const RIPPLE_SPEED = 540; // px/s
-const RIPPLE_BAND = 50; // px
-const RIPPLE_LIFE = 1.15; // s
+/** Glyphs per column. Bounded: this is the single biggest lever on frame cost. */
+export const STREAM_MIN = 16;
+export const STREAM_MAX = 34;
 const BURST_MS = 800;
 const BURST_GAIN = 2.2;
 /** Alpha is quantised to this many levels so colour strings can be looked up, not built. */
 const ALPHA_STEPS = 32;
-
-export interface Ripple {
-  x: number;
-  y: number;
-  t: number;
-}
-
-/* ─── Pure maths: the visual contract ─── */
-
 /**
- * How far a glyph is pushed aside by the pointer.
- * Quadratic falloff, so glyphs hug the edge of the cursor rather than drifting.
+ * Render the rain at 1 device pixel per CSS pixel, never retina.
+ *
+ * The per-frame fade is a full-canvas alpha-blended fillRect, so its cost is exactly
+ * the pixel count: at DPR 2 on a 1728x1080 window that is 7.5 million pixels every
+ * frame, versus 1.9 million here. At 40% opacity behind content, nobody can see the
+ * difference; the frame budget very much can.
  */
-export function partOffset(dx: number, distance: number): number {
-  if (distance >= RADIUS) return 0;
-  const k = 1 - distance / RADIUS;
-  return Math.sign(dx || 1) * k * k * PART;
-}
+const MAX_DPR = 1;
+/**
+ * Draw at 30fps, not 60.
+ *
+ * This is decorative background motion — falling glyphs read identically at 30fps —
+ * and halving the draw rate halves the rain's share of the main thread, which is
+ * what leaves room for the page to feel responsive while you scroll and move around.
+ */
+const FRAME_MS = 1000 / 30;
 
-/** Brightness lift from an expanding click ring. Zero outside the band or after it dies. */
-export function rippleBoost(distance: number, ageSeconds: number): number {
-  const radius = ageSeconds * RIPPLE_SPEED;
-  const band = Math.abs(distance - radius);
-  if (band >= RIPPLE_BAND) return 0;
-  const boost = (1 - band / RIPPLE_BAND) * (1 - ageSeconds / RIPPLE_LIFE);
-  return Math.max(0, boost);
-}
+/* ─── Pure maths ─── */
 
 /** Extra fall speed after a burst: 2.2x, decaying linearly to nothing over 800ms. */
 export function burstFactor(now: number, burstAt: number): number {
   const age = (now - burstAt) / BURST_MS;
   return age >= 0 && age < 1 ? (1 - age) * BURST_GAIN : 0;
+}
+
+/** Trail brightness at depth `i` of a stream of `len`: brightest at the head. */
+export function trailFade(i: number, len: number, bright: number): number {
+  return (1 - (i / len) * 0.9) * bright;
 }
 
 interface Drop {
@@ -69,9 +78,12 @@ interface Drop {
 interface EngineOptions {
   theme: 'dark' | 'light';
   tint: string | null;
-  /** Column density. Dropped on low-powered devices; the look is unchanged. */
+  /** Column density. The governor lowers this on machines that can't keep up. */
   density?: number;
 }
+
+/** Quality tiers, shed in order when frames run long. */
+type Quality = 'full' | 'noGlow' | 'sparse';
 
 export class RainEngine {
   private ctx: CanvasRenderingContext2D;
@@ -82,30 +94,28 @@ export class RainEngine {
   private height = 0;
   private dpr = 1;
 
-  private pointer = { x: -9999, y: -9999, on: false };
-  private ripples: Ripple[] = [];
   private burstAt = -1e9;
-
   private raf = 0;
   private running = false;
-  private density: number;
+
+  private baseDensity: number;
+  private quality: Quality = 'full';
+  private frameCost = 16;
+  private slowFrames = 0;
 
   private palette!: RainPalette;
-  /** Precomputed rgba() strings, indexed by quantised alpha. Avoids building ~6000 strings a frame. */
   private trailLut: string[] = [];
   private headLut: string[] = [];
-  private sparkLut: string[] = [];
-  /** Half the advance width of each glyph, so we can left-align instead of paying for textAlign: center. */
   private halfWidths: number[] = [];
 
   constructor(
     private canvas: HTMLCanvasElement,
-    private options: EngineOptions
+    options: EngineOptions
   ) {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) throw new Error('2d canvas context unavailable');
     this.ctx = ctx;
-    this.density = options.density ?? 0.95;
+    this.baseDensity = options.density ?? 0.9;
     this.setPalette(options.theme, options.tint);
     this.resize();
   }
@@ -114,7 +124,6 @@ export class RainEngine {
     this.palette = resolvePalette(theme, tint);
     this.trailLut = this.buildLut(this.palette.trail);
     this.headLut = this.buildLut(this.palette.head);
-    this.sparkLut = this.buildLut(this.palette.spark);
   }
 
   private buildLut(rgb: string): string[] {
@@ -129,13 +138,17 @@ export class RainEngine {
     return table[i < 0 ? 0 : i > ALPHA_STEPS - 1 ? ALPHA_STEPS - 1 : i];
   }
 
+  private get density(): number {
+    return this.quality === 'sparse' ? this.baseDensity * 0.6 : this.baseDensity;
+  }
+
   resize() {
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
-    this.canvas.width = this.width * this.dpr;
-    this.canvas.height = this.height * this.dpr;
+    this.canvas.width = Math.round(this.width * this.dpr);
+    this.canvas.height = Math.round(this.height * this.dpr);
     this.canvas.style.width = `${this.width}px`;
     this.canvas.style.height = `${this.height}px`;
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
@@ -146,56 +159,47 @@ export class RainEngine {
     this.ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
     this.ctx.textAlign = 'left';
     // Katakana and latin have different advance widths even in a mono face, so
-    // measure once per glyph rather than paying for textAlign: 'center' on every
-    // one of the ~6000 fillText calls per frame.
+    // measure once per glyph rather than paying for textAlign: 'center' on every call.
     this.halfWidths = Array.from(GLYPHS, (g) => this.ctx.measureText(g).width / 2);
 
-    const rows = Math.floor(this.height / FONT_SIZE) + 12;
-    this.drops = Array.from({ length: this.cols }, () => {
-      const background = Math.random() < 0.4;
-      return {
-        y: Math.random() * this.height * 1.6 - this.height,
-        speed: background ? Math.random() * 0.45 + 0.25 : Math.random() * 0.85 + 0.55,
-        bright: background ? Math.random() * 0.22 + 0.1 : Math.random() * 0.45 + 0.4,
-        len: rows,
-        chars: Array.from({ length: rows }, () => (Math.random() * GLYPHS.length) | 0),
-      };
-    });
+    this.drops = Array.from({ length: this.cols }, () => this.makeDrop(true));
   }
 
-  /* ─── Input ─── */
-
-  setPointer(x: number, y: number) {
-    this.pointer.x = x;
-    this.pointer.y = y;
-    this.pointer.on = true;
+  private makeDrop(scatter: boolean): Drop {
+    const background = Math.random() < 0.4;
+    const len = STREAM_MIN + ((Math.random() * (STREAM_MAX - STREAM_MIN)) | 0);
+    return {
+      y: scatter ? Math.random() * this.height * 1.4 - this.height * 0.2 : -Math.random() * 260,
+      speed: background ? Math.random() * 0.45 + 0.25 : Math.random() * 0.85 + 0.55,
+      bright: background ? Math.random() * 0.22 + 0.14 : Math.random() * 0.45 + 0.45,
+      len,
+      chars: Array.from({ length: len }, () => (Math.random() * GLYPHS.length) | 0),
+    };
   }
 
-  clearPointer() {
-    this.pointer.on = false;
-    this.pointer.x = -9999;
-    this.pointer.y = -9999;
-  }
-
-  addRipple(x: number, y: number) {
-    this.ripples.push({ x, y, t: performance.now() });
-    if (this.ripples.length > 3) this.ripples.shift();
-  }
-
+  /** Speed every column up for 800ms. Fired by the boot intro and the easter eggs. */
   burst() {
     this.burstAt = performance.now();
   }
 
-  /* ─── Loop ─── */
-
   start() {
     if (this.running) return;
     this.running = true;
-    const tick = () => {
+    let lastDraw = 0;
+
+    const tick = (now: number) => {
       if (!this.running) return;
-      this.draw();
       this.raf = requestAnimationFrame(tick);
+      // Pace to 30fps. We still ride requestAnimationFrame (so we stay in sync with
+      // the compositor and stop when the tab is hidden), we just skip every other one.
+      const elapsed = now - lastDraw;
+      if (elapsed < FRAME_MS) return;
+      // Movement is scaled by elapsed time rather than assumed per-frame, so the rain
+      // falls at the same speed whatever rate we end up drawing at.
+      this.draw(lastDraw === 0 ? 1 : Math.min(elapsed / 16.667, 4));
+      lastDraw = now;
     };
+
     this.raf = requestAnimationFrame(tick);
   }
 
@@ -208,61 +212,84 @@ export class RainEngine {
     this.stop();
   }
 
-  /**
-   * A single dim frame for reduced motion: presence without movement.
-   */
+  /** A single dim frame for reduced motion: presence without movement. */
   drawStaticFrame() {
     const { ctx } = this;
     ctx.clearRect(0, 0, this.width, this.height);
     ctx.globalAlpha = 0.5;
     ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
     ctx.textAlign = 'left';
+    ctx.shadowBlur = 0;
 
     this.drops.forEach((d, x) => {
       const cx = x * this.colWidth + this.colWidth / 2;
       for (let i = 0; i < d.len; i += 2) {
         const py = d.y - i * FONT_SIZE;
         if (py < 0 || py > this.height) continue;
-        ctx.fillStyle = this.lut(this.trailLut, (1 - i / d.len) * d.bright * 0.8);
-        ctx.fillText(GLYPHS[d.chars[i]], cx - this.halfWidths[d.chars[i]], py);
+        const glyph = d.chars[i];
+        ctx.fillStyle = this.lut(this.trailLut, trailFade(i, d.len, d.bright) * 0.8);
+        ctx.fillText(GLYPHS[glyph], cx - this.halfWidths[glyph], py);
       }
     });
 
     ctx.globalAlpha = 1;
   }
 
-  private draw() {
+  /** Shed quality rather than let the page judder. */
+  private governQuality(cost: number) {
+    // Rolling average, so one long frame (a GC pause, a tab switch) doesn't demote us.
+    this.frameCost += (cost - this.frameCost) * 0.1;
+
+    if (this.frameCost > 10) {
+      this.slowFrames += 1;
+      if (this.slowFrames > 45) {
+        this.slowFrames = 0;
+        if (this.quality === 'full') {
+          this.quality = 'noGlow';
+        } else if (this.quality === 'noGlow') {
+          this.quality = 'sparse';
+          this.resize();
+        }
+      }
+    } else {
+      this.slowFrames = 0;
+    }
+  }
+
+  private draw(step: number) {
     const { ctx } = this;
-    const now = performance.now();
+    const started = performance.now();
     const w = this.width;
     const h = this.height;
-    const burst = burstFactor(now, this.burstAt);
-
-    while (this.ripples.length && now - this.ripples[0].t > RIPPLE_LIFE * 1000) {
-      this.ripples.shift();
-    }
+    const burst = burstFactor(started, this.burstAt);
+    const glow = this.quality === 'full';
 
     ctx.fillStyle = this.palette.fade;
     ctx.fillRect(0, 0, w, h);
     ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
     ctx.textAlign = 'left';
 
-    const { x: px, y: py, on } = this.pointer;
-    const r2 = RADIUS * RADIUS;
+    // Heads are drawn in a second pass so shadowBlur is toggled twice per frame
+    // rather than twice per column. Setting it per glyph is what made this expensive:
+    // each shadowed fillText is a gaussian on a scratch surface, and there is one
+    // head per column.
+    const headX: number[] = [];
+    const headY: number[] = [];
+    const headGlyph: number[] = [];
+
+    ctx.shadowBlur = 0;
 
     for (let x = 0; x < this.cols; x++) {
       const d = this.drops[x];
       const cx = x * this.colWidth + this.colWidth / 2;
-      const dx = cx - px;
-      const near = on && Math.abs(dx) < RADIUS;
-      const columnLift = near ? 1 - Math.abs(dx) / RADIUS : 0;
 
-      d.y += d.speed * (1 + columnLift * 1.6 + burst);
-      if (d.y - d.len * FONT_SIZE > h && Math.random() > 0.965) {
-        d.y = -Math.random() * 260;
+      d.y += d.speed * (1 + burst) * step;
+      if (d.y - d.len * FONT_SIZE > h && Math.random() > 0.9) {
+        this.drops[x] = this.makeDrop(false);
+        continue;
       }
 
-      // Only walk the glyphs that can actually land on screen.
+      // Walk only the glyphs that can land on screen.
       const first = Math.max(0, Math.ceil((d.y - h - FONT_SIZE) / FONT_SIZE));
       const last = Math.min(d.len - 1, Math.floor((d.y + FONT_SIZE) / FONT_SIZE));
 
@@ -270,55 +297,31 @@ export class RainEngine {
         const gy = d.y - i * FONT_SIZE;
         if (Math.random() < 0.0025) d.chars[i] = (Math.random() * GLYPHS.length) | 0;
 
-        const fade = (1 - (i / d.len) * 0.9) * d.bright;
-        let boost = 0;
-        let drawX = cx;
-
-        if (near) {
-          const dy = gy - py;
-          const dist2 = dx * dx + dy * dy;
-          if (dist2 < r2) {
-            // sqrt only for the few glyphs actually inside the radius
-            const dist = Math.sqrt(dist2);
-            boost = 1 - dist / RADIUS;
-            drawX = cx + partOffset(dx, dist);
-          }
-        }
-
-        for (let ri = 0; ri < this.ripples.length; ri++) {
-          const rp = this.ripples[ri];
-          const age = (now - rp.t) / 1000;
-          const ringRadius = age * RIPPLE_SPEED;
-          const rdx = cx - rp.x;
-          if (Math.abs(rdx) > ringRadius + RIPPLE_BAND) continue;
-          const rdy = gy - rp.y;
-          const boostFromRipple = rippleBoost(Math.sqrt(rdx * rdx + rdy * rdy), age);
-          if (boostFromRipple > boost) boost = boostFromRipple;
-        }
-
         const glyph = d.chars[i];
-        const drawAt = drawX - this.halfWidths[glyph];
+        const drawAt = cx - this.halfWidths[glyph];
 
         if (i === 0) {
-          const a = Math.min(0.98, 0.8 + boost * 0.6 + burst * 0.06);
-          ctx.fillStyle = boost > 0.25 ? this.lut(this.sparkLut, a) : this.lut(this.headLut, a);
-          ctx.shadowColor = this.lut(this.sparkLut, 0.5 + boost * 0.5);
-          ctx.shadowBlur = boost > 0.1 ? 12 + boost * 14 : 5;
+          headX.push(drawAt);
+          headY.push(gy);
+          headGlyph.push(glyph);
         } else {
-          const a = Math.min(0.95, fade * (0.72 + boost * 1.6));
-          ctx.fillStyle = boost > 0.3 ? this.lut(this.sparkLut, a) : this.lut(this.trailLut, a);
-          if (boost > 0.4) {
-            ctx.shadowColor = this.lut(this.sparkLut, 0.6);
-            ctx.shadowBlur = 10;
-          } else {
-            ctx.shadowBlur = 0;
-          }
+          ctx.fillStyle = this.lut(this.trailLut, Math.min(0.95, trailFade(i, d.len, d.bright)));
+          ctx.fillText(GLYPHS[glyph], drawAt, gy);
         }
-
-        ctx.fillText(GLYPHS[glyph], drawAt, gy);
       }
     }
 
+    // Second pass: the bright leading glyph of every stream, in one state change.
+    ctx.fillStyle = this.lut(this.headLut, Math.min(0.98, 0.85 + burst * 0.06));
+    if (glow) {
+      ctx.shadowColor = this.lut(this.headLut, 0.5);
+      ctx.shadowBlur = 5;
+    }
+    for (let i = 0; i < headX.length; i++) {
+      ctx.fillText(GLYPHS[headGlyph[i]], headX[i], headY[i]);
+    }
     ctx.shadowBlur = 0;
+
+    this.governQuality(performance.now() - started);
   }
 }

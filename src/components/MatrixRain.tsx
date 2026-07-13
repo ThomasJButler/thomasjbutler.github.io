@@ -1,16 +1,22 @@
 import { useEffect, useRef } from 'react';
 import { RainEngine } from '@/lib/fx/rain-engine';
 import { onBurst } from '@/lib/rain-bus';
+import { rafThrottle } from '@/utils/throttle';
 import { useTheme } from '@/hooks/useTheme';
 import { useAccent } from '@/hooks/useAccent';
 import { useFx } from '@/hooks/useFx';
 
 /**
- * Cursor-reactive Matrix rain.
+ * The Matrix rain.
  *
- * Thin wrapper: all the drawing lives in RainEngine. The engine is created once and
+ * Thin wrapper: the drawing lives in RainEngine. The engine is created once and
  * repainted imperatively, so changing theme or accent re-tints the palette without
  * tearing down the canvas and losing every drop's position.
+ *
+ * Deliberately has no pointer listeners. It used to part around the cursor and
+ * ripple on click; both are gone. They made every mouse move do work on the main
+ * thread while the draw loop was already running, which is exactly when the page
+ * needs to feel responsive.
  */
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,7 +25,7 @@ export function MatrixRain() {
   const { accent } = useAccent();
   const { motionOk } = useFx();
 
-  // Light mode has its own hard-coded palette, so an accent tint is dark-only.
+  // Light mode has its own hand-tuned palette, so an accent tint is dark-only.
   const tint = theme === 'dark' ? accent : null;
 
   // Read by the setup effect without making it a dependency: a theme change should
@@ -31,16 +37,14 @@ export function MatrixRain() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Fewer columns where the CPU is likely weaker. At the opacity the rain runs on
-    // small screens this is imperceptible, and pointer-parting is a mouse feature
-    // anyway.
+    // Fewer columns where the CPU is likely weaker.
     const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
     let engine: RainEngine;
     try {
       engine = new RainEngine(canvas, {
         ...paletteRef.current,
-        density: coarse ? 0.6 : 0.95,
+        density: coarse ? 0.55 : 0.9,
       });
     } catch {
       return; // no 2d context (jsdom, or a very old browser): render nothing
@@ -58,37 +62,18 @@ export function MatrixRain() {
 
     engine.start();
 
-    const onMove = (e: MouseEvent) => engine.setPointer(e.clientX, e.clientY);
-    const onTouch = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (t) engine.setPointer(t.clientX, t.clientY);
-    };
-    const onLeave = () => engine.clearPointer();
-    const onDown = (e: MouseEvent) => engine.addRipple(e.clientX, e.clientY);
-    const onTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (t) engine.addRipple(t.clientX, t.clientY);
-    };
-    const onResize = () => engine.resize();
+    // Dragging a window edge fires resize continuously, and each one rebuilds every
+    // drop and re-measures every glyph. Coalesce to one per frame.
+    const onResize = rafThrottle(() => engine.resize());
     const onVisibility = () => (document.hidden ? engine.stop() : engine.start());
 
-    window.addEventListener('mousemove', onMove, { passive: true });
-    window.addEventListener('touchmove', onTouch, { passive: true });
-    window.addEventListener('mouseout', onLeave);
-    window.addEventListener('mousedown', onDown);
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
-
     const unsubscribe = onBurst(() => engine.burst());
 
     return () => {
       unsubscribe();
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('touchmove', onTouch);
-      window.removeEventListener('mouseout', onLeave);
-      window.removeEventListener('mousedown', onDown);
-      window.removeEventListener('touchstart', onTouchStart);
+      onResize.cancel();
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
       engine.destroy();
