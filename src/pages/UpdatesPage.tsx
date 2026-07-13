@@ -210,7 +210,7 @@ export function UpdatesPage() {
         <h2 className="mt-2 font-heading text-2xl font-bold text-foreground">
           Let&apos;s Build Something
         </h2>
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Button asChild size="lg">
             <Link to="/contact">
               Get in Touch <ArrowRight className="size-4" />

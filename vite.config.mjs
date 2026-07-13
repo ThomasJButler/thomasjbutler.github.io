@@ -11,11 +11,11 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        // Main entry - redirects to React app
+        // index.html IS the app. It used to be a stub that JS-redirected to
+        // react.html, which cost every cold visit a full extra navigation — and meant
+        // the page Google and LinkedIn actually crawled was the stub, not the site.
         main: resolve(__dirname, 'index.html'),
-        // React app - fully migrated v3.5
-        react: resolve(__dirname, 'react.html'),
-        // Blog redirect for backward compatibility
+        // Legacy blog URLs.
         blog: resolve(__dirname, 'blog.html'),
       }
     },
@@ -36,9 +36,9 @@ export default defineConfig({
       name: 'spa-rewrite',
       configureServer(server) {
         server.middlewares.use((req, _res, next) => {
-          // Rewrite root and all SPA routes to react.html
+          // Rewrite clean SPA routes to the app entry so React Router sees them.
           if (req.url === '/' || (!req.url.includes('.') && !req.url.startsWith('/@') && !req.url.startsWith('/src') && !req.url.startsWith('/node_modules'))) {
-            req.url = '/react.html';
+            req.url = '/index.html';
           }
           next();
         });
@@ -100,14 +100,15 @@ export default defineConfig({
         });
       }
     },
-    // SPA fallback: copy react.html as 404.html for GitHub Pages + preview server
+    // SPA fallback: GitHub Pages serves 404.html for any path it has no file for, so
+    // a copy of the app entry there is what makes deep links (/services) resolve.
     {
       name: 'spa-fallback',
       writeBundle() {
-        const reactHtml = resolve(__dirname, 'dist/react.html');
+        const entry = resolve(__dirname, 'dist/index.html');
         const fallback = resolve(__dirname, 'dist/404.html');
-        if (existsSync(reactHtml)) {
-          copyFileSync(reactHtml, fallback);
+        if (existsSync(entry)) {
+          copyFileSync(entry, fallback);
           console.log('Created 404.html SPA fallback');
         }
       }

@@ -31,9 +31,10 @@ export interface Command {
 }
 
 export const COMMANDS: Command[] = [
+  // Same business-first order as the header nav.
   { id: 'home', label: 'go: home', type: 'goto', keywords: 'navigate start hero', run: (c) => c.navigate('/') },
+  { id: 'services', label: 'go: services', type: 'goto', keywords: 'navigate what i build local ai hire work with', run: (c) => c.navigate('/services') },
   { id: 'projects', label: 'go: projects', type: 'goto', keywords: 'navigate work portfolio cards', run: (c) => c.navigate('/projects') },
-  { id: 'services', label: 'go: services', type: 'goto', keywords: 'navigate what i build local ai', run: (c) => c.navigate('/services') },
   { id: 'about', label: 'go: about', type: 'goto', keywords: 'navigate bio tech stack journey', run: (c) => c.navigate('/about') },
   { id: 'contact', label: 'go: contact', type: 'goto', keywords: 'navigate email form get in touch', run: (c) => c.navigate('/contact') },
   { id: 'updates', label: 'go: dev journey (timetravel)', type: 'goto', keywords: 'navigate updates timeline history', run: (c) => c.navigate('/updates') },

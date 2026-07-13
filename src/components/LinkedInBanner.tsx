@@ -10,7 +10,7 @@ export function LinkedInBanner() {
         role="presentation"
       >
         <source
-          src="https://res.cloudinary.com/depqttzlt/video/upload/v1752558251/large_green_banner_dv0bkk.mp4"
+          src="https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_1200/v1752558251/large_green_banner_dv0bkk.mp4"
           type="video/mp4"
         />
       </video>

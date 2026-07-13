@@ -139,7 +139,7 @@ export function ContactPage() {
                   href="https://github.com/ThomasJButler"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
+                  className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
                 >
                   <GithubIcon className="size-4 shrink-0" />
                   github.com/ThomasJButler
@@ -148,7 +148,7 @@ export function ContactPage() {
                   href="https://www.linkedin.com/in/thomasjbutler/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
+                  className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
                 >
                   <LinkedinIcon className="size-4 shrink-0" />
                   linkedin.com/in/thomasjbutler
@@ -157,7 +157,7 @@ export function ContactPage() {
                   href="https://buymeacoffee.com/thomasjbutler"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-primary"
+                  className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
                 >
                   <Coffee className="size-4 shrink-0" />
                   Buy me a coffee

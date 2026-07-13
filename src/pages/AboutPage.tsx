@@ -169,9 +169,10 @@ export function AboutPage() {
         </h2>
 
         <Tabs defaultValue="frontend" className="mt-6">
-          <TabsList className="flex-wrap">
+          {/* h-auto so the wrapped rows aren't crushed into TabsList's fixed h-8. */}
+          <TabsList className="h-auto min-h-8 flex-wrap gap-1">
             {TECH_TABS.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
+              <TabsTrigger key={tab.value} value={tab.value} className="h-auto py-1">
                 {tab.label}
               </TabsTrigger>
             ))}

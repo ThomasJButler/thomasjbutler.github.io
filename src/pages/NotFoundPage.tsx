@@ -34,14 +34,16 @@ export function NotFoundPage() {
           It may have been moved, deleted, or never constructed.
         </p>
 
-        <div className="mt-8 flex justify-center gap-3">
+        {/* flex-wrap: two size="lg" buttons are whitespace-nowrap and shrink-0, so
+            below ~340px they would push out of the viewport. */}
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button asChild size="lg">
             <Link to="/">
               <ArrowLeft className="size-4" /> Back to Homepage
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/projects">View Projects</Link>
+            <Link to="/services">What I Build</Link>
           </Button>
         </div>
 

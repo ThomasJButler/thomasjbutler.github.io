@@ -78,8 +78,17 @@ interface Drop {
 interface EngineOptions {
   theme: 'dark' | 'light';
   tint: string | null;
-  /** Column density. The governor lowers this on machines that can't keep up. */
-  density?: number;
+}
+
+/**
+ * Columns per 16px of width. Narrow screens get fewer, because they are usually the
+ * slower devices — and because the rain is quieter there anyway.
+ *
+ * Computed on every resize rather than captured once at mount, so dragging a window
+ * from desktop width down to phone width actually thins the rain out.
+ */
+function densityFor(width: number): number {
+  return width < 768 ? 0.55 : 0.9;
 }
 
 /** Quality tiers, shed in order when frames run long. */
@@ -98,7 +107,6 @@ export class RainEngine {
   private raf = 0;
   private running = false;
 
-  private baseDensity: number;
   private quality: Quality = 'full';
   private frameCost = 16;
   private slowFrames = 0;
@@ -115,7 +123,6 @@ export class RainEngine {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) throw new Error('2d canvas context unavailable');
     this.ctx = ctx;
-    this.baseDensity = options.density ?? 0.9;
     this.setPalette(options.theme, options.tint);
     this.resize();
   }
@@ -139,9 +146,18 @@ export class RainEngine {
   }
 
   private get density(): number {
-    return this.quality === 'sparse' ? this.baseDensity * 0.6 : this.baseDensity;
+    const base = densityFor(this.width || window.innerWidth);
+    return this.quality === 'sparse' ? base * 0.6 : base;
   }
 
+  /**
+   * Re-fit to the viewport.
+   *
+   * The columns are only rebuilt when the column *count* changes. That matters more
+   * than it looks: on iOS and Android, showing or hiding the address bar fires a
+   * resize on every change of scroll direction, and rebuilding the drops there made
+   * the rain visibly re-scatter every time the user scrolled.
+   */
   resize() {
     this.dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
     this.width = window.innerWidth;
@@ -153,16 +169,19 @@ export class RainEngine {
     this.canvas.style.height = `${this.height}px`;
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
 
-    this.cols = Math.max(1, Math.floor((this.width / FONT_SIZE) * this.density));
-    this.colWidth = this.width / this.cols;
-
     this.ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
     this.ctx.textAlign = 'left';
-    // Katakana and latin have different advance widths even in a mono face, so
-    // measure once per glyph rather than paying for textAlign: 'center' on every call.
-    this.halfWidths = Array.from(GLYPHS, (g) => this.ctx.measureText(g).width / 2);
 
-    this.drops = Array.from({ length: this.cols }, () => this.makeDrop(true));
+    const cols = Math.max(1, Math.floor((this.width / FONT_SIZE) * this.density));
+    this.colWidth = this.width / cols;
+
+    if (cols === this.cols && this.drops.length === cols) return;
+
+    this.cols = cols;
+    // Katakana and latin have different advance widths even in a mono face, so measure
+    // once per glyph rather than paying for textAlign: 'center' on every call.
+    this.halfWidths = Array.from(GLYPHS, (g) => this.ctx.measureText(g).width / 2);
+    this.drops = Array.from({ length: cols }, () => this.makeDrop(true));
   }
 
   private makeDrop(scatter: boolean): Drop {

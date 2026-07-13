@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
@@ -7,17 +7,30 @@ import { MotionToggle } from '@/components/system/MotionToggle';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+/**
+ * Business-first: the offer comes before the portfolio. Someone arriving to hire Tom
+ * should reach Services before Projects.
+ */
 const navItems = [
   { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
   { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
   { label: 'Contact', href: '/contact' },
 ];
 
 export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+
+  // The drawer is hidden by `md:hidden` when the window widens, but the state stays
+  // true — so narrowing back below 768px popped it open again unbidden.
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const close = () => desktop.matches && setMobileOpen(false);
+    desktop.addEventListener('change', close);
+    return () => desktop.removeEventListener('change', close);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
@@ -167,6 +180,10 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                 >
                   <LinkedinIcon className="size-4" />
                 </a>
+                {/* MotionToggle belongs here too: it is the in-page control for stopping
+                    the rain, and without it a phone user has no way to switch the
+                    effects off at all. */}
+                <MotionToggle />
                 <ThemeToggle />
               </div>
             </div>

@@ -37,15 +37,11 @@ export function MatrixRain() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Fewer columns where the CPU is likely weaker.
-    const coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-
     let engine: RainEngine;
     try {
-      engine = new RainEngine(canvas, {
-        ...paletteRef.current,
-        density: coarse ? 0.55 : 0.9,
-      });
+      // Density is decided inside the engine, per resize, so dragging a window down to
+      // phone width actually thins the rain instead of keeping the desktop count.
+      engine = new RainEngine(canvas, paletteRef.current);
     } catch {
       return; // no 2d context (jsdom, or a very old browser): render nothing
     }

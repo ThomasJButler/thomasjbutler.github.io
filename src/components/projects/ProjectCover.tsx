@@ -39,6 +39,11 @@ export function ProjectCover({ project }: { project: Project }) {
           src={cover}
           alt={`${project.name} cover`}
           loading="lazy"
+          decoding="async"
+          // Explicit intrinsic size so the browser reserves the band before the image
+          // lands. Without it the whole projects grid reflows as covers arrive.
+          width={640}
+          height={300}
           className={cn(
             'h-[150px] w-full bg-muted/40 brightness-90 saturate-[1.05] transition-[filter,transform] duration-[350ms] group-hover/card:scale-[1.025] group-hover/card:brightness-100',
             // The handoff says object-position: top, but most of these covers are

@@ -49,10 +49,12 @@ export function OperatorHero() {
 
           <p className="fx-sub">{HERO_SUB}</p>
 
+          {/* Business-first: the loudest control on the page is the offer, not the
+              portfolio. Projects is one click away in the nav. */}
           <div className="fx-cta">
             <Button asChild size="lg">
-              <Link to="/projects">
-                View Projects <ArrowRight className="size-4" />
+              <Link to="/services">
+                What I Build <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">

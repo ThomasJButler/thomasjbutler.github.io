@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500&display=swap");
-
+/* Fonts are loaded from a single preloaded <link> in index.html. An @import here is
+   the worst way to fetch them: it is not discovered until this stylesheet has already
+   downloaded, so it serialises behind it. */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -104,6 +105,9 @@
   --input: oklch(0.92 0.015 145);
   --ring: oklch(0.35 0.22 145);
   --radius: 0.5rem;
+  /* h-14 (56px) plus the 1px gradient rule under it. Kept here so the hero's
+     min-height can't drift away from the real header. */
+  --header-h: 57px;
   --chart-1: oklch(0.40 0.22 145);
   --chart-2: oklch(0.60 0.12 195);
   --chart-3: oklch(0.65 0.12 85);
@@ -685,7 +689,10 @@
   .fx-scrim::before {
     content: '';
     position: absolute;
-    inset: -6% -5%;
+    /* No horizontal bleed: -5% either side pushed past the viewport edge below 1120px
+       and was the last source of horizontal overflow on the site. The radial gradient
+       already fades out inside its own box, so it loses nothing. */
+    inset: -6% 0;
     z-index: 0;
     pointer-events: none;
     background: radial-gradient(
@@ -734,7 +741,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100vh - 56px); /* 56px = sticky header */
+    /* svh, not vh: on mobile 100vh is the LARGE viewport (address bar collapsed), so
+       the hero overruns the visible screen and the scroll cue sits under the browser
+       chrome on first paint. --header-h keeps this in step with the actual header
+       (h-14 plus its 1px rule) instead of drifting from a magic 56. */
+    min-height: calc(100svh - var(--header-h));
   }
   .fx-hero__grid {
     display: grid;
@@ -918,15 +929,25 @@
   .fx-dots .y { background: oklch(0.80 0.15 85 / 0.75); }
   .fx-dots .g { background: oklch(0.65 0.20 145 / 0.75); }
 
-  @media (max-width: 860px) {
+  /* Collapse to one column at 1024, not 860. Between the two the console column is
+     only ~337px wide, so every line of the script wraps and the hero reads as a
+     cramped mess — which is exactly the width most tablets and small laptops sit at.
+     1024 also lines this up with Tailwind's lg: breakpoint. */
+  @media (max-width: 1023px) {
     .fx-hero__grid {
       grid-template-columns: 1fr;
       gap: 34px;
       padding: 70px 26px 100px;
     }
     .fx-console__body {
-      height: 250px;
+      /* Let it grow rather than clip. The lines wrap at this width, and with a fixed
+         height + overflow:hidden + a scroll pinned to the bottom, the opening
+         `$ whoami` scrolled out of reach and could never be seen. */
+      height: auto;
+      min-height: 250px;
+      overflow-y: auto;
       font-size: 11.5px;
+      padding: 14px 14px 16px;
     }
   }
 }
@@ -977,6 +998,12 @@
     transform: translateX(-50%);
     z-index: 120;
     width: min(580px, calc(100vw - 40px));
+    /* Clamp to the viewport: without this, on a landscape phone the hint row and the
+       bottom of the list fall off-screen and cannot be reached, because the popup is
+       fixed and only the inner list scrolls. */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100svh - 16vh - 20px);
     overflow: hidden;
     border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
     border-radius: 12px;
@@ -1025,7 +1052,9 @@
   }
 
   .fx-pal__list {
+    flex: 1 1 auto;
     max-height: 320px;
+    min-height: 0;
     overflow: auto;
     padding: 6px;
     margin: 0;
@@ -1344,7 +1373,10 @@
   .fx-page::before {
     content: '';
     position: absolute;
-    inset: 0 -3rem;
+    /* Bleed outwards only as far as there is room. The old `inset: 0 -3rem` pushed
+       both soft edges off-screen below ~1120px, so the scrim went fully opaque edge
+       to edge and the rain was invisible on every phone and tablet. */
+    inset: 0 clamp(-3rem, calc((100% - 100vw) / 2), 0px);
     z-index: 0;
     pointer-events: none;
     background: linear-gradient(
@@ -1411,5 +1443,25 @@
 @layer utilities {
   .decode > [aria-hidden='true'] {
     user-select: none;
+  }
+}
+
+/* ─── Wrapping tab lists ───
+   shadcn's TabsList is a fixed 32px-tall box (`group-data-horizontal/tabs:h-8`) and
+   each trigger sizes itself against that container. Add `flex-wrap` and seven tabs —
+   which is what Projects has below ~540px — and the wrapped rows have to share those
+   32px: the tabs overlapped and spilled straight out of the pill on a phone.
+
+   This has to be a real rule rather than an `h-auto` utility, because Tailwind emits
+   the group-data variant after the plain utility and it wins on source order. */
+@layer utilities {
+  [data-slot='tabs-list'].flex-wrap {
+    height: auto;
+    min-height: 2rem;
+    row-gap: 0.25rem;
+  }
+  [data-slot='tabs-list'].flex-wrap [data-slot='tabs-trigger'] {
+    height: auto;
+    padding-block: 0.3rem;
   }
 }

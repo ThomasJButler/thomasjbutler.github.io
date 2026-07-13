@@ -123,9 +123,13 @@ export function ProjectsPage() {
           value={activeCategory}
           onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}
         >
-          <TabsList className="flex-wrap">
+          {/* h-auto: TabsList is a fixed h-8 box, and with seven tabs it wraps below
+              ~540px. The wrapped rows then have to share that 32px, while each
+              trigger sizes itself against the container — so the tabs overlapped and
+              spilled out of the pill on a phone. */}
+          <TabsList className="h-auto min-h-8 flex-wrap gap-1">
             {categories.map((cat) => (
-              <TabsTrigger key={cat.id} value={cat.id}>
+              <TabsTrigger key={cat.id} value={cat.id} className="h-auto py-1">
                 {cat.label}
                 <span className="ml-1 text-[10px] text-muted-foreground">
                   ({cat.id === 'all' ? projects.length : projects.filter(p => p.category === cat.id).length})

@@ -69,7 +69,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             type="button"
             onClick={onPrev}
             aria-label="Previous project"
-            className="fixed left-[max(0.75rem,calc(50%-24rem))] top-1/2 z-[60] hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-foreground/80 backdrop-blur transition-colors hover:border-primary/70 hover:text-foreground sm:flex"
+            className="fixed left-[max(0.75rem,calc(50%-24rem))] top-1/2 z-[60] hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-foreground/80 backdrop-blur transition-colors hover:border-primary/70 hover:text-foreground lg:flex"
           >
             <ChevronLeft className="size-5" />
           </button>
@@ -77,7 +77,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             type="button"
             onClick={onNext}
             aria-label="Next project"
-            className="fixed right-[max(0.75rem,calc(50%-24rem))] top-1/2 z-[60] hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-foreground/80 backdrop-blur transition-colors hover:border-primary/70 hover:text-foreground sm:flex"
+            className="fixed right-[max(0.75rem,calc(50%-24rem))] top-1/2 z-[60] hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-primary/40 bg-card/90 text-foreground/80 backdrop-blur transition-colors hover:border-primary/70 hover:text-foreground lg:flex"
           >
             <ChevronRight className="size-5" />
           </button>
@@ -85,7 +85,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
         document.body
       )}
       <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
-      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[min(42rem,calc(100vw-3rem))] max-h-[85svh] overflow-y-auto">
         <DialogHeader>
           {/* Category + Language */}
           <div className="flex items-center gap-2 mb-1">
@@ -123,6 +123,10 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             <img
               src={project.images.cover}
               alt={`${project.name} cover`}
+              loading="lazy"
+              decoding="async"
+              width={1280}
+              height={720}
               className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </button>
@@ -163,6 +167,10 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
                   <img
                     src={img}
                     alt={`${project.name} screenshot ${i + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    width={1280}
+                    height={720}
                     className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </button>

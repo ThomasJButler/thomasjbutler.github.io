@@ -102,7 +102,7 @@ export const projects: Project[] = [
       cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767713745/Morpheus5_pdcmvr.png',
       gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1767712416/morpheusgif2_zdkku9.gif'],
     },
-    videos: ['https://res.cloudinary.com/depqttzlt/video/upload/v1767706547/2_1080_N_s5t1ww.mp4'],
+    videos: ['https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_960/v1767706547/2_1080_N_s5t1ww.mp4'],
     status: 'completed',
     highlights: ['Private by design: fresh namespace per session', 'Semantic search with Pinecone vectors', 'Source citations for every answer', 'Cost effective: pay only for tokens used'],
   },

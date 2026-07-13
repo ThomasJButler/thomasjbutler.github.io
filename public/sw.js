@@ -1,18 +1,16 @@
 // Service Worker for Thomas J Butler Portfolio v3.0
 // Provides offline support and caching
 
-const CACHE_NAME = 'tjb-portfolio-v3.0';
+const CACHE_NAME = 'tjb-portfolio-v5.0';
+// cache.addAll() is all-or-nothing: one 404 and the whole install rejects. The old
+// list precached /index-react.html, /src/js/main.js, /src/css/global.css and a
+// Font Awesome CDN stylesheet — none of which exist any more — so registering this
+// worker could only ever fail. Keep it to things that are actually served.
 const urlsToCache = [
   '/',
   '/index.html',
-  '/index-react.html',
-  '/src/main.tsx',
-  '/src/js/main.js',
-  '/src/css/global.css',
   '/favicon.ico',
-  // Font files
-  'https://fonts.googleapis.com/css2?family=VT323&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'
+  '/manifest.json'
 ];
 
 // Install event - cache resources
