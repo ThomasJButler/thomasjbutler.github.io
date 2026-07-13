@@ -25,7 +25,13 @@ export function WhyLocalAiStrip() {
       <p className="fx-scrim max-w-2xl leading-relaxed text-muted-foreground">
         Most businesses rent their AI. Every API call is a meter running, and every
         prompt sends your data to a server you don&apos;t control.{' '}
-        <Link to="/services" className="text-primary underline-offset-4 hover:underline">
+        {/* Always underlined, not just on hover: a link inside a body of text has to be
+            distinguishable by something other than colour, and green-on-grey only
+            manages 1.69:1 against the surrounding copy. */}
+        <Link
+          to="/services"
+          className="text-primary underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
+        >
           There is another way
         </Link>
         .

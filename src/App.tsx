@@ -2,14 +2,15 @@ import { lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
+import { ServicesPage } from './pages/ServicesPage';
 
-// HomePage is imported eagerly, not lazily. It is the landing route — every cold visit
-// needs it — so code-splitting it only bought a second round trip, and on a throttled
+// HomePage and ServicesPage are imported eagerly, not lazily. They are the two landing
+// routes — Home for every cold visit, Services for the link from the commercial site —
+// and code-splitting a landing page only buys a second round trip. On a throttled
 // connection the Suspense fallback rendered first and was then swapped for the real
 // page, which was the site's entire layout-shift score. Everything else stays lazy.
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
-const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage').then(m => ({ default: m.UpdatesPage })));
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage').then(m => ({ default: m.CaseStudyPage })));

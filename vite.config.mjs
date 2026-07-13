@@ -208,7 +208,14 @@ export default defineConfig({
               `$1${SITE}${route.path}$2`
             );
 
-          const dir = resolve(__dirname, 'dist', route.path.replace(/^\//, ''));
+          const name = route.path.replace(/^\//, '');
+          // Write BOTH forms. GitHub Pages serves /services from services.html when it
+          // exists, and /services/ from services/index.html — emitting both means
+          // neither shape 301-redirects. It also stops /services being served as
+          // 404.html (with an actual HTTP 404 status, which is what crawlers saw
+          // before these files existed).
+          writeFileSync(resolve(__dirname, 'dist', `${name}.html`), html);
+          const dir = resolve(__dirname, 'dist', name);
           mkdirSync(dir, { recursive: true });
           writeFileSync(resolve(dir, 'index.html'), html);
         }
