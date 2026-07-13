@@ -1,0 +1,19 @@
+# Tom Butler
+
+> Full Stack AI Engineer in York, UK. I set up private, local AI systems for businesses: open models running on their own hardware, private RAG over their own documents, and honest audits of what AI is actually costing them. The theme of everything: AI you own, not AI you rent.
+
+Contact: dev@thomasjbutler.me
+
+## Services
+
+- [Services](https://thomasjbutler.github.io/services): Local & Private AI (Ollama and open-model LLM setups, private RAG knowledge systems, AI cost and privacy audits), plus web apps, backend and APIs, AI automation, mobile applications, design, and consultancy.
+
+## Work
+
+- [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and creative projects, including ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Sanctuary (an offline, on-device iOS app for neurodiverse users).
+- [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from first HTML to production AI systems.
+
+## About
+
+- [About](https://thomasjbutler.github.io/about): background, tech stack, and current focus. Contributes to Odysseus, an open source local AI project.
+- [Contact](https://thomasjbutler.github.io/contact): get in touch about a project.

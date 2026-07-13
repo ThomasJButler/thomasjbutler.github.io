@@ -1,6 +1,11 @@
-/* Fonts are loaded from a single preloaded <link> in index.html. An @import here is
-   the worst way to fetch them: it is not discovered until this stylesheet has already
-   downloaded, so it serialises behind it. */
+/* Fonts are self-hosted (see src/main.tsx).
+
+   They used to come from Google Fonts — twice, in fact: a <link> in the HTML and an
+   @import at the top of this file. Both were render-blocking requests to a third
+   party, and because they arrived after first paint every glyph on the page reflowed
+   when they landed, which was most of the site's layout shift. Serving them from our
+   own origin means they are fetched alongside the app, and Vite fingerprints them so
+   they cache forever. */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -824,13 +829,15 @@
     font-size: 10px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: color-mix(in oklab, var(--primary) 60%, transparent);
+    /* Was primary/60, which failed contrast. The cue is a real control with a label —
+       it has to be readable, not just suggestive. */
+    color: var(--primary);
     background: none;
     border: none;
     cursor: pointer;
   }
   .fx-scrollcue:hover {
-    color: var(--primary);
+    color: color-mix(in oklab, var(--primary) 80%, white);
   }
   .fx-scrollcue .tri {
     font-size: 9px;
@@ -895,7 +902,9 @@
 
   .fx-console__body {
     height: 320px;
-    overflow: hidden;
+    /* auto, not hidden: the script is pinned to the bottom as it types, so with
+       `hidden` any content that overflows becomes permanently unreachable. */
+    overflow-y: auto;
     padding: 18px 20px 20px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
@@ -940,12 +949,12 @@
       padding: 70px 26px 100px;
     }
     .fx-console__body {
-      /* Let it grow rather than clip. The lines wrap at this width, and with a fixed
-         height + overflow:hidden + a scroll pinned to the bottom, the opening
-         `$ whoami` scrolled out of reach and could never be seen. */
-      height: auto;
-      min-height: 250px;
-      overflow-y: auto;
+      /* A fixed height, but a taller one, and scrollable rather than clipped.
+         `height: auto` cured the clipping and caused layout shift instead — the box
+         grew with every line typed and shoved the whole page down. At this width the
+         script wraps to ~300px, so reserve that up front and let it scroll if a
+         narrower font pushes it further. */
+      height: 320px;
       font-size: 11.5px;
       padding: 14px 14px 16px;
     }

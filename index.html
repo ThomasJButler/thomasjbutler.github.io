@@ -66,25 +66,10 @@
     <meta name="twitter:image" content="https://thomasjbutler.github.io/og-image.png" />
 
     <!--
-      Fonts: ONE request, preconnected and preloaded.
-
-      There used to be two overlapping Google Fonts requests — a <link> here and an
-      @import at the top of app.css. The @import was the worse of the two: it isn't
-      discovered until app.css has downloaded, so it serialises behind it. Weights are
-      only the ones actually used (500-800 for Orbitron, 400-700 for Exo 2).
+      Fonts are self-hosted and bundled (see src/main.tsx), so there is no third-party
+      font request at all any more. Cloudinary is still preconnected for the covers.
     -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://res.cloudinary.com" />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Exo+2:wght@400;500;600;700&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Exo+2:wght@400;500;600;700&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
 
     <script type="application/ld+json">
       {
