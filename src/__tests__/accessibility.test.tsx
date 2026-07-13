@@ -34,15 +34,21 @@ describe('Accessibility Tests (WCAG AAA)', () => {
 
     const results = await axe(container, {
       rules: {
-        'color-contrast-enhanced': { enabled: true },
         'heading-order': { enabled: true },
         'landmark-one-main': { enabled: true },
         'page-has-heading-one': { enabled: true },
+        // Colour rules are deliberately OFF here. jsdom does no layout and no paint,
+        // so axe returns "incomplete" for them rather than a pass or a violation —
+        // they cost seconds and prove nothing. Real contrast is measured against the
+        // live rain in the browser (see the contrast probe in the v5 notes); the
+        // reading-column scrim exists precisely because that measurement failed.
+        'color-contrast': { enabled: false },
+        'color-contrast-enhanced': { enabled: false },
       },
     });
 
     expect(results).toHaveNoViolations();
-  });
+  }, 30_000);
 
   test('Layout has skip links for keyboard navigation', () => {
     const { container } = render(

@@ -14,6 +14,8 @@ export default defineConfig({
     // Playwright spec and blows up on import.
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['**/node_modules/**', 'dist/**', 'e2e/**'],
+    // Suites that mount the whole shell pay for a lazy chunk transform on first import.
+    testTimeout: 20_000,
   },
   resolve: {
     alias: {

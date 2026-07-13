@@ -1,56 +1,52 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## Project Overview
 
-Personal portfolio website for Thomas J Butler — a React 19 + TypeScript SPA with a Matrix-themed aesthetic (green terminal effects, CRT overlays, particle backgrounds). Deployed to GitHub Pages at thomasjbutler.github.io.
+Personal portfolio for Thomas J Butler — a React 19 + TypeScript SPA with a Matrix-themed aesthetic (cursor-reactive rain, CRT scanlines, terminal UI). Deployed to GitHub Pages.
+
+The current design is **v5 "The Operator"**, whose positioning is *Local & Private AI* — "AI you own, not AI you rent". The source design is a standalone HTML prototype in `design_handoff_v5_operator-v4-redesign/`; it is a **reference, not code to copy** (it uses `[data-theme=...]` selectors and `window.*` globals, neither of which this codebase uses).
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
-| `npm run dev` | Dev server on port 3000 (opens /react.html) |
+| `npm run dev` | Dev server on port 3000 |
 | `npm run build` | Production build to dist/ |
-| `npm run preview` | Preview production build |
-| `npm run lint` | ESLint on src/**/*.{js,ts} |
-| `npm run format` | Prettier on src/**/*.{js,ts,css,html} |
-| `npm run type-check` | TypeScript check (no emit) |
-| `npm run test` | Vitest |
-| `npm run test:ui` | Vitest with UI |
-| `npm run test:coverage` | Vitest with coverage |
-| `npm run deploy` | Build + deploy to GitHub Pages via gh-pages |
+| `npm run type-check` | `tsc --noEmit` |
+| `npx vitest run` | Run the unit/component suite once (`npm test` starts watch mode) |
+| `npm run test:e2e` | Playwright |
+| `npm run deploy` | Build + publish to GitHub Pages |
 
 ## Architecture
 
-**Stack:** React 19, TypeScript (strict), Vite 7, React Router v7 (BrowserRouter)
+**Stack:** React 19, TypeScript (strict), Vite 7, **Tailwind v4** (CSS-first — there is no `tailwind.config`), React Router v7, framer-motion 12, lucide-react. shadcn components are built on **`@base-ui/react`** (not Radix, despite `radix-ui` being an unused dependency).
 
-**Entry flow:** `index.html` redirects to `react.html`, which loads `src/main.tsx` -> `App.tsx`. A third entry `blog.html` exists for legacy blog URL compatibility.
+**Styling is one file: `src/app.css`.** There is no `src/css/` directory and no CSS-module system for app styles. Theme tokens are CSS custom properties; **light/dark is a `.dark` class on `<html>`** (dark = "neon terminal", light = "circuit"), so theme-specific CSS is written as `.dark X` / `:root:not(.dark) X`.
 
-**Routing:** All pages are lazy-loaded via `React.lazy()` + `Suspense` in `App.tsx`. Blog routes are currently commented out. Legacy `.html` routes redirect to clean paths. The `/skills` route redirects to `/services`.
+**Entry:** `index.html` → `react.html` → `src/main.tsx` → `Providers` → `App`.
 
-**CSS architecture:** `src/css/main.css` is the master import file. Styles are organized into `base/`, `components/`, `pages/`, and `utilities/` subdirectories using partial files (prefixed with `_`). Theme variables live in `themes.css` with light/dark mode via CSS custom properties and React Context (`ThemeContext`).
+**`src/Providers.tsx`** composes Theme + Accent + Fx + `MotionConfig reducedMotion="user"`. Tests render through the same component (`src/test/utils.tsx`), so they exercise the tree we ship. `MotionConfig` is load-bearing: framer-motion animates via inline styles, so the `@media (prefers-reduced-motion)` block in `app.css` cannot reach it.
 
-**Animation libraries:** GSAP, Anime.js (v4), Framer Motion, AOS (Animate On Scroll), ScrollMagic. Matrix rain, CRT effects, and particle backgrounds are custom implementations.
+**Routing:** `App.tsx` exports `AppRoutes` (no Router) and `App` (Router + AppRoutes). Tests mount `AppRoutes` inside a `MemoryRouter` — do not wrap `App` in another router. `Layout` is the route parent and hosts every global system (rain, atmosphere, cursor, palette, toaster, boot intro, eggs) plus the page transition.
 
-**Path aliases:** `@/` -> `src/`, plus `@components/`, `@pages/`, `@hooks/`, `@utils/`, `@css/`, `@js/`, `@images/` (configured in both tsconfig.json and vite.config.mjs).
+### The FX layer
 
-**Key directories:**
-- `src/pages/` — Route-level page components
-- `src/components/` — Reusable UI components
-- `src/hooks/` — Custom hooks (scroll animation, lazy loading, SEO, performance)
-- `src/utils/` — Utilities (keyboard nav, performance optimizer, animations)
-- `src/contexts/` — React Context (ThemeContext for light/dark mode)
-- `src/css/` — Organized stylesheet modules
-- `src/content/blog/` — Markdown blog posts (copied to dist on build)
+- `src/lib/fx/rain-engine.ts` — the Matrix rain, as a plain class so its maths is unit-tested without a canvas. Pointer parting, click ripples, `burst()`. **Its visual constants are signed off; `rain-engine.test.ts` locks them.** Optimise freely, but those tests must stay green.
+- `src/lib/fx/decode.ts` + `src/components/fx/DecodeText.tsx` — per-character decode-in. Render is pure; the animation is imperative writes to span refs. Real text lives in an `sr-only` span with the glyphs `aria-hidden` (`aria-label` on a `<span>` is prohibited ARIA and fails axe).
+- `src/lib/rain-bus.ts` / `src/lib/toast-bus.ts` — module emitters, deliberately not context. `burstRain()` and `toast()` are callable from anywhere.
+- `src/lib/content.ts` — all v5 copy. **Import it; don't retype it.** It contains typographic quotes that must survive verbatim.
+
+### Non-obvious things that will bite you
+
+- **Text sits directly on the live rain.** The `.fx-page` scrim on each page container is not decoration — without it, a rain head glyph behind body text measures ~1.38:1 contrast (WCAG needs 4.5). Any new full-width text block needs to be inside `.fx-page` or carry `.fx-scrim`.
+- **Don't put a Tailwind `bg-gradient-*` utility on a `Card`.** `.dark [data-slot="card"]` paints its dark surface with the `background` shorthand, so a utility that sets `background-image` strips it and exposes a near-white background-color. Layer washes in CSS instead (see `.fx-lead-card`).
+- **The accent (red/blue pill) is set on `documentElement`**, not a wrapper — base-ui portals dialogs to `document.body`, so a wrapper would leave modals un-accented.
+- **`useFx().motionOk`** is the single gate for every effect: it folds the OS reduced-motion preference together with the in-page effects toggle. WCAG 2.2.2 requires that in-page control for the auto-playing rain; `prefers-reduced-motion` alone does not satisfy it.
+- **No global fake timers.** They also fake rAF and `performance.now`, which hangs `waitFor` and `user-event`. Opt in per-file.
+- `src/pages/BlogPage.tsx` and `src/components/UpdatesFeed/` are unrouted leftovers that import modules which no longer exist; they are excluded in `tsconfig.json`.
 
 ## Code Style
 
-- Prettier: single quotes, semicolons, 100 char width, trailing commas (es5)
-- ESLint: TypeScript strict, React hooks rules, no-var, no-require
-- Components use named exports (not default), except where lazy loading requires `.then(m => ({ default: m.ComponentName }))`
-- Global animation libs (anime, gsap, ScrollMagic, AOS) are declared as ESLint globals
-
-## Deployment
-
-GitHub Actions workflow (`.github/workflows/deploy.yml`) auto-deploys on push to main. Manual deploys via `npm run deploy` use the `gh-pages` package to push `dist/` to the gh-pages branch.
+Prettier (single quotes, semicolons, 100 cols). Named exports, except where `React.lazy` needs `.then(m => ({ default: m.X }))`. Tom dislikes em dashes in prose — use commas or colons. Note `npm run lint` globs `src/**/*.{js,ts}` and therefore never lints `.tsx`.

@@ -1,10 +1,15 @@
 import '@testing-library/jest-dom';
 import { expect, afterEach, vi } from 'vitest';
-import { cleanup } from '@testing-library/react';
+import { cleanup, configure } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
 // Extend Vitest's expect with jest-dom matchers
 expect.extend(matchers);
+
+// Routes are React.lazy, and Vite has to transform each page chunk on first import.
+// That regularly takes longer than Testing Library's 1000ms default, which shows up
+// as a flaky "Unable to find role=heading" rather than as the slow import it is.
+configure({ asyncUtilTimeout: 8000 });
 
 // Cleanup after each test
 afterEach(() => {
@@ -96,6 +101,9 @@ HTMLCanvasElement.prototype.getContext = vi.fn().mockImplementation(() => ({
 
 // Mock scrollTo
 window.scrollTo = vi.fn();
+
+// jsdom implements neither of these; both are used to keep an active option in view.
+Element.prototype.scrollIntoView = vi.fn();
 
 // NOTE: fake timers are deliberately NOT installed globally.
 //
