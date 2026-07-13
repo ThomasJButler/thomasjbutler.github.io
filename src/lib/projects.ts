@@ -255,3 +255,38 @@ export const categories = [
   { id: 'creative', label: 'Creative' },
   { id: 'personal', label: 'Personal' },
 ] as const;
+
+/**
+ * Presentation maps for a project's category and language.
+ *
+ * They live here, beside the data they describe, because ProjectsPage and
+ * ProjectDetailModal each used to carry their own copy — and both copies were
+ * missing `mobile`, so Sanctuary's badge rendered the raw string "mobile".
+ */
+export const categoryLabel: Record<Project['category'], string> = {
+  ai: 'AI & ML',
+  web: 'Web',
+  mobile: 'Mobile',
+  games: 'Games',
+  creative: 'Creative',
+  personal: 'Personal',
+};
+
+export const categoryBadgeVariant: Record<Project['category'], string> = {
+  ai: 'cyan',
+  web: 'secondary',
+  mobile: 'amber',
+  games: 'amber',
+  creative: 'amber',
+  personal: 'secondary',
+};
+
+export const languageColors: Record<string, string> = {
+  TypeScript: '#3178c6',
+  Python: '#3572A5',
+  JavaScript: '#f1e05a',
+  'C#': '#178600',
+  CSS: '#563d7c',
+  React: '#61dafb',
+  Swift: '#F05138',
+};

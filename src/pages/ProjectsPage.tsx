@@ -6,7 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { projects, categories } from '@/lib/projects';
+import {
+  projects,
+  categories,
+  categoryLabel,
+  categoryBadgeVariant,
+  languageColors,
+} from '@/lib/projects';
 import type { Project } from '@/lib/projects';
 import { ProjectDetailModal } from '@/components/ProjectDetailModal';
 import { ProjectCover } from '@/components/projects/ProjectCover';
@@ -15,32 +21,12 @@ import { DecodeText } from '@/components/fx/DecodeText';
 
 const featuredProjects = projects.filter((p) => p.featured);
 
-const languageColors: Record<string, string> = {
-  TypeScript: '#3178c6',
-  Python: '#3572A5',
-  JavaScript: '#f1e05a',
-  'C#': '#178600',
-  CSS: '#563d7c',
-  React: '#61dafb',
-};
 
-const categoryLabel: Record<string, string> = {
-  ai: 'AI & ML',
-  web: 'Web',
-  games: 'Games',
-  creative: 'Creative',
-  personal: 'Personal',
-};
-const categoryBadgeVariant: Record<string, string> = {
-  ai: 'cyan',
-  web: 'secondary',
-  games: 'amber',
-  creative: 'amber',
-  personal: 'secondary',
-};
-
-/** Full green retro border for every project card. */
-const cardBorder = 'h-full cursor-pointer border border-primary/40 transition-colors hover:border-primary/70';
+/**
+ * Full green retro border for every project card. pt-0 because every card opens with
+ * a full-bleed ProjectCover band, which has to reach the card's top edge.
+ */
+const cardBorder = 'h-full cursor-pointer border border-primary/40 pt-0 transition-colors hover:border-primary/70';
 
 export function ProjectsPage() {
   useEffect(() => { document.title = 'Projects | Tom Butler'; }, []);

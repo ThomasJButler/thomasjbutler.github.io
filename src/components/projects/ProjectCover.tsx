@@ -5,15 +5,15 @@ import { cn } from '@/lib/utils';
 /**
  * Full-bleed cover band for a project card.
  *
- * The band cancels the Card's top padding (-mt-4) rather than relying on the
- * `has-[>img:first-child]:pt-0` rule, because it wraps the image in a clipping
- * element: the hover scale has to be cropped by the band, not by the card, or
- * the bottom border rides up over the header.
+ * The band clips the image itself, so the hover zoom is cropped by the band rather
+ * than by the card — otherwise the bottom border rides up over the header. Cards
+ * carrying a cover set `pt-0` (see cardBorder in ProjectsPage), which is why there
+ * is no negative margin here to cancel the card's padding.
  *
  * Projects with no Cloudinary cover yet (The Kicker, ISQ Agent, Sanctuary) get a
  * generated scanline panel of the same height, so the grid never goes ragged.
  */
-const BAND = '-mt-4 w-full overflow-hidden border-b border-primary/[0.18]';
+const BAND = 'w-full overflow-hidden border-b border-primary/[0.18]';
 
 /** Scanlines over a vertical fade to the page background. */
 const scanlinePanel = {
@@ -41,7 +41,11 @@ export function ProjectCover({ project }: { project: Project }) {
           loading="lazy"
           className={cn(
             'h-[150px] w-full bg-muted/40 brightness-90 saturate-[1.05] transition-[filter,transform] duration-[350ms] group-hover/card:scale-[1.025] group-hover/card:brightness-100',
-            isSvg ? 'object-contain p-6' : 'object-cover object-top'
+            // The handoff says object-position: top, but most of these covers are
+            // square title cards rather than wide screenshots, and anchoring to the
+            // top slices the wordmark clean in half. Centre reads correctly for all
+            // fifteen.
+            isSvg ? 'object-contain p-6' : 'object-cover object-center'
           )}
         />
       </div>

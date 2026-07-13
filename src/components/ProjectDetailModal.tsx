@@ -13,24 +13,8 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { ImageLightbox } from '@/components/ImageLightbox';
+import { categoryLabel, languageColors } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
-
-const languageColors: Record<string, string> = {
-  TypeScript: '#3178c6',
-  Python: '#3572A5',
-  JavaScript: '#f1e05a',
-  'C#': '#178600',
-  CSS: '#563d7c',
-  React: '#61dafb',
-};
-
-const categoryLabel: Record<string, string> = {
-  ai: 'AI & ML',
-  web: 'Web',
-  games: 'Games',
-  creative: 'Creative',
-  personal: 'Personal',
-};
 
 interface ProjectDetailModalProps {
   project: Project | null;
