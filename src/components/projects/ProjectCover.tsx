@@ -15,6 +15,30 @@ import { cn } from '@/lib/utils';
  */
 const BAND = 'w-full overflow-hidden border-b border-primary/[0.18]';
 
+/**
+ * Cloudinary covers are all requested at a single `w_800`; the width lives in the URL's
+ * transform segment, so a srcset is just the same URL a few times over, and a narrow
+ * card can fetch a narrow image.
+ *
+ * 800 is the CEILING on purpose. The band is 150px tall and decorative, and adding a
+ * w_1200 candidate is not free: at a phone's ~2.6 DPR the browser computes it needs
+ * ~1080px and dutifully picks the biggest one, so offering 1200 made it fetch *more*
+ * than the flat w_800 did and cost 400ms of LCP (measured). Capping at today's width
+ * means this can only ever fetch fewer bytes, never more.
+ *
+ * Returns undefined for anything that isn't a Cloudinary URL carrying a width (the SVG
+ * logo, any hand-added cover), in which case the plain `src` still stands.
+ */
+const SRCSET_WIDTHS = [400, 640, 800];
+
+function cloudinarySrcSet(url: string): string | undefined {
+  if (!/\/upload\/[^/]*w_\d+/.test(url)) return undefined;
+  return SRCSET_WIDTHS.map((w) => `${url.replace(/w_\d+/, `w_${w}`)} ${w}w`).join(', ');
+}
+
+/** One column on a phone, two from sm, three in the featured grid from lg. */
+const COVER_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
+
 /** Scanlines over a vertical fade to the page background. */
 const scanlinePanel = {
   backgroundImage: [
@@ -27,16 +51,29 @@ const initialGlow = {
   textShadow: '0 0 22px color-mix(in oklab, var(--primary) 45%, transparent)',
 } satisfies CSSProperties;
 
+/**
+ * The first cover is the LCP element on /projects, and Lighthouse's lcp-lazy-loaded audit
+ * says not to lazy-load it. Measured, that advice is wrong here and it stays lazy.
+ *
+ * The audit assumes the image can start downloading from the HTML. This is a
+ * client-rendered SPA: the <img> does not exist until React has mounted, so `eager` buys
+ * no head start at all. All it does is put a high-priority image fetch in contention with
+ * the JS that first paint is still waiting on. Marking the first two covers eager cost
+ * 280ms of LCP and 3 Lighthouse points; keeping them lazy is worth more than the audit is.
+ */
 export function ProjectCover({ project }: { project: Project }) {
   const cover = project.images?.cover;
 
   if (cover) {
     // The one SVG cover is a logo — contain it, or object-cover eats the mark.
     const isSvg = cover.endsWith('.svg');
+    const srcSet = isSvg ? undefined : cloudinarySrcSet(cover);
     return (
       <div className={BAND}>
         <img
           src={cover}
+          srcSet={srcSet}
+          sizes={srcSet ? COVER_SIZES : undefined}
           alt={`${project.name} cover`}
           loading="lazy"
           decoding="async"

@@ -1,5 +1,5 @@
 import { useLayoutEffect, type ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m as motion, useReducedMotion } from 'framer-motion';
 import { EASE_OUT_EXPO, STEPS_2 } from '@/lib/fx/easing';
 
 /**

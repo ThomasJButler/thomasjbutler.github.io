@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Header } from './Header';
@@ -8,7 +8,6 @@ import { MatrixRain } from '@/components/MatrixRain';
 import { Atmosphere } from '@/components/system/Atmosphere';
 import { SkipLink } from '@/components/system/SkipLink';
 import { Toaster } from '@/components/system/Toaster';
-import { CommandPalette } from '@/components/system/CommandPalette';
 import { BootIntro, BOOT_SESSION_KEY } from '@/components/system/BootIntro';
 import { SpoonOverlay } from '@/components/system/SpoonOverlay';
 import { WhiteRabbit } from '@/components/system/WhiteRabbit';
@@ -19,6 +18,18 @@ import { useFx } from '@/hooks/useFx';
 import { burstRain } from '@/lib/rain-bus';
 import { toast } from '@/lib/toast-bus';
 import type { CommandContext } from '@/lib/commands';
+
+/**
+ * The palette is behind ⌘K, but it was in the entry chunk on every cold visit.
+ *
+ * It statically pulls base-ui's Dialog and the whole vendored floating-ui positioning
+ * stack: 19.1 kB gzipped of code that most visitors never trigger. Lazy, it costs a
+ * ~17 kB chunk on the first press, which is imperceptible against a keystroke, and the
+ * mounted-but-closed component below renders nothing until `open` anyway.
+ */
+const CommandPalette = lazy(() =>
+  import('@/components/system/CommandPalette').then((m) => ({ default: m.CommandPalette }))
+);
 
 const RABBIT_SESSION_KEY = 'v5:rabbit';
 /** How long before the rabbit shows up, and how long it waits to be caught. */
@@ -54,6 +65,8 @@ export function Layout() {
   const { motionOk, toggleFx, toggleMorph } = useFx();
 
   const [paletteOpen, setPaletteOpen] = useState(false);
+  // Latches on the first open, from whichever route in (⌘K, the header button, a command).
+  const [paletteUsed, setPaletteUsed] = useState(false);
   const [spoon, setSpoon] = useState(false);
   const [rabbit, setRabbit] = useState(false);
   const [booting, setBooting] = useState(
@@ -81,6 +94,10 @@ export function Layout() {
     }),
     [navigate, toggleTheme, toggleFx, toggleMorph, setAccent]
   );
+
+  useEffect(() => {
+    if (paletteOpen) setPaletteUsed(true);
+  }, [paletteOpen]);
 
   useKonami(useCallback(() => setSpoon(true), []));
 
@@ -167,7 +184,13 @@ export function Layout() {
       <Footer />
 
       <Toaster />
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} ctx={ctx} />
+      {/* Mounted on first open and kept mounted thereafter, so the close animation still
+          plays and the chunk is only fetched once. */}
+      {paletteUsed && (
+        <Suspense fallback={null}>
+          <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} ctx={ctx} />
+        </Suspense>
+      )}
 
       {spoon && <SpoonOverlay onDone={() => setSpoon(false)} />}
       {rabbit && !booting && <WhiteRabbit onCatch={catchRabbit} />}

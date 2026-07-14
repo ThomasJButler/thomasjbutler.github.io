@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m as motion } from 'framer-motion';
 import { onToast } from '@/lib/toast-bus';
 import { EASE_OUT_EXPO } from '@/lib/fx/easing';
 

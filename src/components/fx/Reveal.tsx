@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import { EASE_OUT_EXPO } from '@/lib/fx/easing';
 import { cn } from '@/lib/utils';

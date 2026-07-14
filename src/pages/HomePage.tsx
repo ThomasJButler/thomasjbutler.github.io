@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useMotionValue, useTransform, animate as motionAnimate } from 'framer-motion';
+import { m as motion, useMotionValue, useTransform, animate as motionAnimate } from 'framer-motion';
 import {
   ArrowRight,
   ExternalLink,
