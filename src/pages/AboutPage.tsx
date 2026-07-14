@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
-import { ArrowRight, Terminal, Code, Bot, Briefcase, Cpu } from 'lucide-react';
+import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +9,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { MotionSection } from '@/components/MotionSection';
 import { SectionHead } from '@/components/SectionHead';
-import { Reveal } from '@/components/fx/Reveal';
 import { ABOUT_CURRENT_FOCUS, ABOUT_CURRENT_FOCUS_TAGS } from '@/lib/content';
 
 const TECH_TABS = [

@@ -42,7 +42,8 @@ describe('ContactPage', () => {
   it('renders the heading and contact details', () => {
     renderContactPage();
 
-    expect(screen.getByRole('heading', { level: 1, name: /get in touch/i })).toBeInTheDocument();
+    // "Get in Touch" became "Talk it through": one CTA vocabulary across the whole site.
+    expect(screen.getByRole('heading', { level: 1, name: /talk it through/i })).toBeInTheDocument();
     expect(screen.getByText('York, UK')).toBeInTheDocument();
     expect(screen.getByText('dev@thomasjbutler.me')).toBeInTheDocument();
   });

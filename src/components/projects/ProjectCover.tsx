@@ -53,13 +53,21 @@ const initialGlow = {
 
 /**
  * The first cover is the LCP element on /projects, and Lighthouse's lcp-lazy-loaded audit
- * says not to lazy-load it. Measured, that advice is wrong here and it stays lazy.
+ * says not to lazy-load it. It has now been measured twice, and twice the audit was wrong.
+ * It stays lazy.
  *
- * The audit assumes the image can start downloading from the HTML. This is a
- * client-rendered SPA: the <img> does not exist until React has mounted, so `eager` buys
- * no head start at all. All it does is put a high-priority image fetch in contention with
- * the JS that first paint is still waiting on. Marking the first two covers eager cost
- * 280ms of LCP and 3 Lighthouse points; keeping them lazy is worth more than the audit is.
+ * The first time, the explanation was discoverability: the site was client-rendered, so the
+ * <img> did not exist until React mounted and `eager` could not buy a head start. It cost
+ * 280ms of LCP.
+ *
+ * Prerendering removed that explanation. The tag is now in the raw HTML and the browser's
+ * preload scanner finds it before a line of JavaScript runs, so the experiment was re-run
+ * expecting a win. It lost again, and by more: 92 -> 87, LCP 2,873ms -> 3,804ms, medians of
+ * five.
+ *
+ * So discoverability was never the bottleneck. Bandwidth is. On a throttled connection a
+ * high-priority image does not arrive sooner, it takes the pipe from the CSS and the JS,
+ * and everything behind it paints later. Do not "fix" this a third time without measuring.
  */
 export function ProjectCover({ project }: { project: Project }) {
   const cover = project.images?.cover;

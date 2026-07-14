@@ -202,13 +202,22 @@ export function ServicesPage() {
 
       <Separator />
 
-      {/* CTA */}
+      {/* CTA.
+       *
+       * It used to say "Let's Build Something Great" over "Free consultation. No
+       * obligation. Let's discuss your project." That is the closing block of every agency
+       * site ever built, it says nothing a reader could act on, and it sits directly under
+       * a price list, which makes the vagueness look evasive rather than friendly. The
+       * question a buyer actually has at this point is "what happens if I email you", so
+       * that is what this answers. */}
       <MotionSection className="py-16 text-center" delay={0.15}>
         <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
-          Let&apos;s Build Something Great
+          Not sure which one you need?
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Free consultation. No obligation. Let&apos;s discuss your project.
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          Tell me what you are spending on AI and what your data cannot do, and I will tell
+          you whether the audit is worth it. If it is not, I will say so, and that costs you
+          nothing.
         </p>
         {/* Outline, not glow: the primary action on this page is the one in the pricing
             section, where the reader has just been told what it costs. This is the same

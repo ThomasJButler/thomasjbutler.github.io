@@ -4,20 +4,38 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## Project Overview
 
-Personal portfolio for Thomas J Butler — a React 19 + TypeScript SPA with a Matrix-themed aesthetic (cursor-reactive rain, CRT scanlines, terminal UI). Deployed to GitHub Pages.
+Thomas J Butler's site: React 19 + TypeScript, Matrix-themed (cursor-reactive rain, CRT scanlines, terminal UI). Deployed to GitHub Pages.
 
-The current design is **v5 "The Operator"**, whose positioning is *Local & Private AI* — "AI you own, not AI you rent". The source design is a standalone HTML prototype in `design_handoff_v5_operator-v4-redesign/`; it is a **reference, not code to copy** (it uses `[data-theme=...]` selectors and `window.*` globals, neither of which this codebase uses).
+**It is not a portfolio any more. It is a shop window**, and it is judged as one: Tom is self-employed selling *Local & Private AI* ("AI you own, not AI you rent"), links it from his commercial site, and drives traffic at it from LinkedIn and YouTube. Prices are real (`PRICING` in `src/lib/content.ts`, sourced in `PRICING.md`). Copy that reads like a junior portfolio actively reprices the work, which is why the skill bars, the "open to work" dot and the "Buy me a coffee" link are gone and must not come back.
+
+**It is prerendered, not a pure SPA.** See the section below before touching the build, `main.tsx`, or anything that renders differently on a server.
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
 | `npm run dev` | Dev server on port 3000 |
-| `npm run build` | Production build to dist/ |
+| `npm run build` | Client build, **then** an SSR build, **then** `scripts/prerender.mjs` |
+| `npm run preview` | Serves `dist/`. The `--outDir dist` is load-bearing: without it Vite picks up the SSR step's `.ssr` outDir and serves **404 for every route** |
 | `npm run type-check` | `tsc --noEmit` |
-| `npx vitest run` | Run the unit/component suite once (`npm test` starts watch mode) |
-| `npm run test:e2e` | Playwright |
+| `npm run lint` | `eslint src`. It used to glob `src/**/*.{js,ts}`, which never linted a single `.tsx` file, i.e. the entire app |
+| `npx vitest run` | Unit/component suite once (`npm test` is watch mode) |
 | `npm run deploy` | Build + publish to GitHub Pages |
+
+## Prerendering (read this before changing anything about rendering)
+
+Every route is rendered to real HTML at build time. This is not an optimisation, it is the difference between the site existing and not existing for a large class of readers: **GPTBot, ClaudeBot and PerplexityBot fetch HTML and do not execute JavaScript.** Before this, `dist/services.html` contained **zero characters** of body text; it now has 6,202.
+
+- `src/entry-server.tsx` uses **`prerenderToNodeStream`** from `react-dom/static`, not `prerender` (Node exports one, edge the other, and TypeScript is happy with either — you find out at build time). It must **not** import `main.tsx`, which carries font CSS side-effect imports Node cannot parse. It uses `StaticRouter`, which in React Router 7 lives in `react-router`, not `react-router-dom/server`.
+- `scripts/routes.mjs` is the single source of truth for routes, titles and descriptions. `scripts/prerender.mjs` injects markup, meta and per-route JSON-LD, and **fails the build if any route emits under 600 characters of text** — the failure mode it guards against (a component silently rendering nothing on the server) is invisible otherwise.
+- `src/main.tsx` **hydrates** when `#root` has children. `createRoot` would throw the prerendered DOM away and rebuild it.
+
+**Four things exist only so the prerendered paint is visible and hydration matches. All four look like dead weight:**
+
+- **`useHydrated()`** gates `ThemeToggle` and `MotionToggle`. They read `localStorage`, the server has to guess, and a mismatch makes React discard the entire tree (error #418) — which silently undoes the prerender while everything still *looks* fine.
+- **`PageTransition`'s module-scoped `hasEntered`.** It wraps `<Outlet/>`, so its `initial={{opacity: 0}}` is the opacity of every route's whole body. It must be `false` during both the server render and the hydrating render, or the page serialises as `opacity: 0`: crawlers read the words, browsers paint a blank screen.
+- **`DecodeText` renders the real characters**, not empty spans, and `.ch--pending` is `opacity: 1`. The hero `h1` is the LCP element; when it was invisible until the scramble locked, LCP was measuring the decode.
+- **Metric-matched fallback `@font-face` blocks** at the top of `app.css`. Orbitron is **18.9% wider than Arial** (measured with canvas `measureText`), so without them every heading re-wraps on font load: 0.089 CLS on home, all of it.
 
 ## Architecture
 
@@ -46,6 +64,10 @@ The current design is **v5 "The Operator"**, whose positioning is *Local & Priva
   - `DecodeText` renders a hidden `.ch__sizer` per character and overlays the animating `.ch__glyph`. The scramble alphabet is half-width katakana and symbols, whose widths are nothing like the latin they stand in for, so a slot sized by its *current* glyph re-widths every frame and re-wraps the line: 0.075 CLS on the home hero, on the LCP element itself.
   - The rain's `mouseout` handler checks `e.relatedTarget === null`. `mouseout` bubbles, so a window listener sees the pointer leave *any* element; scrolling under a stationary cursor fires mouseout/mouseover with **no** following mousemove to re-arm the pointer, and the morph would switch itself off mid-scroll and stay off. `relatedTarget` is null only on a genuine window exit.
 - **Text sits directly on the live rain.** The `.fx-page` scrim on each page container is not decoration — without it, a rain head glyph behind body text measures ~1.38:1 contrast (WCAG needs 4.5). Any new full-width text block needs to be inside `.fx-page` or carry `.fx-scrim`.
+- **`.fx-scrim::before` is `z-index: -1`, and it has to be.** At `0` a positioned pseudo-element paints *above* its parent's own inline content, so the scrim (a 0.92-alpha near-black wash whose whole job is to hide the rain behind text) painted **on top of that text**. A `.fx-scrim > *` rule rescued child *elements*, which is why the hero always looked right; `.fx-scrim` on a bare `<p>` has only a text node inside, and a text node cannot be lifted with `z-index`. Every scrimmed paragraph on the site was being read through a black veil.
+- **One section opener: `SectionHead`.** The old device (an icon, a `// snake_case` mono label as the `h2`, and a fading hairline) appeared **11 times**, five on the case study alone, and inverted the heading hierarchy every time: the decorative label was the `h2` and the real heading an `h3` beneath it, so `why_local_ai` sat directly on top of "Why Local AI". The human heading is the `h2`. There is no hairline. Do not reintroduce one.
+- **`--meter` (amber) means exactly one thing: the meter running** — per-token bills, API spend, data leaving the building. Green is what you own. It is the only non-green hue and it is *never* decorative. It replaced `cyan`/`amber` badge tones handed out with no rule (Ollama was cyan, On-Device was amber). A second hue that means nothing is noise; a second hue that means "this is costing you money" makes the palette argue the case.
+- **Do not use framer-motion's `layout` prop or `AnimatePresence mode="popLayout"`.** They need the layout-projection feature, which `domMax` ships and **`domAnimation` does not** (see `Providers`). They fail silently: they were dead props on the projects grid for a whole release.
 - **`role="presentation"` is prohibited on `<video>`** (axe: `aria-allowed-role`). A decorative video wants `aria-hidden`, which also keeps the captions rule from firing on a silent clip.
 - **Prices, revision terms and the retainer are constants** (`PRICING`, `ENGAGEMENT_TERMS`, `RETAINER` in `src/lib/content.ts`), benchmarked against real 2026 UK market data — the sourcing is in a comment above `PRICING`. A `price` of `null` still renders `PRICE_TBC` rather than a made-up figure.
 - **The site is client-rendered, so nothing paints until the JS lands. That one fact invalidates three "obvious" optimisations**, all of which were measured and all of which made things *worse* or did nothing:

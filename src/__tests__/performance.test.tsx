@@ -56,7 +56,7 @@ describe('Performance and Stability Tests', () => {
     const routes = ['/', '/about', '/blog', '/projects', '/contact'];
     let hasError = false;
     
-    const errorHandler = (e: ErrorEvent) => {
+    const errorHandler = (_e: ErrorEvent) => {
       hasError = true;
     };
     
@@ -84,7 +84,7 @@ describe('Performance and Stability Tests', () => {
       'BlogPage'
     ];
     
-    lazyComponents.forEach(component => {
+    lazyComponents.forEach(_component => {
       // Verify dynamic imports are used
       const isDynamicallyImported = 
         import.meta.glob('../pages/*.tsx') !== undefined;

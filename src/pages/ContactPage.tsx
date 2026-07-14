@@ -5,7 +5,6 @@ import {
   MapPin,
   Clock,
   Phone,
-  Coffee,
   ArrowRight,
   MessageSquare,
   FileText,
@@ -61,15 +60,20 @@ export function ContactPage() {
           transition={{ duration: 0.6 }}
           className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
         >
-          Get in Touch
+          Talk it through
         </motion.h1>
+        {/* "Whether it's a project, opportunity, or just a chat about code" was the old
+            line. "Opportunity" is what you write when you are hoping to be offered a job,
+            and it is the last word a buyer should read before a contact form that starts a
+            five-figure engagement. */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mt-4 max-w-lg font-mono text-sm text-muted-foreground"
+          className="mx-auto mt-4 max-w-xl text-muted-foreground"
         >
-          // Whether it&apos;s a project, opportunity, or just a chat about code
+          Tell me what you are spending on AI, and what your data is not allowed to do. I
+          will tell you straight whether I can help, and what it would cost.
         </motion.p>
       </section>
 

@@ -21,7 +21,7 @@ export function PricingSection() {
       <SectionHead title="Three ways to start" deck={PRICING_INTRO} />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        {PRICING.map((offer, i) => (
+        {PRICING.map((offer) => (
           <Card
             key={offer.title}
             className={cn('h-full', offer.lead && 'fx-lead-card')}

@@ -900,7 +900,12 @@
   }
   .fx-hero__grid {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    /* The copy column takes the bigger share, and it has to. The headline is a sentence
+       with a turn in it ("AI you own," / "not AI you rent."), and at 1.05fr the second
+       line broke as "not AI you / rent." on a desktop viewport, which lands the emphasis
+       on the word "rent" sitting alone at the start of a line and destroys the very
+       contrast the headline is built on. The console loses 60px it was not using. */
+    grid-template-columns: 1.2fr 0.8fr;
     gap: 56px;
     align-items: center;
     width: 100%;
@@ -922,7 +927,11 @@
     margin: 0;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(40px, 5.2vw, 70px);
+    /* Capped at 62px, not 70px. Orbitron runs ~0.575em per character, so "not AI you
+       rent." needs about 16 x 0.575 x font-size of horizontal room; at 70px that is 644px
+       against a copy column of roughly 650px, which is close enough that a scrollbar or a
+       slightly different font-fallback width tips it into a third line. */
+    font-size: clamp(38px, 4.6vw, 62px);
     line-height: 1.04;
     color: var(--foreground);
     text-shadow:

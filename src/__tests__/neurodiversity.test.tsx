@@ -1,6 +1,6 @@
 import React from 'react';
 import { Providers } from '@/Providers';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
