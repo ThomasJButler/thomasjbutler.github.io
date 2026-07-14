@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Plus, Receipt } from 'lucide-react';
+import { ArrowRight, Check, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
+import { SectionHead } from '@/components/SectionHead';
 import { ENGAGEMENT_TERMS, PRICING, PRICING_INTRO, PRICE_TBC, RETAINER } from '@/lib/content';
 import { cn } from '@/lib/utils';
 
@@ -17,20 +18,9 @@ import { cn } from '@/lib/utils';
 export function PricingSection() {
   return (
     <Reveal as="section" className="py-16">
-      <div className="mb-5 flex items-center gap-2">
-        <Receipt className="size-4 text-primary" />
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">pricing</h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-      </div>
+      <SectionHead title="Three ways to start" deck={PRICING_INTRO} />
 
-      <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground">
-        Three ways to start
-      </h3>
-      <p className="fx-scrim mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-        {PRICING_INTRO}
-      </p>
-
-      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         {PRICING.map((offer, i) => (
           <Card
             key={offer.title}
@@ -128,8 +118,10 @@ export function PricingSection() {
         </Card>
       </div>
 
+      {/* The one primary action on /services. The bottom-of-page CTA is deliberately an
+          outline: two glowing buttons on one page means neither of them is the next step. */}
       <div className="mt-8 flex flex-wrap items-center gap-3">
-        <Button asChild size="lg" className="glow-pulse">
+        <Button asChild size="xl" className="glow-pulse">
           <Link to="/contact">
             Talk it through <ArrowRight className="size-4" />
           </Link>

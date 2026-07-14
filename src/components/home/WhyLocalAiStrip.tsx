@@ -1,58 +1,42 @@
 import { Link } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
-import { WHY_LOCAL_AI_STATS } from '@/lib/content';
+import { SectionHead } from '@/components/SectionHead';
+import { RentVsOwn } from '@/components/RentVsOwn';
 
 /**
- * The argument, in three numbers, straight after the offer.
+ * The argument, straight after the offer.
  *
- * The full three-paragraph version lives on /services. This is the compressed form:
- * a buyer scanning the home page should get the case for local AI without reading
- * prose.
+ * It used to be three green stat cards. They said what you gain and never showed what you
+ * are being saved from, which is the half that actually persuades: "£0 per token" only
+ * lands on a reader who has already agreed that renting is a problem. RentVsOwn sets the
+ * two side by side and lets the colour carry it.
  */
 export function WhyLocalAiStrip() {
   return (
     <Reveal as="section" className="py-10">
-      <div className="mb-5 flex items-center gap-2">
-        <ShieldCheck className="size-4 text-primary" />
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-          why_local_ai
-        </h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-      </div>
+      {/* The prose is the deck: SectionHead already paints it with the scrim and the
+          reading measure this paragraph needs, so it does not get a second copy. */}
+      <SectionHead
+        title="Why local AI"
+        deck={
+          <>
+            Most businesses rent their AI. Every API call is a meter running, and every
+            prompt sends your data to a server you don&apos;t control.{' '}
+            {/* Always underlined, not just on hover: a link inside a body of text has to be
+                distinguishable by something other than colour, and green-on-grey only
+                manages 1.69:1 against the surrounding copy. */}
+            <Link
+              to="/services"
+              className="text-primary underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
+            >
+              There is another way
+            </Link>
+            .
+          </>
+        }
+      />
 
-      <p className="fx-scrim max-w-2xl leading-relaxed text-muted-foreground">
-        Most businesses rent their AI. Every API call is a meter running, and every
-        prompt sends your data to a server you don&apos;t control.{' '}
-        {/* Always underlined, not just on hover: a link inside a body of text has to be
-            distinguishable by something other than colour, and green-on-grey only
-            manages 1.69:1 against the surrounding copy. */}
-        <Link
-          to="/services"
-          className="text-primary underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
-        >
-          There is another way
-        </Link>
-        .
-      </p>
-
-      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        {WHY_LOCAL_AI_STATS.map((stat, i) => (
-          <Reveal key={stat.label} index={i}>
-            <Card size="sm" className="h-full text-center hover:border-primary/30">
-              <CardContent className="pt-5 pb-4">
-                <div className="glow-text font-heading text-3xl font-bold text-foreground">
-                  {stat.value}
-                </div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  {stat.label}
-                </div>
-              </CardContent>
-            </Card>
-          </Reveal>
-        ))}
-      </div>
+      <RentVsOwn />
     </Reveal>
   );
 }

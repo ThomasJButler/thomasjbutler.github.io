@@ -90,6 +90,10 @@ export function DecodeText({
           el.textContent = randomScrambleChar();
         } else if (state === 'locked' && states[i] !== 'locked') {
           el.textContent = chars[i];
+        } else if (state === 'pending' && states[i] !== 'pending') {
+          // A character waiting its turn shows its real self. See the note on the render
+          // below: nothing here is ever invisible.
+          el.textContent = chars[i];
         }
 
         // Only touch className on a transition, so the 0.45s lock glow fires once.
@@ -134,12 +138,20 @@ export function DecodeText({
                     {/* Reserves the slot at the size of the finished character, so the
                         glyph churn above it cannot re-wrap the line. */}
                     <span className="ch__sizer">{char}</span>
+                    {/* The glyph is rendered WITH its real character, not empty. This is
+                        what the server writes into the prerendered HTML, so the headline
+                        is painted and legible on the very first frame, before a single
+                        byte of JavaScript has run. The scramble then plays over the top
+                        of it. An empty span here would hand a crawler the words and hand
+                        a browser a blank screen. */}
                     <span
                       ref={(el) => {
                         spanRefs.current[i] = el;
                       }}
                       className="ch__glyph ch--pending"
-                    />
+                    >
+                      {char}
+                    </span>
                   </span>
                 );
               })}

@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Info, Lock, Workflow } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
+import { SectionHead } from '@/components/SectionHead';
 import { DecodeText } from '@/components/fx/DecodeText';
 import { CASE_STUDY } from '@/lib/content';
 import { projects } from '@/lib/projects';
@@ -78,12 +79,10 @@ export function CaseStudyPage() {
 
       {/* The problem */}
       <Reveal as="section" className="py-14">
-        <div className="mb-5 flex items-center gap-2">
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-            the_problem
-          </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
+        <SectionHead
+          title="Two hundred questions you have already answered"
+          deck="And the obvious fix, pasting them into someone else's API, is the thing a security questionnaire exists to stop."
+        />
         <div className="fx-scrim max-w-3xl space-y-4">
           {CASE_STUDY.problem.map((p) => (
             <p key={p} className="leading-relaxed text-muted-foreground">
@@ -95,13 +94,10 @@ export function CaseStudyPage() {
 
       {/* The approach */}
       <Reveal as="section" className="py-14">
-        <div className="mb-5 flex items-center gap-2">
-          <Lock className="size-4 text-primary" />
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-            the_approach
-          </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
+        <SectionHead
+          title="Ground every answer, and make the model the replaceable part"
+          deck="Retrieval over policy you already approved, a confidence score on every draft, and a model you can swap for one on your own hardware."
+        />
         <div className="fx-scrim max-w-3xl space-y-4">
           {CASE_STUDY.approach.map((p) => (
             <p key={p} className="leading-relaxed text-muted-foreground">
@@ -111,15 +107,14 @@ export function CaseStudyPage() {
         </div>
       </Reveal>
 
-      {/* How it works */}
+      {/* How it works. The one place the machine voice earns its eyebrow: this section is
+          literally a pipeline, and naming it as one is not decoration. */}
       <Reveal as="section" className="py-14">
-        <div className="mb-5 flex items-center gap-2">
-          <Workflow className="size-4 text-primary" />
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-            how_it_works
-          </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
+        <SectionHead
+          eyebrow="pipeline --trace"
+          title="What happens to a single question"
+          deck="Five stages, from your documents to an answer a reviewer can check in seconds."
+        />
 
         <ol className="relative ml-4 border-l-2 border-primary/20 pl-8">
           {CASE_STUDY.architecture.map((s, i) => (
@@ -141,12 +136,7 @@ export function CaseStudyPage() {
       */}
       {CASE_STUDY.results && CASE_STUDY.results.length > 0 && (
         <Reveal as="section" className="py-14">
-          <div className="mb-5 flex items-center gap-2">
-            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-              results
-            </h2>
-            <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-          </div>
+          <SectionHead title="What it changed" deck="Measured, not estimated." />
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {CASE_STUDY.results.map((r) => (
               <Card key={r.label} size="sm" className="text-center">
@@ -166,12 +156,10 @@ export function CaseStudyPage() {
 
       {/* What it proves */}
       <Reveal as="section" className="py-14">
-        <div className="mb-5 flex items-center gap-2">
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-            what_it_proves
-          </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
+        <SectionHead
+          title="What it proves"
+          deck="The model is the easy part. Everything that makes an AI answer checkable sits around it."
+        />
         <ul className="fx-scrim max-w-3xl space-y-3">
           {CASE_STUDY.proves.map((p) => (
             <li key={p} className="flex items-start gap-3 leading-relaxed text-muted-foreground">
@@ -192,13 +180,13 @@ export function CaseStudyPage() {
           are actually spending and sending.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg" className="glow-pulse">
+          <Button asChild size="xl" className="glow-pulse">
             <Link to="/contact">
-              Get in Touch <ArrowRight className="size-4" />
+              Talk it through <ArrowRight className="size-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/services">What I Build</Link>
+            <Link to="/services">What I build</Link>
           </Button>
         </div>
       </Reveal>

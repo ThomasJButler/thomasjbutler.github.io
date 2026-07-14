@@ -52,7 +52,7 @@ const RABBIT_LEAVES_AFTER = 15_000;
 function PageLoader() {
   return (
     <div className="flex min-h-screen items-start justify-center pt-[30vh]">
-      <div className="size-8 animate-spin rounded-full border-2 border-matrix-700 border-t-matrix-500" />
+      <div className="size-8 animate-spin rounded-full border-2 border-border border-t-primary" />
     </div>
   );
 }
@@ -69,9 +69,22 @@ export function Layout() {
   const [paletteUsed, setPaletteUsed] = useState(false);
   const [spoon, setSpoon] = useState(false);
   const [rabbit, setRabbit] = useState(false);
-  const [booting, setBooting] = useState(
-    () => motionOk && !sessionStorage.getItem(BOOT_SESSION_KEY)
-  );
+  /*
+   * The boot sequence no longer plays on arrival, and it is not coming back.
+   *
+   * It held an opaque, scroll-locked black overlay for 2.2-2.9s, swallowed the first
+   * click, and the real page had already rendered *behind* it: it was pure dead time,
+   * paid for by the one visitor who matters, the one arriving cold from a link. Lighthouse
+   * does not emulate reduced motion, so it sat through the black screen too.
+   *
+   * The sequence itself is good and it survives: ⌘K → "replay intro" plays it on demand.
+   * Personality you choose to see is charm. Personality you cannot skip is a toll.
+   *
+   * Incidentally this was also the only unguarded browser-global read during render in the
+   * whole tree (`sessionStorage` in a useState initialiser), which is what made the app
+   * impossible to prerender.
+   */
+  const [booting, setBooting] = useState(false);
 
   const catchRabbit = useCallback(() => {
     setRabbit(false);
@@ -113,7 +126,9 @@ export function Layout() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  // The rabbit, once per session, and only once the boot intro is out of the way.
+  // The rabbit, once per session. It used to wait for the boot intro to finish; now the
+  // intro only plays on request, so the timer simply starts on arrival. It still holds
+  // off while the intro is replaying, so it cannot hop about behind a black overlay.
   useEffect(() => {
     if (!motionOk || booting || sessionStorage.getItem(RABBIT_SESSION_KEY)) return;
 

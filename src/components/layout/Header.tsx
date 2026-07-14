@@ -33,7 +33,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_1px_20px_oklch(0.50_0.28_145/0.04)]">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_1px_20px_color-mix(in_oklab,var(--primary)_4%,transparent)]">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
         <Link
@@ -52,8 +52,8 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               className={cn(
                 'rounded-md px-3 py-1.5 font-mono text-xs transition-colors',
                 location.pathname === item.href
-                  ? 'bg-surface-2 text-matrix-300 shadow-[0_1px_0_oklch(0.50_0.28_145/0.5)]'
-                  : 'text-text-muted hover:bg-surface-2 hover:text-text'
+                  ? 'bg-accent text-primary shadow-[0_1px_0_color-mix(in_oklab,var(--primary)_50%,transparent)]'
+                  : 'text-muted-foreground hover:bg-accent hover:text-foreground'
               )}
             >
               {item.label}
@@ -76,7 +76,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-primary"
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-primary"
             >
               <GithubIcon className="size-4" />
             </a>
@@ -85,7 +85,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="rounded-md p-1.5 text-text-muted transition-colors hover:text-primary"
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-primary"
             >
               <LinkedinIcon className="size-4" />
             </a>
@@ -128,8 +128,8 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   className={cn(
                     'rounded-md px-4 py-2.5 font-mono text-sm transition-colors',
                     location.pathname === item.href
-                      ? 'bg-surface-2 text-primary'
-                      : 'text-text-muted hover:bg-surface-1 hover:text-text'
+                      ? 'bg-accent text-primary'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   )}
                 >
                   {item.label}
@@ -143,8 +143,8 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                 className={cn(
                   'rounded-md px-4 py-2.5 font-mono text-sm transition-colors',
                   location.pathname === '/updates'
-                    ? 'bg-surface-2 text-primary'
-                    : 'text-text-muted hover:bg-surface-1 hover:text-text'
+                    ? 'bg-accent text-primary'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 )}
               >
                 Dev Journey
@@ -156,7 +156,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                     setMobileOpen(false);
                     onOpenPalette();
                   }}
-                  className="rounded-md px-4 py-2.5 text-left font-mono text-sm text-primary transition-colors hover:bg-surface-1"
+                  className="rounded-md px-4 py-2.5 text-left font-mono text-sm text-primary transition-colors hover:bg-muted"
                 >
                   ⌘K palette
                 </button>
@@ -167,7 +167,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
-                  className="rounded-md p-2 text-text-muted transition-colors hover:text-primary"
+                  className="rounded-md p-2 text-muted-foreground transition-colors hover:text-primary"
                 >
                   <GithubIcon className="size-4" />
                 </a>
@@ -176,7 +176,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="rounded-md p-2 text-text-muted transition-colors hover:text-primary"
+                  className="rounded-md p-2 text-muted-foreground transition-colors hover:text-primary"
                 >
                   <LinkedinIcon className="size-4" />
                 </a>

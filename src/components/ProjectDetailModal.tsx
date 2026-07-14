@@ -89,7 +89,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
         <DialogHeader>
           {/* Category + Language */}
           <div className="flex items-center gap-2 mb-1">
-            <Badge variant="cyan" className="text-[10px]">
+            <Badge variant="secondary" className="text-[10px]">
               {categoryLabel[project.category] || project.category}
             </Badge>
             <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">

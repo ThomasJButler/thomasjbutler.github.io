@@ -30,14 +30,29 @@ import { Providers } from './Providers';
 import { App } from './App';
 import './app.css';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const container = document.getElementById('root') as HTMLElement;
 
-root.render(
+const tree = (
   <React.StrictMode>
     <Providers>
       <App />
     </Providers>
   </React.StrictMode>
 );
+
+/*
+ * Hydrate the prerendered markup rather than throwing it away.
+ *
+ * Every route is rendered to real HTML at build time (see src/entry-server.tsx), so #root
+ * arrives with content in it. createRoot would discard all of that and rebuild the DOM
+ * from scratch, which would undo the entire point: the browser would paint the real page,
+ * then blank it, then paint it again.
+ *
+ * The `firstChild` check is not paranoia. It keeps `npm run dev` working, where Vite
+ * serves the raw index.html with an empty #root and there is nothing to hydrate.
+ */
+if (container.firstChild) {
+  ReactDOM.hydrateRoot(container, tree);
+} else {
+  ReactDOM.createRoot(container).render(tree);
+}

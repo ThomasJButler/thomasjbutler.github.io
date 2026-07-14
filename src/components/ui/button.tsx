@@ -8,8 +8,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        // The glow is mixed from --primary, not hard-coded green. The red/blue accent
+        // pill rewrites --primary on documentElement, and a literal oklch(...145) here
+        // meant every glow on the site stayed Matrix green while the text turned blue.
         default:
-          "bg-primary text-primary-foreground shadow-[0_0_16px_oklch(0.50_0.28_145/0.18)] hover:bg-primary/85 hover:shadow-[0_0_24px_oklch(0.50_0.28_145/0.3)]",
+          "bg-primary text-primary-foreground shadow-[0_0_16px_color-mix(in_oklab,var(--primary)_18%,transparent)] hover:bg-primary/85 hover:shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_30%,transparent)]",
         outline:
           "border border-primary/30 text-primary/90 hover:border-primary/60 hover:bg-primary/5 hover:text-primary",
         secondary:
@@ -26,6 +29,10 @@ const buttonVariants = cva(
         xs: "h-6 gap-1 rounded-md px-2 text-xs [&_svg:not([class*='size-'])]:size-3",
         sm: "h-7 gap-1 rounded-md px-2.5 text-[0.8rem] [&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-9 px-3",
+        // The primary action needs to be physically bigger, not just glowing. `lg` is
+        // 36px, four pixels taller than default, which left `.glow-pulse` (a 3s breathing
+        // box-shadow that reads as ambient) doing all the work of hierarchy on its own.
+        xl: "h-11 gap-2 px-5 text-[0.95rem] font-semibold",
         icon: "size-8",
         "icon-sm": "size-7 rounded-md",
       },

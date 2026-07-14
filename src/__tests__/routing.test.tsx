@@ -27,12 +27,12 @@ const headingOf = async () =>
 describe('Routing', () => {
   test('renders the home page at /', async () => {
     renderAt('/');
-    expect(await headingOf()).toMatch(/Tom/i);
+    expect(await headingOf()).toMatch(/AI you own/i);
   });
 
   test('renders the about page at /about', async () => {
     renderAt('/about');
-    expect(await headingOf()).toMatch(/programming/i);
+    expect(await headingOf()).toMatch(/AI that businesses actually own/i);
   });
 
   test('renders the dev journey at /updates', async () => {

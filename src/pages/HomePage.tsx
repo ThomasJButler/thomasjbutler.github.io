@@ -1,89 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { m as motion, useMotionValue, useTransform, animate as motionAnimate } from 'framer-motion';
-import {
-  ArrowRight,
-  ExternalLink,
-  Terminal,
-  Cpu,
-  Zap,
-  Globe,
-  Code,
-  GitBranch,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Reveal } from '@/components/fx/Reveal';
 import { OperatorHero } from '@/components/home/OperatorHero';
 import { ServicesTeaser } from '@/components/home/ServicesTeaser';
 import { WhyLocalAiStrip } from '@/components/home/WhyLocalAiStrip';
+import { ProofSection } from '@/components/home/ProofSection';
 import { NewsletterStrip } from '@/components/NewsletterStrip';
-import { NOW_COPY, NOW_TAGS, RECENT_ACTIVITY } from '@/lib/content';
+import { NOW_COPY, NOW_TAGS } from '@/lib/content';
 
-/* ─── System Status Dashboard Data ─── */
-const SKILL_BARS = [
-  { label: 'React / Next.js', value: 95, color: 'oklch(0.50 0.28 145)' },
-  { label: 'TypeScript', value: 90, color: 'oklch(0.55 0.25 145)' },
-  { label: 'Python / AI', value: 85, color: 'oklch(0.75 0.15 195)' },
-  { label: 'Node.js / APIs', value: 88, color: 'oklch(0.50 0.28 145)' },
-  { label: 'Cloud / DevOps', value: 75, color: 'oklch(0.80 0.15 85)' },
-];
-
-const SYSTEM_STATS = [
-  { icon: Code, label: 'Projects', value: '15+' },
-  { icon: Cpu, label: 'AI Models', value: '7' },
-  { icon: Globe, label: 'Deployments', value: '20+' },
-  { icon: Zap, label: 'Uptime', value: '99.9%' },
-];
-
-/* ─── Animated Counter ─── */
-function AnimatedNumber({ target, duration = 1.5 }: { target: number; duration?: number }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v));
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    const controls = motionAnimate(count, target, { duration, ease: 'easeOut' });
-    const unsub = rounded.on('change', (v) => setDisplay(v));
-    return () => { controls.stop(); unsub(); };
-  }, [target, duration, count, rounded]);
-
-  return <span>{display}</span>;
-}
-
-/* ─── Skill Bar ─── */
-function SkillBar({ label, value, color, delay }: { label: string; value: number; color: string; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay }}
-    >
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="font-mono text-xs text-foreground/80">{label}</span>
-        <span className="font-mono text-xs text-primary/70">
-          <AnimatedNumber target={value} duration={1.5 + delay} />%
-        </span>
-      </div>
-      <div className="h-2 w-full rounded-full bg-muted/60 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${value}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: delay + 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="h-full rounded-full"
-          style={{
-            background: `linear-gradient(90deg, ${color}, ${color}88)`,
-            boxShadow: `0 0 12px ${color}40`,
-          }}
-        />
-      </div>
-    </motion.div>
-  );
-}
+/*
+ * What used to live here: self-assessed percentage skill bars ("React 95%") and a stat
+ * grid reading "Uptime 99.9%" and "AI Models 7".
+ *
+ * Both are gone, and their absence is the point. A buyer scrolling from an £18,000 RAG
+ * quote to a bar chart of my own opinion of myself is being told, loudly, that this is a
+ * junior portfolio. Uptime of *what*, measured by *whom*? Numbers nobody can check are
+ * worth less than no numbers, because they teach the reader to discount the ones that
+ * are checkable — and the checkable ones (60-80% saved, 0 bytes to third parties) are
+ * already doing real work two sections above.
+ */
 
 export function HomePage() {
   useEffect(() => {
@@ -105,186 +44,70 @@ export function HomePage() {
 
       <WhyLocalAiStrip />
 
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-6" />
-
-      {/* ═══ System Status Dashboard ═══ */}
-      <section className="py-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex items-center gap-2 mb-5">
-            <Terminal className="size-4 text-primary" />
-            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-              system_status
-            </h2>
-            <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-            <span className="font-mono text-[10px] text-primary/60 flex items-center gap-1.5">
-              <span className="inline-block size-1.5 rounded-full bg-green-500 animate-pulse" />
-              open to work
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-5">
-          {SYSTEM_STATS.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-              >
-                <Card size="sm" className="text-center group hover:border-primary/30">
-                  <CardContent className="pt-5 pb-4">
-                    <Icon className="size-4 mx-auto mb-2.5 text-primary/50 group-hover:text-primary transition-colors" />
-                    <div className="font-heading text-3xl font-bold text-foreground glow-text">{stat.value}</div>
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Two Column: Skills + Activity */}
-        <div className="grid gap-4 md:grid-cols-2">
-          {/* Skill Levels */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Cpu className="size-4 text-primary/60" />
-                <CardTitle className="font-mono text-xs uppercase tracking-wider">core_skills</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {SKILL_BARS.map((skill, i) => (
-                <SkillBar key={skill.label} {...skill} delay={i * 0.1} />
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Recent Activity */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <GitBranch className="size-4 text-primary/60" />
-                <CardTitle className="font-mono text-xs uppercase tracking-wider">recent_activity</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {RECENT_ACTIVITY.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: i * 0.08 }}
-                      className="flex items-start gap-3"
-                    >
-                      <div className="flex size-6 shrink-0 items-center justify-center rounded bg-primary/10 text-primary mt-0.5">
-                        <Icon className="size-3" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm text-foreground/90 leading-tight">{item.text}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4">{item.badge}</Badge>
-                          <span className="font-mono text-[10px] text-muted-foreground">{item.year}</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-2" />
+      {/* ═══ Evidence ═══
+          The buyer has had the offer and the argument. What they want next is proof that
+          the person making it has actually done it, so this is the case study and the
+          real, dated work — not a self-assessment. */}
+      <ProofSection />
 
       {/* ═══ Currently Working On ═══ */}
-      <section className="py-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="rounded-lg border border-primary/20 bg-primary/[0.03] p-5"
-        >
-          <div className="flex items-center gap-2 mb-3">
+      <Reveal as="section" className="py-4">
+        <div className="rounded-lg border border-primary/20 bg-primary/[0.03] p-5">
+          <div className="mb-3 flex items-center gap-2">
             <Sparkles className="size-3.5 text-primary" />
             <span className="font-mono text-xs uppercase tracking-wider text-primary/70">now</span>
           </div>
-          <p className="text-sm text-foreground/80 leading-relaxed">{NOW_COPY}</p>
-          <div className="flex flex-wrap gap-1.5 mt-3">
+          <p className="text-sm leading-relaxed text-foreground/80">{NOW_COPY}</p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {NOW_TAGS.map((tag) => (
-              <Badge
-                key={tag.label}
-                variant={tag.tone === 'default' ? 'secondary' : tag.tone}
-                className="text-[10px]"
-              >
-                {tag.label}
+              <Badge key={tag} variant="secondary" className="text-[10px]">
+                {tag}
               </Badge>
             ))}
           </div>
-        </motion.div>
-      </section>
+        </div>
+      </Reveal>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent my-2" />
-
-      {/* ═══ About Quote — Terminal Output ═══ */}
-      <section className="py-6 pb-12">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="rounded-lg border border-border/30 overflow-hidden">
-            <div className="px-4 py-1.5 bg-muted/20 border-b border-border/20">
-              <span className="font-mono text-[10px] text-muted-foreground/50">$ cat about.md</span>
-            </div>
-            <div className="p-5">
-              <p className="text-muted-foreground leading-relaxed text-[15px]">
-                Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building things on the web.
-                This site is the sci-fi playground I always dreamed of, a space to experiment with AI,
-                cyberpunk aesthetics, and creative code.
-              </p>
-            </div>
+      {/* ═══ The Matrix origin story ═══
+          Kept, because it is genuinely charming and it is the reason this site looks like
+          it does. What is gone is the ghost button that sat here pointing at a *different
+          portfolio*: the last thing a buyer saw before the newsletter was an invitation to
+          leave. The remaining links go deeper into this site, not out of it. */}
+      <Reveal as="section" className="py-6 pb-12">
+        <div className="overflow-hidden rounded-lg border border-border/30">
+          <div className="border-b border-border/20 bg-muted/20 px-4 py-1.5">
+            <span className="font-mono text-[10px] text-muted-foreground/50">$ cat about.md</span>
           </div>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/about">More about me <ArrowRight className="size-3" /></Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm">
-              <a href="https://thomasjbutler.me" target="_blank" rel="noopener noreferrer">
-                Commercial portfolio <ExternalLink className="size-3" />
-              </a>
-            </Button>
-            <Button asChild variant="ghost" size="sm">
-              <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
-                <GithubIcon className="size-3" /> GitHub
-              </a>
-            </Button>
-            <Button asChild variant="ghost" size="sm">
-              <a href="https://thomasjbutler.github.io/version-timetravel/" target="_blank" rel="noopener noreferrer">
-                TimeTravel <ExternalLink className="size-3" />
-              </a>
-            </Button>
+          <div className="p-5">
+            <p className="text-[15px] leading-relaxed text-muted-foreground">
+              Ever since I watched The Matrix as a kid, I&apos;ve been obsessed with building
+              things on the web. This site is the sci-fi playground I always dreamed of, a
+              space to experiment with AI, cyberpunk aesthetics, and creative code.
+            </p>
           </div>
-        </motion.div>
-      </section>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/about">
+              More about me <ArrowRight className="size-3" />
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
+              <GithubIcon className="size-3" /> GitHub
+            </a>
+          </Button>
+          <Button asChild variant="ghost" size="sm">
+            <a
+              href="https://thomasjbutler.github.io/version-timetravel/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TimeTravel <ExternalLink className="size-3" />
+            </a>
+          </Button>
+        </div>
+      </Reveal>
 
         <section className="pb-16">
           <NewsletterStrip />

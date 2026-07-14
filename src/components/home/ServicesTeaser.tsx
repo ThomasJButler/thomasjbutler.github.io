@@ -3,6 +3,7 @@ import { ArrowRight, Cpu, Database, FileSearch } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
+import { SectionHead } from '@/components/SectionHead';
 
 /**
  * The offer, immediately below the hero.
@@ -33,13 +34,10 @@ const TEASERS = [
 export function ServicesTeaser() {
   return (
     <Reveal as="section" className="py-10">
-      <div className="mb-5 flex items-center gap-2">
-        <Cpu className="size-4 text-primary" />
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-          what_i_build
-        </h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-      </div>
+      <SectionHead
+        title="What I build"
+        deck="Three fixed-fee ways in. The audit is the cheapest way to find out whether the other two are worth doing."
+      />
 
       <div className="grid gap-4 sm:grid-cols-3">
         {TEASERS.map((t, i) => {

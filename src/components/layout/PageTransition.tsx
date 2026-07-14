@@ -1,6 +1,21 @@
-import { useLayoutEffect, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { m as motion, useReducedMotion } from 'framer-motion';
 import { EASE_OUT_EXPO, STEPS_2 } from '@/lib/fx/easing';
+
+/**
+ * The very first page of a visit does not fade in. Every one after it does.
+ *
+ * This wraps <Outlet/>, so its `initial={{ opacity: 0 }}` is the opacity of the entire
+ * body of every route. Prerendered, that serialises as `style="opacity:0"` on the whole
+ * page: a crawler would read the words, a browser would paint a blank screen, and the
+ * point of prerendering would be lost in the one place it matters most.
+ *
+ * A module-scoped flag rather than state, deliberately. It has to be false during the
+ * server render AND during the client's hydrating render, so both produce identical
+ * markup, and it must not reset when a component remounts. Route changes after that get
+ * the full glitch-out and fade-in, which is where the transition was always for.
+ */
+let hasEntered = false;
 
 /**
  * Glitch-out, swap, enter.
@@ -13,16 +28,23 @@ import { EASE_OUT_EXPO, STEPS_2 } from '@/lib/fx/easing';
  */
 export function PageTransition({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
+  const isFirst = !hasEntered;
+
+  useEffect(() => {
+    hasEntered = true;
+  }, []);
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+    // Not on the first paint: a prerendered page is already at the top, and calling
+    // scrollTo here would fight a browser restoring a scroll position on reload.
+    if (!isFirst) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [isFirst]);
 
   if (reduced) return <div>{children}</div>;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={isFirst ? false : { opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{
         opacity: [1, 0.75, 0.4, 0],

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
-import { ArrowRight, Mail, Cpu, Award } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,11 +13,13 @@ import {
 } from '@/components/ui/accordion';
 import { Separator } from '@/components/ui/separator';
 import { MotionSection } from '@/components/MotionSection';
+import { SectionHead } from '@/components/SectionHead';
 import { NewsletterStrip } from '@/components/NewsletterStrip';
 import { PricingSection } from '@/components/services/PricingSection';
 import { FaqSection } from '@/components/services/FaqSection';
 import { Reveal } from '@/components/fx/Reveal';
-import { SERVICES, SERVICES_INTRO, WHY_LOCAL_AI, WHY_LOCAL_AI_STATS, LINKS } from '@/lib/content';
+import { SERVICES, SERVICES_INTRO, WHY_LOCAL_AI, LINKS } from '@/lib/content';
+import { RentVsOwn } from '@/components/RentVsOwn';
 import { cn } from '@/lib/utils';
 
 const CREDENTIALS = [
@@ -86,11 +88,12 @@ export function ServicesPage() {
 
       {/* Service Cards */}
       <MotionSection className="py-16">
-        <h2 className="font-heading text-sm font-medium uppercase tracking-widest text-primary/70">
-          Services
-        </h2>
+        <SectionHead
+          title="Where I can help"
+          deck="Local and private AI is what I lead with. The rest is the engineering that has to be solid around it."
+        />
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {SERVICES.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -150,20 +153,10 @@ export function ServicesPage() {
 
       {/* Why Local AI */}
       <Reveal as="section" className="py-16">
-        <div className="flex items-center gap-2 mb-5">
-          <Cpu className="size-4 text-primary" />
-          <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
-            why_local_ai
-          </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
+        <SectionHead title="Why local AI" />
 
-        <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground">
-          Why Local AI
-        </h3>
-
-        {/* Prose sits over the live rain — fx-scrim paints the page background back in behind it. */}
-        <div className="fx-scrim mt-4 max-w-3xl space-y-4">
+        {/* Prose sits over the live rain: fx-scrim paints the page background back in behind it. */}
+        <div className="fx-scrim max-w-3xl space-y-4">
           {WHY_LOCAL_AI.map((paragraph) => (
             <p key={paragraph} className="text-muted-foreground leading-relaxed">
               {paragraph}
@@ -171,32 +164,19 @@ export function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {WHY_LOCAL_AI_STATS.map((stat) => (
-            <Card key={stat.label} size="sm" className="text-center hover:border-primary/30">
-              <CardContent className="pt-5 pb-4">
-                <div className="font-heading text-3xl font-bold text-foreground glow-text">
-                  {stat.value}
-                </div>
-                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
-                  {stat.label}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <RentVsOwn className="mt-8" />
       </Reveal>
 
       <Separator />
 
       {/* Credentials */}
       <MotionSection className="py-16" delay={0.1}>
-        <h2 className="font-heading text-sm font-medium uppercase tracking-widest text-primary/70">
-          <Award className="mr-1.5 inline size-4 align-text-bottom" />
-          Credentials
-        </h2>
+        <SectionHead
+          title="Credentials"
+          deck="The paper trail, grouped by what it is actually for."
+        />
 
-        <Accordion className="mt-6">
+        <Accordion>
           {CREDENTIALS.map((group) => (
             <AccordionItem key={group.category} value={group.category}>
               <AccordionTrigger className="font-heading text-sm">
@@ -230,15 +210,18 @@ export function ServicesPage() {
         <p className="mt-2 text-sm text-muted-foreground">
           Free consultation. No obligation. Let&apos;s discuss your project.
         </p>
+        {/* Outline, not glow: the primary action on this page is the one in the pricing
+            section, where the reader has just been told what it costs. This is the same
+            action for anyone who scrolled past it, not a second one. */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg" className="glow-pulse">
+          <Button asChild variant="outline" size="lg">
             <Link to="/contact">
-              Get in Touch <ArrowRight className="size-4" />
+              Talk it through <ArrowRight className="size-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg">
+          <Button asChild variant="ghost" size="lg">
             <a href={`mailto:${LINKS.email}`}>
-              <Mail className="size-4" /> Email Directly
+              <Mail className="size-4" /> Email directly
             </a>
           </Button>
         </div>

@@ -211,9 +211,9 @@ export function UpdatesPage() {
           Let&apos;s Build Something
         </h2>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button asChild size="lg">
+          <Button asChild size="xl" className="glow-pulse">
             <Link to="/contact">
-              Get in Touch <ArrowRight className="size-4" />
+              Talk it through <ArrowRight className="size-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">

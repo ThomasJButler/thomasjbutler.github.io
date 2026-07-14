@@ -19,7 +19,7 @@ Throughout: "live (v3.5)" = the shipped React 19 SPA on `main`; "v4.0 target" = 
 - **Brand-voice content rules (not just styling)** — first-person casual British English (specialise / behaviour / optimise / colour, never Americanised), no marketing fluff (no synergy / leverage / unlock), rule-of-three sentence rhythm, terminal prefixes as real copy, **no emoji ever**, and the Matrix origin story kept verbatim. See §7.
 
 ---
-
+`
 ## 1. Chrome — Header / Navigation, Footer, Theme toggle
 
 v3.5 ships a full-bleed fixed 70px solid-black header (logo + Orbitron wordmark, inline FA socials, uppercase nav, labelled DARK/MATRIX text toggle) and a tall 3-column matrix footer; v4.0 replaces both with a floating sticky 56px glass "mission-control" tile (TB monogram, `>tom_butler` mono wordmark, online pill, contained magnetic nav, ⌘K search, UTC clock, icon-only sun/moon toggle) and a single minimal mono footer row, and flips the theme model from `matrix|dark` to `neon-terminal|circuit`.

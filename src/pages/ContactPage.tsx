@@ -116,13 +116,24 @@ export function ContactPage() {
               </div>
             </div>
 
-            {/* Availability */}
+            {/*
+              Availability, framed as a consultant's.
+
+              This used to read "Open to full-time roles & freelance", with "CV on request"
+              under it. On the page where a £12,000 engagement starts, that tells the buyer
+              you would rather have a salary, and it quietly reprices everything on
+              /services: a man who wants a job will take less for the project.
+            */}
             <div className="flex items-start gap-3">
               <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="font-heading text-sm font-medium text-foreground">Availability</p>
-                <p className="text-sm text-muted-foreground">Open to full-time roles &amp; freelance</p>
-                <p className="text-sm text-muted-foreground">UK / remote &middot; CV on request</p>
+                <p className="text-sm text-muted-foreground">
+                  Taking on new engagements now
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  UK wide, remote, on-site where the hardware is
+                </p>
               </div>
             </div>
 
@@ -153,15 +164,9 @@ export function ContactPage() {
                   <LinkedinIcon className="size-4 shrink-0" />
                   linkedin.com/in/thomasjbutler
                 </a>
-                <a
-                  href="https://buymeacoffee.com/thomasjbutler"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
-                >
-                  <Coffee className="size-4 shrink-0" />
-                  Buy me a coffee
-                </a>
+                {/* "Buy me a coffee" used to live here, under the phone number, on the
+                    page where a five-figure engagement begins. It is a tip jar, and a tip
+                    jar next to a price list tells the buyer which one you really expect. */}
               </CardContent>
             </Card>
           </div>

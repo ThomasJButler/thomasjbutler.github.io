@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { m as motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Star, Terminal } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -17,6 +18,7 @@ import type { Project } from '@/lib/projects';
 import { ProjectDetailModal } from '@/components/ProjectDetailModal';
 import { ProjectCover } from '@/components/projects/ProjectCover';
 import { MotionSection } from '@/components/MotionSection';
+import { SectionHead } from '@/components/SectionHead';
 import { DecodeText } from '@/components/fx/DecodeText';
 
 const featuredProjects = projects.filter((p) => p.featured);
@@ -60,12 +62,13 @@ export function ProjectsPage() {
 
       {/* Featured Projects */}
       {activeCategory === 'all' && featuredProjects.length > 0 && (
-        <section className="mt-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Star className="size-3.5 text-amber" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">featured</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-          </div>
+        <section className="mt-12">
+          {/* No count in the deck: the featured set is whatever projects.ts flags, and a
+              hard-coded number goes stale the moment Tom flags a seventh. */}
+          <SectionHead
+            title="The ones worth your time"
+            deck="The builds I would show you first. Click any card for the full write-up."
+          />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project, i) => (
               <motion.div
@@ -111,14 +114,8 @@ export function ProjectsPage() {
       )}
 
       {/* Filter tabs */}
-      <div className="mt-10">
-        <div className="flex items-center gap-2 mb-4">
-          <Terminal className="size-3.5 text-primary" />
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">all_projects</span>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/20 to-transparent" />
-        </div>
-      </div>
-      <div>
+      <section className="mt-14">
+        <SectionHead title="Everything" deck="Filter by the kind of work you came looking for." />
         <Tabs
           value={activeCategory}
           onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}
@@ -138,75 +135,105 @@ export function ProjectsPage() {
             ))}
           </TabsList>
         </Tabs>
-      </div>
 
-      {/* Project grid */}
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project, i) => (
-            // Keyed by category as well as id, so switching filter remounts every card
-            // and the stagger plays again instead of the survivors sitting still.
-            <motion.div
-              key={`${activeCategory}-${project.id}`}
-              layout
-              initial={{ opacity: 0, scale: 0.95, y: 12 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                // Stagger per column, not down the whole grid: cards ripple across
-                // each row of three rather than the last card waiting on all the rest.
-                transition: { duration: 0.35, delay: (i % 3) * 0.07 },
-              }}
-              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.18 } }}
-            >
-              <Card
-                featured={project.featured}
-                className={cardBorder}
-                onClick={() => setSelectedProject(project)}
+        {/* Project grid.
+         *
+         * No `layout` prop and no `mode="popLayout"`, and their absence is deliberate.
+         * Both need framer-motion's layout-projection feature, which ships in `domMax` but
+         * not in the `domAnimation` bundle this app loads (see Providers). So they have not
+         * actually done anything since LazyMotion was introduced: they were dead props
+         * quietly asking for 12 kB gzipped of feature code that would have to be shipped to
+         * every visitor to animate a grid reflow that only fires when you click a filter.
+         * The stagger below is the part people actually see, and it works without them.
+         */}
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence>
+            {filtered.map((project, i) => (
+              // Keyed by category as well as id, so switching filter remounts every card
+              // and the stagger plays again instead of the survivors sitting still.
+              <motion.div
+                key={`${activeCategory}-${project.id}`}
+                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  // Stagger per column, not down the whole grid: cards ripple across
+                  // each row of three rather than the last card waiting on all the rest.
+                  transition: { duration: 0.35, delay: (i % 3) * 0.07 },
+                }}
+                exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.18 } }}
               >
-                <ProjectCover project={project} />
-                <CardHeader>
-                  <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
-                  <CardDescription className="line-clamp-2">{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.topics.map((t) => (
-                      <Badge key={t} variant="secondary">{t}</Badge>
-                    ))}
-                  </div>
-                  <div className="mt-3 flex items-center gap-3">
-                    <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-                      <span className="inline-block size-2.5 rounded-full" style={{ backgroundColor: languageColors[project.language] || '#666' }} />
-                      {project.language}
-                    </span>
-                    <Badge variant={categoryBadgeVariant[project.category] as 'cyan' | 'amber' | 'secondary' || 'secondary'} className="text-[10px] px-1.5 py-0 h-4">
-                      {categoryLabel[project.category] || project.category}
-                    </Badge>
-                  </div>
-                </CardContent>
-                <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
-                  {project.links.demo && (
-                    <Button asChild variant="ghost" size="xs">
-                      <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="size-3" /> Live
-                      </a>
-                    </Button>
-                  )}
-                  {project.links.github && (
-                    <Button asChild variant="ghost" size="xs">
-                      <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                        <GithubIcon className="size-3" /> Code
-                      </a>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+                <Card
+                  featured={project.featured}
+                  className={cardBorder}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <ProjectCover project={project} />
+                  <CardHeader>
+                    <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
+                    <CardDescription className="line-clamp-2">{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.topics.map((t) => (
+                        <Badge key={t} variant="secondary">{t}</Badge>
+                      ))}
+                    </div>
+                    <div className="mt-3 flex items-center gap-3">
+                      <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                        <span className="inline-block size-2.5 rounded-full" style={{ backgroundColor: languageColors[project.language] || '#666' }} />
+                        {project.language}
+                      </span>
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4">
+                        {categoryLabel[project.category] || project.category}
+                      </Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
+                    {project.links.demo && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="size-3" /> Live
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.github && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                          <GithubIcon className="size-3" /> Code
+                        </a>
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* The grid used to dead-end here. Someone who has read this far is interested and
+          had nowhere to go: the case study is the one that turns a browse into a brief. */}
+      <MotionSection className="py-16 text-center">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+          Want the long version?
+        </h2>
+        <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
+          One of these is written up properly: the problem, the architecture, and what I
+          would do differently. If the shape of it looks like something you have, say so.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="xl" className="glow-pulse">
+            <Link to="/case-study">
+              Read the case study <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link to="/contact">Talk it through</Link>
+          </Button>
+        </div>
+      </MotionSection>
 
       {/* Project Detail Modal */}
       <ProjectDetailModal

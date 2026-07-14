@@ -3,8 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DecodeText } from '@/components/fx/DecodeText';
 import { OperatorConsole } from './OperatorConsole';
-import { useTypedPhrases } from '@/hooks/useTypedPhrases';
-import { HERO_EYEBROW, HERO_PHRASES, HERO_SUB } from '@/lib/content';
+import { HERO_EYEBROW, HERO_H1, HERO_SUB } from '@/lib/content';
 
 function ScrollCue() {
   return (
@@ -14,7 +13,7 @@ function ScrollCue() {
       onClick={() =>
         document.getElementById('below')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-      aria-label="Scroll to system status"
+      aria-label="Scroll to what I build"
     >
       <span className="tri" aria-hidden="true">
         ▼
@@ -24,9 +23,18 @@ function ScrollCue() {
   );
 }
 
+/**
+ * The hero leads with the argument.
+ *
+ * Gone with the greeting: the rotating typed phrase. It looped forever, re-rendering the
+ * hero on every character for as long as the tab was open, and once the H1 *is* the
+ * thesis it was saying a quieter version of the same thing directly underneath it.
+ *
+ * The console stays, because it is the one place the terminal motif genuinely earns its
+ * keep: `netstat --external` answering `0 bytes sent to third parties` is the sales
+ * argument, dramatised, in the subject's own vernacular.
+ */
 export function OperatorHero() {
-  const phrase = useTypedPhrases(HERO_PHRASES);
-
   return (
     <section className="fx-hero">
       <div className="fx-hero__grid">
@@ -34,31 +42,26 @@ export function OperatorHero() {
             never sits directly behind a glyph of text. */}
         <div className="fx-hero__copy fx-scrim">
           <p className="fx-bootline">
-            <DecodeText text={HERO_EYEBROW} step={22} />
+            <DecodeText text={HERO_EYEBROW} step={18} />
           </p>
 
           <h1 className="fx-big">
-            <DecodeText text="Hey, I'm Tom" delay={280} step={70} window={360} />
+            <DecodeText text={HERO_H1[0]} delay={200} step={52} window={320} />
+            <span className="fx-big__turn">
+              <DecodeText text={HERO_H1[1]} delay={620} step={52} window={320} />
+            </span>
           </h1>
-
-          <div className="fx-typedline">
-            <span className="pre">{'// I build '}</span>
-            <span className="word">{phrase}</span>
-            <span className="fx-caret" aria-hidden="true" />
-          </div>
 
           <p className="fx-sub">{HERO_SUB}</p>
 
-          {/* Business-first: the loudest control on the page is the offer, not the
-              portfolio. Projects is one click away in the nav. */}
           <div className="fx-cta">
-            <Button asChild size="lg">
+            <Button asChild size="xl">
               <Link to="/services">
-                What I Build <ArrowRight className="size-4" />
+                See what it costs <ArrowRight className="size-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/contact">Get in Touch</Link>
+            <Button asChild variant="outline" size="xl">
+              <Link to="/contact">Talk it through</Link>
             </Button>
           </div>
         </div>

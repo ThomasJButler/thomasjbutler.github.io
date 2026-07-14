@@ -26,19 +26,26 @@ export const LINKS = {
   substack: null as string | null,
 };
 
-/* ─── Hero ─── */
+/* ─── Hero ───
+ *
+ * The headline is the argument, not a greeting.
+ *
+ * It used to read "Hey, I'm Tom", with a rotating typed line underneath. That is a
+ * portfolio hero: it spends the most valuable line on the page introducing the author to
+ * a reader who has not yet been told why they should care. The og:image has said "AI you
+ * own, not AI you rent" for months and it is a far better opening line than the page
+ * itself had, which is a sign the page was pointed the wrong way round.
+ *
+ * The name has not disappeared, it has moved to the eyebrow, where a name belongs.
+ */
 
-export const HERO_EYEBROW = '// tom_butler · york, uk';
+export const HERO_EYEBROW = '// tom_butler · full stack ai engineer · york, uk';
 
-export const HERO_PHRASES = [
-  'AI you can own',
-  'private, local AI systems',
-  'production web apps',
-  'intelligent agents',
-];
+/** Two lines on purpose: the turn is the whole point of the sentence. */
+export const HERO_H1 = ['AI you own,', 'not AI you rent.'];
 
 export const HERO_SUB =
-  'Full Stack AI Engineer from the UK. I set up private, local AI systems for businesses. Same results, no per-token bills, your data stays yours.';
+  'Private, local AI for businesses. Same results as the APIs for everyday work, no per-token bills, and your data never leaves the building.';
 
 /** The scripted console session. Types once, then holds a blinking prompt. */
 export interface ConsoleStep {
@@ -73,14 +80,15 @@ export const CONSOLE_SCRIPT: ConsoleStep[] = [
 export const NOW_COPY =
   'Setting up private, local AI systems for businesses, and building Sanctuary, an on-device AI app for neurodiverse users heading to the App Store. Currently deep in Ollama, RAG pipelines, and open source local AI (I contribute to Odysseus). The theme of everything right now: AI you own, not AI you rent.';
 
-export type ChipTone = 'default' | 'cyan' | 'amber';
-
-export const NOW_TAGS: { label: string; tone: ChipTone }[] = [
-  { label: 'Ollama', tone: 'cyan' },
-  { label: 'RAG', tone: 'cyan' },
-  { label: 'Local AI', tone: 'default' },
-  { label: 'On-Device', tone: 'amber' },
-];
+/*
+ * The tags used to carry a `tone` of 'cyan' | 'amber', assigned with no rule anyone could
+ * state: Ollama was cyan, On-Device was amber, Sanctuary was amber. A second and third hue
+ * used decoratively is just noise, and it spent the only colours the palette had left to
+ * shout with. Amber now means exactly one thing (see --meter in app.css: the meter
+ * running, the per-token bill, the data leaving) and it is not squandered on a chip that
+ * says "RAG".
+ */
+export const NOW_TAGS: string[] = ['Ollama', 'RAG', 'Local AI', 'On-Device'];
 
 export const RECENT_ACTIVITY: {
   icon: LucideIcon;
@@ -200,22 +208,44 @@ export const WHY_LOCAL_AI = [
   "It's not right for everyone, and I'll tell you if it isn't. Every project starts with an honest audit: your usage, your numbers, and a straight recommendation. Sometimes that's “stay on the API”. You get that in writing too.",
 ];
 
-export const WHY_LOCAL_AI_STATS = [
-  { value: '60-80%', label: 'Token cost savings at scale' },
-  { value: '0', label: 'Data sent to third parties' },
-  { value: '£0', label: 'Per-token costs' },
-];
+/*
+ * The argument, as a contrast rather than three green numbers.
+ *
+ * Three stats in a row said what you gain and never once showed what you are being saved
+ * *from*, which is the more persuasive half: the reader has to already agree that renting
+ * is a problem for "£0 per token" to land. Set the two columns side by side and the
+ * palette does the arguing (see --meter in app.css: amber is the meter running, green is
+ * what you own). It is also the same trio rendered once instead of on two pages.
+ */
+export const RENT_VS_OWN = {
+  rent: {
+    label: 'Renting it',
+    points: [
+      { value: 'per token', note: 'A meter that runs every time anyone uses it' },
+      { value: 'their server', note: 'Your prompts and your documents, on someone else’s hardware' },
+      { value: 'their terms', note: 'A processor to assess, and a retention policy to trust' },
+    ],
+  },
+  own: {
+    label: 'Owning it',
+    points: [
+      { value: '£0', note: 'Per-token cost, however heavily your team uses it' },
+      { value: '0 bytes', note: 'Sent to third parties. Nothing leaves the building' },
+      { value: '60-80%', note: 'Lower cost at scale, on your own hardware' },
+    ],
+  },
+} as const;
 
 /* ─── About: current focus ─── */
 
 export const ABOUT_CURRENT_FOCUS =
   "These days my focus is local and private AI. I help businesses move from renting intelligence through API bills to owning it: open models on their own hardware, private RAG systems over their own documents, and honest audits that sometimes conclude “you don't need me”. I contribute to open source local AI (including Odysseus, PewdiePie's local AI project, which is the strangest line on my CV), and I'm building Sanctuary, a fully offline, on-device AI app for neurodiverse users. If private AI can run on a phone, it can run in your business.";
 
-export const ABOUT_CURRENT_FOCUS_TAGS: { label: string; tone: ChipTone }[] = [
-  { label: 'Ollama', tone: 'cyan' },
-  { label: 'Private RAG', tone: 'cyan' },
-  { label: 'Odysseus', tone: 'default' },
-  { label: 'Sanctuary', tone: 'amber' },
+export const ABOUT_CURRENT_FOCUS_TAGS: string[] = [
+  'Ollama',
+  'Private RAG',
+  'Odysseus',
+  'Sanctuary',
 ];
 
 /* ─── Newsletter ─── */

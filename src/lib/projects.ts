@@ -276,12 +276,21 @@ export const categoryLabel: Record<Project['category'], string> = {
   personal: 'Personal',
 };
 
+/*
+ * One variant, on purpose.
+ *
+ * These used to be 'cyan' for AI and 'amber' for mobile/games/creative, which encoded
+ * nothing a reader could use: the colour of a chip did not tell you anything you could not
+ * read in the chip. Amber now means exactly one thing on this site (the meter running: API
+ * spend, per-token bills, data leaving), and spending it on a category label would empty it
+ * of that meaning.
+ */
 export const categoryBadgeVariant: Record<Project['category'], string> = {
-  ai: 'cyan',
+  ai: 'secondary',
   web: 'secondary',
-  mobile: 'amber',
-  games: 'amber',
-  creative: 'amber',
+  mobile: 'secondary',
+  games: 'secondary',
+  creative: 'secondary',
   personal: 'secondary',
 };
 

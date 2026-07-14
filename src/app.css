@@ -10,6 +10,49 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/*
+ * Metric-matched fallbacks. These are the reason the headings no longer jump.
+ *
+ * Now that the pages are prerendered, text paints immediately, in whatever font the
+ * browser has to hand, and is then re-laid-out when the real font arrives. Orbitron is
+ * 18.9% wider than Arial (measured, not guessed: same string, same size, canvas
+ * measureText), so every heading on the site re-wrapped on font load. That was 0.089 CLS
+ * on the home page, and all of it. It did not show up before because the text was
+ * invisible until JavaScript ran, which is not a fix, it is a worse bug hiding a smaller
+ * one.
+ *
+ * A fallback that occupies the same space as the real font means the swap changes the
+ * shapes and not the layout. Exo 2 came out at 100.2% of Arial, so the body copy needs no
+ * help; Share Tech Mono is 10% narrower than the default monospace.
+ *
+ * size-adjust is the width correction. line-gap-override: 0 stops the fallback's own line
+ * gap from changing block heights before the real metrics land.
+ */
+@font-face {
+  font-family: 'Orbitron Fallback';
+  src: local('Arial'), local('Helvetica'), local('Segoe UI');
+  size-adjust: 118.9%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Exo 2 Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 100.2%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Share Tech Mono Fallback';
+  src: local('Courier New'), local('monospace');
+  size-adjust: 90%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /* ─── Static palette (theme-independent) ─── */
@@ -35,11 +78,13 @@
   --color-text: oklch(0.95 0.01 145);
   /* The header nav uses this. Lifted with the rest of the dark palette for daylight. */
   --color-text-muted: oklch(0.74 0.03 145);
-  --color-glow: oklch(0.50 0.28 145 / 0.3);
 
-  --font-mono: "Share Tech Mono", "JetBrains Mono", ui-monospace, monospace;
-  --font-sans: "Exo 2", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-heading: "Orbitron", "Exo 2", ui-sans-serif, sans-serif;
+  /* Each real font is followed by its metric-matched fallback (see the @font-face
+     block at the top of this file), so a font swap changes the letterforms without
+     moving the layout. */
+  --font-mono: "Share Tech Mono", "Share Tech Mono Fallback", "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Exo 2", "Exo 2 Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: "Orbitron", "Orbitron Fallback", "Exo 2", ui-sans-serif, sans-serif;
 }
 
 /* ─── ShadCN theme inline mappings ─── */
@@ -69,8 +114,10 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --font-heading: "Orbitron", "Exo 2", ui-sans-serif, sans-serif;
-  --font-sans: "Exo 2", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* --font-heading and --font-sans were redeclared here, without the metric-matched
+     fallbacks, and this block comes second, so it won: the fallbacks would have silently
+     applied to hand-written CSS and not to Tailwind's font-heading utility. Declared once,
+     in the @theme block above. */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -109,6 +156,19 @@
   --border: oklch(0.90 0.02 145);
   --input: oklch(0.92 0.015 145);
   --ring: oklch(0.35 0.22 145);
+  /*
+   * --meter: the one colour on this site that is not green, and it means something.
+   *
+   * The whole argument is "AI you own, not AI you rent". So green is what you own, and
+   * amber is the meter running: the per-token bill, the API spend, the data leaving the
+   * building. It is never used decoratively, which is precisely what the old cyan/amber
+   * badge tones were doing (Ollama was cyan, On-Device was amber, for no reason anyone
+   * could state). A second hue that means nothing is just noise; a second hue that means
+   * "this is the thing costing you money" makes the palette argue the case.
+   *
+   * Darker in light mode because the dark-theme amber is 2.4:1 on a near-white card.
+   */
+  --meter: oklch(0.52 0.14 70);
   --radius: 0.5rem;
   /* h-14 (56px) plus the 1px gradient rule under it. Kept here so the hero's
      min-height can't drift away from the real header. */
@@ -160,6 +220,8 @@
   --border: oklch(0.34 0.06 145);
   --input: oklch(0.34 0.06 145);
   --ring: oklch(0.60 0.26 145);
+  /* See --meter in :root. Brighter here: this one sits on near-black. */
+  --meter: oklch(0.82 0.15 78);
   --chart-1: oklch(0.50 0.28 145);
   --chart-2: oklch(0.75 0.15 195);
   --chart-3: oklch(0.80 0.15 85);
@@ -292,9 +354,22 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   }
 
-  /* Dark cards — neon glow hover.
-     Near-opaque on purpose: the rain runs behind these, and at 75% the glyphs came
-     through the card and fought with the text. */
+  /* Cards.
+   *
+   * The light rules are scoped `:root:not(.dark)`, and that `:not()` is load-bearing.
+   * They used to be plain `:root [data-slot="card"]`, which has exactly the same
+   * specificity as `.dark [data-slot="card"]` (0,2,0) and sat fourteen lines *below* it
+   * in the same layer. `:root` matches <html class="dark"> perfectly well, so source
+   * order decided it: in dark mode the cards silently took the light treatment, and both
+   * the dark card gradient and the neon hover below were unreachable code. The site has
+   * never once shown the glow it was written to have.
+   *
+   * Glows are mixed from --primary rather than a literal oklch(...145), so the red/blue
+   * accent pill actually recolours them. It rewrites --primary on documentElement, and
+   * every hard-coded green shadow simply ignored it.
+   *
+   * Near-opaque on purpose: the rain runs behind these, and at 75% the glyphs came
+   * through the card and fought with the text. */
   .dark [data-slot="card"] {
     border-color: oklch(0.42 0.14 145 / 0.55);
     border-top-color: oklch(0.52 0.20 145 / 0.45);
@@ -305,39 +380,43 @@
     );
   }
   .dark [data-slot="card"]:hover {
-    border-color: oklch(0.50 0.28 145 / 0.6);
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
     box-shadow:
-      0 0 28px oklch(0.50 0.28 145 / 0.12),
-      0 0 56px oklch(0.50 0.28 145 / 0.04),
+      0 0 28px color-mix(in oklab, var(--primary) 12%, transparent),
+      0 0 56px color-mix(in oklab, var(--primary) 4%, transparent),
       0 8px 32px oklch(0 0 0 / 0.4);
     transform: translateY(-3px);
   }
 
   /* Light cards — clean glass */
-  :root [data-slot="card"] {
+  :root:not(.dark) [data-slot="card"] {
     border-color: oklch(0.85 0.015 145 / 0.6);
     background: oklch(0.99 0.003 145 / 0.85);
   }
-  :root [data-slot="card"]:hover {
-    border-color: oklch(0.40 0.22 145 / 0.35);
-    box-shadow: 0 4px 24px oklch(0.40 0.22 145 / 0.06), 0 8px 32px oklch(0 0 0 / 0.04);
+  :root:not(.dark) [data-slot="card"]:hover {
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+    box-shadow:
+      0 4px 24px color-mix(in oklab, var(--primary) 6%, transparent),
+      0 8px 32px oklch(0 0 0 / 0.04);
     transform: translateY(-1px);
   }
 
   /* Featured cards — permanent glow */
   .dark [data-slot="card"][data-featured] {
-    border-color: oklch(0.50 0.28 145 / 0.3);
+    border-color: color-mix(in oklab, var(--primary) 30%, transparent);
     box-shadow:
-      0 0 16px oklch(0.50 0.28 145 / 0.08),
-      inset 0 1px 0 oklch(0.50 0.28 145 / 0.06);
+      0 0 16px color-mix(in oklab, var(--primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--primary) 6%, transparent);
   }
 
-  /* Card footer */
-  [data-slot="card-footer"] {
-    border-color: oklch(0.20 0.04 145 / 0.5);
-  }
+  /* Card footer. The border was a near-black rule in *both* themes, so on a white card it
+     drew a hard dark line across the bottom. */
   .dark [data-slot="card-footer"] {
+    border-color: oklch(0.20 0.04 145 / 0.5);
     background: oklch(0.08 0.01 145 / 0.5);
+  }
+  :root:not(.dark) [data-slot="card-footer"] {
+    border-color: var(--border);
   }
 
   /* ─── Inputs — green focus glow ─── */
@@ -441,6 +520,26 @@
   }
 
   /* Glow text — neon heading treatment */
+  /* The meter. Amber means "this is what renting costs you", and nothing else. */
+  .text-meter {
+    color: var(--meter);
+  }
+  .glow-meter {
+    color: var(--meter);
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--meter) 35%, transparent),
+      0 0 30px color-mix(in oklab, var(--meter) 15%, transparent);
+  }
+  :root:not(.dark) .glow-meter {
+    text-shadow: 0 0 20px color-mix(in oklab, var(--meter) 10%, transparent);
+  }
+  .border-meter {
+    border-color: color-mix(in oklab, var(--meter) 35%, transparent);
+  }
+  .bg-meter-soft {
+    background-color: color-mix(in oklab, var(--meter) 8%, transparent);
+  }
+
   .glow-text {
     text-shadow:
       0 0 10px oklch(0.50 0.28 145 / 0.35),
@@ -666,8 +765,25 @@
     inset: 0;
     text-align: center;
   }
+  /*
+   * A character waiting its turn is VISIBLE, and that one line is worth explaining.
+   *
+   * `.ch--pending` used to be `opacity: 0`, and the glyph span was rendered empty, so a
+   * DecodeText painted precisely nothing until each character locked. On the home hero
+   * that is the h1, which is the LCP element: the largest text on the page was invisible
+   * for the first 640ms to 1.4s of every visit, and Largest Contentful Paint is measured
+   * on when text is *painted*, not when it is mounted. The effect was paying for itself
+   * with the metric it was most expensive to.
+   *
+   * It also made prerendering pointless. Real markup with `opacity: 0` on it gives a
+   * crawler the words and gives a browser a blank screen.
+   *
+   * So the decode now runs *over* real text instead of instead of it: every character is
+   * legible from the first frame, and the scramble passes through the line like a wave.
+   * The Matrix feel survives; the blank screen does not.
+   */
   .ch--pending {
-    opacity: 0;
+    opacity: 1;
   }
   .ch--scramble {
     color: color-mix(in oklab, var(--primary) 80%, transparent);
@@ -712,7 +828,23 @@
        and was the last source of horizontal overflow on the site. The radial gradient
        already fades out inside its own box, so it loses nothing. */
     inset: -6% 0;
-    z-index: 0;
+    /*
+     * -1, not 0, and this is the whole bug.
+     *
+     * A positioned pseudo-element with z-index: 0 paints ABOVE its parent's own inline
+     * content, because text is painted before positioned descendants. So the scrim, a
+     * near-black gradient at 0.92 alpha whose entire job is to hide the rain behind the
+     * words, was being painted on top of the words instead. The rule above rescued any
+     * child *element* by lifting it to z-index 1, which is why the hero (a div wrapping
+     * an h1 and a p) always looked right. But `.fx-scrim` applied directly to a <p> has
+     * nothing but a bare text node inside it, and a text node cannot be lifted: it took
+     * the full 0.92 wash across the face. Every scrimmed paragraph on the site has been
+     * reading through a black veil.
+     *
+     * At -1 the scrim sits behind its own text and still comfortably above the rain,
+     * which is a fixed canvas down at z-index -10.
+     */
+    z-index: -1;
     pointer-events: none;
     background: radial-gradient(
       ellipse at 40% 50%,
@@ -790,32 +922,31 @@
     margin: 0;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(44px, 5.4vw, 74px);
-    line-height: 1.02;
+    font-size: clamp(40px, 5.2vw, 70px);
+    line-height: 1.04;
     color: var(--foreground);
     text-shadow:
       0 0 10px color-mix(in oklab, var(--primary) 30%, transparent),
       0 0 34px color-mix(in oklab, var(--primary) 14%, transparent);
   }
 
-  .fx-typedline {
-    margin-top: 22px;
-    font-family: var(--font-mono);
-    font-size: clamp(17px, 2vw, 21px);
-    color: var(--muted-foreground);
-  }
-  .fx-typedline .pre {
-    color: color-mix(in oklab, var(--primary) 60%, transparent);
-  }
-  .fx-typedline .word {
+  /* The headline is an argument with a turn in it: "AI you own," / "not AI you rent."
+     The second line carries the contrast, so it takes the colour and the glow, and it
+     always breaks onto its own line. Setting the two halves as one wrapped string would
+     let the break land wherever the viewport happened to put it, which is exactly where
+     the sentence stops working. */
+  .fx-big__turn {
+    display: block;
     color: var(--primary);
-    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
+    text-shadow:
+      0 0 14px color-mix(in oklab, var(--primary) 40%, transparent),
+      0 0 44px color-mix(in oklab, var(--primary) 18%, transparent);
   }
 
   .fx-sub {
-    margin: 18px 0 0;
+    margin: 22px 0 0;
     max-width: 600px;
-    font-size: 15.5px;
+    font-size: 16.5px;
     line-height: 1.7;
     color: var(--muted-foreground);
     text-wrap: pretty;

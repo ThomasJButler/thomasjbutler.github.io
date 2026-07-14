@@ -4,51 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'path';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 
-const SITE = 'https://thomasjbutler.github.io';
-
-/**
- * Title and description per route, for crawlers and social cards.
- *
- * /services is the one that matters most: it is the page the commercial site links to.
- */
-const ROUTE_META = [
-  {
-    path: '/services',
-    title: 'Local & Private AI for business | Tom Butler',
-    description:
-      'Private AI systems that run on your own hardware. Local LLM setups, private RAG knowledge systems, and honest AI cost and privacy audits. Fixed fees, no per-token bills, and your data never leaves your building.',
-  },
-  {
-    path: '/projects',
-    title: 'Projects | Tom Butler, Full Stack AI Engineer',
-    description:
-      'AI, web and mobile projects: model comparison tooling, natural-language SQL, document Q&A with RAG, automated PR review, and an offline on-device iOS app.',
-  },
-  {
-    path: '/case-study',
-    title: 'Case study: private RAG for security questionnaires | Tom Butler',
-    description:
-      'A RAG agent that drafts supplier security questionnaires, grounds every answer in your own policy, cites its sources, and flags the ones a human needs to check. Runs entirely on infrastructure you control.',
-  },
-  {
-    path: '/about',
-    title: 'About | Tom Butler, Full Stack AI Engineer',
-    description:
-      'Full Stack AI Engineer in York. Local and private AI for businesses, contributor to open source local AI, and building Sanctuary, an offline on-device app for neurodiverse users.',
-  },
-  {
-    path: '/contact',
-    title: 'Contact | Tom Butler',
-    description:
-      'Talk through a project. If local AI is the wrong answer for you, I will say so.',
-  },
-  {
-    path: '/updates',
-    title: 'Dev Journey | Tom Butler',
-    description:
-      'Two and a half decades from a kid watching green code rain to building AI systems for a living.',
-  },
-];
+// Route metadata (titles, descriptions, the prerender list) lives in scripts/routes.mjs,
+// so the build script and the config cannot disagree about what the routes are.
 
 export default defineConfig({
   root: '.',
@@ -146,82 +103,9 @@ export default defineConfig({
         });
       }
     },
-    // SPA fallback: GitHub Pages serves 404.html for any path it has no file for, so
-    // a copy of the app entry there is what makes deep links (/services) resolve.
-    {
-      name: 'spa-fallback',
-      writeBundle() {
-        const entry = resolve(__dirname, 'dist/index.html');
-        const fallback = resolve(__dirname, 'dist/404.html');
-        if (existsSync(entry)) {
-          copyFileSync(entry, fallback);
-          console.log('Created 404.html SPA fallback');
-        }
-      }
-    },
-    // Per-route social meta.
-    //
-    // This is a SPA with one set of <meta> tags, and LinkedIn, X, Facebook and Slack
-    // do not run JavaScript — so sharing /services previewed as the homepage ("Hey,
-    // I'm Tom"), which matters a lot now the commercial site links here.
-    //
-    // For each route we write dist/<route>/index.html: the same built app, with the
-    // title, description and og:* swapped. The app still hydrates and takes over, so
-    // nothing about the SPA changes. It also means a direct hit on /services is served
-    // its own file instead of going through the 404 fallback.
-    {
-      name: 'per-route-meta',
-      writeBundle() {
-        const entryPath = resolve(__dirname, 'dist/index.html');
-        if (!existsSync(entryPath)) return;
-        const entry = readFileSync(entryPath, 'utf-8');
-
-        for (const route of ROUTE_META) {
-          const html = entry
-            .replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`)
-            .replace(
-              /(<meta\s+name="description"\s+content=")[^"]*(")/,
-              `$1${route.description}$2`
-            )
-            .replace(
-              /(<meta\s+property="og:title"\s+content=")[^"]*(")/,
-              `$1${route.title}$2`
-            )
-            .replace(
-              /(<meta\s+property="og:description"\s+content=")[^"]*(")/,
-              `$1${route.description}$2`
-            )
-            .replace(
-              /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/,
-              `$1${route.title}$2`
-            )
-            .replace(
-              /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/,
-              `$1${route.description}$2`
-            )
-            .replace(
-              /(<meta\s+property="og:url"\s+content=")[^"]*(")/,
-              `$1${SITE}${route.path}$2`
-            )
-            .replace(
-              /(<link\s+rel="canonical"\s+href=")[^"]*(")/,
-              `$1${SITE}${route.path}$2`
-            );
-
-          const name = route.path.replace(/^\//, '');
-          // Write BOTH forms. GitHub Pages serves /services from services.html when it
-          // exists, and /services/ from services/index.html — emitting both means
-          // neither shape 301-redirects. It also stops /services being served as
-          // 404.html (with an actual HTTP 404 status, which is what crawlers saw
-          // before these files existed).
-          writeFileSync(resolve(__dirname, 'dist', `${name}.html`), html);
-          const dir = resolve(__dirname, 'dist', name);
-          mkdirSync(dir, { recursive: true });
-          writeFileSync(resolve(dir, 'index.html'), html);
-        }
-        console.log(`Wrote per-route meta for ${ROUTE_META.length} routes`);
-      }
-    },
+    // NOTE: the SPA 404 fallback and the per-route meta plugins used to live here.
+    // Both now happen in scripts/prerender.mjs, which also injects the rendered markup:
+    // two separate things writing the same dist/*.html files is exactly how they drift.
     // Build-time plugin to copy blog markdown files
     {
       name: 'copy-blog-files',
