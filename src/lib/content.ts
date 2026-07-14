@@ -328,6 +328,10 @@ export const PRICING: PricedOffer[] = [
     includes: [
       'Hardware sizing for your actual workload',
       'Ollama and open models, installed and tuned',
+      // Hardening is scope, not a footnote. Ollama listens with no auth and checks for
+      // updates by default, and a locked-down network will ask about both. Volunteering it
+      // is what tells a compliance-minded buyer you have done this before.
+      'Locked down: bound to localhost, auth on the API, update checks off',
       'Your team set up and shown how to use it',
       'Handover docs, so you are not dependent on me',
     ],
@@ -407,6 +411,32 @@ export const FAQ: { q: string; a: string }[] = [
   {
     q: 'What about GDPR and client data?',
     a: 'This is the strongest argument for running locally. If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust. For anyone handling client records, contracts, or health data, that is usually the whole conversation.',
+  },
+  /*
+   * The precise version of the privacy claim, and it is here on purpose.
+   *
+   * "Nothing ever leaves the machine" is the absolutist version. It is also false, and it
+   * is the kind of false that gets taken apart in front of the room: the model has to
+   * arrive from somewhere, Ollama checks for updates by default, and its API binds with no
+   * auth at all. A competent CIO knows all three. Claiming zero packets and then being
+   * corrected costs the entire meeting.
+   *
+   * "Your data never leaves" is exact, survives scrutiny, and is still devastating against
+   * an API where every single query leaves the building permanently. The differentiator was
+   * never "no packet ever moves", it is "no customer data ever moves, and there is no
+   * third-party processor to assess".
+   *
+   * The hardening below is not a caveat, it is scope: it is billable, it is what a
+   * locked-down network will actually ask for, and volunteering it is what tells a
+   * compliance-minded buyer that you have done this before.
+   */
+  {
+    q: 'Does anything leave the machine at all?',
+    a: 'Your data never leaves. That is the exact claim, and it is worth being precise about, because the model itself has to arrive from somewhere. Pulling a model is a one-off download from a registry, over the network, at a moment you choose, and it happens before any of your documents are near it. After that, every prompt and every answer stays on the machine: no API call, no per-query egress, no third-party processor to assess. Compare that with a hosted API, where every single query leaves the building, permanently.',
+  },
+  {
+    q: 'How do you lock it down?',
+    a: 'By default Ollama listens without authentication and phones home to check for new versions. Neither is acceptable on a network that takes itself seriously, so hardening is part of the setup, not an extra: the API is bound to localhost and put behind auth rather than left on 0.0.0.0 for the whole office, automatic update checks are turned off so the box makes no outbound call you did not ask for, and models are pre-pulled. If you need it genuinely air-gapped, it can be, and after the models are on the machine it never needs to see the internet again.',
   },
   {
     q: 'We already have Copilot. Why would we need this?',

@@ -89,6 +89,14 @@ const FAQ = [
     a: 'If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust.',
   },
   {
+    q: 'Does anything leave the machine at all?',
+    a: 'Your data never leaves. The model itself has to arrive from somewhere: pulling a model is a one-off download from a registry, at a moment you choose, before any of your documents are near it. After that, every prompt and every answer stays on the machine: no API call, no per-query egress, no third-party processor to assess.',
+  },
+  {
+    q: 'How do you lock it down?',
+    a: 'By default Ollama listens without authentication and checks for new versions. Hardening is part of the setup: the API is bound to localhost and put behind auth rather than left on 0.0.0.0, automatic update checks are turned off, and models are pre-pulled. If you need it genuinely air-gapped, it can be.',
+  },
+  {
     q: 'We already have Copilot. Why would we need this?',
     a: 'Often you would not, and I will say so. Where it stops is when the answer must be grounded in a specific corpus with citations you can audit, when the per-seat bill scales faster than the value, or when the data genuinely cannot go to anyone else’s cloud.',
   },
@@ -99,6 +107,10 @@ const FAQ = [
   {
     q: 'What if we want changes once we see it?',
     a: 'Every deliverable includes two rounds of revisions. After that, further rounds are £1,200 each, fixed. Anything that is new scope rather than a revision is quoted before I start.',
+  },
+  {
+    q: 'What happens if you get hit by a bus?',
+    a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around, which is rather the point of owning it rather than renting it.',
   },
 ];
 
