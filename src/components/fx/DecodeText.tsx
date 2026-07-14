@@ -124,15 +124,26 @@ export function DecodeText({
             <span className="ch-word">
               {chars.slice(from, to).map((char, k) => {
                 const i = from + k;
-                // Under reduced motion nothing scrambles, so the slot needs no sizer to
-                // hold it still and no overlay to hold: just the character.
-                if (reduced) {
-                  return (
-                    <span key={i} className="ch ch--locked">
-                      {char}
-                    </span>
-                  );
-                }
+                /*
+                 * ONE shape, whatever the motion preference. Do not branch here.
+                 *
+                 * This used to render a flat <span class="ch ch--locked"> under reduced
+                 * motion and the sizer/glyph pair otherwise. That is a different DOM tree,
+                 * and the server cannot know which one to write: framer-motion's
+                 * useReducedMotion returns null during a Node prerender, so the build
+                 * always emitted the animated shape. A visitor with
+                 * `prefers-reduced-motion: reduce` then hydrated the other one, React found
+                 * a structural mismatch, and threw the whole prerendered tree away (#418) to
+                 * rebuild it from scratch. The page still worked, which is what made it
+                 * dangerous: it silently undid the entire prerender for exactly the people
+                 * least able to afford a slow, janky page.
+                 *
+                 * The branch is unnecessary anyway. `.ch--pending` is opacity 1 and the glyph
+                 * already carries its real character, so this markup is *already* the
+                 * finished text. Under reduced motion the effect above simply returns
+                 * without starting the rAF loop, and the finished text is what stays on
+                 * screen.
+                 */
                 return (
                   <span key={i} className="ch">
                     {/* Reserves the slot at the size of the finished character, so the

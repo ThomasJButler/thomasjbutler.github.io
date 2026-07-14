@@ -11,7 +11,6 @@ import {
   projects,
   categories,
   categoryLabel,
-  categoryBadgeVariant,
   languageColors,
 } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
