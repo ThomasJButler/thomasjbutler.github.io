@@ -4,27 +4,83 @@ The numbers on `/services` come from `PRICING`, `ENGAGEMENT_TERMS` and `RETAINER
 `src/lib/content.ts`. They are one-line edits. This file is the reasoning behind them, so
 that when a buyer pushes back you are arguing from data rather than from nerve.
 
-**A caveat to read first.** The regional figures below are for the **North West**, because
-that is what I researched. The site says **York**. The headline conclusion does not depend
-on which of those it is (the point is *not London*, and the London gap is small either
-way), but if you want Yorkshire-specific medians, that is a re-run.
-
----
-
 ## The short version
 
 | | Number | Confidence |
 |---|---|---|
-| Day rate, target | **£750** (band £650 to £850) | High |
-| Day rate, hard floor | **£500** | High |
-| AI Cost & Privacy Audit | **from £4,800** | Medium-high |
+| Day rate, target | **£750** (band £690 to £850) | High |
+| Day rate, hard floor | **£650** | High |
+| AI Cost & Privacy Audit | **from £6,000** | Medium-high |
 | Local LLM Setup | **from £12,000** | Medium-low, mostly inferred |
-| Private RAG System | **from £18,000** | Medium |
-| Care & Tuning retainer | **from £950/month** | Medium |
+| Private RAG System | **from £18,000** (quote regulated scope at £30k+) | Medium |
+| Care & Tuning retainer | **from £1,400/month** | Medium |
 | Extra revision round | **£1,200** | Convention, not a market rate |
 
 The day rate is a **backstop for negotiation, not the product.** Do not publish it. The
 packages are the product, and section 4 is the evidence for why.
+
+---
+
+## 0. Yorkshire: there is no discount to apply
+
+This was the question, so here is the answer first. **Yorkshire is not a cheap region for
+AI.** IT Jobs Watch contract medians, six months to 13 July 2026:
+
+| Location | Median | 25th | 75th | **n (rates)** | YoY |
+|---|---:|---:|---:|---:|---:|
+| London | £563 | £475 | £688 | 1,592 | −0.2% |
+| **Yorkshire** | **£550** | £500 | £600 | **105** | **+10.0%** |
+| UK overall | £550 | £463 | £675 | 2,780 | −7.2% |
+| Leeds | £550 | £500 | £600 | 31 | +10.0% |
+| Sheffield | £518 | £472 | £594 | 66 | +0.5% |
+| Manchester | £513 | £429 | £604 | 80 | −2.4% |
+| York | £550 | – | – | **5** | ⚠️ **noise, do not quote** |
+| Bradford / Hull | – | – | – | **0** | no rate data at all |
+
+**Yorkshire sits level with the UK median and 2.3% under London.** For *Generative AI*
+specifically, Yorkshire is **£575 — above London's £565**. And Yorkshire AI rates rose
+**+10% YoY while the UK fell 7%**.
+
+### Why the "northern discount" doesn't apply to you
+
+It is real for generalists and it evaporates for specialists:
+
+| Skill | Yorkshire vs London |
+|---|---:|
+| Permanent AI salary (employee) | **−23.5%** |
+| Contract Python (n=308) | −9.1% |
+| Contract Azure (n=248) | −9.1% |
+| **Contract AI** | **−2.3%** |
+| **Contract Generative AI** | **+1.8%** |
+
+**The geography penalty decays as you move from "a body in a seat" to "a specialist
+selling an outcome."** You are selling the outcome. Remote ML and GenAI contracts price at
+**£600 — above London** — which is the same fact from another angle: nobody pays a
+location, they pay a capability.
+
+### Sector beats geography by roughly five to one
+
+Regulated buyers carry a **20-45% premium** (finance +20-40%, healthcare +25-45%, legal
++20-35%, public sector +25-45%). The London premium in hard data is **0-7%**. **Who your
+client is moves the price about five times more than where you live** — and NHS England,
+DWP, the FCA, the Bank of England and 28 of the UK's top-100 law firms all have major Leeds
+operations. They are nationally funded. They do not procure at "Yorkshire rates".
+
+### The competitor already in your back garden
+
+**Agentic AI Associates** — London-HQ'd, with a Leeds landing page covering *"Bradford and
+Huddersfield to York, Harrogate, and Sheffield"*. Published prices:
+
+> **£6,500 diagnostic · £850/day · £10,000/month retainer**
+
+They are selling into your patch and **not discounting for Yorkshire.** That single fact is
+why the audit moved from £4,800 to £6,000 and the retainer from £950 to £1,400.
+
+### And "pricing to the local market" isn't even a coherent plan
+
+**York had 5 AI contract ads in six months. Bradford had 5, Hull 11, both with zero rate
+data.** There is no local market to price to. You are selling to Leeds, Manchester, London
+and remote — so you price to the national market, which pays the same as London anyway.
 
 ---
 
@@ -78,12 +134,23 @@ Three unrelated 2026 sources put UK freelance AI consulting at **£400 to £900/
 You are structurally a freelancer but positionally a boutique specialist, so you belong at
 the top of that band.
 
-### The floor: £500
+### The floor: £650 (raised from £500)
 
-£400/day is the **10th percentile of the entire UK AI contract market**. Below £500 you are
-earning less than nearly every AI contractor in Britain while carrying every risk they do
-not carry. Pricing like a web developer at £300/day would put you 25% below that 10th
-percentile.
+I had this wrong, and the Yorkshire data is what corrected it. **£500 is the 25th
+percentile of the Yorkshire AI contract market.** A "floor" that puts you in the bottom
+quartile of the very market you suspected was too poor to afford you is not a floor, it is
+a discount you applied for a regional penalty that does not exist in your specialism.
+
+The arithmetic: at £500/day and a realistic **120-160 billable days**, you gross
+**£60,000-£80,000** before costs. **That is below the Leeds *permanent* AI salary of
+£67,500** — with none of the security, the pension, or the paid holiday, and all of the
+sales risk. That is not a floor worth defending.
+
+At **£650**, a 140-day year is £91,000, which finally clears the salaried alternative by
+enough to pay for the risk you are carrying.
+
+Pricing like a web developer at £300/day would put you **25% below the 10th percentile of
+the entire UK AI contract market.**
 
 And the low price does not just cost money, it **disqualifies you**. Your buyer's actual
 problem is "our data must not leave the building". That is a risk-averse buyer, and to
@@ -94,10 +161,12 @@ what is at stake*.
 
 ## 2. The three offers
 
-**AI Cost & Privacy Audit, from £4,800.** Nearest published UK comparators run £3,500
-(a readiness questionnaire) to £8,000. Yours is a technical audit: real data-flow mapping
-and real spend modelling. Do not go below £3,500; undercutting the nearest competitor buys
-nothing.
+**AI Cost & Privacy Audit, from £6,000.** Raised from £4,800. A London consultancy sells
+the same diagnostic *into Leeds* at a published **£6,500**. Undercutting them by 26% buys
+you nothing from a buyer whose actual problem is risk, and the entry product anchors
+everything you sell afterwards. Published UK comparators run £3,500 (a readiness
+questionnaire) to £8,000; yours is a technical audit with real data-flow mapping and real
+spend modelling, so it belongs at the top of that band, not the bottom.
 
 **Local LLM Setup, from £12,000.** *This is the weakest number here and you should know
 that.* There is no published price anywhere for "Ollama on your hardware, handed over, team
@@ -111,10 +180,41 @@ move it after you have sold two or three.
 grounding, confidence scoring, an audit trail. Pricing a compliance-grade private system
 below an agency's off-the-shelf chatbot would be self-harm.
 
+**Care & Tuning retainer, from £1,400/month.** Raised from £950, which was *under water*:
+half a day of tuning is £375 at your target rate, leaving £575 to cover monitoring, model
+updates and re-indexing. Every published comparator is higher (UK run-rate £1,000-£5,000;
+the London firm selling into Leeds charges **£10,000/month**). £950 was not competitive, it
+was just cheap.
+
 **One costing warning, from two independent sources: data cleaning and preparation is 30 to
 50% of a RAG project.** If you quote a fixed fee before seeing the documents, you will eat
 that. The audit is the fix, and that is a happy commercial accident: sell the audit, scope
 the RAG properly, then quote it with confidence.
+
+---
+
+## 3a. Two things that will get you caught out, so don't say them
+
+**Do not claim the NHS or law firms *cannot legally* use OpenAI or Anthropic.** They can.
+NHS England's own offshoring guidance permits public cloud, and the **UK-US Data Bridge**
+(in force since October 2023) makes certified US transfers lawful with no transfer impact
+assessment. A competent CIO will take that claim apart in front of you, and you will lose
+the room.
+
+What *is* true, and is a strong argument, is **friction and liability**: a DPIA, DTAC, DSPT
+and SIRO/Caldicott sign-off, with the NHS body retaining full controller liability for
+whatever leaves. "You can, but here is everything you have to carry in order to" is a
+better pitch than "you can't", and it has the advantage of being correct. Your site's FAQ
+already puts it this way ("no third-party processor to assess, no data-transfer agreement
+to sign"), which is right. Keep it that way in your LinkedIn and YouTube content.
+
+**Your real competitor is Microsoft, not OpenAI.** NHS England is rolling **Copilot out to
+500,000+ staff**. A live Yorkshire NHS trust's AI policy bans ChatGPT for patient data and
+names **Copilot Chat as the approved alternative**. Azure appears in 90% of York's permanent
+AI job ads. The sentence that kills your deals is not "we like OpenAI", it is **"we already
+have an E5 licence."** The site now answers that objection head-on in the FAQ, and the
+honest answer wins more than a dismissive one: if Copilot does the job, say so, and sell
+the audit that proves whether it does.
 
 ---
 
@@ -159,15 +259,51 @@ priced in.
 You should know this before you quote £750, because a well-prepared buyer might.
 
 **YunoJuno's 2026 rates report** (182,000+ real bookings) puts UK "AI & Automation" at
-**£472/day**, *below* general software engineering. I think that bucket bundles low-end
-automation and prompt work with real ML engineering, and its data is older than the July
-2026 IT Jobs Watch cut. But it is real booked-rate data and I am not going to hide it from
-you. It is the strongest argument that **£650 to £850 has to be earned in the sales
-conversation, not assumed.**
+**£472/day**, *below* general software engineering, and finds AI carries only a ~1.16% rate
+uplift. I think that bucket bundles low-end automation and prompt work with real ML
+engineering. But it is real booked-rate data and I am not going to hide it from you. It is
+the strongest argument that **£690 to £850 has to be earned in the sales conversation, not
+assumed.**
+
+**The scarcity premium is eroding.** UK AI rates are **−7.2% YoY**, GenAI −6.4%, LLM −4.3%,
+London GenAI −9.6% — all while demand climbs. Demand up and rates down means supply is
+catching up. The window where "hardly anyone does this" is worth money is open now, not
+indefinitely.
+
+**Your niche barely exists as a procurement category.** UK-wide, *Ollama* appears in **9
+contract ads**. You are not entering a market, you are creating a category — which means
+longer sales cycles, more educating, and **no inbound demand to catch**. This is the real
+argument for the content plan, and also the reason not to expect it to pay quickly:
+consensus is **6-12 months** to consistent inbound, and for a new solo consultant,
+referrals and direct outreach produce clients materially faster than content does. Content
+compounds; it does not start.
+
+**And a Yorkshire SME genuinely cannot pay £18,000.** London's output per hour is 28.5%
+above the UK average and Yorkshire buyers are, on average, poorer. Your *named* targets
+(NHS England, DWP, FCA, Bank of England, top-100 law firms) are nationally funded and this
+doesn't touch them. But do not pretend the local corner shop is your market.
 
 Two of the freelance-band sources (Helium42, The AI Consultancy) are marketing content from
 firms with an interest in making AI consulting look expensive. Their agreement with each
 other is meaningful; discount their absolute numbers slightly.
+
+**The one caveat that undercuts every day-rate number here:** IT Jobs Watch measures
+*advertised contract rates for staff-augmentation roles* — what the market pays for a body
+in a seat. It does not measure what it pays for a delivered outcome. Every day rate in this
+file inherits that limitation. It is a floor-setting proxy, not a ceiling.
+
+---
+
+## 6. If you're underpriced, it isn't because of Yorkshire
+
+The evidence says you do **not** need to price lower because of where you are. You may need
+to price lower because you are **unproven** — and those are different problems with
+different fixes.
+
+The cure for "no track record" is a cheap, low-risk **entry product** (that is what the
+audit is for) plus a case study you can point at. It is **not** a discounted ladder.
+Discounts to the ladder are very hard to undo, because anchors are sticky: the first number
+a market hears from you is the number it remembers.
 
 ---
 

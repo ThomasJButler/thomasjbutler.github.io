@@ -250,25 +250,34 @@ export const PRICING_INTRO =
   'Fixed fees, not day rates. You know what it costs before you commit, and I carry the risk of it taking longer than I thought.';
 
 /*
- * The anchors below are benchmarked, not guessed. Sources, July 2026:
+ * The anchors below are benchmarked, not guessed. Sources, July 2026 (see PRICING.md).
  *
- *   Day rate  IT Jobs Watch UK contract medians: AI Engineer £575, AI Agents £588
- *             (75th pct £730), RAG £558. North West median £530 against London's £563,
- *             so the regional discount people assume is ~6%, not 30%. An independent
- *             bills 120-160 days a year, not 220, so matching a £530/day contractor
- *             means charging ~£700-760. Three unrelated 2026 sources put UK freelance
- *             AI consulting at £400-900/day.
- *   Audit     Nearest published UK comparators: £3,500 (readiness sprint) to £8,000.
- *   RAG       Nearest published UK comparator is a London agency's £15,000 RAG chatbot.
- *             Pricing a compliance-grade private system below that would be self-harm.
+ *   Geography  There is no Yorkshire discount to apply. IT Jobs Watch contract medians:
+ *              Yorkshire AI £550 (n=105) against London’s £563, a 2.3% gap, and level with
+ *              the UK median. Yorkshire Generative AI is £575, which is *above* London’s
+ *              £565. The regional penalty is real for generalists (Yorkshire Python and
+ *              Azure both sit ~9% under London, on samples of 250-300) but it decays as
+ *              you move from a body in a seat to a specialist selling an outcome. Remote
+ *              ML and GenAI contracts pay £600, above London. Pricing to the local market
+ *              would be pointless anyway: York had 5 AI contract ads in six months.
+ *   Day rate   Independents bill 120-160 days a year, not 220. Matching a £550/day
+ *              contractor, who has the work handed to them and carries none of the sales,
+ *              overrun or warranty risk, means charging £690-850. Target £750, floor £650.
+ *   The rival  A London consultancy sells private AI *into Leeds* at a published £6,500
+ *              diagnostic, £850/day and £10,000/month. It does not discount for Yorkshire.
+ *   Sector     Regulated buyers (finance, health, legal, public) carry a 20-45% premium.
+ *              Who the client is moves the price about five times more than where I live.
  *
  * These are "from" anchors: the entry price of each package, not the expected fee. They
- * are one-line edits — change the string and the card changes.
+ * are one-line edits: change the string and the card changes.
  */
 export const PRICING: PricedOffer[] = [
   {
     title: 'AI Cost & Privacy Audit',
-    price: 'from £4,800',
+    // £6,000, not £4,800: a London consultancy sells the same diagnostic into Leeds at a
+    // published £6,500. Undercutting it by 26% buys nothing from a regulated buyer whose
+    // problem is risk, and a low price on the entry product anchors everything after it.
+    price: 'from £6,000',
     duration: '1 to 2 weeks',
     lead: true,
     summary:
@@ -343,7 +352,11 @@ export const ENGAGEMENT_TERMS = {
  */
 export const RETAINER = {
   title: 'Care & Tuning',
-  price: 'from £950/month',
+  // £950 was under water: half a day of tuning is £375 at the target rate, leaving £575
+  // to cover monitoring, model updates and re-indexing. Every published comparator is
+  // higher (UK run-rate £1,000-5,000/month; the London firm selling into Leeds charges
+  // £10,000), so this was not even competitive, just cheap.
+  price: 'from £1,400/month',
   summary:
     'Optional, and genuinely optional. Monitoring, model updates, re-indexing as your documents change, and half a day of tuning a month. Cancel whenever it stops being worth it.',
 } as const;
@@ -364,6 +377,10 @@ export const FAQ: { q: string; a: string }[] = [
   {
     q: 'What about GDPR and client data?',
     a: 'This is the strongest argument for running locally. If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust. For anyone handling client records, contracts, or health data, that is usually the whole conversation.',
+  },
+  {
+    q: 'We already have Copilot. Why would we need this?',
+    a: 'Often you would not, and I will say so. If Copilot is answering your questions well over the documents you keep in Microsoft 365, keep it: you are already paying for it. Where it stops is when the answer has to be grounded in a specific corpus with citations you can audit, when the per-seat bill scales faster than the value, or when the data genuinely cannot go to anyone else’s cloud on anyone’s terms. That is the gap I build for, and the audit exists to tell you honestly which side of it you are on.',
   },
   {
     q: 'When should I NOT do this?',
