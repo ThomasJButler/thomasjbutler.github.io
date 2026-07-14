@@ -42,3 +42,9 @@ Thumbs.db
 /design_handoff_matrix_portfolioV2!/
 /scripts/main-baseline-shots.mjs
 .ssr/
+
+# Scratch files from review agents. They belong in a scratchpad, not the repo.
+.repro-tmp.mjs
+.refute-*.mjs
+.axe*-tmp.mjs
+.dbg*-tmp.mjs
