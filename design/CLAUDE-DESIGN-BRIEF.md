@@ -145,6 +145,19 @@ The site was recently rebuilt specifically to remove these. Do not reintroduce t
 
 ## 7. THE ASSETS I NEED
 
+Ranked. If only three things get made, make **7a**, **7f (the LinkedIn post template)** and
+**7d**.
+
+| | Asset | Why it is where it is |
+|---|---|---|
+| 1 | **Three project covers** (7a) | Two are *featured* and currently render a placeholder panel at the top of `/projects` |
+| 2 | **LinkedIn post template** (7f) | He posts weekly from now on. It is the asset the most people will see. |
+| 3 | **Gallery GIFs → MP4** (7d) | 18.5 MB of GIF is the largest liability on the site |
+| 4 | **YouTube avatar / banner / thumbnail template** (7f) | The channel does not exist yet, and cannot launch without them |
+| 5 | **A real SVG logo mark** (7e) | There is currently no scalable mark at all |
+| 6 | **Per-route social cards** (7c) | Every page currently shares one card |
+| 7 | **Case study hero** (7b) | The strongest sales page has no image |
+
 ### 7a. Three project covers (the priority)
 
 Every project card opens with a full-bleed cover band. **Three projects have no cover and are
@@ -212,12 +225,66 @@ own, in the same template:
 
 All 1200 × 630, same type hierarchy, dark, rain in the right third, chips bottom-right.
 
-### 7d. Gallery clips (a real blocker)
+### 7d. Gallery clips: 18.5 MB of GIF (the biggest single problem on the site)
 
 Three project galleries are animated GIFs that **Cloudinary refuses to transform** (`Maximum
-total number of pixels in all frames is 50 Megapixels. Requested 80.0`). They need re-exporting
-as **MP4** (h.264, ≤1200px wide, muted, loopable, a few seconds). Not a design job as such, but
-it is currently blocking those projects from showing motion.
+total number of pixels in all frames is 50 Megapixels. Requested 80.0`), so they are served
+raw, at full size, to anyone who opens those project modals. Measured over the wire today:
+
+| | Size |
+|---|---|
+| ModelViz gallery | **5.3 MB** |
+| Morpheus gallery | **8.6 MB** |
+| Matrix Arcade gallery | **4.6 MB** |
+| **Total** | **18.5 MB** |
+
+The same content as **MP4** (h.264, ≤1200px wide, muted, loopable, a few seconds) would be
+roughly **0.5-1 MB**, i.e. a ~95% cut. Not strictly a design job, but it is the largest asset
+liability on the site and it currently blocks those projects from showing motion properly.
+
+### 7e. A real logo mark (SVG) — currently there is none
+
+`public/logo.svg` is **210 KB of traced raster** — auto-generated paths from a bitmap, not a
+drawn vector. It is deliberately not used anywhere, which means **the brand has no true
+scalable mark**.
+
+The mark itself is right and should be kept: the terminal prompt **`>_`** in brand green,
+glowing, on near-black. It is already the site logo (`> tom_butler` in the header) and the app
+icon. What is needed is a **properly drawn SVG** of it, plus:
+
+- **A favicon that survives 16px.** The current `>_` has a lot of dead space and the caret and
+  underscore are far apart; at 16px it turns to mush. It needs a tighter, bolder cut for small
+  sizes (the standard trick: a separate, simplified 16/32px version).
+- The SVG will also be needed for anything that is not a web page: YouTube, invoices, a slide
+  deck, a conference badge.
+
+### 7f. LinkedIn and YouTube (Tom is starting both, and has no assets for either)
+
+This is the gap that matters most for the next six months, and the current brief had nothing
+for it.
+
+**LinkedIn**
+- **Profile banner: 1584 × 396.** The thesis line, the three offers, the URL. Note LinkedIn
+  crops this hard on mobile: keep everything vital in the middle 60%.
+- **A post-image template: 1200 × 627.** He will be posting weekly. A reusable frame (rain,
+  scanlines, a big Orbitron statement, a small `> tom_butler` mark bottom-left) so his posts are
+  instantly recognisable in a feed. **This is the highest-leverage asset in this whole
+  document**: it is the one people will see most often.
+
+**YouTube**
+- **Channel avatar: 800 × 800.** The `>_` mark. Must read at 48px.
+- **Channel banner: 2560 × 1440**, with everything important inside the **1546 × 423 safe
+  area** (that is all a phone shows).
+- **A thumbnail template: 1280 × 720.** Thumbnails live or die on legibility at ~200px wide, so:
+  3-6 words maximum, Orbitron, huge. The green/amber rule is a gift here — a thumbnail that
+  contrasts *"£12,000/yr in API bills"* (amber) against *"£0"* (green) will out-click anything
+  else he could put there.
+
+### 7g. Optimisation of what already exists
+
+- `og-image.png` is **512 KB** for a 1200 × 630 card. It should be ~120 KB. LinkedIn and Slack
+  refetch these, so it is worth doing.
+- `icon-512.png` is **188 KB**, which is heavy for a flat two-shape mark.
 
 ---
 
