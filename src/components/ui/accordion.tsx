@@ -54,6 +54,13 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
+      // keepMounted: render the panel into the DOM even while collapsed. base-ui omits a
+      // closed panel entirely by default, so the prerendered HTML shipped 12 accordion
+      // triggers and ZERO answers: every FAQ answer and every credential was invisible to a
+      // crawler or a no-JS visitor (the FAQ survived only via the separate FAQPage JSON-LD;
+      // the credentials had no backup at all). Mounted-but-collapsed puts the text in the
+      // HTML, hidden until opened.
+      keepMounted
       className="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
       {...props}
     >
