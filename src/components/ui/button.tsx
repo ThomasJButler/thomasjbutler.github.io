@@ -4,7 +4,12 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "relative overflow-hidden inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 cursor-pointer [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  // Focus ring: full-opacity --ring plus a 2px offset in the background colour. It used to
+  // be `ring-ring/50`, a half-transparent green that measured about 2.2:1 against the dark
+  // page and failed WCAG 1.4.11 (a focus indicator needs 3:1). `outline-none` removes the
+  // browser default, so this ring IS the only keyboard focus cue; the offset gap makes it
+  // read against both the button's own green fill and the near-black page behind it.
+  "relative overflow-hidden inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 cursor-pointer [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {

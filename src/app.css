@@ -757,6 +757,13 @@
     position: relative;
     display: inline-block;
   }
+  /* The character is drawn from a data attribute, not a text node, so it reserves the
+     right width without adding a second copy of every letter to textContent (which a
+     text-only crawler was reading as "AAII yyoouu..."). visibility:hidden still lays the
+     box out, so the width is reserved even though nothing paints here. */
+  .ch__sizer::before {
+    content: attr(data-c);
+  }
   .ch__sizer {
     visibility: hidden;
   }

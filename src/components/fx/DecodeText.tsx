@@ -146,15 +146,20 @@ export function DecodeText({
                  */
                 return (
                   <span key={i} className="ch">
-                    {/* Reserves the slot at the size of the finished character, so the
-                        glyph churn above it cannot re-wrap the line. */}
-                    <span className="ch__sizer">{char}</span>
-                    {/* The glyph is rendered WITH its real character, not empty. This is
-                        what the server writes into the prerendered HTML, so the headline
-                        is painted and legible on the very first frame, before a single
-                        byte of JavaScript has run. The scramble then plays over the top
-                        of it. An empty span here would hand a crawler the words and hand
-                        a browser a blank screen. */}
+                    {/* Reserves the slot at the size of the finished character, so the glyph
+                        churn above it cannot re-wrap the line. The character is carried in a
+                        data attribute and drawn with `::before content: attr(data-c)`, NOT
+                        as a text node, and that is the point: CSS generated content does not
+                        appear in textContent. When the char lived here as real text, every
+                        letter of the headline was present twice (sizer + glyph), so a
+                        text-only crawler read the prerendered h1 as "AI you own,AAII
+                        yyoouu...". The glyph below is now the only text node, so it reads
+                        cleanly. */}
+                    <span className="ch__sizer" data-c={char} />
+                    {/* The glyph carries the real character as text, so the headline is
+                        painted and legible on the first frame, before any JavaScript runs,
+                        and is the one clean copy a crawler reads. The scramble plays over
+                        the top of it. */}
                     <span
                       ref={(el) => {
                         spanRefs.current[i] = el;

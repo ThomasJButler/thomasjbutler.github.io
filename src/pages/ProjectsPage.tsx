@@ -19,6 +19,7 @@ import { ProjectCover } from '@/components/projects/ProjectCover';
 import { MotionSection } from '@/components/MotionSection';
 import { SectionHead } from '@/components/SectionHead';
 import { DecodeText } from '@/components/fx/DecodeText';
+import { useHydrated } from '@/hooks/useHydrated';
 
 const featuredProjects = projects.filter((p) => p.featured);
 
@@ -34,6 +35,41 @@ export function ProjectsPage() {
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  /*
+   * Entrance animations must not hide the content from anyone who has not run the JS.
+   *
+   * Every card is a `motion.div` with `initial={{ opacity: 0 }}`, which framer-motion
+   * serialises straight into the prerendered HTML as `style="opacity:0"`. That is 18
+   * invisible project cards to a crawler, to a screen reader that reads the DOM, and to
+   * anyone on a connection slow enough to see the page before the bundle executes.
+   *
+   * Gate the initial state on hydration: on the server and on the first (hydrating) client
+   * render this is false, so the cards render at their resting, visible state and match the
+   * prerendered HTML exactly. Every render after that (clicking a filter tab) gets the real
+   * initial back, so the stagger still plays where a real person can see it.
+   */
+  const hydrated = useHydrated();
+  const enter = (extra: Record<string, number>) =>
+    hydrated ? { opacity: 0, ...extra } : false;
+
+  /*
+   * A card is a clickable div, so it needs to be operable by keyboard (WCAG 2.1.1, Level A).
+   * Enter and Space open the detail modal, exactly like a click. The Live/Code links inside
+   * the footer stop propagation and remain independently focusable.
+   */
+  const openProps = (project: Project) => ({
+    role: 'button',
+    tabIndex: 0,
+    'aria-label': `Open details for ${project.name}`,
+    onClick: () => setSelectedProject(project),
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setSelectedProject(project);
+      }
+    },
+  });
 
   const filtered = activeCategory === 'all'
     ? projects
@@ -72,11 +108,11 @@ export function ProjectsPage() {
             {featuredProjects.map((project, i) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={enter({ y: 16 })}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <Card featured className={cardBorder} onClick={() => setSelectedProject(project)}>
+                <Card featured className={cardBorder} {...openProps(project)}>
                   <ProjectCover project={project} />
                   <CardHeader>
                     <CardTitle className="font-heading text-base">{project.name}</CardTitle>
@@ -152,7 +188,7 @@ export function ProjectsPage() {
               // and the stagger plays again instead of the survivors sitting still.
               <motion.div
                 key={`${activeCategory}-${project.id}`}
-                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                initial={enter({ scale: 0.95, y: 12 })}
                 animate={{
                   opacity: 1,
                   scale: 1,
@@ -166,7 +202,7 @@ export function ProjectsPage() {
                 <Card
                   featured={project.featured}
                   className={cardBorder}
-                  onClick={() => setSelectedProject(project)}
+                  {...openProps(project)}
                 >
                   <ProjectCover project={project} />
                   <CardHeader>

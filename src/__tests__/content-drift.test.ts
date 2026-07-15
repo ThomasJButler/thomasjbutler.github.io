@@ -2,6 +2,9 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { describe, test, expect } from 'vitest';
 import { PRICING, RETAINER, FAQ, ENGAGEMENT_TERMS } from '@/lib/content';
+// The build-time structured-data module is plain .mjs (node runs it), but it is a valid ES
+// module, so the test can import its data directly rather than grepping the file as text.
+import { STRUCTURED_PRICES, STRUCTURED_FAQ_COUNT } from '../../scripts/structured-data.mjs';
 
 /**
  * The prices exist in three places, and they have already drifted once.
@@ -27,16 +30,20 @@ describe('content drift', () => {
   const structuredData = read('scripts/structured-data.mjs');
   const llms = read('public/llms.txt');
 
-  test('every price on the page is the price in the JSON-LD', () => {
+  test('every price on the page is a price in the JSON-LD', () => {
     for (const offer of PRICING) {
       if (!offer.price) continue;
       // 'from £6,000' -> '6000', which is how schema.org wants it.
       const digits = offer.price.replace(/[^\d]/g, '');
       expect(
-        structuredData,
+        STRUCTURED_PRICES,
         `${offer.title} is "${offer.price}" on the page but ${digits} is missing from the JSON-LD`
-      ).toContain(`price: '${digits}'`);
+      ).toContain(digits);
     }
+  });
+
+  test('the JSON-LD FAQ has the same number of entries as the page FAQ', () => {
+    expect(STRUCTURED_FAQ_COUNT).toBe(FAQ.length);
   });
 
   test('every price on the page is the price llms.txt gives to AI crawlers', () => {
