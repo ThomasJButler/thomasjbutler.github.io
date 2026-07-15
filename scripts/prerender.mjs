@@ -20,6 +20,17 @@ const attr = (s) =>
 
 const template = readFileSync(resolve(dist, 'index.html'), 'utf8');
 
+// This script reads dist/index.html as its template and also writes dist/index.html (the /
+// route), so running it a second time without a fresh `vite build` in between would feed the
+// already-injected output back in as the template and produce nonsense. `npm run build` always
+// rebuilds the client first, so the guard only bites when prerender is run alone by hand.
+if (!template.includes('<div id="root"></div>')) {
+  throw new Error(
+    'prerender: dist/index.html already has rendered markup in #root. Run `npm run build` ' +
+      '(which rebuilds the client template first), not scripts/prerender.mjs on its own.'
+  );
+}
+
 /**
  * Swap one tag's content. Every replacement is anchored to the exact attribute that
  * identifies the tag, so a description can never overwrite an og:description.
@@ -88,6 +99,15 @@ for (const route of [...ROUTE_META, NOT_FOUND]) {
   let html = withMeta(template, { ...route, url: route.file === '404' ? `${SITE}/404` : url });
   html = withStructuredData(html, route);
   html = withMarkup(html, markup);
+
+  // The 404 must not invite indexing. GitHub Pages serves this file with an HTTP 404 for
+  // every unknown path, so a template default of "index, follow" plus a canonical pointing
+  // at /404 told crawlers to index an error page that returns 404. noindex, and no canonical.
+  if (route.file === '404') {
+    html = html
+      .replace(/(<meta\s+name="robots"\s+content=")[^"]*(")/, (_m, o, c) => o + 'noindex, follow' + c)
+      .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>\s*/, '');
+  }
 
   writeRoute(route.file, html);
 

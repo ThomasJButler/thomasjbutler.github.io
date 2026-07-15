@@ -76,42 +76,15 @@ const OFFERS = [
 ];
 
 const FAQ = [
-  {
-    q: 'Is a local model actually as good as the big APIs?',
-    a: 'For the everyday 90% (drafting, summarising, answering questions from your own documents) you will not tell the difference. For frontier reasoning on hard novel problems, the big APIs are still ahead, and I will say so.',
-  },
-  {
-    q: 'What hardware do I need?',
-    a: 'Less than you think. A single well-specified workstation covers most small teams. Sizing it for your real workload rather than a benchmark is part of the audit.',
-  },
-  {
-    q: 'What about GDPR and client data?',
-    a: 'If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust.',
-  },
-  {
-    q: 'Does anything leave the machine at all?',
-    a: 'Your data never leaves. The model itself has to arrive from somewhere: pulling a model is a one-off download from a registry, at a moment you choose, before any of your documents are near it. After that, every prompt and every answer stays on the machine: no API call, no per-query egress, no third-party processor to assess.',
-  },
-  {
-    q: 'How do you lock it down?',
-    a: 'By default Ollama listens without authentication and checks for new versions. Hardening is part of the setup: the API is bound to localhost and put behind auth rather than left on 0.0.0.0, automatic update checks are turned off, and models are pre-pulled. If you need it genuinely air-gapped, it can be.',
-  },
-  {
-    q: 'We already have Copilot. Why would we need this?',
-    a: 'Often you would not, and I will say so. Where it stops is when the answer must be grounded in a specific corpus with citations you can audit, when the per-seat bill scales faster than the value, or when the data genuinely cannot go to anyone else’s cloud.',
-  },
-  {
-    q: 'When should I NOT do this?',
-    a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”.',
-  },
-  {
-    q: 'What if we want changes once we see it?',
-    a: 'Every deliverable includes two rounds of revisions. After that, further rounds are £1,200 each, fixed. Anything that is new scope rather than a revision is quoted before I start.',
-  },
-  {
-    q: 'What happens if you get hit by a bus?',
-    a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around, which is rather the point of owning it rather than renting it.',
-  },
+  { q: 'Is a local model actually as good as the big APIs?', a: 'For the everyday 90% (drafting, summarising, answering questions from your own documents) you will not tell the difference. The current generation of open models is genuinely good, and it runs on hardware a small business can afford. For frontier reasoning on hard novel problems, the big APIs are still ahead, and I will say so.' },
+  { q: 'What hardware do I need?', a: 'Less than you think. A single well-specified workstation covers most small teams, and you likely have something close already. Sizing it for your real workload rather than a benchmark is part of the audit. I would rather tell you a £1,500 machine is enough than sell you a rack.' },
+  { q: 'What about GDPR and client data?', a: 'This is the strongest argument for running locally. If nothing leaves your building, there is no third-party processor to assess, no data-transfer agreement to sign, and no vendor whose retention policy you have to trust. For anyone handling client records, contracts, or health data, that is usually the whole conversation.' },
+  { q: 'Does anything leave the machine at all?', a: 'Your data never leaves. That is the exact claim, and it is worth being precise about, because the model itself has to arrive from somewhere. Pulling a model is a one-off download from a registry, over the network, at a moment you choose, and it happens before any of your documents are near it. After that, every prompt and every answer stays on the machine: no API call, no per-query egress, no third-party processor to assess. Compare that with a hosted API, where every single query leaves the building, permanently.' },
+  { q: 'How do you lock it down?', a: 'By default Ollama listens without authentication and phones home to check for new versions. Neither is acceptable on a network that takes itself seriously, so hardening is part of the setup, not an extra: the API is bound to localhost and put behind auth rather than left on 0.0.0.0 for the whole office, automatic update checks are turned off so the box makes no outbound call you did not ask for, and models are pre-pulled. If you need it genuinely air-gapped, it can be, and after the models are on the machine it never needs to see the internet again.' },
+  { q: 'We already have Copilot. Why would we need this?', a: 'Often you would not, and I will say so. If Copilot is answering your questions well over the documents you keep in Microsoft 365, keep it: you are already paying for it. Where it stops is when the answer has to be grounded in a specific corpus with citations you can audit, when the per-seat bill scales faster than the value, or when the data genuinely cannot go to anyone else’s cloud on anyone’s terms. That is the gap I build for, and the audit exists to tell you honestly which side of it you are on.' },
+  { q: 'When should I NOT do this?', a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive. In that case you are paying me to save you money you were not really spending. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”. You get that in writing too.' },
+  { q: 'What if we want changes once we see it?', a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,200 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.' },
+  { q: 'What happens if you get hit by a bus?', a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around, which is rather the point of owning it rather than renting it.' },
 ];
 
 const SERVICE = {
@@ -226,3 +199,5 @@ export function structuredDataFor(route) {
 /** Exported so a test can assert the prices here have not drifted from content.ts. */
 export const STRUCTURED_PRICES = OFFERS.map((o) => o.price);
 export const STRUCTURED_FAQ_COUNT = FAQ.length;
+/** The full FAQ (q + a), exported so the drift test can assert byte-for-byte parity with content.ts. */
+export const STRUCTURED_FAQ = FAQ;

@@ -19,11 +19,6 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
-        // `cyan` and `amber` are gone. They were handed out with no rule (Ollama was cyan,
-        // On-Device was amber) and they spent the only two colours the palette had left to
-        // shout with. Amber now means one thing and one thing only: the meter running.
-        // See --meter in app.css.
-        meter: "bg-meter-soft text-meter border border-meter",
       },
     },
     defaultVariants: {

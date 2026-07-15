@@ -231,7 +231,7 @@ export const RENT_VS_OWN = {
     points: [
       { value: '£0', note: 'Per-token cost, however heavily your team uses it' },
       { value: '0 bytes', note: 'Sent to third parties. Nothing leaves the building' },
-      { value: '60-80%', note: 'Lower cost at scale, on your own hardware' },
+      { value: '60-80%', note: 'Lower TOTAL cost at scale, once your own hardware and power are counted' },
     ],
   },
 } as const;

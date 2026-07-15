@@ -4,7 +4,11 @@ import { describe, test, expect } from 'vitest';
 import { PRICING, RETAINER, FAQ, ENGAGEMENT_TERMS } from '@/lib/content';
 // The build-time structured-data module is plain .mjs (node runs it), but it is a valid ES
 // module, so the test can import its data directly rather than grepping the file as text.
-import { STRUCTURED_PRICES, STRUCTURED_FAQ_COUNT } from '../../scripts/structured-data.mjs';
+import {
+  STRUCTURED_PRICES,
+  STRUCTURED_FAQ_COUNT,
+  STRUCTURED_FAQ,
+} from '../../scripts/structured-data.mjs';
 
 /**
  * The prices exist in three places, and they have already drifted once.
@@ -66,12 +70,13 @@ describe('content drift', () => {
     }
   });
 
-  test('the FAQ shown to humans is the FAQ given to search engines', () => {
-    // Not every answer needs to be word for word (the JSON-LD versions are trimmed), but a
-    // question must not exist on one side and be missing from the other.
-    for (const { q } of FAQ) {
-      expect(structuredData, `FAQ "${q}" is on the page but not in the FAQPage JSON-LD`).toContain(q);
-    }
+  test('the FAQ given to search engines is byte-for-byte the FAQ shown to humans', () => {
+    // Questions AND answers, verbatim. This used to only check that questions matched, and
+    // 8 of 9 answers had quietly drifted to trimmed, reworded versions, so an assistant
+    // reading the FAQPage schema would quote text that appears nowhere on the page. Full
+    // parity now, in the order both are declared.
+    expect(STRUCTURED_FAQ.map((f: { q: string }) => f.q)).toEqual(FAQ.map((f) => f.q));
+    expect(STRUCTURED_FAQ.map((f: { a: string }) => f.a)).toEqual(FAQ.map((f) => f.a));
   });
 
   test('the revision fee quoted in the JSON-LD is the one in the terms', () => {

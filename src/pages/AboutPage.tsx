@@ -60,10 +60,16 @@ const JOURNEY_MILESTONES = [
     icon: Bot,
   },
   {
-    era: '2025',
-    title: 'Current Focus',
+    // Refreshed from a stale "2025 / Current Focus / building production tools and creative
+    // experiments" to the actual current positioning. NOTE for Tom: the "2010s: studied
+    // computing, learned JS" milestone above sits oddly against the /updates timeline, which
+    // frames the journey as starting in 2022 (after cricket and commercial diving). Both may
+    // be true if the 2010s were hobby years, but a reader comparing the two pages will notice.
+    // Worth a look when you next touch your bio.
+    era: '2025-now',
+    title: 'Local & Private AI',
     description:
-      'Full stack AI engineering, building production tools and creative experiments.',
+      'Setting up private, local AI for businesses: models on their own hardware, RAG over their own documents, and honest audits. Plus Sanctuary, an offline on-device app.',
     icon: Briefcase,
   },
 ] as const;

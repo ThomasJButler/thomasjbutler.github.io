@@ -9,7 +9,7 @@ import { SectionHead } from '@/components/SectionHead';
  * The offer, immediately below the hero.
  *
  * This is the first thing a business visitor should meet. It mirrors the three
- * fixed-fee offers on /services rather than the seven-card capability grid — someone
+ * fixed-fee offers on /services rather than the seven-card capability grid: someone
  * deciding whether to hire you does not want a menu, they want the one thing to start
  * with.
  */
@@ -27,7 +27,7 @@ const TEASERS = [
   {
     icon: Database,
     title: 'Private RAG Systems',
-    copy: 'Your own documents, searchable and answerable, with citations — and none of them sent to a third party.',
+    copy: 'Your own documents, searchable and answerable, with citations, and none of them sent to a third party.',
   },
 ];
 
