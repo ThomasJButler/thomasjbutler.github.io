@@ -19,18 +19,20 @@ export function NewsletterStrip() {
       </div>
 
       <div className="fx-news__act">
+        {/* The button tells the truth. Until Tom sets the Substack URL there is nothing to
+            subscribe to, so a button that says "Subscribe" and then only toasts is a
+            misleading affordance. With no href it reads "Coming soon" and says so; the
+            moment LINKS.substack is a string it becomes a real Subscribe link. */}
         <Button
           asChild={Boolean(href)}
-          onClick={href ? undefined : () => toast('> substack link coming soon. watch this space.')}
+          onClick={href ? undefined : () => toast('> Run It Local is nearly ready. the signup link is coming.')}
         >
           {href ? (
             <a href={href} target="_blank" rel="noopener noreferrer">
               Subscribe <ArrowRight className="size-4" />
             </a>
           ) : (
-            <>
-              Subscribe <ArrowRight className="size-4" />
-            </>
+            <>Coming soon</>
           )}
         </Button>
         <span className="fx-news__note">{NEWSLETTER.note}</span>

@@ -110,7 +110,7 @@ export const RECENT_ACTIVITY: {
   },
   {
     icon: FileText,
-    text: 'Launched Run It Local: weekly plain-English AI newsletter',
+    text: 'Starting Run It Local: a weekly plain-English AI newsletter',
     badge: 'Writing',
     year: '2026',
   },
