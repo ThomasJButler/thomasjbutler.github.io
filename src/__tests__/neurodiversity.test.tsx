@@ -14,11 +14,12 @@ describe('Neurodiversity and Cognitive Load Tests', () => {
       </Providers></BrowserRouter>
     );
     
-    // Should have option to reduce motion
+    // Should have a control for motion/effects. Case-insensitive: the MotionToggle's
+    // accessible name is "Motion and effects" (sentence case).
     const motionControl = container.querySelector(
-      '[aria-label*="motion"], [aria-label*="animation"], .reduce-motion, .calm-mode'
+      '[aria-label*="motion" i], [aria-label*="animation" i], [aria-label*="effects" i], .reduce-motion, .calm-mode'
     );
-    
+
     expect(motionControl).toBeTruthy();
   });
 
