@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
 import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
@@ -82,7 +81,6 @@ const badgeItem = {
 };
 
 export function AboutPage() {
-  useEffect(() => { document.title = 'About | Tom Butler'; }, []);
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6">

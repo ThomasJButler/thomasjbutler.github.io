@@ -23,7 +23,6 @@ import { Label } from '@/components/ui/label';
 export function ContactPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'Contact | Tom Butler';
   }, []);
 
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');

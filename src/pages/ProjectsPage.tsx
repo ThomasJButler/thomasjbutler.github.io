@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ExternalLink } from 'lucide-react';
@@ -31,7 +31,6 @@ const featuredProjects = projects.filter((p) => p.featured);
 const cardBorder = 'h-full cursor-pointer border border-primary/40 pt-0 transition-colors hover:border-primary/70';
 
 export function ProjectsPage() {
-  useEffect(() => { document.title = 'Projects | Tom Butler'; }, []);
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
@@ -25,9 +24,6 @@ import { NOW_COPY, NOW_TAGS } from '@/lib/content';
  */
 
 export function HomePage() {
-  useEffect(() => {
-    document.title = 'Tom Butler | Full Stack AI Engineer, Local AI & On-Device Systems';
-  }, []);
 
   return (
     <>

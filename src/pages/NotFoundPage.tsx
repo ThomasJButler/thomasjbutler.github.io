@@ -1,13 +1,9 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
 import { ArrowLeft, Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function NotFoundPage() {
-  useEffect(() => {
-    document.title = '404: Page Not Found | Tom Butler';
-  }, []);
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-24 text-center">

@@ -18,6 +18,9 @@ import { useFx } from '@/hooks/useFx';
 import { burstRain } from '@/lib/rain-bus';
 import { toast } from '@/lib/toast-bus';
 import type { CommandContext } from '@/lib/commands';
+// The single source of the document title, shared with the build-time prerender, so a
+// client navigation can never set a title the crawler did not see.
+import { titleForPath } from '../../../scripts/routes.mjs';
 
 /**
  * The palette is behind ⌘K, but it was in the entry chunk on every cold visit.
@@ -111,6 +114,13 @@ export function Layout() {
   useEffect(() => {
     if (paletteOpen) setPaletteUsed(true);
   }, [paletteOpen]);
+
+  // One title effect for the whole app. Each page used to set its own, and all seven had
+  // drifted from what the build prerendered. The prerendered HTML already carries the right
+  // title on a cold load; this keeps it right across client-side navigation.
+  useEffect(() => {
+    document.title = titleForPath(location.pathname);
+  }, [location.pathname]);
 
   useKonami(useCallback(() => setSpoon(true), []));
 

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Info } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
@@ -20,9 +19,6 @@ import { projects } from '@/lib/projects';
  * is absent rather than fabricated.
  */
 export function CaseStudyPage() {
-  useEffect(() => {
-    document.title = `${CASE_STUDY.title} | Tom Butler`;
-  }, []);
 
   const project = projects.find((p) => p.id === CASE_STUDY.projectId);
 

@@ -42,7 +42,6 @@ const categoryLabels: Record<TimelineEntry['category'], string> = {
 export function UpdatesPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'Dev Timeline & Journey | Thomas J Butler';
   }, []);
 
   const entriesByYear = timelineData.reduce<Record<number, TimelineEntry[]>>((acc, entry) => {

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
 import { ArrowRight, Mail } from 'lucide-react';
@@ -50,7 +49,6 @@ const CREDENTIALS = [
 ] as const;
 
 export function ServicesPage() {
-  useEffect(() => { document.title = 'Services | Tom Butler'; }, []);
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6">

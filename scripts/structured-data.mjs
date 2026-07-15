@@ -123,6 +123,14 @@ const SERVICE = {
   url: `${SITE}/services`,
   image: `${SITE}/og-image.png`,
   provider: { '@id': `${SITE}/#person` },
+  // ProfessionalService is a LocalBusiness subtype, and Google wants an address on those.
+  // It is the same locality as the Person; a rich-result test warns without it.
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'York',
+    addressRegion: 'North Yorkshire',
+    addressCountry: 'GB',
+  },
   priceRange: '££',
   areaServed: [
     { '@type': 'Country', name: 'United Kingdom' },

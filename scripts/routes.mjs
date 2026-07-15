@@ -75,3 +75,18 @@ export const NOT_FOUND = {
   title: 'Page not found | Tom Butler',
   description: 'There is no spoon. That page does not exist, but the rest of the site does.',
 };
+
+/**
+ * The title for a path, from the same table the prerender uses.
+ *
+ * The app imports this so a client-side navigation sets exactly the title the build wrote
+ * into the prerendered HTML. Every page used to carry its own `document.title = '...'`
+ * effect, and all seven had drifted from routes.mjs: a crawler indexed "Local & Private AI
+ * for business", the browser tab said "Full Stack AI Engineer, Local AI & On-Device
+ * Systems", and a shared bookmark got the second one. One table, no drift.
+ */
+export function titleForPath(pathname) {
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname;
+  const match = ROUTE_META.find((r) => r.path === clean);
+  return (match ?? NOT_FOUND).title;
+}

@@ -23,34 +23,39 @@ const template = readFileSync(resolve(dist, 'index.html'), 'utf8');
 /**
  * Swap one tag's content. Every replacement is anchored to the exact attribute that
  * identifies the tag, so a description can never overwrite an og:description.
+ *
+ * Every replacement uses a FUNCTION, never a template string. `String.replace(re, str)`
+ * treats `$1`, `$&`, `` $` `` and `$'` in the *replacement* as backreferences, so the
+ * moment a title or description contains a literal `$` (say "cut the $15-per-million-token
+ * bill", entirely plausible on a site about API cost) the string form mangles the tag or,
+ * with `$'`, injects the rest of the document. A function replacement takes the inserted
+ * text verbatim.
  */
+function replaceAttr(html, re, value) {
+  return html.replace(re, (_m, open, close) => open + attr(value) + close);
+}
+
 function withMeta(html, { title, description, url }) {
-  return html
-    .replace(/<title>[\s\S]*?<\/title>/, `<title>${attr(title)}</title>`)
-    .replace(
-      /(<meta\s+name="description"\s+content=")[^"]*(")/,
-      `$1${attr(description)}$2`
-    )
-    .replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/, `$1${attr(title)}$2`)
-    .replace(
-      /(<meta\s+property="og:description"\s+content=")[^"]*(")/,
-      `$1${attr(description)}$2`
-    )
-    .replace(/(<meta\s+property="og:url"\s+content=")[^"]*(")/, `$1${attr(url)}$2`)
-    .replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${attr(title)}$2`)
-    .replace(
-      /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/,
-      `$1${attr(description)}$2`
-    )
-    .replace(/(<link\s+rel="canonical"\s+href=")[^"]*(")/, `$1${attr(url)}$2`);
+  let out = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${attr(title)}</title>`);
+  out = replaceAttr(out, /(<meta\s+name="description"\s+content=")[^"]*(")/, description);
+  out = replaceAttr(out, /(<meta\s+property="og:title"\s+content=")[^"]*(")/, title);
+  out = replaceAttr(out, /(<meta\s+property="og:description"\s+content=")[^"]*(")/, description);
+  out = replaceAttr(out, /(<meta\s+property="og:url"\s+content=")[^"]*(")/, url);
+  out = replaceAttr(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, title);
+  out = replaceAttr(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, description);
+  out = replaceAttr(out, /(<link\s+rel="canonical"\s+href=")[^"]*(")/, url);
+  return out;
 }
 
 /** Replace the single Person block in the template with this route's graph. */
 function withStructuredData(html, route) {
-  const json = JSON.stringify(structuredDataFor(route), null, 2);
+  // JSON.stringify escapes " and \, but not the sequence </script>, which would close the
+  // element early if any hand-maintained string in the graph ever contained it. Escaping
+  // the slash keeps the JSON valid and the script element intact.
+  const json = JSON.stringify(structuredDataFor(route), null, 2).replace(/<\/script/gi, '<\\/script');
   return html.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-    `<script type="application/ld+json">\n${json}\n    </script>`
+    () => `<script type="application/ld+json">\n${json}\n    </script>`
   );
 }
 
@@ -59,7 +64,9 @@ function withMarkup(html, markup) {
   if (!html.includes(target)) {
     throw new Error('prerender: could not find <div id="root"></div> in the built template');
   }
-  return html.replace(target, `<div id="root">${markup}</div>`);
+  // Function replacement: the SSR markup contains `$`-heavy content (prices, template
+  // artefacts), and a `$'` in it would otherwise expand to the rest of the document.
+  return html.replace(target, () => `<div id="root">${markup}</div>`);
 }
 
 function writeRoute(name, html) {
