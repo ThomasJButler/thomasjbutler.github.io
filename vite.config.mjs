@@ -12,6 +12,9 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
+    // Emit dist/.vite/manifest.json so scripts/prerender.mjs can map a route's source
+    // module (src/pages/AboutPage.tsx) to its content-hashed chunk and preload it.
+    manifest: true,
     rollupOptions: {
       input: {
         // index.html IS the app. It used to be a stub that JS-redirected to

@@ -20,6 +20,11 @@ const attr = (s) =>
 
 const template = readFileSync(resolve(dist, 'index.html'), 'utf8');
 
+// Vite writes this when build.manifest is on. It maps each module's source path
+// (src/pages/AboutPage.tsx) to its content-hashed output chunk, which is the only way this
+// script can learn a lazy route's chunk filename in order to preload it.
+const manifest = JSON.parse(readFileSync(resolve(dist, '.vite/manifest.json'), 'utf8'));
+
 // This script reads dist/index.html as its template and also writes dist/index.html (the /
 // route), so running it a second time without a fresh `vite build` in between would feed the
 // already-injected output back in as the template and produce nonsense. `npm run build` always
@@ -80,6 +85,31 @@ function withMarkup(html, markup) {
   return html.replace(target, () => `<div id="root">${markup}</div>`);
 }
 
+/**
+ * Add a modulepreload for a code-split route's chunk.
+ *
+ * The prerendered HTML references only the entry chunk (main-*.js). A lazy route's chunk is
+ * discovered only after that entry runs its dynamic import, so hydration on those routes
+ * waterfalls: fetch main, execute main, THEN fetch the route. A <link rel="modulepreload"> in
+ * the head lets the preload scanner fetch the route chunk in parallel with the entry chunk.
+ *
+ * Statically-imported routes (home, services) carry no `module` and are already inside the
+ * entry chunk, so they get nothing. A route naming a module the manifest cannot resolve is a
+ * hard error, not a silent skip: a stale path would quietly turn the optimisation off.
+ */
+function withPreload(html, route) {
+  if (!route.module) return html;
+  const entry = manifest[route.module];
+  if (!entry || !entry.file) {
+    throw new Error(
+      `prerender: build manifest has no chunk for ${route.module} (route ${route.path}). ` +
+        'Check build.manifest is on in vite.config.mjs and the module path in routes.mjs is current.'
+    );
+  }
+  const link = `    <link rel="modulepreload" href="/${entry.file}">\n`;
+  return html.replace('</head>', () => `${link}  </head>`);
+}
+
 function writeRoute(name, html) {
   // Both spellings, because GitHub Pages serves /services from services.html and
   // /services/ from services/index.html, and a link in the wild can be either.
@@ -99,6 +129,7 @@ for (const route of [...ROUTE_META, NOT_FOUND]) {
   let html = withMeta(template, { ...route, url: route.file === '404' ? `${SITE}/404` : url });
   html = withStructuredData(html, route);
   html = withMarkup(html, markup);
+  html = withPreload(html, route);
 
   // The 404 must not invite indexing. GitHub Pages serves this file with an HTTP 404 for
   // every unknown path, so a template default of "index, follow" plus a canonical pointing

@@ -1399,7 +1399,10 @@
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.12em;
-    color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
+    /* 82%, not 60%: at 60% this 10px label composited to ~3.0:1 (light) / ~4.14:1 (dark),
+       both under the WCAG AA 4.5:1 floor. The rule is theme-unscoped, so one bump clears
+       both (measured 4.8:1 light / 6.8:1 dark). */
+    color: color-mix(in oklab, var(--muted-foreground) 82%, transparent);
   }
 
   @media (max-width: 820px) {

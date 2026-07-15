@@ -11,6 +11,12 @@ export const SITE = 'https://thomasjbutler.github.io';
  * Descriptions are kept between roughly 110 and 160 characters, which is what Google will
  * usually show without truncating, and each is written to be worth clicking rather than to
  * repeat the title.
+ *
+ * `module` names the page's source file when the route is code-split (React.lazy in App.tsx).
+ * The prerender looks it up in Vite's build manifest and emits a <link rel="modulepreload">
+ * so the browser can fetch the route chunk in parallel with the entry chunk instead of
+ * waiting for main-*.js to execute the dynamic import first. Home ('/') and services are
+ * statically imported (already in the entry chunk), so they have no module and no preload.
  */
 export const ROUTE_META = [
   {
@@ -30,6 +36,7 @@ export const ROUTE_META = [
   {
     path: '/case-study',
     file: 'case-study',
+    module: 'src/pages/CaseStudyPage.tsx',
     title: 'Case study: a RAG agent for security questionnaires | Tom Butler',
     description:
       'A RAG agent that drafts supplier security questionnaires, grounds every answer in your own policy, cites its sources, and flags the ones a human should check.',
@@ -37,6 +44,7 @@ export const ROUTE_META = [
   {
     path: '/projects',
     file: 'projects',
+    module: 'src/pages/ProjectsPage.tsx',
     title: 'Projects | Tom Butler, Full Stack AI Engineer',
     description:
       'AI, web and mobile work: model comparison tooling, natural-language SQL, document Q&A with RAG, automated PR review, and an offline on-device iOS app.',
@@ -44,6 +52,7 @@ export const ROUTE_META = [
   {
     path: '/about',
     file: 'about',
+    module: 'src/pages/AboutPage.tsx',
     title: 'About | Tom Butler, Full Stack AI Engineer',
     description:
       'Full Stack AI Engineer in York. Private and local AI for business, a contributor to open source local AI, and building Sanctuary, an offline on-device app.',
@@ -51,6 +60,7 @@ export const ROUTE_META = [
   {
     path: '/contact',
     file: 'contact',
+    module: 'src/pages/ContactPage.tsx',
     title: 'Talk it through | Tom Butler',
     description:
       'Start with a fixed-fee audit of what AI is actually costing you. No obligation, and if local AI is wrong for you I will say so in writing.',
@@ -58,6 +68,7 @@ export const ROUTE_META = [
   {
     path: '/updates',
     file: 'updates',
+    module: 'src/pages/UpdatesPage.tsx',
     title: 'Dev Journey | Tom Butler',
     description:
       'The road from a kid watching green code rain in The Matrix to building private AI systems for businesses for a living.',
@@ -72,6 +83,7 @@ export const ROUTE_META = [
 export const NOT_FOUND = {
   path: '/__not-found__',
   file: '404',
+  module: 'src/pages/NotFoundPage.tsx',
   title: 'Page not found | Tom Butler',
   description: 'There is no spoon. That page does not exist, but the rest of the site does.',
 };

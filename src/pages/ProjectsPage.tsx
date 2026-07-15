@@ -55,7 +55,9 @@ export function ProjectsPage() {
   /*
    * A card is a clickable div, so it needs to be operable by keyboard (WCAG 2.1.1, Level A).
    * Enter and Space open the detail modal, exactly like a click. The Live/Code links inside
-   * the footer stop propagation and remain independently focusable.
+   * the footer stop propagation on BOTH click and keydown, so they stay independently
+   * operable: without the keydown guard, Enter on a focused footer link would bubble up to
+   * this handler, get preventDefault()ed, and open the modal instead of following the link.
    */
   const openProps = (project: Project) => ({
     role: 'button',
@@ -124,7 +126,7 @@ export function ProjectsPage() {
                       ))}
                     </div>
                   </CardContent>
-                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
+                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                     {project.links.demo && (
                       <Button asChild variant="ghost" size="xs">
                         <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -224,7 +226,7 @@ export function ProjectsPage() {
                       </Badge>
                     </div>
                   </CardContent>
-                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()}>
+                  <CardFooter className="mt-auto gap-2" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                     {project.links.demo && (
                       <Button asChild variant="ghost" size="xs">
                         <a href={project.links.demo} target="_blank" rel="noopener noreferrer">

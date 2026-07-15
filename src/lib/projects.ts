@@ -163,7 +163,7 @@ export const projects: Project[] = [
     topics: ['React', 'Redux', 'Reddit API'],
     language: 'JavaScript',
     category: 'web',
-    links: { github: 'https://github.com/ThomasJButler/LFC-News-Reddit-App', demo: 'https://lfc-news-reddit-app.vercel.app/' },
+    links: { demo: 'https://liverpoolfcnews.vercel.app/' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947167/lfcreddit2_wzbqty.png' },
     highlights: ['Distraction-free Reddit reader', 'Three kit themes', 'Threaded comments with inline media', 'No account or ads needed'],
   },

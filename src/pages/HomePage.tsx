@@ -72,7 +72,7 @@ export function HomePage() {
       <Reveal as="section" className="py-6 pb-12">
         <div className="overflow-hidden rounded-lg border border-border/30">
           <div className="border-b border-border/20 bg-muted/20 px-4 py-1.5">
-            <span className="font-mono text-[10px] text-muted-foreground/50">$ cat about.md</span>
+            <span className="font-mono text-[10px] text-muted-foreground/80">$ cat about.md</span>
           </div>
           <div className="p-5">
             <p className="text-[15px] leading-relaxed text-muted-foreground">
@@ -89,7 +89,7 @@ export function HomePage() {
             </Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <a href="https://github.com/thomasjbutler" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/ThomasJButler" target="_blank" rel="noopener noreferrer">
               <GithubIcon className="size-3" /> GitHub
             </a>
           </Button>

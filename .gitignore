@@ -48,3 +48,4 @@ Thumbs.db
 .refute-*.mjs
 .axe*-tmp.mjs
 .dbg*-tmp.mjs
+.pt-*.mjs

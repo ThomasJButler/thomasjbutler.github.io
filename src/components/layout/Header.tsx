@@ -72,7 +72,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               </button>
             )}
             <a
-              href="https://github.com/thomasjbutler"
+              href="https://github.com/ThomasJButler"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -163,7 +163,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               )}
               <div className="mt-2 flex items-center gap-2 border-t border-border pt-3">
                 <a
-                  href="https://github.com/thomasjbutler"
+                  href="https://github.com/ThomasJButler"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"

@@ -19,7 +19,7 @@ import { timelineData } from '@/lib/timeline';
 import type { TimelineEntry } from '@/lib/timeline';
 
 const CURRENT_YEAR = new Date().getFullYear();
-const YEARS_CODING = CURRENT_YEAR - 2022;
+const YEARS_IN_AI = CURRENT_YEAR - 2024;
 
 const categoryIcons: Record<TimelineEntry['category'], React.ReactNode> = {
   education: <GraduationCap className="size-4" />,
@@ -104,14 +104,14 @@ export function UpdatesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.5 }}
           >
-            {/* "Years in AI", not "Years Coding". The timeline starts in 2022, so the old
-                label claimed he had been coding for four years, which flatly contradicts
-                the About page ("started with HTML/CSS as a kid, 2000s"). 2022 is when the
-                AI focus began, and that is what this counts. suppressHydrationWarning: the
-                value is baked at build time and recomputed on the client, so it would
-                mismatch across a New Year until the next deploy. */}
+            {/* Anchored to 2024, not 2022: the timeline's own 2022 entry is "Started My
+                Coding Journey" (fundamentals), and the first AI-titled entries are April and
+                July 2024. Counting from 2022 rendered "4+ Years in AI", which the page's own
+                data contradicts. suppressHydrationWarning: the value is baked at build time
+                and recomputed on the client, so it would mismatch across a New Year until the
+                next deploy. */}
             <p className="font-heading text-3xl font-bold text-primary" suppressHydrationWarning>
-              {YEARS_CODING}+
+              {YEARS_IN_AI}+
             </p>
             <p className="mt-1 font-mono text-xs text-muted-foreground">Years in AI</p>
           </motion.div>

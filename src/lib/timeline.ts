@@ -50,12 +50,12 @@ export const timelineData: TimelineEntry[] = [
     title: 'AI you can own',
     location: 'York, UK',
     institution: 'Local & Private AI',
-    description: 'Local and private AI becomes the focus. Ollama setups and private RAG for businesses, contributing to Odysseus, building Sanctuary on-device, and writing Run It Local every week.',
+    description: 'Local and private AI becomes the focus. Ollama setups and private RAG for businesses, contributing to Odysseus, building Sanctuary on-device, and starting Run It Local, a plain-English AI newsletter.',
     achievements: [
       'Ollama local LLM setups and private RAG systems for businesses',
       'Contributing to Odysseus, an open source local AI project',
       'Building Sanctuary, a fully offline on-device AI app',
-      'Writing Run It Local, a weekly plain-English AI newsletter'
+      'Starting Run It Local, a plain-English AI newsletter'
     ],
     links: [],
     icon: 'fa-microchip',
@@ -150,11 +150,6 @@ export const timelineData: TimelineEntry[] = [
       'Created beautiful data visualisations for performance metrics'
     ],
     links: [
-      {
-        href: 'https://ai-comparison-showcase.vercel.app/',
-        label: 'View Demo',
-        icon: 'fa-arrow-up-right-from-square'
-      },
       {
         href: 'https://github.com/ThomasJButler/AI-Comparison-Showcase-',
         label: 'View on GitHub',
@@ -286,7 +281,7 @@ export const timelineData: TimelineEntry[] = [
     ],
     links: [
       {
-        href: 'https://github.com/ThomasJButler/matrix-arcade',
+        href: 'https://github.com/ThomasJButler/The-Matrix-Arcade',
         label: 'View on GitHub',
         icon: 'fa-brands fa-github'
       },
@@ -348,7 +343,7 @@ export const timelineData: TimelineEntry[] = [
     ],
     links: [
       {
-        href: 'https://thomasjbutler.github.io/ThomasJButler',
+        href: 'https://thomasjbutler.github.io/',
         label: 'Visit Site',
         icon: 'fa-arrow-up-right-from-square'
       },
@@ -516,13 +511,7 @@ export const timelineData: TimelineEntry[] = [
       'Built responsive React UI for news display',
       'Created multi-subreddit aggregation system'
     ],
-    links: [
-      {
-        href: 'https://github.com/ThomasJButler/LFC-News-Reddit-App',
-        label: 'View on GitHub',
-        icon: 'fa-brands fa-github'
-      }
-    ],
+    links: [],
     icon: 'fa-comments',
     iconBg: '#FF4500',
     category: 'project'
