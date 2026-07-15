@@ -144,7 +144,7 @@ export function ContactPage() {
             <Card size="sm">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Terminal className="size-4 text-primary/60" />
+                  <Terminal className="size-4 text-primary/90" />
                   <CardTitle className="font-mono text-xs uppercase tracking-wider">connect</CardTitle>
                 </div>
               </CardHeader>

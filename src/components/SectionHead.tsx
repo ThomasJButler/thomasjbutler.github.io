@@ -33,7 +33,7 @@ export function SectionHead({ title, deck, eyebrow, className }: SectionHeadProp
   return (
     <div className={cn('mb-7', className)}>
       {eyebrow && (
-        <p className="mb-2 font-mono text-xs tracking-[0.18em] text-primary/70">{eyebrow}</p>
+        <p className="mb-2 font-mono text-xs tracking-[0.18em] text-primary/90">{eyebrow}</p>
       )}
       <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-[28px]">
         {title}

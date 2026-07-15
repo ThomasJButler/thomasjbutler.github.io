@@ -21,7 +21,7 @@ export function NotFoundPage() {
           404
         </h1>
 
-        <p className="mt-4 font-mono text-lg text-primary/70">
+        <p className="mt-4 font-mono text-lg text-primary/90">
           &quot;There is no spoon&quot;
         </p>
 

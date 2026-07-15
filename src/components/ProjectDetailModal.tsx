@@ -135,7 +135,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
         {/* Highlights */}
         {project.highlights && project.highlights.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/70">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
               Key Features
             </h3>
             <ul className="grid gap-1.5 sm:grid-cols-2">
@@ -152,7 +152,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
         {/* Image Gallery Placeholder */}
         {project.images?.gallery && project.images.gallery.length > 0 ? (
           <div className="space-y-2">
-            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/70">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
               Screenshots
             </h3>
             <div className="grid grid-cols-2 gap-2">
@@ -187,7 +187,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
         {/* Demo videos (embedded) */}
         {videos.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/70">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
               Demo
             </h3>
             <div className="space-y-3">
@@ -207,7 +207,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
 
         {/* Tech Stack */}
         <div className="space-y-2">
-          <h3 className="font-mono text-xs uppercase tracking-wider text-primary/70">
+          <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
             Tech Stack
           </h3>
           <div className="flex flex-wrap gap-1.5">

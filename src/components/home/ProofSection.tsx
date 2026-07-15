@@ -30,7 +30,7 @@ export function ProofSection() {
         {/* The case study leads: it is the strongest asset on the site. */}
         <Card className="fx-lead-card lg:col-span-3">
           <CardContent className="flex h-full flex-col pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary/70">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary/90">
               case_study
             </p>
             <h3 className="mt-2 font-heading text-lg font-bold leading-snug text-foreground">

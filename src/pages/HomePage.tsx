@@ -51,7 +51,7 @@ export function HomePage() {
         <div className="rounded-lg border border-primary/20 bg-primary/[0.03] p-5">
           <div className="mb-3 flex items-center gap-2">
             <Sparkles className="size-3.5 text-primary" />
-            <span className="font-mono text-xs uppercase tracking-wider text-primary/70">now</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-primary/90">now</span>
           </div>
           <p className="text-sm leading-relaxed text-foreground/80">{NOW_COPY}</p>
           <div className="mt-3 flex flex-wrap gap-1.5">

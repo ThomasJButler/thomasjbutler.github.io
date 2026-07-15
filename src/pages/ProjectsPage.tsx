@@ -85,7 +85,7 @@ export function ProjectsPage() {
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
       <MotionSection>
-        <p className="font-mono text-xs tracking-[0.2em] text-primary/70">
+        <p className="font-mono text-xs tracking-[0.2em] text-primary/90">
           <DecodeText text="// projects" step={20} />
         </p>
         <h1 className="mt-2 font-heading text-3xl font-bold tracking-tight">Projects</h1>

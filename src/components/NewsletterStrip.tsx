@@ -11,7 +11,7 @@ export function NewsletterStrip() {
   return (
     <Reveal className="fx-news fx-scrim">
       <div className="fx-news__head">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary/70">
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary/90">
           {NEWSLETTER.label}
         </span>
         <h3>{NEWSLETTER.title}</h3>

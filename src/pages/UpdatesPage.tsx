@@ -15,7 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { timelineData, getCategoryColor } from '@/lib/timeline';
+import { timelineData } from '@/lib/timeline';
 import type { TimelineEntry } from '@/lib/timeline';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -156,14 +156,12 @@ export function UpdatesPage() {
                           <p className="text-xs font-medium text-muted-foreground">{entry.institution}</p>
                         )}
                       </div>
-                      <Badge
-                        className="shrink-0 text-[10px]"
-                        style={{
-                          backgroundColor: `${getCategoryColor(entry.category)}20`,
-                          color: getCategoryColor(entry.category),
-                          borderColor: `${getCategoryColor(entry.category)}40`,
-                        }}
-                      >
+                      {/* One neutral badge, not the old six-colour rainbow.
+                          getCategoryColor returned #F59E0B / #6366F1 / #8B5CF6 etc: colours
+                          that broke the green-and-amber-only palette AND failed contrast in
+                          light mode (amber on white measured 1.95:1). The category is still
+                          labelled; the icon beside each entry carries the differentiation. */}
+                      <Badge variant="secondary" className="shrink-0 text-[10px]">
                         {categoryLabels[entry.category]}
                       </Badge>
                     </CardHeader>

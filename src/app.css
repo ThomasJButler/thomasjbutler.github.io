@@ -927,7 +927,9 @@
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.18em;
-    color: color-mix(in oklab, var(--primary) 65%, transparent);
+    /* Full primary, not 65%: this is a real content line now (name, role, location) and
+       the softened version measured 3.07:1, below the 4.5:1 AA floor. */
+    color: var(--primary);
   }
 
   .fx-big {

@@ -25,7 +25,7 @@ export function CaseStudyPage() {
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
       <Reveal>
-        <p className="font-mono text-xs tracking-[0.2em] text-primary/70">
+        <p className="font-mono text-xs tracking-[0.2em] text-primary/90">
           <DecodeText text="// case_study" step={20} />
         </p>
         <h1 className="mt-3 max-w-3xl font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -65,7 +65,7 @@ export function CaseStudyPage() {
             disclosed one reads as someone who knows the difference. */}
         <Card size="sm" className="mt-6 max-w-3xl border-primary/20">
           <CardContent className="flex gap-3 pt-5">
-            <Info className="mt-0.5 size-4 shrink-0 text-primary/70" />
+            <Info className="mt-0.5 size-4 shrink-0 text-primary/90" />
             <p className="text-sm leading-relaxed text-muted-foreground">
               {CASE_STUDY.provenance}
             </p>

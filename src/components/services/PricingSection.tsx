@@ -83,7 +83,7 @@ export function PricingSection() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Card size="sm" className="h-full">
           <CardHeader>
-            <CardTitle className="font-mono text-xs uppercase tracking-[0.2em] text-primary/70">
+            <CardTitle className="font-mono text-xs uppercase tracking-[0.2em] text-primary/90">
               included
             </CardTitle>
           </CardHeader>
