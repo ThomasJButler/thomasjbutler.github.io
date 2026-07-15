@@ -73,8 +73,8 @@
   --color-surface-2: oklch(0.14 0.02 145);
   --color-surface-3: oklch(0.18 0.025 145);
 
-  --color-cyan: oklch(0.75 0.15 195);
-  --color-amber: oklch(0.80 0.15 85);
+  /* cyan/amber tokens removed: the badge variants that used them are gone, and the
+     only non-green hue now is --meter (amber, semantic). */
   --color-text: oklch(0.95 0.01 145);
   /* The header nav uses this. Lifted with the rest of the dark palette for daylight. */
   --color-text-muted: oklch(0.74 0.03 145);
@@ -453,73 +453,10 @@
 
 /* ─── Utility classes ─── */
 @layer utilities {
-  /* CRT scanlines — more visible in dark, subtle in light */
-  .crt-scanlines::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      oklch(0.50 0.28 145 / 0.05) 2px,
-      oklch(0.50 0.28 145 / 0.05) 4px
-    );
-  }
-  :root:not(.dark) .crt-scanlines::after {
-    opacity: 0.15;
-  }
+  /* Removed with the v5.2 dead-code pass: .crt-scanlines, .vignette, .glass-panel and
+     .noise-bg (below). They were the v3 versions, superseded by the .fx-scanlines,
+     .fx-vignette and .fx-page/.fx-scrim systems, and referenced by nothing in src/. */
 
-  /* Vignette — cinematic edge darkening */
-  .vignette::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    background: radial-gradient(
-      ellipse at center,
-      transparent 50%,
-      oklch(0 0 0 / 0.25) 100%
-    );
-  }
-  :root:not(.dark) .vignette::before {
-    background: radial-gradient(
-      ellipse at center,
-      transparent 60%,
-      oklch(0 0 0 / 0.04) 100%
-    );
-  }
-
-  /* Glass panel — readable content over Matrix rain */
-  .glass-panel {
-    background: oklch(0.06 0.01 145 / 0.88);
-    backdrop-filter: blur(32px) saturate(1.5);
-    -webkit-backdrop-filter: blur(32px) saturate(1.5);
-    border: 1px solid oklch(0.28 0.08 145 / 0.35);
-    border-top: 1px solid oklch(0.40 0.18 145 / 0.25);
-    border-radius: var(--radius-xl);
-  }
-  :root:not(.dark) .glass-panel {
-    background: oklch(0.98 0.006 145 / 0.90);
-    border-color: oklch(0.85 0.02 145 / 0.4);
-    box-shadow: 0 1px 3px oklch(0.35 0.22 145 / 0.05);
-  }
-  /* Mobile: higher opacity for readability */
-  @media (max-width: 640px) {
-    .glass-panel {
-      background: oklch(0.06 0.01 145 / 0.94);
-      backdrop-filter: blur(32px);
-      -webkit-backdrop-filter: blur(32px);
-    }
-    :root:not(.dark) .glass-panel {
-      background: oklch(0.985 0.002 145 / 0.94);
-    }
-  }
-
-  /* Glow text — neon heading treatment */
   /* The meter. Amber means "this is what renting costs you", and nothing else. */
   .text-meter {
     color: var(--meter);
@@ -566,16 +503,6 @@
   }
   :root:not(.dark) .glow-pulse {
     animation: glow-pulse-light 3s ease-in-out infinite;
-  }
-
-  /* Noise texture overlay */
-  .noise-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0.03;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
 
