@@ -19,7 +19,7 @@ import { timelineData } from '@/lib/timeline';
 import type { TimelineEntry } from '@/lib/timeline';
 
 const CURRENT_YEAR = new Date().getFullYear();
-const YEARS_IN_AI = CURRENT_YEAR - 2024;
+const YEARS_IN_AI = CURRENT_YEAR - 2022;
 
 const categoryIcons: Record<TimelineEntry['category'], React.ReactNode> = {
   education: <GraduationCap className="size-4" />,
@@ -104,12 +104,11 @@ export function UpdatesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.5 }}
           >
-            {/* Anchored to 2024, not 2022: the timeline's own 2022 entry is "Started My
-                Coding Journey" (fundamentals), and the first AI-titled entries are April and
-                July 2024. Counting from 2022 rendered "4+ Years in AI", which the page's own
-                data contradicts. suppressHydrationWarning: the value is baked at build time
-                and recomputed on the client, so it would mismatch across a New Year until the
-                next deploy. */}
+            {/* Anchored to 2022: GPT-3, before it went mainstream, was the reason Tom moved
+                into software, so his development journey has been AI-oriented from the start
+                and "Years in AI" counts from there. suppressHydrationWarning: the value is
+                baked at build time and recomputed on the client, so it would mismatch across
+                a New Year until the next deploy. */}
             <p className="font-heading text-3xl font-bold text-primary" suppressHydrationWarning>
               {YEARS_IN_AI}+
             </p>
