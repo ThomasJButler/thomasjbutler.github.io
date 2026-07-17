@@ -183,6 +183,9 @@ export function structuredDataFor(route) {
         author: { '@id': `${SITE}/#person` },
         publisher: { '@id': `${SITE}/#person` },
         url: `${SITE}/case-study`,
+        // Google's Article rich-result guidance asks for an image, and this graph had none:
+        // the one route with a real article was the one route whose card was not described.
+        image: `${SITE}/og-case-study.png`,
         about: ['Retrieval-Augmented Generation', 'Information security questionnaires', 'Local AI'],
       },
       breadcrumb(route)

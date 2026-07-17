@@ -7,7 +7,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Reveal } from '@/components/fx/Reveal';
 import { SectionHead } from '@/components/SectionHead';
 import { DecodeText } from '@/components/fx/DecodeText';
+import { Figure } from '@/components/media/Figure';
 import { CASE_STUDY } from '@/lib/content';
+import { MEDIA, MEDIA_SIZE } from '@/lib/assets';
 import { projects } from '@/lib/projects';
 
 /**
@@ -34,6 +36,16 @@ export function CaseStudyPage() {
         <p className="fx-scrim mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {CASE_STUDY.subtitle}
         </p>
+
+        {/* No caption: the headline above it has already said what this is, and a caption
+            repeating it would be the label doing the same job twice. */}
+        <Figure
+          src={MEDIA['isq-agent'].hero}
+          alt="ISQ Agent: a drafted questionnaire answer with its sources and confidence score"
+          width={MEDIA_SIZE.hero.width}
+          height={MEDIA_SIZE.hero.height}
+          className="mt-8 max-w-4xl"
+        />
 
         {project && (
           <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -101,6 +113,17 @@ export function CaseStudyPage() {
             </p>
           ))}
         </div>
+
+        {/* fx-scrim: the caption is 12px muted text sitting directly on the live rain, which
+            measures nowhere near 4.5:1 without a wash behind it. */}
+        <Figure
+          src={MEDIA['isq-agent'].wireframe}
+          alt="ISQ Agent wireframe: the review screen, annotated"
+          width={MEDIA_SIZE.wireframe.width}
+          height={MEDIA_SIZE.wireframe.height}
+          caption="The review screen: the drafted answer, the policy it came from, and the confidence that decides whether a person needs to look at it."
+          className="fx-scrim mt-8 max-w-3xl"
+        />
       </Reveal>
 
       {/* How it works. The one place the machine voice earns its eyebrow: this section is
@@ -110,6 +133,18 @@ export function CaseStudyPage() {
           eyebrow="pipeline --trace"
           title="What happens to a single question"
           deck="Five stages, from your documents to an answer a reviewer can check in seconds."
+        />
+
+        {/* The diagram and the list below are the same five stages, twice: once to take in at
+            a glance, once to read. It goes first because the shape of the pipeline is easier
+            to hold once you have seen it. */}
+        <Figure
+          src={MEDIA['isq-agent'].diagram}
+          alt="ISQ Agent data flow: ingest, retrieve, draft, score, review"
+          width={MEDIA_SIZE.diagram.width}
+          height={MEDIA_SIZE.diagram.height}
+          caption="Green is what runs on your side. Amber marks the metered boundary, where tokens are billed and data leaves the building: on this build, the draft step."
+          className="fx-scrim mb-10 max-w-3xl"
         />
 
         <ol className="relative ml-4 border-l-2 border-primary/20 pl-8">

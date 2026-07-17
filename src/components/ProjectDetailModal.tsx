@@ -13,7 +13,10 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { ImageLightbox } from '@/components/ImageLightbox';
+import { Figure } from '@/components/media/Figure';
+import { LoopVideo } from '@/components/media/LoopVideo';
 import { categoryLabel, languageColors } from '@/lib/projects';
+import { MEDIA_SIZE } from '@/lib/assets';
 import type { Project } from '@/lib/projects';
 
 interface ProjectDetailModalProps {
@@ -29,11 +32,16 @@ interface ProjectDetailModalProps {
 export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, hasNav }: ProjectDetailModalProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Combined gallery = cover first, then any gallery screenshots (deduped).
+  // Everything the lightbox can page through, in the order it appears: cover, screenshots,
+  // then the under-the-hood stills (deduped). The diagram and wireframe are in here because
+  // they are the images most worth enlarging: a data-flow diagram is unreadable at modal
+  // width. The loop is not, being a video.
   const galleryImages = useMemo(() => {
     const imgs: string[] = [];
     if (project?.images?.cover) imgs.push(project.images.cover);
     if (project?.images?.gallery) imgs.push(...project.images.gallery);
+    if (project?.underTheHood?.diagram) imgs.push(project.underTheHood.diagram.src);
+    if (project?.underTheHood?.wireframe) imgs.push(project.underTheHood.wireframe.src);
     return Array.from(new Set(imgs));
   }, [project]);
 
@@ -183,6 +191,54 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             <p className="text-xs text-muted-foreground/60 font-mono">Screenshots coming soon</p>
           </div>
         ) : null}
+
+        {/* Under the hood: the mechanic moving, where the data goes, the screen it lands on.
+            Read in that order, the three answer "how does this actually work" without
+            requiring the reader to already know. */}
+        {project.underTheHood && (
+          <div className="space-y-4">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
+              Under the hood
+            </h3>
+
+            {project.underTheHood.loop && (
+              <figure className="space-y-2">
+                {/* Constrained: the clip is 480px wide, so at full modal width it would be
+                    an upscale, and a soft one at that. */}
+                <LoopVideo
+                  src={project.underTheHood.loop.src}
+                  poster={project.underTheHood.loop.poster}
+                  className="max-w-lg"
+                />
+                <figcaption className="text-xs leading-relaxed text-muted-foreground">
+                  {project.underTheHood.loop.caption}
+                </figcaption>
+              </figure>
+            )}
+
+            {project.underTheHood.diagram && (
+              <Figure
+                src={project.underTheHood.diagram.src}
+                alt={`How ${project.name} works: a data-flow diagram`}
+                width={MEDIA_SIZE.diagram.width}
+                height={MEDIA_SIZE.diagram.height}
+                caption={project.underTheHood.diagram.caption}
+                onZoom={() => setLightboxIndex(galleryImages.indexOf(project.underTheHood!.diagram!.src))}
+              />
+            )}
+
+            {project.underTheHood.wireframe && (
+              <Figure
+                src={project.underTheHood.wireframe.src}
+                alt={`${project.name} wireframe: the key screen, annotated`}
+                width={MEDIA_SIZE.wireframe.width}
+                height={MEDIA_SIZE.wireframe.height}
+                caption={project.underTheHood.wireframe.caption}
+                onZoom={() => setLightboxIndex(galleryImages.indexOf(project.underTheHood!.wireframe!.src))}
+              />
+            )}
+          </div>
+        )}
 
         {/* Demo videos (embedded) */}
         {videos.length > 0 && (

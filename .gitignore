@@ -49,3 +49,11 @@ Thumbs.db
 .axe*-tmp.mjs
 .dbg*-tmp.mjs
 .pt-*.mjs
+
+# Project media served locally while iterating on the design assets. Cloudinary bills on
+# delivery, so pointing dev at it burns credits on every reload. These are ~12MB of
+# iteration, not source: the master copies live in desigassetnexports/, and every URL is
+# swapped to Cloudinary in src/lib/assets.ts before production.
+# NOTE: `npm run deploy` still publishes them, because Vite copies public/ into dist/ and
+# gh-pages ships dist/. Ignoring them keeps the history lean, it does not un-deploy them.
+public/img/

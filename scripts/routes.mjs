@@ -17,6 +17,11 @@ export const SITE = 'https://thomasjbutler.github.io';
  * so the browser can fetch the route chunk in parallel with the entry chunk instead of
  * waiting for main-*.js to execute the dynamic import first. Home ('/') and services are
  * statically imported (already in the entry chunk), so they have no module and no preload.
+ *
+ * `image` is the social card, a filename in public/ that the prerender makes absolute. A
+ * route without one falls back to the sitewide card. These live in public/ rather than on
+ * Cloudinary on purpose: a card is fetched by a crawler once, not by every visitor, so it
+ * costs no delivery credits and has no reason to leave the origin.
  */
 export const ROUTE_META = [
   {
@@ -29,6 +34,9 @@ export const ROUTE_META = [
   {
     path: '/services',
     file: 'services',
+    image: 'og-services.png',
+    imageAlt:
+      'Local & Private AI: the results you need for everyday work, on your own hardware, with no per-token bills.',
     title: 'Local & Private AI for business | Tom Butler',
     description:
       'Local LLM setups, private RAG, and honest AI cost and privacy audits. Fixed fees from £6,000, and I will tell you when local AI is the wrong answer.',
@@ -37,6 +45,9 @@ export const ROUTE_META = [
     path: '/case-study',
     file: 'case-study',
     module: 'src/pages/CaseStudyPage.tsx',
+    image: 'og-case-study.png',
+    imageAlt:
+      'Case study, ISQ Agent: answering security questionnaires without leaking the answers.',
     title: 'Case study: a RAG agent for security questionnaires | Tom Butler',
     description:
       'A RAG agent that drafts supplier security questionnaires, grounds every answer in your own policy, cites its sources, and flags the ones a human should check.',
@@ -61,6 +72,8 @@ export const ROUTE_META = [
     path: '/contact',
     file: 'contact',
     module: 'src/pages/ContactPage.tsx',
+    image: 'og-contact.png',
+    imageAlt: 'Let’s build something you own.',
     title: 'Talk it through | Tom Butler',
     description:
       'Start with a fixed-fee audit of what AI is actually costing you. No obligation, and if local AI is wrong for you I will say so in writing.',

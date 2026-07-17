@@ -51,7 +51,16 @@ function replaceAttr(html, re, value) {
   return html.replace(re, (_m, open, close) => open + attr(value) + close);
 }
 
-function withMeta(html, { title, description, url }) {
+/**
+ * The sitewide card, used by any route that does not name its own.
+ *
+ * All cards are 1200x630, which is what the template's og:image:width/height already
+ * declare, so a per-route card needs no change to those.
+ */
+const DEFAULT_IMAGE = 'og-image.png';
+const DEFAULT_IMAGE_ALT = 'Tom Butler: AI you own, not AI you rent.';
+
+function withMeta(html, { title, description, url, image, imageAlt }) {
   let out = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${attr(title)}</title>`);
   out = replaceAttr(out, /(<meta\s+name="description"\s+content=")[^"]*(")/, description);
   out = replaceAttr(out, /(<meta\s+property="og:title"\s+content=")[^"]*(")/, title);
@@ -60,6 +69,15 @@ function withMeta(html, { title, description, url }) {
   out = replaceAttr(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, title);
   out = replaceAttr(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, description);
   out = replaceAttr(out, /(<link\s+rel="canonical"\s+href=")[^"]*(")/, url);
+
+  // The card. Absolute, always: LinkedIn, Facebook and X all reject a relative og:image
+  // outright and fall back to no preview at all, so a leading slash here would silently
+  // cost every shared link its image. Until this existed, all eight pages shipped the
+  // template's single card, so /services and /case-study were shared with the home card.
+  const card = `${SITE}/${image ?? DEFAULT_IMAGE}`;
+  out = replaceAttr(out, /(<meta\s+property="og:image"\s+content=")[^"]*(")/, card);
+  out = replaceAttr(out, /(<meta\s+property="og:image:alt"\s+content=")[^"]*(")/, imageAlt ?? DEFAULT_IMAGE_ALT);
+  out = replaceAttr(out, /(<meta\s+name="twitter:image"\s+content=")[^"]*(")/, card);
   return out;
 }
 

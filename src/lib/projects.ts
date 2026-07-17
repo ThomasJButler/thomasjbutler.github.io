@@ -1,3 +1,5 @@
+import { MEDIA } from './assets';
+
 export interface Project {
   id: string;
   name: string;
@@ -17,6 +19,20 @@ export interface Project {
   };
   /** Short embedded demo clips (mp4), e.g. 10-30s screen recordings. */
   videos?: string[];
+  /**
+   * The "Under the hood" block in the detail modal: how the thing actually works.
+   *
+   * The three parts are one argument in sequence, which is why they are grouped rather than
+   * three loose fields. The loop shows the mechanic moving (ISQ's confidence rows flagging
+   * amber, The Kicker's probability split), the diagram shows where the data goes, and the
+   * wireframe shows the screen it all lands on. The loop is a brand animation, not a
+   * screen recording, which is what separates it from `videos` above.
+   */
+  underTheHood?: {
+    loop?: { src: string; poster: string; caption: string };
+    diagram?: { src: string; caption: string };
+    wireframe?: { src: string; caption: string };
+  };
   featured?: boolean;
   status?: 'completed' | 'in-progress' | 'coming-soon';
   highlights?: string[];
@@ -49,6 +65,25 @@ export const projects: Project[] = [
     language: 'TypeScript',
     category: 'web',
     links: { demo: 'https://the-premier-league-oracle.vercel.app', github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle' },
+    images: {
+      cover: MEDIA['premier-league-oracle'].cover,
+      gallery: MEDIA['premier-league-oracle'].gallery,
+    },
+    underTheHood: {
+      loop: {
+        src: MEDIA['premier-league-oracle'].loop,
+        poster: MEDIA['premier-league-oracle'].poster,
+        caption: 'A prediction, split three ways. The bars are the model’s actual confidence, not a scoreline it cannot back up.',
+      },
+      diagram: {
+        src: MEDIA['premier-league-oracle'].diagram,
+        caption: 'Five statistical models feed an XGBoost ensemble. The chat retrieves over 33 seasons in the browser, so the questions you ask never leave it.',
+      },
+      wireframe: {
+        src: MEDIA['premier-league-oracle'].wireframe,
+        caption: 'Predictions and the newsreader on one screen: the numbers, then the story behind them.',
+      },
+    },
     featured: true,
     status: 'completed',
     highlights: ['Five-model ensemble + trained XGBoost', 'Clean, ad-free football newsreader', 'Kelly Criterion calculator + value-bet detection', 'Oracle Chat: client-side RAG over 33 seasons'],
@@ -65,6 +100,25 @@ export const projects: Project[] = [
     // GitHub URL here would put a 404 on the project card *and* on the case study, which
     // renders this same links object.
     links: {},
+    images: {
+      cover: MEDIA['isq-agent'].cover,
+      gallery: MEDIA['isq-agent'].gallery,
+    },
+    underTheHood: {
+      loop: {
+        src: MEDIA['isq-agent'].loop,
+        poster: MEDIA['isq-agent'].poster,
+        caption: 'Each answer scored as it lands. Anything the agent is not sure of goes amber and waits for a human, rather than being quietly filed as done.',
+      },
+      diagram: {
+        src: MEDIA['isq-agent'].diagram,
+        caption: 'A question, grounded in your own policy, then scored. Green is what runs on your side; amber marks the metered boundary, where tokens are billed.',
+      },
+      wireframe: {
+        src: MEDIA['isq-agent'].wireframe,
+        caption: 'The review screen: the drafted answer, its sources, and the confidence that decides whether a person needs to look.',
+      },
+    },
     status: 'completed',
     highlights: ['Grounded answers with four-dimension confidence scoring', 'Outputs DOCX / XLSX / JSON', 'n8n orchestration + per-question cost/latency auditing', '480+ tests, CI, test-driven throughout'],
   },
@@ -101,9 +155,26 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { demo: 'https://morpheusrag.vercel.app', github: 'https://github.com/ThomasJButler/Morpheus' },
+    // The gallery used to be a single 8.8MB GIF (morpheusgif2_zdkku9.gif). Five stills and a
+    // 72kB loop say more and cost 2% of the bytes.
     images: {
-      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767713745/Morpheus5_pdcmvr.png',
-      gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1767712416/morpheusgif2_zdkku9.gif'],
+      cover: MEDIA.morpheus.cover,
+      gallery: MEDIA.morpheus.gallery,
+    },
+    underTheHood: {
+      loop: {
+        src: MEDIA.morpheus.loop,
+        poster: MEDIA.morpheus.poster,
+        caption: 'The rain, and the interface it belongs to.',
+      },
+      diagram: {
+        src: MEDIA.morpheus.diagram,
+        caption: 'Your documents, a vector namespace that exists only for the session, and an answer that cites where it came from. The generation step is drawn green: it is moving to Ollama and local models.',
+      },
+      wireframe: {
+        src: MEDIA.morpheus.wireframe,
+        caption: 'Ask on the left, the answer and its sources on the right. Every claim traceable back to a page.',
+      },
     },
     videos: ['https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_960/v1767706547/2_1080_N_s5t1ww.mp4'],
     status: 'completed',
@@ -244,6 +315,25 @@ export const projects: Project[] = [
     language: 'Swift',
     category: 'mobile',
     links: {},
+    images: {
+      cover: MEDIA.sanctuary.cover,
+      gallery: MEDIA.sanctuary.gallery,
+    },
+    underTheHood: {
+      loop: {
+        src: MEDIA.sanctuary.loop,
+        poster: MEDIA.sanctuary.poster,
+        caption: 'The orb breathes at the pace you are meant to. It is the whole interface when everything else is too much.',
+      },
+      diagram: {
+        src: MEDIA.sanctuary.diagram,
+        caption: 'Everything runs on the device. There is no server to send a bad day to, which for this app is the feature, not a detail.',
+      },
+      wireframe: {
+        src: MEDIA.sanctuary.wireframe,
+        caption: 'Built for the days when reading a busy screen is the hard part.',
+      },
+    },
     featured: true,
     status: 'in-progress',
     highlights: ['Built natively in Swift / Xcode', 'Supports executive function and communication', 'Around two years of research and design', 'In active development, coming soon'],
