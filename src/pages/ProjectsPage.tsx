@@ -23,6 +23,33 @@ import { useHydrated } from '@/hooks/useHydrated';
 
 const featuredProjects = projects.filter((p) => p.featured);
 
+/**
+ * A different image for a featured project's second appearance on this page.
+ *
+ * Featured projects are printed twice: once in the showcase at the top, once in the full
+ * grid below. Using the cover in both puts the same picture on screen twice, so the grid
+ * card borrows one of the project's own gallery stills instead.
+ *
+ * The pick is derived from the project id and is therefore stable, which is not a detail.
+ * This page is prerendered: `Math.random()` here would have the server bake one image into
+ * the HTML and the hydrating client choose another, and React resolves that disagreement by
+ * throwing the entire tree away (error #418) and silently undoing the prerender. Hashing the
+ * id gives each project a different still while server and client always agree. It also
+ * means a given project's card looks the same on every visit, which is what you want from a
+ * grid you might be scanning twice.
+ *
+ * GIFs are excluded. The only gallery gifs left are the legacy ModelViz (5.5MB) and Matrix
+ * Arcade (4.7MB) ones, and a 5MB thumbnail is not worth paying to avoid a repeated image.
+ * Those two fall back to their cover, as does any featured project with no gallery.
+ */
+function altThumb(project: Project): string | undefined {
+  const stills = project.images?.gallery?.filter((g) => !g.endsWith('.gif')) ?? [];
+  if (stills.length === 0) return undefined;
+  let hash = 0;
+  for (const ch of project.id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+  return stills[hash % stills.length];
+}
+
 
 /**
  * Full green retro border for every project card. pt-0 because every card opens with
@@ -75,6 +102,11 @@ export function ProjectsPage() {
   const filtered = activeCategory === 'all'
     ? projects
     : projects.filter((p) => p.category === activeCategory);
+
+  // The showcase only renders on the unfiltered view, so that is the only view where a
+  // featured project is on screen twice. Filter to "Web" and The Kicker appears once, and
+  // should show the cover it was designed with rather than a screenshot.
+  const showcaseVisible = activeCategory === 'all' && featuredProjects.length > 0;
 
   // Flick between projects (wrapping) while the modal stays open.
   const navigateProject = (delta: number) => {
@@ -205,7 +237,10 @@ export function ProjectsPage() {
                   className={cardBorder}
                   {...openProps(project)}
                 >
-                  <ProjectCover project={project} />
+                  <ProjectCover
+                    project={project}
+                    src={showcaseVisible && project.featured ? altThumb(project) : undefined}
+                  />
                   <CardHeader>
                     <CardTitle className="font-heading text-sm">{project.name}</CardTitle>
                     <CardDescription className="line-clamp-2">{project.description}</CardDescription>

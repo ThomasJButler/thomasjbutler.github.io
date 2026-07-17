@@ -10,8 +10,10 @@ import { cn } from '@/lib/utils';
  * carrying a cover set `pt-0` (see cardBorder in ProjectsPage), which is why there
  * is no negative margin here to cancel the card's padding.
  *
- * Projects with no Cloudinary cover yet (The Kicker, ISQ Agent, Sanctuary) get a
- * generated scanline panel of the same height, so the grid never goes ragged.
+ * A project with no cover at all still gets a generated scanline panel of the same height,
+ * so the grid never goes ragged. That fallback used to carry The Kicker, ISQ Agent and
+ * Sanctuary; all three have real covers now, and it is kept for the next project added
+ * before its artwork exists.
  */
 const BAND = 'w-full overflow-hidden border-b border-primary/[0.18]';
 
@@ -69,8 +71,11 @@ const initialGlow = {
  * high-priority image does not arrive sooner, it takes the pipe from the CSS and the JS,
  * and everything behind it paints later. Do not "fix" this a third time without measuring.
  */
-export function ProjectCover({ project }: { project: Project }) {
-  const cover = project.images?.cover;
+export function ProjectCover({ project, src }: { project: Project; src?: string }) {
+  // `src` overrides the cover when the caller needs a different image for this particular
+  // card. See ProjectsPage: a featured project is on the page twice, and the second card
+  // shows a gallery still so the same picture is not printed twice on one screen.
+  const cover = src ?? project.images?.cover;
 
   if (cover) {
     // The one SVG cover is a logo — contain it, or object-cover eats the mark.
@@ -82,7 +87,7 @@ export function ProjectCover({ project }: { project: Project }) {
           src={cover}
           srcSet={srcSet}
           sizes={srcSet ? COVER_SIZES : undefined}
-          alt={`${project.name} cover`}
+          alt={src ? `${project.name} screenshot` : `${project.name} cover`}
           loading="lazy"
           decoding="async"
           // Explicit intrinsic size so the browser reserves the band before the image
