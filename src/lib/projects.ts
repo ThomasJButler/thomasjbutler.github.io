@@ -40,6 +40,15 @@ export interface Project {
     diagram?: { src: string; caption: string };
     wireframe?: { src: string; caption: string };
   };
+  /**
+   * One shot per item, for a project that is a collection rather than a single thing.
+   *
+   * Only The Matrix Arcade uses this: it is twelve games behind one cabinet, and a roster is
+   * the honest way to show that. Separate from `images.gallery` because these are not
+   * screenshots OF the product, they ARE the product, and because they are 1.6:1 captures
+   * that must not be cropped into the gallery's 16:9 grid.
+   */
+  games?: Array<{ src: string; title: string }>;
   featured?: boolean;
   status?: 'completed' | 'in-progress' | 'coming-soon';
   highlights?: string[];
@@ -329,6 +338,23 @@ export const projects: Project[] = [
       gallery: MEDIA['matrix-arcade'].gallery,
     },
     videos: [{ src: MEDIA['matrix-arcade'].video, poster: MEDIA['matrix-arcade'].poster }],
+    // Titles are the ones players see, taken from the arcade's gameRegistry.ts (its own stated
+    // single source of truth), not the folder ids. That distinction already caught us once:
+    // 'snake-classic' is shown as Matrix Snake and 'matrix-cloud' as Matrix Bird.
+    games: [
+      { src: MEDIA['matrix-arcade'].games['ctrl-s'], title: 'CTRL-S | The World' },
+      { src: MEDIA['matrix-arcade'].games.snake, title: 'Matrix Snake' },
+      { src: MEDIA['matrix-arcade'].games.pong, title: 'Vortex Pong' },
+      { src: MEDIA['matrix-arcade'].games.bird, title: 'Matrix Bird' },
+      { src: MEDIA['matrix-arcade'].games.invaders, title: 'Matrix Invaders' },
+      { src: MEDIA['matrix-arcade'].games.metris, title: 'Metris' },
+      { src: MEDIA['matrix-arcade'].games.frogger, title: 'Matrix Frogger' },
+      { src: MEDIA['matrix-arcade'].games['neo-jump'], title: 'Neo Jump' },
+      { src: MEDIA['matrix-arcade'].games['agent-chase'], title: 'Agent Chase' },
+      { src: MEDIA['matrix-arcade'].games['rhythm-hacker'], title: 'Rhythm Hacker' },
+      { src: MEDIA['matrix-arcade'].games['cloud-jumper'], title: 'Cloud Jumper' },
+      { src: MEDIA['matrix-arcade'].games['code-breaker'], title: 'Code Breaker' },
+    ],
     featured: true,
     status: 'completed',
     highlights: ['12 playable arcade games', 'Phaser 3 engine behind a React shell', 'Matrix Trilogy audio kit, Web Audio synthesis behind it', 'Installable PWA, plays offline'],

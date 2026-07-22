@@ -40,6 +40,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
     const imgs: string[] = [];
     if (project?.images?.cover) imgs.push(project.images.cover);
     if (project?.images?.gallery) imgs.push(...project.images.gallery);
+    if (project?.games) imgs.push(...project.games.map((g) => g.src));
     if (project?.underTheHood?.diagram) imgs.push(project.underTheHood.diagram.src);
     if (project?.underTheHood?.wireframe) imgs.push(project.underTheHood.wireframe.src);
     return Array.from(new Set(imgs));
@@ -211,6 +212,35 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             <p className="text-xs text-muted-foreground/60 font-mono">Screenshots coming soon</p>
           </div>
         ) : null}
+
+        {/* The roster, for a project that is a collection. Deliberately not folded into the
+            gallery above: these are 1.6:1 captures whose HUD sits against the top and bottom
+            edges, and that grid is aspect-video object-cover, which would clip the readouts.
+            Figure sizes them intrinsically instead.
+
+            The heading carries no number. "The twelve games" would be a hardcoded count of
+            exactly the kind that left this site advertising six games for a whole release
+            after the arcade shipped twelve. */}
+        {project.games && project.games.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-primary/90">
+              The games
+            </h3>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {project.games.map((g) => (
+                <Figure
+                  key={g.src}
+                  src={g.src}
+                  alt={`${g.title}, ${project.name}`}
+                  width={MEDIA_SIZE.game.width}
+                  height={MEDIA_SIZE.game.height}
+                  caption={g.title}
+                  onZoom={() => setLightboxIndex(galleryImages.indexOf(g.src))}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Under the hood: the mechanic moving, where the data goes, the screen it lands on.
             Read in that order, the three answer "how does this actually work" without

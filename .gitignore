@@ -51,9 +51,20 @@ Thumbs.db
 .pt-*.mjs
 
 # Project media served locally while iterating on the design assets. Cloudinary bills on
-# delivery, so pointing dev at it burns credits on every reload. These are ~12MB of
-# iteration, not source: the master copies live in desigassetnexports/, and every URL is
+# delivery, so pointing dev at it burns credits on every reload. These are ~14MB of
+# iteration, not source: the master copies live in design-assets/, and every URL is
 # swapped to Cloudinary in src/lib/assets.ts before production.
 # NOTE: `npm run deploy` still publishes them, because Vite copies public/ into dist/ and
 # gh-pages ships dist/. Ignoring them keeps the history lean, it does not un-deploy them.
 public/img/
+
+# The design masters: 2x exports, ~84MB, the source the files in public/img/ are downscaled
+# from. Kept on disk and out of git, because they are an input to the build rather than part
+# of the site, and a delivery at a time is more bytes than the whole repo.
+# The trailing globs catch the next drop under whatever name it arrives with: three previous
+# folders (desigassetnexports, newdesignassetexports, 9fixedassets) each sat in `git status`
+# until they were consolidated into design-assets/.
+design-assets/
+*assetexports/
+*fixedassets/
+*designassets/

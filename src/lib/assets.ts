@@ -138,6 +138,25 @@ export const MEDIA = {
      */
     video: `${IMG}/matrix-arcade.mp4`,
     poster: `${IMG}/matrix-arcade-poster.jpg`,
+    /**
+     * One real gameplay screenshot per game, keyed by the arcade's own game ids. Twelve of
+     * them, which is the point: the roster is the thing this project is, and the count was
+     * the one fact the site got wrong for a whole release.
+     */
+    games: {
+      'ctrl-s': `${IMG}/arcade-ctrl-s.png`,
+      snake: `${IMG}/arcade-snake.png`,
+      pong: `${IMG}/arcade-pong.png`,
+      bird: `${IMG}/arcade-bird.png`,
+      invaders: `${IMG}/arcade-invaders.png`,
+      metris: `${IMG}/arcade-metris.png`,
+      frogger: `${IMG}/arcade-frogger.png`,
+      'neo-jump': `${IMG}/arcade-neo-jump.png`,
+      'agent-chase': `${IMG}/arcade-agent-chase.png`,
+      'rhythm-hacker': `${IMG}/arcade-rhythm-hacker.png`,
+      'cloud-jumper': `${IMG}/arcade-cloud-jumper.png`,
+      'code-breaker': `${IMG}/arcade-code-breaker.png`,
+    },
   },
 };
 
@@ -168,4 +187,11 @@ export const MEDIA_SIZE = {
   wireframe: { width: 1640, height: 924 },
   hero: { width: 1600, height: 640 },
   loop: { width: 480, height: 270 },
+  /**
+   * 1.6:1, not 16:9. These are real gameplay captures whose HUD (SCORE, LEVEL, FOOD) sits
+   * hard against the top and bottom edges, so forcing them into the gallery's aspect-video
+   * box would shave about 10% and clip the readouts. They render through Figure, which sizes
+   * from these numbers instead.
+   */
+  game: { width: 1600, height: 1000 },
 };
