@@ -38,9 +38,10 @@ const featuredProjects = projects.filter((p) => p.featured);
  * means a given project's card looks the same on every visit, which is what you want from a
  * grid you might be scanning twice.
  *
- * GIFs are excluded. The only gallery gifs left are the legacy ModelViz (5.5MB) and Matrix
- * Arcade (4.7MB) ones, and a 5MB thumbnail is not worth paying to avoid a repeated image.
- * Those two fall back to their cover, as does any featured project with no gallery.
+ * GIFs are excluded. The only gallery gif left is the legacy ModelViz one (5.5MB), and a 5MB
+ * thumbnail is not worth paying to avoid a repeated image, so it falls back to its cover, as
+ * does any featured project with no gallery. Matrix Arcade used to be in that group; its
+ * 4.8MB gif has since been replaced by real stills, so this now engages for it.
  */
 function altThumb(project: Project): string | undefined {
   const stills = project.images?.gallery?.filter((g) => !g.endsWith('.gif')) ?? [];

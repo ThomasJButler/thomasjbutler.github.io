@@ -3,7 +3,10 @@
  *
  * These are local files under `public/img/` (gitignored) while the design is iterated on.
  * Cloudinary bills on *delivery*, so pointing dev at it spends credits on every reload, and
- * /projects reloads eighteen covers a visit. The master copies live in `desigassetnexports/`.
+ * /projects reloads eighteen covers a visit. The masters live in two untracked folders:
+ * `desigassetnexports/` (The Kicker, Sanctuary, ISQ Agent, Morpheus) and
+ * `newdesignassetexports/` (SQL-Ball, AI Code Generator, Matrix Arcade, plus 2x re-exports
+ * of the first four).
  *
  * BEFORE PRODUCTION: upload to Cloudinary and replace each value below. The URLs cannot be
  * derived from the filenames, because Cloudinary appends a generated suffix to the public_id

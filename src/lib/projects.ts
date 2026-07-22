@@ -131,12 +131,19 @@ export const projects: Project[] = [
   },
   {
     id: 'ai-code-generator',
-    name: 'LangChain Code Generator',
+    // The product calls itself AI Code Generator everywhere: the repo, the page h1, the
+    // deployed title and all the artwork. Only this record said "LangChain", which put a
+    // heading on the card that matched nothing the visitor would then see. LangChain is a
+    // dependency, so it belongs in topics, not in the name.
+    name: 'AI Code Generator',
     description: 'Full-stack code generation platform. Describe what you want, get production-ready code with tests and docs in 10 languages.',
     // Stack corrected from the repo: the backend is FastAPI, not Flask, and the frontend is
     // Next.js 15. The old copy said "Python Flask backend, and React frontend".
     longDescription: 'Describe what you want in plain English and get production-ready code back. Supports 10 languages: Python, JavaScript, TypeScript, Java, C#, Go, Rust, C++, Ruby, and Swift. Includes automatic test generation with framework detection, inline documentation, and a code analyser that scores complexity and readability. Built as a Next.js 15 frontend over a FastAPI backend using LangChain and tree-sitter.',
-    topics: ['Next.js', 'FastAPI', 'LangChain', 'GPT-4o'],
+    // GPT-4, not GPT-4o. backend/config.py defaults to gpt-4-turbo-preview and the README
+    // says "using OpenAI's GPT-4". The app's own How It Works panel claims GPT-4o, and the
+    // new artwork repeats it, but neither is the model the generator actually calls.
+    topics: ['Next.js', 'FastAPI', 'LangChain', 'GPT-4'],
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/AICodeGenerator', demo: 'https://theaigenerator.vercel.app/' },
@@ -154,7 +161,7 @@ export const projects: Project[] = [
         caption: 'A sentence in, then the generated code with its tests and docs beside the quality scores, ready to copy or download.',
       },
     },
-    highlights: ['10 programming languages supported', 'GPT-4o powered code generation', 'Automatic test generation', 'Local code analyser: complexity and readability'],
+    highlights: ['10 programming languages supported', 'GPT-4 powered code generation', 'Automatic test generation', 'Local code analyser: complexity and readability'],
   },
   {
     id: 'sql-ball',
@@ -164,7 +171,9 @@ export const projects: Project[] = [
     // FastAPI with LangChain and ChromaDB. The old copy said "Built with ... React".
     longDescription: 'Ask questions about football in plain English, get SQL queries back. Works across 22 European leagues with 7,600+ matches, spanning 11 countries. Features interactive dashboards with trends and anomaly detection, a FastAPI backend using LangChain and ChromaDB to parse the question, and real-time visualisations via Chart.js. The frontend is Svelte and TypeScript; the data lives in your own Supabase.',
     topics: ['Svelte', 'FastAPI', 'Supabase', 'RAG'],
-    language: 'Python',
+    // Svelte, not Python: GitHub's own breakdown is 40.6% Svelte to 21% Python, and this
+    // field renders as the coloured language dot right beside the Svelte topic badge.
+    language: 'Svelte',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/SQL-Ball', demo: 'https://sql-ball.vercel.app/' },
     images: {
@@ -178,7 +187,10 @@ export const projects: Project[] = [
       },
       wireframe: {
         src: MEDIA['sql-ball'].wireframe,
-        caption: 'Ask in plain English, see the SQL it wrote, then the chart. Showing the query is the point: you can check the answer rather than trust it.',
+        // Describes the three regions the wireframe actually numbers. An earlier version of
+        // this caption promised a visible generated-SQL panel, which is the one thing the
+        // blueprint does not draw.
+        caption: 'One input, top right, in plain English. The answer is drawn as a chart in the largest region, with the standings and results underneath.',
       },
     },
     highlights: ['Natural language to SQL conversion', '22 European leagues, 7,600+ matches', 'Interactive dashboards with anomaly detection', 'RAG-powered query parsing'],
@@ -302,8 +314,11 @@ export const projects: Project[] = [
     // Updated to v2.0 ("The Full Arcade"), which the copy here had missed entirely: it still
     // described the six-game canvas version. Twelve games, Phaser 3 and the shared save
     // system are all from the repo's own release notes, not estimated.
-    description: 'Twelve Matrix-themed arcade games in one Phaser-powered cabinet, with a shared save system, procedural audio and offline play.',
-    longDescription: 'Twelve Matrix-themed arcade games behind a single cabinet, built with React, TypeScript and Phaser 3. The roster runs from CTRL-S (a five-chapter text adventure) through Snake Classic, Vortex Pong, Matrix Cloud, Matrix Invaders and Metris, to the later additions: Matrix Frogger, Cloud Jumper, Code Breaker, Neo Jump, Agent Chase and Rhythm Hacker. Achievements and high scores persist across the whole cabinet, every bleep is synthesised in the browser with the Web Audio API rather than shipped as audio files, and it installs as a PWA so it plays offline.',
+    description: 'Twelve Matrix-themed arcade games in one Phaser-powered cabinet, with a shared save system, achievements and offline play.',
+    // Game names are the titles from src/data/gameRegistry.ts, the repo's own single source
+    // of truth, not the folder ids: 'snake-classic' is shown to players as Matrix Snake, and
+    // 'matrix-cloud' as Matrix Bird.
+    longDescription: 'Twelve Matrix-themed arcade games behind a single cabinet, built with React, TypeScript and Phaser 3. The roster runs from CTRL-S (a five-chapter text adventure) through Matrix Snake, Vortex Pong, Matrix Bird, Matrix Invaders and Metris, to the later additions: Matrix Frogger, Cloud Jumper, Code Breaker, Neo Jump, Agent Chase and Rhythm Hacker. Achievements and high scores persist across the whole cabinet, sound comes from a Matrix Trilogy effects kit with a Web Audio synthesis layer behind it, and it installs as a PWA so it plays offline.',
     topics: ['React', 'Phaser 3', 'TypeScript', 'PWA'],
     language: 'TypeScript',
     category: 'games',
@@ -316,7 +331,7 @@ export const projects: Project[] = [
     videos: [{ src: MEDIA['matrix-arcade'].video, poster: MEDIA['matrix-arcade'].poster }],
     featured: true,
     status: 'completed',
-    highlights: ['12 playable arcade games', 'Phaser 3 engine behind a React shell', 'Procedural audio, no audio files shipped', 'Installable PWA, plays offline'],
+    highlights: ['12 playable arcade games', 'Phaser 3 engine behind a React shell', 'Matrix Trilogy audio kit, Web Audio synthesis behind it', 'Installable PWA, plays offline'],
   },
   {
     id: 'bigbang-gallery',
@@ -433,5 +448,8 @@ export const languageColors: Record<string, string> = {
   'C#': '#178600',
   CSS: '#563d7c',
   React: '#61dafb',
+  // GitHub's own linguist colour. Without an entry here the dot silently falls back to a
+  // grey #666, which reads as "language unknown" rather than as the language.
+  Svelte: '#ff3e00',
   Swift: '#F05138',
 };
