@@ -15,6 +15,12 @@
  *   gallery   .../image/upload/f_auto,q_auto,w_1200/<version>/<public_id>.png
  *   hero      .../image/upload/f_auto,q_auto,w_1600/<version>/<public_id>.png
  *   loop      .../video/upload/vc_auto,q_auto,w_480/<version>/<public_id>.mp4
+ *   video     .../video/upload/vc_auto,q_auto,w_960/<version>/<public_id>.mp4
+ *   poster    .../image/upload/f_auto,q_auto,w_1200/<version>/<public_id>.jpg
+ *
+ * The local files are downscaled from the 2x masters in `newdesignassetexports/` (3200px,
+ * 2-5MB each). Upload the MASTERS, not these: Cloudinary's width transform does the resize,
+ * and starting from 2x is what keeps them sharp on a retina screen.
  *
  * One knock-on while these are local: `ProjectCover` builds its srcset by regex-matching
  * `/upload/...w_800` in the URL, so a `/img/...` path matches nothing, `cloudinarySrcSet()`
@@ -84,6 +90,51 @@ export const MEDIA = {
     poster: `${IMG}/morpheus-loop-poster.jpg`,
     diagram: `${IMG}/diagram-morpheus.png`,
     wireframe: `${IMG}/wireframe-morpheus.png`,
+  },
+
+  'sql-ball': {
+    cover: `${IMG}/sql-ball.png`,
+    gallery: [
+      `${IMG}/sql-ball-01.png`,
+      `${IMG}/sql-ball-02.png`,
+      `${IMG}/sql-ball-03.png`,
+      `${IMG}/sql-ball-04.png`,
+      `${IMG}/sql-ball-05.png`,
+    ],
+    diagram: `${IMG}/diagram-sql-ball.png`,
+    wireframe: `${IMG}/wireframe-sql-ball.png`,
+  },
+
+  'ai-code-generator': {
+    cover: `${IMG}/ai-code-generator.png`,
+    gallery: [
+      `${IMG}/ai-code-generator-01.png`,
+      `${IMG}/ai-code-generator-02.png`,
+      `${IMG}/ai-code-generator-03.png`,
+      `${IMG}/ai-code-generator-04.png`,
+      `${IMG}/ai-code-generator-05.png`,
+    ],
+    diagram: `${IMG}/diagram-ai-code-generator.png`,
+    wireframe: `${IMG}/wireframe-ai-code-generator.png`,
+  },
+
+  'matrix-arcade': {
+    cover: `${IMG}/matrix-arcade.png`,
+    gallery: [
+      `${IMG}/matrix-arcade-01.png`,
+      `${IMG}/matrix-arcade-02.png`,
+      `${IMG}/matrix-arcade-03.png`,
+      `${IMG}/matrix-arcade-04.png`,
+      `${IMG}/matrix-arcade-05.png`,
+    ],
+    /**
+     * The title sting, not a gameplay clip, so it sits in `videos` with a poster rather
+     * than being an autoplaying accent. The source is 624x624 square; it is cropped to
+     * 16:9 here so it fills the modal's aspect-video box instead of pillarboxing against
+     * its own 16:9 poster. Re-crop from the master if this is ever re-encoded.
+     */
+    video: `${IMG}/matrix-arcade.mp4`,
+    poster: `${IMG}/matrix-arcade-poster.jpg`,
   },
 };
 

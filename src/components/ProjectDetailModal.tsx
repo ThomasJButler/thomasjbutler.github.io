@@ -67,7 +67,12 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
   if (!project) return null;
 
   const description = project.longDescription || project.description;
-  const videos = project.videos ?? (project.links.video ? [project.links.video] : []);
+  // Normalise the two accepted shapes (a bare URL, or a URL with a poster) into one, so the
+  // render below does not have to branch. `??` not `||`: an explicit empty array means "no
+  // clips", and should not fall back to the legacy single links.video.
+  const videos = (project.videos ?? (project.links.video ? [project.links.video] : [])).map((v) =>
+    typeof v === 'string' ? { src: v, poster: undefined } : v
+  );
 
   return (
     <>
@@ -250,8 +255,12 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
               {videos.map((v, i) => (
                 <video
                   key={i}
-                  src={v}
+                  src={v.src}
+                  poster={v.poster}
                   controls
+                  // Stays "metadata" whether or not there is a poster. "auto" would pull the
+                  // whole clip the moment the modal opens, which for the Cloudinary-hosted
+                  // one is both wasted bandwidth and billed delivery.
                   preload="metadata"
                   playsInline
                   className="aspect-video w-full rounded-lg border border-border bg-black"
