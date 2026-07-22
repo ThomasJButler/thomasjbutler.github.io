@@ -16,7 +16,7 @@ import { ImageLightbox } from '@/components/ImageLightbox';
 import { Figure } from '@/components/media/Figure';
 import { LoopVideo } from '@/components/media/LoopVideo';
 import { categoryLabel, languageColors } from '@/lib/projects';
-import { MEDIA_SIZE } from '@/lib/assets';
+import { MEDIA_SIZE, hasDesignedCover } from '@/lib/assets';
 import type { Project } from '@/lib/projects';
 
 interface ProjectDetailModalProps {
@@ -67,6 +67,7 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
   if (!project) return null;
 
   const description = project.longDescription || project.description;
+  const designedCover = hasDesignedCover(project.id);
   // Normalise the two accepted shapes (a bare URL, or a URL with a poster) into one, so the
   // render below does not have to branch. `??` not `||`: an explicit empty array means "no
   // clips", and should not fall back to the legacy single links.video.
@@ -125,7 +126,18 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
           </DialogDescription>
         </DialogHeader>
 
-        {/* Cover hero (click to open gallery) */}
+        {/* Cover hero (click to open gallery).
+         *
+         * The designed covers are 1600x750, i.e. 2.133:1, and are wider than 16:9. Forcing
+         * them into an aspect-video box with object-cover scaled them up until the height
+         * filled and then sliced 16.7% off the width, 8.3% from each side, which is enough to
+         * behead the wordmark: "MORPHEUS" rendered as "ORPHEUS". So when the cover is one we
+         * designed and whose size we know, give the box the image's own ratio (h-auto plus
+         * true intrinsic width/height) and nothing is cropped or letterboxed.
+         *
+         * Everything else keeps the old treatment: those covers come from Cloudinary at
+         * assorted ratios, their intrinsic size is not known here, and h-auto without correct
+         * width/height would reflow the modal as each one loaded. */}
         {project.images?.cover && !project.images.cover.endsWith('.svg') && (
           <button
             type="button"
@@ -138,9 +150,12 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
               alt={`${project.name} cover`}
               loading="lazy"
               decoding="async"
-              width={1280}
-              height={720}
-              className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              width={designedCover ? MEDIA_SIZE.cover.width : 1280}
+              height={designedCover ? MEDIA_SIZE.cover.height : 720}
+              className={
+                'w-full transition-transform duration-300 group-hover:scale-[1.02] ' +
+                (designedCover ? 'h-auto' : 'aspect-video object-cover')
+              }
             />
           </button>
         )}

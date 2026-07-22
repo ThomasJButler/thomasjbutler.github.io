@@ -149,6 +149,18 @@ export const MEDIA = {
  * card band's exact 2.133:1, and diagrams are 1.602:1, which is why they must never be
  * forced into a 16:9 box (see Figure).
  */
+/**
+ * True when this project has one of the designed covers, which are all composed at the same
+ * 1600x750 (2.133:1).
+ *
+ * Keyed on the project id rather than on the URL shape on purpose: the values in MEDIA become
+ * Cloudinary URLs at some point, and a check like `startsWith('/img/')` would quietly start
+ * returning false the day that happens, taking the correct aspect ratio with it.
+ */
+export function hasDesignedCover(id: string): boolean {
+  return id in MEDIA;
+}
+
 export const MEDIA_SIZE = {
   cover: { width: 1600, height: 750 },
   gallery: { width: 1600, height: 900 },
