@@ -31,7 +31,7 @@
 const IMG = '/img';
 
 export const MEDIA = {
-  'premier-league-oracle': {
+  'the-kicker': {
     cover: `${IMG}/the-kicker.png`,
     gallery: [
       `${IMG}/the-kicker-01.png`,
@@ -124,6 +124,32 @@ export const MEDIA = {
     ],
     diagram: `${IMG}/diagram-reviewbot-protocol.png`,
     wireframe: `${IMG}/wireframe-reviewbot-protocol.png`,
+  },
+
+  /**
+   * Gallery only, for both of these. No designed cover was made, so each keeps its existing
+   * Cloudinary one and neither belongs in DESIGNED_COVERS: those covers are not 2.133:1.
+   *
+   * Worth having anyway even without a cover, because both are `featured`. A featured project
+   * renders twice on /projects, and `altThumb` picks a gallery shot for the second appearance
+   * so the same image does not sit on the page twice.
+   */
+  'mastering-ai-portfolio': {
+    gallery: [
+      `${IMG}/agentic-ai-portfolio-01.png`,
+      `${IMG}/agentic-ai-portfolio-02.png`,
+      `${IMG}/agentic-ai-portfolio-03.png`,
+      `${IMG}/agentic-ai-portfolio-04.png`,
+    ],
+  },
+
+  'commercial-portfolio': {
+    gallery: [
+      `${IMG}/commercial-portfolio-01.png`,
+      `${IMG}/commercial-portfolio-02.png`,
+      `${IMG}/commercial-portfolio-03.png`,
+      `${IMG}/commercial-portfolio-04.png`,
+    ],
   },
 
   /**
@@ -235,7 +261,7 @@ export const MEDIA = {
  * day that happens, taking the correct aspect ratio with it.
  */
 const DESIGNED_COVERS = new Set([
-  'premier-league-oracle',
+  'the-kicker',
   'sanctuary',
   'isq-agent',
   'morpheus',

@@ -106,36 +106,98 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'premier-league-oracle',
+    id: 'the-kicker',
     name: 'The Kicker',
-    description: 'Premier League predictions plus a clean, ad-free football newsreader. Five statistical models and an XGBoost ensemble, shown as honest probability bars.',
-    longDescription: 'A rebrand and evolution of the Premier League Oracle. Blends five statistical models (ELO, Poisson, form, head-to-head and standings) with a trained XGBoost ensemble to predict results, shown as honest probability bars rather than over-confident scorelines. It pairs the numbers with a distraction-free newsreader, because sometimes you want the story, not just the prediction: a deliberate antidote to ad-heavy, cluttered sports sites. Includes a Kelly Criterion calculator, value-bet detection and an Oracle Chat with client-side RAG over 33 seasons of data.',
-    topics: ['Svelte', 'TypeScript', 'XGBoost', 'FastAPI'],
+    description: 'Premier League predictions as a tabloid broadsheet. The Butler model’s honest probability bars, written up by ten original AI columnists.',
+    /*
+     * Two corrections here, both from the repo.
+     *
+     * The links were the Oracle's, which is a different project with its own card below. The
+     * Kicker's own repo is not public yet and it has no deployment, so it carries no links at
+     * all rather than borrowing someone else's. Add them the moment it ships.
+     *
+     * The engine description was stale. This said "five statistical models (ELO, Poisson,
+     * form, head-to-head and standings) with a trained XGBoost ensemble", which is the
+     * pre-swap engine: the five-model framing now survives only in April plan docs under
+     * `docs/superpowers/plans/`, and the live code goes through `butlerFacade.ts` to the
+     * Butler model. The Oracle's own last commit reads "engine swapped".
+     */
+    longDescription:
+      'The Butler model in a broadsheet. A time-decayed Dixon-Coles engine fitted over 33 seasons produces calibrated probability bars rather than a confident scoreline it cannot back up, and then ten original AI columnists write the fixture up in their own voices, so the numbers arrive as football writing instead of a dashboard. It shares its engine with The Premier League Oracle and its personality with a Sunday paper.',
+    topics: ['Svelte 5', 'TypeScript', 'Dixon-Coles', 'FastAPI'],
     language: 'TypeScript',
     category: 'web',
-    links: { demo: 'https://the-premier-league-oracle.vercel.app', github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle' },
+    links: {},
     images: {
-      cover: MEDIA['premier-league-oracle'].cover,
-      gallery: MEDIA['premier-league-oracle'].gallery,
+      cover: MEDIA['the-kicker'].cover,
+      gallery: MEDIA['the-kicker'].gallery,
     },
     underTheHood: {
       loop: {
-        src: MEDIA['premier-league-oracle'].loop,
-        poster: MEDIA['premier-league-oracle'].poster,
+        src: MEDIA['the-kicker'].loop,
+        poster: MEDIA['the-kicker'].poster,
         caption: 'A prediction, split three ways. The bars are the model’s actual confidence, not a scoreline it cannot back up.',
       },
       diagram: {
-        src: MEDIA['premier-league-oracle'].diagram,
+        src: MEDIA['the-kicker'].diagram,
         caption: 'Five statistical models feed an XGBoost ensemble. The chat retrieves over 33 seasons in the browser, so the questions you ask never leave it.',
       },
       wireframe: {
-        src: MEDIA['premier-league-oracle'].wireframe,
+        src: MEDIA['the-kicker'].wireframe,
         caption: 'Predictions and the newsreader on one screen: the numbers, then the story behind them.',
       },
     },
     featured: true,
+    // The code is finished and pushed; what is outstanding is Tom's own admin (key rotation,
+    // sign-off) per the repo's TODO. So: not shipped, and honest about it.
+    status: 'coming-soon',
+    // The diagram and wireframe captions above still describe five models and a newsreader,
+    // because that is what those two images actually draw. They are on the re-cut list rather
+    // than being contradicted by a caption. These highlights are claims, not descriptions of
+    // an image, so they say what the code does now.
+    highlights: [
+      'The Butler model: Dixon-Coles over 33 seasons',
+      'Ten original AI columnists write up the fixtures',
+      'Calibrated probability bars, not a fake scoreline',
+      'Shares its engine with The Premier League Oracle',
+    ],
+  },
+  /*
+   * Back as its own card, which it should always have been. The site had one entry carrying
+   * The Kicker's name and the Oracle's repo and demo, so the working, public, deployed project
+   * was showing under the name of the unreleased one. They share the Butler model and nothing
+   * else: the Oracle is the analytical platform, The Kicker is the broadsheet.
+   *
+   * Every figure below is from the repo's own README and its committed backtest, not from a
+   * press release. The RPS pair is the point of the whole project: 0.2000 against a bookmaker
+   * closing-odds ceiling of 0.1939 is a *loss*, stated plainly, and a CI gate fails any change
+   * that makes it worse. A prediction tool that publishes the gap to the market is doing the
+   * one thing that separates it from the ones that do not.
+   *
+   * No artwork yet, so it takes ProjectCover's generated fallback panel, which exists for
+   * exactly this case.
+   */
+  {
+    id: 'premier-league-oracle',
+    name: 'The Premier League Oracle',
+    description:
+      'Premier League predictions from a Dixon-Coles engine that ships as a few kilobytes of coefficients and runs entirely in your browser.',
+    longDescription:
+      'A live prediction platform built on the Butler model: a time-decayed, shrinkage-regularised Dixon-Coles engine fitted by penalised maximum likelihood over 33 seasons, then calibrated on walk-forward out-of-sample forecasts. It ships as a few kilobytes of fitted coefficients and runs entirely in the browser, with an optional XGBoost backend blending in on the log-odds scale. Predictions show as calibrated probability bars rather than a confident scoreline, and the displayed scoreline is the modal cell of a grid that agrees with those bars exactly, by construction. It publishes its own track record: RPS 0.2000 over 2,660 matches from 2018 to 2025, against a bookmaker closing-odds ceiling of 0.1939, with a CI gate that fails any change making predictions worse. Your Football-Data.org key stays in your browser. The source is public for transparency rather than for forking, because the clearest answer to "is this cherry-picked" is the code that computes every number.',
+    topics: ['Svelte 4', 'Dixon-Coles', 'XGBoost', 'FastAPI'],
+    language: 'TypeScript',
+    category: 'ai',
+    links: {
+      demo: 'https://the-premier-league-oracle.vercel.app',
+      github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle',
+    },
     status: 'completed',
-    highlights: ['Five-model ensemble + trained XGBoost', 'Clean, ad-free football newsreader', 'Kelly Criterion calculator + value-bet detection', 'Oracle Chat: client-side RAG over 33 seasons'],
+    highlights: [
+      'The Butler model, fitted over 33 seasons',
+      'RPS 0.2000 vs the bookmaker ceiling of 0.1939',
+      'Runs in the browser, your API key stays there',
+      'Oracle Chat: ask the 33-season archive anything',
+    ],
   },
   {
     id: 'isq-agent',
@@ -379,7 +441,14 @@ export const projects: Project[] = [
     language: 'TypeScript',
     category: 'ai',
     links: { demo: 'https://agenticaiprojectsportfolio.vercel.app/', github: 'https://github.com/ThomasJButler/AgenticAICoursePortfolio' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1766595895/dashboardhomepage_xxsk0z.png' },
+    images: {
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1766595895/dashboardhomepage_xxsk0z.png',
+      gallery: MEDIA['mastering-ai-portfolio'].gallery,
+    },
+    // No project count here on purpose. The live site's own header says "6 Production-Ready
+    // Applications" while its README lists five (ModelViz, Code Generator, Morpheus, SQL-Ball,
+    // ReviewBot Protocol). Until those agree, a number on this card is a number that can be
+    // checked and found wrong, which is the exact bug the arcade had for a whole release.
     featured: true,
   },
   {
@@ -390,21 +459,17 @@ export const projects: Project[] = [
     language: 'React',
     category: 'web',
     links: { github: 'https://github.com/ThomasJButler/commercial-portfolio-react', demo: 'https://www.thomasjbutler.me/' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580999/logo_ofodr8.svg' },
+    images: {
+      // Cover is still the bare SVG logo. It is the weakest cover on the page and there is no
+      // designed replacement yet, so the gallery is doing the work for now.
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580999/logo_ofodr8.svg',
+      gallery: MEDIA['commercial-portfolio'].gallery,
+    },
     featured: true,
   },
-  {
-    id: 'lfc-news-reddit',
-    name: 'LFC News App',
-    description: 'Distraction-free Reddit viewer for LFC content. No ads, no tracking, three kit themes, spicy meter for trending posts.',
-    longDescription: 'All the LFC content, none of the noise. Pulls posts and comments directly from r/LiverpoolFC and displays them in a clean interface. Features filter by category (match days, transfers, images, videos), threaded comments with inline media, three kit themes (Anfield Red, Away Cream, Keeper Green), a spicy meter for trending posts, and search across everything.',
-    topics: ['React', 'Redux', 'Reddit API'],
-    language: 'JavaScript',
-    category: 'web',
-    links: { demo: 'https://liverpoolfcnews.vercel.app/' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947167/lfcreddit2_wzbqty.png' },
-    highlights: ['Distraction-free Reddit reader', 'Three kit themes', 'Threaded comments with inline media', 'No account or ads needed'],
-  },
+  // The LFC News App was here and is retired. It read r/LiverpoolFC through the Reddit API,
+  // and the terms changed under it, so it is not work Tom is continuing. A card whose demo
+  // depends on someone else's pricing decision is a liability on a page that exists to sell.
   {
     id: 'dotnet-react-calendar',
     name: '.NET/React Calendar',
