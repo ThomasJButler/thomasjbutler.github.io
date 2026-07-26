@@ -270,6 +270,109 @@ is worth a look.
 
 ---
 
+---
+
+# Round 3 · NewsPerspective
+
+Eight tiles, **all eight held** pending a re-cut. That is not a comment on their quality: this
+is the best set delivered so far, and it is the first that was clearly briefed **from the repo
+rather than from the site**. It knows about the `X-News-Api-Key` header, SQLite, AGPLv3 and the
+UK source batching, none of which `projects.ts` ever said. The loop is finally running the
+right way round, and the four items below are ordinary errors rather than invented product.
+
+The site record has been corrected ahead of the redraw (`news-perspective` in `projects.ts`),
+so a brief taken from it now will be right.
+
+## Verified correct · do not regress these on the re-cut
+
+Listing these explicitly, because there are a lot of them and a redraw could easily lose one:
+
+Next.js 16 (16.1.7) · React 19 (19.2.3) · FastAPI · SQLite · gpt-4o-mini · one model call per
+article · the returned fields (sentiment, sentiment score, rewrite decision, rewritten title,
+TLDR, good-news flag) · NewsAPI top-headlines · the exact seven-category list · **UK headlines
+via named source IDs in one batched request because NewsAPI restricts `country=` to `us`**
+(verbatim true, the code comment says the same) · the `X-News-Api-Key` header name · "never
+stored on the server", which is right because it is not in `config.py` at all · the free tier
+being 100 a day (`DAILY_REQUEST_LIMIT = 100`) · AGPLv3 · v3.0.0 · "up to 50 blocked keywords"
+(`MAX_CUSTOM_KEYWORDS = 50`, with a test named `test_put_guardrails_limits_to_50_keywords`) ·
+the guardrails themselves (war, suicide, depression, death and grief keyword sets) · the story
+comparison and its AI framing analysis · the preserved original headline.
+
+The sentiment pie on `-04` even adds up: 613 + 793 + 386 = 1792, matching its own caption. That
+is the exact check ModelViz's cost panel failed.
+
+**Both amber meters are correct.** A NewsAPI rate meter and an OpenAI token meter are two
+genuinely different meters and both are real, so this is a legitimate extension of the amber
+rule rather than a dilution of it.
+
+## 13. `diagram-newsperspective` and `newsperspective-05` · the refresh arithmetic · HIGH
+
+Both tiles say **"~14 requests a refresh"** and **"100 a day, so about seven refreshes"**.
+
+`article_processor.process_new_articles` loops `for country in ("us", "gb")`:
+
+- `us` calls `fetch_all_categories`, which iterates the 7 `CATEGORIES` -> **7 requests**
+- `gb` calls `_fetch_uk_by_sources`, which joins 8 source IDs into a single `sources=` param
+  -> **1 request**
+
+So it is **8 requests a refresh**, and 100 / 8 is **about 12 refreshes**, not 7.
+
+The tiles contradict themselves here. Their own footnote explains that UK headlines come
+through named source IDs in one batched request because `country=` is us-only, and that is
+precisely why the number is no longer 14. **14 is the pre-deprecation figure**: 7 US categories
+plus 7 UK categories, from before NewsAPI dropped `country=gb`.
+
+**Fix:** "about 8 requests a refresh" and "roughly 12 refreshes a day". The argument gets
+stronger, not weaker. Twelve refreshes a day on a free tier reads better than seven, and the
+`-05` line about the AI getting time to read a story rather than racing the news still lands.
+
+## 14. `newsperspective-04` · the settings panel is clipped · HIGH
+
+The panel is cut off on **both** edges. What is visible: "gs" (Settings), "your NewsAPI key and
+content preferences" (Manage missing), "nly in this browser" (Stored o missing), "topics"
+(Blocked missing), "natching these keywords" (Articles m missing), "ve Key" (Sa missing), and a
+second button sliced off at the right.
+
+The content is correct and the right-hand half of the tile is fine. It is purely a composition
+problem.
+
+**Fix:** re-compose so the panel sits fully inside the frame.
+
+**While it is open, a palette question:** the Save Key button is **red**. If that is the app's
+real styling then the tile is being honest and it can stay. But on this site red is not a
+palette colour, and on a primary action it reads as danger rather than as a save. Worth a look.
+
+## 15. `newsperspective-03` · the caption contradicts its own screenshot · LOW
+
+The caption reads "One outlet is neutral, the other urgent. Same facts." The tile directly above
+it shows **positive** (BBC News) and **neutral** (Deadline). Neither is urgent.
+
+**Fix:** describe what is actually drawn, e.g. "One outlet reads it positive, the other neutral.
+Same facts." Same rule the SQL-Ball wireframe caption broke: the caption describes the image, not
+an idea of the image.
+
+## 16. `diagram-newsperspective` · "116 backend tests" · DECIDED, LEAVE AS IS
+
+**Tom's call: keep 116.** It comes from the repo's own README, "Backend tests (116 tests across
+6 modules)", so it is a documented figure rather than an invented one.
+
+Recorded here only so a later pass does not "helpfully correct" it: an independent count of
+`def test_` across the six modules gives **123**, with zero skip or xfail markers and no
+`conftest.py`, `pytest.ini` or `pyproject.toml` to change collection. The suite runs under
+`python -m unittest`, which collects only methods on `TestCase` subclasses, so anything defined
+at module level or on a plain class would be counted by a grep and not by the runner. Both
+numbers can be right at once.
+
+If it is ever re-derived, derive it by running the suite. Do not grep for it.
+
+## Minor, no action
+
+`newsperspective-01` reports 1,713 articles processed while `-04` reports 1,792 analysed.
+Different snapshots of a live archive, which is fine. Only noticeable if the two are read side
+by side.
+
+---
+
 # Verified accurate · no change needed
 
 Stating these explicitly, because several looked wrong at first and are not:

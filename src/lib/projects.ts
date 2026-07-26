@@ -328,13 +328,35 @@ export const projects: Project[] = [
     id: 'news-perspective',
     name: 'News Perspective',
     description: 'AI-powered news analysis that rewrites sensationalised headlines and generates TLDR summaries across US and UK sources.',
-    longDescription: 'See the news, not the spin. Uses AI to rewrite sensationalised headlines to be calm and factual, generates TLDR summaries, and analyses sentiment across US and UK news sources. Features a Good News filter, content guardrails for distressing topics, and country/category filters. No ads, no tracking, no account required.',
-    topics: ['Azure OpenAI', 'AI Search', 'Python', 'Streamlit'],
+    /*
+     * Stack corrected against the repo. This record claimed Azure OpenAI, AI Search and
+     * Streamlit, and three of those four topics were wrong: requirements.txt is plain
+     * `openai` with OPENAI_MODEL = "gpt-4o-mini", storage is SQLite through SQLAlchemy with
+     * no search service anywhere, and the frontend is Next.js 16 with React 19, Tailwind 4
+     * and shadcn. Only "Python" survived, and it stays as the `language` because GitHub's own
+     * breakdown puts Python first at 264kB against 159kB of TypeScript.
+     *
+     * The article comparison is new here rather than corrected: the app groups the same story
+     * across outlets and has the model analyse the framing difference, and the site had never
+     * mentioned it. It is the feature the name actually promises.
+     *
+     * Fixed ahead of the artwork on purpose. A design brief gets written from this file, so a
+     * wrong record here is how the next round of tiles inherits a mistake, which is exactly
+     * what happened to ReviewBot.
+     */
+    longDescription:
+      'See the news, not the spin. A self-hosted reader that pulls top headlines from NewsAPI across seven categories in the US and UK, then sends each article through one gpt-4o-mini call: it scores sentiment, rewrites the headline plainly when it has been sensationalised, and writes a TLDR. The original headline is kept and shown, so nothing is hidden. It also groups the same story across outlets and analyses how their framing differs. Content guardrails hide distressing topics, with up to fifty keywords of your own on top, and a Good News filter drops the negative categories entirely. Your NewsAPI key is sent per request and never stored on the server, everything lands in SQLite on your own disk, and reading the archive back needs no key at all. No ads, no tracking, no account.',
+    topics: ['Next.js 16', 'FastAPI', 'SQLite', 'NewsAPI'],
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/NewsPerspective' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947185/newsperspective2_ugdtqk.png' },
-    highlights: ['AI headline rewriting', 'Sentiment analysis', 'Good News filter', 'No ads, no tracking'],
+    highlights: [
+      'Headline rewritten, original kept and shown',
+      'The same story compared across outlets',
+      'Guardrails, plus 50 keywords of your own',
+      'Your key per request, never stored server side',
+    ],
   },
   {
     id: 'mastering-ai-portfolio',
