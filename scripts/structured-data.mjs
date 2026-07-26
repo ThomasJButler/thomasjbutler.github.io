@@ -56,21 +56,21 @@ const OFFERS = [
     name: 'AI Cost & Privacy Audit',
     description:
       'A review of what you are actually spending on AI, what data is leaving your building, and whether running it yourself would be better. You get a straight recommendation in writing, including "stay on the API" if that is the answer.',
-    price: '6000',
+    price: '6375',
     duration: 'P2W',
   },
   {
     name: 'Local LLM Setup',
     description:
       'Open-weight models running on your own hardware, sized for your real workload, installed and tuned, with your team trained and handover documentation written.',
-    price: '12000',
+    price: '12750',
     duration: 'P4W',
   },
   {
     name: 'Private RAG System',
     description:
       'Your own documents, searchable and answerable, with answers grounded in your sources and citations you can check. Runs on your hardware or your private cloud.',
-    price: '18000',
+    price: '18375',
     duration: 'P6W',
   },
 ];
@@ -83,7 +83,7 @@ const FAQ = [
   { q: 'How do you lock it down?', a: 'By default Ollama listens without authentication and phones home to check for new versions. Neither is acceptable on a network that takes itself seriously, so hardening is part of the setup, not an extra: the API is bound to localhost and put behind auth rather than left on 0.0.0.0 for the whole office, automatic update checks are turned off so the box makes no outbound call you did not ask for, and models are pre-pulled. If you need it genuinely air-gapped, it can be, and after the models are on the machine it never needs to see the internet again.' },
   { q: 'We already have Copilot. Why would we need this?', a: 'Often you would not, and I will say so. If Copilot is answering your questions well over the documents you keep in Microsoft 365, keep it: you are already paying for it. Where it stops is when the answer has to be grounded in a specific corpus with citations you can audit, when the per-seat bill scales faster than the value, or when the data genuinely cannot go to anyone else’s cloud on anyone’s terms. That is the gap I build for, and the audit exists to tell you honestly which side of it you are on.' },
   { q: 'When should I NOT do this?', a: 'When your volume is genuinely low, the API bill is not hurting, and your data is not sensitive. In that case you are paying me to save you money you were not really spending. Every engagement starts with an honest audit, and sometimes it concludes “stay on the API”. You get that in writing too.' },
-  { q: 'What if we want changes once we see it?', a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,200 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.' },
+  { q: 'What if we want changes once we see it?', a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,275 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.' },
   { q: 'What happens if you get hit by a bus?', a: 'You own everything. Open models, your hardware, your data, and handover documentation written for whoever comes after me. Nothing about a local setup depends on me still being around, which is rather the point of owning it rather than renting it.' },
 ];
 

@@ -52,8 +52,19 @@ export function ServicesPage() {
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6">
-      {/* Intro */}
-      <section className="py-20">
+      {/*
+        Intro and the service deck, deliberately one block.
+
+        They used to be two sections with a Separator between them, which cost ~145px of empty
+        screen (80px of py-20, the hairline, then 64px of py-16) before a visitor saw a single
+        thing on offer. They were also near-duplicate openers: an h1 "What I Build" and an h2
+        "Where I can help", each with a paragraph saying much the same thing.
+
+        The h2 is gone rather than hidden. CardTitle renders a div, not a heading, so the cards
+        contribute no headings of their own and dropping the h2 skips no level; the section
+        takes an aria-label so the deck is still a named region to navigate to.
+      */}
+      <section className="pt-20 pb-16" aria-label="What I build">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -80,18 +91,18 @@ export function ServicesPage() {
         >
           {SERVICES_INTRO}
         </motion.p>
-      </section>
 
-      <Separator />
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.28 }}
+          className="mt-3 max-w-2xl text-muted-foreground leading-relaxed"
+        >
+          Local and private AI is what I lead with. The rest is the engineering that has to be
+          solid around it.
+        </motion.p>
 
-      {/* Service Cards */}
-      <MotionSection className="py-16">
-        <SectionHead
-          title="Where I can help"
-          deck="Local and private AI is what I lead with. The rest is the engineering that has to be solid around it."
-        />
-
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {SERVICES.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -141,7 +152,7 @@ export function ServicesPage() {
             );
           })}
         </div>
-      </MotionSection>
+      </section>
 
       <Separator />
 

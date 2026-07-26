@@ -15,7 +15,7 @@ import { NOW_COPY, NOW_TAGS } from '@/lib/content';
  * What used to live here: self-assessed percentage skill bars ("React 95%") and a stat
  * grid reading "Uptime 99.9%" and "AI Models 7".
  *
- * Both are gone, and their absence is the point. A buyer scrolling from an £18,000 RAG
+ * Both are gone, and their absence is the point. A buyer scrolling from an £18,375 RAG
  * quote to a bar chart of my own opinion of myself is being told, loudly, that this is a
  * junior portfolio. Uptime of *what*, measured by *whom*? Numbers nobody can check are
  * worth less than no numbers, because they teach the reader to discount the ones that

@@ -150,6 +150,118 @@ worth doing if these slides are being reshot anyway.
 
 ---
 
+---
+
+# Round 2 · ModelViz and ReviewBot Protocol
+
+Items 1 to 8 above were delivered and are wired in. This round covers the 16 tiles that arrived
+next. **Of those 16, five shipped and eleven are held.**
+
+The pattern from round 1 has inverted, and it is worth stating plainly because it is a process
+problem rather than a drawing problem. Last time the artwork was *ahead* of the site and the
+copy was the stale part. This time the brief was written from the site's own `projects.ts`
+entries, and those entries were wrong, so the artwork rendered the site's mistakes faithfully
+and at 3200px. **The artwork is downstream of the copy.** The `projects.ts` records for both
+projects have now been rewritten against the repos, so a re-brief from the corrected copy will
+not reproduce these.
+
+## 9. `reviewbot-protocol-04.png` · invented numbers presented as measured · CRITICAL
+
+Five stat cards: SECURITY 15%, PERFORMANCE 25%, QUALITY 35%, TESTING 15%, DOCS 10%. Under them,
+in the terminal line: **"issue distribution from a real run · every finding becomes an inline
+comment"**.
+
+There was no run. `ReviewBot-Protocol` has no issue categories, no scoring, and no aggregation
+of findings by type. The review is a single `chat.completions.create` call whose reply is a
+block of prose. Nothing in the repo could produce this chart.
+
+This is the "no invented numbers" rule broken in the most direct way available: not a number
+that is merely unsupported, but one explicitly labelled as coming from real execution.
+
+**Fix:** cut the tile. If a "what it checks" tile is wanted, the honest source is the actual
+system prompt, which asks for four things: code quality and best practices, potential bugs or
+security issues, performance improvements, readability and maintainability. No percentages, no
+docs pass, no testing pass.
+
+## 10. `reviewbot-protocol-03.png` · a fabricated architecture · CRITICAL
+
+A UML sequence diagram headed "THE ENGINE", captioned "A **LangGraph** review pass", with lanes
+for `LangGraph Workflow`, `AI Reviewer` and `Workflow State`, and calls to `parse_files`,
+`prioritize_files`, `security_analysis(file)`, `performance_analysis(file)`,
+`quality_analysis(file)`, `documentation_analysis(file)`, `testing_analysis(file)`,
+`synthesize_file_results`, `generate_pr_summary`, `risk_assessment`, `generate_github_comments`
+and `finalize_review`.
+
+**None of those twelve functions exists.** `grep -ri langgraph` over the whole repo returns
+nothing; `requirements.txt` is `fastapi, uvicorn, openai, pydantic, requests, python-multipart`.
+The repo is clean and level with `origin/main`, and there is no other branch, so this is not a
+case of the design being ahead of an unpushed version.
+
+**Fix:** cut the tile. The real engine is one model call and does not need a sequence diagram.
+
+## 11. ReviewBot cover, `-01`, `-02`, `-05`, diagram and wireframe · HIGH
+
+All six repeat one or more of the same four claims. Held together because a re-cut of any one
+of them needs the same corrected brief.
+
+| Claim, and where it appears | The repo |
+| --- | --- |
+| **LangGraph** (cover paragraph, cover badge, diagram box 03, `-05` box 03) | Not a dependency, not imported, zero occurrences |
+| **GitHub OAuth** (`-02` whole tile, diagram box 01, `-05` box 01) | Webhook HMAC secret plus a personal access token. No OAuth flow, no consent screen |
+| **risk score** (diagram box 05, `-05` box 04) | No occurrence anywhere in the repo |
+| **A dashboard** with History, Pull Requests, Security Overview, Team Activity, quality radar (cover mockup, `-01`, and the wireframe's callouts) | The frontend is Create React App, five components: a code textarea, a file upload, a PR input, an output box. No dashboard, no history, no analytics |
+
+**What is true and should survive any re-cut:** FastAPI; **GPT-4o-mini** (`backend/config.py:9`);
+**exactly one metered call per review**, so the existing amber `1 metered call` badge is
+correct and is the best thing in the set; webhook signature verification; and posting back via
+the GitHub reviews endpoint, which does support line-level inline comments. It also falls back
+to a local mock review when no key is set, which is a genuinely nice detail nothing depicts.
+
+**Fix:** re-brief from the repo, not from these tiles. The honest shape is four steps:
+`webhook → fetch diff → one model call → comment on the PR`. That is a smaller product than
+the one drawn, and drawing the smaller one accurately is worth more than drawing a larger one
+that is not there.
+
+## 12. `modelviz.png` (cover), `modelviz-05.png`, `diagram-modelviz.png` · HIGH
+
+One sentence, in three places, and it is the one claim on this site that must never be wrong:
+
+- Cover: "Your keys stay in your browser and go straight to the provider, **never through a
+  server**."
+- `-05`: "localStorage · **never our servers**" and "calls go **straight to each provider**",
+  plus the amber panel's "your keys never touch a server".
+- Diagram: "**03 · DIRECT CALL**" and ">_ keys never touch a server. only the request goes out,
+  straight to each provider."
+
+**True for OpenAI only.** `ModelViz` ships `app/api/anthropic/[...path]/route.ts`,
+`app/api/google/[...path]/route.ts` and `app/api/perplexity/[...path]/route.ts`. Each reads the
+user's key from an `x-api-key` header and forwards it. So for three of the four providers the
+key does travel through a server. Only `openaiClient.ts` points at `https://api.openai.com/v1`
+directly.
+
+Ranked above the ReviewBot stack errors despite being one sentence, because it is a **privacy**
+claim on a site whose entire pitch is privacy, and a reader who opens the repo disproves it in
+about a minute.
+
+**Fix, and it is a better tile than the one being replaced.** The proxies are stateless, hold
+no server-side key of their own, and the route comment says why they exist: Anthropic, Google
+and Perplexity all refuse a browser origin, so a CORS relay is the only option. The honest
+version is more interesting than the absolute: *keys are stored only in your browser; three of
+the four providers will not accept a call from a browser, so those requests are relayed and the
+key travels with them, but it is never stored.* Keep the green/amber split exactly as drawn:
+the relay is still your own app, and the metered hop is still the provider call.
+
+**Shipped from this project, unchanged:** `-01`, `-02`, `-03`, `-04` and the wireframe. The
+four gallery shots are real screenshots and the wireframe is structural, so all five are fine.
+
+**Not a site issue, but worth knowing:** `modelviz-02` is internally inconsistent. It reads
+"Total Spent **$25.40**" while the four provider cards below it sum to **$34.82**, and their
+percentages (50.6 + 40.7 + 17.9 + 27.9) total **137%**. That is a bug in ModelViz's own cost
+panel or its demo data rather than anything the tile invented, so the tile ships as is. The app
+is worth a look.
+
+---
+
 # Verified accurate · no change needed
 
 Stating these explicitly, because several looked wrong at first and are not:

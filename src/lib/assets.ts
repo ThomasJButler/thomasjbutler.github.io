@@ -3,10 +3,8 @@
  *
  * These are local files under `public/img/` (gitignored) while the design is iterated on.
  * Cloudinary bills on *delivery*, so pointing dev at it spends credits on every reload, and
- * /projects reloads eighteen covers a visit. The masters live in two untracked folders:
- * `desigassetnexports/` (The Kicker, Sanctuary, ISQ Agent, Morpheus) and
- * `newdesignassetexports/` (SQL-Ball, AI Code Generator, Matrix Arcade, plus 2x re-exports
- * of the first four).
+ * /projects reloads eighteen covers a visit. The masters live in one untracked folder,
+ * `design-assets/`, which is the consolidation of three earlier ones.
  *
  * BEFORE PRODUCTION: upload to Cloudinary and replace each value below. The URLs cannot be
  * derived from the filenames, because Cloudinary appends a generated suffix to the public_id
@@ -21,9 +19,9 @@
  *   video     .../video/upload/vc_auto,q_auto,w_960/<version>/<public_id>.mp4
  *   poster    .../image/upload/f_auto,q_auto,w_1200/<version>/<public_id>.jpg
  *
- * The local files are downscaled from the 2x masters in `newdesignassetexports/` (3200px,
- * 2-5MB each). Upload the MASTERS, not these: Cloudinary's width transform does the resize,
- * and starting from 2x is what keeps them sharp on a retina screen.
+ * The local files are downscaled from the 2x masters in `design-assets/` (3200px, 2-5MB each).
+ * Upload the MASTERS, not these: Cloudinary's width transform does the resize, and starting
+ * from 2x is what keeps them sharp on a retina screen.
  *
  * One knock-on while these are local: `ProjectCover` builds its srcset by regex-matching
  * `/upload/...w_800` in the URL, so a `/img/...` path matches nothing, `cloudinarySrcSet()`
@@ -93,6 +91,26 @@ export const MEDIA = {
     poster: `${IMG}/morpheus-loop-poster.jpg`,
     diagram: `${IMG}/diagram-morpheus.png`,
     wireframe: `${IMG}/wireframe-morpheus.png`,
+  },
+
+  /**
+   * Gallery and wireframe only, deliberately: there IS a designed cover for ModelViz, and it
+   * is being held. Its strapline says the keys "go straight to the provider, never through a
+   * server", and three of the four providers are proxied through `app/api/<provider>/` in the
+   * ModelViz repo, because Anthropic, Google and Perplexity all refuse a browser origin.
+   * Only OpenAI is direct. So the cover here stays the old Cloudinary one until it is re-cut.
+   *
+   * The four gallery shots are real screenshots and the wireframe is structural, so they are
+   * safe. The held cover, `modelviz-05` and `diagram-modelviz` all repeat the same claim.
+   */
+  modelviz: {
+    gallery: [
+      `${IMG}/modelviz-01.png`,
+      `${IMG}/modelviz-02.png`,
+      `${IMG}/modelviz-03.png`,
+      `${IMG}/modelviz-04.png`,
+    ],
+    wireframe: `${IMG}/wireframe-modelviz.png`,
   },
 
   'sql-ball': {
@@ -169,15 +187,30 @@ export const MEDIA = {
  * forced into a 16:9 box (see Figure).
  */
 /**
- * True when this project has one of the designed covers, which are all composed at the same
- * 1600x750 (2.133:1).
+ * Project ids whose `cover` is one of the designed 1600x750 (2.133:1) files.
  *
- * Keyed on the project id rather than on the URL shape on purpose: the values in MEDIA become
- * Cloudinary URLs at some point, and a check like `startsWith('/img/')` would quietly start
- * returning false the day that happens, taking the correct aspect ratio with it.
+ * This is an explicit list rather than `id in MEDIA`, which is what it used to be. Those two
+ * were the same question right up until ModelViz, which has designed *gallery* art but is
+ * still on its old 16:9 Cloudinary cover while the designed one is held for a re-cut. Under
+ * the old test, adding ModelViz to MEDIA at all would have silently told the modal to render
+ * that 16:9 cover at 2.133:1 and squash it.
+ *
+ * Keyed on the id rather than the URL shape on purpose: these values become Cloudinary URLs
+ * eventually, and a check like `startsWith('/img/')` would quietly start returning false the
+ * day that happens, taking the correct aspect ratio with it.
  */
+const DESIGNED_COVERS = new Set([
+  'premier-league-oracle',
+  'sanctuary',
+  'isq-agent',
+  'morpheus',
+  'sql-ball',
+  'ai-code-generator',
+  'matrix-arcade',
+]);
+
 export function hasDesignedCover(id: string): boolean {
-  return id in MEDIA;
+  return DESIGNED_COVERS.has(id);
 }
 
 export const MEDIA_SIZE = {

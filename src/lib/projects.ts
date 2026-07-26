@@ -59,18 +59,42 @@ export const projects: Project[] = [
     id: 'modelviz',
     name: 'ModelViz',
     description: 'Compare AI models across providers with real-time metrics, cost analysis, and 3D visualisations.',
-    longDescription: 'Interactive analytics platform for comparing AI models across OpenAI, Anthropic, Google (Gemini), and Perplexity. Test prompts across multiple models simultaneously, track usage metrics, analyse costs, and visualise API performance with an immersive cyberpunk-themed interface.',
-    topics: ['Next.js', 'React 19', 'TypeScript', 'Three.js'],
+    longDescription:
+      'Interactive analytics platform for comparing AI models across OpenAI, Anthropic, Google (Gemini) and Perplexity. Test prompts across several models at once, then watch the meter: cost per provider, token efficiency, latency and uptime, all in one dashboard. Your API keys live in your own browser and the usage history stays there too, in IndexedDB, on a 90-day retention policy. Three of the four providers refuse a browser origin, so those calls are relayed by the app’s own routes: the key travels with the request and is never stored.',
+    // Stack checked against the repo. Next.js is on 16 and React on 19, so the versions are
+    // named the way the other entries name theirs. The 3D is real (`ForceGraph3D` in
+    // components/visualisations/network-3d.tsx) but it arrives via react-force-graph-3d;
+    // @react-three/fiber is in package.json and never imported, so "R3F" would be a claim
+    // about a dependency rather than about the app.
+    topics: ['Next.js 16', 'React 19', 'TypeScript', 'Three.js'],
     language: 'TypeScript',
     category: 'ai',
     links: { demo: 'https://modelviz.vercel.app/', github: 'https://github.com/ThomasJButler/ModelViz' },
     images: {
+      // Cover stays on Cloudinary: the designed 2.133:1 one is held pending a re-cut, and
+      // `hasDesignedCover` deliberately excludes this id so the 16:9 original is not squashed.
       cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710994/ModelViz_blz9ct.png',
-      gallery: ['https://res.cloudinary.com/depqttzlt/image/upload/v1768067110/modelviz2short_ukdyda.gif'],
+      // Four real screenshots, replacing the 5.5MB GIF that was the last legacy one on the site.
+      gallery: MEDIA.modelviz.gallery,
+    },
+    underTheHood: {
+      wireframe: {
+        src: MEDIA.modelviz.wireframe,
+        caption:
+          'Three regions: the nav, a stat row for spend, and the panel grid the charts sit in. The blueprint numbers those three and nothing else.',
+      },
     },
     featured: true,
     status: 'completed',
-    highlights: ['Multi-provider comparison (OpenAI, Anthropic, Google, Perplexity)', 'Real-time streaming with response metrics', 'Interactive 3D data visualisations', 'Cyberpunk-themed interface'],
+    // "Real-time streaming with response metrics" was here and is gone: nothing in the repo
+    // streams. The 90-day figure is not a guess either, it is `ninetyDaysAgo` in
+    // lib/storage/metricsStorage.ts:476.
+    highlights: [
+      'Multi-provider comparison (OpenAI, Anthropic, Google, Perplexity)',
+      'Cost, token efficiency and API health per provider',
+      'Keys and history stay in the browser, 90-day retention',
+      'Interactive 3D data visualisations',
+    ],
   },
   {
     id: 'premier-league-oracle',
@@ -241,14 +265,37 @@ export const projects: Project[] = [
   {
     id: 'reviewbot-protocol',
     name: 'ReviewBot Protocol',
-    description: 'AI-powered GitHub PR review system with automated code analysis and intelligent feedback via custom dashboard.',
-    longDescription: 'Full-stack AI code review system that automatically analyses GitHub pull requests and provides intelligent feedback. Catches common issues before human reviewers need to look at the code. Built with LangChain integration, LangGraph workflows for complex AI processing, GitHub webhook automation, and production-ready error handling. Demonstrates how tools like CodeRabbit work by building one from scratch.',
-    topics: ['Next.js', 'LangGraph', 'FastAPI', 'GitHub API'],
-    language: 'TypeScript',
+    description: 'A GitHub webhook that sends a pull request diff to GPT-4o-mini and posts the review back as a comment.',
+    /*
+     * Rewritten against the repo, which contradicted almost every claim that was here.
+     *
+     * It said "LangChain integration, LangGraph workflows for complex AI processing". There is
+     * no LangGraph and no LangChain: `grep -ri langgraph` returns nothing repo-wide, and
+     * requirements.txt is fastapi, uvicorn, openai, pydantic, requests, python-multipart. The
+     * review is one chat.completions.create call in services/review_service.py, with a single
+     * system prompt. It also said `language: 'TypeScript'` and topics starting 'Next.js'; the
+     * backend is Python and the frontend is Create React App in plain JavaScript.
+     *
+     * None of that came from Tom: the README and the GitHub description never claimed it. It
+     * was invented here, and the v5.2 artwork was then briefed from this copy and rendered the
+     * same fiction at 3200px, which is why those tiles are held rather than shipped.
+     *
+     * What is left is smaller and true, and the teardown framing survives intact because that
+     * is genuinely what the project is for.
+     */
+    longDescription:
+      'A working answer to "how does CodeRabbit actually do that?". A GitHub webhook fires on a pull request, a FastAPI service verifies the signature and pulls the diff and changed files from the GitHub API, and one GPT-4o-mini call reviews it for bugs, security, performance and readability. The result goes back to the PR through the reviews endpoint, which supports line-level inline comments. One metered call per review, and it falls back to a local mock review when no API key is set, so you can run the whole loop without spending anything.',
+    topics: ['FastAPI', 'GitHub API', 'GPT-4o-mini', 'React'],
+    language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/ReviewBot-Protocol' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767707875/ReviewBot2_xzcin9.png' },
-    highlights: ['Automated GitHub PR analysis', 'LangChain + LangGraph workflows', 'Webhook-driven reviews', 'Full-stack TypeScript/Python'],
+    highlights: [
+      'Webhook-driven, with HMAC signature verification',
+      'One metered GPT-4o-mini call per review',
+      'Posts back as an inline PR review',
+      'Mock review fallback, so it runs with no API key',
+    ],
   },
   {
     id: 'news-perspective',
@@ -359,16 +406,9 @@ export const projects: Project[] = [
     status: 'completed',
     highlights: ['12 playable arcade games', 'Phaser 3 engine behind a React shell', 'Matrix Trilogy audio kit, Web Audio synthesis behind it', 'Installable PWA, plays offline'],
   },
-  {
-    id: 'bigbang-gallery',
-    name: 'Big Bang Canvas',
-    description: 'Responsive gallery of 50+ AI-generated cosmic artworks with 3D tilt effects, custom cursor, and keyboard navigation.',
-    topics: ['Canvas', 'Animation', 'Creative', 'Design'],
-    language: 'JavaScript',
-    category: 'creative',
-    links: { demo: 'https://thomasjbutler.github.io/bigbang-gallery/', github: 'https://github.com/ThomasJButler/bigbang-gallery' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765946935/bigbanggallery_ckmaw1.webp' },
-  },
+  // Big Bang Canvas was here and is retired from the shop window. The site still lives on at
+  // thomasjbutler.github.io/bigbang-gallery and the build is still in the career timeline
+  // (src/lib/timeline.ts); it just no longer earns a card next to the paid work.
   {
     id: 'python-projects',
     name: 'Python Projects Collection',

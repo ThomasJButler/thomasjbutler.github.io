@@ -39,7 +39,10 @@ export const ROUTE_META = [
       'Local & Private AI: the results you need for everyday work, on your own hardware, with no per-token bills.',
     title: 'Local & Private AI for business | Tom Butler',
     description:
-      'Local LLM setups, private RAG, and honest AI cost and privacy audits. Fixed fees from £6,000, and I will tell you when local AI is the wrong answer.',
+      // Keep this figure in step with PRICING[0].price in src/lib/content.ts. It is the one
+      // copy of a price with no test behind it: the drift suite checks the JSON-LD and
+      // llms.txt, but nothing fails if this meta description goes stale.
+      'Local LLM setups, private RAG, and honest AI cost and privacy audits. Fixed fees from £6,375, and I will tell you when local AI is the wrong answer.',
   },
   {
     path: '/case-study',

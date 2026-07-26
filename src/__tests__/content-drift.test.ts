@@ -63,7 +63,19 @@ describe('content drift', () => {
 
   test('llms.txt does not still quote a price the page no longer offers', () => {
     // The exact numbers that went stale. Guard them by name.
-    for (const dead of ['£4,800', '£950/month']) {
+    //
+    // The round ones joined this list when the anchors moved to £750-a-day multiples. They are
+    // the likeliest to come back of any number here: they are what everything downstream was
+    // copied from, they read as "normal" prices, and llms.txt is hand-written, so nothing else
+    // would notice a regression.
+    for (const dead of [
+      '£4,800',
+      '£950/month',
+      '£6,000',
+      '£12,000',
+      '£18,000',
+      '£1,400/month',
+    ]) {
       expect(llms, `llms.txt still quotes ${dead}, which is not a price on the site`).not.toContain(
         dead
       );

@@ -300,14 +300,23 @@ export const PRICING_INTRO =
  *
  * These are "from" anchors: the entry price of each package, not the expected fee. They
  * are one-line edits: change the string and the card changes.
+ *
+ * Why the odd-looking figures. Every one is the £750 target day rate multiplied by a real
+ * number of days: 8.5, 17 and 24.5, so all three are multiples of £375, which is half a day.
+ * That is deliberate and it is not charm pricing. A precise number reads as computed, and a
+ * buyer adjusts less far down from it than from a round one (Janiszewski & Uy 2008 on anchor
+ * precision; Mason et al. 2013 on precise opening offers). A £5,950 would do the opposite: it
+ * is a retail signal, and it would undo the repositioning §0 below paid for when the audit went
+ * from £4,800 to £6,000. Anyone who divides by 750 finds the rate card, which is the point.
  */
 export const PRICING: PricedOffer[] = [
   {
     title: 'AI Cost & Privacy Audit',
-    // £6,000, not £4,800: a London consultancy sells the same diagnostic into Leeds at a
-    // published £6,500. Undercutting it by 26% buys nothing from a regulated buyer whose
-    // problem is risk, and a low price on the entry product anchors everything after it.
-    price: 'from £6,000',
+    // 8.5 days at £750. Not £4,800: a London consultancy sells the same diagnostic into Leeds
+    // at a published £6,500. Undercutting it by 26% buys nothing from a regulated buyer whose
+    // problem is risk, and a low price on the entry product anchors everything after it. This
+    // still sits under that £6,500, which is the one place being slightly cheaper is useful.
+    price: 'from £6,375',
     duration: '1 to 2 weeks',
     lead: true,
     summary:
@@ -321,7 +330,9 @@ export const PRICING: PricedOffer[] = [
   },
   {
     title: 'Local LLM Setup',
-    price: 'from £12,000',
+    // 17 days at £750. PRICING.md calls this the weakest number of the three: it is built from
+    // an effort estimate rather than a comparator, because no one publishes this package.
+    price: 'from £12,750',
     duration: '2 to 4 weeks',
     summary:
       'Open models running on your own hardware. Same results as the APIs for everyday work, no per-token bill, and nothing leaves the building.',
@@ -338,7 +349,9 @@ export const PRICING: PricedOffer[] = [
   },
   {
     title: 'Private RAG System',
-    price: 'from £18,000',
+    // 24.5 days at £750. Quote regulated scope at £30k+; data prep alone is 30-50% of a RAG
+    // build, and this "from" assumes documents that are already in reasonable shape.
+    price: 'from £18,375',
     duration: '3 to 6 weeks',
     summary:
       'Your own documents, searchable and answerable, without any of them being sent to a third party. Answers cite their sources, so you can check them.',
@@ -371,7 +384,7 @@ export const ENGAGEMENT_TERMS = {
     'Handover documentation, so your team is not dependent on me.',
   ],
   charged: [
-    'Further rounds after the first two: £1,200 per round, fixed, so you can decide whether it is worth it before you ask.',
+    'Further rounds after the first two: £1,275 per round, fixed, so you can decide whether it is worth it before you ask.',
     'New scope, as opposed to a revision: quoted and agreed in writing before any work starts.',
     'Re-tuning against new documents or new criteria after acceptance.',
   ],
@@ -386,11 +399,12 @@ export const ENGAGEMENT_TERMS = {
  */
 export const RETAINER = {
   title: 'Care & Tuning',
-  // £950 was under water: half a day of tuning is £375 at the target rate, leaving £575
-  // to cover monitoring, model updates and re-indexing. Every published comparator is
-  // higher (UK run-rate £1,000-5,000/month; the London firm selling into Leeds charges
-  // £10,000), so this was not even competitive, just cheap.
-  price: 'from £1,400/month',
+  // Built the same way as the packages, so it survives the same question. Half a day of
+  // tuning is £375 at the target rate; the other £1,050 covers monitoring, model updates and
+  // re-indexing. £950 was under water on that arithmetic, and every published comparator is
+  // higher anyway (UK run-rate £1,000-5,000/month; the London firm selling into Leeds charges
+  // £10,000), so the old number was not even competitive, just cheap.
+  price: 'from £1,425/month',
   summary:
     'Optional, and genuinely optional. Monitoring, model updates, re-indexing as your documents change, and half a day of tuning a month. Cancel whenever it stops being worth it.',
 } as const;
@@ -448,7 +462,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'What if we want changes once we see it?',
-    a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,200 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.',
+    a: 'Expected, and priced in. Every deliverable includes two rounds of revisions, where a round is one consolidated set of changes rather than a trickle of one-liners. After that, further rounds are £1,275 each, fixed, so you can weigh up whether a change is worth it before you ask for it. Anything that is genuinely new scope rather than a revision gets quoted before I start, never after.',
   },
   {
     q: 'What happens if you get hit by a bus?',

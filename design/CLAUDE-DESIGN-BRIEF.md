@@ -218,8 +218,8 @@ it.** Now that Tom is posting to LinkedIn and YouTube, the pages he links most d
 own, in the same template:
 
 - **`/services`** — the money page. Lead with the offer: *"Local & Private AI"* and the three
-  fixed-fee ways in (audit from £6,000, local LLM setup from £12,000, private RAG from
-  £18,000).
+  fixed-fee ways in (audit from £6,375, local LLM setup from £12,750, private RAG from
+  £18,375).
 - **`/case-study`** — *"Answering security questionnaires without leaking the answers."*
 - **`/contact`** — *"Talk it through."*
 

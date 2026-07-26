@@ -123,7 +123,7 @@ export function ContactPage() {
               Availability, framed as a consultant's.
 
               This used to read "Open to full-time roles & freelance", with "CV on request"
-              under it. On the page where a £12,000 engagement starts, that tells the buyer
+              under it. On the page where a £12,750 engagement starts, that tells the buyer
               you would rather have a salary, and it quietly reprices everything on
               /services: a man who wants a job will take less for the project.
             */}

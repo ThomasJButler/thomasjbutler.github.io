@@ -10,14 +10,33 @@ that when a buyer pushes back you are arguing from data rather than from nerve.
 |---|---|---|
 | Day rate, target | **£750** (band £690 to £850) | High |
 | Day rate, hard floor | **£650** | High |
-| AI Cost & Privacy Audit | **from £6,000** | Medium-high |
-| Local LLM Setup | **from £12,000** | Medium-low, mostly inferred |
-| Private RAG System | **from £18,000** (quote regulated scope at £30k+) | Medium |
-| Care & Tuning retainer | **from £1,400/month** | Medium |
-| Extra revision round | **£1,200** | Convention, not a market rate |
+| AI Cost & Privacy Audit | **from £6,375** (8.5 days) | Medium-high |
+| Local LLM Setup | **from £12,750** (17 days) | Medium-low, mostly inferred |
+| Private RAG System | **from £18,375** (24.5 days, quote regulated scope at £30k+) | Medium |
+| Care & Tuning retainer | **from £1,425/month** | Medium |
+| Extra revision round | **£1,275** | Convention, not a market rate |
 
 The day rate is a **backstop for negotiation, not the product.** Do not publish it. The
 packages are the product, and section 4 is the evidence for why.
+
+### Why the packages are not round numbers
+
+Every package price is £750 multiplied by a real number of days, so all three are multiples of
+£375, half a day. That is precision, not charm pricing, and the distinction matters:
+
+- **Precision** signals a computed figure. Buyers adjust less far down from a precise anchor
+  than from a round one (Janiszewski & Uy 2008, *Psychological Science*, on anchor precision;
+  Mason, Lee, Wiley & Ames 2013, *JESP*, on precise opening offers, where a precise number also
+  makes the other side infer you are informed).
+- **Charm endings** (£5,950, £925) are the opposite signal. They read as retail discounting,
+  and for premium or expertise-led purchases round numbers actually outperform them
+  (Wadhwa & Zhang 2015, *JCR*). Using one here would have quietly undone §0: the audit went
+  **up** from £4,800 to £6,000 precisely so it would not read as the cheap option next to a
+  London rival's published £6,500.
+
+The prices moved **up** by 2-6% on the switch, never down. And because the arithmetic is a
+single rate times a day count, anyone who divides by 750 recovers the rate card, which is the
+whole point of looking considered rather than merely looking odd.
 
 ---
 
@@ -161,26 +180,26 @@ what is at stake*.
 
 ## 2. The three offers
 
-**AI Cost & Privacy Audit, from £6,000.** Raised from £4,800. A London consultancy sells
+**AI Cost & Privacy Audit, from £6,375** (8.5 days at £750)**.** Raised from £4,800, then from £6,000. A London consultancy sells
 the same diagnostic *into Leeds* at a published **£6,500**. Undercutting them by 26% buys
 you nothing from a buyer whose actual problem is risk, and the entry product anchors
 everything you sell afterwards. Published UK comparators run £3,500 (a readiness
 questionnaire) to £8,000; yours is a technical audit with real data-flow mapping and real
 spend modelling, so it belongs at the top of that band, not the bottom.
 
-**Local LLM Setup, from £12,000.** *This is the weakest number here and you should know
+**Local LLM Setup, from £12,750** (17 days at £750)**.** *This is the weakest number here and you should know
 that.* There is no published price anywhere for "Ollama on your hardware, handed over, team
 trained" — I found none. It is built from effort (10 to 15 days) times day rate, bounded by
 adjacent products: an £8,000 transactional agent, a £15,000 "discovery and pilot". Every
 comparator I found sits at or above £8,000, so the anchor is not exposed, but expect to
 move it after you have sold two or three.
 
-**Private RAG System, from £18,000.** The best direct comparator is a London agency selling
+**Private RAG System, from £18,375** (24.5 days at £750)**.** The best direct comparator is a London agency selling
 "Enterprise RAG Chatbots **from £15,000**". What you built is more than a chatbot: policy
 grounding, confidence scoring, an audit trail. Pricing a compliance-grade private system
 below an agency's off-the-shelf chatbot would be self-harm.
 
-**Care & Tuning retainer, from £1,400/month.** Raised from £950, which was *under water*:
+**Care & Tuning retainer, from £1,425/month.** Raised from £950, then from £1,400. £950 was *under water*:
 half a day of tuning is £375 at your target rate, leaving £575 to cover monitoring, model
 updates and re-indexing. Every published comparator is higher (UK run-rate £1,000-£5,000;
 the London firm selling into Leeds charges **£10,000/month**). £950 was not competitive, it
@@ -229,7 +248,7 @@ changes* (that definition is the load-bearing part: it stops a trickle of one-li
 becoming ten free rounds). Plus a 30-day defect warranty, which is the software convention
 and matches what UK competitors ship.
 
-**Charged:** £1,200 per further round, fixed, so the client can decide whether a change is
+**Charged:** £1,275 per further round, fixed, so the client can decide whether a change is
 worth it *before* asking. New scope is quoted before work starts, never after.
 
 **Avoid publishing an hourly rate.** Hourly billing rewards inefficiency and penalises
@@ -278,7 +297,7 @@ consensus is **6-12 months** to consistent inbound, and for a new solo consultan
 referrals and direct outreach produce clients materially faster than content does. Content
 compounds; it does not start.
 
-**And a Yorkshire SME genuinely cannot pay £18,000.** London's output per hour is 28.5%
+**And a Yorkshire SME genuinely cannot pay £18,375.** London's output per hour is 28.5%
 above the UK average and Yorkshire buyers are, on average, poorer. Your *named* targets
 (NHS England, DWP, FCA, Bank of England, top-100 law firms) are nationally funded and this
 doesn't touch them. But do not pretend the local corner shop is your market.
