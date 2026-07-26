@@ -157,6 +157,10 @@ worth doing if these slides are being reshot anyway.
 Items 1 to 8 above were delivered and are wired in. This round covers the 16 tiles that arrived
 next. **Of those 16, five shipped and eleven are held.**
 
+> **To redraw these, use `REDRAFT-BRIEF-MODELVIZ-REVIEWBOT.md` in this folder.** This section
+> records what is wrong and the evidence for it; that one records what to draw instead, with
+> the verified fact sheets and replacement copy. Hand the brief to design, keep this for audit.
+
 The pattern from round 1 has inverted, and it is worth stating plainly because it is a process
 problem rather than a drawing problem. Last time the artwork was *ahead* of the site and the
 copy was the stale part. This time the brief was written from the site's own `projects.ts`
