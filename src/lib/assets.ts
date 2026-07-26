@@ -126,6 +126,25 @@ export const MEDIA = {
     wireframe: `${IMG}/wireframe-reviewbot-protocol.png`,
   },
 
+  /**
+   * No `diagram` yet, and that is the only thing missing. The delivered one still prices a
+   * refresh at "about 14 requests" and "seven refreshes a day", which was true before NewsAPI
+   * dropped `country=gb`. `process_new_articles` loops over us and gb: us iterates 7 categories,
+   * gb is a single batched request. Eight requests, so about twelve refreshes. Tile `-05` was
+   * corrected and now says exactly that; the diagram was not re-exported with it.
+   */
+  'news-perspective': {
+    cover: `${IMG}/newsperspective.png`,
+    gallery: [
+      `${IMG}/newsperspective-01.png`,
+      `${IMG}/newsperspective-02.png`,
+      `${IMG}/newsperspective-03.png`,
+      `${IMG}/newsperspective-04.png`,
+      `${IMG}/newsperspective-05.png`,
+    ],
+    wireframe: `${IMG}/wireframe-newsperspective.png`,
+  },
+
   'sql-ball': {
     cover: `${IMG}/sql-ball.png`,
     gallery: [
@@ -225,6 +244,7 @@ const DESIGNED_COVERS = new Set([
   'matrix-arcade',
   'modelviz',
   'reviewbot-protocol',
+  'news-perspective',
 ]);
 
 export function hasDesignedCover(id: string): boolean {

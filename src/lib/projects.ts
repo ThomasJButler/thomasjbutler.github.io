@@ -350,7 +350,20 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/NewsPerspective' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947185/newsperspective2_ugdtqk.png' },
+    images: {
+      cover: MEDIA['news-perspective'].cover,
+      gallery: MEDIA['news-perspective'].gallery,
+    },
+    underTheHood: {
+      // Wireframe only. The delivered diagram still says a refresh costs about 14 requests,
+      // which was the arithmetic before NewsAPI dropped `country=gb` and the UK fetch became a
+      // single batched call. It is 8, and tile 05 in the gallery already says so.
+      wireframe: {
+        src: MEDIA['news-perspective'].wireframe,
+        caption:
+          'Five regions: the header, the filter bar, the refresh status, then each article card carrying its TLDR with the original headline kept underneath.',
+      },
+    },
     highlights: [
       'Headline rewritten, original kept and shown',
       'The same story compared across outlets',
