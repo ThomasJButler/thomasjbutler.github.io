@@ -157,9 +157,13 @@ worth doing if these slides are being reshot anyway.
 Items 1 to 8 above were delivered and are wired in. This round covers the 16 tiles that arrived
 next. **Of those 16, five shipped and eleven are held.**
 
-> **To redraw these, use `REDRAFT-BRIEF-MODELVIZ-REVIEWBOT.md` in this folder.** This section
-> records what is wrong and the evidence for it; that one records what to draw instead, with
-> the verified fact sheets and replacement copy. Hand the brief to design, keep this for audit.
+> **RESOLVED.** All eleven were redrawn against `REDRAFT-BRIEF-MODELVIZ-REVIEWBOT.md`, checked
+> claim by claim against the repos a second time, and wired. Both projects are now complete:
+> cover, gallery, diagram and wireframe. ReviewBot ships four gallery tiles rather than five,
+> because the OAuth screen and the LangGraph sequence diagram were cut rather than redrawn.
+>
+> Kept below as the audit trail. The evidence is the useful part: it is the record of what a
+> tile can assert that a repo will not support.
 
 The pattern from round 1 has inverted, and it is worth stating plainly because it is a process
 problem rather than a drawing problem. Last time the artwork was *ahead* of the site and the

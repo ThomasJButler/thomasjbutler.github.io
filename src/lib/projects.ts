@@ -71,13 +71,22 @@ export const projects: Project[] = [
     category: 'ai',
     links: { demo: 'https://modelviz.vercel.app/', github: 'https://github.com/ThomasJButler/ModelViz' },
     images: {
-      // Cover stays on Cloudinary: the designed 2.133:1 one is held pending a re-cut, and
-      // `hasDesignedCover` deliberately excludes this id so the 16:9 original is not squashed.
-      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710994/ModelViz_blz9ct.png',
-      // Four real screenshots, replacing the 5.5MB GIF that was the last legacy one on the site.
+      cover: MEDIA.modelviz.cover,
+      // Four real screenshots plus the how-it-works tile. This replaced the 5.5MB GIF that was
+      // the last legacy one on the site.
       gallery: MEDIA.modelviz.gallery,
     },
     underTheHood: {
+      diagram: {
+        src: MEDIA.modelviz.diagram,
+        // Says "relayed", not "direct", because for three of the four providers it is. The
+        // first version of this diagram claimed keys never touch a server, which is true of
+        // OpenAI only: Anthropic, Google and Perplexity refuse a browser origin, so those go
+        // through ModelViz's own stateless route. Amber stays on the provider call, which is
+        // the metered boundary; the relay is green because it is still your own code.
+        caption:
+          'Keys are stored only in your browser. Three of the four providers will not take a call from one, so those requests are relayed, and the amber step is the only place the meter runs.',
+      },
       wireframe: {
         src: MEDIA.modelviz.wireframe,
         caption:
@@ -289,7 +298,25 @@ export const projects: Project[] = [
     language: 'Python',
     category: 'ai',
     links: { github: 'https://github.com/ThomasJButler/ReviewBot-Protocol' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767707875/ReviewBot2_xzcin9.png' },
+    images: {
+      cover: MEDIA['reviewbot-protocol'].cover,
+      gallery: MEDIA['reviewbot-protocol'].gallery,
+    },
+    underTheHood: {
+      diagram: {
+        src: MEDIA['reviewbot-protocol'].diagram,
+        caption:
+          'Your stack front to back: FastAPI, your GitHub token, your webhook secret. The one amber step is the single GPT-4o-mini call, and with no key set even that is skipped for a local mock review.',
+      },
+      wireframe: {
+        src: MEDIA['reviewbot-protocol'].wireframe,
+        // Six regions, and the last one matters: it is an output panel, not a dashboard. The
+        // first wireframe drew a nav of Dashboard / History / Pull Requests over analytics and
+        // team panels, none of which the app has.
+        caption:
+          'One screen. A heading, two status pills, three mode tabs, the input for whichever mode is chosen, one button, and the review that comes back as prose.',
+      },
+    },
     highlights: [
       'Webhook-driven, with HMAC signature verification',
       'One metered GPT-4o-mini call per review',

@@ -1,14 +1,23 @@
 # Redraft brief: ModelViz and ReviewBot Protocol
 
+> **DELIVERED AND WIRED.** The redraft landed and every tile was re-checked against the repos
+> before wiring. All of it is accurate. Both projects are now fully wired: cover, gallery,
+> diagram and wireframe. Kept as the record of what was asked for and why, and as the reference
+> for anyone re-briefing these two projects later.
+>
+> One structural change from the redraft: **ReviewBot ships four gallery tiles, not five.** The
+> OAuth screen and the LangGraph sequence diagram had nothing true left to say once the fiction
+> came out, so they were cut rather than redrawn, and the rest renumbered.
+
 Companion to `ASSET-RECUT-LIST.md`, which records *what was wrong*. This one records **what to
 draw instead**, with the verified facts, so nothing has to be inferred from the old tiles.
 
-**Status:** of the 16 tiles delivered, **5 shipped and 11 are held.**
+**Original status:** of the 16 tiles first delivered, **5 shipped and 11 were held.**
 
-| Project | Shipped | Held |
+| Project | Shipped first pass | Held, now redrawn and wired |
 | --- | --- | --- |
 | ModelViz | `-01`, `-02`, `-03`, `-04`, `wireframe` | cover, `-05`, `diagram` |
-| ReviewBot Protocol | none | all 8 |
+| ReviewBot Protocol | none | all 8, delivered as 7 |
 
 ## Why this happened, so it does not happen again
 

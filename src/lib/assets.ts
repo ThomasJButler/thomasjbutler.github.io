@@ -93,24 +93,37 @@ export const MEDIA = {
     wireframe: `${IMG}/wireframe-morpheus.png`,
   },
 
-  /**
-   * Gallery and wireframe only, deliberately: there IS a designed cover for ModelViz, and it
-   * is being held. Its strapline says the keys "go straight to the provider, never through a
-   * server", and three of the four providers are proxied through `app/api/<provider>/` in the
-   * ModelViz repo, because Anthropic, Google and Perplexity all refuse a browser origin.
-   * Only OpenAI is direct. So the cover here stays the old Cloudinary one until it is re-cut.
-   *
-   * The four gallery shots are real screenshots and the wireframe is structural, so they are
-   * safe. The held cover, `modelviz-05` and `diagram-modelviz` all repeat the same claim.
-   */
   modelviz: {
+    cover: `${IMG}/modelviz.png`,
     gallery: [
       `${IMG}/modelviz-01.png`,
       `${IMG}/modelviz-02.png`,
       `${IMG}/modelviz-03.png`,
       `${IMG}/modelviz-04.png`,
+      `${IMG}/modelviz-05.png`,
     ],
+    diagram: `${IMG}/diagram-modelviz.png`,
     wireframe: `${IMG}/wireframe-modelviz.png`,
+  },
+
+  /**
+   * Four gallery tiles, not five, and that is the corrected set rather than a gap.
+   *
+   * The first delivery drew a product that did not exist: a LangGraph workflow, a GitHub OAuth
+   * screen, a risk score, an analytics dashboard, and a tile of invented percentages captioned
+   * "from a real run". None of it is in the repo. Two of those tiles had nothing true left to
+   * say once the fiction came out, so they were cut instead of redrawn, and the rest renumbered.
+   */
+  'reviewbot-protocol': {
+    cover: `${IMG}/reviewbot-protocol.png`,
+    gallery: [
+      `${IMG}/reviewbot-protocol-01.png`,
+      `${IMG}/reviewbot-protocol-02.png`,
+      `${IMG}/reviewbot-protocol-03.png`,
+      `${IMG}/reviewbot-protocol-04.png`,
+    ],
+    diagram: `${IMG}/diagram-reviewbot-protocol.png`,
+    wireframe: `${IMG}/wireframe-reviewbot-protocol.png`,
   },
 
   'sql-ball': {
@@ -190,10 +203,13 @@ export const MEDIA = {
  * Project ids whose `cover` is one of the designed 1600x750 (2.133:1) files.
  *
  * This is an explicit list rather than `id in MEDIA`, which is what it used to be. Those two
- * were the same question right up until ModelViz, which has designed *gallery* art but is
- * still on its old 16:9 Cloudinary cover while the designed one is held for a re-cut. Under
- * the old test, adding ModelViz to MEDIA at all would have silently told the modal to render
- * that 16:9 cover at 2.133:1 and squash it.
+ * looked like the same question until ModelViz arrived with designed *gallery* art while its
+ * cover was still the old 16:9 Cloudinary render: the shorthand would have told the modal to
+ * draw a 16:9 image at 2.133:1 and squash it, silently. ModelViz has its designed cover now,
+ * so the list happens to match MEDIA's keys again, and the shorthand would happen to work.
+ * It stays explicit anyway. "Has local assets" and "has a 2.133:1 cover" are two different
+ * facts that were only ever coincidentally equal, and the next project to arrive part-wired
+ * puts them back out of step with nothing to catch it.
  *
  * Keyed on the id rather than the URL shape on purpose: these values become Cloudinary URLs
  * eventually, and a check like `startsWith('/img/')` would quietly start returning false the
@@ -207,6 +223,8 @@ const DESIGNED_COVERS = new Set([
   'sql-ball',
   'ai-code-generator',
   'matrix-arcade',
+  'modelviz',
+  'reviewbot-protocol',
 ]);
 
 export function hasDesignedCover(id: string): boolean {
