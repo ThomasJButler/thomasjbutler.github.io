@@ -1,0 +1,54 @@
+# Everyone is welcome, and the AI crawlers are welcome by name.
+#
+# That is a decision, not an oversight. The point of this site is to be the answer when
+# someone asks an assistant "who sets up private AI for a UK business", so the crawlers
+# that feed those answers are invited in explicitly rather than left to the wildcard.
+#
+# These crawlers fetch HTML and do not execute JavaScript. That is why every route is
+# prerendered at build time: without real markup in the body there is nothing here for
+# them to read, and a client-rendered site is an empty div to all of them.
+
+User-agent: *
+Allow: /
+
+# OpenAI: training, search, and on-demand fetches for ChatGPT.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google's AI products (Gemini grounding, AI Overviews). Separate from Googlebot:
+# disallowing this removes the site from AI answers while leaving ordinary search intact.
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl, which a great many models are trained from.
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://thomasjbutler.github.io/sitemap.xml
