@@ -3,8 +3,22 @@
  *
  * These are local files under `public/img/` (gitignored) while the design is iterated on.
  * Cloudinary bills on *delivery*, so pointing dev at it spends credits on every reload, and
- * /projects reloads eighteen covers a visit. The masters live in one untracked folder,
- * `design-assets/`, which is the consolidation of three earlier ones.
+ * /projects reloads eighteen covers a visit.
+ *
+ * The masters live in one untracked folder, split in two by what happens to them next:
+ *
+ *   design-assets/upload-to-cloudinary/   exactly the 111 files this map references, and
+ *                                         nothing else. Upload the whole folder.
+ *   design-assets/not-for-upload/         things that must NOT go to Cloudinary. The three
+ *                                         og-*.png are per-route Open Graph images set in
+ *                                         scripts/routes.mjs and served same-origin from
+ *                                         public/, because a social scraper wants an absolute
+ *                                         URL on this domain. Also the held NewsPerspective
+ *                                         diagram, a LinkedIn template and two design notes.
+ *
+ * Those two folders are generated from this file, so if you add an entry below, re-run the
+ * split rather than copying by hand. `design/ASSET-MANIFEST.md` lists every file with the
+ * transform it needs.
  *
  * BEFORE PRODUCTION: upload to Cloudinary and replace each value below. The URLs cannot be
  * derived from the filenames, because Cloudinary appends a generated suffix to the public_id

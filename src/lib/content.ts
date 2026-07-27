@@ -44,10 +44,12 @@ export const LINKS = {
  * own, not AI you rent" for months and it is a far better opening line than the page
  * itself had, which is a sign the page was pointed the wrong way round.
  *
- * The name has not disappeared, it has moved to the eyebrow, where a name belongs.
+ * The name is not here and does not need to be. The header wordmark two lines above already
+ * reads `> tom_butler`, so the eyebrow was saying it twice inside the same screenful. What is
+ * left is the part that is not repeated anywhere else on the page: what he does and where.
  */
 
-export const HERO_EYEBROW = '// tom_butler · full stack ai engineer · york, uk';
+export const HERO_EYEBROW = '// full stack ai engineer · york, uk';
 
 /** Two lines on purpose: the turn is the whole point of the sentence. */
 export const HERO_H1 = ['AI you own,', 'not AI you rent.'];

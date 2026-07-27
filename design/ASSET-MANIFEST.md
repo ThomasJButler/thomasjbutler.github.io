@@ -1,160 +1,160 @@
-# Asset manifest: what to upload to Cloudinary
+# Asset manifest: the Cloudinary upload
 
 Generated from `src/lib/assets.ts`, which is the single source of truth for every image and
-clip the site serves. If this file and `assets.ts` ever disagree, `assets.ts` is right.
+clip the site serves. If this file and `assets.ts` disagree, `assets.ts` is right.
 
-## The state of the folders
+## Just upload one folder
 
-- **`design-assets/`** holds the 2x masters. **Upload these, not `public/img/`.** Cloudinary's
-  width transform does the resize, and starting from 2x is what keeps them sharp on retina.
-- **`public/img/`** holds the downscaled copies the site currently serves. It is gitignored but
-  it still deploys, because Vite copies `public/` into `dist/` and gh-pages ships `dist/`. It is
-  an exact match for what `assets.ts` references: no orphans, nothing missing.
-- Both were audited and every unused file removed. Anything left in `design-assets/` is either
-  served, a master for something served, or listed under "not site content" at the bottom.
+**`design-assets/upload-to-cloudinary/` — 111 files, and nothing in it that should not be
+uploaded.** It is exactly what `assets.ts` references, checked file by file rather than by
+eye. Drag the whole folder in.
 
-## The swap
+`design-assets/not-for-upload/` holds the seven that must stay put, and the important ones are
+the three **`og-*.png`**. Those are live: `scripts/routes.mjs` sets them as per-route Open Graph
+images and they are served from the site root, because a social scraper wants an absolute URL
+on this domain. Moving them to Cloudinary breaks link previews on `/services`, `/case-study`
+and `/contact`. Also in there: the held NewsPerspective diagram, a LinkedIn template, and two
+design handover notes.
+
+## After uploading
 
 `src/lib/assets.ts` is the only file that changes. Replace each `/img/...` value with the
-Cloudinary URL and apply the transform in the table below. The URLs cannot be derived from the
-filenames, because Cloudinary appends a generated suffix to the public_id
-(`Morpheus5_pdcmvr.png`), which is exactly why this map exists: the swap is one file, not
-thirty call sites.
+Cloudinary URL and apply the transform from the tables below. The URLs cannot be derived from
+the filenames, because Cloudinary appends a generated suffix to the public_id
+(`Morpheus5_pdcmvr.png`), which is exactly why this map exists: the swap is one file, not a
+hundred call sites.
 
-`hasDesignedCover()` and `MEDIA_SIZE` need no changes. They are keyed on project id and on
-intrinsic pixel size, neither of which the swap touches.
+`hasDesignedCover()` and `MEDIA_SIZE` need no changes: they key on project id and on intrinsic
+pixel size, neither of which the swap touches.
+
+Full transform prefixes: images are `image/upload/f_auto,q_auto,<width>/`, clips are
+`video/upload/vc_auto,q_auto,<width>/`.
+
+## Five files that are not 2x masters
+
+Everything else in the folder is a 3200px master. These five are the shipped files, because no
+master exists:
+
+- **Four `*-loop-poster.jpg`** — single frames out of the loop clips, so there was never a
+  separate master. Uploading them as they are works. The tidier option is to delete them from
+  the upload and let Cloudinary generate a poster from the video you just uploaded.
+- **`matrix-arcade.mp4`** — the 392kB encode. Its master is in `~/Downloads`, not in the repo.
+  Worth finding before uploading, or accept the encode.
 
 
-### premier-league-oracle
+### the-kicker
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | the-kicker.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `the-kicker-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `loop` | the-kicker-loop.gif | `video/upload/vc_auto,q_auto,w_480` |
-| `poster` | the-kicker-loop-poster.png **(no master)** | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-kicker.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-kicker.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | the-kicker.png | `w_800` |
+| `gallery` | 5 files, `the-kicker-0*` | `w_1200` |
+| `loop` | the-kicker-loop.gif | `w_480 (video)` |
+| `poster` | the-kicker-loop-poster.jpg *(not a 2x master)* | `w_1200` |
+| `diagram` | diagram-kicker.png | `w_1600` |
+| `wireframe` | wireframe-kicker.png | `w_1600` |
 
 ### sanctuary
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | sanctuary.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `sanctuary-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `loop` | sanctuary-loop.gif | `video/upload/vc_auto,q_auto,w_480` |
-| `poster` | sanctuary-loop-poster.png **(no master)** | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-sanctuary.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-sanctuary.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | sanctuary.png | `w_800` |
+| `gallery` | 5 files, `sanctuary-0*` | `w_1200` |
+| `loop` | sanctuary-loop.gif | `w_480 (video)` |
+| `poster` | sanctuary-loop-poster.jpg *(not a 2x master)* | `w_1200` |
+| `diagram` | diagram-sanctuary.png | `w_1600` |
+| `wireframe` | wireframe-sanctuary.png | `w_1600` |
 
 ### isq-agent
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | isq-agent.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `isq-agent-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `hero` | isq-case-study-hero.png | `image/upload/f_auto,q_auto,w_1600` |
-| `loop` | isq-agent-loop.gif | `video/upload/vc_auto,q_auto,w_480` |
-| `poster` | isq-agent-loop-poster.png **(no master)** | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-isq.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-isq.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | isq-agent.png | `w_800` |
+| `gallery` | 5 files, `isq-agent-0*` | `w_1200` |
+| `hero` | isq-case-study-hero.png | `w_1600` |
+| `loop` | isq-agent-loop.gif | `w_480 (video)` |
+| `poster` | isq-agent-loop-poster.jpg *(not a 2x master)* | `w_1200` |
+| `diagram` | diagram-isq.png | `w_1600` |
+| `wireframe` | wireframe-isq.png | `w_1600` |
 
 ### morpheus
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | morpheus.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `morpheus-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `loop` | morpheus-loop.gif | `video/upload/vc_auto,q_auto,w_480` |
-| `poster` | morpheus-loop-poster.png **(no master)** | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-morpheus.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-morpheus.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | morpheus.png | `w_800` |
+| `gallery` | 5 files, `morpheus-0*` | `w_1200` |
+| `loop` | morpheus-loop.gif | `w_480 (video)` |
+| `poster` | morpheus-loop-poster.jpg *(not a 2x master)* | `w_1200` |
+| `diagram` | diagram-morpheus.png | `w_1600` |
+| `wireframe` | wireframe-morpheus.png | `w_1600` |
 
 ### modelviz
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | modelviz.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `modelviz-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-modelviz.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-modelviz.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | modelviz.png | `w_800` |
+| `gallery` | 5 files, `modelviz-0*` | `w_1200` |
+| `diagram` | diagram-modelviz.png | `w_1600` |
+| `wireframe` | wireframe-modelviz.png | `w_1600` |
 
 ### reviewbot-protocol
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | reviewbot-protocol.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 4 files, `reviewbot-protocol-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-reviewbot-protocol.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-reviewbot-protocol.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | reviewbot-protocol.png | `w_800` |
+| `gallery` | 4 files, `reviewbot-protocol-0*` | `w_1200` |
+| `diagram` | diagram-reviewbot-protocol.png | `w_1600` |
+| `wireframe` | wireframe-reviewbot-protocol.png | `w_1600` |
+
+### mastering-ai-portfolio
+
+| Field | File in `upload-to-cloudinary/` | Transform |
+| --- | --- | --- |
+| `gallery` | 4 files, `agentic-ai-portfolio-0*` | `w_1200` |
+
+### version-timetravel
+
+| Field | File in `upload-to-cloudinary/` | Transform |
+| --- | --- | --- |
+| `gallery` | 4 files, `version-timetravel-0*` | `w_1200` |
+
+### commercial-portfolio
+
+| Field | File in `upload-to-cloudinary/` | Transform |
+| --- | --- | --- |
+| `gallery` | 4 files, `commercial-portfolio-0*` | `w_1200` |
 
 ### news-perspective
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | newsperspective.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `newsperspective-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `wireframe` | wireframe-newsperspective.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | newsperspective.png | `w_800` |
+| `gallery` | 5 files, `newsperspective-0*` | `w_1200` |
+| `wireframe` | wireframe-newsperspective.png | `w_1600` |
 
 ### sql-ball
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | sql-ball.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `sql-ball-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-sql-ball.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-sql-ball.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | sql-ball.png | `w_800` |
+| `gallery` | 5 files, `sql-ball-0*` | `w_1200` |
+| `diagram` | diagram-sql-ball.png | `w_1600` |
+| `wireframe` | wireframe-sql-ball.png | `w_1600` |
 
 ### ai-code-generator
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | ai-code-generator.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `ai-code-generator-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `diagram` | diagram-ai-code-generator.png | `image/upload/f_auto,q_auto,w_1600` |
-| `wireframe` | wireframe-ai-code-generator.png | `image/upload/f_auto,q_auto,w_1600` |
+| `cover` | ai-code-generator.png | `w_800` |
+| `gallery` | 5 files, `ai-code-generator-0*` | `w_1200` |
+| `diagram` | diagram-ai-code-generator.png | `w_1600` |
+| `wireframe` | wireframe-ai-code-generator.png | `w_1600` |
 
 ### matrix-arcade
 
-| Field | Master in `design-assets/` | Cloudinary transform |
+| Field | File in `upload-to-cloudinary/` | Transform |
 | --- | --- | --- |
-| `cover` | matrix-arcade.png | `image/upload/f_auto,q_auto,w_800` |
-| `gallery` | 5 files, `matrix-arcade-0*` | `image/upload/f_auto,q_auto,w_1200` |
-| `games` | 12 files, `arcade-*` | `image/upload/f_auto,q_auto,w_1200` |
-| `poster` | matrix-arcade-poster.png | `image/upload/f_auto,q_auto,w_1200` |
-| `video` | matrix-arcade.mp4 **(no master)** | `video/upload/vc_auto,q_auto,w_960` |
-
-<!-- total 99 served entries, 5 without a PNG/GIF master -->
-
-## The five with no PNG or GIF master
-
-Not a problem, just things you cannot upload straight from `design-assets/`:
-
-- **Four `*-loop-poster.jpg`** (The Kicker, Sanctuary, ISQ Agent, Morpheus). These are single
-  frames pulled out of the loop clips, so there was never a separate master. Either upload the
-  existing `public/img/` jpg as is, or let Cloudinary generate the poster from the uploaded
-  video, which is the tidier option.
-- **`matrix-arcade.mp4`.** The master lives in `~/Downloads`, not in any asset folder. The
-  392kB encode in `public/img/` is the only copy in the repo. Find the master before uploading,
-  or upload the encode and accept it.
-
-## Held, not wired
-
-- **`diagram-newsperspective.png`** is in `design-assets/` but deliberately absent from
-  `assets.ts`. It still prices a refresh at "about 14 requests" and "seven refreshes a day",
-  which was correct before NewsAPI dropped `country=gb`. It is 8 requests and about 12
-  refreshes, and gallery tile `-05` was corrected and already says so. **Do not upload it until
-  it is re-cut**, or the site will have two tiles disagreeing.
-
-## In `design-assets/` but not site content
-
-Keep or bin as you like, but do not upload:
-
-- **`og-case-study.png`, `og-contact.png`, `og-services.png`** — these ARE used, just not
-  through `/img/`. `scripts/routes.mjs` sets them as per-route Open Graph images and they are
-  served from `public/` at the site root. They must keep their current filenames and stay
-  where they are. **Do not move these to Cloudinary**: social scrapers want a same-origin
-  absolute URL, and `scripts/prerender.mjs` builds one from `SITE`.
-- **`linkedin-template.png`** — a marketing template, not site content. Left in place because
-  LinkedIn is a traffic source, not because anything renders it.
-- **`ASSET-INTEGRATION.md`, `CLAUDE-CODE-PROMPT.md`** — Claude Design's own handover notes.
+| `cover` | matrix-arcade.png | `w_800` |
+| `gallery` | 5 files, `matrix-arcade-0*` | `w_1200` |
+| `games` | 12 files, `arcade-*` | `w_1200` |
+| `poster` | matrix-arcade-poster.png | `w_1200` |
+| `video` | matrix-arcade.mp4 | `w_960 (video)` |
