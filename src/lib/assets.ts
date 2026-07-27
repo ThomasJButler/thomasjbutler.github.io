@@ -143,6 +143,24 @@ export const MEDIA = {
     ],
   },
 
+  /**
+   * Screenshots of the live app rather than designed tiles, taken while Claude Design was
+   * unavailable, and picked from thirteen.
+   *
+   * They arrived at 2880x1800, which is 1.600 and not the gallery's 16:9. Padded to 3200x1800
+   * in #0D0D0D rather than cropped: the app's own chrome samples at exactly that value, so the
+   * bars are invisible, and a 10% centre-crop would have taken the header off the top of all
+   * four. Nothing is lost and nothing is stretched.
+   */
+  'version-timetravel': {
+    gallery: [
+      `${IMG}/version-timetravel-01.png`,
+      `${IMG}/version-timetravel-02.png`,
+      `${IMG}/version-timetravel-03.png`,
+      `${IMG}/version-timetravel-04.png`,
+    ],
+  },
+
   'commercial-portfolio': {
     gallery: [
       `${IMG}/commercial-portfolio-01.png`,

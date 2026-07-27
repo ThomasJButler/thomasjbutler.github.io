@@ -542,12 +542,34 @@ export const projects: Project[] = [
   {
     id: 'version-timetravel',
     name: 'Version TimeTravel',
-    description: 'Interactive timeline showcasing 9 portfolio versions from static HTML to modern React, with responsive preview viewer.',
-    topics: ['Timeline', 'Interactive', 'History'],
+    description: 'A working archive of nine portfolio versions. Every one still runs, in the browser, as it originally shipped.',
+    /*
+     * "9 portfolio versions" kept, and it is the app's own figure: its hero and its stat line
+     * both say nine, and the chronology rail lists nine. `versions.ts` holds ten entries and
+     * the thumbnail strip shows ten, because the commercial site is in the archive without
+     * being a version of this portfolio. Consistent, but worth a glance during the QA pass.
+     *
+     * `language` left as JavaScript deliberately. The app's own source is TypeScript, but
+     * GitHub's breakdown for the repo is CSS, HTML and JavaScript, because ten archived static
+     * sites dwarf the viewer that displays them. The field is a coloured dot, and deferring to
+     * GitHub is the rule the other entries follow.
+     */
+    longDescription:
+      'Nine versions of one portfolio, from hand-written HTML in June 2024 to React and shadcn today, and every one of them still runs. Pick any version and the original build loads in a viewer you can resize to 1440, 834 or 390 to see how it behaved on a phone at the time. The builds are unmodified, so some of them reference assets that no longer exist, and the archive says so rather than quietly patching them. It is the clearest record of how fast the work moved: the same person, twenty-five months apart.',
+    topics: ['Timeline', 'Interactive', 'Archive'],
     language: 'JavaScript',
     category: 'personal',
     links: { demo: 'https://thomasjbutler.github.io/version-timetravel/', github: 'https://github.com/ThomasJButler/version-timetravel' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710995/portfoliotimetravel_rh7jgr.png' },
+    images: {
+      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710995/portfoliotimetravel_rh7jgr.png',
+      gallery: MEDIA['version-timetravel'].gallery,
+    },
+    highlights: [
+      'Nine versions, every one still runnable',
+      'Original builds, unmodified, flagged where assets are gone',
+      'Resizable viewer: 1440, 834 and 390',
+      'Twenty-five months, one person',
+    ],
   },
   {
     id: 'sanctuary',
