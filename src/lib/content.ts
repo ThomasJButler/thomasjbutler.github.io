@@ -22,8 +22,16 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/thomasjbutler',
   email: 'dev@thomasjbutler.me',
   commercial: 'https://thomasjbutler.me',
-  /** Run It Local. No URL yet — the Subscribe button toasts until Tom supplies one. */
-  substack: null as string | null,
+  /**
+   * Run It Local. Now a real URL, so `NewsletterStrip` swaps "Coming soon" for a working
+   * Subscribe link on both the home page and /services on its own.
+   *
+   * The publication is empty at the time of writing, which is fine: a subscribe box that
+   * collects an address before the first post exists is how you have an audience waiting for
+   * it. What would not be fine is the button claiming to subscribe you to nothing, and that is
+   * exactly the state this field just left.
+   */
+  substack: 'https://thomasjbutler.substack.com/' as string | null,
 };
 
 /* ─── Hero ───
