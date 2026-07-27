@@ -274,6 +274,18 @@ is worth a look.
 
 # Round 3 · NewsPerspective
 
+> **MOSTLY DONE. One file left: `diagram-newsperspective.png`.**
+>
+> The redraft fixed `-03`, `-04` and `-05`, and **seven of the eight tiles are wired and live**.
+> The diagram came back byte-identical to the original, so it was never re-exported and still
+> prices a refresh at "about 14 requests" and "seven refreshes a day". It is 8 requests and
+> about 12 refreshes, and gallery tile `-05` was corrected and now says exactly that, so the two
+> would contradict each other. It is the only reason the project ships without a diagram.
+>
+> **Item 13 below is the only outstanding work.** Items 14 and 15 are done. Item 16 was a
+> decision, not a fix. Everything under "verified correct" is already right and only needs not
+> to be broken.
+
 Eight tiles, **all eight held** pending a re-cut. That is not a comment on their quality: this
 is the best set delivered so far, and it is the first that was clearly briefed **from the repo
 rather than from the site**. It knows about the `X-News-Api-Key` header, SQLite, AGPLv3 and the
@@ -383,6 +395,49 @@ Both projects show empty match cards and a dead ticker in the off-season, so sho
 would produce artwork that undersells them and then needs redoing in August anyway. Neither
 blocks the launch: the site is correct today, both have their own card, and both read true
 against their repos. Only the artwork is outstanding.
+
+---
+
+---
+
+# Low priority · the last two without artwork
+
+Not blocking anything, and worth doing only once the launch set is finished. Both are real,
+working projects sitting on a single stock cover while everything around them now has a gallery,
+a diagram and a wireframe. That gap is starting to show.
+
+## 19. `css-showcase` · needs a gallery · LOW
+
+**CSS Learning Showcase**, live at `thomasjbutler.github.io/css-showcase`, 30+ pages of demos
+and playgrounds covering container queries and `:has()`.
+
+The easiest set on the whole list, because **the project is its own artwork**. It is a CSS
+showcase: the demos are already the visual. Straight screenshots of the best four or five
+playgrounds need no design work at all, only good taste in which ones to pick. No diagram and
+no wireframe: neither would say anything the demos do not.
+
+Worth checking while shooting it: the card claims **30+ pages**, which is exactly the kind of
+count that goes stale quietly. Verify against the repo rather than the card.
+
+## 20. `python-projects` · needs screenshots · LOW
+
+**Python Projects Collection** — mathematical tools, climate visualisation, AI assistants and
+games. GitHub link only, no demo, and one cover: the Lorenz attractor render, which is a good
+image and carries the card on its own for now.
+
+Also the project most likely to be improved by simply *running* it. A collection described as
+"mathematical tools, climate visualisation and interactive games" and shown as one static
+attractor is underselling itself. Four outputs from four different projects would say far more
+than any designed tile, and the maths ones tend to render beautifully with no help.
+
+No repo-claim risk found on this card. The GitHub link resolves and the topics are generic
+enough to be safe.
+
+## Retired rather than re-cut
+
+- **.NET/React Calendar** — removed. Built for a job application, not being continued.
+- **LFC News App** — removed. Reddit's API terms changed under it.
+- **Big Bang Canvas** — removed. Still live, just no longer earning a card next to paid work.
 
 ---
 

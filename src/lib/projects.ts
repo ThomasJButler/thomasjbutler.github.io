@@ -470,16 +470,9 @@ export const projects: Project[] = [
   // The LFC News App was here and is retired. It read r/LiverpoolFC through the Reddit API,
   // and the terms changed under it, so it is not work Tom is continuing. A card whose demo
   // depends on someone else's pricing decision is a liability on a page that exists to sell.
-  {
-    id: 'dotnet-react-calendar',
-    name: '.NET/React Calendar',
-    description: 'Full-stack calendar app with .NET Core 9 FastEndpoints backend and React frontend.',
-    topics: ['.NET', 'React', 'C#', 'Fast Endpoints'],
-    language: 'C#',
-    category: 'web',
-    links: { demo: 'https://dotnet-react-calendar.vercel.app/', github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar' },
-    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947576/dotnetcalendar_fiu8p4.jpg' },
-  },
+  // The .NET/React Calendar was here and is retired. It was built for a job application, and
+  // it is not work Tom is continuing. On a page that now sells local AI, a take-home exercise
+  // for a role he did not take is the weakest thing in the grid.
   {
     id: 'css-showcase',
     name: 'CSS Learning Showcase',
