@@ -1,123 +1,134 @@
 /**
  * Every image and clip the design assets brought in, in one map, keyed by project id.
  *
- * These are local files under `public/img/` (gitignored) while the design is iterated on.
- * Cloudinary bills on *delivery*, so pointing dev at it spends credits on every reload, and
- * /projects reloads eighteen covers a visit.
+ * These are Cloudinary-hosted delivery URLs, built from a small `img()`/`vid()` helper pair so
+ * the (transform, version, public_id) triple for each of the 111 assets sits on one line
+ * instead of a hand-typed literal URL, which is exactly the kind of transcription risk this
+ * file exists to remove. The masters are the untracked 2x originals that lived in
+ * `design-assets/upload-to-cloudinary/`: Cloudinary's width transform does the downscale, so
+ * starting from 2x is what keeps delivery sharp on a retina screen.
  *
- * The masters live in one untracked folder, split in two by what happens to them next:
+ * Transform per media type, applied by the `T` table below:
  *
- *   design-assets/upload-to-cloudinary/   exactly the 111 files this map references, and
- *                                         nothing else. Upload the whole folder.
- *   design-assets/not-for-upload/         things that must NOT go to Cloudinary. The three
- *                                         og-*.png are per-route Open Graph images set in
- *                                         scripts/routes.mjs and served same-origin from
- *                                         public/, because a social scraper wants an absolute
- *                                         URL on this domain. Also the held NewsPerspective
- *                                         diagram, a LinkedIn template and two design notes.
+ *   cover                  f_auto,q_auto,w_800
+ *   gallery / diagram /
+ *   wireframe / games      f_auto,q_auto,w_1200 — diagram, wireframe and the arcade's per-game
+ *                          shots all feed the same onZoom lightbox the gallery does, so they
+ *                          share its bucket rather than getting one of their own.
+ *   hero                   f_auto,q_auto,w_1600 (isq-agent only: the one route that opens on
+ *                          an image)
+ *   poster                 f_auto,q_auto,w_1200
+ *   video (matrix-arcade)  vc_auto,q_auto,w_960 — uploaded natively as a video resource, built
+ *                          with `vid()`, which hits `/video/upload/`.
+ *   loop (isq-agent,       f_mp4,vc_auto,q_auto,w_480 — NOT a native video resource, see below.
+ *   morpheus, sanctuary,   Built with `img()`, not `vid()`, despite being a clip.
+ *   the-kicker)
  *
- * Those two folders are generated from this file, so if you add an entry below, re-run the
- * split rather than copying by hand. `design/ASSET-MANIFEST.md` lists every file with the
- * transform it needs.
- *
- * BEFORE PRODUCTION: upload to Cloudinary and replace each value below. The URLs cannot be
- * derived from the filenames, because Cloudinary appends a generated suffix to the public_id
- * (`Morpheus5_pdcmvr.png`, `lfcreddit2_wzbqty.png`). That is the entire reason this map
- * exists: the swap is this one file, not thirty call sites. Reapply the same transforms the
- * other projects already use, or the delivered bytes will be the full-size originals:
- *
- *   cover     .../image/upload/f_auto,q_auto,w_800/<version>/<public_id>.png
- *   gallery   .../image/upload/f_auto,q_auto,w_1200/<version>/<public_id>.png
- *   hero      .../image/upload/f_auto,q_auto,w_1600/<version>/<public_id>.png
- *   loop      .../video/upload/vc_auto,q_auto,w_480/<version>/<public_id>.mp4
- *   video     .../video/upload/vc_auto,q_auto,w_960/<version>/<public_id>.mp4
- *   poster    .../image/upload/f_auto,q_auto,w_1200/<version>/<public_id>.jpg
- *
- * The local files are downscaled from the 2x masters in `design-assets/` (3200px, 2-5MB each).
- * Upload the MASTERS, not these: Cloudinary's width transform does the resize, and starting
- * from 2x is what keeps them sharp on a retina screen.
- *
- * One knock-on while these are local: `ProjectCover` builds its srcset by regex-matching
- * `/upload/...w_800` in the URL, so a `/img/...` path matches nothing, `cloudinarySrcSet()`
- * returns undefined and the plain `src` is used. Harmless and temporary. The srcset comes
- * back on its own the moment these are Cloudinary URLs again.
+ * The four `loop` clips were uploaded as animated GIFs (an `image` resource in Cloudinary), but
+ * `LoopVideo` (`src/components/media/LoopVideo.tsx`) renders a real `<video src>` element, which
+ * will not play a `.gif`. The fix is NOT the `/video/upload/` endpoint — that 404s for an
+ * `image`-resource asset (verified: `x-cld-error: Resource not found`). Cloudinary converts an
+ * animated GIF to video *on the same `/image/upload/` endpoint* via the `f_mp4` transformation
+ * flag instead, so these four are built with `img(T.loop, ..., 'mp4')`
+ * (`f_mp4,vc_auto,q_auto,w_480/<version>/<id>.mp4`, still under `image/upload/`). Confirmed 200
+ * with `content-type: video/mp4` for all four before this shipped. Don't "fix" these to
+ * `vid()`/`/video/upload/`: it looks more correct and 404s all four clips.
  */
-const IMG = '/img';
+const CLOUD = 'https://res.cloudinary.com/depqttzlt';
+
+const T = {
+  cover: 'f_auto,q_auto,w_800',
+  gallery: 'f_auto,q_auto,w_1200',
+  hero: 'f_auto,q_auto,w_1600',
+  poster: 'f_auto,q_auto,w_1200',
+  video: 'vc_auto,q_auto,w_960',
+  /** `f_mp4` is load-bearing here: it's an animated-GIF-to-video conversion, still served
+   *  from the `image/upload/` endpoint, not a native video resource. See the header note. */
+  loop: 'f_mp4,vc_auto,q_auto,w_480',
+} as const;
+
+function img(transform: string, version: string, publicId: string, ext: string = 'png'): string {
+  return `${CLOUD}/image/upload/${transform}/${version}/${publicId}.${ext}`;
+}
+
+function vid(transform: string, version: string, publicId: string, ext: string = 'mp4'): string {
+  return `${CLOUD}/video/upload/${transform}/${version}/${publicId}.${ext}`;
+}
 
 export const MEDIA = {
   'the-kicker': {
-    cover: `${IMG}/the-kicker.png`,
+    cover: img(T.cover, 'v1785173001', 'hgdl3hqn1fdsd3sczwow'),
     gallery: [
-      `${IMG}/the-kicker-01.png`,
-      `${IMG}/the-kicker-02.png`,
-      `${IMG}/the-kicker-03.png`,
-      `${IMG}/the-kicker-04.png`,
-      `${IMG}/the-kicker-05.png`,
+      img(T.gallery, 'v1785173000', 'scc3z3zt9j7ym1bnvyjg'),
+      img(T.gallery, 'v1785173000', 's5jz6tcap61nhid4h8ee'),
+      img(T.gallery, 'v1785173000', 'sxukp70l0cunv4hodlkb'),
+      img(T.gallery, 'v1785173000', 'b0i9viarhkpsutrkokit'),
+      img(T.gallery, 'v1785173000', 'p9r9wdc1j7fqlnmbyqjz'),
     ],
-    loop: `${IMG}/the-kicker-loop.mp4`,
-    poster: `${IMG}/the-kicker-loop-poster.jpg`,
-    diagram: `${IMG}/diagram-kicker.png`,
-    wireframe: `${IMG}/wireframe-kicker.png`,
+    loop: img(T.loop, 'v1785173001', 'gzwo0cj96zo6ib2yn7gu', 'mp4'),
+    poster: img(T.poster, 'v1785173001', 'qisoshrkuozbgzfc37ja', 'jpg'),
+    diagram: img(T.gallery, 'v1785172979', 'bvsw03azvh0xzpziedgh'),
+    wireframe: img(T.gallery, 'v1785173004', 'ygj0lyvskd6s7lhgkqe4'),
   },
 
   sanctuary: {
-    cover: `${IMG}/sanctuary.png`,
+    cover: img(T.cover, 'v1785172997', 'xswvoovg3mtzlnfhfmkl'),
     gallery: [
-      `${IMG}/sanctuary-01.png`,
-      `${IMG}/sanctuary-02.png`,
-      `${IMG}/sanctuary-03.png`,
-      `${IMG}/sanctuary-04.png`,
-      `${IMG}/sanctuary-05.png`,
+      img(T.gallery, 'v1785172994', 'rieberdykul82zhjouyr'),
+      img(T.gallery, 'v1785172994', 'rvrqj4fpedy7mkrknyeq'),
+      img(T.gallery, 'v1785172995', 'pg1selbzeu1n6ljkyztj'),
+      img(T.gallery, 'v1785172995', 'qbiimqkt5oh6zwcjfpay'),
+      img(T.gallery, 'v1785172996', 'ytyywhry6ofux0yfuse8'),
     ],
-    loop: `${IMG}/sanctuary-loop.mp4`,
-    poster: `${IMG}/sanctuary-loop-poster.jpg`,
-    diagram: `${IMG}/diagram-sanctuary.png`,
-    wireframe: `${IMG}/wireframe-sanctuary.png`,
+    loop: img(T.loop, 'v1785172997', 'fec4gwdpkrhxrfjjogys', 'mp4'),
+    poster: img(T.poster, 'v1785172996', 'nvwv2xhbxvzado90gskx', 'jpg'),
+    diagram: img(T.gallery, 'v1785172980', 'cfiqtovahggvtluneeco'),
+    wireframe: img(T.gallery, 'v1785173005', 'ye4d6kiu0nyhqjod515m'),
   },
 
   'isq-agent': {
-    cover: `${IMG}/isq-agent.png`,
+    cover: img(T.cover, 'v1785172983', 'pk1wplnw1feynkmnuwvw'),
     gallery: [
-      `${IMG}/isq-agent-01.png`,
-      `${IMG}/isq-agent-02.png`,
-      `${IMG}/isq-agent-03.png`,
-      `${IMG}/isq-agent-04.png`,
-      `${IMG}/isq-agent-05.png`,
+      img(T.gallery, 'v1785172981', 'y4rppqrlnr4oxhdp4pl3'),
+      img(T.gallery, 'v1785172980', 'pvkrya3hwuua4bne56cb'),
+      img(T.gallery, 'v1785172981', 'elvbhgc6szeledvappq7'),
+      img(T.gallery, 'v1785172981', 'cus2a7miqmrbep76vmow'),
+      img(T.gallery, 'v1785172982', 'hznepyhomnzikmyvwcnp'),
     ],
-    loop: `${IMG}/isq-agent-loop.mp4`,
-    poster: `${IMG}/isq-agent-loop-poster.jpg`,
-    diagram: `${IMG}/diagram-isq.png`,
-    wireframe: `${IMG}/wireframe-isq.png`,
+    loop: img(T.loop, 'v1785172983', 'm79zqvx2pul1xx107wmu', 'mp4'),
+    poster: img(T.poster, 'v1785172982', 'dltzay2ovm6znbaym6zc', 'jpg'),
+    diagram: img(T.gallery, 'v1785172979', 'diantllldgn7wuzbpd58'),
+    wireframe: img(T.gallery, 'v1785173003', 'gwgbytnlisb3y5a11vsb'),
     /** Only the case study has a hero: it is the one route that opens on an image. */
-    hero: `${IMG}/isq-case-study-hero.png`,
+    hero: img(T.hero, 'v1785172983', 'yo2ngxidzrutqxjgqcmc'),
   },
 
   morpheus: {
-    cover: `${IMG}/morpheus.png`,
+    cover: img(T.cover, 'v1785172990', 'pggcvdmmjl3cbr2fuxxm'),
     gallery: [
-      `${IMG}/morpheus-01.png`,
-      `${IMG}/morpheus-02.png`,
-      `${IMG}/morpheus-03.png`,
-      `${IMG}/morpheus-04.png`,
-      `${IMG}/morpheus-05.png`,
+      img(T.gallery, 'v1785172988', 'wvjfefgetbabeave4fdl'),
+      img(T.gallery, 'v1785172989', 'uwnlrlrrn83uwtb83hr5'),
+      img(T.gallery, 'v1785172989', 'pcnhzeqw2qozxjqfuseu'),
+      img(T.gallery, 'v1785172989', 'x6piqlqx5qy1bonncbdx'),
+      img(T.gallery, 'v1785172989', 'jlgsjfvpac4cutxxpsyr'),
     ],
-    loop: `${IMG}/morpheus-loop.mp4`,
-    poster: `${IMG}/morpheus-loop-poster.jpg`,
-    diagram: `${IMG}/diagram-morpheus.png`,
-    wireframe: `${IMG}/wireframe-morpheus.png`,
+    loop: img(T.loop, 'v1785172990', 'rmcre0s8ayjuqgctfphh', 'mp4'),
+    poster: img(T.poster, 'v1785172989', 'k3yxjuxcszqbxjwxtso1', 'jpg'),
+    diagram: img(T.gallery, 'v1785172980', 'zlyszkv8fqohzbxr5gc4'),
+    wireframe: img(T.gallery, 'v1785173004', 'rbbdvc1l3rvhmke5frc6'),
   },
 
   modelviz: {
-    cover: `${IMG}/modelviz.png`,
+    cover: img(T.cover, 'v1785172988', 'vcdkfij9hiapwpqzjvis'),
     gallery: [
-      `${IMG}/modelviz-01.png`,
-      `${IMG}/modelviz-02.png`,
-      `${IMG}/modelviz-03.png`,
-      `${IMG}/modelviz-04.png`,
-      `${IMG}/modelviz-05.png`,
+      img(T.gallery, 'v1785172986', 'w02fv2zyrhdpcod54kte'),
+      img(T.gallery, 'v1785172990', 'ff8fzt1q90kri8dfwyo2'),
+      img(T.gallery, 'v1785172988', 'pqe3kg9l8lmazqyauflv'),
+      img(T.gallery, 'v1785172988', 'eb2bwahnbaddjs12amsw'),
+      img(T.gallery, 'v1785172988', 'avev5i3c9gzg3zjnojdu'),
     ],
-    diagram: `${IMG}/diagram-modelviz.png`,
-    wireframe: `${IMG}/wireframe-modelviz.png`,
+    diagram: img(T.gallery, 'v1785172979', 'qxddwncqnowgvirkq1lh'),
+    wireframe: img(T.gallery, 'v1785173004', 'tjyppudo09syiwyvli0d'),
   },
 
   /**
@@ -129,15 +140,15 @@ export const MEDIA = {
    * say once the fiction came out, so they were cut instead of redrawn, and the rest renumbered.
    */
   'reviewbot-protocol': {
-    cover: `${IMG}/reviewbot-protocol.png`,
+    cover: img(T.cover, 'v1785172995', 'owdqzjg2wixqvt4hjbsr'),
     gallery: [
-      `${IMG}/reviewbot-protocol-01.png`,
-      `${IMG}/reviewbot-protocol-02.png`,
-      `${IMG}/reviewbot-protocol-03.png`,
-      `${IMG}/reviewbot-protocol-04.png`,
+      img(T.gallery, 'v1785172993', 'nl22slsycr31tvibrpah'),
+      img(T.gallery, 'v1785172993', 'jnreah2w7ucdgeaoehm7'),
+      img(T.gallery, 'v1785172994', 'dvs9iwzcqsa365n56guk'),
+      img(T.gallery, 'v1785172994', 'narebozaaw7f6pffbpgp'),
     ],
-    diagram: `${IMG}/diagram-reviewbot-protocol.png`,
-    wireframe: `${IMG}/wireframe-reviewbot-protocol.png`,
+    diagram: img(T.gallery, 'v1785172980', 'ptf2phnfy36n2bl8hthp'),
+    wireframe: img(T.gallery, 'v1785173005', 'uvbm8kg9g0ibhxapvmyd'),
   },
 
   /**
@@ -150,10 +161,10 @@ export const MEDIA = {
    */
   'mastering-ai-portfolio': {
     gallery: [
-      `${IMG}/agentic-ai-portfolio-01.png`,
-      `${IMG}/agentic-ai-portfolio-02.png`,
-      `${IMG}/agentic-ai-portfolio-03.png`,
-      `${IMG}/agentic-ai-portfolio-04.png`,
+      img(T.gallery, 'v1785172970', 'xfqdhhfxoa7oduzqc0lb'),
+      img(T.gallery, 'v1785172973', 'flnydioipommlrn6do01'),
+      img(T.gallery, 'v1785172973', 'iqukxisnz1hhvwiechzs'),
+      img(T.gallery, 'v1785172971', 'hwfibz0exgmz3gthgzrp'),
     ],
   },
 
@@ -168,19 +179,19 @@ export const MEDIA = {
    */
   'version-timetravel': {
     gallery: [
-      `${IMG}/version-timetravel-01.png`,
-      `${IMG}/version-timetravel-02.png`,
-      `${IMG}/version-timetravel-03.png`,
-      `${IMG}/version-timetravel-04.png`,
+      img(T.gallery, 'v1785173002', 'l3jzdt9ibolklfpl8wnp'),
+      img(T.gallery, 'v1785173003', 'nfnw74zg2wkqznfzvfg2'),
+      img(T.gallery, 'v1785173003', 'yrosd6uwwiqyrprkjiqn'),
+      img(T.gallery, 'v1785173003', 'wysieimgciy3n9xyn4jc'),
     ],
   },
 
   'commercial-portfolio': {
     gallery: [
-      `${IMG}/commercial-portfolio-01.png`,
-      `${IMG}/commercial-portfolio-02.png`,
-      `${IMG}/commercial-portfolio-03.png`,
-      `${IMG}/commercial-portfolio-04.png`,
+      img(T.gallery, 'v1785172977', 'thbhro31exeosewdwlsc'),
+      img(T.gallery, 'v1785172978', 'vyitmvbgasc5m4pfswns'),
+      img(T.gallery, 'v1785172978', 'fvxae9gkkcmoigfrp1tm'),
+      img(T.gallery, 'v1785172979', 'filbnlmnzyzuvb3wmhbs'),
     ],
   },
 
@@ -192,51 +203,51 @@ export const MEDIA = {
    * corrected and now says exactly that; the diagram was not re-exported with it.
    */
   'news-perspective': {
-    cover: `${IMG}/newsperspective.png`,
+    cover: img(T.cover, 'v1785172994', 'cuz5e2pu5fxssomyqs1x'),
     gallery: [
-      `${IMG}/newsperspective-01.png`,
-      `${IMG}/newsperspective-02.png`,
-      `${IMG}/newsperspective-03.png`,
-      `${IMG}/newsperspective-04.png`,
-      `${IMG}/newsperspective-05.png`,
+      img(T.gallery, 'v1785172992', 'bjx0ujegol4wlyllxgbw'),
+      img(T.gallery, 'v1785172991', 'p6lp4afeufn6avv4llxm'),
+      img(T.gallery, 'v1785172992', 'vuc9dnwnkwznwixvnyn2'),
+      img(T.gallery, 'v1785172992', 'udovwmnbketfwefo4ozj'),
+      img(T.gallery, 'v1785172993', 'xoctgakwgp7q9uwtesoj'),
     ],
-    wireframe: `${IMG}/wireframe-newsperspective.png`,
+    wireframe: img(T.gallery, 'v1785173005', 'ucnigcezzgwwiyakqqhq'),
   },
 
   'sql-ball': {
-    cover: `${IMG}/sql-ball.png`,
+    cover: img(T.cover, 'v1785172999', 'sw1kfqw7fugsudcnvuzi'),
     gallery: [
-      `${IMG}/sql-ball-01.png`,
-      `${IMG}/sql-ball-02.png`,
-      `${IMG}/sql-ball-03.png`,
-      `${IMG}/sql-ball-04.png`,
-      `${IMG}/sql-ball-05.png`,
+      img(T.gallery, 'v1785172998', 'esagl6iucjkl9oye5ct9'),
+      img(T.gallery, 'v1785172998', 'rxwer90sfondqepaxlv0'),
+      img(T.gallery, 'v1785172998', 'ly3dpsa2zfbe7r0jnfv8'),
+      img(T.gallery, 'v1785172999', 'stzqpyqfynhwoivsopdm'),
+      img(T.gallery, 'v1785172999', 'ovxva5mwwfsyj6o2pyof'),
     ],
-    diagram: `${IMG}/diagram-sql-ball.png`,
-    wireframe: `${IMG}/wireframe-sql-ball.png`,
+    diagram: img(T.gallery, 'v1785172981', 'meui6recttslca3kwsz0'),
+    wireframe: img(T.gallery, 'v1785173006', 'carb38fiilror5vlmqfz'),
   },
 
   'ai-code-generator': {
-    cover: `${IMG}/ai-code-generator.png`,
+    cover: img(T.cover, 'v1785172974', 'ovq3kqjan7n67fvrifr4'),
     gallery: [
-      `${IMG}/ai-code-generator-01.png`,
-      `${IMG}/ai-code-generator-02.png`,
-      `${IMG}/ai-code-generator-03.png`,
-      `${IMG}/ai-code-generator-04.png`,
-      `${IMG}/ai-code-generator-05.png`,
+      img(T.gallery, 'v1785172974', 'mnhkojsz0h8c0k32bs8l'),
+      img(T.gallery, 'v1785172971', 'jiv85kyvaxlksts54fi6'),
+      img(T.gallery, 'v1785172971', 'zl8vui11xzbvntwiyr0z'),
+      img(T.gallery, 'v1785172973', 'jzvmo4g8utk6iv2bkjjj'),
+      img(T.gallery, 'v1785172973', 'hl3ryyyucyugbxuyqrv1'),
     ],
-    diagram: `${IMG}/diagram-ai-code-generator.png`,
-    wireframe: `${IMG}/wireframe-ai-code-generator.png`,
+    diagram: img(T.gallery, 'v1785172978', 'g3idqlchxmaj1ugkzivb'),
+    wireframe: img(T.gallery, 'v1785173003', 'p8jtm1mc6dc3sgl2cyev'),
   },
 
   'matrix-arcade': {
-    cover: `${IMG}/matrix-arcade.png`,
+    cover: img(T.cover, 'v1785172986', 'dbxqi6pejtxxwb5xu6it'),
     gallery: [
-      `${IMG}/matrix-arcade-01.png`,
-      `${IMG}/matrix-arcade-02.png`,
-      `${IMG}/matrix-arcade-03.png`,
-      `${IMG}/matrix-arcade-04.png`,
-      `${IMG}/matrix-arcade-05.png`,
+      img(T.gallery, 'v1785172984', 'erylp4kddu03je1zagco'),
+      img(T.gallery, 'v1785172984', 'tewvu1qan7rejs3rl0za'),
+      img(T.gallery, 'v1785172984', 'cfxm18dbv8ubxmp8qbcu'),
+      img(T.gallery, 'v1785172984', 'ndiaajmp6unotkspjpbu'),
+      img(T.gallery, 'v1785172985', 'zuv6nclk5sjjbhrxzrqq'),
     ],
     /**
      * The title sting, not a gameplay clip, so it sits in `videos` with a poster rather
@@ -244,26 +255,26 @@ export const MEDIA = {
      * 16:9 here so it fills the modal's aspect-video box instead of pillarboxing against
      * its own 16:9 poster. Re-crop from the master if this is ever re-encoded.
      */
-    video: `${IMG}/matrix-arcade.mp4`,
-    poster: `${IMG}/matrix-arcade-poster.jpg`,
+    video: vid(T.video, 'v1785172985', 'lpqrggfm6gei6t0afhqp'),
+    poster: img(T.poster, 'v1785172985', 'dyvp61fndjxq3tskry4d'),
     /**
      * One real gameplay screenshot per game, keyed by the arcade's own game ids. Twelve of
      * them, which is the point: the roster is the thing this project is, and the count was
      * the one fact the site got wrong for a whole release.
      */
     games: {
-      'ctrl-s': `${IMG}/arcade-ctrl-s.png`,
-      snake: `${IMG}/arcade-snake.png`,
-      pong: `${IMG}/arcade-pong.png`,
-      bird: `${IMG}/arcade-bird.png`,
-      invaders: `${IMG}/arcade-invaders.png`,
-      metris: `${IMG}/arcade-metris.png`,
-      frogger: `${IMG}/arcade-frogger.png`,
-      'neo-jump': `${IMG}/arcade-neo-jump.png`,
-      'agent-chase': `${IMG}/arcade-agent-chase.png`,
-      'rhythm-hacker': `${IMG}/arcade-rhythm-hacker.png`,
-      'cloud-jumper': `${IMG}/arcade-cloud-jumper.png`,
-      'code-breaker': `${IMG}/arcade-code-breaker.png`,
+      'ctrl-s': img(T.gallery, 'v1785172975', 'dlpusfxctgq4hnnpyy4y'),
+      snake: img(T.gallery, 'v1785172978', 'hlgzo7c68xhtfs9becgb'),
+      pong: img(T.gallery, 'v1785172976', 'siufwvuitkz3td90duix'),
+      bird: img(T.gallery, 'v1785172974', 'oqk5incswwyok9dpfsge'),
+      invaders: img(T.gallery, 'v1785172975', 'bqmcehwk3fgspg82pwrs'),
+      metris: img(T.gallery, 'v1785172976', 'np5qjg0qnuiupnmnh3zi'),
+      frogger: img(T.gallery, 'v1785172975', 'c0njovq9ft0nufqrkj54'),
+      'neo-jump': img(T.gallery, 'v1785172976', 'sjazc9tmv2jbaak2wll8'),
+      'agent-chase': img(T.gallery, 'v1785172975', 'dqc4dzdsjdr9eaautkfz'),
+      'rhythm-hacker': img(T.gallery, 'v1785172977', 'nmvvfp7wdlc45djzgq44'),
+      'cloud-jumper': img(T.gallery, 'v1785172975', 's1s8kpcccp8jeiyrscnk'),
+      'code-breaker': img(T.gallery, 'v1785172975', 'rjeptkkmtewmo9mnvtdr'),
     },
   },
 };
@@ -288,9 +299,8 @@ export const MEDIA = {
  * facts that were only ever coincidentally equal, and the next project to arrive part-wired
  * puts them back out of step with nothing to catch it.
  *
- * Keyed on the id rather than the URL shape on purpose: these values become Cloudinary URLs
- * eventually, and a check like `startsWith('/img/')` would quietly start returning false the
- * day that happens, taking the correct aspect ratio with it.
+ * Keyed on the id rather than the URL shape on purpose: these values are Cloudinary URLs for
+ * every project now, so a check like `startsWith('/img/')` was never going to be durable.
  */
 const DESIGNED_COVERS = new Set([
   'the-kicker',

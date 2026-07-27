@@ -12,6 +12,10 @@ export interface Project {
     demo?: string;
     github?: string;
     video?: string;
+    /** A pre-launch signup page, for a project with no live build yet. */
+    waitlist?: string;
+    /** The company behind the project, when that's worth naming separately from the repo. */
+    company?: string;
   };
   images?: {
     cover?: string;
@@ -575,11 +579,14 @@ export const projects: Project[] = [
     id: 'sanctuary',
     name: 'Sanctuary',
     description: 'Native iOS app for daily neurodiversity functioning, in active build with Swift after roughly two years of research and development.',
-    longDescription: 'Sanctuary is a neurodiversity daily-functioning app, built natively in Swift after around two years of research and development. It helps neurodiverse people manage executive function and communicate better, growing out of the same coaching automations built and proven in daily use. Currently in active development.',
+    longDescription: 'Sanctuary is a neurodiversity daily-functioning app, built natively in Swift after around two years of research and development. It helps neurodiverse people manage executive function and communicate better, growing out of the same coaching automations built and proven in daily use. Currently in active development, built by AiTomatic.',
     topics: ['Swift', 'Xcode', 'iOS', 'Neurodiversity'],
     language: 'Swift',
     category: 'mobile',
-    links: {},
+    links: {
+      waitlist: 'https://sanctuary-ios.vercel.app/',
+      company: 'https://aitomatic.vercel.app/',
+    },
     images: {
       cover: MEDIA.sanctuary.cover,
       gallery: MEDIA.sanctuary.gallery,

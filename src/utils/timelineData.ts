@@ -302,7 +302,7 @@ export const timelineData: TimelineEntry[] = [
         icon: 'fa-arrow-up-right-from-square'
       },
       {
-        href: 'https://aitomatic.com',
+        href: 'https://aitomatic.vercel.app/',
         label: 'AiTomatic',
         icon: 'fa-building'
       }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { m as motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Building2 } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -174,6 +174,20 @@ export function ProjectsPage() {
                         </a>
                       </Button>
                     )}
+                    {project.links.waitlist && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.waitlist} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="size-3" /> Join Waitlist
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.company && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.company} target="_blank" rel="noopener noreferrer">
+                          <Building2 className="size-3" /> AiTomatic
+                        </a>
+                      </Button>
+                    )}
                   </CardFooter>
                 </Card>
               </motion.div>
@@ -274,6 +288,20 @@ export function ProjectsPage() {
                       <Button asChild variant="ghost" size="xs">
                         <a href={project.links.github} target="_blank" rel="noopener noreferrer">
                           <GithubIcon className="size-3" /> Code
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.waitlist && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.waitlist} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="size-3" /> Join Waitlist
+                        </a>
+                      </Button>
+                    )}
+                    {project.links.company && (
+                      <Button asChild variant="ghost" size="xs">
+                        <a href={project.links.company} target="_blank" rel="noopener noreferrer">
+                          <Building2 className="size-3" /> AiTomatic
                         </a>
                       </Button>
                     )}

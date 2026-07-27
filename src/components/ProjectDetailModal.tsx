@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ExternalLink, ImageIcon, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, ImageIcon, CheckCircle, ChevronLeft, ChevronRight, Building2 } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -340,6 +340,20 @@ export function ProjectDetailModal({ project, open, onClose, onPrev, onNext, has
             <Button asChild variant="outline" size="sm">
               <a href={project.links.github} target="_blank" rel="noopener noreferrer">
                 <GithubIcon className="size-3.5" /> View Code
+              </a>
+            </Button>
+          )}
+          {project.links.waitlist && (
+            <Button asChild variant="outline" size="sm">
+              <a href={project.links.waitlist} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="size-3.5" /> Join Waitlist
+              </a>
+            </Button>
+          )}
+          {project.links.company && (
+            <Button asChild variant="outline" size="sm">
+              <a href={project.links.company} target="_blank" rel="noopener noreferrer">
+                <Building2 className="size-3.5" /> AiTomatic
               </a>
             </Button>
           )}
