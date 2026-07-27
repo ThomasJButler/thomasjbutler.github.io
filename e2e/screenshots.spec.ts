@@ -8,6 +8,9 @@ const pages = [
   { name: 'services', route: '/services' },
   { name: 'contact', route: '/contact' },
   { name: 'updates', route: '/updates' },
+  // Added for the v5 archive in version-timetravel. The case study did not exist in v4, so a
+  // set captured without it would under-represent what changed between the two versions.
+  { name: 'case-study', route: '/case-study' },
 ];
 
 const screenshotDir = path.join(__dirname, '..', 'playwright-screenshots');
