@@ -1,0 +1,1569 @@
+/* Fonts are self-hosted (see src/main.tsx).
+
+   They used to come from Google Fonts — twice, in fact: a <link> in the HTML and an
+   @import at the top of this file. Both were render-blocking requests to a third
+   party, and because they arrived after first paint every glyph on the page reflowed
+   when they landed, which was most of the site's layout shift. Serving them from our
+   own origin means they are fetched alongside the app, and Vite fingerprints them so
+   they cache forever. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Metric-matched fallbacks. These are the reason the headings no longer jump.
+ *
+ * Now that the pages are prerendered, text paints immediately, in whatever font the
+ * browser has to hand, and is then re-laid-out when the real font arrives. Orbitron is
+ * 18.9% wider than Arial (measured, not guessed: same string, same size, canvas
+ * measureText), so every heading on the site re-wrapped on font load. That was 0.089 CLS
+ * on the home page, and all of it. It did not show up before because the text was
+ * invisible until JavaScript ran, which is not a fix, it is a worse bug hiding a smaller
+ * one.
+ *
+ * A fallback that occupies the same space as the real font means the swap changes the
+ * shapes and not the layout. Exo 2 came out at 100.2% of Arial, so the body copy needs no
+ * help; Share Tech Mono is 10% narrower than the default monospace.
+ *
+ * size-adjust is the width correction. line-gap-override: 0 stops the fallback's own line
+ * gap from changing block heights before the real metrics land.
+ */
+@font-face {
+  font-family: 'Orbitron Fallback';
+  src: local('Arial'), local('Helvetica'), local('Segoe UI');
+  size-adjust: 118.9%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Exo 2 Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 100.2%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Share Tech Mono Fallback';
+  src: local('Courier New'), local('monospace');
+  size-adjust: 90%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Static palette (theme-independent) ─── */
+@theme {
+  --color-matrix-50: oklch(0.95 0.05 145);
+  --color-matrix-100: oklch(0.85 0.12 145);
+  --color-matrix-200: oklch(0.75 0.18 145);
+  --color-matrix-300: oklch(0.65 0.22 145);
+  --color-matrix-400: oklch(0.55 0.25 145);
+  --color-matrix-500: oklch(0.50 0.28 145);
+  --color-matrix-600: oklch(0.40 0.22 145);
+  --color-matrix-700: oklch(0.30 0.16 145);
+  --color-matrix-800: oklch(0.20 0.10 145);
+  --color-matrix-900: oklch(0.12 0.06 145);
+
+  --color-surface-0: oklch(0.08 0.01 145);
+  --color-surface-1: oklch(0.11 0.015 145);
+  --color-surface-2: oklch(0.14 0.02 145);
+  --color-surface-3: oklch(0.18 0.025 145);
+
+  /* cyan/amber tokens removed: the badge variants that used them are gone, and the
+     only non-green hue now is --meter (amber, semantic). */
+  --color-text: oklch(0.95 0.01 145);
+  /* The header nav uses this. Lifted with the rest of the dark palette for daylight. */
+  --color-text-muted: oklch(0.74 0.03 145);
+
+  /* Each real font is followed by its metric-matched fallback (see the @font-face
+     block at the top of this file), so a font swap changes the letterforms without
+     moving the layout. */
+  --font-mono: "Share Tech Mono", "Share Tech Mono Fallback", "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Exo 2", "Exo 2 Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: "Orbitron", "Orbitron Fallback", "Exo 2", ui-sans-serif, sans-serif;
+}
+
+/* ─── ShadCN theme inline mappings ─── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  /* --font-heading and --font-sans were redeclared here, without the metric-matched
+     fallbacks, and this block comes second, so it won: the fallbacks would have silently
+     applied to hand-written CSS and not to Tailwind's font-heading utility. Declared once,
+     in the @theme block above. */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+}
+
+/* ══════════════════════════════════════════
+   LIGHT THEME — "Circuit Board Schematic"
+   Crisp white with engineered green accents
+   ══════════════════════════════════════════ */
+:root {
+  --background: oklch(0.985 0.002 145);
+  --foreground: oklch(0.12 0.03 145);
+  --card: oklch(1 0 0 / 0.92);
+  --card-foreground: oklch(0.12 0.03 145);
+  --popover: oklch(0.99 0.002 145);
+  --popover-foreground: oklch(0.12 0.03 145);
+  --primary: oklch(0.35 0.22 145);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.012 145);
+  --secondary-foreground: oklch(0.25 0.10 145);
+  --muted: oklch(0.96 0.005 145);
+  --muted-foreground: oklch(0.40 0.06 145);
+  --accent: oklch(0.92 0.015 145);
+  --accent-foreground: oklch(0.25 0.10 145);
+  --destructive: oklch(0.55 0.20 25);
+  --border: oklch(0.90 0.02 145);
+  --input: oklch(0.92 0.015 145);
+  --ring: oklch(0.35 0.22 145);
+  /*
+   * --meter: the one colour on this site that is not green, and it means something.
+   *
+   * The whole argument is "AI you own, not AI you rent". So green is what you own, and
+   * amber is the meter running: the per-token bill, the API spend, the data leaving the
+   * building. It is never used decoratively, which is precisely what the old cyan/amber
+   * badge tones were doing (Ollama was cyan, On-Device was amber, for no reason anyone
+   * could state). A second hue that means nothing is just noise; a second hue that means
+   * "this is the thing costing you money" makes the palette argue the case.
+   *
+   * Darker in light mode because the dark-theme amber is 2.4:1 on a near-white card.
+   */
+  --meter: oklch(0.52 0.14 70);
+  --radius: 0.5rem;
+  /* h-14 (56px) plus the 1px gradient rule under it. Kept here so the hero's
+     min-height can't drift away from the real header. */
+  --header-h: 57px;
+  --chart-1: oklch(0.40 0.22 145);
+  --chart-2: oklch(0.60 0.12 195);
+  --chart-3: oklch(0.65 0.12 85);
+  --chart-4: oklch(0.35 0.18 145);
+  --chart-5: oklch(0.25 0.12 145);
+  --sidebar: oklch(0.97 0.005 145);
+  --sidebar-foreground: oklch(0.15 0.02 145);
+  --sidebar-primary: oklch(0.40 0.22 145);
+  --sidebar-primary-foreground: oklch(0.98 0.005 145);
+  --sidebar-accent: oklch(0.93 0.01 145);
+  --sidebar-accent-foreground: oklch(0.30 0.10 145);
+  --sidebar-border: oklch(0.88 0.015 145);
+  --sidebar-ring: oklch(0.40 0.22 145);
+}
+
+/* ══════════════════════════════════════════
+   DARK THEME — "Neon Terminal"
+   Matrix green on deep black
+
+   Tuned for a bright room, not a dark one. The first pass was legible on a laptop
+   in the evening and washed out in daylight: body copy sat at L=0.65, cards were
+   70% translucent over a moving rain, and the borders were nearly invisible. The
+   values below lift the text and the chrome without touching the hue, so it still
+   reads as the Matrix.
+   ══════════════════════════════════════════ */
+.dark {
+  --background: oklch(0.08 0.01 145);
+  --foreground: oklch(0.97 0.005 145);
+  /* Nearly opaque: a card is a reading surface, and the rain runs behind it. */
+  --card: oklch(0.11 0.015 145 / 0.94);
+  --card-foreground: oklch(0.97 0.005 145);
+  --popover: oklch(0.11 0.015 145);
+  --popover-foreground: oklch(0.97 0.005 145);
+  /* Brighter green: --primary carries every label, rule and link in the UI. */
+  --primary: oklch(0.60 0.26 145);
+  --primary-foreground: oklch(0.08 0.01 145);
+  --secondary: oklch(0.20 0.03 145);
+  --secondary-foreground: oklch(0.90 0.12 145);
+  --muted: oklch(0.16 0.02 145);
+  /* Most body copy on the site is this colour. It was the main casualty in daylight. */
+  --muted-foreground: oklch(0.78 0.025 145);
+  --accent: oklch(0.20 0.03 145);
+  --accent-foreground: oklch(0.90 0.10 145);
+  --destructive: oklch(0.60 0.20 25);
+  --border: oklch(0.34 0.06 145);
+  --input: oklch(0.34 0.06 145);
+  --ring: oklch(0.60 0.26 145);
+  /* See --meter in :root. Brighter here: this one sits on near-black. */
+  --meter: oklch(0.82 0.15 78);
+  --chart-1: oklch(0.50 0.28 145);
+  --chart-2: oklch(0.75 0.15 195);
+  --chart-3: oklch(0.80 0.15 85);
+  --chart-4: oklch(0.40 0.22 145);
+  --chart-5: oklch(0.30 0.16 145);
+  --sidebar: oklch(0.08 0.01 145);
+  --sidebar-foreground: oklch(0.92 0.01 145);
+  --sidebar-primary: oklch(0.50 0.28 145);
+  --sidebar-primary-foreground: oklch(0.08 0.01 145);
+  --sidebar-accent: oklch(0.18 0.025 145);
+  --sidebar-accent-foreground: oklch(0.85 0.12 145);
+  --sidebar-border: oklch(0.22 0.04 145);
+  --sidebar-ring: oklch(0.50 0.28 145);
+}
+
+/* ─── Light theme: circuit board grid background ─── */
+:root:not(.dark) body {
+  background-image:
+    linear-gradient(oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.35 0.22 145 / 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+}
+
+/* ─── Light theme: card treatment ─── */
+:root:not(.dark) [data-slot="card"] {
+  background: oklch(1 0 0 / 0.90);
+  border: 1px solid oklch(0.35 0.22 145 / 0.12);
+  border-left: 2px solid oklch(0.35 0.22 145 / 0.15);
+  box-shadow:
+    0 1px 2px oklch(0.35 0.22 145 / 0.05),
+    0 2px 8px oklch(0 0 0 / 0.03);
+}
+:root:not(.dark) [data-slot="card"]:hover {
+  border-color: oklch(0.35 0.22 145 / 0.25);
+  box-shadow:
+    0 4px 16px oklch(0.35 0.22 145 / 0.08),
+    0 1px 3px oklch(0.35 0.22 145 / 0.06);
+  transform: translateY(-1px);
+}
+
+/* ─── Light theme: heading accents ─── */
+:root:not(.dark) h1 {
+  color: oklch(0.18 0.06 145);
+}
+
+/* ─── Light theme: buttons with green depth ─── */
+:root:not(.dark) [data-slot="button"][data-variant="default"] {
+  box-shadow: 0 2px 6px oklch(0.35 0.22 145 / 0.25);
+}
+:root:not(.dark) [data-slot="button"][data-variant="default"]:hover {
+  box-shadow: 0 4px 12px oklch(0.35 0.22 145 / 0.30);
+}
+
+/* ─── Light theme: terminal window frames ─── */
+:root:not(.dark) .border-border\/50 {
+  border-color: oklch(0.35 0.22 145 / 0.15);
+}
+:root:not(.dark) .border-border\/30 {
+  border-color: oklch(0.35 0.22 145 / 0.10);
+}
+:root:not(.dark) .bg-muted\/30,
+:root:not(.dark) .bg-muted\/20 {
+  background: oklch(0.35 0.22 145 / 0.05);
+}
+
+/* ─── Light theme: gradient lines more visible ─── */
+:root:not(.dark) .via-primary\/30 {
+  --tw-gradient-via-position: ;
+  --tw-gradient-to: oklch(0.35 0.22 145 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), oklch(0.35 0.22 145 / 0.15) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+/* ─── Base layer ─── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply font-sans;
+  }
+
+  body {
+    @apply font-sans bg-background text-foreground;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+
+  /* Headings — phosphor glow in dark, subtle shadow in light */
+  h1, h2, h3 {
+    text-shadow: 0 0 30px oklch(0.40 0.22 145 / 0.06);
+  }
+  .dark h1, .dark h2, .dark h3 {
+    text-shadow:
+      0 0 20px oklch(0.50 0.28 145 / 0.15),
+      0 0 60px oklch(0.50 0.28 145 / 0.06);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--background); }
+  ::-webkit-scrollbar-thumb { background: oklch(0.40 0.18 145); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: oklch(0.50 0.28 145); }
+
+  /* Selection */
+  ::selection {
+    background: oklch(0.50 0.28 145 / 0.25);
+    color: oklch(0.15 0.02 145);
+  }
+  .dark ::selection {
+    background: oklch(0.50 0.28 145 / 0.3);
+    color: oklch(0.85 0.12 145);
+  }
+
+  /* ─── Cards — glass morphism ─── */
+  [data-slot="card"] {
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Cards.
+   *
+   * The light rules are scoped `:root:not(.dark)`, and that `:not()` is load-bearing.
+   * They used to be plain `:root [data-slot="card"]`, which has exactly the same
+   * specificity as `.dark [data-slot="card"]` (0,2,0) and sat fourteen lines *below* it
+   * in the same layer. `:root` matches <html class="dark"> perfectly well, so source
+   * order decided it: in dark mode the cards silently took the light treatment, and both
+   * the dark card gradient and the neon hover below were unreachable code. The site has
+   * never once shown the glow it was written to have.
+   *
+   * Glows are mixed from --primary rather than a literal oklch(...145), so the red/blue
+   * accent pill actually recolours them. It rewrites --primary on documentElement, and
+   * every hard-coded green shadow simply ignored it.
+   *
+   * Near-opaque on purpose: the rain runs behind these, and at 75% the glyphs came
+   * through the card and fought with the text. */
+  .dark [data-slot="card"] {
+    border-color: oklch(0.42 0.14 145 / 0.55);
+    border-top-color: oklch(0.52 0.20 145 / 0.45);
+    background: linear-gradient(
+      180deg,
+      oklch(0.13 0.02 145 / 0.94) 0%,
+      oklch(0.09 0.012 145 / 0.96) 100%
+    );
+  }
+  .dark [data-slot="card"]:hover {
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+    box-shadow:
+      0 0 28px color-mix(in oklab, var(--primary) 12%, transparent),
+      0 0 56px color-mix(in oklab, var(--primary) 4%, transparent),
+      0 8px 32px oklch(0 0 0 / 0.4);
+    transform: translateY(-3px);
+  }
+
+  /* Light cards — clean glass */
+  :root:not(.dark) [data-slot="card"] {
+    border-color: oklch(0.85 0.015 145 / 0.6);
+    background: oklch(0.99 0.003 145 / 0.85);
+  }
+  :root:not(.dark) [data-slot="card"]:hover {
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+    box-shadow:
+      0 4px 24px color-mix(in oklab, var(--primary) 6%, transparent),
+      0 8px 32px oklch(0 0 0 / 0.04);
+    transform: translateY(-1px);
+  }
+
+  /* Featured cards — permanent glow */
+  .dark [data-slot="card"][data-featured] {
+    border-color: color-mix(in oklab, var(--primary) 30%, transparent);
+    box-shadow:
+      0 0 16px color-mix(in oklab, var(--primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--primary) 6%, transparent);
+  }
+
+  /* Card footer. The border was a near-black rule in *both* themes, so on a white card it
+     drew a hard dark line across the bottom. */
+  .dark [data-slot="card-footer"] {
+    border-color: oklch(0.20 0.04 145 / 0.5);
+    background: oklch(0.08 0.01 145 / 0.5);
+  }
+  :root:not(.dark) [data-slot="card-footer"] {
+    border-color: var(--border);
+  }
+
+  /* ─── Inputs — green focus glow ─── */
+  .dark [data-slot="input"],
+  .dark [data-slot="textarea"] {
+    background: oklch(0.09 0.012 145 / 0.6);
+  }
+  .dark [data-slot="input"]:focus,
+  .dark [data-slot="textarea"]:focus {
+    border-color: oklch(0.50 0.28 145 / 0.5);
+    box-shadow:
+      0 0 0 1px oklch(0.50 0.28 145 / 0.2),
+      0 0 16px oklch(0.50 0.28 145 / 0.10);
+  }
+
+  /* ─── Links ─── */
+  a:not([data-slot]):not([class]) {
+    color: var(--primary);
+    transition: color 0.2s;
+  }
+  a:not([data-slot]):not([class]):hover {
+    color: oklch(0.60 0.25 145);
+  }
+
+  /* Accessibility: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ─── Utility classes ─── */
+@layer utilities {
+  /* Removed with the v5.2 dead-code pass: .crt-scanlines, .vignette, .glass-panel and
+     .noise-bg (below). They were the v3 versions, superseded by the .fx-scanlines,
+     .fx-vignette and .fx-page/.fx-scrim systems, and referenced by nothing in src/. */
+
+  /* The meter. Amber means "this is what renting costs you", and nothing else. */
+  .text-meter {
+    color: var(--meter);
+  }
+  .glow-meter {
+    color: var(--meter);
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--meter) 35%, transparent),
+      0 0 30px color-mix(in oklab, var(--meter) 15%, transparent);
+  }
+  :root:not(.dark) .glow-meter {
+    text-shadow: 0 0 20px color-mix(in oklab, var(--meter) 10%, transparent);
+  }
+  .border-meter {
+    border-color: color-mix(in oklab, var(--meter) 35%, transparent);
+  }
+  .bg-meter-soft {
+    background-color: color-mix(in oklab, var(--meter) 8%, transparent);
+  }
+
+  .glow-text {
+    text-shadow:
+      0 0 10px oklch(0.50 0.28 145 / 0.35),
+      0 0 30px oklch(0.50 0.28 145 / 0.15),
+      0 0 60px oklch(0.50 0.28 145 / 0.05);
+  }
+  :root:not(.dark) .glow-text {
+    text-shadow: 0 0 20px oklch(0.40 0.22 145 / 0.10);
+  }
+
+  /* Glow border — card/section accent */
+  .glow-border {
+    box-shadow:
+      0 0 12px oklch(0.50 0.28 145 / 0.15),
+      inset 0 0 12px oklch(0.50 0.28 145 / 0.04);
+  }
+  :root:not(.dark) .glow-border {
+    box-shadow: 0 0 12px oklch(0.40 0.22 145 / 0.06);
+  }
+
+  /* Glow pulse — breathing animation for CTAs */
+  .glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  :root:not(.dark) .glow-pulse {
+    animation: glow-pulse-light 3s ease-in-out infinite;
+  }
+}
+
+/* ─── Keyframes ─── */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px oklch(0.50 0.28 145 / 0.2),
+      0 0 2px oklch(0.50 0.28 145 / 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px oklch(0.50 0.28 145 / 0.35),
+      0 0 40px oklch(0.50 0.28 145 / 0.08);
+  }
+}
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse-light {
+  0%, 100% {
+    box-shadow: 0 0 6px oklch(0.40 0.22 145 / 0.10);
+  }
+  50% {
+    box-shadow: 0 0 16px oklch(0.40 0.22 145 / 0.18);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   v5 "The Operator"
+   Ported from design_handoff_v5_operator-v4-redesign. The prototype
+   selects themes with [data-theme="neon-terminal"|"circuit"]; this
+   codebase uses .dark on <html>, so every rule is translated to
+   .dark / :root:not(.dark).
+
+   Layering, so overlays stack predictably:
+     rain -10 · header 50 · vignette 69 · scanlines 70 · boot 90
+     cursor 98/99 · rabbit 110 · palette 120 · toast 125 · spoon 130
+     lightbox 135
+   ══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-matrix-yellow: #ffea00;
+}
+
+@layer base {
+  /* The repo had no focus-visible rule at all. The dark companion shadow is not
+     decoration: without it the yellow outline can sit on a bright rain glyph and
+     lose its 3:1 non-text contrast. */
+  :focus-visible {
+    outline: 2px solid var(--color-matrix-yellow);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px oklch(0 0 0 / 0.6);
+  }
+}
+
+@layer utilities {
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 0 var(--radius) 0;
+    background: var(--background);
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+  .skip-link:focus-visible {
+    left: 0;
+  }
+
+  /* ─── Rain ─── */
+  .fx-rain {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    /* Was 0.55. The rain is atmosphere, not content — at full strength it fought
+       the copy in a bright room and the page was only readable in the dark. */
+    opacity: 0.4;
+    transition: opacity 0.6s;
+  }
+  :root:not(.dark) .fx-rain {
+    /* The light palette is far darker on a near-white page, so it needs a fraction
+       of the presence to read as the same effect. */
+    opacity: 0.066;
+  }
+
+  /* ─── Atmosphere ─── */
+  .fx-scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    /* Was 0.275. These sit over everything and dim the whole page. */
+    opacity: 0.15;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.28) 0 1px,
+      transparent 1px 3px
+    );
+  }
+  :root:not(.dark) .fx-scanlines {
+    opacity: 0.06;
+  }
+
+  /* The CRT refresh band, drifting down every 9s. Transform-only so it stays off
+     the main thread. */
+  .fx-scanlines::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -140px;
+    height: 140px;
+    will-change: transform;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in oklab, var(--primary) 4%, transparent),
+      transparent
+    );
+    animation: fx-drift 9s linear infinite;
+  }
+  :root:not(.dark) .fx-scanlines::after,
+  :root.fx-off .fx-scanlines::after {
+    display: none;
+  }
+
+  .fx-vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 69;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 38%,
+      transparent 58%,
+      rgba(0, 0, 0, 0.38) 100%
+    );
+  }
+  :root:not(.dark) .fx-vignette {
+    display: none;
+  }
+}
+
+@keyframes fx-drift {
+  to {
+    transform: translateY(calc(100vh + 280px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-scanlines::after {
+    display: none;
+  }
+}
+
+/* ─── Decode text ─── */
+@layer utilities {
+  .ch-word {
+    /* Keeps a word from breaking across lines mid-scramble, which would make the
+       text jump around as it resolves. */
+    display: inline-block;
+    white-space: nowrap;
+  }
+  /* The slot is sized by the finished character (.ch__sizer) and the animating glyph is
+     laid over it. The scramble alphabet is half-width katakana and symbols, so a slot
+     that sized itself to the *current* glyph re-widthed every frame and re-wrapped the
+     line: 0.075 CLS on the home hero, which is the LCP element. Sizing from the real
+     text also means the box is re-measured for free once the web font loads. */
+  .ch {
+    position: relative;
+    display: inline-block;
+  }
+  /* The character is drawn from a data attribute, not a text node, so it reserves the
+     right width without adding a second copy of every letter to textContent (which a
+     text-only crawler was reading as "AAII yyoouu..."). visibility:hidden still lays the
+     box out, so the width is reserved even though nothing paints here. */
+  .ch__sizer::before {
+    content: attr(data-c);
+  }
+  .ch__sizer {
+    visibility: hidden;
+  }
+  .ch__glyph {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+  }
+  /*
+   * A character waiting its turn is VISIBLE, and that one line is worth explaining.
+   *
+   * `.ch--pending` used to be `opacity: 0`, and the glyph span was rendered empty, so a
+   * DecodeText painted precisely nothing until each character locked. On the home hero
+   * that is the h1, which is the LCP element: the largest text on the page was invisible
+   * for the first 640ms to 1.4s of every visit, and Largest Contentful Paint is measured
+   * on when text is *painted*, not when it is mounted. The effect was paying for itself
+   * with the metric it was most expensive to.
+   *
+   * It also made prerendering pointless. Real markup with `opacity: 0` on it gives a
+   * crawler the words and gives a browser a blank screen.
+   *
+   * So the decode now runs *over* real text instead of instead of it: every character is
+   * legible from the first frame, and the scramble passes through the line like a wave.
+   * The Matrix feel survives; the blank screen does not.
+   */
+  .ch--pending {
+    opacity: 1;
+  }
+  .ch--scramble {
+    color: color-mix(in oklab, var(--primary) 80%, transparent);
+    opacity: 0.85;
+    text-shadow: 0 0 18px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  .ch--locked {
+    animation: fx-lock 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ─── Blinking block caret ─── */
+  .fx-caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: 3px;
+    border-radius: 1px;
+    vertical-align: text-bottom;
+    background: color-mix(in oklab, var(--primary) 85%, transparent);
+    box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 45%, transparent);
+    animation: fx-blink 1s steps(2) infinite;
+  }
+
+  /* ─── Scrim ───
+     Dissolving the page-wide glass panel puts text directly over the rain. A head
+     glyph is near-white at 0.98 alpha, so at 0.55 canvas opacity the local
+     background behind a character can reach ~1.3:1 against muted body text — a hard
+     WCAG 1.4.3 failure. This paints the page's own background colour back in behind
+     text blocks: invisible against the design, but it removes the rain from behind
+     the glyphs and restores ordinary dark-on-dark contrast. */
+  .fx-scrim {
+    position: relative;
+  }
+  .fx-scrim > * {
+    position: relative;
+    z-index: 1;
+  }
+  .fx-scrim::before {
+    content: '';
+    position: absolute;
+    /* No horizontal bleed: -5% either side pushed past the viewport edge below 1120px
+       and was the last source of horizontal overflow on the site. The radial gradient
+       already fades out inside its own box, so it loses nothing. */
+    inset: -6% 0;
+    /*
+     * -1, not 0, and this is the whole bug.
+     *
+     * A positioned pseudo-element with z-index: 0 paints ABOVE its parent's own inline
+     * content, because text is painted before positioned descendants. So the scrim, a
+     * near-black gradient at 0.92 alpha whose entire job is to hide the rain behind the
+     * words, was being painted on top of the words instead. The rule above rescued any
+     * child *element* by lifting it to z-index 1, which is why the hero (a div wrapping
+     * an h1 and a p) always looked right. But `.fx-scrim` applied directly to a <p> has
+     * nothing but a bare text node inside it, and a text node cannot be lifted: it took
+     * the full 0.92 wash across the face. Every scrimmed paragraph on the site has been
+     * reading through a black veil.
+     *
+     * At -1 the scrim sits behind its own text and still comfortably above the rain,
+     * which is a fixed canvas down at z-index -10.
+     */
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 40% 50%,
+      oklch(0.08 0.01 145 / 0.92) 0%,
+      oklch(0.08 0.01 145 / 0.78) 45%,
+      transparent 78%
+    );
+  }
+  :root:not(.dark) .fx-scrim::before {
+    background: radial-gradient(
+      ellipse at 40% 50%,
+      oklch(0.985 0.002 145 / 0.92) 0%,
+      oklch(0.985 0.002 145 / 0.78) 45%,
+      transparent 78%
+    );
+  }
+}
+
+@keyframes fx-lock {
+  0% {
+    color: var(--primary);
+    text-shadow:
+      0 0 26px var(--primary),
+      0 0 70px color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+}
+
+@keyframes fx-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-caret,
+  .ch--locked {
+    animation: none;
+  }
+}
+
+/* ─── Operator hero ─── */
+@layer components {
+  .fx-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* svh, not vh: on mobile 100vh is the LARGE viewport (address bar collapsed), so
+       the hero overruns the visible screen and the scroll cue sits under the browser
+       chrome on first paint. --header-h keeps this in step with the actual header
+       (h-14 plus its 1px rule) instead of drifting from a magic 56. */
+    min-height: calc(100svh - var(--header-h));
+  }
+  .fx-hero__grid {
+    display: grid;
+    /* The copy column takes the bigger share, and it has to. The headline is a sentence
+       with a turn in it ("AI you own," / "not AI you rent."), and at 1.05fr the second
+       line broke as "not AI you / rent." on a desktop viewport, which lands the emphasis
+       on the word "rent" sitting alone at the start of a line and destroys the very
+       contrast the headline is built on. The console loses 60px it was not using. */
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 56px;
+    align-items: center;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 90px 48px 110px;
+  }
+
+  .fx-bootline {
+    margin: 0 0 20px;
+    min-height: 15px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    /* Full primary, not 65%: this is a real content line now (name, role, location) and
+       the softened version measured 3.07:1, below the 4.5:1 AA floor. */
+    color: var(--primary);
+  }
+
+  .fx-big {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    /* Capped at 62px, not 70px. Orbitron runs ~0.575em per character, so "not AI you
+       rent." needs about 16 x 0.575 x font-size of horizontal room; at 70px that is 644px
+       against a copy column of roughly 650px, which is close enough that a scrollbar or a
+       slightly different font-fallback width tips it into a third line. */
+    font-size: clamp(38px, 4.6vw, 62px);
+    line-height: 1.04;
+    color: var(--foreground);
+    text-shadow:
+      0 0 10px color-mix(in oklab, var(--primary) 30%, transparent),
+      0 0 34px color-mix(in oklab, var(--primary) 14%, transparent);
+  }
+
+  /* The headline is an argument with a turn in it: "AI you own," / "not AI you rent."
+     The second line carries the contrast, so it takes the colour and the glow, and it
+     always breaks onto its own line. Setting the two halves as one wrapped string would
+     let the break land wherever the viewport happened to put it, which is exactly where
+     the sentence stops working. */
+  .fx-big__turn {
+    display: block;
+    color: var(--primary);
+    text-shadow:
+      0 0 14px color-mix(in oklab, var(--primary) 40%, transparent),
+      0 0 44px color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+
+  .fx-sub {
+    margin: 22px 0 0;
+    max-width: 600px;
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
+  }
+
+  .fx-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .fx-scrollcue {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* 44px tall for the tap target, per WCAG 2.5.5. */
+    min-height: 44px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    /* Was primary/60, which failed contrast. The cue is a real control with a label —
+       it has to be readable, not just suggestive. */
+    color: var(--primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .fx-scrollcue:hover {
+    color: color-mix(in oklab, var(--primary) 80%, white);
+  }
+  .fx-scrollcue .tri {
+    font-size: 9px;
+    animation: fx-bob 2.2s ease-in-out infinite;
+  }
+
+  /* ─── Terminal window ─── */
+  .fx-console {
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--primary) 32%, transparent);
+    border-radius: 12px;
+    background: linear-gradient(
+      180deg,
+      oklch(0.11 0.02 145 / 0.88),
+      oklch(0.07 0.01 145 / 0.94)
+    );
+    backdrop-filter: blur(10px) saturate(1.4);
+    box-shadow:
+      0 0 34px color-mix(in oklab, var(--primary) 10%, transparent),
+      0 24px 70px rgba(0, 0, 0, 0.55);
+  }
+  :root:not(.dark) .fx-console {
+    background: oklch(1 0 0 / 0.94);
+    border-color: oklch(0.35 0.22 145 / 0.25);
+    box-shadow:
+      0 4px 24px oklch(0.35 0.22 145 / 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+
+  .fx-console__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: color-mix(in oklab, var(--muted) 55%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-console__path {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: color-mix(in oklab, var(--muted-foreground) 85%, transparent);
+  }
+  .fx-console__rerun {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--muted-foreground) 75%, transparent);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .fx-console__rerun:hover {
+    color: var(--primary);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  .fx-console__body {
+    height: 320px;
+    /* auto, not hidden: the script is pinned to the bottom as it types, so with
+       `hidden` any content that overflows becomes permanently unreachable. */
+    overflow-y: auto;
+    padding: 18px 20px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+  .fx-console__body .cline {
+    color: var(--foreground);
+  }
+  .fx-console__body .cline .p {
+    color: color-mix(in oklab, var(--primary) 75%, transparent);
+  }
+  .fx-console__body .oline {
+    color: color-mix(in oklab, var(--muted-foreground) 90%, transparent);
+  }
+  .fx-console__body .oline.hl {
+    color: var(--primary);
+    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  .fx-dots {
+    display: inline-flex;
+    gap: 5px;
+  }
+  .fx-dots i {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .fx-dots .r { background: oklch(0.65 0.20 27 / 0.75); }
+  .fx-dots .y { background: oklch(0.80 0.15 85 / 0.75); }
+  .fx-dots .g { background: oklch(0.65 0.20 145 / 0.75); }
+
+  /* Collapse to one column at 1024, not 860. Between the two the console column is
+     only ~337px wide, so every line of the script wraps and the hero reads as a
+     cramped mess — which is exactly the width most tablets and small laptops sit at.
+     1024 also lines this up with Tailwind's lg: breakpoint. */
+  @media (max-width: 1023px) {
+    .fx-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      padding: 70px 26px 100px;
+    }
+    .fx-console__body {
+      /* A fixed height, but a taller one, and scrollable rather than clipped.
+         `height: auto` cured the clipping and caused layout shift instead — the box
+         grew with every line typed and shoved the whole page down. At this width the
+         script wraps to ~300px, so reserve that up front and let it scroll if a
+         narrower font pushes it further. */
+      height: 320px;
+      font-size: 11.5px;
+      padding: 14px 14px 16px;
+    }
+  }
+}
+
+@keyframes fx-bob {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-scrollcue .tri {
+    animation: none;
+  }
+}
+
+/* ─── Command palette ─── */
+@layer components {
+  .fx-kbd {
+    padding: 4px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--muted-foreground);
+    background: color-mix(in oklab, var(--muted) 50%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .fx-kbd:hover {
+    color: var(--primary);
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 15%, transparent);
+  }
+
+  .fx-pal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 119;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+  }
+  .fx-pal {
+    position: fixed;
+    top: 16vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 120;
+    width: min(580px, calc(100vw - 40px));
+    /* Clamp to the viewport: without this, on a landscape phone the hint row and the
+       bottom of the list fall off-screen and cannot be reached, because the popup is
+       fixed and only the inner list scrolls. */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100svh - 16vh - 20px);
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+    border-radius: 12px;
+    background: linear-gradient(
+      180deg,
+      oklch(0.11 0.02 145 / 0.96),
+      oklch(0.07 0.01 145 / 0.98)
+    );
+    box-shadow:
+      0 0 44px color-mix(in oklab, var(--primary) 14%, transparent),
+      0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  :root:not(.dark) .fx-pal {
+    background: oklch(1 0 0 / 0.98);
+  }
+
+  .fx-pal__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    background: color-mix(in oklab, var(--muted) 55%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-pal__inputrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .fx-pal__inputrow .p {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--primary);
+  }
+  .fx-pal__input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--foreground);
+    caret-color: var(--primary);
+  }
+
+  .fx-pal__list {
+    flex: 1 1 auto;
+    max-height: 320px;
+    min-height: 0;
+    overflow: auto;
+    padding: 6px;
+    margin: 0;
+    list-style: none;
+  }
+  .fx-pal__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* 44px: an option is a control, even if it is never tab-focused. */
+    min-height: 44px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--muted-foreground);
+    transition: background 0.12s, color 0.12s;
+  }
+  .fx-pal__item .cara {
+    flex-shrink: 0;
+    width: 12px;
+    color: var(--primary);
+  }
+  .fx-pal__item .lab {
+    flex: 1;
+  }
+  .fx-pal__item .pill {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .fx-pal__item .typ {
+    padding: 2px 6px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
+    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    border-radius: 4px;
+  }
+  .fx-pal__item.is-selected {
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    color: var(--foreground);
+  }
+  .fx-pal__item.is-selected .typ {
+    color: color-mix(in oklab, var(--primary) 80%, transparent);
+    border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+  .fx-pal__empty {
+    margin: 0;
+    padding: 22px 14px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted-foreground);
+  }
+  .fx-pal__hint {
+    padding: 8px 14px;
+    border-top: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+  }
+
+  /* ─── Toast ─── */
+  .fx-toast-region {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 125;
+    pointer-events: none;
+  }
+  .fx-toast {
+    max-width: min(560px, 88vw);
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--foreground);
+    background: rgba(0, 0, 0, 0.88);
+    border: 1px solid color-mix(in oklab, var(--primary) 40%, transparent);
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--primary) 18%, transparent),
+      0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+  :root:not(.dark) .fx-toast {
+    background: oklch(1 0 0 / 0.96);
+  }
+
+  /* ─── Boot intro ─── */
+  body.fx-lock {
+    overflow: hidden;
+  }
+  .fx-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    background: #000;
+    cursor: pointer;
+    transition: opacity 0.38s ease;
+  }
+  .fx-boot.is-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .fx-boot__line {
+    margin: 0;
+    white-space: pre;
+    font-family: var(--font-mono);
+    font-size: clamp(19px, 2.8vw, 28px);
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    text-shadow: 0 0 14px color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+  .fx-skip {
+    position: fixed;
+    right: 28px;
+    bottom: 26px;
+    min-height: 44px;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .fx-skip:hover {
+    color: var(--primary);
+  }
+
+  /* ─── Eggs ─── */
+  .fx-spoon {
+    position: fixed;
+    inset: 0;
+    z-index: 130;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.92);
+  }
+  :root:not(.dark) .fx-spoon {
+    background: rgba(250, 252, 250, 0.94);
+  }
+  .fx-spoon__title {
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 62px);
+    letter-spacing: 0.06em;
+    color: var(--foreground);
+    text-shadow:
+      0 0 16px color-mix(in oklab, var(--primary) 45%, transparent),
+      0 0 60px color-mix(in oklab, var(--primary) 20%, transparent);
+  }
+  .fx-spoon__sub {
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: color-mix(in oklab, var(--primary) 70%, transparent);
+  }
+
+  .fx-rabbit {
+    position: fixed;
+    right: 22px;
+    bottom: 20px;
+    z-index: 110;
+    /* The SVG is 52x44; padding takes the hit area to 44px in both axes. */
+    width: 52px;
+    height: 44px;
+    padding: 0;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.92;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+    animation:
+      fx-hop-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both,
+      fx-twitch 4s ease-in-out 1.2s infinite;
+  }
+  .fx-rabbit:hover {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95));
+  }
+  :root:not(.dark) .fx-rabbit {
+    color: oklch(0.35 0.05 145);
+    filter: drop-shadow(0 0 6px oklch(0.4 0.2 145 / 0.5));
+  }
+
+  /* ─── Newsletter strip ─── */
+  .fx-news {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 18px;
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in oklab, var(--primary) 24%, transparent);
+    background: color-mix(in oklab, var(--primary) 4%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .fx-news__head h3 {
+    margin: 6px 0;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  .fx-news__head p {
+    margin: 0;
+    max-width: 520px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  .fx-news__act {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .fx-news__note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    /* 82%, not 60%: at 60% this 10px label composited to ~3.0:1 (light) / ~4.14:1 (dark),
+       both under the WCAG AA 4.5:1 floor. The rule is theme-unscoped, so one bump clears
+       both (measured 4.8:1 light / 6.8:1 dark). */
+    color: color-mix(in oklab, var(--muted-foreground) 82%, transparent);
+  }
+
+  @media (max-width: 820px) {
+    .fx-news {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .fx-news__act {
+      align-items: flex-start;
+    }
+    .fx-rabbit {
+      right: 14px;
+      bottom: 14px;
+    }
+    .fx-toast-region {
+      bottom: 20px;
+    }
+  }
+}
+
+@keyframes fx-hop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) translateX(24px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-8px) translateX(4px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes fx-twitch {
+  0%, 92%, 100% {
+    transform: none;
+  }
+  94% {
+    transform: translateY(-3px);
+  }
+  97% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-rabbit {
+    animation: none;
+  }
+}
+
+/* ─── Reading column scrim ───
+   With the page-wide glass panel gone, prose sits directly on the rain. Measured:
+   the brightest pixel behind a paragraph is rgb(110,142,114) (a head glyph at 0.55
+   canvas opacity), which is 1.38:1 against muted body text — WCAG AA wants 4.5:1.
+
+   So the rain still pours down the full-width margins, but it is damped behind the
+   reading column. The scrim is the page's own background colour and fades out at the
+   left and right edges, so it reads as atmosphere rather than as a card: no border,
+   no blur, no visible seam. */
+@layer utilities {
+  .fx-page {
+    position: relative;
+  }
+  .fx-page > * {
+    position: relative;
+    z-index: 1;
+  }
+  .fx-page::before {
+    content: '';
+    position: absolute;
+    /* Bleed outwards only as far as there is room. The old `inset: 0 -3rem` pushed
+       both soft edges off-screen below ~1120px, so the scrim went fully opaque edge
+       to edge and the rain was invisible on every phone and tablet. */
+    inset: 0 clamp(-3rem, calc((100% - 100vw) / 2), 0px);
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.08 0.01 145 / 0.95) 6%,
+      oklch(0.08 0.01 145 / 0.95) 94%,
+      transparent 100%
+    );
+  }
+  :root:not(.dark) .fx-page::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.985 0.002 145 / 0.88) 6%,
+      oklch(0.985 0.002 145 / 0.88) 94%,
+      transparent 100%
+    );
+  }
+}
+
+/* ─── Services lead card ───
+   Layered over the card's own background rather than replacing it. A Tailwind
+   bg-gradient-* utility here would override background-image, and since
+   .dark [data-slot="card"] paints its dark surface with a gradient (via the
+   `background` shorthand), that would strip the dark treatment and expose a
+   near-white background-color underneath. Two stacked gradients keep both. */
+@layer components {
+  .fx-lead-card {
+    position: relative;
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    box-shadow: 0 0 26px color-mix(in oklab, var(--primary) 10%, transparent);
+  }
+  .dark .fx-lead-card {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent 70%),
+      linear-gradient(180deg, oklch(0.12 0.02 145 / 0.78), oklch(0.08 0.01 145 / 0.82));
+  }
+  :root:not(.dark) .fx-lead-card {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--primary) 6%, oklch(1 0 0)),
+      oklch(1 0 0 / 0.95)
+    );
+  }
+  .fx-lead-card__flag {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    padding: 3px 10px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary) 8%, transparent);
+    border: 1px solid color-mix(in oklab, var(--primary) 40%, transparent);
+    border-radius: 999px;
+  }
+}
+
+/* The decode layer duplicates its text: the real string lives in an sr-only span for
+   assistive tech, and the glyph spans are aria-hidden. Making the glyphs unselectable
+   means a user who selects and copies the heading gets the text once, not twice. */
+@layer utilities {
+  .decode > [aria-hidden='true'] {
+    user-select: none;
+  }
+}
+
+/* ─── Wrapping tab lists ───
+   shadcn's TabsList is a fixed 32px-tall box (`group-data-horizontal/tabs:h-8`) and
+   each trigger sizes itself against that container. Add `flex-wrap` and seven tabs —
+   which is what Projects has below ~540px — and the wrapped rows have to share those
+   32px: the tabs overlapped and spilled straight out of the pill on a phone.
+
+   This has to be a real rule rather than an `h-auto` utility, because Tailwind emits
+   the group-data variant after the plain utility and it wins on source order. */
+@layer utilities {
+  [data-slot='tabs-list'].flex-wrap {
+    height: auto;
+    min-height: 2rem;
+    row-gap: 0.25rem;
+  }
+  [data-slot='tabs-list'].flex-wrap [data-slot='tabs-trigger'] {
+    height: auto;
+    padding-block: 0.3rem;
+  }
+}

@@ -53,10 +53,10 @@ describe('Performance and Stability Tests', () => {
   });
 
   test('handles rapid navigation without crashes', async () => {
-    const routes = ['/', '/about', '/blog', '/projects', '/contact'];
+    const routes = ['/', '/about', '/updates', '/projects', '/contact'];
     let hasError = false;
     
-    const errorHandler = (e: ErrorEvent) => {
+    const errorHandler = (_e: ErrorEvent) => {
       hasError = true;
     };
     
@@ -73,22 +73,25 @@ describe('Performance and Stability Tests', () => {
   });
 
   test('bundle size is optimized with code splitting', () => {
-    // Check that lazy loading is configured
-    const lazyComponents = [
+    // import.meta.glob resolves the page directory at build time; assert every page the
+    // router loads is actually present as a discoverable module (the old version asserted
+    // `glob(...) !== undefined`, which is vacuously true and silently kept listing pages
+    // that had been deleted).
+    const pageModules = import.meta.glob('../pages/*.tsx');
+    const moduleKeys = Object.keys(pageModules);
+    const expectedPages = [
       'HomePage',
       'AboutPage',
-      'SkillsPage',
       'ProjectsPage',
       'ServicesPage',
       'ContactPage',
-      'BlogPage'
+      'UpdatesPage',
+      'CaseStudyPage',
+      'NotFoundPage',
     ];
-    
-    lazyComponents.forEach(component => {
-      // Verify dynamic imports are used
-      const isDynamicallyImported = 
-        import.meta.glob('../pages/*.tsx') !== undefined;
-      expect(isDynamicallyImported).toBe(true);
+
+    expectedPages.forEach((page) => {
+      expect(moduleKeys.some((key) => key.endsWith(`/${page}.tsx`))).toBe(true);
     });
   });
 

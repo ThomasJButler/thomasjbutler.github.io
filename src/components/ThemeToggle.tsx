@@ -1,59 +1,29 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Theme toggle button for switching between Dark and Matrix themes
- */
-
-import React, { useEffect, useState } from 'react';
-import { useTheme } from '../contexts/ThemeContext';
-import styles from './ThemeToggle.module.css';
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/hooks/useTheme';
+import { useHydrated } from '@/hooks/useHydrated';
+import { Button } from '@/components/ui/button';
 
 /**
- * Theme toggle component with dynamic icon and label based on current theme
- * @return {JSX.Element}
- * @constructor
+ * The theme comes from localStorage, so the prerender cannot know it and assumes dark.
+ * Rendering the real icon during hydration would hand React a different <svg> than it
+ * wrote and blow the whole tree away (see useHydrated). The theme *itself* is applied
+ * before first paint by the inline script in index.html, so nothing flashes except,
+ * briefly, this one icon.
  */
-export const ThemeToggle: React.FC = () => {
+export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  const [, forceUpdate] = useState({});
-
-  /**
-   * @listens theme - Forces component re-render to update icon and label
-   */
-  useEffect(() => {
-    forceUpdate({});
-  }, [theme]);
-
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'matrix':
-        return 'fas fa-moon';
-      case 'dark':
-      default:
-        return 'fas fa-code';
-    }
-  };
-
-  const getThemeLabel = () => {
-    switch (theme) {
-      case 'dark':
-        return 'Matrix Mode';
-      case 'matrix':
-      default:
-        return 'Dark Mode';
-    }
-  };
+  const hydrated = useHydrated();
+  const dark = hydrated ? theme === 'dark' : true;
 
   return (
-    <button
-      key={theme} // Force re-render on theme change
-      className={styles.themeToggle}
+    <Button
+      variant="ghost"
+      size="icon"
       onClick={toggleTheme}
-      aria-label={`Switch theme. Current: ${getThemeLabel()}`}
-      title={`Current theme: ${getThemeLabel()}`}
+      aria-label={`Switch to ${dark ? 'light' : 'dark'} mode`}
+      className="text-muted-foreground hover:text-primary"
     >
-      <i className={getThemeIcon()} aria-hidden="true"></i>
-      <span className={styles.themeLabel}>{getThemeLabel()}</span>
-    </button>
+      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </Button>
   );
-};
+}

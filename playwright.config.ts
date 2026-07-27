@@ -4,6 +4,7 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
+  timeout: 60000,
   retries: 0,
   workers: 1,
   reporter: 'html',
@@ -30,9 +31,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -- --port 4173',
+    command: 'npx vite --port 4173',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
-    timeout: 60000,
+    timeout: 30000,
   },
 });

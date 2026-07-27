@@ -212,7 +212,9 @@ describe('rafThrottle', () => {
 
   it('preserves this context', () => {
     const context = { value: 42 };
-    const fn = vi.fn(function(this: any) {
+    // Declare the parameter: rafThrottle infers its call signature from `fn`, so a
+    // zero-arg mock makes `throttled.call(context, 'arg')` a type error.
+    const fn = vi.fn(function (this: { value: number }, _arg: unknown) {
       return this.value;
     });
     const throttled = rafThrottle(fn);

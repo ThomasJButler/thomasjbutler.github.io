@@ -1,289 +1,143 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description Canvas-based Matrix rain animation with performance optimisation,
- *              interactive mouse effects, and layered character streams
- */
-
-import React, { useEffect, useRef } from 'react';
-
-interface MatrixRainProps {
-  theme?: 'matrix';
-}
+import { useEffect, useRef } from 'react';
+import { RainEngine } from '@/lib/fx/rain-engine';
+import { onBurst } from '@/lib/rain-bus';
+import { rafThrottle } from '@/utils/throttle';
+import { useTheme } from '@/hooks/useTheme';
+import { useAccent } from '@/hooks/useAccent';
+import { useFx } from '@/hooks/useFx';
 
 /**
- * Matrix-style falling character animation with authentic visual effects
- * @param {Object} props
- * @param {string} [props.theme='matrix'] - Theme identifier
- * @return {JSX.Element | null}
- * @constructor
+ * The Matrix rain.
+ *
+ * Thin wrapper: the drawing lives in RainEngine. The engine is created once and
+ * repainted imperatively, so changing theme or accent re-tints the palette without
+ * tearing down the canvas and losing every drop's position.
+ *
+ * The pointer morph (parting around the cursor, click ripples) is back, but it is
+ * gated — see morphOk below. It was once removed outright for making every mouse move
+ * do work on the main thread while the draw loop was already running. It is affordable
+ * now because the rain itself is ~4x cheaper and because the gate means the listeners
+ * do not exist at all unless the morph can actually be seen.
  */
-export const MatrixRain: React.FC<MatrixRainProps> = ({ theme = 'matrix' }) => {
+export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const dropsRef = useRef<Array<{
-    y: number;
-    speed: number;
-    chars: string[];
-    color?: string;
-    brightness?: number;
-    glitchRate?: number;
-    layer?: 'foreground' | 'background';
-    isGlitch?: boolean;
-  }>>([]);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const mouseRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const engineRef = useRef<RainEngine | null>(null);
+  const { theme } = useTheme();
+  const { accent } = useAccent();
+  const { motionOk, morphEnabled } = useFx();
+
+  // Light mode has its own hand-tuned palette, so an accent tint is dark-only.
+  const tint = theme === 'dark' ? accent : null;
 
   /**
-   * @constructs Delays animation start by 2 seconds for page load performance
-   *             Initialises mouse tracking for interactive effects
+   * The morph only runs in the dark theme, with the rain on, on a real pointer.
+   *
+   * That is not just taste. It means the pointer maths — and the mousemove listener —
+   * simply don't exist in light mode, on a phone, under reduced motion, or when the
+   * user has switched it off. The gate IS the optimisation.
    */
+  const morphOk =
+    motionOk &&
+    morphEnabled &&
+    theme === 'dark' &&
+    typeof window !== 'undefined' &&
+    window.matchMedia('(pointer: fine)').matches;
+
+  // Read by the setup effect without making it a dependency: a theme change should
+  // re-tint the palette, not tear down the canvas and restart every drop.
+  const paletteRef = useRef({ theme, tint });
+  paletteRef.current = { theme, tint };
+
   useEffect(() => {
-    const delayTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 2000);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      clearTimeout(delayTimer);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  /**
-   * @listens isVisible - Initialises canvas animation when visibility toggles
-   *          Implements performance optimisations for mobile devices
-   */
-  useEffect(() => {
-    if (!isVisible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    let engine: RainEngine;
+    try {
+      // Density is decided inside the engine, per resize, so dragging a window down to
+      // phone width actually thins the rain instead of keeping the desktop count.
+      engine = new RainEngine(canvas, paletteRef.current);
+    } catch {
+      return; // no 2d context (jsdom, or a very old browser): render nothing
+    }
+    engineRef.current = engine;
 
-    const isFirefox = navigator.userAgent.includes('Firefox');
-
-    const updateCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    updateCanvasSize();
-
-    const matrixChars = '101010101ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ010010101';
-    const binaryChars = '01';
-    const fontSize = 18;
-
-    // Reduce columns on mobile and Firefox for performance
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const performanceMultiplier = isMobile ? 0.6 : isFirefox ? 0.7 : 1;
-    const columns = Math.floor((canvas.width / fontSize) * performanceMultiplier) + 1;
-
-    dropsRef.current = Array(columns).fill(null).map(() => {
-      const isBackground = Math.random() < 0.4;
-      const isBinary = Math.random() < 0.2; // 20% binary streams
-      const chars = isBinary ? binaryChars : matrixChars;
-
-      return {
-        y: Math.random() * canvas.height - canvas.height,
-        speed: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6,
-        chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() =>
-          chars[Math.floor(Math.random() * chars.length)]
-        ),
-        color: Math.random() < 0.01 ? '#FF0000' :
-               Math.random() < 0.02 ? '#FFD700' :
-               Math.random() < 0.03 ? '#FFEA00' :
-               Math.random() < 0.05 ? '#00FFFF' :
-               '#00FF00',
-        brightness: isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5,
-        glitchRate: Math.random() * 0.02,
-        layer: isBackground ? 'background' : 'foreground',
-        isGlitch: false
+    if (!motionOk) {
+      // Presence without movement: one dim frame, no loop, no listeners.
+      engine.drawStaticFrame();
+      return () => {
+        engine.destroy();
+        engineRef.current = null;
       };
-    });
+    }
 
-    const animateDrop = (_dropIndex: number) => {
-      // Placeholder for compatibility - drops animate in draw loop
-    };
+    engine.start();
 
-    dropsRef.current.forEach((_, index) => animateDrop(index));
+    // Dragging a window edge fires resize continuously, and each one rebuilds every
+    // drop and re-measures every glyph. Coalesce to one per frame.
+    const onResize = rafThrottle(() => engine.resize());
+    const onVisibility = () => (document.hidden ? engine.stop() : engine.start());
 
-    // Firefox: throttle to ~30fps and use faster fade
-    const targetInterval = isFirefox ? 33 : 0; // 33ms ≈ 30fps
-    let lastFrameTime = 0;
-
-    const draw = (timestamp?: number) => {
-      if (targetInterval && timestamp) {
-        if (timestamp - lastFrameTime < targetInterval) {
-          animationRef.current = requestAnimationFrame(draw);
-          return;
-        }
-        lastFrameTime = timestamp;
-      }
-
-      ctx.fillStyle = (isMobile || isFirefox) ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      dropsRef.current.forEach((drop, x) => {
-        drop.y += drop.speed;
-
-        if (drop.y > canvas.height && Math.random() > 0.97) {
-          const isBackground = drop.layer === 'background';
-          const isBinary = Math.random() < 0.2;
-          const chars = isBinary ? binaryChars : matrixChars;
-
-          drop.y = -drop.chars.length * fontSize - Math.random() * 200;
-          drop.speed = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.6 + 0.6;
-          drop.brightness = isBackground ? Math.random() * 0.3 + 0.2 : Math.random() * 0.5 + 0.5;
-          drop.glitchRate = Math.random() * 0.02;
-          drop.isGlitch = false;
-
-          // Randomize characters on reset
-          drop.chars = drop.chars.map(() =>
-            chars[Math.floor(Math.random() * chars.length)]
-          );
-
-          drop.color = Math.random() < 0.01 ? '#FF0000' :
-                       Math.random() < 0.02 ? '#FFD700' :
-                       Math.random() < 0.03 ? '#FFEA00' :
-                       Math.random() < 0.05 ? '#00FFFF' :
-                       '#00FF00';
-        }
-        
-        drop.chars.forEach((char, i) => {
-          const y = drop.y + i * fontSize;
-          
-          if (y > -fontSize && y < canvas.height + fontSize) {
-            const fadePosition = i / drop.chars.length;
-            const opacity = (1 - fadePosition * 0.8) * (drop.brightness || 1);
-            const color = drop.color || '#0F0';
-            
-            const rgb = color === '#0F0' ? '0, 255, 0' :
-                       color === '#00FF00' ? '0, 255, 0' :
-                       color === '#00FFFF' ? '0, 255, 255' :
-                       color === '#FFD700' ? '255, 215, 0' :
-                       color === '#FFEA00' ? '255, 234, 0' :
-                       color === '#FF0000' ? '255, 0, 0' :
-                       color === '#39FF14' ? '57, 255, 20' : '0, 255, 0';
-            
-            if (i === drop.chars.length - 1) {
-              ctx.shadowBlur = isFirefox ? 0 : 25;
-              ctx.shadowColor = color;
-              ctx.fillStyle = '#ffffff';
-              ctx.font = `${fontSize * 1.2}px 'Share Tech Mono', monospace`;
-            } else if (i >= drop.chars.length - 3) {
-              const glowIntensity = 15 - (drop.chars.length - 1 - i) * 4;
-              ctx.shadowBlur = isFirefox ? 0 : glowIntensity;
-              ctx.shadowColor = color;
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 1.3})`;
-            } else if (i >= drop.chars.length - 10) {
-              ctx.shadowBlur = isFirefox ? 0 : 2;
-              ctx.shadowColor = color;
-              ctx.fillStyle = `rgba(${rgb}, ${opacity * 1.1})`;
-            } else {
-              ctx.shadowBlur = 0;
-              ctx.fillStyle = `rgba(${rgb}, ${opacity * 0.7})`;
-            }
-            
-            if (Math.random() < (drop.glitchRate || 0.01)) {
-              char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-              drop.chars[i] = char;
-            }
-            
-            ctx.fillText(char, x * fontSize + fontSize / 2, y);
-            
-            if (i === drop.chars.length - 1) {
-              ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
-            }
-          }
-        });
-        
-        if (drop.speed > 5) {
-          drop.speed *= 0.98;
-        }
-      });
-
-      animationRef.current = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    const handleResize = () => {
-      updateCanvasSize();
-      const newColumns = Math.floor(canvas.width / fontSize);
-      
-      if (newColumns > dropsRef.current.length) {
-        const newDrops = Array(newColumns - dropsRef.current.length).fill(null).map(() => ({
-          y: Math.random() * -100,
-          speed: Math.random() * 1.5 + 0.8,
-          chars: Array(Math.floor(canvas.height / fontSize) + 20).fill(null).map(() => 
-            matrixChars[Math.floor(Math.random() * matrixChars.length)]
-          ),
-          color: Math.random() < 0.85 ? '#0F0' : (Math.random() < 0.5 ? '#00FFFF' : '#39FF14'),
-          brightness: Math.random() * 0.5 + 0.5,
-          glitchRate: Math.random() * 0.02
-        }));
-        dropsRef.current = [...dropsRef.current, ...newDrops];
-        newDrops.forEach((_, index) => animateDrop(dropsRef.current.length - newDrops.length + index));
-      } else if (newColumns < dropsRef.current.length) {
-        dropsRef.current = dropsRef.current.slice(0, newColumns);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = Math.floor(e.clientX / fontSize);
-      if (dropsRef.current[x]) {
-        const radius = 3;
-        for (let i = x - radius; i <= x + radius; i++) {
-          if (dropsRef.current[i]) {
-            dropsRef.current[i].speed = 8;
-          }
-        }
-      }
-    };
-
-    canvas.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', onVisibility);
+    const unsubscribe = onBurst(() => engine.burst());
 
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      unsubscribe();
+      onResize.cancel();
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibility);
+      engine.destroy();
+      engineRef.current = null;
     };
-  }, [isVisible, theme]);
+  }, [motionOk]);
 
-  if (!isVisible) return null;
+  // Re-tint in place rather than rebuilding the engine.
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine) return;
+    engine.setPalette(theme, tint);
+    if (!motionOk) engine.drawStaticFrame();
+  }, [theme, tint, motionOk]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="matrix-rain"
-      role="presentation"
-      aria-hidden="true"
-      aria-label="Decorative Matrix code rain animation background"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -1,
-        pointerEvents: 'none',
-        background: 'transparent',
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 1s ease-in-out'
-      }}
-    />
-  );
-};
+  /**
+   * The morph: parting and click ripples.
+   *
+   * Its own effect, so flipping it (or the theme) attaches and detaches the pointer
+   * listeners without tearing the canvas down. When it is off there are no pointer
+   * listeners on the page at all, and the draw loop skips every distance calculation —
+   * which is the whole reason it is safe to have back.
+   */
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine || !morphOk) return;
+
+    engine.setMorph(true);
+
+    const onMove = (e: MouseEvent) => engine.setPointer(e.clientX, e.clientY);
+    const onDown = (e: MouseEvent) => engine.addRipple(e.clientX, e.clientY);
+
+    // `mouseout` bubbles, so a window listener sees the pointer cross out of *any*
+    // element, not just out of the page. That matters because scrolling under a
+    // stationary cursor re-runs hit-testing and fires mouseout/mouseover with no
+    // following mousemove to re-arm the pointer: the morph would switch itself off
+    // mid-scroll and stay off until the mouse was physically jiggled. relatedTarget
+    // is null only when the pointer has genuinely left the window.
+    const onLeave = (e: MouseEvent) => {
+      if (e.relatedTarget === null) engine.clearPointer();
+    };
+
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseout', onLeave);
+    window.addEventListener('mousedown', onDown);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseout', onLeave);
+      window.removeEventListener('mousedown', onDown);
+      engine.setMorph(false);
+    };
+  }, [morphOk, motionOk]);
+
+  return <canvas ref={canvasRef} aria-hidden="true" className="fx-rain" />;
+}

@@ -1,169 +1,280 @@
-/**
- * @author Tom Butler
- * @date 2025-10-28
- * @description About page showcasing programming journey, qualifications,
- *              certifications, and expandable content sections
- */
-
-import React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/about.css';
+import { m as motion } from 'framer-motion';
+import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Separator } from '@/components/ui/separator';
+import { MotionSection } from '@/components/MotionSection';
+import { SectionHead } from '@/components/SectionHead';
+import { ABOUT_CURRENT_FOCUS, ABOUT_CURRENT_FOCUS_TAGS } from '@/lib/content';
 
-const techStack = [
-  // Frontend
-  { icon: "fab fa-react", name: "React", glowClass: "react-glow" },
-  { icon: "fab fa-js", name: "JavaScript", glowClass: "js-glow" },
-  { icon: "fas fa-code", name: "TypeScript", glowClass: "ts-glow" },
-  { icon: "fab fa-html5", name: "HTML/CSS", glowClass: "html-glow" },
-  { icon: "fas fa-bolt", name: "Vite", glowClass: "vite-glow" },
+const TECH_TABS = [
+  {
+    value: 'frontend',
+    label: 'Frontend',
+    items: ['React', 'JavaScript', 'TypeScript', 'HTML/CSS', 'Vite'],
+  },
+  {
+    value: 'backend',
+    label: 'Backend',
+    items: ['Node.js', 'Python', 'PostgreSQL', 'REST APIs', '.NET'],
+  },
+  {
+    value: 'cloud-devops',
+    label: 'Cloud & DevOps',
+    items: ['AWS', 'Azure', 'Docker', 'CI/CD', 'Vercel', 'Netlify'],
+  },
+  {
+    value: 'ai-ml',
+    label: 'AI & ML',
+    items: ['Claude', 'LangChain', 'LangGraph', 'MCP', 'RAG', 'Pinecone', 'PyTorch', 'LLMs', 'AI Agents'],
+  },
+  {
+    value: 'mobile-design',
+    label: 'Mobile & Design',
+    items: ['Swift', 'Xcode', 'iOS', 'SwiftUI', 'Figma', 'Claude Design', 'Prototyping'],
+  },
+] as const;
 
-  // Backend
-  { icon: "fab fa-node-js", name: "Node.js", glowClass: "node-glow" },
-  { icon: "fab fa-python", name: "Python", glowClass: "python-glow" },
-  { icon: "fas fa-database", name: "PostgreSQL", glowClass: "db-glow" },
-  { icon: "fas fa-server", name: "REST APIs", glowClass: "api-glow" },
+const JOURNEY_MILESTONES = [
+  {
+    era: '2000s',
+    title: 'The Beginning',
+    description: 'Started with HTML/CSS as a kid, fascinated by the web and inspired by The Matrix.',
+    icon: Terminal,
+  },
+  {
+    era: '2010s',
+    title: 'Learning & Growth',
+    description:
+      'Studied computing, learned JavaScript frameworks, and built first real projects.',
+    icon: Code,
+  },
+  {
+    era: '2023-24',
+    title: 'AI Exploration',
+    description:
+      'Dove into AI/ML, completed bootcamps, built RAG applications and intelligent agents.',
+    icon: Bot,
+  },
+  {
+    // Refreshed from a stale "2025 / Current Focus / building production tools and creative
+    // experiments" to the actual current positioning. NOTE for Tom: the "2010s: studied
+    // computing, learned JS" milestone above sits oddly against the /updates timeline, which
+    // frames the journey as starting in 2022 (after cricket and commercial diving). Both may
+    // be true if the 2010s were hobby years, but a reader comparing the two pages will notice.
+    // Worth a look when you next touch your bio.
+    era: '2025-now',
+    title: 'Local & Private AI',
+    description:
+      'Setting up private, local AI for businesses: models on their own hardware, RAG over their own documents, and honest audits. Plus Sanctuary, an offline on-device app.',
+    icon: Briefcase,
+  },
+] as const;
 
-  // Cloud/DevOps
-  { icon: "fab fa-aws", name: "AWS", glowClass: "aws-glow" },
-  { icon: "fab fa-microsoft", name: "Azure", glowClass: "azure-glow" },
-  { icon: "fab fa-docker", name: "Docker", glowClass: "docker-glow" },
-  { icon: "fas fa-rocket", name: "CI/CD", glowClass: "cicd-glow" },
-  { icon: "fas fa-cloud", name: "Vercel", glowClass: "vercel-glow" },
-  { icon: "fas fa-cloud-upload-alt", name: "Netlify", glowClass: "netlify-glow" },
+const badgeStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.04 },
+  },
+};
 
-  // AI/ML
-  { icon: "fas fa-brain", name: "TensorFlow", glowClass: "tf-glow" },
-  { icon: "fas fa-robot", name: "PyTorch", glowClass: "pytorch-glow" },
-  { icon: "fas fa-comments", name: "LLMs", glowClass: "llm-glow" },
-  { icon: "fas fa-chart-line", name: "ML Models", glowClass: "ml-glow" },
-  { icon: "fas fa-database", name: "Pinecone", glowClass: "pinecone-glow" },
+const badgeItem = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.25 } },
+};
 
-  // Frameworks
-  { icon: "fas fa-code", name: ".NET", glowClass: "dotnet-glow" }
-];
-
-/**
- * About page component - simplified credibility scanner
- * @return {JSX.Element}
- * @constructor
- */
-export const AboutPage: React.FC = () => {
-  /**
-   * @constructs Scrolls page to top on mount
-   */
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+export function AboutPage() {
 
   return (
-    <div className="page-wrapper page-about">
-      {/* SECTION 1: Why I Love Programming */}
-      <section id="why-love-programming" className="about-section">
-        <div className="container">
-          <h2 className="section-title">Why I Love Programming</h2>
-          <div className="story-content">
-            <p className="highlight-text">
-              Programming is not just a profession for me, it's a passion. There's something magical about transforming ideas into reality through code. The ability to create something from nothing, to build tools that solve real problems, and to see the immediate impact of your work is incredibly satisfying. Every project is a blank canvas, and the only limit is imagination and determination.
-            </p>
-            <p className="highlight-text">
-              What truly captivates me is the puzzle-solving aspect of development. Each challenge is an opportunity to think critically, to break down complex problems into elegant solutions. The moment when everything clicks into place, when the code finally works after hours of debugging, is pure joy. It's like solving a thousand puzzles at once, each one teaching you something new.
-            </p>
-            <p className="highlight-text">
-              The technology landscape never stops evolving, and that's what keeps me energised. There's always a new framework to explore, a better pattern to learn, or an innovative approach to discover. This constant growth and the vibrant community of developers sharing knowledge makes programming an endless journey of learning and improvement.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="fx-page mx-auto max-w-5xl px-6">
+      {/* Intro */}
+      <section className="py-20">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
+        >
+          // about
+        </motion.p>
 
-      {/* Matrix Rain Divider */}
-      <div className="services-matrix-divider" aria-hidden="true"></div>
+        {/*
+          The headline used to be "Why I Love Programming", above three paragraphs about
+          how magical it is to transform ideas into reality. The one thing on this page a
+          buyer actually needed (Odysseus, Sanctuary, "audits that sometimes conclude you
+          don't need me") was in a small box, below the fold, under a label reading
+          `current_focus`. The order is now the other way round: what I do, then why I love
+          doing it. The Matrix story is charm, and charm goes second.
+        */}
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-3 max-w-3xl font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+        >
+          I build AI that businesses actually own
+        </motion.h1>
 
-      {/* SECTION 2: Tech Stack Gallery */}
-      <section id="tech-stack" className="about-section tech-stack-section">
-        <div className="container">
-          <h2 className="section-title">Tech Stack</h2>
-          <p className="tech-stack-intro">
-            Technologies I work with to build modern, scalable solutions
-          </p>
-
-          <div className="tech-stack-grid">
-            {techStack.map((tech, index) => (
-              <div key={index} className={`tech-item ${tech.glowClass}`} data-tech={tech.name}>
-                <i className={tech.icon} aria-hidden="true"></i>
-                <span className="tech-name">{tech.name}</span>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="fx-scrim mt-6 max-w-2xl leading-relaxed text-muted-foreground"
+        >
+          <p>{ABOUT_CURRENT_FOCUS}</p>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {ABOUT_CURRENT_FOCUS_TAGS.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-[10px]">
+                {tag}
+              </Badge>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Matrix Rain Divider */}
-      <div className="services-matrix-divider" aria-hidden="true"></div>
+      <Separator />
 
-      {/* SECTION 3: My Programming Journey - with Timeline Button at Bottom */}
-      <section id="programming-journey" className="about-section">
-        <div className="container">
-          <h2 className="section-title">My Programming Journey</h2>
-          <p className="journey-intro">
-            What started as curiosity with simple HTML pages has evolved into a comprehensive career building production systems, exploring cutting-edge technologies, and continuously pushing the boundaries of what's possible with code.
+      {/* The part that is not a sales pitch. It has earned its place, one rung down. */}
+      <MotionSection className="py-16">
+        <SectionHead
+          title="Why I love this work"
+          deck="The honest answer, which has nothing to do with business cases."
+        />
+        <div className="fx-scrim max-w-2xl space-y-4 leading-relaxed text-muted-foreground">
+          <p>
+            Programming is not just a profession for me, it&apos;s a passion. There&apos;s
+            something magical about transforming ideas into reality through code. The ability
+            to create something from nothing, to build tools that solve real problems, and to
+            see the immediate impact of your work is incredibly satisfying.
           </p>
-          <div className="journey-grid">
-            <div className="journey-item">
-              <i className="fas fa-lightbulb"></i>
-              <h4>The Beginning</h4>
-              <p>Started with simple HTML websites and Python scripts, discovering the joy of creating something from scratch.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-code"></i>
-              <h4>Learning & Growth</h4>
-              <p>Expanded into full-stack development, mastering React, Node.js, and various other technologies.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-robot"></i>
-              <h4>AI Exploration</h4>
-              <p>Discovered the fascinating world of AI and machine learning, leading to innovative projects and solutions.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-briefcase"></i>
-              <h4>Professional Development</h4>
-              <p>Transitioned from hobby projects to production systems, working with clients and delivering scalable solutions that impact real users.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fab fa-github"></i>
-              <h4>Open Source Contribution</h4>
-              <p>Engaged with the developer community, contributing to open-source projects and building tools that help other developers.</p>
-            </div>
-            <div className="journey-item">
-              <i className="fas fa-rocket"></i>
-              <h4>Current Focus</h4>
-              <p>Exploring cutting-edge AI integration, modern development tools, and pushing the boundaries of what's possible with current technology.</p>
-            </div>
-          </div>
-
-          {/* EPIC TIMELINE BUTTON - AT BOTTOM OF JOURNEY SECTION */}
-          <div className="timeline-cta-section timeline-cta-compact">
-            <Link to="/updates" className="epic-timeline-button timeline-button-compact">
-              <div className="button-glow"></div>
-              <div className="button-inner">
-                <div className="button-icon-wrapper">
-                  <i className="fas fa-timeline"></i>
-                  <div className="icon-pulse"></div>
-                </div>
-                <div className="button-content">
-                  <span className="button-title">View My Full Dev Timeline</span>
-                  <span className="button-subtitle">
-                    <i className="fas fa-calendar-alt"></i>
-                    25 Milestones  •  2000 - 2025
-                  </span>
-                </div>
-                <div className="button-arrow">
-                  <i className="fas fa-arrow-right"></i>
-                </div>
-              </div>
-            </Link>
-          </div>
+          <p>
+            What truly captivates me is the puzzle-solving. Each challenge is an opportunity
+            to break down a complex problem into an elegant solution, and the moment when
+            everything clicks into place, when the code finally works after hours of
+            debugging, is pure joy.
+          </p>
+          <p>
+            The technology landscape never stops evolving, and that is what keeps me
+            energised. There is always a new framework to explore, a better pattern to learn,
+            or an innovative approach to discover.
+          </p>
         </div>
-      </section>
+      </MotionSection>
+
+      <Separator />
+
+      {/* Tech Stack */}
+      <MotionSection className="py-16">
+        <SectionHead
+          title="What I build with"
+          deck="The tools I actually reach for, grouped by where they sit in the stack."
+        />
+
+        <Tabs defaultValue="frontend">
+          {/* h-auto so the wrapped rows aren't crushed into TabsList's fixed h-8. */}
+          <TabsList className="h-auto min-h-8 flex-wrap gap-1">
+            {TECH_TABS.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value} className="h-auto py-1">
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {TECH_TABS.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value} className="pt-4">
+              <motion.div
+                className="flex flex-wrap gap-2"
+                variants={badgeStagger}
+                initial="hidden"
+                animate="visible"
+                key={tab.value}
+              >
+                {tab.items.map((item) => (
+                  <motion.span key={item} variants={badgeItem}>
+                    <Badge variant="secondary" className="font-mono text-xs">
+                      {item}
+                    </Badge>
+                  </motion.span>
+                ))}
+              </motion.div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </MotionSection>
+
+      <Separator />
+
+      {/* Programming Journey */}
+      <MotionSection className="py-16" delay={0.1}>
+        <SectionHead
+          title="How I got here"
+          deck="From HTML in a bedroom to AI systems in production, via a lot of debugging."
+        />
+
+        <div className="relative ml-4 space-y-4 border-l-2 border-primary/20 pl-8">
+          {JOURNEY_MILESTONES.map((milestone, i) => {
+            const Icon = milestone.icon;
+            return (
+              <motion.div
+                key={milestone.era}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative"
+              >
+                <div className="absolute -left-[calc(2rem+5px)] top-4 flex size-2.5 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
+                <Card className="h-full transition-shadow hover:ring-2 hover:ring-primary/30">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                        <Icon className="size-4" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-sm">{milestone.title}</CardTitle>
+                        <CardDescription className="font-mono text-xs">
+                          {milestone.era}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{milestone.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </MotionSection>
+
+      <Separator />
+
+      {/* The only way out of this page used to be deeper into the hobby content. The
+          timeline link survives, but as the secondary: someone who has read to the bottom
+          of an about page is deciding whether to talk to me, not whether to keep reading. */}
+      <MotionSection className="py-16 text-center" delay={0.15}>
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
+          That is the background. What is the problem?
+        </h2>
+        <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
+          If you have an AI bill you cannot explain, or data that should not be leaving the
+          building, that is the conversation I am most useful in.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="xl" className="glow-pulse">
+            <Link to="/contact">
+              Talk it through <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link to="/updates">View full timeline</Link>
+          </Button>
+        </div>
+      </MotionSection>
     </div>
   );
-};
+}

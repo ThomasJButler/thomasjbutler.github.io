@@ -1,41 +1,41 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
-import { Header } from '../Header'
+import { describe, it, expect } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { Providers } from '@/Providers';
+import { Header } from '../layout/Header';
+
+function renderHeader() {
+  return render(
+    <BrowserRouter>
+      <Providers>
+        <Header />
+      </Providers>
+    </BrowserRouter>
+  );
+}
 
 describe('Header', () => {
   it('renders the site title', () => {
-    render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
-    )
-    
-    expect(screen.getByText('Thomas J Butler')).toBeInTheDocument()
-  })
+    renderHeader();
+    expect(screen.getByRole('link', { name: /tom_butler/i })).toBeInTheDocument();
+  });
 
   it('renders all navigation links', () => {
-    render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
-    )
-    
-    const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Services', 'Contact']
-    
-    navLinks.forEach(link => {
-      expect(screen.getByText(link)).toBeInTheDocument()
-    })
-  })
+    renderHeader();
+    const nav = screen.getByRole('navigation', { name: /main navigation/i });
+
+    for (const label of ['Home', 'Projects', 'About', 'Services', 'Contact']) {
+      expect(within(nav).getByRole('link', { name: label })).toBeInTheDocument();
+    }
+  });
 
   it('renders the mobile menu button', () => {
-    render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
-    )
-    
-    const mobileMenuButton = screen.getByLabelText('Toggle mobile menu')
-    expect(mobileMenuButton).toBeInTheDocument()
-  })
-})
+    renderHeader();
+    expect(screen.getByRole('button', { name: /toggle menu/i })).toBeInTheDocument();
+  });
+
+  it('offers an in-page control to reduce motion', () => {
+    renderHeader();
+    expect(screen.getByRole('button', { name: /motion/i })).toBeInTheDocument();
+  });
+});

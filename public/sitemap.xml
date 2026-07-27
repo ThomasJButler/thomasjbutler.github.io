@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Lives in public/ so it is actually published. The old one sat in the repo root,
+  which the deploy (gh-pages -d dist) never copies, so it was never served at all.
+  It also used a stale /ThomasJButler/ path prefix, listed two routes that are now
+  redirects (/skills, /sitemap), and omitted /updates.
+-->
+<!--
+  The namespace host is sitemaps.org, plural. A singular "sitemap.org" parses as XML but
+  is not the sitemap protocol, so Search Console rejects the file and every URL in it is
+  ignored: the typo silently costs you the whole sitemap.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://thomasjbutler.github.io/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/case-study</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/projects</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thomasjbutler.github.io/updates</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

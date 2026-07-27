@@ -1,10 +1,15 @@
 import '@testing-library/jest-dom';
-import { expect, afterEach, vi, beforeAll } from 'vitest';
-import { cleanup } from '@testing-library/react';
+import { expect, afterEach, vi } from 'vitest';
+import { cleanup, configure } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
 // Extend Vitest's expect with jest-dom matchers
 expect.extend(matchers);
+
+// Routes are React.lazy, and Vite has to transform each page chunk on first import.
+// That regularly takes longer than Testing Library's 1000ms default, which shows up
+// as a flaky "Unable to find role=heading" rather than as the slow import it is.
+configure({ asyncUtilTimeout: 8000 });
 
 // Cleanup after each test
 afterEach(() => {
@@ -13,16 +18,29 @@ afterEach(() => {
   vi.clearAllTimers();
 });
 
-// Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-  takeRecords: vi.fn(),
-  root: null,
-  rootMargin: '',
-  thresholds: [],
-}));
+// Mock IntersectionObserver.
+//
+// It reports the element as intersecting as soon as it is observed. jsdom has no
+// layout, so a mock that never fires leaves every scroll-revealed section stuck at
+// opacity 0 — which is not what a real browser does, and it makes "is the content
+// visible?" tests fail for a reason that has nothing to do with the content.
+global.IntersectionObserver = vi.fn().mockImplementation((callback: IntersectionObserverCallback) => {
+  const instance = {
+    observe: (target: Element) => {
+      callback(
+        [{ isIntersecting: true, intersectionRatio: 1, target } as IntersectionObserverEntry],
+        instance as unknown as IntersectionObserver
+      );
+    },
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    takeRecords: vi.fn(() => []),
+    root: null,
+    rootMargin: '',
+    thresholds: [],
+  };
+  return instance;
+});
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
@@ -31,11 +49,23 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }));
 
-// Mock window.matchMedia
+// Mock window.matchMedia.
+//
+// Reduced motion defaults to ON in tests. Every FX component (rain, decode text,
+// cursor, boot intro) short-circuits its rAF loop under reduced motion, so this
+// keeps jsdom free of animation loops it cannot drive and makes assertions see
+// final text rather than mid-scramble glyphs. Tests that specifically exercise
+// the animated path opt out with setReducedMotion(false).
+let reducedMotion = true;
+
+export function setReducedMotion(value: boolean) {
+  reducedMotion = value;
+}
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
-    matches: false,
+    matches: query.includes('prefers-reduced-motion') ? reducedMotion : false,
     media: query,
     onchange: null,
     addListener: vi.fn(),
@@ -44,6 +74,10 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
+});
+
+afterEach(() => {
+  reducedMotion = true;
 });
 
 // Mock canvas for Matrix rain effect
@@ -81,7 +115,15 @@ HTMLCanvasElement.prototype.getContext = vi.fn().mockImplementation(() => ({
 // Mock scrollTo
 window.scrollTo = vi.fn();
 
-// Use fake timers
-beforeAll(() => {
-  vi.useFakeTimers();
-});
+// jsdom implements neither of these; both are used to keep an active option in view.
+Element.prototype.scrollIntoView = vi.fn();
+
+// NOTE: fake timers are deliberately NOT installed globally.
+//
+// Vitest's fake timers also patch requestAnimationFrame and performance.now, so
+// every rAF-driven component (rain, decode text, boot typer) would freeze, and
+// both waitFor() and @testing-library/user-event hang waiting on real time.
+// Suites that need to control time should opt in locally:
+//
+//   vi.useFakeTimers({ toFake: ['setTimeout', 'setInterval', 'Date'] });
+//   afterEach(() => vi.useRealTimers());

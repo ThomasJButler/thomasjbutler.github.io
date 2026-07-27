@@ -1,85 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas J Butler - Portfolio | Full-Stack Developer | Liverpool</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Immediate redirect to React app -->
-    <meta http-equiv="refresh" content="0; url=/react.html">
+    <title>Tom Butler | Full Stack AI Engineer, Local AI &amp; On-Device Systems</title>
+    <meta
+      name="description"
+      content="Full Stack AI Engineer in York, UK. I set up private, local AI systems for businesses: Ollama and open-model LLM setups, private RAG knowledge systems, AI cost and privacy audits, plus web apps and automation."
+    />
+    <meta name="author" content="Thomas J Butler" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://thomasjbutler.github.io/" />
+    <meta name="theme-color" content="#0b1410" />
 
-    <!-- Basic Meta Tags -->
-    <meta name="description" content="Thomas J Butler - Full-Stack Developer specializing in React, TypeScript, AI integration, and neurodiversity applications. Liverpool-based tech innovator with expertise in modern web development.">
-    <meta name="keywords" content="Thomas J Butler, full-stack developer, React developer, TypeScript, Liverpool developer, AI integration, neurodiversity tech, portfolio, web development">
-    <meta name="author" content="Thomas J Butler">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
+    <!--
+      Set the theme before first paint.
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thomasjbutler.github.io/">
-    <meta property="og:title" content="Thomas J Butler - Full-Stack Developer Portfolio">
-    <meta property="og:description" content="Explore the portfolio of Thomas J Butler, a Liverpool-based full-stack developer specializing in React, TypeScript, and AI integration.">
-    <meta property="og:image" content="https://thomasjbutler.github.io/logo.svg">
-    <meta property="og:site_name" content="Thomas J Butler Portfolio">
-    <meta property="og:locale" content="en_GB">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://thomasjbutler.github.io/">
-    <meta name="twitter:title" content="Thomas J Butler - Full-Stack Developer Portfolio">
-    <meta name="twitter:description" content="Liverpool-based full-stack developer specializing in React, TypeScript, and AI integration. View my projects and expertise.">
-    <meta name="twitter:image" content="https://thomasjbutler.github.io/logo.svg">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://thomasjbutler.github.io/">
-
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#00FF00">
-
-    <!-- Structured Data / JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Thomas J Butler",
-      "jobTitle": "Full-Stack Developer",
-      "url": "https://thomasjbutler.github.io",
-      "image": "https://thomasjbutler.github.io/logo.svg",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://thomasjbutler.github.io/logo.svg"
-      },
-      "sameAs": [
-        "https://github.com/ThomasJButler",
-        "https://linkedin.com/in/thomasbutleruk"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Yorkshire",
-        "addressCountry": "UK"
-      },
-      "knowsAbout": [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "Node.js",
-        "Full-Stack Development",
-        "AI Integration",
-        "Neurodiversity Applications"
-      ]
-    }
-    </script>
-
+      ThemeProvider only applies `.dark` once React has mounted, so a dark-mode visitor
+      saw a white flash on every cold load. This is the one script we want blocking.
+    -->
     <script>
-        // Immediate redirect to React app
-        window.location.replace('/react.html');
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored ? stored === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
     </script>
-</head>
-<body>
-    <!-- Redirecting to React app... -->
-    <noscript>
-        <p>Redirecting to <a href="/react.html">Thomas J Butler Portfolio</a>...</p>
-    </noscript>
-</body>
+
+    <!--
+      Icons. Deliberately no SVG icon: public/logo.svg is a 210 KB traced raster full
+      of path soup, and browsers prefer the SVG when it's offered — so it was the
+      favicon nobody wanted, at 200x the size.
+    -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Social. Must be a raster: X, LinkedIn, Facebook and Slack all ignore SVG. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tom Butler" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content="https://thomasjbutler.github.io/" />
+    <meta property="og:title" content="Tom Butler | Full Stack AI Engineer, Local AI & On-Device Systems" />
+    <meta
+      property="og:description"
+      content="I set up private, local AI systems for businesses. Same results as the APIs for everyday work, no per-token costs, and your data never leaves your building."
+    />
+    <meta property="og:image" content="https://thomasjbutler.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tom Butler: AI you own, not AI you rent." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tom Butler | Full Stack AI Engineer, Local AI & On-Device Systems" />
+    <meta
+      name="twitter:description"
+      content="I set up private, local AI systems for businesses. Same results as the APIs for everyday work, no per-token costs, and your data never leaves your building."
+    />
+    <meta name="twitter:image" content="https://thomasjbutler.github.io/og-image.png" />
+
+    <!--
+      Fonts are self-hosted and bundled (see src/main.tsx), so there is no third-party
+      font request at all any more. Cloudinary is still preconnected for the covers.
+    -->
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Thomas J Butler",
+        "alternateName": "Tom Butler",
+        "jobTitle": "Full Stack AI Engineer",
+        "url": "https://thomasjbutler.github.io",
+        "email": "dev@thomasjbutler.me",
+        "image": "https://thomasjbutler.github.io/og-image.png",
+        "description": "Full Stack AI Engineer specialising in private, local AI systems for businesses: local LLM setups, private RAG knowledge systems, and AI cost and privacy audits.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "York",
+          "addressCountry": "GB"
+        },
+        "sameAs": [
+          "https://github.com/ThomasJButler",
+          "https://www.linkedin.com/in/thomasjbutler",
+          "https://thomasjbutler.me"
+        ],
+        "knowsAbout": [
+          "Local AI",
+          "Private AI",
+          "Ollama",
+          "Retrieval-Augmented Generation",
+          "On-Device AI",
+          "React",
+          "TypeScript",
+          "Python",
+          "Full-Stack Development"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

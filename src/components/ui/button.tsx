@@ -1,0 +1,82 @@
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  // Focus ring: full-opacity --ring plus a 2px offset in the background colour. It used to
+  // be `ring-ring/50`, a half-transparent green that measured about 2.2:1 against the dark
+  // page and failed WCAG 1.4.11 (a focus indicator needs 3:1). `outline-none` removes the
+  // browser default, so this ring IS the only keyboard focus cue; the offset gap makes it
+  // read against both the button's own green fill and the near-black page behind it.
+  "relative overflow-hidden inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 cursor-pointer [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        // The glow is mixed from --primary, not hard-coded green. The red/blue accent
+        // pill rewrites --primary on documentElement, and a literal oklch(...145) here
+        // meant every glow on the site stayed Matrix green while the text turned blue.
+        default:
+          "bg-primary text-primary-foreground shadow-[0_0_16px_color-mix(in_oklab,var(--primary)_18%,transparent)] hover:bg-primary/85 hover:shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_30%,transparent)]",
+        outline:
+          "border border-primary/30 text-primary/90 hover:border-primary/60 hover:bg-primary/5 hover:text-primary",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost:
+          "hover:bg-muted hover:text-foreground",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20",
+        link:
+          "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-8 px-2.5",
+        xs: "h-6 gap-1 rounded-md px-2 text-xs [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-md px-2.5 text-[0.8rem] [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 px-3",
+        // The primary action needs to be physically bigger, not just glowing. `lg` is
+        // 36px, four pixels taller than default, which left `.glow-pulse` (a 3s breathing
+        // box-shadow that reads as ambient) doing all the work of hierarchy on its own.
+        xl: "h-11 gap-2 px-5 text-[0.95rem] font-semibold",
+        icon: "size-8",
+        "icon-sm": "size-7 rounded-md",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, children, ...props }, ref) => {
+    if (asChild && React.isValidElement(children)) {
+      return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+        className: cn(buttonVariants({ variant, size }), (children as React.ReactElement<{ className?: string }>).props.className, className),
+        ref,
+        ...props,
+      })
+    }
+
+    return (
+      <button
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+export type { ButtonProps }

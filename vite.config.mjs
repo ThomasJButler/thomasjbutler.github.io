@@ -1,21 +1,27 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
+import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'path';
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'fs';
+
+// Route metadata (titles, descriptions, the prerender list) lives in scripts/routes.mjs,
+// so the build script and the config cannot disagree about what the routes are.
 
 export default defineConfig({
   root: '.',
   base: '/',
   build: {
     outDir: 'dist',
+    // Emit dist/.vite/manifest.json so scripts/prerender.mjs can map a route's source
+    // module (src/pages/AboutPage.tsx) to its content-hashed chunk and preload it.
+    manifest: true,
     rollupOptions: {
       input: {
-        // Main entry - redirects to React app
+        // index.html IS the app. It used to be a stub that JS-redirected to
+        // react.html, which cost every cold visit a full extra navigation — and meant
+        // the page Google and LinkedIn actually crawled was the stub, not the site.
         main: resolve(__dirname, 'index.html'),
-        // React app - fully migrated v3.5
-        react: resolve(__dirname, 'react.html'),
-        // Blog redirect for backward compatibility
+        // Legacy blog URLs.
         blog: resolve(__dirname, 'blog.html'),
       }
     },
@@ -30,9 +36,20 @@ export default defineConfig({
   // Custom plugins
   plugins: [
     react(),
-    legacy({
-      targets: ['defaults', 'not IE 11']
-    }),
+    tailwindcss(),
+    // In dev, rewrite / to serve react.html so React Router sees clean paths
+    {
+      name: 'spa-rewrite',
+      configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+          // Rewrite clean SPA routes to the app entry so React Router sees them.
+          if (req.url === '/' || (!req.url.includes('.') && !req.url.startsWith('/@') && !req.url.startsWith('/src') && !req.url.startsWith('/node_modules'))) {
+            req.url = '/index.html';
+          }
+          next();
+        });
+      }
+    },
     // Development middleware to serve blog markdown files
     {
       name: 'serve-blog-files',
@@ -89,6 +106,9 @@ export default defineConfig({
         });
       }
     },
+    // NOTE: the SPA 404 fallback and the per-route meta plugins used to live here.
+    // Both now happen in scripts/prerender.mjs, which also injects the rendered markup:
+    // two separate things writing the same dist/*.html files is exactly how they drift.
     // Build-time plugin to copy blog markdown files
     {
       name: 'copy-blog-files',
@@ -119,7 +139,7 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    open: '/react.html', // Open directly to correct URL to avoid base path warning
+    open: '/',
     watch: {
       usePolling: true
     }

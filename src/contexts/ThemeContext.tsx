@@ -1,81 +1,52 @@
-/**
- * @author Tom Butler
- * @date 2025-10-27
- * @description Theme context provider for application-wide theme management.
- *              Manages Matrix and dark theme switching with localStorage persistence.
- */
+import { createContext, useCallback, useEffect, useState, type ReactNode } from 'react';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+type Theme = 'dark' | 'light';
 
-type Theme = 'matrix' | 'dark';
-
-interface ThemeContextType {
+interface ThemeContextValue {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-/**
- * Hook to access theme context
- * @return {ThemeContextType} Theme context values
- * @throws {Error} If used outside ThemeProvider
- */
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
-
-interface ThemeProviderProps {
-  children: ReactNode;
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark';
+  const stored = localStorage.getItem('theme') as Theme | null;
+  if (stored === 'dark' || stored === 'light') return stored;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
-/**
- * Theme provider component
- * @param {Object} props
- * @param {ReactNode} props.children - Child components
- * @return {JSX.Element}
- * @constructor
- */
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>('matrix');
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
 
-  /**
-   * @constructs - Loads saved theme from localStorage on mount
-   */
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme') as Theme;
-    if (savedTheme && ['matrix', 'dark'].includes(savedTheme)) {
-      setThemeState(savedTheme);
+  const applyTheme = useCallback((t: Theme) => {
+    const root = document.documentElement;
+    if (t === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
     }
   }, []);
 
-  /**
-   * @listens theme - Applies theme to document and persists to localStorage
-   */
+  const setTheme = useCallback((t: Theme) => {
+    setThemeState(t);
+    localStorage.setItem('theme', t);
+    applyTheme(t);
+  }, [applyTheme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }, [theme, setTheme]);
+
+  // Apply on mount
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
-
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-  };
-
-  const toggleTheme = () => {
-    const themes: Theme[] = ['matrix', 'dark'];
-    const currentIndex = themes.indexOf(theme);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex]);
-  };
+    applyTheme(theme);
+  }, [theme, applyTheme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};
+}
