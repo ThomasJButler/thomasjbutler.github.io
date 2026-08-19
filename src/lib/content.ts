@@ -19,7 +19,7 @@ import {
 
 export const LINKS = {
   github: 'https://github.com/ThomasJButler',
-  linkedin: 'https://www.linkedin.com/in/thomasjbutler',
+  linkedin: 'https://www.linkedin.com/in/thomasbutleruk',
   email: 'dev@thomasjbutler.me',
   commercial: 'https://thomasjbutler.me',
   /**
