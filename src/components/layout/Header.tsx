@@ -81,7 +81,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               <GithubIcon className="size-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/thomasjbutler"
+              href="https://www.linkedin.com/in/thomasbutleruk"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -172,7 +172,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   <GithubIcon className="size-4" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/thomasjbutler"
+                  href="https://www.linkedin.com/in/thomasbutleruk"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

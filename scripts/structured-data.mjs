@@ -33,7 +33,7 @@ const PERSON = {
   },
   sameAs: [
     'https://github.com/ThomasJButler',
-    'https://www.linkedin.com/in/thomasjbutler',
+    'https://www.linkedin.com/in/thomasbutleruk',
     'https://thomasjbutler.me',
   ],
   knowsAbout: [

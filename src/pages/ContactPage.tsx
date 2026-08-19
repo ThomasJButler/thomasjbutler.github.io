@@ -159,7 +159,7 @@ export function ContactPage() {
                   github.com/ThomasJButler
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/thomasjbutler/"
+                  href="https://www.linkedin.com/in/thomasbutleruk/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
