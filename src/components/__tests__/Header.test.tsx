@@ -17,7 +17,7 @@ function renderHeader() {
 describe('Header', () => {
   it('renders the site title', () => {
     renderHeader();
-    expect(screen.getByRole('link', { name: /tom_butler/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /thomas_butler/i })).toBeInTheDocument();
   });
 
   it('renders all navigation links', () => {

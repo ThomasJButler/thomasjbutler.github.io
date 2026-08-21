@@ -45,7 +45,7 @@ export const LINKS = {
  * itself had, which is a sign the page was pointed the wrong way round.
  *
  * The name is not here and does not need to be. The header wordmark two lines above already
- * reads `> tom_butler`, so the eyebrow was saying it twice inside the same screenful. What is
+ * reads `> thomas_butler`, so the eyebrow was saying it twice inside the same screenful. What is
  * left is the part that is not repeated anywhere else on the page: what he does and where.
  */
 

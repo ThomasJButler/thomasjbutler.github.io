@@ -40,7 +40,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
           to="/"
           className="font-mono text-sm font-semibold text-primary transition-colors hover:text-primary/80"
         >
-          <span className="text-primary/90">&gt;</span> tom_butler
+          <span className="text-primary/90">&gt;</span> thomas_butler
         </Link>
 
         {/* Desktop nav */}
