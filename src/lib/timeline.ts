@@ -43,6 +43,26 @@ const formatDate = (year: number, month: number): string => {
 
 export const timelineData: TimelineEntry[] = [
   {
+    id: 28,
+    year: 2026,
+    month: 8,
+    date: formatDate(2026, 8),
+    title: 'Offshore Property Map',
+    location: 'Leeds, Yorkshire',
+    institution: 'Personal project',
+    description: 'Entity resolution across two UK government registers that share no common key. Around 9,700 lines across 21 modules, and it publishes a 95% lower bound next to the headline precision rather than just the headline. The most technically serious thing I\'ve built.',
+    achievements: [
+      'Two registers, no shared identifier, and real consequences for a wrong match',
+      'An evaluation harness: gate certificate, Clopper-Pearson bounds, provenance per label, a recall canary',
+      'Splink and DuckDB, with Python doing the heavy lifting',
+      'Private repo for now. A write-up is coming.'
+    ],
+    links: [],
+    icon: 'fa-map',
+    iconBg: '#8B5CF6',
+    category: 'ai-ml'
+  },
+  {
     id: 26,
     year: 2026,
     month: 7,

@@ -8,7 +8,7 @@
  * is preserved verbatim in the git tag v-local-ai-2026-08, and the commit that removed it is
  * the one to `git revert` when it comes back (see .claude/CLAUDE.md, "Shelved positioning").
  */
-import { Bot, GitBranch, Smartphone, type LucideIcon } from 'lucide-react';
+import { Bot, FileText, Landmark, Smartphone, Trophy, type LucideIcon } from 'lucide-react';
 
 export const LINKS = {
   github: 'https://github.com/ThomasJButler',
@@ -93,22 +93,34 @@ export const RECENT_ACTIVITY: {
   year: string;
 }[] = [
   {
-    icon: GitBranch,
-    text: 'Contributing to Odysseus: open source local AI',
+    icon: Landmark,
+    text: 'Offshore Property Map: entity resolution across two government registers',
     badge: 'AI',
     year: '2026',
   },
   {
-    icon: Smartphone,
-    text: 'Sanctuary: fully offline on-device AI app (prototype)',
-    badge: 'iOS',
+    icon: FileText,
+    text: 'A CV engine that renders 33 CVs in four formats',
+    badge: 'Tooling',
     year: '2026',
   },
   {
     icon: Bot,
-    text: 'Built RAG pipeline with LangChain + Pinecone',
+    text: 'ISQ Agent, presented in person to RiverAI',
     badge: 'AI',
-    year: '2025',
+    year: '2026',
+  },
+  {
+    icon: Trophy,
+    text: 'The Kicker: a Dixon-Coles model in a few kilobytes, in the browser',
+    badge: 'ML',
+    year: '2026',
+  },
+  {
+    icon: Smartphone,
+    text: 'Sanctuary on native iOS, fully on-device',
+    badge: 'iOS',
+    year: '2026',
   },
 ];
 
