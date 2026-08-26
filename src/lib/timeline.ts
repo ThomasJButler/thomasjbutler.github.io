@@ -300,20 +300,20 @@ export const timelineData: TimelineEntry[] = [
     year: 2024,
     month: 12,
     date: formatDate(2024, 12),
-    title: 'Career Transition & New Ventures',
+    title: 'Redundancy, then AiTomatic',
     location: 'Leeds, Yorkshire',
-    institution: 'Entrepreneurship',
-    description: 'After being made redundant, I transformed this challenge into an opportunity. Created my Matrix-themed personal portfolio as my primary showcase, founded AiTomatic company, and began developing this commercial portfolio.',
+    institution: 'AiTomatic',
+    description: 'Made redundant from Fuelius in December. Started building under AiTomatic the same month: solo, self-funded, no clients yet. Two years of shipping things nobody asked for, which is where most of what I now know came from. Also the month this site was built from scratch.',
     achievements: [
-      'Made redundant from previous position in December',
-      'Created custom HTML/CSS/JS personal portfolio with Matrix theme',
-      'Founded AiTomatic company for AI consulting and development',
-      'Began development of this commercial React portfolio for professional presence'
+      'Made redundant from Fuelius, December 2024',
+      'Started building under AiTomatic. Solo, self-funded, no clients yet.',
+      'Built this site from scratch, Matrix theme and all',
+      'Started the commercial portfolio at thomasjbutler.me for the paid work'
     ],
     links: [
       {
-        href: 'https://thomasjbutler.github.io/',
-        label: 'Visit Portfolio',
+        href: 'https://thomasjbutler.me/',
+        label: 'Commercial portfolio',
         icon: 'fa-arrow-up-right-from-square'
       },
       {
@@ -489,7 +489,7 @@ export const timelineData: TimelineEntry[] = [
       'Developed custom AI models for various use cases',
       'Applied machine learning concepts to real-world problems',
       'Created AI-powered solutions and integrations',
-      'Built foundation for future AI consulting work'
+      'Built the foundations for the AI work that came after'
     ],
     links: [],
     icon: 'fa-robot',
