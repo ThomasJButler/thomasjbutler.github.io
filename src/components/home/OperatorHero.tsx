@@ -38,9 +38,11 @@ export function OperatorHero() {
   return (
     <section className="fx-hero">
       <div className="fx-hero__grid">
-        {/* fx-scrim paints the page background back in behind the copy, so the rain
-            never sits directly behind a glyph of text. */}
-        <div className="fx-hero__copy fx-scrim">
+        {/* The copy sits on a raised panel (.fx-hero__copy in app.css), the same idea as
+            the console window beside it: the rain runs underneath, not through the words.
+            It replaced a radial scrim that only dimmed the rain, which read fine over the
+            dark ground and badly the moment a bright head glyph passed behind a letter. */}
+        <div className="fx-hero__copy">
           <p className="fx-bootline">
             <DecodeText text={HERO_EYEBROW} step={18} />
           </p>

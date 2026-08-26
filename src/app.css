@@ -848,6 +848,58 @@
     padding: 90px 48px 110px;
   }
 
+  /* The copy column is a raised panel, not text laid straight on the rain.
+
+     The old treatment was a radial scrim that dimmed the canvas behind the words. It
+     measured fine against the average frame and failed on the one that matters: a rain
+     head is near-white, and when one passed behind a letter the letter vanished into it.
+     A panel with a real surface removes the rain from behind the text entirely, which is
+     what the console window on the right has done all along, and it holds up the same
+     way when the rain is switched off and the hero is sitting on a flat dark ground.
+
+     The ::before is a second plate, offset down and right, that gives the panel depth. It
+     sits at z-index -1, which puts it behind this element's own background and still
+     above the rain canvas (fixed, z-index -10), for the same reason the .fx-scrim
+     pseudo-element has to. */
+  .fx-hero__copy {
+    position: relative;
+    padding: 40px 44px 38px;
+    border-radius: 14px;
+    border: 1px solid color-mix(in oklab, var(--primary) 26%, transparent);
+    background: linear-gradient(
+      180deg,
+      oklch(0.11 0.02 145 / 0.9),
+      oklch(0.07 0.01 145 / 0.96)
+    );
+    backdrop-filter: blur(12px) saturate(1.3);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--primary) 22%, transparent),
+      0 0 40px color-mix(in oklab, var(--primary) 10%, transparent),
+      0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  .fx-hero__copy::before {
+    content: '';
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    z-index: -1;
+    border-radius: 14px;
+    border: 1px solid color-mix(in oklab, var(--primary) 14%, transparent);
+    background: oklch(0.09 0.02 145 / 0.7);
+    pointer-events: none;
+  }
+  :root:not(.dark) .fx-hero__copy {
+    background: oklch(1 0 0 / 0.94);
+    border-color: oklch(0.35 0.22 145 / 0.25);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.9),
+      0 4px 24px oklch(0.35 0.22 145 / 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+  :root:not(.dark) .fx-hero__copy::before {
+    background: oklch(0.97 0.01 145 / 0.9);
+    border-color: oklch(0.35 0.22 145 / 0.14);
+  }
+
   .fx-bootline {
     margin: 0 0 20px;
     min-height: 15px;
@@ -1037,6 +1089,12 @@
       grid-template-columns: 1fr;
       gap: 34px;
       padding: 70px 26px 100px;
+    }
+    .fx-hero__copy {
+      padding: 28px 22px 26px;
+    }
+    .fx-hero__copy::before {
+      inset: 8px -8px -8px 8px;
     }
     .fx-console__body {
       /* A fixed height, but a taller one, and scrollable rather than clipped.
