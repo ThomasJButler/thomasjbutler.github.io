@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { ROUTE_META, NOT_FOUND, SITE } from './routes.mjs';
@@ -135,6 +135,19 @@ function writeRoute(name, html) {
   if (name !== 'index' && name !== '404') {
     mkdirSync(resolve(dist, name), { recursive: true });
     writeFileSync(resolve(dist, name, 'index.html'), html);
+  }
+}
+
+/**
+ * Static redirect pages get the trailing-slash form too. services.html is a Vite input
+ * (see vite.config.mjs), so it lands in dist/ on its own; GitHub Pages serves /services
+ * from it, but /services/ looks for services/index.html and would fall through to the 404.
+ */
+for (const legacy of ['services']) {
+  const src = resolve(dist, `${legacy}.html`);
+  if (existsSync(src)) {
+    mkdirSync(resolve(dist, legacy), { recursive: true });
+    writeFileSync(resolve(dist, legacy, 'index.html'), readFileSync(src, 'utf8'));
   }
 }
 

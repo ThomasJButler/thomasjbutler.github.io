@@ -23,6 +23,9 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         // Legacy blog URLs.
         blog: resolve(__dirname, 'blog.html'),
+        // /services, the shelved Local & Private AI offer (August 2026). Still linked from
+        // LinkedIn and the commercial site, so it redirects to /about rather than 404ing.
+        services: resolve(__dirname, 'services.html'),
       }
     },
     minify: 'terser',

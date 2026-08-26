@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting… | Tom Butler</title>
+
+    <!--
+      /services was a real route until August 2026: the Local & Private AI offer, three
+      priced packages and an FAQ. That positioning is shelved for the job search (the tag
+      v-local-ai-2026-08 has it verbatim; see .claude/CLAUDE.md), but the URL is still
+      linked from LinkedIn and from the commercial site.
+
+      Without this file GitHub Pages serves 404.html for /services, and the client-side
+      <Navigate> in App.tsx only fires after the 404 shell has hydrated, thrown the
+      expected mismatch, re-rendered and sat through the boot intro: measured at six to
+      twelve seconds of a "404" page before About appears. A static redirect is instant,
+      and a crawler following the old link gets a canonical rather than an error page.
+      Same shape as blog.html. The prerender also copies this to services/index.html so
+      the trailing-slash form lands in the same place.
+    -->
+    <meta http-equiv="refresh" content="0; url=/about">
+    <link rel="canonical" href="https://thomasjbutler.github.io/about">
+    <meta name="robots" content="noindex">
+
+    <style>
+        body {
+            background: #000;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        a { color: #00ff41; }
+    </style>
+
+    <script>
+        window.location.replace('/about');
+    </script>
+</head>
+<body>
+    <div>
+        <p>Redirecting… if nothing happens, <a href="/about">continue to the site</a>.</p>
+    </div>
+</body>
+</html>
