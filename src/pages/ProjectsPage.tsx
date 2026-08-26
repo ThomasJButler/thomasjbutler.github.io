@@ -198,12 +198,15 @@ export function ProjectsPage() {
 
       {/* Filter tabs */}
       <section className="mt-14">
-        <SectionHead title="Everything" deck="Filter by the kind of work you came looking for." />
+        <SectionHead
+          title="Everything"
+          deck="Some of these were built to learn something specific. Some were built because I wanted them to exist. The tags tell you which."
+        />
         <Tabs
           value={activeCategory}
           onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}
         >
-          {/* h-auto: TabsList is a fixed h-8 box, and with seven tabs it wraps below
+          {/* h-auto: TabsList is a fixed h-8 box, and with six tabs it wraps below
               ~540px. The wrapped rows then have to share that 32px, while each
               trigger sizes itself against the container — so the tabs overlapped and
               spilled out of the pill on a phone. */}

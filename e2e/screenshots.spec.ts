@@ -70,7 +70,7 @@ test.describe('page content checks', () => {
     await page.goto('/projects', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('h1')).toBeVisible();
     // Filter tabs
-    await expect(page.locator('[data-slot="tabs-trigger"]')).toHaveCount(7, { timeout: 5000 });
+    await expect(page.locator('[data-slot="tabs-trigger"]')).toHaveCount(6, { timeout: 5000 });
     // At least some project cards visible
     const cards = page.locator('[data-slot="card"]');
     await expect(cards.first()).toBeVisible({ timeout: 5000 });

@@ -7,7 +7,7 @@ export interface Project {
   longDescription?: string;
   topics: string[];
   language: string;
-  category: 'ai' | 'web' | 'mobile' | 'games' | 'creative' | 'personal';
+  category: 'ai' | 'web' | 'mobile' | 'games' | 'portfolio';
   links: {
     demo?: string;
     github?: string;
@@ -471,12 +471,19 @@ export const projects: Project[] = [
     },
     featured: true,
   },
-  // The LFC News App was here and is retired. It read r/LiverpoolFC through the Reddit API,
-  // and the terms changed under it, so it is not work Tom is continuing. A card whose demo
-  // depends on someone else's pricing decision is a liability on a page that exists to sell.
-  // The .NET/React Calendar was here and is retired. It was built for a job application, and
-  // it is not work Tom is continuing. On a page that now sells local AI, a take-home exercise
-  // for a role he did not take is the weakest thing in the grid.
+  // The LFC News App was here and stays retired. It read r/LiverpoolFC through the Reddit
+  // API, the terms changed under it, and its only link is a demo that depends on them. A
+  // card with a dead demo is worse than no card.
+  {
+    id: 'dotnet-react-calendar',
+    name: '.NET/React Calendar',
+    description: 'Full-stack calendar app with .NET Core 9 FastEndpoints backend and React frontend. Built for a job application, to commercial patterns: SOLID, FluentValidation, a circuit breaker, and xUnit coverage across the layers.',
+    topics: ['.NET', 'React', 'C#', 'Fast Endpoints'],
+    language: 'C#',
+    category: 'portfolio',
+    links: { demo: 'https://dotnet-react-calendar.vercel.app/', github: 'https://github.com/ThomasJButler/Dotnet-React-Calendar' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947576/dotnetcalendar_fiu8p4.jpg' },
+  },
   {
     id: 'css-showcase',
     name: 'CSS Learning Showcase',
@@ -484,7 +491,7 @@ export const projects: Project[] = [
     longDescription: 'Comprehensive CSS learning resource built with Next.js and shadcn/ui. Features 30+ pages of live demos, interactive playgrounds, and real code examples covering everything from basic selectors to modern features like container queries, :has() selector, scroll-driven animations, and colour spaces.',
     topics: ['CSS', ':has()', 'Container Queries', 'Responsive'],
     language: 'CSS',
-    category: 'web',
+    category: 'portfolio',
     links: { demo: 'https://thomasjbutler.github.io/css-showcase/', github: 'https://github.com/ThomasJButler/css-showcase' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765946936/cssshowcase_ugyvso.webp' },
   },
@@ -530,16 +537,23 @@ export const projects: Project[] = [
     status: 'completed',
     highlights: ['12 playable arcade games', 'Phaser 3 engine behind a React shell', 'Matrix Trilogy audio kit, Web Audio synthesis behind it', 'Installable PWA, plays offline'],
   },
-  // Big Bang Canvas was here and is retired from the shop window. The site still lives on at
-  // thomasjbutler.github.io/bigbang-gallery and the build is still in the career timeline
-  // (src/lib/timeline.ts); it just no longer earns a card next to the paid work.
+  {
+    id: 'bigbang-gallery',
+    name: 'Big Bang Canvas',
+    description: 'Responsive gallery of 50+ AI-generated cosmic artworks with 3D tilt effects, custom cursor, and keyboard navigation.',
+    topics: ['Canvas', 'Animation', 'Creative', 'Design'],
+    language: 'JavaScript',
+    category: 'portfolio',
+    links: { demo: 'https://thomasjbutler.github.io/bigbang-gallery/', github: 'https://github.com/ThomasJButler/bigbang-gallery' },
+    images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765946935/bigbanggallery_ckmaw1.webp' },
+  },
   {
     id: 'python-projects',
     name: 'Python Projects Collection',
     description: 'Collection of Python hobby projects: mathematical tools, climate visualisation, AI assistants, and interactive games.',
     topics: ['Python', 'Algorithms', 'ML', 'Games'],
     language: 'Python',
-    category: 'personal',
+    category: 'portfolio',
     links: { github: 'https://github.com/ThomasJButler/PythonProjects' },
     images: { cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1765947170/LorenzAttractor_bd2dps.png' },
   },
@@ -562,7 +576,7 @@ export const projects: Project[] = [
       'Nine versions of one portfolio, from hand-written HTML in June 2024 to React and shadcn today, and every one of them still runs. Pick any version and the original build loads in a viewer you can resize to 1440, 834 or 390 to see how it behaved on a phone at the time. The builds are unmodified, so some of them reference assets that no longer exist, and the archive says so rather than quietly patching them. It is the clearest record of how fast the work moved: the same person, twenty-five months apart.',
     topics: ['Timeline', 'Interactive', 'Archive'],
     language: 'JavaScript',
-    category: 'personal',
+    category: 'portfolio',
     links: { demo: 'https://thomasjbutler.github.io/version-timetravel/', github: 'https://github.com/ThomasJButler/version-timetravel' },
     images: {
       cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710995/portfoliotimetravel_rh7jgr.png',
@@ -612,14 +626,23 @@ export const projects: Project[] = [
   },
 ];
 
+/**
+ * Portfolio is the tag for builds that were about learning the thing rather than solving a
+ * problem: the CSS showcase, the Python collection, the archived site versions, the
+ * take-home calendar. It lets a reader see the progression instead of a flat pile.
+ *
+ * Creative and Personal used to sit here. Creative was already (0), and once the learning
+ * projects moved to Portfolio, Personal was (0) too. An empty tab is a question nobody
+ * asked. This array is a plain list, not a Record, so it will NOT fail type-check if a
+ * category is added to the union and forgotten here.
+ */
 export const categories = [
   { id: 'all', label: 'All' },
   { id: 'ai', label: 'AI & ML' },
   { id: 'web', label: 'Web' },
   { id: 'mobile', label: 'Mobile' },
   { id: 'games', label: 'Games' },
-  { id: 'creative', label: 'Creative' },
-  { id: 'personal', label: 'Personal' },
+  { id: 'portfolio', label: 'Portfolio' },
 ] as const;
 
 /**
@@ -634,8 +657,7 @@ export const categoryLabel: Record<Project['category'], string> = {
   web: 'Web',
   mobile: 'Mobile',
   games: 'Games',
-  creative: 'Creative',
-  personal: 'Personal',
+  portfolio: 'Portfolio',
 };
 
 /*
@@ -652,8 +674,7 @@ export const categoryBadgeVariant: Record<Project['category'], string> = {
   web: 'secondary',
   mobile: 'secondary',
   games: 'secondary',
-  creative: 'secondary',
-  personal: 'secondary',
+  portfolio: 'secondary',
 };
 
 export const languageColors: Record<string, string> = {
