@@ -1,8 +1,8 @@
 # Everyone is welcome, and the AI crawlers are welcome by name.
 #
-# That is a decision, not an oversight. The point of this site is to be the answer when
-# someone asks an assistant "who sets up private AI for a UK business", so the crawlers
-# that feed those answers are invited in explicitly rather than left to the wildcard.
+# That is a decision, not an oversight. The point of this site is to be what an assistant
+# finds when someone asks about Tom Butler's work, so the crawlers that feed those answers
+# are invited in explicitly rather than left to the wildcard.
 #
 # These crawlers fetch HTML and do not execute JavaScript. That is why every route is
 # prerendered at build time: without real markup in the body there is nothing here for

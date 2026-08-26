@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DecodeText } from '@/components/fx/DecodeText';
 import { OperatorConsole } from './OperatorConsole';
-import { HERO_EYEBROW, HERO_H1, HERO_SUB } from '@/lib/content';
+import { HERO_EYEBROW, HERO_H1, HERO_SUB, HERO_ASIDE, LINKS } from '@/lib/content';
 
 function ScrollCue() {
   return (
@@ -13,7 +13,7 @@ function ScrollCue() {
       onClick={() =>
         document.getElementById('below')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-      aria-label="Scroll to what I build"
+      aria-label="Scroll to the work"
     >
       <span className="tri" aria-hidden="true">
         ▼
@@ -24,15 +24,15 @@ function ScrollCue() {
 }
 
 /**
- * The hero leads with the argument.
+ * The hero is a greeting again (see the note above HERO_H1 in content.ts for why).
  *
- * Gone with the greeting: the rotating typed phrase. It looped forever, re-rendering the
- * hero on every character for as long as the tab was open, and once the H1 *is* the
- * thesis it was saying a quieter version of the same thing directly underneath it.
+ * Still gone: the rotating typed phrase from v4. It looped forever, re-rendering the hero
+ * on every character for as long as the tab was open.
  *
- * The console stays, because it is the one place the terminal motif genuinely earns its
- * keep: `netstat --external` answering `0 bytes sent to third parties` is the sales
- * argument, dramatised, in the subject's own vernacular.
+ * The console stays, because it is the one place the terminal motif earns its keep:
+ * `cat status.txt` answering `open to full-time roles` is the one fact an employer wants,
+ * in the subject's own vernacular. The two buttons split the two sites: everything here
+ * is unpaid and chosen, the paid work is a click away, and HERO_ASIDE says so.
  */
 export function OperatorHero() {
   return (
@@ -56,14 +56,17 @@ export function OperatorHero() {
 
           <div className="fx-cta">
             <Button asChild size="xl">
-              <Link to="/services">
-                See what it costs <ArrowRight className="size-4" />
+              <Link to="/projects">
+                See the projects <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="xl">
-              <Link to="/contact">Talk it through</Link>
+              <a href={LINKS.commercial} target="_blank" rel="noopener noreferrer">
+                Commercial and client work <ExternalLink className="size-4" />
+              </a>
             </Button>
           </div>
+          <p className="fx-sub mt-4 text-sm">{HERO_ASIDE}</p>
         </div>
 
         <OperatorConsole />

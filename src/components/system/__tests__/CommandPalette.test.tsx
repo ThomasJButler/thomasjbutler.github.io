@@ -50,8 +50,8 @@ describe('CommandPalette', () => {
     expect(activeOption()).toBe('cmd-home');
 
     await user.keyboard('{ArrowDown}');
-    // Services, not Projects: the palette follows the header's business-first order.
-    expect(activeOption()).toBe('cmd-services');
+    // The palette follows the header's order.
+    expect(activeOption()).toBe('cmd-projects');
 
     // Up from the first entry wraps to the last.
     await user.keyboard('{ArrowUp}{ArrowUp}');

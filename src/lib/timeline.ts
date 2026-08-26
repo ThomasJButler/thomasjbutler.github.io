@@ -47,15 +47,15 @@ export const timelineData: TimelineEntry[] = [
     year: 2026,
     month: 7,
     date: formatDate(2026, 7),
-    title: 'AI you can own',
+    title: 'Running it local, for myself',
     location: 'York, UK',
-    institution: 'Local & Private AI',
-    description: 'Local and private AI becomes the focus. Ollama setups and private RAG for businesses, contributing to Odysseus, building Sanctuary on-device, and starting Run It Local, a plain-English AI newsletter.',
+    institution: 'Local models',
+    description: 'Over a year now of running open models on my own machine: Ollama, private RAG over my own documents, and contributing to Odysseus, an open source local AI project. Sanctuary is built the same way, fully on-device. Personal use, not client work.',
     achievements: [
-      'Ollama local LLM setups and private RAG systems for businesses',
+      'Ollama and open models on my own machine, over a year now',
+      'Private RAG over my own documents',
       'Contributing to Odysseus, an open source local AI project',
-      'Building Sanctuary, a fully offline on-device AI app',
-      'Starting Run It Local, a plain-English AI newsletter'
+      'Sanctuary: fully offline and on-device'
     ],
     links: [],
     icon: 'fa-microchip',

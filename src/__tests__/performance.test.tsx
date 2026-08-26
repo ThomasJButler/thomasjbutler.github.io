@@ -83,7 +83,6 @@ describe('Performance and Stability Tests', () => {
       'HomePage',
       'AboutPage',
       'ProjectsPage',
-      'ServicesPage',
       'ContactPage',
       'UpdatesPage',
       'CaseStudyPage',

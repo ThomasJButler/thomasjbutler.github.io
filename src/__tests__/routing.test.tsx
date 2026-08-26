@@ -27,12 +27,12 @@ const headingOf = async () =>
 describe('Routing', () => {
   test('renders the home page at /', async () => {
     renderAt('/');
-    expect(await headingOf()).toMatch(/AI you own/i);
+    expect(await headingOf()).toMatch(/hey, i'm tom/i);
   });
 
   test('renders the about page at /about', async () => {
     renderAt('/about');
-    expect(await headingOf()).toMatch(/AI that businesses actually own/i);
+    expect(await headingOf()).toMatch(/why this site exists/i);
   });
 
   test('renders the dev journey at /updates', async () => {
@@ -43,10 +43,11 @@ describe('Routing', () => {
   test.each([
     ['/index.html', '/'],
     ['/about.html', '/about'],
-    ['/skills.html', '/services'],
-    ['/skills', '/services'],
+    ['/skills.html', '/about'],
+    ['/skills', '/about'],
     ['/projects.html', '/projects'],
-    ['/services.html', '/services'],
+    ['/services.html', '/about'],
+    ['/services', '/about'],
     ['/contact.html', '/contact'],
     ['/sitemap', '/'],
   ])('redirects the legacy route %s to %s', async (from, to) => {

@@ -58,7 +58,7 @@ function replaceAttr(html, re, value) {
  * declare, so a per-route card needs no change to those.
  */
 const DEFAULT_IMAGE = 'og-image.png';
-const DEFAULT_IMAGE_ALT = 'Tom Butler: AI you own, not AI you rent.';
+const DEFAULT_IMAGE_ALT = 'Tom Butler: software developer, Leeds.';
 
 function withMeta(html, { title, description, url, image, imageAlt }) {
   let out = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${attr(title)}</title>`);

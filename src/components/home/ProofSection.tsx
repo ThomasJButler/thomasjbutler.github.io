@@ -10,20 +10,16 @@ import { CASE_STUDY, RECENT_ACTIVITY } from '@/lib/content';
 /**
  * Proof, where the skill bars used to be.
  *
- * The buyer has now had the offer and the argument. The next question they ask is "has
- * he actually done this?", and the honest answer to that is a system I built and can
- * describe in detail, plus dated work they can go and look at. It is not a bar chart of
- * my own opinion of myself.
- *
- * The case study is the loudest thing here because it is the only thing on the site that
- * answers the question directly, and until now it had exactly one inbound link.
+ * The reader has had the greeting. The next question is "can he actually build things?",
+ * and the honest answer to that is a system I built and can describe in detail, plus
+ * dated work they can go and look at. It is not a bar chart of my own opinion of myself.
  */
 export function ProofSection() {
   return (
     <Reveal as="section" className="py-12">
       <SectionHead
         title="Proof, not promises"
-        deck="The clearest way to judge whether I can build your system is to read how I built one."
+        deck="The clearest way to judge whether I can build things is to read how I built one."
       />
 
       <div className="grid gap-4 lg:grid-cols-5">

@@ -67,9 +67,9 @@ const JOURNEY_MILESTONES = [
     // be true if the 2010s were hobby years, but a reader comparing the two pages will notice.
     // Worth a look when you next touch your bio.
     era: '2025-now',
-    title: 'Local & Private AI',
+    title: 'AiTomatic',
     description:
-      'Setting up private, local AI for businesses: models on their own hardware, RAG over their own documents, and honest audits. Plus Sanctuary, an offline on-device app.',
+      'Building on my own since December 2024: RAG pipelines, multi-agent tooling, entity resolution, and Sanctuary, an offline on-device app. Not being pursued commercially while I look for full-time work.',
     icon: Briefcase,
   },
 ] as const;
@@ -102,12 +102,10 @@ export function AboutPage() {
         </motion.p>
 
         {/*
-          The headline used to be "Why I Love Programming", above three paragraphs about
-          how magical it is to transform ideas into reality. The one thing on this page a
-          buyer actually needed (Odysseus, Sanctuary, "audits that sometimes conclude you
-          don't need me") was in a small box, below the fold, under a label reading
-          `current_focus`. The order is now the other way round: what I do, then why I love
-          doing it. The Matrix story is charm, and charm goes second.
+          The h1 is the first line of Tom's own answer to "why does this site exist", and
+          the paragraphs under it are the rest of it (ABOUT_CURRENT_FOCUS in content.ts).
+          It replaced "I build AI that businesses actually own" when the offer was shelved.
+          "Why I love this work" stays, one rung down: the charm goes second.
         */}
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
@@ -115,16 +113,18 @@ export function AboutPage() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-3 max-w-3xl font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
         >
-          I build AI that businesses actually own
+          You&apos;re probably wondering why this site exists.
         </motion.h1>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="fx-scrim mt-6 max-w-2xl leading-relaxed text-muted-foreground"
+          className="fx-scrim mt-6 max-w-2xl space-y-4 leading-relaxed text-muted-foreground"
         >
-          <p>{ABOUT_CURRENT_FOCUS}</p>
+          {ABOUT_CURRENT_FOCUS.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
           <div className="mt-4 flex flex-wrap gap-1.5">
             {ABOUT_CURRENT_FOCUS_TAGS.map((tag) => (
               <Badge key={tag} variant="secondary" className="text-[10px]">
@@ -137,11 +137,11 @@ export function AboutPage() {
 
       <Separator />
 
-      {/* The part that is not a sales pitch. It has earned its place, one rung down. */}
+      {/* The charm, one rung down. */}
       <MotionSection className="py-16">
         <SectionHead
           title="Why I love this work"
-          deck="The honest answer, which has nothing to do with business cases."
+          deck="The honest answer."
         />
         <div className="fx-scrim max-w-2xl space-y-4 leading-relaxed text-muted-foreground">
           <p>
@@ -253,16 +253,17 @@ export function AboutPage() {
 
       <Separator />
 
-      {/* The only way out of this page used to be deeper into the hobby content. The
-          timeline link survives, but as the secondary: someone who has read to the bottom
-          of an about page is deciding whether to talk to me, not whether to keep reading. */}
+      {/* Someone who has read to the bottom of an about page is deciding whether to talk
+          to me, not whether to keep reading, so the contact button leads and the timeline
+          is the secondary. */}
       <MotionSection className="py-16 text-center" delay={0.15}>
         <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
-          That is the background. What is the problem?
+          That&apos;s the background. Want a chat?
         </h2>
         <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-          If you have an AI bill you cannot explain, or data that should not be leaving the
-          building, that is the conversation I am most useful in.
+          I&apos;m after a full-time role: junior for general software, any non-senior level
+          for AI. If that lines up with something you&apos;re hiring for, I&apos;d like to hear
+          about it.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="xl" className="glow-pulse">

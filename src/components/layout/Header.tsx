@@ -8,14 +8,15 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 /**
- * Business-first: the offer comes before the portfolio. Someone arriving to hire Tom
- * should reach Services before Projects.
+ * Work first, then the person, then the story of how they got here. Dev Journey used to be
+ * mobile-only ("the offer comes before the portfolio"); with the offer shelved, the
+ * timeline is the career story an employer actually wants, so it earns a desktop slot.
  */
 const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
   { label: 'Projects', href: '/projects' },
   { label: 'About', href: '/about' },
+  { label: 'Dev Journey', href: '/updates' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -135,20 +136,6 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   {item.label}
                 </Link>
               ))}
-              {/* Dev Journey is not in the desktop nav, so without this it is
-                  unreachable on mobile except via the command palette. */}
-              <Link
-                to="/updates"
-                onClick={() => setMobileOpen(false)}
-                className={cn(
-                  'rounded-md px-4 py-2.5 font-mono text-sm transition-colors',
-                  location.pathname === '/updates'
-                    ? 'bg-accent text-primary'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                )}
-              >
-                Dev Journey
-              </Link>
               {onOpenPalette && (
                 <button
                   type="button"

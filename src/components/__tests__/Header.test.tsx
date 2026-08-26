@@ -24,7 +24,7 @@ describe('Header', () => {
     renderHeader();
     const nav = screen.getByRole('navigation', { name: /main navigation/i });
 
-    for (const label of ['Home', 'Projects', 'About', 'Services', 'Contact']) {
+    for (const label of ['Home', 'Projects', 'About', 'Dev Journey', 'Contact']) {
       expect(within(nav).getByRole('link', { name: label })).toBeInTheDocument();
     }
   });
