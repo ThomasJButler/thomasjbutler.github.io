@@ -22,7 +22,8 @@ const PERSON = {
     'Full Stack Developer working in Python and TypeScript: RAG pipelines, multi-agent tooling, entity resolution across public registers, and an on-device iOS app. Runs local models for personal use.',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'York',
+    addressLocality: 'Leeds',
+    addressRegion: 'West Yorkshire',
     addressCountry: 'GB',
   },
   sameAs: [

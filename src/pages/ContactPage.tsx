@@ -74,7 +74,7 @@ export function ContactPage() {
               <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="font-heading text-sm font-medium text-foreground">Location</p>
-                <p className="text-sm text-muted-foreground">York, UK</p>
+                <p className="text-sm text-muted-foreground">Leeds, Yorkshire</p>
                 <p className="text-sm text-muted-foreground">Available remotely</p>
               </div>
             </div>

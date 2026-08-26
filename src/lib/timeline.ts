@@ -12,7 +12,7 @@ export interface TimelineEntry {
   year: number;
   month: number;
   title: string;
-  location: string; // "Liverpool, UK"
+  location: string; // "Leeds, Yorkshire"
   institution: string;
   description: string;
   achievements: string[];
@@ -48,7 +48,7 @@ export const timelineData: TimelineEntry[] = [
     month: 7,
     date: formatDate(2026, 7),
     title: 'Running it local, for myself',
-    location: 'York, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Local models',
     description: 'Over a year now of running open models on my own machine: Ollama, private RAG over my own documents, and contributing to Odysseus, an open source local AI project. Sanctuary is built the same way, fully on-device. Personal use, not client work.',
     achievements: [
@@ -68,7 +68,7 @@ export const timelineData: TimelineEntry[] = [
     month: 9,
     date: formatDate(2025, 9),
     title: 'CodeCademy Mastering AI for Developers',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'CodeCademy',
     description: 'Completed intensive bootcamp focused on mastering AI development, advanced machine learning techniques, and building production-ready AI applications.',
     achievements: [
@@ -88,7 +88,7 @@ export const timelineData: TimelineEntry[] = [
     month: 7,
     date: formatDate(2025, 7),
     title: 'Updated Commercial Portfolio to v2.0',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Successfully migrated my commercial portfolio website to React v2.0 with significant improvements. A key feature of this update is the comprehensive Web Agency Showcase - detailed documentation of 10+ commercial projects specifically designed for employers and recruiters to review my professional work.',
     achievements: [
@@ -120,7 +120,7 @@ export const timelineData: TimelineEntry[] = [
     month: 7,
     date: formatDate(2025, 7),
     title: 'Completed ICT Bootcamp Certification',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Professional Development',
     description: 'Successfully completed an intensive ICT bootcamp, gaining comprehensive knowledge in hardware, cloud computing, networking, and Azure services. This certification has significantly expanded my technical skillset.',
     achievements: [
@@ -140,7 +140,7 @@ export const timelineData: TimelineEntry[] = [
     month: 6,
     date: formatDate(2025, 6),
     title: 'Built AI Comparison Showcase',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Created an innovative platform to compare responses from multiple AI models side-by-side in real-time. Features GPT-4, Claude 3.5, DeepSeek, and Perplexity with performance metrics and visualisations.',
     achievements: [
@@ -166,7 +166,7 @@ export const timelineData: TimelineEntry[] = [
     month: 5,
     date: formatDate(2025, 5),
     title: 'Built NewsPerspective - AI News Analysis',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Developed NewsPerspective, an innovative application that uses Azure and OpenAI to analyse news articles and rewrite headlines based on actual content to combat misinformation.',
     achievements: [
@@ -192,7 +192,7 @@ export const timelineData: TimelineEntry[] = [
     month: 4,
     date: formatDate(2025, 4),
     title: 'Created SQL-Ball Football Analytics',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Built an advanced football data analytics platform with natural language queries and AI insights. RAG-powered NL-to-SQL using a custom collated dataset of European football results.',
     achievements: [
@@ -218,7 +218,7 @@ export const timelineData: TimelineEntry[] = [
     month: 3,
     date: formatDate(2025, 3),
     title: 'Launched Premier League Oracle',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Created The Premier League Oracle, a comprehensive football prediction platform that uses data science and machine learning to provide objective match predictions.',
     achievements: [
@@ -244,7 +244,7 @@ export const timelineData: TimelineEntry[] = [
     month: 2,
     date: formatDate(2025, 2),
     title: 'Built AI Code Generator',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Created a production-ready code generation tool with AI assistance. Built with LangChain and React to generate code, unit tests, and documentation across multiple programming languages.',
     achievements: [
@@ -270,7 +270,7 @@ export const timelineData: TimelineEntry[] = [
     month: 1,
     date: formatDate(2025, 1),
     title: 'Updated Matrix Arcade with New Games',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Expanded the Matrix Arcade project with new games including Matrix Invaders. The arcade now features a comprehensive collection of retro-style games built with modern web technologies.',
     achievements: [
@@ -301,7 +301,7 @@ export const timelineData: TimelineEntry[] = [
     month: 12,
     date: formatDate(2024, 12),
     title: 'Career Transition & New Ventures',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Entrepreneurship',
     description: 'After being made redundant, I transformed this challenge into an opportunity. Created my Matrix-themed personal portfolio as my primary showcase, founded AiTomatic company, and began developing this commercial portfolio.',
     achievements: [
@@ -332,7 +332,7 @@ export const timelineData: TimelineEntry[] = [
     month: 12,
     date: formatDate(2024, 12),
     title: 'Created Personal Portfolio',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Built my first portfolio website from scratch using custom HTML, CSS, and JavaScript. Designed with a Matrix theme inspired by my favourite films, this became my primary showcase until transitioning to this professional commercial site.',
     achievements: [
@@ -363,7 +363,7 @@ export const timelineData: TimelineEntry[] = [
     month: 11,
     date: formatDate(2024, 11),
     title: 'Completed CSS Showcase Project',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Finished development of CSS Showcase, an interactive demonstration of advanced CSS animations and effects. This project serves as both a learning resource and a portfolio piece showcasing modern CSS capabilities.',
     achievements: [
@@ -394,7 +394,7 @@ export const timelineData: TimelineEntry[] = [
     month: 10,
     date: formatDate(2024, 10),
     title: 'Built Python Backend Collection',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Developed a comprehensive suite of Python applications showcasing various backend development skills. This collection demonstrates proficiency in API development, data processing, and machine learning implementations.',
     achievements: [
@@ -420,7 +420,7 @@ export const timelineData: TimelineEntry[] = [
     month: 9,
     date: formatDate(2024, 9),
     title: 'Created Big Bang Gallery',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Built a creative image gallery inspired by the big bang. This visual gallery showcases design work and creative experiments with stunning animations and interactive elements.',
     achievements: [
@@ -451,7 +451,7 @@ export const timelineData: TimelineEntry[] = [
     month: 8,
     date: formatDate(2024, 8),
     title: 'Built Dotnet React Calendar',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Created a full-stack calendar application using .NET and React. Initially started as a code assessment, continued development to master .NET backend development and C# programming.',
     achievements: [
@@ -482,7 +482,7 @@ export const timelineData: TimelineEntry[] = [
     month: 7,
     date: formatDate(2024, 7),
     title: 'Building AI Models',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'AI Development',
     description: 'Started creating custom AI models and applying machine learning knowledge practically. This marked a significant milestone in my AI journey, moving from theory to hands-on implementation.',
     achievements: [
@@ -502,7 +502,7 @@ export const timelineData: TimelineEntry[] = [
     month: 7,
     date: formatDate(2024, 7),
     title: 'Created LFC News Reddit App',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Project',
     description: 'Built a minimal Reddit app using React, Redux, and Reddit API to aggregate the latest transfer rumours across various football subreddits. Showcases state management and API integration skills.',
     achievements: [
@@ -522,7 +522,7 @@ export const timelineData: TimelineEntry[] = [
     month: 6,
     date: formatDate(2024, 6),
     title: 'Started ML and Python Deep Dive',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Self-Study',
     description: 'Began an intensive self-study programme focused on Machine Learning and advanced Python programming. Currently working through comprehensive courses and building practical ML projects.',
     achievements: [
@@ -542,7 +542,7 @@ export const timelineData: TimelineEntry[] = [
     month: 5,
     date: formatDate(2024, 5),
     title: 'Started CodePen Journey',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Creative Coding',
     description: 'Joined CodePen to practise and showcase creative coding experiments. This platform became my playground for exploring ideas beyond client requirements and CMS limitations encountered at work.',
     achievements: [
@@ -568,7 +568,7 @@ export const timelineData: TimelineEntry[] = [
     month: 4,
     date: formatDate(2024, 4),
     title: 'Experimenting with AI Tools',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Self-Study',
     description: 'Began deep exploration of AI tools and models, staying on top of the rapidly evolving AI industry. This period marked the beginning of my journey into practical AI implementation and understanding.',
     achievements: [
@@ -588,7 +588,7 @@ export const timelineData: TimelineEntry[] = [
     month: 9,
     date: formatDate(2023, 9),
     title: 'Secured First Professional Role',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Professional Career',
     description: 'Landed my first job in the tech industry, marking a significant milestone in my career transition. This role provided invaluable real-world experience and the opportunity to apply my self-taught skills in a professional environment.',
     achievements: [
@@ -608,7 +608,7 @@ export const timelineData: TimelineEntry[] = [
     month: 6,
     date: formatDate(2023, 6),
     title: 'Python Development & First Projects',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Personal Projects',
     description: 'Focused intensively on Python development, creating my first scripts and web applications. This period marked significant growth in practical programming skills and creative exploration with AI tools.',
     achievements: [
@@ -628,7 +628,7 @@ export const timelineData: TimelineEntry[] = [
     month: 2,
     date: formatDate(2023, 2),
     title: 'Cloud & Data Engineering Bootcamp',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Professional Training',
     description: 'Enrolled in an intensive Cloud and Data Engineering bootcamp from February to April 2023. This comprehensive programme provided hands-on experience with modern cloud technologies and data processing frameworks.',
     achievements: [
@@ -648,7 +648,7 @@ export const timelineData: TimelineEntry[] = [
     month: 11,
     date: formatDate(2022, 11),
     title: 'Started My Coding Journey',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Self-Directed Learning',
     description: 'Embarked on my programming journey, discovering a passion for technology and software development. This marked the beginning of an intensive self-learning period that would transform my career path.',
     achievements: [
@@ -668,7 +668,7 @@ export const timelineData: TimelineEntry[] = [
     month: 1,
     date: formatDate(2000, 1),
     title: 'Early Tech Passion & Life Journey',
-    location: 'Liverpool, UK',
+    location: 'Leeds, Yorkshire',
     institution: 'Life Experience',
     description: 'From childhood, I was fascinated by technology and gaming, loving the simplicity and UI design of classic games. Despite this passion, life took me on different paths: professional cricket, then commercial diving. It wasn\'t until AI emerged that I realised I could finally pursue my true calling.',
     achievements: [

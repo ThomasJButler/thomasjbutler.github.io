@@ -129,7 +129,7 @@ test.describe('page content checks', () => {
     await page.goto('/contact', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('text=Talk it through')).toBeVisible();
     // Contact info
-    await expect(page.locator('text=York, UK')).toBeVisible();
+    await expect(page.locator('text=Leeds, Yorkshire')).toBeVisible();
     await expect(page.locator('text=dev@thomasjbutler.me')).toBeVisible();
     // Form fields
     await expect(page.locator('input[name="name"]')).toBeVisible();
