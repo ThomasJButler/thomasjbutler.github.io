@@ -670,14 +670,12 @@ export const timelineData: TimelineEntry[] = [
     title: 'Early Tech Passion & Life Journey',
     location: 'Liverpool, UK',
     institution: 'Life Experience',
-    description: 'From childhood, I was fascinated by technology and gaming, loving the simplicity and UI design of classic games. Despite this passion, life took me on different paths - pursuing professional cricket and later commercial diving. It wasn\'t until AI emerged that I realised I could finally pursue my true calling.',
+    description: 'From childhood, I was fascinated by technology and gaming, loving the simplicity and UI design of classic games. Despite this passion, life took me on different paths: professional cricket, then commercial diving. It wasn\'t until AI emerged that I realised I could finally pursue my true calling.',
     achievements: [
-      'Childhood obsession with tech - jailbreaking iPod Touch, installing Cydia repos',
-      'Always the person with app ideas but no way to build them',
-      'Pursued professional cricket, then commercial diving careers',
-      'ADHD diagnosis brought clarity - realised I\'d always wanted to be a developer',
-      'AI tools like ChatGPT bridged the gap, making programming accessible',
-      'Now making up for lost time with intense dedication to coding'
+      'Childhood obsession with tech: jailbreaking an iPod Touch, installing Cydia repos',
+      'Pursued professional cricket, then commercial diving',
+      'Always the person with the app ideas and no way to build them',
+      'AI tools closed that gap, and I\'ve been making up for it since'
     ],
     links: [],
     icon: 'fa-heart',
