@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Reveal } from '@/components/fx/Reveal';
 import { OperatorHero } from '@/components/home/OperatorHero';
 import { ProofSection } from '@/components/home/ProofSection';
-import { NOW_COPY, NOW_TAGS } from '@/lib/content';
+import { LINKS, NOW_COPY, NOW_TAGS } from '@/lib/content';
 
 /*
  * What used to sit between the hero and the proof: a three-card teaser of the priced
@@ -70,7 +70,7 @@ export function HomePage() {
             </Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <a href="https://github.com/ThomasJButler" target="_blank" rel="noopener noreferrer">
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer">
               <GithubIcon className="size-3" /> GitHub
             </a>
           </Button>

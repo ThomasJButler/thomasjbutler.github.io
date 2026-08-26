@@ -6,6 +6,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { MotionToggle } from '@/components/system/MotionToggle';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { LINKS } from '@/lib/content';
 
 /**
  * Work first, then the person, then the story of how they got here. Dev Journey used to be
@@ -73,7 +74,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               </button>
             )}
             <a
-              href="https://github.com/ThomasJButler"
+              href={LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -82,7 +83,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               <GithubIcon className="size-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/thomasbutleruk"
+              href={LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -150,7 +151,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
               )}
               <div className="mt-2 flex items-center gap-2 border-t border-border pt-3">
                 <a
-                  href="https://github.com/ThomasJButler"
+                  href={LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -159,7 +160,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
                   <GithubIcon className="size-4" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/thomasbutleruk"
+                  href={LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

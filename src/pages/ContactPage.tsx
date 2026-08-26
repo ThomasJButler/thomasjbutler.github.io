@@ -133,7 +133,7 @@ export function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <a
-                  href="https://github.com/ThomasJButler"
+                  href={LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
@@ -142,13 +142,13 @@ export function ContactPage() {
                   github.com/ThomasJButler
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/thomasbutleruk/"
+                  href={LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
                 >
                   <LinkedinIcon className="size-4 shrink-0" />
-                  linkedin.com/in/thomasjbutler
+                  linkedin.com/in/thomasbutleruk
                 </a>
                 {/* The tip jar is back. It was removed while the page sold five-figure
                     engagements (a tip jar next to a price list tells the buyer which one you
