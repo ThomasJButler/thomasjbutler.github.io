@@ -128,7 +128,7 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 
 ### Qualifications
 - **AWS Qualified** | **Azure Qualified** | **Cisco Qualified** | **HubSpot Qualified**
-- Level 4 Software Developer Apprenticeship (2023-2024)
+- Level 4 Software Developer Apprenticeship, studied 2023-24
 - City & Guilds Level 2 ICT Systems Support (May 2025)
 - Machine Learning: Mastering Generative AI & Agents (September 2025)
 

@@ -587,15 +587,15 @@ export const timelineData: TimelineEntry[] = [
     year: 2023,
     month: 9,
     date: formatDate(2023, 9),
-    title: 'Secured First Professional Role',
+    title: 'Apprentice developer at Fuelius',
     location: 'Leeds, Yorkshire',
-    institution: 'Professional Career',
-    description: 'Landed my first job in the tech industry, marking a significant milestone in my career transition. This role provided invaluable real-world experience and the opportunity to apply my self-taught skills in a professional environment.',
+    institution: 'Fuelius',
+    description: 'First job in software, at a HubSpot partner agency. Sixteen months, twelve named clients, and a Level 4 Software Developer apprenticeship with Estio studied alongside it. Umbraco, HubSpot, C# and .NET, SCSS, and a lot of client calls.',
     achievements: [
-      'Applied coding skills in a professional setting',
-      'Gained experience working in agile development teams',
-      'Contributed to production-level code and systems',
-      'Expanded technical knowledge through on-the-job learning'
+      'Twelve named clients in sixteen months, an NHS trust and two arena venues among them',
+      'Implementation lead under a senior architect on a seven-brand HubSpot migration',
+      'Level 4 Software Developer apprenticeship with Estio, studied 2023-24',
+      'Umbraco, HubSpot and HubL, C#/.NET, SCSS, Azure DevOps'
     ],
     links: [],
     icon: 'fa-briefcase',
@@ -650,7 +650,7 @@ export const timelineData: TimelineEntry[] = [
     title: 'Started My Coding Journey',
     location: 'Leeds, Yorkshire',
     institution: 'Self-Directed Learning',
-    description: 'Embarked on my programming journey, discovering a passion for technology and software development. This marked the beginning of an intensive self-learning period that would transform my career path.',
+    description: 'Started teaching myself to code while still at the DWP, evenings and weekends. The beginning of an intensive self-learning period that turned into a career change.',
     achievements: [
       'Began learning programming fundamentals and computer science basics',
       'Discovered ChatGPT and used it as a learning companion',
@@ -661,6 +661,26 @@ export const timelineData: TimelineEntry[] = [
     icon: 'fa-flag-checkered',
     iconBg: '#10B981',
     category: 'personal'
+  },
+  {
+    id: 27,
+    year: 2021,
+    month: 1,
+    date: formatDate(2021, 1),
+    title: 'Work Coach at the DWP',
+    location: 'Leeds, Yorkshire',
+    institution: 'Department for Work and Pensions',
+    description: 'Two years in the Civil Service supporting young people on Universal Credit through the pandemic. Twenty face-to-face appointments a day and a caseload of 150. You can only help one person at a time in that job, which is where the idea of building tools instead came from.',
+    achievements: [
+      'Caseload of 150 young claimants through COVID-19',
+      'Twenty appointments a day, with case notes and referrals between them',
+      'Single point of contact for Diversity and Inclusion, running monthly sessions on hidden disabilities',
+      'Co-delivered a Teams live event to over 1,000 colleagues across Greater Manchester'
+    ],
+    links: [],
+    icon: 'fa-users',
+    iconBg: '#3B82F6',
+    category: 'career'
   },
   {
     id: 25,

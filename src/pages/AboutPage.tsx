@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
-import { ArrowRight, Terminal, Code, Bot, Briefcase } from 'lucide-react';
+import { ArrowRight, Terminal, Code, Bot, Briefcase, Users, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -42,35 +42,44 @@ const JOURNEY_MILESTONES = [
   {
     era: '2000s',
     title: 'The Beginning',
-    description: 'Started with HTML/CSS as a kid, fascinated by the web and inspired by The Matrix.',
+    description:
+      'Jailbreaking an iPod Touch, obsessed with The Matrix, and always the one with app ideas and no way to build them.',
     icon: Terminal,
   },
   {
-    era: '2010s',
-    title: 'Learning & Growth',
+    era: '2014-20',
+    title: 'Everything but code',
     description:
-      'Studied computing, learned JavaScript frameworks, and built first real projects.',
+      'Hospitality, events, a conveyancing desk in Southport, and two seasons of Victorian Premier League cricket in Melbourne. Not a line of code in any of it.',
+    icon: Briefcase,
+  },
+  {
+    era: '2021-23',
+    title: 'DWP Work Coach',
+    description:
+      "Twenty appointments a day, 150 people on the caseload, and I could only ever help one of them at a time. That's the whole reason I moved into software.",
+    icon: Users,
+  },
+  {
+    era: 'Nov 2022',
+    title: 'First line of code',
+    description:
+      'Started teaching myself while still at the DWP. Cloud Engineering and Data Science bootcamp with The Growth Company in 2023.',
     icon: Code,
   },
   {
     era: '2023-24',
-    title: 'AI Exploration',
+    title: 'Fuelius',
     description:
-      'Dove into AI/ML, completed bootcamps, built RAG applications and intelligent agents.',
-    icon: Bot,
+      'Sixteen months as an apprentice full-stack developer at a HubSpot partner agency. Twelve named clients, an NHS trust among them. Level 4 apprenticeship, studied 2023-24. Made redundant December 2024.',
+    icon: Building2,
   },
   {
-    // Refreshed from a stale "2025 / Current Focus / building production tools and creative
-    // experiments" to the actual current positioning. NOTE for Tom: the "2010s: studied
-    // computing, learned JS" milestone above sits oddly against the /updates timeline, which
-    // frames the journey as starting in 2022 (after cricket and commercial diving). Both may
-    // be true if the 2010s were hobby years, but a reader comparing the two pages will notice.
-    // Worth a look when you next touch your bio.
-    era: '2025-now',
+    era: '2024-now',
     title: 'AiTomatic',
     description:
-      'Building on my own since December 2024: RAG pipelines, multi-agent tooling, entity resolution, and Sanctuary, an offline on-device app. Not being pursued commercially while I look for full-time work.',
-    icon: Briefcase,
+      'Started building under AiTomatic. Solo, self-funded, no clients yet. RAG pipelines, multi-agent tooling, an entity-resolution engine across two government registers, and Sanctuary on native iOS, on-device. Not being pursued commercially while I look for full-time work.',
+    icon: Bot,
   },
 ] as const;
 
@@ -211,7 +220,7 @@ export function AboutPage() {
       <MotionSection className="py-16" delay={0.1}>
         <SectionHead
           title="How I got here"
-          deck="From HTML in a bedroom to AI systems in production, via a lot of debugging."
+          deck="From a standing start in 2022 to AI systems in production, by way of the DWP and a lot of debugging."
         />
 
         <div className="relative ml-4 space-y-4 border-l-2 border-primary/20 pl-8">
