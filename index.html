@@ -26,6 +26,15 @@
           var stored = localStorage.getItem('theme');
           var dark = stored ? stored === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches;
           if (dark) document.documentElement.classList.add('dark');
+
+          // Same call FxProvider's getInitialFx makes. Without it, a visitor who has
+          // switched effects off still gets a frame of scanlines and vignette before the
+          // provider's effect runs. This only sets a class; React renders the same markup
+          // either way, so it cannot cause a hydration mismatch.
+          var fx = localStorage.getItem('v5:fx');
+          var fxOn = fx === 'on' ? true : fx === 'off' ? false
+            : !matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!fxOn) document.documentElement.classList.add('fx-off');
         } catch (e) {
           document.documentElement.classList.add('dark');
         }
