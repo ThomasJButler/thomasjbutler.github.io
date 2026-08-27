@@ -100,15 +100,17 @@ npm run dev          # localhost:3000
 
 ## Quality
 
-Lighthouse, desktop, against a production build. Measured 27 August 2026, not aspirational:
+Lighthouse, desktop, against a production build, on `/` and `/projects`. Measured
+27 August 2026, not aspirational:
 
-| | Score |
-|---|---|
-| Accessibility | **100** |
-| Best Practices | **100** |
-| SEO | **100** |
-| Agentic Browsing | **97** |
-| Cumulative Layout Shift | **0.00** |
+| | `/` | `/projects` |
+|---|---|---|
+| Accessibility | **100** | **100** |
+| Best Practices | **100** | **100** |
+| SEO | **100** | **100** |
+| Agentic Browsing | 97 | **100** |
+
+Cumulative Layout Shift is **0.00**, from a separate trace.
 
 That CLS number was 0.144 once. Getting it to zero took three things that all look like dead weight to anyone tidying up: a full-screen loader reservation, a hidden per-character sizer inside the decode-in text, and metric-matched fallback `@font-face` blocks (Orbitron is 18.9% wider than Arial, so every heading re-wrapped on font load). They're all commented where they live.
 
