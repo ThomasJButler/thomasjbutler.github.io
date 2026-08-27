@@ -67,7 +67,7 @@ export function UpdatesPage() {
           transition={{ duration: 0.4 }}
           className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
         >
-          // timeline
+          _Timeline
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -210,7 +210,7 @@ export function UpdatesPage() {
 
       {/* CTA */}
       <section className="pb-24 text-center">
-        <p className="font-mono text-xs text-muted-foreground">// what&apos;s next?</p>
+        <p className="font-mono text-xs text-muted-foreground">_what&apos;s next?</p>
         <h2 className="mt-2 font-heading text-2xl font-bold text-foreground">
           Let&apos;s Build Something
         </h2>

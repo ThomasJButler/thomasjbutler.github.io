@@ -43,11 +43,19 @@ export function ContactPage() {
       <LinkedInBanner />
       {/* Page Header */}
       <section className="py-16 text-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
+        >
+          _Contact
+        </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+          className="mt-3 font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
         >
           Talk it through
         </motion.h1>

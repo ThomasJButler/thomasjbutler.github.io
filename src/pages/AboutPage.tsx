@@ -107,7 +107,7 @@ export function AboutPage() {
           transition={{ duration: 0.4 }}
           className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
         >
-          // about
+          _About
         </motion.p>
 
         {/*

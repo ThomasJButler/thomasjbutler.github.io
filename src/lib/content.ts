@@ -28,7 +28,7 @@ export const LINKS = {
  * here even though the wordmark says it too: a hiring manager reads the H1, not the header.
  */
 
-export const HERO_EYEBROW = '// software developer · leeds, yorkshire';
+export const HERO_EYEBROW = '_software developer · leeds, yorkshire';
 
 /** Two lines on purpose: the second line is the turn. */
 export const HERO_H1 = ["Hey, I'm Tom.", 'I build things.'];
