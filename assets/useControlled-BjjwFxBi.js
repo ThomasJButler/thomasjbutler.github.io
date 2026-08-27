@@ -1,1 +1,0 @@
-import{r as e}from"./main-CvewOJka.js";function t({controlled:t,default:a,name:r,state:u="value"}){const{current:n}=e.useRef(void 0!==t),[o,s]=e.useState(a);return[n?t:o,e.useCallback(e=>{n||s(e)},[])]}export{t as u};
