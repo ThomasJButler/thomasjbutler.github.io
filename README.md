@@ -6,6 +6,8 @@ My personal site. Matrix-themed, prerendered, and built from scratch because I w
 
 React 19, TypeScript, Vite 7, Tailwind 4. Cursor-reactive Matrix rain on a canvas, CRT scanlines, a terminal-style command palette, and a light theme for people who would rather not.
 
+<img width="637" height="360" alt="The site's home page: the hero, the terminal console and the Matrix rain behind them" src="https://github.com/user-attachments/assets/e2bb8433-c148-4bcb-afea-b9b1f2804a06" />
+
 ---
 
 ## What's in here
