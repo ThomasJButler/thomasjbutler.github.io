@@ -119,15 +119,14 @@ export function ProjectsPage() {
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
-      {/* Same header shape as About and the case study: an underscore-prefixed label,
-          then the heading. The eyebrow reads as a path rather than as a repeat of the h1,
-          which is why "// projects" over "Projects" did not work and this does. */}
+      {/* The label IS the h1. There was a big "Projects" heading under it saying the same
+          word a second time; this keeps the page's one h1 for crawlers and screen readers
+          without printing the title twice. */}
       <MotionSection>
-        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+        <h1 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           _Projects
-        </p>
-        <h1 className="mt-3 font-heading text-3xl font-bold tracking-tight">Projects</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        </h1>
+        <p className="mt-3 text-sm text-muted-foreground">
           AI, web and mobile work, plus the learning projects that came first.
         </p>
       </MotionSection>
