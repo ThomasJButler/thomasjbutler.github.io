@@ -203,12 +203,12 @@ export function CaseStudyPage() {
 
       <Reveal as="section" className="pb-20 text-center">
         <h2 className="font-heading text-2xl font-bold tracking-tight text-foreground">
-          Got a process that looks like this?
+          Work on problems like this?
         </h2>
         <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-          If you are pasting your own documents into someone else&apos;s API to get work
-          done, there is usually a better way. It starts with an honest look at what you
-          are actually spending and sending.
+          I&apos;m after a full-time role where this is the day job: retrieval, grounding,
+          evaluation, and the unglamorous parts that make an AI answer checkable. If that
+          sounds like your team, I&apos;d like to hear about it.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="xl" className="glow-pulse">
@@ -217,7 +217,7 @@ export function CaseStudyPage() {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link to="/services">What I build</Link>
+            <Link to="/projects">See the projects</Link>
           </Button>
         </div>
       </Reveal>

@@ -2,10 +2,8 @@ import { lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
-import { ServicesPage } from './pages/ServicesPage';
 
-// HomePage and ServicesPage are imported eagerly, not lazily. They are the two landing
-// routes — Home for every cold visit, Services for the link from the commercial site —
+// HomePage is imported eagerly, not lazily. It is the landing route for every cold visit,
 // and code-splitting a landing page only buys a second round trip. On a throttled
 // connection the Suspense fallback rendered first and was then swapped for the real
 // page, which was the site's entire layout-shift score. Everything else stays lazy.
@@ -31,19 +29,21 @@ export function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="projects" element={<ProjectsPage />} />
-        <Route path="services" element={<ServicesPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="updates" element={<UpdatesPage />} />
         <Route path="case-study" element={<CaseStudyPage />} />
 
-        {/* Legacy redirects */}
+        {/* Legacy redirects. /services and /skills were real routes once (the Local & Private
+            AI offer, shelved August 2026; see CLAUDE.md). Inbound links from LinkedIn and the
+            commercial site still land on the person rather than a 404. */}
         <Route path="react.html" element={<Navigate to="/" replace />} />
         <Route path="index.html" element={<Navigate to="/" replace />} />
         <Route path="about.html" element={<Navigate to="/about" replace />} />
-        <Route path="skills.html" element={<Navigate to="/services" replace />} />
-        <Route path="skills" element={<Navigate to="/services" replace />} />
+        <Route path="skills.html" element={<Navigate to="/about" replace />} />
+        <Route path="skills" element={<Navigate to="/about" replace />} />
         <Route path="projects.html" element={<Navigate to="/projects" replace />} />
-        <Route path="services.html" element={<Navigate to="/services" replace />} />
+        <Route path="services.html" element={<Navigate to="/about" replace />} />
+        <Route path="services" element={<Navigate to="/about" replace />} />
         <Route path="contact.html" element={<Navigate to="/contact" replace />} />
         <Route path="sitemap.html" element={<Navigate to="/" replace />} />
         <Route path="sitemap" element={<Navigate to="/" replace />} />

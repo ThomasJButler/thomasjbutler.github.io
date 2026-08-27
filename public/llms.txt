@@ -1,24 +1,16 @@
 # Tom Butler
 
-> Full Stack AI Engineer in York, UK. I set up private, local AI systems for businesses: open models running on their own hardware, private RAG over their own documents, and honest audits of what AI is actually costing them. The theme of everything: AI you own, not AI you rent.
+> Software developer in Leeds, Yorkshire. Career changer: hospitality, two years as a DWP Work Coach, then a standing start in late 2022 to building AI systems. Currently looking for full-time work: junior for general software, any non-senior level for AI. This site is the personal work, built because I wanted it to exist. The paid work is at https://thomasjbutler.me.
 
 Contact: dev@thomasjbutler.me
 
-## Services
-
-- [Services](https://thomasjbutler.github.io/services): Local & Private AI (Ollama and open-model LLM setups, private RAG knowledge systems, AI cost and privacy audits), plus web apps, backend and APIs, AI automation, mobile applications, design, and consultancy. Includes fixed-fee pricing (AI Cost & Privacy Audit from £6,375; Local LLM Setup from £12,750; Private RAG System from £18,375; Care & Tuning retainer from £1,425/month), the revision and iteration policy, and an FAQ covering hardware, GDPR, exactly what does and does not leave the machine, how the setup is hardened, and when NOT to move to local AI.
-
-## Privacy, stated precisely
-
-Your data never leaves the machine. The model itself arrives via a one-off download from a registry, at a time you choose, before any of your documents are near it. After that there is no API call, no per-query egress, and no third-party processor to assess. Hardening is part of the setup: the Ollama API is bound to localhost and put behind auth rather than left listening on 0.0.0.0, automatic update checks are disabled, and models are pre-pulled, so the machine can be genuinely air-gapped if it needs to be.
-
 ## Work
 
-- [Case study](https://thomasjbutler.github.io/case-study): ISQ Agent, a RAG agent that drafts supplier security questionnaires, grounds every answer in the customer's own policy documents with citations, scores confidence on each answer, and routes weak ones to a human. Python/FastAPI RAG engine with an n8n orchestration tier, 480+ tests. The showcase build ran on hosted models (Claude, Voyage, Pinecone); the model sits behind an interface, so the same pipeline runs against open models on the customer's own hardware.
-- [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and creative projects, including ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Sanctuary (an offline, on-device iOS app for neurodiverse users).
-- [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from first HTML to production AI systems.
+- [Case study](https://thomasjbutler.github.io/case-study): ISQ Agent, a RAG agent that drafts supplier security questionnaires, grounds every answer in the organisation's own policy documents with citations, scores confidence on each answer, and routes weak ones to a human. Python/FastAPI RAG engine with an n8n orchestration tier, 480+ tests. Built for a technical assessment with RiverAI and presented in person. The build ran on hosted models (Claude, Voyage, Pinecone); the model sits behind an interface, so the same pipeline runs against open models on your own hardware.
+- [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and learning projects, including Sanctuary (an offline, on-device iOS app for neurodiverse users), ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Version TimeTravel (nine versions of this site, every one still running).
+- [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from the first line of code in November 2022 to production AI systems, by way of the DWP and an agency apprenticeship.
 
 ## About
 
-- [About](https://thomasjbutler.github.io/about): background, tech stack, and current focus. Contributes to Odysseus, an open source local AI project.
-- [Contact](https://thomasjbutler.github.io/contact): get in touch about a project.
+- [About](https://thomasjbutler.github.io/about): why this site exists, the tech stack, and how I got here. Runs local models (Ollama) for personal use and contributes to Odysseus, an open source local AI project.
+- [Contact](https://thomasjbutler.github.io/contact): get in touch about a role, or just say hello.

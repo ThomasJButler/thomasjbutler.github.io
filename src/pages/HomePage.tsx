@@ -5,22 +5,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Reveal } from '@/components/fx/Reveal';
 import { OperatorHero } from '@/components/home/OperatorHero';
-import { ServicesTeaser } from '@/components/home/ServicesTeaser';
-import { WhyLocalAiStrip } from '@/components/home/WhyLocalAiStrip';
 import { ProofSection } from '@/components/home/ProofSection';
-import { NewsletterStrip } from '@/components/NewsletterStrip';
-import { NOW_COPY, NOW_TAGS } from '@/lib/content';
+import { LINKS, NOW_COPY, NOW_TAGS } from '@/lib/content';
 
 /*
- * What used to live here: self-assessed percentage skill bars ("React 95%") and a stat
- * grid reading "Uptime 99.9%" and "AI Models 7".
- *
- * Both are gone, and their absence is the point. A buyer scrolling from an £18,375 RAG
- * quote to a bar chart of my own opinion of myself is being told, loudly, that this is a
- * junior portfolio. Uptime of *what*, measured by *whom*? Numbers nobody can check are
- * worth less than no numbers, because they teach the reader to discount the ones that
- * are checkable — and the checkable ones (60-80% saved, 0 bytes to third parties) are
- * already doing real work two sections above.
+ * What used to sit between the hero and the proof: a three-card teaser of the priced
+ * offers and a "why local AI" argument with a rent-vs-own comparison. Both went with the
+ * Local & Private AI positioning (shelved August 2026, tag v-local-ai-2026-08). The
+ * self-assessed skill bars and the "Uptime 99.9%" stat grid went a version earlier and
+ * are not coming back either: numbers nobody can check teach the reader to discount the
+ * ones that are checkable.
  */
 
 export function HomePage() {
@@ -31,19 +25,9 @@ export function HomePage() {
       <OperatorHero />
 
       <div id="below" className="fx-page mx-auto max-w-5xl px-6">
-      {/*
-        Business-first. Someone landing here to hire Tom meets the offer and the
-        argument for it before they meet the skill bars and the commit feed. A fellow
-        developer still finds all of that — it just sits below the fold now.
-      */}
-      <ServicesTeaser />
-
-      <WhyLocalAiStrip />
-
       {/* ═══ Evidence ═══
-          The buyer has had the offer and the argument. What they want next is proof that
-          the person making it has actually done it, so this is the case study and the
-          real, dated work — not a self-assessment. */}
+          The hero has said who this is. What the reader wants next is proof: a system
+          Tom built and can describe in detail, plus real, dated work. */}
       <ProofSection />
 
       {/* ═══ Currently Working On ═══ */}
@@ -65,11 +49,8 @@ export function HomePage() {
       </Reveal>
 
       {/* ═══ The Matrix origin story ═══
-          Kept, because it is genuinely charming and it is the reason this site looks like
-          it does. What is gone is the ghost button that sat here pointing at a *different
-          portfolio*: the last thing a buyer saw before the newsletter was an invitation to
-          leave. The remaining links go deeper into this site, not out of it. */}
-      <Reveal as="section" className="py-6 pb-12">
+          Kept, because it is charming and it is the reason this site looks like it does. */}
+      <Reveal as="section" className="py-6 pb-16">
         <div className="overflow-hidden rounded-lg border border-border/30">
           <div className="border-b border-border/20 bg-muted/20 px-4 py-1.5">
             <span className="font-mono text-[10px] text-muted-foreground/80">$ cat about.md</span>
@@ -89,7 +70,7 @@ export function HomePage() {
             </Link>
           </Button>
           <Button asChild variant="ghost" size="sm">
-            <a href="https://github.com/ThomasJButler" target="_blank" rel="noopener noreferrer">
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer">
               <GithubIcon className="size-3" /> GitHub
             </a>
           </Button>
@@ -104,10 +85,6 @@ export function HomePage() {
           </Button>
         </div>
       </Reveal>
-
-        <section className="pb-16">
-          <NewsletterStrip />
-        </section>
       </div>
     </>
   );

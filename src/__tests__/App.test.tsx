@@ -18,8 +18,8 @@ describe('App', () => {
       </Providers>
     );
 
-    // The hero leads with the argument, not a greeting: "AI you own, not AI you rent."
-    expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(/AI you own/i);
+    // A greeting again: the argument ("AI you own") went with the shelved offer.
+    expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(/hey, i'm tom/i);
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();

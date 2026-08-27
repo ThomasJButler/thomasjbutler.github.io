@@ -18,7 +18,7 @@ import { ProjectDetailModal } from '@/components/ProjectDetailModal';
 import { ProjectCover } from '@/components/projects/ProjectCover';
 import { MotionSection } from '@/components/MotionSection';
 import { SectionHead } from '@/components/SectionHead';
-import { DecodeText } from '@/components/fx/DecodeText';
+import { Separator } from '@/components/ui/separator';
 import { useHydrated } from '@/hooks/useHydrated';
 
 const featuredProjects = projects.filter((p) => p.featured);
@@ -119,15 +119,16 @@ export function ProjectsPage() {
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
+      {/* No "// projects" eyebrow above this: it sat directly over an h1 reading
+          "Projects", so the page opened by saying its own name twice. */}
       <MotionSection>
-        <p className="font-mono text-xs tracking-[0.2em] text-primary/90">
-          <DecodeText text="// projects" step={20} />
-        </p>
-        <h1 className="mt-2 font-heading text-3xl font-bold tracking-tight">Projects</h1>
+        <h1 className="font-heading text-3xl font-bold tracking-tight">Projects</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          A collection of AI, web, and creative projects.
+          AI, web and mobile work, plus the learning projects that came first.
         </p>
       </MotionSection>
+
+      <Separator className="mt-10" />
 
       {/* Featured Projects */}
       {activeCategory === 'all' && featuredProjects.length > 0 && (
@@ -193,17 +194,21 @@ export function ProjectsPage() {
               </motion.div>
             ))}
           </div>
+          <Separator className="mt-14" />
         </section>
       )}
 
       {/* Filter tabs */}
       <section className="mt-14">
-        <SectionHead title="Everything" deck="Filter by the kind of work you came looking for." />
+        <SectionHead
+          title="Everything"
+          deck="Some of these were built to learn something specific. Some were built because I wanted them to exist. The tags tell you which."
+        />
         <Tabs
           value={activeCategory}
           onValueChange={(v: string | number | null) => setActiveCategory(String(v ?? 'all'))}
         >
-          {/* h-auto: TabsList is a fixed h-8 box, and with seven tabs it wraps below
+          {/* h-auto: TabsList is a fixed h-8 box, and with six tabs it wraps below
               ~540px. The wrapped rows then have to share that 32px, while each
               trigger sizes itself against the container — so the tabs overlapped and
               spilled out of the pill on a phone. */}
@@ -312,6 +317,8 @@ export function ProjectsPage() {
           </AnimatePresence>
         </div>
       </section>
+
+      <Separator />
 
       {/* The grid used to dead-end here. Someone who has read this far is interested and
           had nowhere to go: the case study is the one that turns a browse into a brief. */}

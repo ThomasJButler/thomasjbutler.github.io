@@ -1,5 +1,6 @@
 import { Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { LINKS } from '@/lib/content';
 
 export function Footer() {
   return (
@@ -17,7 +18,7 @@ export function Footer() {
         </p>
         <div className="flex items-center gap-3">
           <a
-            href="https://github.com/ThomasJButler"
+            href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -26,7 +27,7 @@ export function Footer() {
             <GithubIcon className="size-4" />
           </a>
           <a
-            href="https://www.linkedin.com/in/thomasbutleruk"
+            href={LINKS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -49,6 +50,15 @@ export function Footer() {
             className="font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary"
           >
             TimeTravel
+          </a>
+          <span className="text-muted-foreground/30">|</span>
+          <a
+            href={LINKS.coffee}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary"
+          >
+            BuyMeACoffee
           </a>
         </div>
       </div>

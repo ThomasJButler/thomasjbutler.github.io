@@ -44,7 +44,7 @@ describe('ContactPage', () => {
 
     // "Get in Touch" became "Talk it through": one CTA vocabulary across the whole site.
     expect(screen.getByRole('heading', { level: 1, name: /talk it through/i })).toBeInTheDocument();
-    expect(screen.getByText('York, UK')).toBeInTheDocument();
+    expect(screen.getByText('Leeds, Yorkshire')).toBeInTheDocument();
     expect(screen.getByText('dev@thomasjbutler.me')).toBeInTheDocument();
   });
 

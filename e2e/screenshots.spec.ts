@@ -5,7 +5,6 @@ const pages = [
   { name: 'home', route: '/' },
   { name: 'about', route: '/about' },
   { name: 'projects', route: '/projects' },
-  { name: 'services', route: '/services' },
   { name: 'contact', route: '/contact' },
   { name: 'updates', route: '/updates' },
   // Added for the v5 archive in version-timetravel. The case study did not exist in v4, so a
@@ -55,17 +54,16 @@ for (const theme of themes) {
 
 // Page-specific content assertions
 test.describe('page content checks', () => {
-  test('home page has hero and system status dashboard', async ({ page }) => {
+  test('home page has hero and proof section', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('text=Hey, I\'m Tom')).toBeVisible();
-    await expect(page.locator('text=Full Stack AI Engineer')).toBeVisible();
-    // System status dashboard
+    await expect(page.locator('text=software developer · leeds, yorkshire')).toBeVisible();
+    // Proof section: the case study card and the "recently" card
     await autoScroll(page);
     await page.waitForTimeout(1000);
-    await expect(page.locator('text=system_status')).toBeVisible();
-    // Stats + skill/activity cards
+    await expect(page.locator('text=case_study')).toBeVisible();
     const cards = page.locator('[data-slot="card"]');
-    expect(await cards.count()).toBeGreaterThanOrEqual(4);
+    expect(await cards.count()).toBeGreaterThanOrEqual(2);
   });
 
   test('projects page has filter tabs and project cards', async ({ page }) => {
@@ -101,9 +99,9 @@ test.describe('page content checks', () => {
 
   test('about page has tech stack tabs and journey', async ({ page }) => {
     await page.goto('/about', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=Why I Love Programming')).toBeVisible();
+    await expect(page.locator('text=why this site exists')).toBeVisible();
     // Tech stack tabs
-    await expect(page.locator('[data-slot="tabs-trigger"]')).toHaveCount(4, { timeout: 5000 });
+    await expect(page.locator('[data-slot="tabs-trigger"]')).toHaveCount(5, { timeout: 5000 });
     // Journey milestone cards
     await autoScroll(page);
     await page.waitForTimeout(500);
@@ -127,40 +125,11 @@ test.describe('page content checks', () => {
     await expect(page.locator('text=LangChain')).toBeVisible();
   });
 
-  test('services page has service cards and accordion', async ({ page }) => {
-    await page.goto('/services', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=What I Build')).toBeVisible();
-    // Service cards
-    const serviceCards = page.locator('[data-slot="card"]');
-    await expect(serviceCards.first()).toBeVisible({ timeout: 5000 });
-    expect(await serviceCards.count()).toBeGreaterThanOrEqual(4);
-    // Accordion triggers
-    await autoScroll(page);
-    await page.waitForTimeout(500);
-    const accordionTriggers = page.locator('[data-slot="accordion-trigger"]');
-    expect(await accordionTriggers.count()).toBeGreaterThanOrEqual(1);
-  });
-
-  test('services accordion expands', async ({ page }) => {
-    await page.goto('/services', { waitUntil: 'domcontentloaded' });
-    await autoScroll(page);
-    await page.waitForTimeout(1000);
-
-    // Click first accordion trigger
-    const trigger = page.locator('[data-slot="accordion-trigger"]').first();
-    await trigger.click();
-    await page.waitForTimeout(500);
-
-    // Content should be visible
-    const content = page.locator('[data-slot="accordion-content"]').first();
-    await expect(content).toBeVisible();
-  });
-
   test('contact page has form and info', async ({ page }) => {
     await page.goto('/contact', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=Get in Touch')).toBeVisible();
+    await expect(page.locator('text=Talk it through')).toBeVisible();
     // Contact info
-    await expect(page.locator('text=York, UK')).toBeVisible();
+    await expect(page.locator('text=Leeds, Yorkshire')).toBeVisible();
     await expect(page.locator('text=dev@thomasjbutler.me')).toBeVisible();
     // Form fields
     await expect(page.locator('input[name="name"]')).toBeVisible();
@@ -191,7 +160,7 @@ test.describe('page content checks', () => {
     await page.waitForTimeout(1000);
     // Check specific milestones exist
     await expect(page.locator('text=The Beginning')).toBeVisible();
-    await expect(page.locator('text=Full Stack AI Engineering')).toBeVisible();
+    await expect(page.locator('text=Started My Coding Journey')).toBeVisible();
     // Check we have multiple timeline cards
     const cards = page.locator('[data-slot="card"]');
     expect(await cards.count()).toBeGreaterThanOrEqual(8);
@@ -213,12 +182,12 @@ test.describe('page content checks', () => {
     // Navigate to About
     await page.locator('nav a', { hasText: 'About' }).first().click();
     await page.waitForURL('/about');
-    await expect(page.locator('text=Why I Love Programming')).toBeVisible();
+    await expect(page.locator('text=why this site exists')).toBeVisible();
 
     // Navigate to Contact
     await page.locator('nav a', { hasText: 'Contact' }).first().click();
     await page.waitForURL('/contact');
-    await expect(page.locator('text=Get in Touch')).toBeVisible();
+    await expect(page.locator('text=Talk it through')).toBeVisible();
   });
 
   test('header is sticky and visible on scroll', async ({ page }) => {

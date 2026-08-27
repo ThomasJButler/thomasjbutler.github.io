@@ -15,8 +15,8 @@ export const SITE = 'https://thomasjbutler.github.io';
  * `module` names the page's source file when the route is code-split (React.lazy in App.tsx).
  * The prerender looks it up in Vite's build manifest and emits a <link rel="modulepreload">
  * so the browser can fetch the route chunk in parallel with the entry chunk instead of
- * waiting for main-*.js to execute the dynamic import first. Home ('/') and services are
- * statically imported (already in the entry chunk), so they have no module and no preload.
+ * waiting for main-*.js to execute the dynamic import first. Home ('/') is statically
+ * imported (already in the entry chunk), so it has no module and no preload.
  *
  * `image` is the social card, a filename in public/ that the prerender makes absolute. A
  * route without one falls back to the sitewide card. These live in public/ rather than on
@@ -27,22 +27,9 @@ export const ROUTE_META = [
   {
     path: '/',
     file: 'index',
-    title: 'Tom Butler | Local & Private AI for business',
+    title: 'Tom Butler | Software developer, Leeds',
     description:
-      'I set up private AI that runs on your own hardware. Same results as the APIs for everyday work, no per-token bills, and your data never leaves the building.',
-  },
-  {
-    path: '/services',
-    file: 'services',
-    image: 'og-services.png',
-    imageAlt:
-      'Local & Private AI: the results you need for everyday work, on your own hardware, with no per-token bills.',
-    title: 'Local & Private AI for business | Tom Butler',
-    description:
-      // Keep this figure in step with PRICING[0].price in src/lib/content.ts. It is the one
-      // copy of a price with no test behind it: the drift suite checks the JSON-LD and
-      // llms.txt, but nothing fails if this meta description goes stale.
-      'Local LLM setups, private RAG, and honest AI cost and privacy audits. Fixed fees from £6,375, and I will tell you when local AI is the wrong answer.',
+      'Software developer in Leeds, Yorkshire. Projects built because I wanted them to exist: on-device iOS, RAG pipelines, entity resolution, and a site where every version still runs.',
   },
   {
     path: '/case-study',
@@ -59,27 +46,27 @@ export const ROUTE_META = [
     path: '/projects',
     file: 'projects',
     module: 'src/pages/ProjectsPage.tsx',
-    title: 'Projects | Tom Butler, Full Stack AI Engineer',
+    title: 'Projects | Tom Butler',
     description:
-      'AI, web and mobile work: model comparison tooling, natural-language SQL, document Q&A with RAG, automated PR review, and an offline on-device iOS app.',
+      'AI, web and mobile work: an offline on-device iOS app, document Q&A with RAG, natural-language SQL, automated PR review, and the learning projects that came first.',
   },
   {
     path: '/about',
     file: 'about',
     module: 'src/pages/AboutPage.tsx',
-    title: 'About | Tom Butler, Full Stack AI Engineer',
+    title: 'About | Tom Butler',
     description:
-      'Full Stack AI Engineer in York. Private and local AI for business, a contributor to open source local AI, and building Sanctuary, an offline on-device app.',
+      'Career changer. Hospitality, two years as a DWP Work Coach, then a standing start in late 2022 to shipping AI systems. Software developer in Leeds, Yorkshire.',
   },
   {
     path: '/contact',
     file: 'contact',
     module: 'src/pages/ContactPage.tsx',
     image: 'og-contact.png',
-    imageAlt: 'Let’s build something you own.',
+    imageAlt: 'Talk it through. Get in touch with Tom Butler.',
     title: 'Talk it through | Tom Butler',
     description:
-      'Start with a fixed-fee audit of what AI is actually costing you. No obligation, and if local AI is wrong for you I will say so in writing.',
+      'Looking for full-time work: junior for general software, any non-senior level for AI. Tell me about the role, or just say hello.',
   },
   {
     path: '/updates',
@@ -87,7 +74,7 @@ export const ROUTE_META = [
     module: 'src/pages/UpdatesPage.tsx',
     title: 'Dev Journey | Tom Butler',
     description:
-      'The road from a kid watching green code rain in The Matrix to building private AI systems for businesses for a living.',
+      'The road from a kid watching green code rain in The Matrix to building AI systems, by way of cricket, the DWP and an agency apprenticeship.',
   },
 ];
 

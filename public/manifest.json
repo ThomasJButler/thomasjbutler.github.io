@@ -1,7 +1,7 @@
 {
-  "name": "Tom Butler — Full Stack AI Engineer",
+  "name": "Tom Butler | Software developer",
   "short_name": "Tom Butler",
-  "description": "Private, local AI systems for businesses: local LLM setups, private RAG knowledge systems, and AI cost and privacy audits.",
+  "description": "Software developer in Leeds, Yorkshire. Personal projects: on-device iOS, RAG pipelines, entity resolution, and a site where every version still runs.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -27,5 +27,5 @@
       "purpose": "maskable"
     }
   ],
-  "categories": ["business", "productivity", "developer-tools"]
+  "categories": ["productivity", "developer-tools"]
 }

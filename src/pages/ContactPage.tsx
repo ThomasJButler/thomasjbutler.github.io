@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react';
 import { m as motion } from 'framer-motion';
-import {
-  Mail,
-  MapPin,
-  Clock,
-  Phone,
-  ArrowRight,
-  MessageSquare,
-  FileText,
-  Rocket,
-  Headphones,
-  Terminal,
-} from 'lucide-react';
+import { Mail, MapPin, Clock, Phone, ArrowRight, Coffee, Terminal } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { LINKS } from '@/lib/content';
 import { LinkedInBanner } from '@/components/LinkedInBanner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -61,18 +51,16 @@ export function ContactPage() {
         >
           Talk it through
         </motion.h1>
-        {/* "Whether it's a project, opportunity, or just a chat about code" was the old
-            line. "Opportunity" is what you write when you are hoping to be offered a job,
-            and it is the last word a buyer should read before a contact form that starts a
-            five-figure engagement. */}
+        {/* Says what Tom is after, in one line, before the form. An employer's silent
+            question is "is he actually available", and this answers it. */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-4 max-w-xl text-muted-foreground"
         >
-          Tell me what you are spending on AI, and what your data is not allowed to do. I
-          will tell you straight whether I can help, and what it would cost.
+          Looking for full-time work. Junior for general software, any non-senior level for
+          AI. Tell me about the role, or just say hello. I usually reply within a day or two.
         </motion.p>
       </section>
 
@@ -86,7 +74,7 @@ export function ContactPage() {
               <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="font-heading text-sm font-medium text-foreground">Location</p>
-                <p className="text-sm text-muted-foreground">York, UK</p>
+                <p className="text-sm text-muted-foreground">Leeds, Yorkshire</p>
                 <p className="text-sm text-muted-foreground">Available remotely</p>
               </div>
             </div>
@@ -119,23 +107,18 @@ export function ContactPage() {
               </div>
             </div>
 
-            {/*
-              Availability, framed as a consultant's.
-
-              This used to read "Open to full-time roles & freelance", with "CV on request"
-              under it. On the page where a £12,750 engagement starts, that tells the buyer
-              you would rather have a salary, and it quietly reprices everything on
-              /services: a man who wants a job will take less for the project.
-            */}
+            {/* Availability, framed as a candidate's. It read "Taking on new engagements now"
+                while the site sold consultancy; that positioning is shelved (see CLAUDE.md). */}
             <div className="flex items-start gap-3">
               <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
               <div>
                 <p className="font-heading text-sm font-medium text-foreground">Availability</p>
+                <p className="text-sm text-muted-foreground">Open to full-time roles</p>
                 <p className="text-sm text-muted-foreground">
-                  Taking on new engagements now
+                  Leeds, Yorkshire. Remote or hybrid across the UK.
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  UK wide, remote, on-site where the hardware is
+                  CV on request. Ask and I&apos;ll send the one that fits the role.
                 </p>
               </div>
             </div>
@@ -150,7 +133,7 @@ export function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <a
-                  href="https://github.com/ThomasJButler"
+                  href={LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
@@ -159,17 +142,26 @@ export function ContactPage() {
                   github.com/ThomasJButler
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/thomasbutleruk/"
+                  href={LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
                 >
                   <LinkedinIcon className="size-4 shrink-0" />
-                  linkedin.com/in/thomasjbutler
+                  linkedin.com/in/thomasbutleruk
                 </a>
-                {/* "Buy me a coffee" used to live here, under the phone number, on the
-                    page where a five-figure engagement begins. It is a tip jar, and a tip
-                    jar next to a price list tells the buyer which one you really expect. */}
+                {/* The tip jar is back. It was removed while the page sold five-figure
+                    engagements (a tip jar next to a price list tells the buyer which one you
+                    really expect); on a personal site it is just a link. */}
+                <a
+                  href={LINKS.coffee}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-w-0 items-center gap-3 text-sm break-words text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Coffee className="size-4 shrink-0" />
+                  buymeacoffee.com
+                </a>
               </CardContent>
             </Card>
           </div>
@@ -261,7 +253,7 @@ export function ContactPage() {
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="Tell me about your project or idea..."
+                    placeholder="Tell me about the role, the project, or the idea..."
                     required
                   />
                 </div>
@@ -279,29 +271,6 @@ export function ContactPage() {
           </Card>
         </div>
 
-        {/* Process Timeline */}
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { icon: <MessageSquare className="size-4" />, title: '1. Discovery Call', description: 'Free consultation to understand your goals, timeline, and requirements.' },
-            { icon: <FileText className="size-4" />, title: '2. Detailed Quote', description: 'Clear, itemised proposal with no hidden costs or surprises.' },
-            { icon: <Rocket className="size-4" />, title: '3. Build & Deliver', description: 'Agile development with regular updates and milestone reviews.' },
-            { icon: <Headphones className="size-4" />, title: '4. Ongoing Support', description: 'Post-launch support, maintenance, and future enhancements.' },
-          ].map((step) => (
-            <Card key={step.title} size="sm">
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
-                    {step.icon}
-                  </div>
-                  <CardTitle className="text-sm">{step.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-xs text-muted-foreground">{step.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
       </section>
     </div>
   );
