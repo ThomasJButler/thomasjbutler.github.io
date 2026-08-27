@@ -16,7 +16,7 @@ React 19, TypeScript, Vite 7, Tailwind 4. Cursor-reactive Matrix rain on a canva
 
 **A dev journey.** Every month since I started, from the first line of code to now, by way of the DWP and an agency apprenticeship.
 
-**Version TimeTravel.** [Nine previous versions of this site](https://thomasjbutler.github.io/version-timetravel/), every one still running as it originally shipped. It's the one thing a CV can't do.
+**Version TimeTravel.** [Every previous version of this site](https://thomasjbutler.github.io/version-timetravel/), still running as it originally shipped. It's the one thing a CV can't do.
 
 ---
 
@@ -120,7 +120,8 @@ The test suite is 117 unit and component tests across 17 files, plus Playwright 
 
 ## Licence
 
-MIT.
+`package.json` declares ISC. There's no LICENSE file in the repo yet, so treat that as
+the intent rather than the paperwork.
 
 ---
 
