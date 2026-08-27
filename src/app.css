@@ -1609,3 +1609,41 @@
     padding-block: 0.3rem;
   }
 }
+
+/* ─── Theme wipe ───
+   The new theme arrives as a circle expanding from the toggle instead of a hard cut to
+   near-white. Coordinates and radius come from ThemeContext as --vt-x / --vt-y / --vt-r;
+   the fallbacks here are what a transition started without an origin gets.
+
+   Outside @layer on purpose: these pseudo-elements live on the document root, and the UA
+   sheet that styles them is not part of the authored cascade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  /* The UA default is plus-lighter, which is right for a cross-fade and wrong for a
+     wipe: the two themes would add together into a white flash at the boundary. */
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+  animation: fx-theme-wipe 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fx-theme-wipe {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
