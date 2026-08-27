@@ -238,6 +238,43 @@ export const projects: Project[] = [
     highlights: ['Grounded answers with four-dimension confidence scoring', 'Outputs DOCX / XLSX / JSON', 'n8n orchestration + per-question cost/latency auditing', '480+ tests, CI, test-driven throughout'],
   },
   {
+    id: 'offshore-property-map',
+    name: 'Offshore Property Map',
+    description: 'Who owns England and Wales, from where? Entity resolution across two government registers that share no common identifier.',
+    longDescription: 'HM Land Registry publishes which titles are owned by overseas companies. Companies House publishes who is behind those companies. Neither register carries a key that points at the other, so the join has to be built: normalise the names and addresses, score candidate pairs with Splink, and put every match in front of a human before it counts. The output is FollowTheMoney format, so it drops into the OpenSanctions and OpenAleph ecosystem rather than being another dead-end dataset. The rule the whole pipeline is built around is that nothing publishes on a hunch. A match set is only publishable once the Clopper-Pearson lower bound on precision clears 0.95 over a labelled sample, and that result is written into a certificate hashed against the exact scores file it was measured on. The export refuses to emit machine-made links without one. It publishes what the registers record and nothing beyond that, and it never presents an automated match as fact.',
+    topics: ['Splink', 'DuckDB', 'FollowTheMoney', 'Entity resolution'],
+    language: 'Python',
+    category: 'ai',
+    // No links. The repo is private, and the Land Registry licence carries attribution,
+    // address-use and deletion duties that a public demo could not honour.
+    links: {},
+    status: 'in-progress',
+    highlights: [
+      'Two public registers, no shared key, real consequences for a wrong match',
+      'Probabilistic matching with Splink, over DuckDB',
+      'A gate certificate: nothing publishes below a 0.95 precision lower bound',
+      'Provenance on every row, and human judgements that accumulate',
+    ],
+  },
+  {
+    id: 'octopus-job-hunter',
+    name: 'OctopusJobHunter',
+    description: 'Extra hands for a job search. Sixteen job boards in ten seconds, a tailored CV in four formats, and a tracker you own.',
+    longDescription: 'Built from my own job search, which is the only reason it is any good: the rules in it were paid for the hard way. It searches sixteen specialist boards through official licensed feeds, generates a CV tailored to a specific advert in four formats (a designed PDF and Word file for people, plain versions for the parsers), tracks every application in a CSV and an Excel dashboard that never locks or asks you to log in, and preps interview answers from your own material. The intelligence lives in plain markdown playbooks rather than in code, so Claude, Codex or a model running on your own machine can all follow them. That last option is the point: your employment history is sensitive, and it should not have to leave your laptop to be useful. Two things it will not do, deliberately. It will not write experience you do not have, and it will not apply on your behalf.',
+    topics: ['Python', 'ReportLab', 'Playbooks', 'Local models'],
+    language: 'Python',
+    category: 'ai',
+    // Private: it holds a real profile and a real application history.
+    links: {},
+    status: 'completed',
+    highlights: [
+      'Sixteen specialist boards through official feeds, in about ten seconds',
+      'One CV library, four output formats per role',
+      'Markdown playbooks, so any agent (or a local model) can run it',
+      'Never applies for you. That is a decision, not a gap',
+    ],
+  },
+  {
     id: 'ai-code-generator',
     // The product calls itself AI Code Generator everywhere: the repo, the page h1, the
     // deployed title and all the artwork. Only this record said "LangChain", which put a
