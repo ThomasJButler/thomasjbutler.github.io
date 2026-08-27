@@ -23,29 +23,11 @@ export function ProofSection() {
       />
 
       <div className="grid gap-4 lg:grid-cols-5">
-        {/* The case study leads: it is the strongest asset on the site. */}
-        <Card className="fx-lead-card lg:col-span-3">
-          <CardContent className="flex h-full flex-col pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary/90">
-              case_study
-            </p>
-            <h3 className="mt-2 font-heading text-lg font-bold leading-snug text-foreground">
-              {CASE_STUDY.title}
-            </h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-              {CASE_STUDY.subtitle}
-            </p>
-            <div className="mt-5">
-              <Button asChild>
-                <Link to="/case-study">
-                  Read the case study <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="lg:col-span-2">
+        {/* The recent-work list takes the wide column. It carries five entries that were
+            wrapping onto two lines each in the narrow one, while the case study card sat
+            in the wide column half empty. The case study keeps fx-lead-card, so it is
+            still the loudest thing here, just no longer the widest. */}
+        <Card className="lg:col-span-3">
           <CardContent className="pt-6">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
               recently
@@ -77,6 +59,28 @@ export function ProofSection() {
             </ul>
           </CardContent>
         </Card>
+
+        <Card className="fx-lead-card lg:col-span-2">
+          <CardContent className="flex h-full flex-col pt-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary/90">
+              case_study
+            </p>
+            <h3 className="mt-2 font-heading text-lg font-bold leading-snug text-foreground">
+              {CASE_STUDY.title}
+            </h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+              {CASE_STUDY.subtitle}
+            </p>
+            <div className="mt-5">
+              <Button asChild>
+                <Link to="/case-study">
+                  Read the case study <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
       </div>
     </Reveal>
   );

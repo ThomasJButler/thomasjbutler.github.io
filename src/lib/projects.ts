@@ -238,6 +238,43 @@ export const projects: Project[] = [
     highlights: ['Grounded answers with four-dimension confidence scoring', 'Outputs DOCX / XLSX / JSON', 'n8n orchestration + per-question cost/latency auditing', '480+ tests, CI, test-driven throughout'],
   },
   {
+    id: 'offshore-property-map',
+    name: 'Offshore Property Map',
+    description: 'Who owns England and Wales, from where? Entity resolution across two government registers that share no common identifier.',
+    longDescription: 'HM Land Registry publishes which titles are owned by overseas companies. Companies House publishes who is behind those companies. Neither register carries a key that points at the other, so the join has to be built: normalise the names and addresses, score candidate pairs with Splink, and put every match in front of a human before it counts. The output is FollowTheMoney format, so it drops into the OpenSanctions and OpenAleph ecosystem rather than being another dead-end dataset. The rule the whole pipeline is built around is that nothing publishes on a hunch. A match set is only publishable once the Clopper-Pearson lower bound on precision clears 0.95 over a labelled sample, and that result is written into a certificate hashed against the exact scores file it was measured on. The export refuses to emit machine-made links without one. It publishes what the registers record and nothing beyond that, and it never presents an automated match as fact.',
+    topics: ['Splink', 'DuckDB', 'FollowTheMoney', 'Entity resolution'],
+    language: 'Python',
+    category: 'ai',
+    // No links. The repo is private, and the Land Registry licence carries attribution,
+    // address-use and deletion duties that a public demo could not honour.
+    links: {},
+    status: 'in-progress',
+    highlights: [
+      'Two public registers, no shared key, real consequences for a wrong match',
+      'Probabilistic matching with Splink, over DuckDB',
+      'A gate certificate: nothing publishes below a 0.95 precision lower bound',
+      'Provenance on every row, and human judgements that accumulate',
+    ],
+  },
+  {
+    id: 'octopus-job-hunter',
+    name: 'OctopusJobHunter',
+    description: 'Extra hands for a job search. Sixteen job boards in ten seconds, a tailored CV in four formats, and a tracker you own.',
+    longDescription: 'Built from my own job search, which is the only reason it is any good: the rules in it were paid for the hard way. It searches sixteen specialist boards through official licensed feeds, generates a CV tailored to a specific advert in four formats (a designed PDF and Word file for people, plain versions for the parsers), tracks every application in a CSV and an Excel dashboard that never locks or asks you to log in, and preps interview answers from your own material. The intelligence lives in plain markdown playbooks rather than in code, so Claude, Codex or a model running on your own machine can all follow them. That last option is the point: your employment history is sensitive, and it should not have to leave your laptop to be useful. Two things it will not do, deliberately. It will not write experience you do not have, and it will not apply on your behalf.',
+    topics: ['Python', 'ReportLab', 'Playbooks', 'Local models'],
+    language: 'Python',
+    category: 'ai',
+    // Private: it holds a real profile and a real application history.
+    links: {},
+    status: 'completed',
+    highlights: [
+      'Sixteen specialist boards through official feeds, in about ten seconds',
+      'One CV library, four output formats per role',
+      'Markdown playbooks, so any agent (or a local model) can run it',
+      'Never applies for you. That is a decision, not a gap',
+    ],
+  },
+  {
     id: 'ai-code-generator',
     // The product calls itself AI Code Generator everywhere: the repo, the page h1, the
     // deployed title and all the artwork. Only this record said "LangChain", which put a
@@ -306,9 +343,9 @@ export const projects: Project[] = [
   {
     id: 'morpheus',
     name: 'Morpheus',
-    description: 'Intelligent document Q&A with semantic search and source citations using RAG.',
-    longDescription: 'An intelligent document reasoning system with a Matrix-themed interface. Upload your private documents and ask questions in natural language. Private by design: fresh Pinecone vector namespace per session, pay only for tokens used. Claude generates accurate answers from your specific documents with source citations.',
-    topics: ['Pinecone', 'Anthropic', 'LangChain', 'FastAPI'],
+    description: 'Ask questions about your own documents and get answers where every claim points at a real passage. Runs entirely on your machine.',
+    longDescription: 'Upload a PDF, Word file, text or Markdown, ask a question in plain English, and get an answer where every [n] marker points at a passage the model actually read. Retrieval is hybrid, vector search and BM25 keyword search fused, and a local model writes the answer. Ollama runs the models, LanceDB holds the index on disk, and at inference time nothing leaves the machine: upload, indexing, retrieval and generation all talk to 127.0.0.1 and nowhere else. The citation check is the part I am proudest of. Every marker is verified against the retrieved passages while the answer is still streaming, so a marker the model invented never reaches the screen, and an answer that cites nothing is flagged "not grounded" rather than passed off as fact. If the documents do not contain the answer, it says so instead of guessing.',
+    topics: ['Ollama', 'LanceDB', 'FastAPI', 'Next.js'],
     language: 'Python',
     category: 'ai',
     links: { demo: 'https://morpheusrag.vercel.app', github: 'https://github.com/ThomasJButler/Morpheus' },
@@ -326,7 +363,10 @@ export const projects: Project[] = [
       },
       diagram: {
         src: MEDIA.morpheus.diagram,
-        caption: 'Your documents, a vector namespace that exists only for the session, and an answer that cites where it came from. The generation step is drawn green: it is moving to Ollama and local models.',
+        // The diagram still shows the hosted build this project started as. The green
+        // generation step it described as "moving to Ollama" has now moved, along with
+        // the vector store; the artwork is the last thing left to redraw.
+        caption: 'Your documents, an index that lives on your own disk, and an answer that cites where it came from. Every step of this runs on the machine in front of you.',
       },
       wireframe: {
         src: MEDIA.morpheus.wireframe,
@@ -335,7 +375,13 @@ export const projects: Project[] = [
     },
     videos: ['https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_960/v1767706547/2_1080_N_s5t1ww.mp4'],
     status: 'completed',
-    highlights: ['Private by design: fresh namespace per session', 'Semantic search with Pinecone vectors', 'Source citations for every answer', 'Cost effective: pay only for tokens used'],
+    featured: true,
+    highlights: [
+      'Runs entirely on your machine. Nothing leaves it at inference time',
+      'Every citation checked against the retrieved passage, as it streams',
+      'Hybrid retrieval: vector search and BM25 keyword search, fused',
+      'Says "not grounded" rather than guessing',
+    ],
   },
   {
     id: 'reviewbot-protocol',
@@ -469,7 +515,6 @@ export const projects: Project[] = [
       cover: 'https://res.cloudinary.com/depqttzlt/image/upload/v1766580999/logo_ofodr8.svg',
       gallery: MEDIA['commercial-portfolio'].gallery,
     },
-    featured: true,
   },
   // The LFC News App was here and stays retired. It read r/LiverpoolFC through the Reddit
   // API, the terms changed under it, and its only link is a demo that depends on them. A

@@ -50,7 +50,7 @@ const JOURNEY_MILESTONES = [
     era: '2014-20',
     title: 'Everything but code',
     description:
-      'Hospitality, events, a conveyancing desk in Southport, and two seasons of Victorian Premier League cricket in Melbourne. Not a line of code in any of it.',
+      'Two seasons of Victorian Premier League cricket in Melbourne, commercial diving, paraplanning in financial services, and a conveyancing desk in Southport. Not a line of code in any of it.',
     icon: Briefcase,
   },
   {
@@ -61,17 +61,17 @@ const JOURNEY_MILESTONES = [
     icon: Users,
   },
   {
-    era: 'Nov 2022',
+    era: 'Early 2022',
     title: 'First line of code',
     description:
-      'Started teaching myself while still at the DWP. Cloud Engineering and Data Science bootcamp with The Growth Company in 2023.',
+      'From a standing start, teaching myself around a full-time job at the DWP. Cloud Engineering and Data Science bootcamp with The Growth Company in 2023.',
     icon: Code,
   },
   {
     era: '2023-24',
     title: 'Fuelius',
     description:
-      'Sixteen months as an apprentice full-stack developer at a HubSpot partner agency. Twelve named clients, an NHS trust among them. Level 4 apprenticeship, studied 2023-24. Made redundant December 2024.',
+      'Eighteen months as an apprentice full-stack developer at a HubSpot partner agency. Twelve named clients, an NHS trust among them. Level 4 apprenticeship, studied 2023-24. Made redundant December 2024.',
     icon: Building2,
   },
   {
@@ -107,7 +107,7 @@ export function AboutPage() {
           transition={{ duration: 0.4 }}
           className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
         >
-          // about
+          _About
         </motion.p>
 
         {/*
@@ -154,21 +154,22 @@ export function AboutPage() {
         />
         <div className="fx-scrim max-w-2xl space-y-4 leading-relaxed text-muted-foreground">
           <p>
-            Programming is not just a profession for me, it&apos;s a passion. There&apos;s
-            something magical about transforming ideas into reality through code. The ability
-            to create something from nothing, to build tools that solve real problems, and to
-            see the immediate impact of your work is incredibly satisfying.
+            I never got into software for the paycheck. I got into it to help people at scale
+            and to use the creative side of my brain. Money matters, of course, but if it
+            means earning a bit less and loving what I do, that&apos;s the trade I&apos;ll
+            take every time.
           </p>
           <p>
-            What truly captivates me is the puzzle-solving. Each challenge is an opportunity
-            to break down a complex problem into an elegant solution, and the moment when
-            everything clicks into place, when the code finally works after hours of
-            debugging, is pure joy.
+            I&apos;m always trying to improve my code and my fundamentals, because
+            that&apos;s the only part of this job that doesn&apos;t change every few years.
+            Whatever I&apos;m learning, I build something alongside it. Some of those side
+            projects have properly kicked on since, and they&apos;re how I keep going deeper
+            on one thing over time.
           </p>
           <p>
-            The technology landscape never stops evolving, and that is what keeps me
-            energised. There is always a new framework to explore, a better pattern to learn,
-            or an innovative approach to discover.
+            Software should give people time back, not take it from them. Most of what I
+            build is aimed at that: making tech adapt to humans rather than the other way
+            round.
           </p>
         </div>
       </MotionSection>

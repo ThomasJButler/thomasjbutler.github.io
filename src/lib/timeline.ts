@@ -610,9 +610,9 @@ export const timelineData: TimelineEntry[] = [
     title: 'Apprentice developer at Fuelius',
     location: 'Leeds, Yorkshire',
     institution: 'Fuelius',
-    description: 'First job in software, at a HubSpot partner agency. Sixteen months, twelve named clients, and a Level 4 Software Developer apprenticeship with Estio studied alongside it. Umbraco, HubSpot, C# and .NET, SCSS, and a lot of client calls.',
+    description: 'First job in software, at a HubSpot partner agency. Eighteen months, twelve named clients, and a Level 4 Software Developer apprenticeship with Estio studied alongside it. Umbraco, HubSpot, C# and .NET, SCSS, and a lot of client calls.',
     achievements: [
-      'Twelve named clients in sixteen months, an NHS trust and two arena venues among them',
+      'Twelve named clients in eighteen months, an NHS trust and two arena venues among them',
       'Implementation lead under a senior architect on a seven-brand HubSpot migration',
       'Level 4 Software Developer apprenticeship with Estio, studied 2023-24',
       'Umbraco, HubSpot and HubL, C#/.NET, SCSS, Azure DevOps'
@@ -665,16 +665,18 @@ export const timelineData: TimelineEntry[] = [
   {
     id: 24,
     year: 2022,
-    month: 11,
-    date: formatDate(2022, 11),
+    month: 2,
+    date: formatDate(2022, 2),
     title: 'Started My Coding Journey',
     location: 'Leeds, Yorkshire',
     institution: 'Self-Directed Learning',
-    description: 'Started teaching myself to code while still at the DWP, evenings and weekends. The beginning of an intensive self-learning period that turned into a career change.',
+    description: 'Started teaching myself to code from a standing start, while still at the DWP. Evenings and weekends around a full-time job, and the beginning of the career change.',
     achievements: [
       'Began learning programming fundamentals and computer science basics',
-      'Discovered ChatGPT and used it as a learning companion',
       'Studied online through various platforms and tutorials',
+      // ChatGPT did not exist until the November. It changed the pace of the learning,
+      // it did not start it.
+      'AI tools arrived later that year and changed how fast I could learn',
       'Started exploring game development concepts and engines'
     ],
     links: [],
@@ -710,10 +712,10 @@ export const timelineData: TimelineEntry[] = [
     title: 'Early Tech Passion & Life Journey',
     location: 'Leeds, Yorkshire',
     institution: 'Life Experience',
-    description: 'From childhood, I was fascinated by technology and gaming, loving the simplicity and UI design of classic games. Despite this passion, life took me on different paths: professional cricket, then commercial diving. It wasn\'t until AI emerged that I realised I could finally pursue my true calling.',
+    description: 'From childhood, I was fascinated by technology and gaming, loving the simplicity and UI design of classic games. Despite this passion, life took me on different paths: professional cricket, commercial diving, then financial paraplanning. It wasn\'t until AI emerged that I realised I could finally pursue my true calling.',
     achievements: [
       'Childhood obsession with tech: jailbreaking an iPod Touch, installing Cydia repos',
-      'Pursued professional cricket, then commercial diving',
+      'Professional cricket, commercial diving, then paraplanning in financial services',
       'Always the person with the app ideas and no way to build them',
       'AI tools closed that gap, and I\'ve been making up for it since'
     ],

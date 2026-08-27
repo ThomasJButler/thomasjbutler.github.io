@@ -19,7 +19,12 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={toggleTheme}
+      onClick={(event) => {
+        // The button's own centre rather than the pointer: a keyboard activation
+        // reports clientX/clientY of 0, which would wipe from the top-left corner.
+        const rect = event.currentTarget.getBoundingClientRect();
+        toggleTheme({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      }}
       aria-label={`Switch to ${dark ? 'light' : 'dark'} mode`}
       className="text-muted-foreground hover:text-primary"
     >

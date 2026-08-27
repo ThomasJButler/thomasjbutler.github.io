@@ -56,8 +56,8 @@ for (const theme of themes) {
 test.describe('page content checks', () => {
   test('home page has hero and proof section', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=Hey, I\'m Tom')).toBeVisible();
-    await expect(page.locator('text=software developer · leeds, yorkshire')).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText("Hey, I'm Tom");
+    await expect(page.locator('text=software developer · leeds, yorkshire').first()).toBeVisible();
     // Proof section: the case study card and the "recently" card
     await autoScroll(page);
     await page.waitForTimeout(1000);
@@ -78,23 +78,31 @@ test.describe('page content checks', () => {
   });
 
   test('projects page filtering works', async ({ page }) => {
-    await page.goto('/projects', { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(1000);
+    // networkidle, not domcontentloaded: this route is lazy-loaded, so the prerendered
+    // markup is on screen and NOT interactive for a while. Clicking a tab in that window
+    // does nothing, the grid stays on "All", and the count assertion below fails with a
+    // number that looks like a filtering bug rather than a timing one.
+    await page.goto('/projects', { waitUntil: 'networkidle' });
 
-    // Click the "AI & ML" tab
-    await page.locator('[data-slot="tabs-trigger"]', { hasText: 'AI & ML' }).click();
-    await page.waitForTimeout(500);
+    // Scroll it in and let the whileInView reveals finish before clicking. The tab bar
+    // sits below the fold, and the sections above it animate in as you arrive, so a click
+    // fired mid-reveal lands where the tab used to be. The filter itself is fine.
+    const aiTab = page.locator('[data-slot="tabs-trigger"]', { hasText: 'AI & ML' });
+    await aiTab.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1200);
+    await aiTab.click();
+    // Prove the click landed before counting anything.
+    await expect(aiTab).toHaveAttribute('aria-selected', 'true');
 
-    // All visible cards should be AI projects
+    // The featured strip only renders on "All", so a filtered page is grid cards only.
     const cards = page.locator('[data-slot="card"]');
-    const count = await cards.count();
-    expect(count).toBeGreaterThan(0);
-    expect(count).toBeLessThan(15); // Should be filtered down
+    await expect.poll(() => cards.count()).toBeLessThan(15);
+    expect(await cards.count()).toBeGreaterThan(0);
 
-    // Click "All" tab to reset
-    await page.locator('[data-slot="tabs-trigger"]', { hasText: 'All' }).click();
-    await page.waitForTimeout(500);
-    expect(await cards.count()).toBeGreaterThanOrEqual(10);
+    const allTab = page.locator('[data-slot="tabs-trigger"]', { hasText: 'All' });
+    await allTab.click();
+    await expect(allTab).toHaveAttribute('aria-selected', 'true');
+    await expect.poll(() => cards.count()).toBeGreaterThanOrEqual(10);
   });
 
   test('about page has tech stack tabs and journey', async ({ page }) => {
@@ -110,18 +118,21 @@ test.describe('page content checks', () => {
   });
 
   test('about page tech stack tab switching works', async ({ page }) => {
-    await page.goto('/about', { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(1000);
+    // networkidle for the same reason as the projects filter: a lazy route is painted
+    // long before it can be clicked.
+    await page.goto('/about', { waitUntil: 'networkidle' });
 
-    // Click "Backend" tab
-    await page.locator('[data-slot="tabs-trigger"]', { hasText: 'Backend' }).click();
-    await page.waitForTimeout(500);
-    // Should show backend tech badges
+    // Same reveal-settling as the projects filter.
+    const backend = page.locator('[data-slot="tabs-trigger"]', { hasText: 'Backend' });
+    await backend.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1200);
+    await backend.click();
+    await expect(backend).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('text=Node.js')).toBeVisible();
 
-    // Click "AI & Tools" tab
-    await page.locator('[data-slot="tabs-trigger"]', { hasText: 'AI' }).click();
-    await page.waitForTimeout(500);
+    const ai = page.locator('[data-slot="tabs-trigger"]', { hasText: 'AI' });
+    await ai.click();
+    await expect(ai).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('text=LangChain')).toBeVisible();
   });
 
@@ -129,7 +140,7 @@ test.describe('page content checks', () => {
     await page.goto('/contact', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('text=Talk it through')).toBeVisible();
     // Contact info
-    await expect(page.locator('text=Leeds, Yorkshire')).toBeVisible();
+    await expect(page.getByText('Leeds, Yorkshire', { exact: true })).toBeVisible();
     await expect(page.locator('text=dev@thomasjbutler.me')).toBeVisible();
     // Form fields
     await expect(page.locator('input[name="name"]')).toBeVisible();
@@ -154,13 +165,16 @@ test.describe('page content checks', () => {
 
   test('updates page has timeline milestones', async ({ page }) => {
     await page.goto('/updates', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=Dev Journey')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Dev Journey' })).toBeVisible();
     // Scroll to reveal all timeline cards
     await autoScroll(page);
     await page.waitForTimeout(1000);
-    // Check specific milestones exist
-    await expect(page.locator('text=The Beginning')).toBeVisible();
-    await expect(page.locator('text=Started My Coding Journey')).toBeVisible();
+    // Real entry titles from src/lib/timeline.ts. This used to check "The Beginning",
+    // which is an About page milestone and has never existed on this page: text= is a
+    // case-insensitive substring match, so it was quietly matching "...the beginning of
+    // the career change" inside an entry's prose.
+    await expect(page.getByText('Started My Coding Journey', { exact: true })).toBeVisible();
+    await expect(page.getByText('Work Coach at the DWP', { exact: true })).toBeVisible();
     // Check we have multiple timeline cards
     const cards = page.locator('[data-slot="card"]');
     expect(await cards.count()).toBeGreaterThanOrEqual(8);
@@ -172,22 +186,26 @@ test.describe('page content checks', () => {
       test.skip();
     }
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('text=Hey, I\'m Tom')).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText("Hey, I'm Tom");
 
-    // Navigate to Projects via nav link
+    // Generous timeouts on every hop from here. A client-side navigation into a lazy
+    // route takes seconds in a headless browser: AnimatePresence mode="wait" holds the
+    // outgoing page for its exit, then the route chunk loads, then the enter animation
+    // runs, all while the rain canvas is being software-rasterised. Measured at ~10s a
+    // hop locally. It is a headless cost, not a user-facing one.
     await page.locator('nav a', { hasText: 'Projects' }).first().click();
     await page.waitForURL('/projects');
-    await expect(page.locator('h1', { hasText: 'Projects' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(/projects/i, { timeout: 20000 });
 
     // Navigate to About
     await page.locator('nav a', { hasText: 'About' }).first().click();
     await page.waitForURL('/about');
-    await expect(page.locator('text=why this site exists')).toBeVisible();
+    await expect(page.locator('text=why this site exists')).toBeVisible({ timeout: 20000 });
 
     // Navigate to Contact
     await page.locator('nav a', { hasText: 'Contact' }).first().click();
     await page.waitForURL('/contact');
-    await expect(page.locator('text=Talk it through')).toBeVisible();
+    await expect(page.locator('text=Talk it through').first()).toBeVisible({ timeout: 20000 });
   });
 
   test('header is sticky and visible on scroll', async ({ page }) => {

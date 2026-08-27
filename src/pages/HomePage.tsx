@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
+import { Activity, ArrowRight, ExternalLink } from 'lucide-react';
 import { GithubIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -34,7 +34,7 @@ export function HomePage() {
       <Reveal as="section" className="py-4">
         <div className="rounded-lg border border-primary/20 bg-primary/[0.03] p-5">
           <div className="mb-3 flex items-center gap-2">
-            <Sparkles className="size-3.5 text-primary" />
+            <Activity className="size-3.5 text-primary" />
             <span className="font-mono text-xs uppercase tracking-wider text-primary/90">now</span>
           </div>
           <p className="text-sm leading-relaxed text-foreground/80">{NOW_COPY}</p>

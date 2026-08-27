@@ -1,6 +1,6 @@
 # Tom Butler
 
-> Software developer in Leeds, Yorkshire. Career changer: hospitality, two years as a DWP Work Coach, then a standing start in late 2022 to building AI systems. Currently looking for full-time work: junior for general software, any non-senior level for AI. This site is the personal work, built because I wanted it to exist. The paid work is at https://thomasjbutler.me.
+> Software developer in Leeds, Yorkshire. Career changer: professional cricket, commercial diving and financial paraplanning, then two years as a DWP Work Coach, then a standing start in early 2022 to building AI systems. Currently looking for full-time work: junior for general software, any non-senior level for AI. This site is the personal work, built because I wanted it to exist. The paid work is at https://thomasjbutler.me.
 
 Contact: dev@thomasjbutler.me
 

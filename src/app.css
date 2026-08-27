@@ -201,8 +201,12 @@
 .dark {
   --background: oklch(0.08 0.01 145);
   --foreground: oklch(0.97 0.005 145);
-  /* Nearly opaque: a card is a reading surface, and the rain runs behind it. */
-  --card: oklch(0.11 0.015 145 / 0.94);
+  /*
+   * Opaque, not 0.94. A card is a reading surface and the rain runs behind it, so that
+   * last 6% was live animation showing through every project card, timeline entry and
+   * form on the site. The card keeps its border and shadow; the rain still frames it.
+   */
+  --card: oklch(0.11 0.015 145);
   --card-foreground: oklch(0.97 0.005 145);
   --popover: oklch(0.11 0.015 145);
   --popover-foreground: oklch(0.97 0.005 145);
@@ -604,8 +608,13 @@
     inset: 0;
     z-index: 70;
     pointer-events: none;
-    /* Was 0.275. These sit over everything and dim the whole page. */
-    opacity: 0.15;
+    /*
+     * Was 0.275, then 0.15. These sit at z-70, ABOVE every word on the site, so their
+     * opacity is a tax on the contrast of all body copy: at 0.15 a 0.28-alpha black bar
+     * covered a third of every text row. 0.09 keeps the CRT texture and stops it being
+     * something you read through.
+     */
+    opacity: 0.09;
     background: repeating-linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.28) 0 1px,
@@ -639,15 +648,38 @@
     display: none;
   }
 
+  /*
+   * Effects off means off, including the CRT layers.
+   *
+   * These used to survive the toggle, which is why the page was still hard to read with
+   * the rain switched off: the thing dimming the text was never the rain, it was a
+   * vignette and a scanline grid painted on top of it. `fx-off` is set on
+   * documentElement by FxProvider, so this is a class swap and not a conditional render:
+   * the markup stays identical between the server and the client, and the prerendered
+   * tree survives hydration.
+   */
+  :root.fx-off .fx-scanlines,
+  :root.fx-off .fx-vignette {
+    display: none;
+  }
+
   .fx-vignette {
     position: fixed;
     inset: 0;
     z-index: 69;
     pointer-events: none;
+    /*
+     * Transparent to 72%, not 58%, and 0.22 black rather than 0.38.
+     *
+     * At the old numbers the darkening started well inside the max-w-5xl text column, so
+     * the first and last words of most lines were being read through up to 38% black. On
+     * a phone almost the whole page sat in that band. It is atmosphere for the edges of
+     * the screen, not a filter over the copy.
+     */
     background: radial-gradient(
       ellipse at 50% 38%,
-      transparent 58%,
-      rgba(0, 0, 0, 0.38) 100%
+      transparent 72%,
+      rgba(0, 0, 0, 0.22) 100%
     );
   }
   :root:not(.dark) .fx-vignette {
@@ -1488,11 +1520,14 @@
     inset: 0 clamp(-3rem, calc((100% - 100vw) / 2), 0px);
     z-index: 0;
     pointer-events: none;
+    /* The feather used to run to 6% and 94%, which on a 1024px column is ~60px of each
+       line with no scrim under it at all. 1.5% still softens the edge without leaving the
+       first and last words sitting on bare rain. */
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(0.08 0.01 145 / 0.95) 6%,
-      oklch(0.08 0.01 145 / 0.95) 94%,
+      oklch(0.08 0.01 145 / 0.95) 1.5%,
+      oklch(0.08 0.01 145 / 0.95) 98.5%,
       transparent 100%
     );
   }
@@ -1500,8 +1535,8 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      oklch(0.985 0.002 145 / 0.88) 6%,
-      oklch(0.985 0.002 145 / 0.88) 94%,
+      oklch(0.985 0.002 145 / 0.88) 1.5%,
+      oklch(0.985 0.002 145 / 0.88) 98.5%,
       transparent 100%
     );
   }
@@ -1572,5 +1607,43 @@
   [data-slot='tabs-list'].flex-wrap [data-slot='tabs-trigger'] {
     height: auto;
     padding-block: 0.3rem;
+  }
+}
+
+/* ─── Theme wipe ───
+   The new theme arrives as a circle expanding from the toggle instead of a hard cut to
+   near-white. Coordinates and radius come from ThemeContext as --vt-x / --vt-y / --vt-r;
+   the fallbacks here are what a transition started without an origin gets.
+
+   Outside @layer on purpose: these pseudo-elements live on the document root, and the UA
+   sheet that styles them is not part of the authored cascade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  /* The UA default is plus-lighter, which is right for a cross-fade and wrong for a
+     wipe: the two themes would add together into a white flash at the boundary. */
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+  animation: fx-theme-wipe 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fx-theme-wipe {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }

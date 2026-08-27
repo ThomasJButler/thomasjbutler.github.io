@@ -119,11 +119,14 @@ export function ProjectsPage() {
 
   return (
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
-      {/* No "// projects" eyebrow above this: it sat directly over an h1 reading
-          "Projects", so the page opened by saying its own name twice. */}
+      {/* The label IS the h1. There was a big "Projects" heading under it saying the same
+          word a second time; this keeps the page's one h1 for crawlers and screen readers
+          without printing the title twice. */}
       <MotionSection>
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Projects</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h1 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          _Projects
+        </h1>
+        <p className="mt-3 text-sm text-muted-foreground">
           AI, web and mobile work, plus the learning projects that came first.
         </p>
       </MotionSection>

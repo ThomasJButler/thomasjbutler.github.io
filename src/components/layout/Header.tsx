@@ -36,13 +36,18 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_1px_20px_color-mix(in_oklab,var(--primary)_4%,transparent)]">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+      {/* relative z-50, and it is load-bearing. <header> is sticky z-50 with a
+          backdrop-blur, which makes it a stacking context. The mobile backdrop below is a
+          fixed inset-0 z-40 sibling of this bar, and this bar had no z-index at all, so it
+          painted underneath: with the menu open, the close button sat under a 60% black
+          wash and a blur, and looked like it had vanished. */}
+      <div className="relative z-50 mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
         <Link
           to="/"
           className="font-mono text-sm font-semibold text-primary transition-colors hover:text-primary/80"
         >
-          <span className="text-primary/90">&gt;</span> thomas_butler
+          <span className="text-primary/90">&gt;</span> tom_butler
         </Link>
 
         {/* Desktop nav */}
@@ -118,7 +123,7 @@ export function Header({ onOpenPalette }: { onOpenPalette?: () => void }) {
             aria-hidden="true"
           />
           <nav
-            className="fixed inset-x-0 top-14 z-50 border-b border-border bg-background/95 backdrop-blur-md p-4 md:hidden"
+            className="fixed inset-x-0 top-14 z-50 border-b border-border bg-background p-4 md:hidden"
             aria-label="Mobile navigation"
           >
             <div className="flex flex-col gap-1">

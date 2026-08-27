@@ -28,7 +28,7 @@ export function CaseStudyPage() {
     <div className="fx-page mx-auto max-w-5xl px-6 py-16">
       <Reveal>
         <p className="font-mono text-xs tracking-[0.2em] text-primary/90">
-          <DecodeText text="// case_study" step={20} />
+          <DecodeText text="_Case study" step={20} />
         </p>
         <h1 className="mt-3 max-w-3xl font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {CASE_STUDY.title}
