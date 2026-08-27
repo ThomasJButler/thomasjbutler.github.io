@@ -154,21 +154,22 @@ export function AboutPage() {
         />
         <div className="fx-scrim max-w-2xl space-y-4 leading-relaxed text-muted-foreground">
           <p>
-            Programming is not just a profession for me, it&apos;s a passion. There&apos;s
-            something magical about transforming ideas into reality through code. The ability
-            to create something from nothing, to build tools that solve real problems, and to
-            see the immediate impact of your work is incredibly satisfying.
+            I never got into software for the paycheck. I got into it to help people at scale
+            and to use the creative side of my brain. Money matters, of course, but if it
+            means earning a bit less and loving what I do, that&apos;s the trade I&apos;ll
+            take every time.
           </p>
           <p>
-            What truly captivates me is the puzzle-solving. Each challenge is an opportunity
-            to break down a complex problem into an elegant solution, and the moment when
-            everything clicks into place, when the code finally works after hours of
-            debugging, is pure joy.
+            I&apos;m always trying to improve my code and my fundamentals, because
+            that&apos;s the only part of this job that doesn&apos;t change every few years.
+            Whatever I&apos;m learning, I build something alongside it. Some of those side
+            projects have properly kicked on since, and they&apos;re how I keep going deeper
+            on one thing over time.
           </p>
           <p>
-            The technology landscape never stops evolving, and that is what keeps me
-            energised. There is always a new framework to explore, a better pattern to learn,
-            or an innovative approach to discover.
+            Software should give people time back, not take it from them. Most of what I
+            build is aimed at that: making tech adapt to humans rather than the other way
+            round.
           </p>
         </div>
       </MotionSection>
