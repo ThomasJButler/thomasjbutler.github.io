@@ -9,7 +9,7 @@ I'm currently focused on creating AI integrated systems, building ethical AI mod
 [![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
 [![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
 
-<img width="1337" height="714" alt="v3 6" src="https://github.com/user-attachments/assets/7dec964a-2649-409d-97eb-468349f600a1" />
+<img width="637" height="360" alt="image" src="https://github.com/user-attachments/assets/e2bb8433-c148-4bcb-afea-b9b1f2804a06" />
 
 ## Featured Projects
 
