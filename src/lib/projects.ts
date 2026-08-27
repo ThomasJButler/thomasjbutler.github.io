@@ -605,7 +605,7 @@ export const projects: Project[] = [
   {
     id: 'version-timetravel',
     name: 'Version TimeTravel',
-    description: 'A working archive of nine portfolio versions. Every one still runs, in the browser, as it originally shipped.',
+    description: 'A working archive of every version of this site since 2024. Every one still runs, in the browser, as it originally shipped.',
     /*
      * "9 portfolio versions" kept, and it is the app's own figure: its hero and its stat line
      * both say nine, and the chronology rail lists nine. `versions.ts` holds ten entries and
@@ -618,7 +618,7 @@ export const projects: Project[] = [
      * GitHub is the rule the other entries follow.
      */
     longDescription:
-      'Nine versions of one portfolio, from hand-written HTML in June 2024 to React and shadcn today, and every one of them still runs. Pick any version and the original build loads in a viewer you can resize to 1440, 834 or 390 to see how it behaved on a phone at the time. The builds are unmodified, so some of them reference assets that no longer exist, and the archive says so rather than quietly patching them. It is the clearest record of how fast the work moved: the same person, twenty-five months apart.',
+      'Every version of this site since June 2024, from hand-written HTML to React and shadcn today, and every one of them still runs. Pick any version and the original build loads in a viewer you can resize to 1440, 834 or 390 to see how it behaved on a phone at the time. The builds are unmodified, so some of them reference assets that no longer exist, and the archive says so rather than quietly patching them. It is the clearest record of how fast the work moved: the same person, two years apart.',
     topics: ['Timeline', 'Interactive', 'Archive'],
     language: 'JavaScript',
     category: 'portfolio',
@@ -628,10 +628,10 @@ export const projects: Project[] = [
       gallery: MEDIA['version-timetravel'].gallery,
     },
     highlights: [
-      'Nine versions, every one still runnable',
+      'Every version still runnable, none of them patched',
       'Original builds, unmodified, flagged where assets are gone',
       'Resizable viewer: 1440, 834 and 390',
-      'Twenty-five months, one person',
+      'Two years of it, one person',
     ],
   },
   {
