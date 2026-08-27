@@ -56,7 +56,7 @@ export const ROUTE_META = [
     module: 'src/pages/AboutPage.tsx',
     title: 'About | Tom Butler',
     description:
-      'Career changer. Hospitality, two years as a DWP Work Coach, then a standing start in late 2022 to shipping AI systems. Software developer in Leeds, Yorkshire.',
+      'Career changer. Hospitality, two years as a DWP Work Coach, then a standing start in early 2022 to shipping AI systems. Software developer in Leeds, Yorkshire.',
   },
   {
     path: '/contact',

@@ -50,7 +50,7 @@ const JOURNEY_MILESTONES = [
     era: '2014-20',
     title: 'Everything but code',
     description:
-      'Hospitality, events, a conveyancing desk in Southport, and two seasons of Victorian Premier League cricket in Melbourne. Not a line of code in any of it.',
+      'Two seasons of Victorian Premier League cricket in Melbourne, commercial diving, paraplanning in financial services, and a conveyancing desk in Southport. Not a line of code in any of it.',
     icon: Briefcase,
   },
   {
@@ -61,17 +61,17 @@ const JOURNEY_MILESTONES = [
     icon: Users,
   },
   {
-    era: 'Nov 2022',
+    era: 'Early 2022',
     title: 'First line of code',
     description:
-      'Started teaching myself while still at the DWP. Cloud Engineering and Data Science bootcamp with The Growth Company in 2023.',
+      'From a standing start, teaching myself around a full-time job at the DWP. Cloud Engineering and Data Science bootcamp with The Growth Company in 2023.',
     icon: Code,
   },
   {
     era: '2023-24',
     title: 'Fuelius',
     description:
-      'Sixteen months as an apprentice full-stack developer at a HubSpot partner agency. Twelve named clients, an NHS trust among them. Level 4 apprenticeship, studied 2023-24. Made redundant December 2024.',
+      'Eighteen months as an apprentice full-stack developer at a HubSpot partner agency. Twelve named clients, an NHS trust among them. Level 4 apprenticeship, studied 2023-24. Made redundant December 2024.',
     icon: Building2,
   },
   {
