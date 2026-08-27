@@ -1,174 +1,130 @@
-<div align="center">
+# thomasjbutler.github.io
 
-## About Me
+My personal site. Matrix-themed, prerendered, and built from scratch because I wanted to.
 
-My passion is to build human orientated applications that feel natural and joyful to use, and empower humanity by harnessing the power of AI, by saving time and energy on day to day tasks.
+**[thomasjbutler.github.io](https://thomasjbutler.github.io)** · the paid work lives at **[thomasjbutler.me](https://thomasjbutler.me)**
 
-I'm currently focused on creating AI integrated systems, building ethical AI models, and Next.js/React web applications as a secure front-end.
+React 19, TypeScript, Vite 7, Tailwind 4. Cursor-reactive Matrix rain on a canvas, CRT scanlines, a terminal-style command palette, and a light theme for people who would rather not.
 
-[![Commercial Portfolio](https://img.shields.io/badge/Commercial%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.me)
-[![Personal Portfolio](https://img.shields.io/badge/Personal%20Portfolio-View-006400?style=for-the-badge&logo=matrix&logoColor=white)](https://thomasjbutler.github.io/ThomasJButler/)
+---
 
-<img width="1337" height="714" alt="v3 6" src="https://github.com/user-attachments/assets/7dec964a-2649-409d-97eb-468349f600a1" />
+## What's in here
 
-## Featured Projects
+**Projects.** Twenty of them, filterable, from an on-device iOS app and a local RAG pipeline down to the CSS demos I built while learning CSS. The tags say which is which, on purpose: the arc from one to the other is the point.
 
-- **SQL-Ball** – RAG-powered NL-to-SQL using a custom collated dataset of European football results. [GitHub →](https://github.com/ThomasJButler/SQL-Ball)
-- **AgenticAICoursePortfolio** – Portfolio of web apps from the Generative AI & Agents Bootcamp. [GitHub →](https://github.com/ThomasJButler/AgenticAICoursePortfolio)
-- **The Matrix Arcade** – Collection of custom-built games in the style of “The Matrix.” [GitHub →](https://github.com/ThomasJButler/The-Matrix-Arcade)
+**A case study.** One build taken apart properly: the problem, the architecture, and what I'd do differently.
 
-## My Tech Stacks
+**A dev journey.** Every month since I started, from the first line of code to now, by way of the DWP and an agency apprenticeship.
 
-<table align="center">
-<tr>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" />
-<br>React
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=typescript" width="48" height="48" alt="TypeScript" />
-<br>TypeScript
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=vite" width="48" height="48" alt="Vite" />
-<br>Vite
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" />
-<br>Python
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=django" width="48" height="48" alt="Django" />
-<br>Django
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=nodejs" width="48" height="48" alt="Node.js" />
-<br>Node.js
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=dotnet" width="48" height="48" alt=".NET" />
-<br>.NET
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=cs" width="48" height="48" alt="C#" />
-<br>C#
-</td>
-</tr>
-<tr>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=postgresql" width="48" height="48" alt="PostgreSQL" />
-<br>PostgreSQL
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="MongoDB" />
-<br>MongoDB
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=supabase" width="48" height="48" alt="Supabase" />
-<br>Supabase
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=docker" width="48" height="48" alt="Docker" />
-<br>Docker
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=aws" width="48" height="48" alt="AWS" />
-<br>AWS
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=azure" width="48" height="48" alt="Azure" />
-<br>Azure
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
-<br>Vercel
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
-<br>Tailwind
-</td>
-</tr>
-<tr>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=tensorflow" width="48" height="48" alt="TensorFlow" />
-<br>TensorFlow
-</td>
-<td align="center" width="96">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" width="48" height="48" alt="Scikit-learn" />
-<br>Scikit-learn
-</td>
-<td align="center" width="96">
-<img src="https://www.svgrepo.com/show/306500/openai.svg" width="48" height="48" alt="OpenAI" />
-<br>OpenAI
-</td>
-<td align="center" width="96">
-<img src="https://cdn.worldvectorlogo.com/logos/langchain.svg" width="48" height="48" alt="LangChain" />
-<br>LangChain
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS3" />
-<br>CSS3
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML5" />
-<br>HTML5
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" />
-<br>Git
-</td>
-<td align="center" width="96">
-<img src="https://skillicons.dev/icons?i=vscode" width="48" height="48" alt="VS Code" />
-<br>VS Code
-</td>
-</tr>
-</table>
+**Version TimeTravel.** [Nine previous versions of this site](https://thomasjbutler.github.io/version-timetravel/), every one still running as it originally shipped. It's the one thing a CV can't do.
 
-## Credentials & Specialisations
+---
 
-### Qualifications
-- **AWS Qualified** | **Azure Qualified** | **Cisco Qualified** | **HubSpot Qualified**
-- Level 4 Software Developer Apprenticeship, studied 2023-24
-- City & Guilds Level 2 ICT Systems Support (May 2025)
-- Machine Learning: Mastering Generative AI & Agents (September 2025)
+## Architecture
 
-### Areas of Focus
-- **AI & ML** → Custom models, LLM training, prompt engineering, performance testing
-- **Automation** → n8n workflows, API integrations, MCP creation, custom AI models
-- **CSS** → GSAP animations, 3D transforms, Matrix effects
-- **Full-Stack** → End-to-end application development  
+### It's prerendered, not an SPA
 
-## GitHub Stats
+Every route is rendered to real HTML at build time. This isn't an optimisation, it's the difference between existing and not existing for a whole class of reader: **GPTBot, ClaudeBot and PerplexityBot fetch HTML and don't execute JavaScript.** Before this, `/about` shipped zero characters of body text.
 
-<div align="center">
+- `src/entry-server.tsx` renders each route with `prerenderToNodeStream`.
+- `scripts/routes.mjs` is the single source of truth for routes, titles and descriptions.
+- `scripts/prerender.mjs` injects markup, per-route meta and JSON-LD, and **fails the build if any route emits under 600 characters of text.** A component that silently renders nothing on the server is invisible otherwise.
+- `src/main.tsx` **hydrates** rather than mounting fresh, so the prerendered DOM survives.
 
-![Thomas's GitHub stats](https://github-readme-stats.vercel.app/api?username=ThomasJButler&show_icons=true&theme=chartreuse-dark&border_color=00FF00&bg_color=0D1117&title_color=00FF00&icon_color=00FF00&text_color=FFFFFF)
+### The effects layer
 
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=ThomasJButler&theme=react-dark&bg_color=0D1117&color=00FF00&line=00FF00&point=FFFFFF&area_color=00FF00&area=true&hide_border=true)
+`src/lib/fx/rain-engine.ts` is the Matrix rain as a plain class, so its maths is unit-tested without a canvas. The performance constraints in it are load-bearing rather than fussy: the first version dropped the page to 20fps. It renders at DPR 1, draws at 30fps with time-scaled movement, bounds each stream to 16-34 glyphs, and batches the column heads into a single pass.
 
-</div>
+The pointer "morph" (glyphs parting around the cursor, click ripples) is gated on dark theme + rain on + a fine pointer. When that gate is shut there are no pointer listeners on the page at all.
 
-<div align="center">
-  
-## Get in Touch
+Everything cinematic answers to one switch, `useFx().motionOk`, which folds the OS reduced-motion preference together with an in-page toggle. WCAG 2.2.2 needs that in-page control for auto-playing motion; `prefers-reduced-motion` alone doesn't satisfy it.
 
-</div>
+### Styling
 
-<div align="center">
-  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomasbutleruk/)
-[![CodePen](https://img.shields.io/badge/CodePen-Follow-1e1e1e?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/thomasjbutler)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support-FFB000?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ojrwoqkgmv)
+One file, `src/app.css`. Tailwind 4, CSS-first, so there's no `tailwind.config`. Theme tokens are custom properties and light/dark is a `.dark` class on `<html>`.
 
-</div>
+---
 
-<div align="center">
+## Project structure
 
-**Email:** [dev@thomasjbutler.me](mailto:dev@thomasjbutler.me) |-------|
-**Resume:** [Download Resume (PDF)](https://cvgenius.com/uk/cv-link/ca1e2690-125c-4422-804d-b68c1935f598/449d6614-8209-4741-bd30-2fc12fe4f8e8)
+```
+├── index.html              the app shell, plus the pre-paint theme script
+├── scripts/
+│   ├── routes.mjs          every route, title and description. Also a runtime import
+│   ├── prerender.mjs       renders each route to HTML, enforces the 600-char floor
+│   └── structured-data.mjs per-route JSON-LD
+├── src/
+│   ├── app.css             all of it
+│   ├── entry-server.tsx    the server render entry
+│   ├── main.tsx            hydrates #root
+│   ├── components/
+│   │   ├── fx/             decode-in text, reveal-on-scroll
+│   │   ├── home/           hero, terminal console, proof section
+│   │   ├── layout/         header, footer, page transition
+│   │   ├── system/         command palette, atmosphere, toaster, easter eggs
+│   │   └── ui/             shadcn components, on Base UI
+│   ├── contexts/           theme, accent, effects
+│   ├── lib/
+│   │   ├── content.ts      the copy. Import it, don't retype it
+│   │   ├── projects.ts     the project data
+│   │   ├── timeline.ts     the dev journey
+│   │   ├── assets.ts       Cloudinary URL map
+│   │   └── fx/             rain engine, decode, easing
+│   └── pages/              one per route
+└── e2e/                    Playwright screenshots and page checks
+```
 
-</div>
+---
 
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=00FF00&height=100&section=footer" width="100%" />
-</div>
+## Running it
+
+Node 22.
+
+```bash
+npm install
+npm run dev          # localhost:3000
+```
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server on port 3000 |
+| `npm run build` | Client build, then an SSR build, then the prerender |
+| `npm run preview` | Serves `dist/`. The `--outDir dist` is load-bearing |
+| `npm run type-check` | `tsc --noEmit` |
+| `npm run lint` | ESLint over `src` |
+| `npx vitest run` | Unit and component tests, once |
+| `npm run test:e2e` | Playwright |
+| `npm run deploy` | Build and publish to GitHub Pages |
+
+---
+
+## Quality
+
+Lighthouse, desktop, against a production build. Measured 27 August 2026, not aspirational:
+
+| | Score |
+|---|---|
+| Accessibility | **100** |
+| Best Practices | **100** |
+| SEO | **100** |
+| Agentic Browsing | **97** |
+| Cumulative Layout Shift | **0.00** |
+
+That CLS number was 0.144 once. Getting it to zero took three things that all look like dead weight to anyone tidying up: a full-screen loader reservation, a hidden per-character sizer inside the decode-in text, and metric-matched fallback `@font-face` blocks (Orbitron is 18.9% wider than Arial, so every heading re-wrapped on font load). They're all commented where they live.
+
+The test suite is 117 unit and component tests across 17 files, plus Playwright for screenshots and page checks.
+
+---
+
+## Licence
+
+MIT.
+
+---
+
+## Contact
+
+**Tom Butler** · Leeds, Yorkshire
+Looking for full-time work: junior for general software, any non-senior level for AI.
+
+[dev@thomasjbutler.me](mailto:dev@thomasjbutler.me) · [LinkedIn](https://www.linkedin.com/in/thomasbutleruk/) · [GitHub](https://github.com/ThomasJButler) · [Commercial work](https://thomasjbutler.me)
