@@ -103,19 +103,31 @@ export const MEDIA = {
     hero: img(T.hero, 'v1785172983', 'yo2ngxidzrutqxjgqcmc'),
   },
 
+  /**
+   * Recut August 2026 for the local rebuild. The old set showed the hosted build this project
+   * started as, down to a "[LLM] CLAUDE / [NET] ONLINE" status bar; the new one runs on Ollama
+   * and LanceDB and says so.
+   *
+   * `diagram` and `wireframe` are the same artwork as gallery 04 and 05, at native 1640 rather
+   * than letterboxed into the gallery's 16:9. So each appears twice in the modal, once in the
+   * strip and once captioned under "Under the hood". That is deliberate, not an oversight.
+   *
+   * `poster` is unchanged: the loop was recut but no new poster frame was made, and the old one
+   * still matches the first frame closely enough to stand in behind it.
+   */
   morpheus: {
-    cover: img(T.cover, 'v1785172990', 'pggcvdmmjl3cbr2fuxxm'),
+    cover: img(T.cover, 'v1787888988', 'dtmtetjvdaoc4uih3ekk'),
     gallery: [
-      img(T.gallery, 'v1785172988', 'wvjfefgetbabeave4fdl'),
-      img(T.gallery, 'v1785172989', 'uwnlrlrrn83uwtb83hr5'),
-      img(T.gallery, 'v1785172989', 'pcnhzeqw2qozxjqfuseu'),
-      img(T.gallery, 'v1785172989', 'x6piqlqx5qy1bonncbdx'),
-      img(T.gallery, 'v1785172989', 'jlgsjfvpac4cutxxpsyr'),
+      img(T.gallery, 'v1787888985', 'zrmofu85isz1qkkstdwz'),
+      img(T.gallery, 'v1787888986', 'yti3oa6f8sci74a2xdqj'),
+      img(T.gallery, 'v1787891756', 'kvnbz2bcigtmipgbp9ah'),
+      img(T.gallery, 'v1787888986', 'trl2vnksukogqx3jrfa1'),
+      img(T.gallery, 'v1787888986', 'opyqf74ubbxzhnmhvbfs'),
     ],
-    loop: img(T.loop, 'v1785172990', 'rmcre0s8ayjuqgctfphh', 'mp4'),
+    loop: img(T.loop, 'v1787888987', 'axsby0k2p3sn4av8r1cx', 'mp4'),
     poster: img(T.poster, 'v1785172989', 'k3yxjuxcszqbxjwxtso1', 'jpg'),
-    diagram: img(T.gallery, 'v1785172980', 'zlyszkv8fqohzbxr5gc4'),
-    wireframe: img(T.gallery, 'v1785173004', 'rbbdvc1l3rvhmke5frc6'),
+    diagram: img(T.gallery, 'v1787891796', 'tmyanitzhebg7bvueesn'),
+    wireframe: img(T.gallery, 'v1787888996', 'dutngyhiquned8qu0lzj'),
   },
 
   modelviz: {

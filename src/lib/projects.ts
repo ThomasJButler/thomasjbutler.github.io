@@ -383,7 +383,8 @@ export const projects: Project[] = [
     category: 'ai',
     links: { demo: 'https://morpheusrag.vercel.app', github: 'https://github.com/ThomasJButler/Morpheus' },
     // The gallery used to be a single 8.8MB GIF (morpheusgif2_zdkku9.gif). Five stills and a
-    // 72kB loop say more and cost 2% of the bytes.
+    // loop say more and cost a fraction of the bytes. Recut in August 2026 for the local
+    // rebuild; gallery 04 and 05 are the diagram and wireframe letterboxed into 16:9.
     images: {
       cover: MEDIA.morpheus.cover,
       gallery: MEDIA.morpheus.gallery,
@@ -396,14 +397,15 @@ export const projects: Project[] = [
       },
       diagram: {
         src: MEDIA.morpheus.diagram,
-        // The diagram still shows the hosted build this project started as. The green
-        // generation step it described as "moving to Ollama" has now moved, along with
-        // the vector store; the artwork is the last thing left to redraw.
+        // Redrawn August 2026. The old one showed the hosted build this project started as,
+        // with a generation step captioned "moving to Ollama"; it has moved, and so has the
+        // vector store, and the artwork now names LanceDB and Ollama on :11434.
         caption: 'Your documents, an index that lives on your own disk, and an answer that cites where it came from. Every step of this runs on the machine in front of you.',
       },
       wireframe: {
         src: MEDIA.morpheus.wireframe,
-        caption: 'Ask on the left, the answer and its sources on the right. Every claim traceable back to a page.',
+        caption:
+          'Three columns: the documents you have indexed on the left, the thread in the middle, library size and the last answer\'s timings on the right. The one amber state is an answer that cited nothing, and it keeps its place in the thread rather than being quietly dropped.',
       },
     },
     videos: ['https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_960/v1767706547/2_1080_N_s5t1ww.mp4'],
