@@ -198,7 +198,10 @@ export const projects: Project[] = [
     // No status. The build is live and the demo still works, so the links stay, but it is
     // not being actively developed and "Completed" over a cover badged NOW DISCONTINUED
     // was the card and the artwork disagreeing in the same modal.
-
+    images: {
+      cover: MEDIA['premier-league-oracle'].cover,
+      gallery: MEDIA['premier-league-oracle'].gallery,
+    },
     highlights: [
       'The Butler model, fitted over 33 seasons',
       'RPS 0.2000 vs the bookmaker ceiling of 0.1939',
@@ -252,6 +255,17 @@ export const projects: Project[] = [
     // address-use and deletion duties that a public demo could not honour.
     links: {},
     status: 'in-progress',
+    images: {
+      cover: MEDIA['offshore-property-map'].cover,
+      gallery: MEDIA['offshore-property-map'].gallery,
+    },
+    underTheHood: {
+      diagram: {
+        src: MEDIA['offshore-property-map'].diagram,
+        caption:
+          'The publication gate, drawn. What clears the bar is not the estimate but the lower bound of its 95% interval: 0.9950 measured, 0.9765 at the bound, against a threshold of 0.95. Shrink the audit sample and that same estimate fails, which is the whole reason the gate reads the bound and not the number.',
+      },
+    },
     highlights: [
       'Two public registers, no shared key, real consequences for a wrong match',
       'Probabilistic matching with Splink, over DuckDB',
@@ -270,6 +284,22 @@ export const projects: Project[] = [
     // Private: it holds a real profile and a real application history.
     links: {},
     status: 'completed',
+    images: {
+      cover: MEDIA['octopus-job-hunter'].cover,
+      gallery: MEDIA['octopus-job-hunter'].gallery,
+    },
+    underTheHood: {
+      diagram: {
+        src: MEDIA['octopus-job-hunter'].diagram,
+        caption:
+          'Your own files on the left, five markdown playbooks in the middle, four CV formats and a tracker on the right. The playbooks are the product rather than the code: Claude, Codex or a model running on your own machine can each follow them, so an employment history never has to leave the laptop to be useful.',
+      },
+      wireframe: {
+        src: MEDIA['octopus-job-hunter'].wireframe,
+        caption:
+          'One screen. Boards down the left, the advert and how well it matches in the middle, the tailored CV building on the right. Generate, save to the tracker, open the advert. There is no button that applies for you, and that is deliberate.',
+      },
+    },
     highlights: [
       'Sixteen specialist boards through official feeds, in about ten seconds',
       'One CV library, four output formats per role',
@@ -627,7 +657,7 @@ export const projects: Project[] = [
     category: 'portfolio',
     links: { demo: 'https://thomasjbutler.github.io/version-timetravel/', github: 'https://github.com/ThomasJButler/version-timetravel' },
     images: {
-      cover: 'https://res.cloudinary.com/depqttzlt/image/upload/f_auto,q_auto,w_800/v1767710995/portfoliotimetravel_rh7jgr.png',
+      cover: MEDIA['version-timetravel'].cover,
       gallery: MEDIA['version-timetravel'].gallery,
     },
     highlights: [

@@ -169,20 +169,71 @@ export const MEDIA = {
   },
 
   /**
-   * Screenshots of the live app rather than designed tiles, taken while Claude Design was
-   * unavailable, and picked from thirteen.
+   * Designed tiles, August 2026. These replace padded screenshots of the live app that stood in
+   * while Claude Design was unavailable; the cover is a 1600x750 tile, so this is now in
+   * DESIGNED_COVERS.
    *
-   * They arrived at 2880x1800, which is 1.600 and not the gallery's 16:9. Padded to 3200x1800
-   * in #0D0D0D rather than cropped: the app's own chrome samples at exactly that value, so the
-   * bars are invisible, and a 10% centre-crop would have taken the header off the top of all
-   * four. Nothing is lost and nothing is stretched.
+   * The gallery is stamped 01, 02, 03, 05. There is no 04 in the delivered set and the gap is
+   * accepted rather than a missing upload.
+   *
+   * Tile 01 embeds a capture of the live archive reading "9 versions - 25 months". The archive
+   * derives that from its own data and now says 26, because the August entry moved the last
+   * date. It is left as taken: it is a screenshot of a real moment, and this project of all of
+   * them is about showing what a thing actually looked like. The cover's stat is *designed*
+   * rather than captured, so that one was re-cut to 26.
    */
   'version-timetravel': {
+    cover: img(T.cover, 'v1787888996', 'hgy24rsfvo31dszokljo'),
     gallery: [
-      img(T.gallery, 'v1785173002', 'l3jzdt9ibolklfpl8wnp'),
-      img(T.gallery, 'v1785173003', 'nfnw74zg2wkqznfzvfg2'),
-      img(T.gallery, 'v1785173003', 'yrosd6uwwiqyrprkjiqn'),
-      img(T.gallery, 'v1785173003', 'wysieimgciy3n9xyn4jc'),
+      img(T.gallery, 'v1787888994', 'aj0ffj7mgt49yonwqf0q'),
+      img(T.gallery, 'v1787888995', 'y5hsatkiv4vrj38jlemm'),
+      img(T.gallery, 'v1787888997', 'nksysetwsccguc1xzxo0'),
+      img(T.gallery, 'v1787888995', 'oduxlsrmpiolxk5nzjpv'),
+    ],
+  },
+
+  /**
+   * Added August 2026 alongside the cards themselves. All three covers are designed 1600x750
+   * tiles, so all three belong in DESIGNED_COVERS.
+   *
+   * Octopus is the one set that is not Matrix green. It carries the product's own light
+   * palette, which is what the palette rule allows for a product's own artwork.
+   *
+   * Offshore's tiles are styled as a technical report and carry its section numbers. The
+   * gallery opens on the linkage pipeline (2.1) and then runs 3.2, 4.1, so it reads in the
+   * report's own order; the delivered order put 2.1 last, where the method arrived after its
+   * own results. The publication gate, 2.4, is the diagram.
+   */
+  'octopus-job-hunter': {
+    cover: img(T.cover, 'v1787888988', 'mg1swlik9lt8a5kscmp6'),
+    gallery: [
+      img(T.gallery, 'v1787888989', 'i5rexfswuqovoywyguu1'),
+      img(T.gallery, 'v1787888990', 'pbu07eju1nsniuomtrvs'),
+      img(T.gallery, 'v1787888984', 'o6qbmwnpzudc94odujop'),
+      img(T.gallery, 'v1787888990', 'yazfvg3pavxmwppidchw'),
+    ],
+    diagram: img(T.gallery, 'v1787888988', 'vkwpetfcv89bmkulf7pj'),
+    wireframe: img(T.gallery, 'v1787888990', 'dxqd4jrh4kvxm9h4jabi'),
+  },
+
+  'offshore-property-map': {
+    cover: img(T.cover, 'v1787888991', 'ycfv7dfek2olzanoa2fv'),
+    gallery: [
+      img(T.gallery, 'v1787888985', 'r4rmi8yirnwcmg630vde'),
+      img(T.gallery, 'v1787888990', 'rom8trvj65cwzrzxkwlj'),
+      img(T.gallery, 'v1787888991', 'o9552vkqunmrum1qnxk8'),
+    ],
+    diagram: img(T.gallery, 'v1787888985', 'rpcwn1essosncseuwrre'),
+  },
+
+  'premier-league-oracle': {
+    cover: img(T.cover, 'v1787888994', 'luuiw3yotyctpe1qhs4x'),
+    gallery: [
+      img(T.gallery, 'v1787888992', 'ymejzjt3feu67gbbkooc'),
+      img(T.gallery, 'v1787888992', 'z230siasp2ezsdjrssuw'),
+      img(T.gallery, 'v1787888993', 'u3mutjaflpe8pei6riqb'),
+      img(T.gallery, 'v1787888993', 'jcxetopzxbwl9f2h4kuz'),
+      img(T.gallery, 'v1787888993', 'oyko4qjsm7vv2wqfo285'),
     ],
   },
 
@@ -313,6 +364,10 @@ const DESIGNED_COVERS = new Set([
   'modelviz',
   'reviewbot-protocol',
   'news-perspective',
+  'version-timetravel',
+  'octopus-job-hunter',
+  'offshore-property-map',
+  'premier-league-oracle',
 ]);
 
 export function hasDesignedCover(id: string): boolean {
