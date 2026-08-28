@@ -195,13 +195,14 @@ export const projects: Project[] = [
       demo: 'https://the-premier-league-oracle.vercel.app',
       github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle',
     },
-    // No status. The build is live and the demo still works, so the links stay, but it is
-    // not being actively developed and "Completed" over a cover badged NOW DISCONTINUED
-    // was the card and the artwork disagreeing in the same modal.
     images: {
       cover: MEDIA['premier-league-oracle'].cover,
       gallery: MEDIA['premier-league-oracle'].gallery,
     },
+    // There is deliberately no `status` on this one. The build is live and the demo still
+    // works, so the links stay, but it is not being actively developed, and "Completed"
+    // over a cover badged NOW DISCONTINUED was the card and the artwork disagreeing in
+    // the same modal.
     highlights: [
       'The Butler model, fitted over 33 seasons',
       'RPS 0.2000 vs the bookmaker ceiling of 0.1939',
@@ -405,7 +406,7 @@ export const projects: Project[] = [
       wireframe: {
         src: MEDIA.morpheus.wireframe,
         caption:
-          'Three columns: the documents you have indexed on the left, the thread in the middle, library size and the last answer\'s timings on the right. The one amber state is an answer that cited nothing, and it keeps its place in the thread rather than being quietly dropped.',
+          'Three columns: the documents you have indexed on the left, the thread in the middle, library size and the last answer’s timings on the right. The one amber state is an answer that cited nothing, and it keeps its place in the thread rather than being quietly dropped.',
       },
     },
     videos: ['https://res.cloudinary.com/depqttzlt/video/upload/vc_auto,q_auto,w_960/v1767706547/2_1080_N_s5t1ww.mp4'],
@@ -642,13 +643,14 @@ export const projects: Project[] = [
     name: 'Version TimeTravel',
     description: 'A working archive of every version of this site since 2024. Every one still runs, in the browser, as it originally shipped.',
     /*
-     * "9 portfolio versions" kept, and it is the app's own figure: its hero and its stat line
-     * both say nine, and the chronology rail lists nine. `versions.ts` holds ten entries and
-     * the thumbnail strip shows ten, because the commercial site is in the archive without
-     * being a version of this portfolio. Consistent, but worth a glance during the QA pass.
+     * No version count in the copy, on purpose. `versions.ts` holds eleven entries, one of
+     * which is withheld, so ten are visible; nine of those ten are this portfolio's own
+     * lineage, because the commercial site sits in the archive without being a version of
+     * this site. Any number typed here drifts the moment an entry is added or hidden, and it
+     * already did: the card claimed nine while the archive was showing something else.
      *
      * `language` left as JavaScript deliberately. The app's own source is TypeScript, but
-     * GitHub's breakdown for the repo is CSS, HTML and JavaScript, because ten archived static
+     * GitHub's breakdown for the repo is CSS, HTML and JavaScript, because the archived static
      * sites dwarf the viewer that displays them. The field is a coloured dot, and deferring to
      * GitHub is the rule the other entries follow.
      */
