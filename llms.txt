@@ -7,8 +7,8 @@ Contact: dev@thomasjbutler.me
 ## Work
 
 - [Case study](https://thomasjbutler.github.io/case-study): ISQ Agent, a RAG agent that drafts supplier security questionnaires, grounds every answer in the organisation's own policy documents with citations, scores confidence on each answer, and routes weak ones to a human. Python/FastAPI RAG engine with an n8n orchestration tier, 480+ tests. Built for a technical assessment with RiverAI and presented in person. The build ran on hosted models (Claude, Voyage, Pinecone); the model sits behind an interface, so the same pipeline runs against open models on your own hardware.
-- [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and learning projects, including Sanctuary (an offline, on-device iOS app for neurodiverse users), ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Version TimeTravel (nine versions of this site, every one still running).
-- [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from the first line of code in November 2022 to production AI systems, by way of the DWP and an agency apprenticeship.
+- [Projects](https://thomasjbutler.github.io/projects): AI, web, mobile and learning projects, including Sanctuary (an offline, on-device iOS app for neurodiverse users), ModelViz (multi-provider AI model comparison), SQL Ball (natural language to SQL over football data), Morpheus (document Q&A with RAG), ReviewBot Protocol (automated PR review), and Version TimeTravel (every version of this site since 2024, all still running).
+- [Dev Journey](https://thomasjbutler.github.io/updates): a timeline of the work, from the first line of code in early 2022 to production AI systems, by way of the DWP and an agency apprenticeship.
 
 ## About
 
