@@ -103,19 +103,31 @@ export const MEDIA = {
     hero: img(T.hero, 'v1785172983', 'yo2ngxidzrutqxjgqcmc'),
   },
 
+  /**
+   * Recut August 2026 for the local rebuild. The old set showed the hosted build this project
+   * started as, down to a "[LLM] CLAUDE / [NET] ONLINE" status bar; the new one runs on Ollama
+   * and LanceDB and says so.
+   *
+   * `diagram` and `wireframe` are the same artwork as gallery 04 and 05, at native 1640 rather
+   * than letterboxed into the gallery's 16:9. So each appears twice in the modal, once in the
+   * strip and once captioned under "Under the hood". That is deliberate, not an oversight.
+   *
+   * `poster` is unchanged: the loop was recut but no new poster frame was made, and the old one
+   * still matches the first frame closely enough to stand in behind it.
+   */
   morpheus: {
-    cover: img(T.cover, 'v1785172990', 'pggcvdmmjl3cbr2fuxxm'),
+    cover: img(T.cover, 'v1787888988', 'dtmtetjvdaoc4uih3ekk'),
     gallery: [
-      img(T.gallery, 'v1785172988', 'wvjfefgetbabeave4fdl'),
-      img(T.gallery, 'v1785172989', 'uwnlrlrrn83uwtb83hr5'),
-      img(T.gallery, 'v1785172989', 'pcnhzeqw2qozxjqfuseu'),
-      img(T.gallery, 'v1785172989', 'x6piqlqx5qy1bonncbdx'),
-      img(T.gallery, 'v1785172989', 'jlgsjfvpac4cutxxpsyr'),
+      img(T.gallery, 'v1787888985', 'zrmofu85isz1qkkstdwz'),
+      img(T.gallery, 'v1787888986', 'yti3oa6f8sci74a2xdqj'),
+      img(T.gallery, 'v1787891756', 'kvnbz2bcigtmipgbp9ah'),
+      img(T.gallery, 'v1787888986', 'trl2vnksukogqx3jrfa1'),
+      img(T.gallery, 'v1787888986', 'opyqf74ubbxzhnmhvbfs'),
     ],
-    loop: img(T.loop, 'v1785172990', 'rmcre0s8ayjuqgctfphh', 'mp4'),
+    loop: img(T.loop, 'v1787888987', 'axsby0k2p3sn4av8r1cx', 'mp4'),
     poster: img(T.poster, 'v1785172989', 'k3yxjuxcszqbxjwxtso1', 'jpg'),
-    diagram: img(T.gallery, 'v1785172980', 'zlyszkv8fqohzbxr5gc4'),
-    wireframe: img(T.gallery, 'v1785173004', 'rbbdvc1l3rvhmke5frc6'),
+    diagram: img(T.gallery, 'v1787891796', 'tmyanitzhebg7bvueesn'),
+    wireframe: img(T.gallery, 'v1787888996', 'dutngyhiquned8qu0lzj'),
   },
 
   modelviz: {
@@ -169,20 +181,71 @@ export const MEDIA = {
   },
 
   /**
-   * Screenshots of the live app rather than designed tiles, taken while Claude Design was
-   * unavailable, and picked from thirteen.
+   * Designed tiles, August 2026. These replace padded screenshots of the live app that stood in
+   * while Claude Design was unavailable; the cover is a 1600x750 tile, so this is now in
+   * DESIGNED_COVERS.
    *
-   * They arrived at 2880x1800, which is 1.600 and not the gallery's 16:9. Padded to 3200x1800
-   * in #0D0D0D rather than cropped: the app's own chrome samples at exactly that value, so the
-   * bars are invisible, and a 10% centre-crop would have taken the header off the top of all
-   * four. Nothing is lost and nothing is stretched.
+   * The gallery is stamped 01, 02, 03, 05. There is no 04 in the delivered set and the gap is
+   * accepted rather than a missing upload.
+   *
+   * Tile 01 embeds a capture of the live archive reading "9 versions - 25 months". The archive
+   * derives that from its own data and now says 26, because the August entry moved the last
+   * date. It is left as taken: it is a screenshot of a real moment, and this project of all of
+   * them is about showing what a thing actually looked like. The cover's stat is *designed*
+   * rather than captured, so that one was re-cut to 26.
    */
   'version-timetravel': {
+    cover: img(T.cover, 'v1787888996', 'hgy24rsfvo31dszokljo'),
     gallery: [
-      img(T.gallery, 'v1785173002', 'l3jzdt9ibolklfpl8wnp'),
-      img(T.gallery, 'v1785173003', 'nfnw74zg2wkqznfzvfg2'),
-      img(T.gallery, 'v1785173003', 'yrosd6uwwiqyrprkjiqn'),
-      img(T.gallery, 'v1785173003', 'wysieimgciy3n9xyn4jc'),
+      img(T.gallery, 'v1787888994', 'aj0ffj7mgt49yonwqf0q'),
+      img(T.gallery, 'v1787888995', 'y5hsatkiv4vrj38jlemm'),
+      img(T.gallery, 'v1787888997', 'nksysetwsccguc1xzxo0'),
+      img(T.gallery, 'v1787888995', 'oduxlsrmpiolxk5nzjpv'),
+    ],
+  },
+
+  /**
+   * Added August 2026 alongside the cards themselves. All three covers are designed 1600x750
+   * tiles, so all three belong in DESIGNED_COVERS.
+   *
+   * Octopus is the one set that is not Matrix green. It carries the product's own light
+   * palette, which is what the palette rule allows for a product's own artwork.
+   *
+   * Offshore's tiles are styled as a technical report and carry its section numbers. The
+   * gallery opens on the linkage pipeline (2.1) and then runs 3.2, 4.1, so it reads in the
+   * report's own order; the delivered order put 2.1 last, where the method arrived after its
+   * own results. The publication gate, 2.4, is the diagram.
+   */
+  'octopus-job-hunter': {
+    cover: img(T.cover, 'v1787888988', 'mg1swlik9lt8a5kscmp6'),
+    gallery: [
+      img(T.gallery, 'v1787888989', 'i5rexfswuqovoywyguu1'),
+      img(T.gallery, 'v1787888990', 'pbu07eju1nsniuomtrvs'),
+      img(T.gallery, 'v1787888984', 'o6qbmwnpzudc94odujop'),
+      img(T.gallery, 'v1787888990', 'yazfvg3pavxmwppidchw'),
+    ],
+    diagram: img(T.gallery, 'v1787888988', 'vkwpetfcv89bmkulf7pj'),
+    wireframe: img(T.gallery, 'v1787888990', 'dxqd4jrh4kvxm9h4jabi'),
+  },
+
+  'offshore-property-map': {
+    cover: img(T.cover, 'v1787888991', 'ycfv7dfek2olzanoa2fv'),
+    gallery: [
+      img(T.gallery, 'v1787888985', 'r4rmi8yirnwcmg630vde'),
+      img(T.gallery, 'v1787888990', 'rom8trvj65cwzrzxkwlj'),
+      img(T.gallery, 'v1787888991', 'o9552vkqunmrum1qnxk8'),
+    ],
+    diagram: img(T.gallery, 'v1787888985', 'rpcwn1essosncseuwrre'),
+  },
+
+  'premier-league-oracle': {
+    cover: img(T.cover, 'v1787888994', 'luuiw3yotyctpe1qhs4x'),
+    gallery: [
+      img(T.gallery, 'v1787888992', 'ymejzjt3feu67gbbkooc'),
+      img(T.gallery, 'v1787888992', 'z230siasp2ezsdjrssuw'),
+      img(T.gallery, 'v1787888993', 'u3mutjaflpe8pei6riqb'),
+      img(T.gallery, 'v1787888993', 'jcxetopzxbwl9f2h4kuz'),
+      img(T.gallery, 'v1787888993', 'oyko4qjsm7vv2wqfo285'),
     ],
   },
 
@@ -313,6 +376,10 @@ const DESIGNED_COVERS = new Set([
   'modelviz',
   'reviewbot-protocol',
   'news-perspective',
+  'version-timetravel',
+  'octopus-job-hunter',
+  'offshore-property-map',
+  'premier-league-oracle',
 ]);
 
 export function hasDesignedCover(id: string): boolean {
