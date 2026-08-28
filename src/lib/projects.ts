@@ -195,7 +195,10 @@ export const projects: Project[] = [
       demo: 'https://the-premier-league-oracle.vercel.app',
       github: 'https://github.com/ThomasJButler/The-Premier-League-Oracle',
     },
-    status: 'completed',
+    // No status. The build is live and the demo still works, so the links stay, but it is
+    // not being actively developed and "Completed" over a cover badged NOW DISCONTINUED
+    // was the card and the artwork disagreeing in the same modal.
+
     highlights: [
       'The Butler model, fitted over 33 seasons',
       'RPS 0.2000 vs the bookmaker ceiling of 0.1939',
